@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+
+<html lang="et">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GLÓW · AI Stiiliassistent</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f5ede0;
+    --blush: #e8b4a0;
+    --rose: #c47a6b;
+    --deep: #3a1f1a;
+    --warm: #8b4a3a;
+    --gold: #c9a96e;
+    --soft: #f0d9c8;
+  }
+
+- { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+background: var(–deep);
+font-family: 
+  ‘DM Mono’, monospace;
+color: var(–cream);
+min-height: 100vh;
+overflow-x: hidden;
+}
+
+/* Animated background */
+body::before {
+content: ‘’;
+position: fixed;
+inset: 0;
+background:
+radial-gradient(ellipse 80% 60% at 20% 20%, rgba(196,122,107,0.15) 0%, transparent 60%),
+radial-gradient(ellipse 60% 80% at 80% 80%, rgba(201,169,110,0.1) 0%, transparent 60%),
+radial-gradient(ellipse 40% 40% at 50% 50%, rgba(232,180,160,0.05) 0%, transparent 70%);
+pointer-events: none;
+z-index: 0;
+}
+
+.container {
+position: relative;
+z-index: 1;
+max-width: 1100px;
+margin: 0 auto;
+padding: 40px 24px;
+}
+
+/* Header */
+header {
+text-align: center;
+margin-bottom: 48px;
+animation: fadeDown 0.8s ease both;
+}
+
+.logo {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: clamp(48px, 8vw, 80px);
+font-weight: 300;
+letter-spacing: 0.2em;
+color: var(–cream);
+line-height: 1;
+}
+
+.logo span {
+color: var(–gold);
+font-style: italic;
+}
+
+.tagline {
+font-size: 11px;
+letter-spacing: 0.3em;
+color: var(–blush);
+margin-top: 8px;
+text-transform: uppercase;
+}
+
+/* Main layout */
+.main-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 24px;
+align-items: start;
+}
+
+@media (max-width: 768px) {
+.main-grid { grid-template-columns: 1fr; }
+}
+
+/* Camera panel */
+.camera-panel {
+animation: fadeUp 0.8s ease 0.2s both;
+}
+
+.panel-label {
+font-size: 10px;
+letter-spacing: 0.4em;
+color: var(–gold);
+text-transform: uppercase;
+margin-bottom: 12px;
+}
+
+.camera-frame {
+position: relative;
+border: 1px solid rgba(201,169,110,0.3);
+border-radius: 2px;
+overflow: hidden;
+background: rgba(0,0,0,0.4);
+aspect-ratio: 3/4;
+}
+
+.camera-frame::before,
+.camera-frame::after {
+content: ‘’;
+position: absolute;
+width: 20px;
+height: 20px;
+z-index: 10;
+}
+.camera-frame::before {
+top: 12px; left: 12px;
+border-top: 1px solid var(–gold);
+border-left: 1px solid var(–gold);
+}
+.camera-frame::after {
+bottom: 12px; right: 12px;
+border-bottom: 1px solid var(–gold);
+border-right: 1px solid var(–gold);
+}
+
+#videoEl {
+width: 100%;
+height: 100%;
+object-fit: cover;
+display: block;
+transform: scaleX(-1);
+}
+
+.camera-overlay {
+position: absolute;
+inset: 0;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+gap: 16px;
+background: rgba(58,31,26,0.7);
+backdrop-filter: blur(4px);
+}
+
+.camera-overlay p {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 18px;
+color: var(–cream);
+text-align: center;
+padding: 0 24px;
+font-style: italic;
+}
+
+/* Scanning animation */
+.scan-line {
+position: absolute;
+left: 0; right: 0;
+height: 1px;
+background: linear-gradient(90deg, transparent, var(–gold), transparent);
+animation: scan 3s linear infinite;
+opacity: 0;
+pointer-events: none;
+z-index: 5;
+}
+
+.scan-line.active { opacity: 1; }
+
+@keyframes scan {
+0% { top: 0%; }
+100% { top: 100%; }
+}
+
+/* Status indicator */
+.status-bar {
+display: flex;
+align-items: center;
+gap: 8px;
+margin-top: 12px;
+font-size: 11px;
+letter-spacing: 0.2em;
+color: var(–blush);
+}
+
+.status-dot {
+width: 6px; height: 6px;
+border-radius: 50%;
+background: var(–blush);
+transition: all 0.3s;
+}
+
+.status-dot.live {
+background: #7ec98a;
+box-shadow: 0 0 8px rgba(126,201,138,0.6);
+animation: pulse 2s ease infinite;
+}
+
+.status-dot.thinking {
+background: var(–gold);
+box-shadow: 0 0 8px rgba(201,169,110,0.6);
+animation: pulse 0.8s ease infinite;
+}
+
+@keyframes pulse {
+0%, 100% { opacity: 1; transform: scale(1); }
+50% { opacity: 0.5; transform: scale(1.3); }
+}
+
+/* Buttons */
+.btn {
+display: inline-flex;
+align-items: center;
+gap: 8px;
+padding: 12px 24px;
+border: 1px solid var(–gold);
+background: transparent;
+color: var(–cream);
+font-family: ‘DM Mono’, monospace;
+font-size: 11px;
+letter-spacing: 0.3em;
+text-transform: uppercase;
+cursor: pointer;
+transition: all 0.3s;
+border-radius: 1px;
+}
+
+.btn:hover {
+background: rgba(201,169,110,0.15);
+color: var(–gold);
+}
+
+.btn.primary {
+background: var(–gold);
+color: var(–deep);
+border-color: var(–gold);
+}
+
+.btn.primary:hover {
+background: var(–cream);
+color: var(–deep);
+}
+
+.btn:disabled {
+opacity: 0.4;
+cursor: not-allowed;
+}
+
+.btn-group {
+display: flex;
+gap: 10px;
+margin-top: 16px;
+flex-wrap: wrap;
+}
+
+/* AI Response panel */
+.response-panel {
+animation: fadeUp 0.8s ease 0.4s both;
+display: flex;
+flex-direction: column;
+gap: 16px;
+}
+
+.response-box {
+border: 1px solid rgba(201,169,110,0.2);
+border-radius: 2px;
+background: rgba(0,0,0,0.25);
+min-height: 200px;
+padding: 24px;
+position: relative;
+overflow: hidden;
+}
+
+.response-box::before {
+content: ‘’;
+position: absolute;
+top: 0; left: 0;
+width: 2px; height: 100%;
+background: linear-gradient(to bottom, var(–gold), transparent);
+}
+
+.response-empty {
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+height: 200px;
+gap: 12px;
+opacity: 0.4;
+}
+
+.response-empty .icon {
+font-size: 32px;
+}
+
+.response-empty p {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 16px;
+font-style: italic;
+text-align: center;
+color: var(–blush);
+}
+
+.ai-text {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 17px;
+line-height: 1.8;
+color: var(–cream);
+display: none;
+}
+
+.ai-text.visible { display: block; }
+
+.ai-text .highlight {
+color: var(–gold);
+font-style: italic;
+}
+
+/* Typing cursor */
+.cursor {
+display: inline-block;
+width: 2px;
+height: 1em;
+background: var(–gold);
+margin-left: 2px;
+vertical-align: text-bottom;
+animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+0%, 100% { opacity: 1; }
+50% { opacity: 0; }
+}
+
+/* Scores */
+.scores-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 12px;
+}
+
+.score-item {
+padding: 14px 16px;
+border: 1px solid rgba(201,169,110,0.15);
+border-radius: 2px;
+background: rgba(0,0,0,0.2);
+transition: all 0.3s;
+}
+
+.score-item:hover {
+border-color: rgba(201,169,110,0.4);
+background: rgba(201,169,110,0.05);
+}
+
+.score-label {
+font-size: 9px;
+letter-spacing: 0.3em;
+color: var(–blush);
+text-transform: uppercase;
+margin-bottom: 8px;
+}
+
+.score-bar-wrap {
+height: 3px;
+background: rgba(255,255,255,0.1);
+border-radius: 2px;
+overflow: hidden;
+margin-bottom: 6px;
+}
+
+.score-bar {
+height: 100%;
+border-radius: 2px;
+background: linear-gradient(90deg, var(–rose), var(–gold));
+width: 0%;
+transition: width 1s ease;
+}
+
+.score-val {
+font-size: 18px;
+font-family: ‘Cormorant Garamond’, serif;
+color: var(–cream);
+}
+
+/* Voice indicator */
+.voice-wave {
+display: none;
+align-items: center;
+gap: 3px;
+height: 24px;
+}
+
+.voice-wave.active { display: flex; }
+
+.wave-bar {
+width: 3px;
+background: var(–gold);
+border-radius: 2px;
+animation: wave 0.8s ease infinite;
+}
+
+.wave-bar:nth-child(1) { animation-delay: 0s; height: 8px; }
+.wave-bar:nth-child(2) { animation-delay: 0.1s; height: 16px; }
+.wave-bar:nth-child(3) { animation-delay: 0.2s; height: 24px; }
+.wave-bar:nth-child(4) { animation-delay: 0.3s; height: 16px; }
+.wave-bar:nth-child(5) { animation-delay: 0.4s; height: 8px; }
+
+@keyframes wave {
+0%, 100% { transform: scaleY(0.5); opacity: 0.5; }
+50% { transform: scaleY(1); opacity: 1; }
+}
+
+/* API key input */
+.api-section {
+border: 1px solid rgba(201,169,110,0.2);
+border-radius: 2px;
+padding: 20px;
+background: rgba(0,0,0,0.2);
+animation: fadeUp 0.8s ease 0.1s both;
+margin-bottom: 24px;
+}
+
+.api-section input {
+width: 100%;
+background: rgba(0,0,0,0.3);
+border: 1px solid rgba(201,169,110,0.3);
+color: var(–cream);
+font-family: ‘DM Mono’, monospace;
+font-size: 12px;
+padding: 10px 14px;
+border-radius: 1px;
+outline: none;
+margin-top: 8px;
+letter-spacing: 0.05em;
+}
+
+.api-section input:focus {
+border-color: var(–gold);
+}
+
+.api-section input::placeholder {
+color: rgba(245,237,224,0.3);
+}
+
+.api-note {
+font-size: 10px;
+color: var(–blush);
+margin-top: 6px;
+letter-spacing: 0.1em;
+opacity: 0.7;
+}
+
+/* Animations */
+@keyframes fadeDown {
+from { opacity: 0; transform: translateY(-20px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeUp {
+from { opacity: 0; transform: translateY(20px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+/* Loading dots */
+.loading-dots {
+display: none;
+gap: 6px;
+align-items: center;
+padding: 20px;
+}
+
+.loading-dots.active { display: flex; }
+
+.dot {
+width: 6px; height: 6px;
+border-radius: 50%;
+background: var(–gold);
+animation: dotPulse 1.2s ease infinite;
+}
+
+.dot:nth-child(2) { animation-delay: 0.2s; }
+.dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes dotPulse {
+0%, 100% { opacity: 0.3; transform: scale(0.8); }
+50% { opacity: 1; transform: scale(1.2); }
+}
+
+.history-section {
+margin-top: 8px;
+}
+
+.history-item {
+border-left: 2px solid rgba(201,169,110,0.2);
+padding: 10px 14px;
+margin-bottom: 8px;
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 14px;
+color: rgba(245,237,224,0.6);
+font-style: italic;
+}
+
+.history-item .time {
+font-family: ‘DM Mono’, monospace;
+font-size: 9px;
+color: var(–blush);
+letter-spacing: 0.2em;
+margin-bottom: 4px;
+font-style: normal;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <div class="logo">GL<span>Ó</span>W</div>
+    <div class="tagline">AI · Stiili & Meigi Assistent</div>
+  </header>
+
+  <!-- API Key -->
+
+  <div class="api-section">
+    <div class="panel-label">Anthropic API Võti</div>
+    <input type="password" id="apiKeyInput" placeholder="sk-ant-api03-..." />
+    <p class="api-note">Võti ei salvestata kuhugi — kasutatakse ainult selles brauseris</p>
+  </div>
+
+  <div class="main-grid">
+    <!-- Camera -->
+    <div class="camera-panel">
+      <div class="panel-label">Kaamera · Reaalaeg</div>
+      <div class="camera-frame">
+        <video id="videoEl" autoplay playsinline muted></video>
+        <div class="scan-line" id="scanLine"></div>
+        <div class="camera-overlay" id="cameraOverlay">
+          <div style="font-size:32px">✦</div>
+          <p>Klõpsa "Ava Kaamera" et alustada</p>
+        </div>
+      </div>
+
+```
+  <div class="status-bar">
+    <div class="status-dot" id="statusDot"></div>
+    <span id="statusText">Ootel</span>
+    <div class="voice-wave" id="voiceWave">
+      <div class="wave-bar"></div>
+      <div class="wave-bar"></div>
+      <div class="wave-bar"></div>
+      <div class="wave-bar"></div>
+      <div class="wave-bar"></div>
+    </div>
+  </div>
+
+  <div class="btn-group">
+    <button class="btn primary" id="startCamBtn" onclick="startCamera()">✦ Ava Kaamera</button>
+    <button class="btn" id="analyzeBtn" onclick="analyzeFrame()" disabled>Analüüsi</button>
+    <button class="btn" id="autoBtn" onclick="toggleAuto()" disabled>Auto-režiim</button>
+  </div>
+</div>
+
+<!-- AI Response -->
+<div class="response-panel">
+  <div>
+    <div class="panel-label">AI Analüüs</div>
+    <div class="response-box">
+      <div class="response-empty" id="emptyState">
+        <div class="icon">◈</div>
+        <p>Ava kaamera ja lase assistendil sind näha</p>
+      </div>
+      <div class="loading-dots" id="loadingDots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div class="ai-text" id="aiText"></div>
+    </div>
+  </div>
+
+  <!-- Scores -->
+  <div>
+    <div class="panel-label">Hinnangud</div>
+    <div class="scores-grid">
+      <div class="score-item">
+        <div class="score-label">Meik</div>
+        <div class="score-bar-wrap"><div class="score-bar" id="scoreA"></div></div>
+        <div class="score-val" id="scoreAVal">–</div>
+      </div>
+      <div class="score-item">
+        <div class="score-label">Värvid</div>
+        <div class="score-bar-wrap"><div class="score-bar" id="scoreB"></div></div>
+        <div class="score-val" id="scoreBVal">–</div>
+      </div>
+      <div class="score-item">
+        <div class="score-label">Stiil</div>
+        <div class="score-bar-wrap"><div class="score-bar" id="scoreC"></div></div>
+        <div class="score-val" id="scoreCVal">–</div>
+      </div>
+      <div class="score-item">
+        <div class="score-label">Üldmulje</div>
+        <div class="score-bar-wrap"><div class="score-bar" id="scoreD"></div></div>
+        <div class="score-val" id="scoreDVal">–</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- History -->
+  <div class="history-section" id="historySection" style="display:none">
+    <div class="panel-label">Varasemad nõuanded</div>
+    <div id="historyList"></div>
+  </div>
+</div>
+```
+
+  </div>
+</div>
+
+<canvas id="captureCanvas" style="display:none"></canvas>
+
+<script>
+  let stream = null;
+  let autoMode = false;
+  let autoInterval = null;
+  let analysisHistory = [];
+
+  const video = document.getElementById('videoEl');
+  const canvas = document.getElementById('captureCanvas');
+  const overlay = document.getElementById('cameraOverlay');
+  const scanLine = document.getElementById('scanLine');
+  const statusDot = document.getElementById('statusDot');
+  const statusText = document.getElementById('statusText');
+  const voiceWave = document.getElementById('voiceWave');
+  const aiText = document.getElementById('aiText');
+  const emptyState = document.getElementById('emptyState');
+  const loadingDots = document.getElementById('loadingDots');
+
+  const SYSTEM_PROMPT = `Sa oled GLÓW — stiilne, sõbralik ja aus AI stiiliassistent. 
+Sa näed kasutajat läbi kaamera ning annad konkreetseid, praktilisi nõuandeid meigi, stiili ja välimuse kohta.
+
+Sinu stiil:
+- Oled nagu hea sõbranna — aus aga armastav
+- Annad konkreetseid soovitusi, mitte üldist kiitust
+- Märkad detaile: huulepulk, silmavarjund, jumestuskreem, kulmud, nahk
+- Soovitad ka väikseid täiustusi
+- Räägid eesti keeles
+- Oled lühike ja selge — maksimaalselt 4-5 lauset
+
+Formaat: Anna alati JSON kujul:
+{
+  "feedback": "peamine tagasiside tekst eesti keeles",
+  "scores": {
+    "meik": number 1-10,
+    "varvid": number 1-10,
+    "stiil": number 1-10,
+    "uldmulje": number 1-10
+  },
+  "tip": "üks konkreetne soovitus mida kohe proovida"
+}`;
+
+  async function startCamera() {
+    try {
+      stream = await navigator.mediaDevices.getUserMedia({ 
+        video: { width: { ideal: 1280 }, height: { ideal: 720 }, facingMode: 'user' },
+        audio: false 
+      });
+      video.srcObject = stream;
+      overlay.style.display = 'none';
+      statusDot.className = 'status-dot live';
+      statusText.textContent = 'Kaamera aktiivne';
+      document.getElementById('analyzeBtn').disabled = false;
+      document.getElementById('autoBtn').disabled = false;
+      document.getElementById('startCamBtn').disabled = true;
+    } catch(e) {
+      alert('Kaamera avamine ebaõnnestus. Palun luba brauseril kaamerale ligi pääseda.');
+    }
+  }
+
+  function captureFrame() {
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    const ctx = canvas.getContext('2d');
+    ctx.translate(canvas.width, 0);
+    ctx.scale(-1, 1);
+    ctx.drawImage(video, 0, 0);
+    return canvas.toDataURL('image/jpeg', 0.85).split(',')[1];
+  }
+
+  async function analyzeFrame() {
+    const apiKey = document.getElementById('apiKeyInput').value.trim();
+    if (!apiKey) {
+      alert('Palun sisesta oma Anthropic API võti üleval!');
+      return;
+    }
+    if (!stream) {
+      alert('Palun ava kõigepealt kaamera!');
+      return;
+    }
+
+    // UI state: loading
+    emptyState.style.display = 'none';
+    aiText.classList.remove('visible');
+    loadingDots.classList.add('active');
+    scanLine.classList.add('active');
+    statusDot.className = 'status-dot thinking';
+    statusText.textContent = 'Analüüsin...';
+    document.getElementById('analyzeBtn').disabled = true;
+
+    const imageData = captureFrame();
+
+    try {
+      const response = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': apiKey,
+          'anthropic-version': '2023-06-01',
+          'anthropic-dangerous-direct-browser-access': 'true'
+        },
+        body: JSON.stringify({
+          model: 'claude-opus-4-5',
+          max_tokens: 1000,
+          system: SYSTEM_PROMPT,
+          messages: [{
+            role: 'user',
+            content: [
+              {
+                type: 'image',
+                source: { type: 'base64', media_type: 'image/jpeg', data: imageData }
+              },
+              {
+                type: 'text',
+                text: 'Analüüsi minu välimust ja anna tagasisidet. Vasta ainult JSON formaadis.'
+              }
+            ]
+          }]
+        })
+      });
+
+      const data = await response.json();
+
+      if (data.error) {
+        throw new Error(data.error.message);
+      }
+
+      const rawText = data.content[0].text;
+      let parsed;
+      try {
+        const clean = rawText.replace(/```json|```/g, '').trim();
+        parsed = JSON.parse(clean);
+      } catch(e) {
+        parsed = {
+          feedback: rawText,
+          scores: { meik: 7, varvid: 7, stiil: 7, uldmulje: 7 },
+          tip: ''
+        };
+      }
+
+      // Show response
+      loadingDots.classList.remove('active');
+      scanLine.classList.remove('active');
+      aiText.classList.add('visible');
+
+      const tipHtml = parsed.tip ? `<br><br><span class="highlight">✦ Soovitus: ${parsed.tip}</span>` : '';
+      typeText(aiText, parsed.feedback + tipHtml);
+
+      // Update scores
+      updateScore('scoreA', 'scoreAVal', parsed.scores.meik);
+      updateScore('scoreB', 'scoreBVal', parsed.scores.varvid);
+      updateScore('scoreC', 'scoreCVal', parsed.scores.stiil);
+      updateScore('scoreD', 'scoreDVal', parsed.scores.uldmulje);
+
+      // Speak
+      speak(parsed.feedback + (parsed.tip ? ' Soovitus: ' + parsed.tip : ''));
+
+      // History
+      addToHistory(parsed.feedback);
+
+      statusDot.className = 'status-dot live';
+      statusText.textContent = 'Analüüs valmis';
+
+    } catch(e) {
+      loadingDots.classList.remove('active');
+      scanLine.classList.remove('active');
+      aiText.classList.add('visible');
+      aiText.innerHTML = `<span style="color:var(--rose)">Viga: ${e.message}</span>`;
+      statusDot.className = 'status-dot';
+      statusText.textContent = 'Viga';
+    }
+
+    document.getElementById('analyzeBtn').disabled = false;
+  }
+
+  function typeText(el, html) {
+    el.innerHTML = '';
+    const temp = document.createElement('div');
+    temp.innerHTML = html;
+    const fullText = temp.textContent;
+
+    // For HTML content, just set it directly with a fade
+    el.style.opacity = '0';
+    el.innerHTML = html + '<span class="cursor"></span>';
+    el.style.transition = 'opacity 0.5s';
+    setTimeout(() => { el.style.opacity = '1'; }, 50);
+
+    // Remove cursor after 3s
+    setTimeout(() => {
+      const cursor = el.querySelector('.cursor');
+      if (cursor) cursor.remove();
+    }, 3000);
+  }
+
+  function updateScore(barId, valId, score) {
+    const bar = document.getElementById(barId);
+    const val = document.getElementById(valId);
+    if (score && score > 0) {
+      setTimeout(() => {
+        bar.style.width = (score * 10) + '%';
+        val.textContent = score + '/10';
+      }, 300);
+    }
+  }
+
+  function speak(text) {
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'et-EE';
+      utterance.rate = 0.95;
+      utterance.pitch = 1.05;
+
+      utterance.onstart = () => {
+        voiceWave.classList.add('active');
+        statusText.textContent = 'Räägin...';
+      };
+      utterance.onend = () => {
+        voiceWave.classList.remove('active');
+        statusText.textContent = 'Analüüs valmis';
+      };
+
+      window.speechSynthesis.speak(utterance);
+    }
+  }
+
+  function addToHistory(text) {
+    const now = new Date();
+    const time = now.toLocaleTimeString('et-EE', { hour: '2-digit', minute: '2-digit' });
+    analysisHistory.unshift({ time, text });
+    if (analysisHistory.length > 3) analysisHistory.pop();
+
+    const historySection = document.getElementById('historySection');
+    const historyList = document.getElementById('historyList');
+
+    if (analysisHistory.length > 1) {
+      historySection.style.display = 'block';
+      historyList.innerHTML = analysisHistory.slice(1).map(h => `
+        <div class="history-item">
+          <div class="time">${h.time}</div>
+          ${h.text.substring(0, 100)}${h.text.length > 100 ? '…' : ''}
+        </div>
+      `).join('');
+    }
+  }
+
+  let autoActive = false;
+  function toggleAuto() {
+    autoActive = !autoActive;
+    const btn = document.getElementById('autoBtn');
+    if (autoActive) {
+      btn.textContent = '⬛ Peata Auto';
+      btn.style.borderColor = 'var(--rose)';
+      btn.style.color = 'var(--rose)';
+      autoInterval = setInterval(analyzeFrame, 20000);
+      analyzeFrame();
+    } else {
+      btn.textContent = 'Auto-režiim';
+      btn.style.borderColor = '';
+      btn.style.color = '';
+      clearInterval(autoInterval);
+    }
+  }
+</script>
+
+</body>
+</html>
