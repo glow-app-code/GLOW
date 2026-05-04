@@ -137,8 +137,30 @@ header { text-align:center; padding:24px 0 32px; animation:fadeUp .7s ease both;
 .sbtn { flex:1; padding:11px 6px; border-radius:2px; cursor:pointer; font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.2em; text-transform:uppercase; background:transparent; transition:all .2s; }
 .sbtn.ig { border:1px solid rgba(225,48,108,0.4); color:#e1306c; }
 .sbtn.fb { border:1px solid rgba(66,103,178,0.4); color:#4267b2; }
+.sbtn.xtwitter { border:1px solid rgba(255,255,255,0.2); color:var(--cream); }
 .sbtn.cp { border:1px solid var(--gold-dim); color:var(--gold); }
 .share-note { font-size:9px; color:var(--dim); margin-top:8px; text-align:center; }
+
+/* API INFO */
+.api-info { margin-top:12px; padding-top:12px; border-top:1px solid var(--gold-dim); }
+.api-price { display:flex; align-items:center; gap:8px; font-size:12px; color:var(--cream); margin-bottom:10px; }
+.api-price strong { color:var(--gold); }
+.api-link { display:block; background:rgba(201,169,110,0.1); border:1px solid rgba(201,169,110,0.4); border-radius:2px; padding:10px 14px; color:var(--gold); font-size:11px; letter-spacing:.05em; text-decoration:none; text-align:center; margin-bottom:10px; transition:all .2s; }
+.api-link:hover { background:rgba(201,169,110,0.2); }
+.api-steps { display:flex; flex-direction:column; gap:5px; }
+.step { font-size:10px; color:var(--dim); padding-left:8px; border-left:1px solid rgba(201,169,110,0.3); line-height:1.5; }
+
+/* OUTFIT GUIDE */
+.outfit-tips { display:flex; flex-direction:column; gap:8px; margin-bottom:4px; }
+.otip { font-size:11px; color:var(--cream); line-height:1.6; }
+.otip strong { color:var(--lav); }
+.photo-uploads { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-top:8px; }
+.upload-btn { display:block; padding:10px 6px; border:1px dashed rgba(155,143,181,0.4); border-radius:2px; text-align:center; cursor:pointer; transition:all .2s; }
+.upload-btn:hover { border-color:var(--lav); background:rgba(155,143,181,0.1); }
+.upload-btn input { display:none; }
+.upload-btn span { font-size:9px; letter-spacing:.1em; color:var(--lav); }
+.upload-btn.has-photo { border-color:var(--lav); background:rgba(155,143,181,0.15); }
+.extra-preview { width:60px; height:60px; object-fit:cover; border-radius:2px; border:1px solid var(--lav); }
 
 canvas { display:none; }
 @keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
@@ -158,6 +180,20 @@ canvas { display:none; }
     <div class="lbl">Anthropic API Võti</div>
     <input type="password" id="apiKey" placeholder="sk-ant-api03-...">
     <div class="note">Võti töötab ainult selles brauseris · ei salvestata</div>
+    <div class="api-info">
+      <div class="api-price">
+        <span class="price-icon">💰</span>
+        <span>Üks analüüs maksab umbes <strong>~0.10€</strong></span>
+      </div>
+      <a href="https://console.anthropic.com" target="_blank" class="api-link">
+        ✦ Hangi võti siit — console.anthropic.com
+      </a>
+      <div class="api-steps">
+        <div class="step">1. Loo tasuta konto</div>
+        <div class="step">2. Lisa krediiti (min $5 ≈ 4.60€)</div>
+        <div class="step">3. Loo API võti ja kopeeri siia</div>
+      </div>
+    </div>
   </div>
 
   <div style="animation:fadeUp .7s ease .2s both">
@@ -176,7 +212,7 @@ canvas { display:none; }
       <div class="mode m-stiil" onclick="setMode('stiil')">
         <div class="micon">👗</div>
         <div class="mname">Stiil</div>
-        <div class="mdesc">Riietus ja outfit nõu</div>
+        <div class="mdesc">Terve outfit, ehted, kott</div>
       </div>
     </div>
   </div>
@@ -184,6 +220,31 @@ canvas { display:none; }
   <div class="card" id="ctxCard" style="display:none;border-color:rgba(155,143,181,0.25)">
     <div class="lbl">Kirjelda olukorda</div>
     <textarea id="ctxInput" placeholder="Nt: Mul on homme tööintervjuu IT-firmas..."></textarea>
+  </div>
+
+  <div class="card" id="outfitGuide" style="display:none;border-color:rgba(155,143,181,0.25)">
+    <div class="lbl">📸 Pildistamise juhend</div>
+    <div class="outfit-tips">
+      <div class="otip">👆 <strong>1. pilt:</strong> Ülemine osa — pluus, jakk, ehted, kott</div>
+      <div class="otip">👇 <strong>2. pilt:</strong> Alumine osa — püksid/seelik + jalanõud</div>
+      <div class="otip">🪞 <strong>Parim viis:</strong> Paluge sõbral teid täies pikkuses pildistada</div>
+    </div>
+    <div class="lbl" style="margin-top:14px">Lisa lisapilte (valikuline)</div>
+    <div class="photo-uploads">
+      <label class="upload-btn">
+        <input type="file" id="extraPhoto1" accept="image/*" onchange="previewExtra(1)">
+        <span id="extra1label">+ Alumine osa</span>
+      </label>
+      <label class="upload-btn">
+        <input type="file" id="extraPhoto2" accept="image/*" onchange="previewExtra(2)">
+        <span id="extra2label">+ Jalanõud</span>
+      </label>
+      <label class="upload-btn">
+        <input type="file" id="extraPhoto3" accept="image/*" onchange="previewExtra(3)">
+        <span id="extra3label">+ Ehted/Kott</span>
+      </label>
+    </div>
+    <div id="extraPreviews" style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;"></div>
   </div>
 
   <div class="disclaimer" id="disc">
@@ -233,9 +294,10 @@ canvas { display:none; }
     <div class="lbl">Jaga tulemust</div>
     <div class="share-preview" id="sharePrev"></div>
     <div class="share-btns">
-      <button class="sbtn ig" onclick="shareIG()">📸 Instagram</button>
-      <button class="sbtn fb" onclick="shareFB()">📘 Facebook</button>
-      <button class="sbtn cp" onclick="shareCopy()">🔗 Kopeeri</button>
+      <button class="sbtn ig" onclick="shareIG()">📸 IG</button>
+      <button class="sbtn fb" onclick="shareFB()">📘 FB</button>
+      <button class="sbtn xtwitter" onclick="shareX()">𝕏</button>
+      <button class="sbtn cp" onclick="shareCopy()">🔗</button>
     </div>
     <div class="share-note">Pilt salvestatakse galeriisse jagamiseks</div>
   </div>
@@ -255,8 +317,8 @@ const M = {
   },
   stiil: {
     lbl:'Stiili Analüüs', bar:'c3',
-    sys:'Sa oled GLOW stiiliassistent. Analüüsi riietust ja välimust. Kui on kontekst ürituse kohta, hinda sobivust. Räägi eesti keeles. Vasta AINULT JSON: {"feedback":"2-3 lauset","scores":{"Värvid":7,"Sobivus":7,"Stiil":7,"Üldmulje":7},"tip":"soovitus"}',
-    prompt:'Analüüsi minu riietust.'
+    sys:'Sa oled GLOW stiiliassistent. Analüüsi kasutaja täielikku outfiti: ülemine osa, alumine osa, jalanõud, ehted, kott ja muud aksessuaarid. Kui kasutaja on laadinud mitu pilti, analüüsi kõiki tervikliku pildi saamiseks. Kui on kontekst ürituse kohta, hinda sobivust. Räägi eesti keeles. Vasta AINULT JSON: {"feedback":"2-3 lauset","scores":{"Värvid":7,"Sobivus":7,"Stiil":7,"Üldmulje":7},"tip":"üks konkreetne soovitus"}',
+    prompt:'Analüüsi minu täielikku outfiti — riietus, jalanõud, ehted ja kott.'
   }
 };
 
@@ -271,6 +333,7 @@ function setMode(m) {
   document.querySelectorAll('.mode').forEach(b => b.classList.remove('active'));
   document.querySelector('.mode.m-' + m).classList.add('active');
   document.getElementById('ctxCard').style.display = m === 'stiil' ? 'block' : 'none';
+  document.getElementById('outfitGuide').style.display = m === 'stiil' ? 'block' : 'none';
   document.getElementById('disc').classList.toggle('show', m === 'nahk');
   document.getElementById('resLbl').textContent = M[m].lbl;
   document.getElementById('resEmpty').style.display = 'block';
@@ -325,6 +388,20 @@ async function analyze() {
   const b64 = dataUrl.split(',')[1];
   const prompt = ctx ? m.prompt + ' Kontekst: ' + ctx : m.prompt;
 
+  // Get extra photos for stiil mode
+  const extraFiles = mode === 'stiil' ? getExtraPhotos() : [];
+  const extraB64s = await Promise.all(extraFiles.map(f => fileToBase64(f)));
+
+  // Build content array
+  const contentArr = [
+    { type:'image', source:{ type:'base64', media_type:'image/jpeg', data:b64 }},
+  ];
+  extraB64s.forEach((eb, i) => {
+    contentArr.push({ type:'image', source:{ type:'base64', media_type:'image/jpeg', data:eb }});
+  });
+  const extraNote = extraB64s.length > 0 ? ` Analüüsi kõiki ${extraB64s.length + 1} pilti tervikliku outfiti hindamiseks — ülemine osa, alumine osa, jalanõud ja aksessuaarid.` : '';
+  contentArr.push({ type:'text', text: prompt + extraNote });
+
   try {
     const res = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
@@ -338,10 +415,7 @@ async function analyze() {
         model: 'claude-opus-4-5',
         max_tokens: 800,
         system: m.sys,
-        messages: [{ role:'user', content:[
-          { type:'image', source:{ type:'base64', media_type:'image/jpeg', data:b64 }},
-          { type:'text', text:prompt }
-        ]}]
+        messages: [{ role:'user', content: contentArr }]
       })
     });
 
@@ -427,20 +501,32 @@ function toggleAuto() {
 
 function shareIG() {
   if (navigator.share) {
-    navigator.share({ title:'GLOW · AI Analüüs', text: lastFb + '\n\n#GLOW #AI #Stiil', url: window.location.href });
+    navigator.share({
+      title: 'GLÓW · AI Stiilianalüüs',
+      text: lastFb + '\n\n✦ GLÓW AI Assistent\n#GLOW #AI #Stiil #Meik',
+      url: window.location.href
+    }).catch(() => {});
   } else {
-    alert('Tee ekraanipilt ja jaga Instagramis!');
+    alert('Ava Instagram → Lisa postitus → vali pilt galeriist');
   }
 }
 
 function shareFB() {
-  window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href), '_blank');
+  const text = encodeURIComponent('✦ GLÓW AI Stiilianalüüs\n\n' + lastFb + '\n\n' + Object.entries(lastScores).map(([l,v]) => l+': '+v+'/10').join(' · '));
+  const url = encodeURIComponent(window.location.href);
+  window.open('https://www.facebook.com/sharer/sharer.php?u=' + url + '&quote=' + text, '_blank');
+}
+
+function shareX() {
+  const text = encodeURIComponent('✦ GLÓW AI Stiilianalüüs\n\n' + lastFb.substring(0, 200) + '\n\n' + Object.entries(lastScores).map(([l,v]) => l+': '+v+'/10').join(' · ') + '\n\n#GLOW #AI #Stiil');
+  const url = encodeURIComponent(window.location.href);
+  window.open('https://twitter.com/intent/tweet?text=' + text + '&url=' + url, '_blank');
 }
 
 function shareCopy() {
-  const text = 'GLOW AI Analüüs\n\n' + lastFb + '\n\n' + Object.entries(lastScores).map(([l,v]) => l+': '+v+'/10').join(' · ') + '\n\nglow-app-code.github.io/GLOW';
+  const text = '✦ GLÓW AI Stiilianalüüs\n\n' + lastFb + '\n\n' + Object.entries(lastScores).map(([l,v]) => l+': '+v+'/10').join(' · ') + '\n\n' + window.location.href + '\n#GLOW #AI #Stiil';
   if (navigator.clipboard) {
-    navigator.clipboard.writeText(text).then(() => alert('✓ Kopeeritud!'));
+    navigator.clipboard.writeText(text).then(() => alert('✓ Kopeeritud! Kleebi kuhu soovid.'));
   } else {
     const ta = document.createElement('textarea');
     ta.value = text; document.body.appendChild(ta);
@@ -450,7 +536,45 @@ function shareCopy() {
   }
 }
 
-function setDot(state, msg) {
+function previewExtra(n) {
+  const input = document.getElementById('extraPhoto' + n);
+  const label = document.getElementById('extra' + n + 'label');
+  const previews = document.getElementById('extraPreviews');
+  if (input.files && input.files[0]) {
+    const reader = new FileReader();
+    reader.onload = e => {
+      label.textContent = '✓ Lisatud';
+      input.parentElement.classList.add('has-photo');
+      const existing = document.getElementById('eprev' + n);
+      if (existing) existing.remove();
+      const img = document.createElement('img');
+      img.className = 'extra-preview';
+      img.id = 'eprev' + n;
+      img.src = e.target.result;
+      previews.appendChild(img);
+    };
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+function getExtraPhotos() {
+  const extras = [];
+  for (let i = 1; i <= 3; i++) {
+    const input = document.getElementById('extraPhoto' + i);
+    if (input && input.files && input.files[0]) {
+      extras.push(input.files[0]);
+    }
+  }
+  return extras;
+}
+
+function fileToBase64(file) {
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.onload = e => resolve(e.target.result.split(',')[1]);
+    reader.readAsDataURL(file);
+  });
+}
   const d = document.getElementById('dot');
   d.className = 'dot' + (state !== 'idle' ? ' ' + state : '');
   document.getElementById('smsg').textContent = msg;
