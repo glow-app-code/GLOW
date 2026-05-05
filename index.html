@@ -1,3 +1,198 @@
+
+Claude finished the response
+You said: Lisasin homescreenile kuid ikkagi kaamera tööle ei lähe
+IMG_0097.png
+Lisasin homescreenile kuid ikkagi kaamera tööle ei lähe
+
+10:52 AM
+Claude responded: Näen, et Claude'i rakendus on koduekraanil olemas — hea!
+Näen, et Claude'i rakendus on koduekraanil olemas — hea!
+
+Kaamera probleem on tõenäoliselt loa küsimus. Proovi järgmist:
+
+Seaded → Privaatsus ja turvalisus → Kaamera
+Otsi sealt Claude'i rakendus ja lülita kaamera luba sisse
+Kui see juba on sees, siis proovi:
+
+Rakendus täielikult sulgeda (swipe up) ja uuesti avada
+Telefon taaskäivitada
+Kas kaamera luba on seadetes lubatud?
+
+You said: Kontrollisin nii privaatsus ja turvalisus kui ka eraldi kaamera seadetest ning igal pool Luba olemas
+Kontrollisin nii privaatsus ja turvalisus kui ka eraldi kaamera seadetest ning igal pool Luba olemas
+
+11:01 AM
+Claude responded: Okei, load on korras.
+Okei, load on korras. Proovi järgmist:
+
+Kustuta rakendus kodukuvalt täielikult (hoia ikooni → "Eemalda rakendus")
+Laadi uuesti alla App Store'ist
+Ava rakendus ja kui küsib kaamera luba, vali "Luba"
+Kui ka see ei aita — mis täpselt juhtub kui proovid kaamerat kasutada? Kas mingi veateade ilmub, või lihtsalt ei reageeri?
+
+You said: Kas sa mõtled claude appi kustutamist või meie glow appi kustutamist
+Kas sa mõtled claude appi kustutamist või meie glow appi kustutamist
+
+11:03 AM
+Claude responded: Mõtlesin Claude'i rakendust — see on ju see, mille kaamera ei tööta, eks ole?
+Mõtlesin Claude'i rakendust — see on ju see, mille kaamera ei tööta, eks ole?
+
+Aga oota — kas probleem on hoopis GLOW rakendusega? Mainisid et "lisasin homescreenile" ja GLOW on samuti kodukuval. Täpsusta kumb rakendus on probleem?
+
+You said: Ma praegu kustutasin glow homescreenilt ära kuidas ma seda tagasi saan
+Ma praegu kustutasin glow homescreenilt ära kuidas ma seda tagasi saan
+
+11:03 AM
+Claude responded: GLOW on sinu enda rakendus, nii et tead paremini kuidas see installitud oli.
+GLOW on sinu enda rakendus, nii et tead paremini kuidas see installitud oli. Aga üldiselt:
+
+App Store'ist alla laaditud → otsi App Store'ist "GLOW" ja laadi uuesti
+TestFlight'i kaudu → ava TestFlight rakendus ja installi sealt uuesti
+Otse .ipa failist → vaja arvutit
+Kuidas see algselt paigaldati?
+
+You said: Aga kas app storiest on meie glow juba leitav
+Aga kas app storiest on meie glow juba leitav
+
+11:04 AM
+Claude responded: Seda ma kahjuks ei tea — mul pole infot selle kohta, kas teie GLOW rakendus on App Store'is avalikult saadaval või mitte.
+Seda ma kahjuks ei tea — mul pole infot selle kohta, kas teie GLOW rakendus on App Store'is avalikult saadaval või mitte.
+
+Kõige kiirem on lihtsalt proovida otsida App Store'ist "GLOW" ja vaadata kas see ilmub. Kui ei leia, siis on tõenäoliselt TestFlight või mõni muu kanal.
+
+You said: Kood on sees ja ka assitenti ei lase valida ega ka kaamerat kasutada.
+IMG_0098.png
+Kood on sees ja ka assitenti ei lase valida ega ka kaamerat kasutada.
+
+11:06 AM
+Claude responded: Näen probleemi — see on veebipõhine rakendus (töötab brauseris/WebView'is), mitte native iOS rakendus.
+Näen probleemi — see on veebipõhine rakendus (töötab brauseris/WebView'is), mitte native iOS rakendus. Seetõttu kaamera load iOS seadetest ei mõjuta seda.
+
+Probleem on tõenäoliselt koodis — brauser/WebView peab ise kaamera luba küsima.
+
+Kas see GLOW on rakendus mille sina arendad? Kui jah, siis saame koodi vaadata ja vea leida.
+
+You said: Jah see on minu glow rakendus ning palun uuri mis koodis on viga
+Jah see on minu glow rakendus ning palun uuri mis koodis on viga
+
+11:07 AM
+Claude responded: Saada mulle kood ja vaatan!
+Saada mulle kood ja vaatan!
+
+Kõige kasulikum oleks näha seda osa kus:
+
+kaamera käivitatakse (getUserMedia vms)
+assistendi valiku loogika
+Kas saad paste'ida siia või laadida faili üles?
+
+You said: Ma vajutan ava kaamera peal kuid kahjuks ei tule mingit loa küsimise märki kuhugi
+1777977646080_image.png
+Ma vajutan ava kaamera peal kuid kahjuks ei tule mingit loa küsimise märki kuhugi
+
+1:41 PM
+Claude responded: Näen et rakendus on GitHub Pages'il (glow-app-code.
+Näen et rakendus on GitHub Pages'il (glow-app-code.github.io).
+
+Kood on vajalik vea leidmiseks. Saada mulle GitHub repo link või paste'i siia kaamera käivitamise kood — otsin täpselt getUserMedia ja kaamera loogika osa.
+
+You said: https://github.
+https://github.com/glow-app-code/GLOW/blob/main/index.html
+
+1:41 PM
+Claude responded: Leidsin koodis kaks viga:
+
+Searched the web
+Searched the web
+Leidsin koodis kaks viga:
+
+Viga 1 — setDot funktsioon on katki (süntaksiviga)
+Faili lõpus on setDot funktsioon poolik — puudub function setDot(state, msg) { rida:
+
+javascript
+// PRAEGU (katki):
+const d = document.getElementById('dot');
+d.className = 'dot' + (state !== 'idle' ? ' ' + state : '');
+document.getElementById('smsg').textContent = msg;
+}
+javascript
+// PEAKS OLEMA:
+function setDot(state, msg) {
+  const d = document.getElementById('dot');
+  d.className = 'dot' + (state !== 'idle' ? ' ' + state : '');
+  document.getElementById('smsg').textContent = msg;
+}
+See süntaksiviga tõenäoliselt katkestab kogu JavaScripti — seega ei tööta ei kaamera nupp ega assistendi valik.
+
+Viga 2 — iOS Safari nõuab kasutaja klikki
+startCam() kutsutakse onclick-iga, mis on õige. Aga kontrolli et nupp on päriselt klikitav — iOS blokeerib getUserMedia kui see ei tule otse kasutaja tegevusest.
+
+Lahendus: Lisa function setDot(state, msg) { rida enne selle koodi ploki algust failis. Kas soovid et parandaksin terve faili ja saadan sulle uue versiooni?
+
+You said: Jah paranda terve kood ning siis kleebime pliiatsiga terve koodi githubis uuesti
+Jah paranda terve kood ning siis kleebime pliiatsiga terve koodi githubis uuesti
+
+1:42 PM
+Claude responded: Siin on parandatud fail!
+
+Viewed a file, created a file, read a file
+Viewed a file, created a file, read a file
+Siin on parandatud fail! Peamine muudatus oli setDot funktsiooni lisamine — see oli täiesti puudu, mis katkestas kogu JavaScripti töö.
+
+GitHub'is uuendamiseks:
+
+Mine github.com/glow-app-code/GLOW
+Kliki index.html peale
+Paremas ülanurgas kliki pliiats ikoonile (Edit this file)
+Vali kõik (Ctrl+A) ja kustuta
+Kleebi uus kood (Ctrl+V)
+Kliki "Commit changes"
+Mõne minuti pärast peaks GitHub Pages uuenema ja kaamera tööle hakkama.
+
+
+Index
+Code · HTML 
+You said: Palun kirjuta mulle tervik uus kood mida ma saaksin salvestada ja githubi kleepida, praegu avaneb download väljal kohe meie app
+Palun kirjuta mulle tervik uus kood mida ma saaksin salvestada ja githubi kleepida, praegu avaneb download väljal kohe meie app
+
+1:47 PM
+Claude responded: Laadin alla ja vaatan mis hetkel töötab, siis kirjutan puhta uue versiooni.
+Laadin alla ja vaatan mis hetkel töötab, siis kirjutan puhta uue versiooni.
+
+
+Check frontend design skill
+Check frontend design skill
+Kirjutan puhta uue index.html faili — kõik ühes, valmis GitHub'i kleepimiseks.
+
+
+Created a file, ran a command, read a file
+Created a file, ran a command, read a file
+Fail on valmis! GitHub'is uuendamiseks:
+
+Mine github.com/glow-app-code/GLOW
+Kliki index.html → pliiats ikoon (Edit)
+Ctrl+A → kustuta kõik
+Ctrl+V → kleebi uus kood failist
+Kliki "Commit changes"
+Peamine parandus mida tegin — setDot funktsioon oli täiesti puudu originaalkoodis, mis katkestas kogu JavaScripti. Nüüd on kood puhas ja korrektselt struktureeritud.
+
+
+Index glow
+Code · HTML 
+You said: Ei ole koodi ikkagi avaneb kohe ju meie leht, kood peab olema erinevate ridade kogum nagu sa ennem mulle kirjuatsin ja seda sain ka githubi salvestada
+Ei ole koodi ikkagi avaneb kohe ju meie leht, kood peab olema erinevate ridade kogum nagu sa ennem mulle kirjuatsin ja seda sain ka githubi salvestada
+
+1:50 PM
+Claude responded: Arusaan — sul on vaja teksti mida saab otse GitHub'i editorisse kleepida, mitte HTML faili.
+Arusaan — sul on vaja teksti mida saab otse GitHub'i editorisse kleepida, mitte HTML faili. Siin on terve kood:
+
+You said: Jah mulle on vaja pliiatsi editorisse kleepida, anna mulle meie kood
+Jah mulle on vaja pliiatsi editorisse kleepida, anna mulle meie kood
+
+1:51 PM
+Claude responded: Siin on terve kood, kopeeri kõik:
+Siin on terve kood, kopeeri kõik:
+
+html
 <!DOCTYPE html>
 <html lang="et">
 <head>
@@ -13,34 +208,25 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #0e0c0b;
-  --cream: #f0e6d3;
-  --gold: #c9a96e;
-  --gold-dim: rgba(201,169,110,0.2);
-  --blush: #d4957a;
-  --sage: #7a9e8e;
-  --lav: #9b8fb5;
-  --rose: #c4736b;
+  --bg: #0e0c0b; --cream: #f0e6d3; --gold: #c9a96e;
+  --gold-dim: rgba(201,169,110,0.2); --blush: #d4957a;
+  --sage: #7a9e8e; --lav: #9b8fb5; --rose: #c4736b;
   --dim: rgba(240,230,211,0.5);
 }
 * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
 body { background:var(--bg); font-family:'DM Mono',monospace; color:var(--cream); min-height:100vh; }
 .ambient { position:fixed; inset:0; pointer-events:none; z-index:0;
   background: radial-gradient(ellipse 70% 50% at 15% 10%, rgba(196,115,107,0.12) 0%, transparent 60%),
-              radial-gradient(ellipse 50% 70% at 85% 90%, rgba(123,158,142,0.10) 0%, transparent 60%); }
+  radial-gradient(ellipse 50% 70% at 85% 90%, rgba(123,158,142,0.10) 0%, transparent 60%); }
 .app { position:relative; z-index:1; max-width:500px; margin:0 auto; padding:24px 16px 60px; }
-
-/* HEADER */
 header { text-align:center; padding:24px 0 32px; animation:fadeUp .7s ease both; }
 .logo { font-family:'Cormorant Garamond',serif; font-size:clamp(72px,20vw,104px); font-weight:300; letter-spacing:.25em; color:var(--cream); line-height:1; }
-.logo-o { color:var(--gold); font-style:italic; font-weight:300; text-shadow:0 0 30px rgba(201,169,110,0.9),0 0 70px rgba(201,169,110,0.4),0 0 120px rgba(201,169,110,0.2); animation:oglow 3s ease-in-out infinite; display:inline-block; }
-@keyframes oglow { 0%,100%{text-shadow:0 0 30px rgba(201,169,110,0.9),0 0 70px rgba(201,169,110,0.4)} 50%{text-shadow:0 0 50px rgba(201,169,110,1),0 0 100px rgba(201,169,110,0.7),0 0 160px rgba(201,169,110,0.3)} }
+.logo-o { color:var(--gold); font-style:italic; font-weight:300; text-shadow:0 0 30px rgba(201,169,110,0.9),0 0 70px rgba(201,169,110,0.4); animation:oglow 3s ease-in-out infinite; display:inline-block; }
+@keyframes oglow { 0%,100%{text-shadow:0 0 30px rgba(201,169,110,0.9),0 0 70px rgba(201,169,110,0.4)} 50%{text-shadow:0 0 50px rgba(201,169,110,1),0 0 100px rgba(201,169,110,0.7)} }
 .logo-line { display:flex; align-items:center; justify-content:center; gap:10px; margin-top:10px; }
 .logo-line::before,.logo-line::after { content:''; flex:1; max-width:40px; height:1px; background:linear-gradient(90deg,transparent,rgba(201,169,110,0.4)); }
 .logo-line::after { background:linear-gradient(90deg,rgba(201,169,110,0.4),transparent); }
 .tagline { font-size:9px; letter-spacing:.45em; color:var(--blush); text-transform:uppercase; opacity:.8; }
-
-/* CARDS */
 .card { border:1px solid var(--gold-dim); border-radius:3px; background:rgba(0,0,0,0.3); padding:16px; margin-bottom:16px; }
 .lbl { font-size:9px; letter-spacing:.4em; color:var(--gold); text-transform:uppercase; margin-bottom:10px; }
 .card input,.card textarea { width:100%; background:rgba(0,0,0,0.4); border:1px solid rgba(201,169,110,0.25); color:var(--cream); font-family:'DM Mono',monospace; font-size:11px; padding:10px 12px; border-radius:2px; outline:none; box-sizing:border-box; }
@@ -48,29 +234,19 @@ header { text-align:center; padding:24px 0 32px; animation:fadeUp .7s ease both;
 .card input::placeholder,.card textarea::placeholder { color:rgba(240,230,211,0.25); }
 .card textarea { resize:none; height:76px; line-height:1.6; }
 .note { font-size:9px; color:var(--dim); margin-top:6px; }
-
-/* MODES */
 .modes { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin-bottom:16px; }
 .mode { border:1px solid rgba(240,230,211,0.1); border-radius:3px; background:rgba(0,0,0,0.25); padding:14px 6px; cursor:pointer; text-align:center; transition:all .25s; position:relative; overflow:hidden; }
 .mode::before { content:''; position:absolute; inset:0; opacity:0; transition:opacity .25s; }
-.mode.m-meik { --mc:#d4957a; }
-.mode.m-nahk { --mc:#7a9e8e; }
-.mode.m-stiil { --mc:#9b8fb5; }
+.mode.m-meik { --mc:#d4957a; } .mode.m-nahk { --mc:#7a9e8e; } .mode.m-stiil { --mc:#9b8fb5; }
 .mode.m-meik::before { background:radial-gradient(ellipse at 50% 0%,rgba(212,149,122,0.3),transparent 70%); }
 .mode.m-nahk::before { background:radial-gradient(ellipse at 50% 0%,rgba(122,158,142,0.3),transparent 70%); }
 .mode.m-stiil::before { background:radial-gradient(ellipse at 50% 0%,rgba(155,143,181,0.3),transparent 70%); }
-.mode.active { border-color:var(--mc); }
-.mode.active::before { opacity:1; }
-.mode.active .mname { color:var(--mc); }
+.mode.active { border-color:var(--mc); } .mode.active::before { opacity:1; } .mode.active .mname { color:var(--mc); }
 .micon { font-size:22px; margin-bottom:6px; }
 .mname { font-family:'Cormorant Garamond',serif; font-size:13px; color:var(--cream); transition:color .25s; }
 .mdesc { font-size:8px; color:var(--dim); margin-top:3px; line-height:1.4; }
-
-/* DISCLAIMER */
 .disclaimer { border:1px solid rgba(122,158,142,0.3); border-radius:3px; background:rgba(122,158,142,0.07); padding:14px; margin-bottom:16px; font-size:10px; color:rgba(122,158,142,0.9); line-height:1.7; display:none; }
 .disclaimer.show { display:block; }
-
-/* CAMERA */
 .cam-frame { position:relative; border-radius:2px; overflow:hidden; background:#050303; aspect-ratio:3/4; border:1px solid rgba(255,255,255,0.06); }
 #vid { width:100%; height:100%; object-fit:cover; display:block; transform:scaleX(-1); }
 .cam-ph { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; background:rgba(14,12,11,0.9); }
@@ -81,8 +257,6 @@ header { text-align:center; padding:24px 0 32px; animation:fadeUp .7s ease both;
 .scanline { position:absolute; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); pointer-events:none; z-index:3; opacity:0; }
 .scanline.on { opacity:1; animation:scan 2.5s linear infinite; }
 @keyframes scan { from{top:0%} to{top:100%} }
-
-/* STATUS */
 .srow { display:flex; align-items:center; gap:8px; margin-top:10px; font-size:10px; letter-spacing:.15em; color:var(--dim); }
 .dot { width:6px; height:6px; border-radius:50%; background:var(--dim); flex-shrink:0; transition:all .3s; }
 .dot.live { background:#7ec98a; box-shadow:0 0 8px rgba(126,201,138,.6); animation:pulse 2s ease infinite; }
@@ -94,15 +268,11 @@ header { text-align:center; padding:24px 0 32px; animation:fadeUp .7s ease both;
 .wave span:nth-child(1){height:4px} .wave span:nth-child(2){height:10px;animation-delay:.1s} .wave span:nth-child(3){height:16px;animation-delay:.2s} .wave span:nth-child(4){height:10px;animation-delay:.3s} .wave span:nth-child(5){height:4px;animation-delay:.4s}
 @keyframes wv { 0%,100%{transform:scaleY(.5);opacity:.5} 50%{transform:scaleY(1);opacity:1} }
 .errmsg { font-size:10px; color:var(--rose); margin-top:8px; line-height:1.6; }
-
-/* BUTTONS */
 .brow { display:flex; gap:8px; margin-top:12px; }
 .btn { flex:1; padding:11px 6px; border-radius:2px; cursor:pointer; font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.25em; text-transform:uppercase; transition:all .2s; border:1px solid var(--gold-dim); background:transparent; color:var(--cream); }
 .btn.pri { background:var(--gold); color:var(--bg); border-color:var(--gold); font-weight:500; }
 .btn:disabled { opacity:.35; cursor:not-allowed; }
 .btn.red { border-color:rgba(196,115,107,.4); color:var(--rose); }
-
-/* RESPONSE */
 .res-inner { padding-left:12px; border-left:2px solid var(--gold-dim); min-height:80px; }
 .res-empty { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:15px; color:var(--dim); text-align:center; padding:16px 0; }
 .loading { display:none; align-items:center; gap:6px; padding:16px 0; }
@@ -112,10 +282,7 @@ header { text-align:center; padding:24px 0 32px; animation:fadeUp .7s ease both;
 .fbtext { font-family:'Cormorant Garamond',serif; font-size:17px; line-height:1.8; color:var(--cream); display:none; }
 .fbtext.on { display:block; }
 .tiptext { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:15px; color:var(--gold); margin-top:12px; line-height:1.7; }
-
-/* SCORES */
-.scores-card { display:none; }
-.scores-card.on { display:block; }
+.scores-card { display:none; } .scores-card.on { display:block; }
 .sgrid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
 .sitem { padding:12px; border:1px solid rgba(255,255,255,0.06); border-radius:2px; background:rgba(0,0,0,0.2); }
 .slbl { font-size:8px; letter-spacing:.3em; color:var(--dim); text-transform:uppercase; margin-bottom:7px; }
@@ -125,10 +292,7 @@ header { text-align:center; padding:24px 0 32px; animation:fadeUp .7s ease both;
 .bar.c2 { background:linear-gradient(90deg,var(--sage),#a8d4c4); }
 .bar.c3 { background:linear-gradient(90deg,var(--lav),#c4b8e0); }
 .sval { font-family:'Cormorant Garamond',serif; font-size:22px; color:var(--cream); }
-
-/* SHARE */
-.share-card { display:none; }
-.share-card.on { display:block; }
+.share-card { display:none; } .share-card.on { display:block; }
 .share-preview { background:linear-gradient(135deg,#1a0a08,#0e0c0b); border:1px solid var(--gold-dim); border-radius:3px; padding:16px; }
 .sp-photo { width:100%; height:180px; object-fit:cover; border-radius:3px; display:block; margin-bottom:12px; }
 .sp-logo { font-family:'Cormorant Garamond',serif; font-size:26px; letter-spacing:.2em; color:var(--cream); text-align:center; }
@@ -146,8 +310,6 @@ header { text-align:center; padding:24px 0 32px; animation:fadeUp .7s ease both;
 .sbtn.xtwitter { border:1px solid rgba(255,255,255,0.2); color:var(--cream); }
 .sbtn.cp { border:1px solid var(--gold-dim); color:var(--gold); }
 .share-note { font-size:9px; color:var(--dim); margin-top:8px; text-align:center; }
-
-/* API INFO */
 .api-info { margin-top:12px; padding-top:12px; border-top:1px solid var(--gold-dim); }
 .api-price { display:flex; align-items:center; gap:8px; font-size:12px; color:var(--cream); margin-bottom:10px; }
 .api-price strong { color:var(--gold); }
@@ -155,8 +317,6 @@ header { text-align:center; padding:24px 0 32px; animation:fadeUp .7s ease both;
 .api-link:hover { background:rgba(201,169,110,0.2); }
 .api-steps { display:flex; flex-direction:column; gap:5px; }
 .step { font-size:10px; color:var(--dim); padding-left:8px; border-left:1px solid rgba(201,169,110,0.3); line-height:1.5; }
-
-/* OUTFIT GUIDE */
 .outfit-tips { display:flex; flex-direction:column; gap:8px; margin-bottom:4px; }
 .otip { font-size:11px; color:var(--cream); line-height:1.6; }
 .otip strong { color:var(--lav); }
@@ -167,7 +327,6 @@ header { text-align:center; padding:24px 0 32px; animation:fadeUp .7s ease both;
 .upload-btn span { font-size:9px; letter-spacing:.1em; color:var(--lav); }
 .upload-btn.has-photo { border-color:var(--lav); background:rgba(155,143,181,0.15); }
 .extra-preview { width:60px; height:60px; object-fit:cover; border-radius:2px; border:1px solid var(--lav); }
-
 canvas { display:none; }
 @keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
 </style>
@@ -177,136 +336,116 @@ canvas { display:none; }
 <canvas id="cv"></canvas>
 <div class="app">
 
-  <header>
-    <div class="logo">GL<span class="logo-o">Ó</span>W</div>
-    <div class="logo-line"><div class="tagline">AI · Isiklik Stiiliassistent</div></div>
-  </header>
+<header>
+  <div class="logo">GL<span class="logo-o">Ó</span>W</div>
+  <div class="logo-line"><div class="tagline">AI · Isiklik Stiiliassistent</div></div>
+</header>
 
-  <div class="card" style="animation:fadeUp .7s ease .1s both">
-    <div class="lbl">Anthropic API Võti</div>
-    <input type="password" id="apiKey" placeholder="sk-ant-api03-...">
-    <div class="note">Võti töötab ainult selles brauseris · ei salvestata</div>
-    <div class="api-info">
-      <div class="api-price">
-        <span class="price-icon">💰</span>
-        <span>Üks analüüs maksab umbes <strong>~0.10€</strong></span>
-      </div>
-      <a href="https://console.anthropic.com" target="_blank" class="api-link">
-        ✦ Hangi võti siit — console.anthropic.com
-      </a>
-      <div class="api-steps">
-        <div class="step">1. Loo tasuta konto</div>
-        <div class="step">2. Lisa krediiti (min $5 ≈ 4.60€)</div>
-        <div class="step">3. Loo API võti ja kopeeri siia</div>
-      </div>
+<div class="card" style="animation:fadeUp .7s ease .1s both">
+  <div class="lbl">Anthropic API Võti</div>
+  <input type="password" id="apiKey" placeholder="sk-ant-api03-...">
+  <div class="note">Võti töötab ainult selles brauseris · ei salvestata</div>
+  <div class="api-info">
+    <div class="api-price"><span>💰</span><span>Üks analüüs maksab umbes <strong>~0.10€</strong></span></div>
+    <a href="https://console.anthropic.com" target="_blank" class="api-link">✦ Hangi võti siit — console.anthropic.com</a>
+    <div class="api-steps">
+      <div class="step">1. Loo tasuta konto</div>
+      <div class="step">2. Lisa krediiti (min $5 ≈ 4.60€)</div>
+      <div class="step">3. Loo API võti ja kopeeri siia</div>
     </div>
   </div>
+</div>
 
-  <div style="animation:fadeUp .7s ease .2s both">
-    <div class="lbl">Vali assistent</div>
-    <div class="modes">
-      <div class="mode m-meik active" onclick="setMode('meik')">
-        <div class="micon">💄</div>
-        <div class="mname">Meik</div>
-        <div class="mdesc">Meigi analüüs ja nõuanded</div>
-      </div>
-      <div class="mode m-nahk" onclick="setMode('nahk')">
-        <div class="micon">🔬</div>
-        <div class="mname">Nahk</div>
-        <div class="mdesc">Naha seisund ja hooldus</div>
-      </div>
-      <div class="mode m-stiil" onclick="setMode('stiil')">
-        <div class="micon">👗</div>
-        <div class="mname">Stiil</div>
-        <div class="mdesc">Terve outfit, ehted, kott</div>
-      </div>
+<div style="animation:fadeUp .7s ease .2s both">
+  <div class="lbl">Vali assistent</div>
+  <div class="modes">
+    <div class="mode m-meik active" onclick="setMode('meik')">
+      <div class="micon">💄</div><div class="mname">Meik</div><div class="mdesc">Meigi analüüs ja nõuanded</div>
+    </div>
+    <div class="mode m-nahk" onclick="setMode('nahk')">
+      <div class="micon">🔬</div><div class="mname">Nahk</div><div class="mdesc">Naha seisund ja hooldus</div>
+    </div>
+    <div class="mode m-stiil" onclick="setMode('stiil')">
+      <div class="micon">👗</div><div class="mname">Stiil</div><div class="mdesc">Terve outfit, ehted, kott</div>
     </div>
   </div>
+</div>
 
-  <div class="card" id="ctxCard" style="display:none;border-color:rgba(155,143,181,0.25)">
-    <div class="lbl">Kirjelda olukorda</div>
-    <textarea id="ctxInput" placeholder="Nt: Mul on homme tööintervjuu IT-firmas..."></textarea>
-  </div>
+<div class="card" id="ctxCard" style="display:none;border-color:rgba(155,143,181,0.25)">
+  <div class="lbl">Kirjelda olukorda</div>
+  <textarea id="ctxInput" placeholder="Nt: Mul on homme tööintervjuu IT-firmas..."></textarea>
+</div>
 
-  <div class="card" id="outfitGuide" style="display:none;border-color:rgba(155,143,181,0.25)">
-    <div class="lbl">📸 Pildistamise juhend</div>
-    <div class="outfit-tips">
-      <div class="otip">👆 <strong>1. pilt:</strong> Ülemine osa — pluus, jakk, ehted, kott</div>
-      <div class="otip">👇 <strong>2. pilt:</strong> Alumine osa — püksid/seelik + jalanõud</div>
-      <div class="otip">🪞 <strong>Parim viis:</strong> Paluge sõbral teid täies pikkuses pildistada</div>
-    </div>
-    <div class="lbl" style="margin-top:14px">Lisa lisapilte (valikuline)</div>
-    <div class="photo-uploads">
-      <label class="upload-btn">
-        <input type="file" id="extraPhoto1" accept="image/*" onchange="previewExtra(1)">
-        <span id="extra1label">+ Alumine osa</span>
-      </label>
-      <label class="upload-btn">
-        <input type="file" id="extraPhoto2" accept="image/*" onchange="previewExtra(2)">
-        <span id="extra2label">+ Jalanõud</span>
-      </label>
-      <label class="upload-btn">
-        <input type="file" id="extraPhoto3" accept="image/*" onchange="previewExtra(3)">
-        <span id="extra3label">+ Ehted/Kott</span>
-      </label>
-    </div>
-    <div id="extraPreviews" style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;"></div>
+<div class="card" id="outfitGuide" style="display:none;border-color:rgba(155,143,181,0.25)">
+  <div class="lbl">📸 Pildistamise juhend</div>
+  <div class="outfit-tips">
+    <div class="otip">👆 <strong>1. pilt:</strong> Ülemine osa — pluus, jakk, ehted, kott</div>
+    <div class="otip">👇 <strong>2. pilt:</strong> Alumine osa — püksid/seelik + jalanõud</div>
+    <div class="otip">🪞 <strong>Parim viis:</strong> Paluge sõbral teid täies pikkuses pildistada</div>
   </div>
+  <div class="lbl" style="margin-top:14px">Lisa lisapilte (valikuline)</div>
+  <div class="photo-uploads">
+    <label class="upload-btn"><input type="file" id="extraPhoto1" accept="image/*" onchange="previewExtra(1)"><span id="extra1label">+ Alumine osa</span></label>
+    <label class="upload-btn"><input type="file" id="extraPhoto2" accept="image/*" onchange="previewExtra(2)"><span id="extra2label">+ Jalanõud</span></label>
+    <label class="upload-btn"><input type="file" id="extraPhoto3" accept="image/*" onchange="previewExtra(3)"><span id="extra3label">+ Ehted/Kott</span></label>
+  </div>
+  <div id="extraPreviews" style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;"></div>
+</div>
 
-  <div class="disclaimer" id="disc">
-    <strong style="color:#7a9e8e">Oluline:</strong> See analüüs on üldine info naha seisundi kohta ning ei asenda arsti vastuvõttu.
-  </div>
+<div class="disclaimer" id="disc">
+  <strong style="color:#7a9e8e">Oluline:</strong> See analüüs on üldine info naha seisundi kohta ning ei asenda arsti vastuvõttu.
+</div>
 
-  <div class="card" style="animation:fadeUp .7s ease .3s both">
-    <div class="lbl">Kaamera · Reaalaeg</div>
-    <div class="cam-frame">
-      <video id="vid" autoplay playsinline muted></video>
-      <div class="cam-ph" id="camph">
-        <div style="font-size:30px;opacity:.4">✦</div>
-        <p>Ava kaamera et alustada</p>
-      </div>
-      <div class="corner tl"></div>
-      <div class="corner br"></div>
-      <div class="scanline" id="scan"></div>
+<div class="card" style="animation:fadeUp .7s ease .3s both">
+  <div class="lbl">Kaamera · Reaalaeg</div>
+  <div class="cam-frame">
+    <video id="vid" autoplay playsinline muted></video>
+    <div class="cam-ph" id="camph">
+      <div style="font-size:30px;opacity:.4">✦</div>
+      <p>Ava kaamera et alustada</p>
     </div>
-    <div class="srow">
-      <div class="dot" id="dot"></div>
-      <span id="smsg">Ootel</span>
-      <div class="wave" id="wave"><span></span><span></span><span></span><span></span><span></span></div>
-    </div>
-    <div class="errmsg" id="err"></div>
-    <div class="brow">
-      <button class="btn pri" id="camBtn" onclick="startCam()">✦ Ava Kaamera</button>
-      <button class="btn" id="anaBtn" onclick="analyze()" disabled>Analüüsi</button>
-      <button class="btn" id="autoBtn" onclick="toggleAuto()" disabled>Auto</button>
-    </div>
+    <div class="corner tl"></div>
+    <div class="corner br"></div>
+    <div class="scanline" id="scan"></div>
   </div>
+  <div class="srow">
+    <div class="dot" id="dot"></div>
+    <span id="smsg">Ootel</span>
+    <div class="wave" id="wave"><span></span><span></span><span></span><span></span><span></span></div>
+  </div>
+  <div class="errmsg" id="err"></div>
+  <div class="brow">
+    <button class="btn pri" id="camBtn" onclick="startCam()">✦ Ava Kaamera</button>
+    <button class="btn" id="anaBtn" onclick="analyze()" disabled>Analüüsi</button>
+    <button class="btn" id="autoBtn" onclick="toggleAuto()" disabled>Auto</button>
+  </div>
+</div>
 
-  <div class="card" style="animation:fadeUp .7s ease .4s both">
-    <div class="lbl" id="resLbl">AI Analüüs</div>
-    <div class="res-inner">
-      <div class="res-empty" id="resEmpty">Vali assistent, ava kaamera ja vajuta Analüüsi</div>
-      <div class="loading" id="load"><span></span><span></span><span></span></div>
-      <div class="fbtext" id="fbtext"></div>
-    </div>
+<div class="card" style="animation:fadeUp .7s ease .4s both">
+  <div class="lbl" id="resLbl">AI Analüüs</div>
+  <div class="res-inner">
+    <div class="res-empty" id="resEmpty">Vali assistent, ava kaamera ja vajuta Analüüsi</div>
+    <div class="loading" id="load"><span></span><span></span><span></span></div>
+    <div class="fbtext" id="fbtext"></div>
   </div>
+</div>
 
-  <div class="card scores-card" id="scCard">
-    <div class="lbl">Hinnangud</div>
-    <div class="sgrid" id="sgrid"></div>
-  </div>
+<div class="card scores-card" id="scCard">
+  <div class="lbl">Hinnangud</div>
+  <div class="sgrid" id="sgrid"></div>
+</div>
 
-  <div class="card share-card" id="shareCard">
-    <div class="lbl">Jaga tulemust</div>
-    <div class="share-preview" id="sharePrev"></div>
-    <div class="share-btns">
-      <button class="sbtn ig" onclick="shareIG()">📸 IG</button>
-      <button class="sbtn fb" onclick="shareFB()">📘 FB</button>
-      <button class="sbtn xtwitter" onclick="shareX()">𝕏</button>
-      <button class="sbtn cp" onclick="shareCopy()">🔗</button>
-    </div>
-    <div class="share-note">Pilt salvestatakse galeriisse jagamiseks</div>
+<div class="card share-card" id="shareCard">
+  <div class="lbl">Jaga tulemust</div>
+  <div class="share-preview" id="sharePrev"></div>
+  <div class="share-btns">
+    <button class="sbtn ig" onclick="shareIG()">📸 IG</button>
+    <button class="sbtn fb" onclick="shareFB()">📘 FB</button>
+    <button class="sbtn xtwitter" onclick="shareX()">𝕏</button>
+    <button class="sbtn cp" onclick="shareCopy()">🔗</button>
   </div>
+  <div class="share-note">Pilt salvestatakse galeriisse jagamiseks</div>
+</div>
 
 </div>
 <script>
@@ -328,263 +467,211 @@ const M = {
   }
 };
 
-let mode = 'meik', stream = null, autoOn = false, autoT = null;
-let lastFb = '', lastScores = {}, lastPhoto = '';
+let mode='meik', stream=null, autoOn=false, autoT=null, lastFb='', lastScores={}, lastPhoto='';
+const video=document.getElementById('vid');
+const canvas=document.getElementById('cv');
 
-const video = document.getElementById('vid');
-const canvas = document.getElementById('cv');
+function setDot(state,msg){
+  const d=document.getElementById('dot');
+  d.className='dot'+(state!=='idle'?' '+state:'');
+  document.getElementById('smsg').textContent=msg;
+}
 
-function setMode(m) {
-  mode = m;
-  document.querySelectorAll('.mode').forEach(b => b.classList.remove('active'));
-  document.querySelector('.mode.m-' + m).classList.add('active');
-  document.getElementById('ctxCard').style.display = m === 'stiil' ? 'block' : 'none';
-  document.getElementById('outfitGuide').style.display = m === 'stiil' ? 'block' : 'none';
-  document.getElementById('disc').classList.toggle('show', m === 'nahk');
-  document.getElementById('resLbl').textContent = M[m].lbl;
-  document.getElementById('resEmpty').style.display = 'block';
+function setMode(m){
+  mode=m;
+  document.querySelectorAll('.mode').forEach(b=>b.classList.remove('active'));
+  document.querySelector('.mode.m-'+m).classList.add('active');
+  document.getElementById('ctxCard').style.display=m==='stiil'?'block':'none';
+  document.getElementById('outfitGuide').style.display=m==='stiil'?'block':'none';
+  document.getElementById('disc').classList.toggle('show',m==='nahk');
+  document.getElementById('resLbl').textContent=M[m].lbl;
+  document.getElementById('resEmpty').style.display='block';
   document.getElementById('fbtext').classList.remove('on');
   document.getElementById('scCard').classList.remove('on');
   document.getElementById('shareCard').classList.remove('on');
 }
 
-async function startCam() {
-  document.getElementById('err').textContent = '';
+async function startCam(){
+  document.getElementById('err').textContent='';
   try {
-    stream = await navigator.mediaDevices.getUserMedia({ video:{ facingMode:'user' }, audio:false });
-    video.srcObject = stream;
+    stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:'user'},audio:false});
+    video.srcObject=stream;
     await video.play();
-    document.getElementById('camph').style.display = 'none';
-    setDot('live', 'Kaamera aktiivne');
-    document.getElementById('camBtn').disabled = true;
-    document.getElementById('camBtn').textContent = '✓ Aktiivne';
-    document.getElementById('anaBtn').disabled = false;
-    document.getElementById('autoBtn').disabled = false;
-  } catch(e) {
-    document.getElementById('err').textContent = 'Kaamera avamine ebaõnnestus. Seaded → Safari → Kaamera → Luba';
+    document.getElementById('camph').style.display='none';
+    setDot('live','Kaamera aktiivne');
+    document.getElementById('camBtn').disabled=true;
+    document.getElementById('camBtn').textContent='✓ Aktiivne';
+    document.getElementById('anaBtn').disabled=false;
+    document.getElementById('autoBtn').disabled=false;
+  } catch(e){
+    document.getElementById('err').textContent='Kaamera avamine ebaõnnestus. Seaded → Safari → Kaamera → Luba';
   }
 }
 
-function capture() {
-  canvas.width = video.videoWidth || 640;
-  canvas.height = video.videoHeight || 480;
-  const ctx = canvas.getContext('2d');
-  ctx.translate(canvas.width, 0); ctx.scale(-1, 1);
-  ctx.drawImage(video, 0, 0);
-  return canvas.toDataURL('image/jpeg', 0.82);
+function capture(){
+  canvas.width=video.videoWidth||640;
+  canvas.height=video.videoHeight||480;
+  const ctx=canvas.getContext('2d');
+  ctx.translate(canvas.width,0); ctx.scale(-1,1);
+  ctx.drawImage(video,0,0);
+  return canvas.toDataURL('image/jpeg',0.82);
 }
 
-async function analyze() {
-  const key = document.getElementById('apiKey').value.trim();
-  if (!key) { document.getElementById('err').textContent = 'Palun sisesta API võti!'; return; }
-  if (!stream) { document.getElementById('err').textContent = 'Ava kõigepealt kaamera!'; return; }
-
-  const m = M[mode];
-  const ctx = document.getElementById('ctxInput').value.trim();
-  document.getElementById('err').textContent = '';
-  setDot('thinking', 'Analüüsin...');
+async function analyze(){
+  const key=document.getElementById('apiKey').value.trim();
+  if(!key){document.getElementById('err').textContent='Palun sisesta API võti!';return;}
+  if(!stream){document.getElementById('err').textContent='Ava kõigepealt kaamera!';return;}
+  const m=M[mode];
+  const ctx=document.getElementById('ctxInput')?document.getElementById('ctxInput').value.trim():'';
+  document.getElementById('err').textContent='';
+  setDot('thinking','Analüüsin...');
   document.getElementById('scan').classList.add('on');
   document.getElementById('load').classList.add('on');
-  document.getElementById('resEmpty').style.display = 'none';
+  document.getElementById('resEmpty').style.display='none';
   document.getElementById('fbtext').classList.remove('on');
-  document.getElementById('anaBtn').disabled = true;
-
-  const dataUrl = capture();
-  lastPhoto = dataUrl;
-  const b64 = dataUrl.split(',')[1];
-  const prompt = ctx ? m.prompt + ' Kontekst: ' + ctx : m.prompt;
-
-  // Get extra photos for stiil mode
-  const extraFiles = mode === 'stiil' ? getExtraPhotos() : [];
-  const extraB64s = await Promise.all(extraFiles.map(f => fileToBase64(f)));
-
-  // Build content array
-  const contentArr = [
-    { type:'image', source:{ type:'base64', media_type:'image/jpeg', data:b64 }},
-  ];
-  extraB64s.forEach((eb, i) => {
-    contentArr.push({ type:'image', source:{ type:'base64', media_type:'image/jpeg', data:eb }});
-  });
-  const extraNote = extraB64s.length > 0 ? ` Analüüsi kõiki ${extraB64s.length + 1} pilti tervikliku outfiti hindamiseks — ülemine osa, alumine osa, jalanõud ja aksessuaarid.` : '';
-  contentArr.push({ type:'text', text: prompt + extraNote });
-
+  document.getElementById('anaBtn').disabled=true;
+  const dataUrl=capture();
+  lastPhoto=dataUrl;
+  const b64=dataUrl.split(',')[1];
+  const prompt=ctx?m.prompt+' Kontekst: '+ctx:m.prompt;
+  const extraFiles=mode==='stiil'?getExtraPhotos():[];
+  const extraB64s=await Promise.all(extraFiles.map(f=>fileToBase64(f)));
+  const contentArr=[{type:'image',source:{type:'base64',media_type:'image/jpeg',data:b64}}];
+  extraB64s.forEach(eb=>{contentArr.push({type:'image',source:{type:'base64',media_type:'image/jpeg',data:eb}});});
+  const extraNote=extraB64s.length>0?' Analüüsi kõiki '+(extraB64s.length+1)+' pilti tervikliku outfiti hindamiseks.':'';
+  contentArr.push({type:'text',text:prompt+extraNote});
   try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': key,
-        'anthropic-version': '2023-06-01',
-        'anthropic-dangerous-direct-browser-access': 'true'
-      },
-      body: JSON.stringify({
-        model: 'claude-opus-4-5',
-        max_tokens: 800,
-        system: m.sys,
-        messages: [{ role:'user', content: contentArr }]
-      })
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+      body:JSON.stringify({model:'claude-opus-4-5',max_tokens:800,system:m.sys,messages:[{role:'user',content:contentArr}]})
     });
-
-    const data = await res.json();
-    if (data.error) throw new Error(data.error.message);
-
-    const raw = data.content.map(b => b.text || '').join('');
-    const parsed = JSON.parse(raw.replace(/```json|```/g, '').trim());
-
-    lastFb = parsed.feedback;
-    lastScores = parsed.scores;
-
+    const data=await res.json();
+    if(data.error) throw new Error(data.error.message);
+    const raw=data.content.map(b=>b.text||'').join('');
+    const parsed=JSON.parse(raw.replace(/```json|```/g,'').trim());
+    lastFb=parsed.feedback; lastScores=parsed.scores;
     document.getElementById('load').classList.remove('on');
     document.getElementById('scan').classList.remove('on');
-    const ft = document.getElementById('fbtext');
-    ft.innerHTML = parsed.feedback + (parsed.tip ? '<div class="tiptext">✦ ' + parsed.tip + '</div>' : '');
+    const ft=document.getElementById('fbtext');
+    ft.innerHTML=parsed.feedback+(parsed.tip?'<div class="tiptext">✦ '+parsed.tip+'</div>':'');
     ft.classList.add('on');
-
-    if (parsed.scores) showScores(parsed.scores, m.bar);
-    showShare(parsed.feedback, parsed.tip || '', parsed.scores, dataUrl);
-    speak(parsed.feedback + (parsed.tip ? ' Soovitus: ' + parsed.tip : ''));
-    setDot('live', 'Analüüs valmis ✦');
-
-  } catch(e) {
+    if(parsed.scores) showScores(parsed.scores,m.bar);
+    showShare(parsed.feedback,parsed.tip||'',parsed.scores,dataUrl);
+    speak(parsed.feedback+(parsed.tip?' Soovitus: '+parsed.tip:''));
+    setDot('live','Analüüs valmis ✦');
+  } catch(e){
     document.getElementById('load').classList.remove('on');
     document.getElementById('scan').classList.remove('on');
-    const ft = document.getElementById('fbtext');
-    ft.innerHTML = '<span style="color:var(--rose)">Viga: ' + e.message + '</span>';
+    const ft=document.getElementById('fbtext');
+    ft.innerHTML='<span style="color:var(--rose)">Viga: '+e.message+'</span>';
     ft.classList.add('on');
-    setDot('idle', 'Viga');
+    setDot('idle','Viga');
   }
-  document.getElementById('anaBtn').disabled = false;
+  document.getElementById('anaBtn').disabled=false;
 }
 
-function showScores(scores, barClass) {
-  const grid = document.getElementById('sgrid');
-  grid.innerHTML = '';
-  Object.entries(scores).forEach(([label, val]) => {
-    const d = document.createElement('div');
-    d.className = 'sitem';
-    d.innerHTML = '<div class="slbl">' + label + '</div><div class="bwrap"><div class="bar ' + barClass + '" id="b_' + label + '"></div></div><div class="sval">' + val + '/10</div>';
+function showScores(scores,barClass){
+  const grid=document.getElementById('sgrid');
+  grid.innerHTML='';
+  Object.entries(scores).forEach(([label,val])=>{
+    const d=document.createElement('div');
+    d.className='sitem';
+    d.innerHTML='<div class="slbl">'+label+'</div><div class="bwrap"><div class="bar '+barClass+'" id="b_'+label+'"></div></div><div class="sval">'+val+'/10</div>';
     grid.appendChild(d);
-    setTimeout(() => { const b = document.getElementById('b_' + label); if(b) b.style.width = (val*10)+'%'; }, 400);
+    setTimeout(()=>{const b=document.getElementById('b_'+label);if(b)b.style.width=(val*10)+'%';},400);
   });
   document.getElementById('scCard').classList.add('on');
 }
 
-function showShare(fb, tip, scores, photoUrl) {
-  const scoreHtml = Object.entries(scores).map(([l,v]) =>
-    '<div><div class="sp-sv">' + v + '</div><div class="sp-sl">' + l + '</div></div>'
-  ).join('');
-  document.getElementById('sharePrev').innerHTML =
-    '<img class="sp-photo" src="' + photoUrl + '">' +
+function showShare(fb,tip,scores,photoUrl){
+  const scoreHtml=Object.entries(scores).map(([l,v])=>'<div><div class="sp-sv">'+v+'</div><div class="sp-sl">'+l+'</div></div>').join('');
+  document.getElementById('sharePrev').innerHTML=
+    '<img class="sp-photo" src="'+photoUrl+'">' +
     '<div class="sp-logo">GL<em>O</em>W</div>' +
-    '<div class="sp-mode">' + M[mode].lbl + '</div>' +
-    '<div class="sp-text">' + fb + '</div>' +
-    (tip ? '<div class="sp-tip">✦ ' + tip + '</div>' : '') +
-    '<div class="sp-scores">' + scoreHtml + '</div>';
+    '<div class="sp-mode">'+M[mode].lbl+'</div>' +
+    '<div class="sp-text">'+fb+'</div>' +
+    (tip?'<div class="sp-tip">✦ '+tip+'</div>':'') +
+    '<div class="sp-scores">'+scoreHtml+'</div>';
   document.getElementById('shareCard').classList.add('on');
 }
 
-function speak(text) {
-  if (!('speechSynthesis' in window)) return;
+function speak(text){
+  if(!('speechSynthesis' in window)) return;
   window.speechSynthesis.cancel();
-  const u = new SpeechSynthesisUtterance(text);
-  u.lang = 'et-EE'; u.rate = 0.95;
-  u.onstart = () => { document.getElementById('wave').classList.add('on'); setDot('live','Räägin...'); };
-  u.onend = () => { document.getElementById('wave').classList.remove('on'); setDot('live','Analüüs valmis ✦'); };
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang='et-EE'; u.rate=0.95;
+  u.onstart=()=>{document.getElementById('wave').classList.add('on');setDot('live','Räägin...');};
+  u.onend=()=>{document.getElementById('wave').classList.remove('on');setDot('live','Analüüs valmis ✦');};
   window.speechSynthesis.speak(u);
 }
 
-function toggleAuto() {
-  autoOn = !autoOn;
-  const btn = document.getElementById('autoBtn');
-  if (autoOn) {
-    btn.textContent = '⬛ Peata'; btn.classList.add('red');
-    analyze(); autoT = setInterval(analyze, 20000);
-  } else {
-    btn.textContent = 'Auto'; btn.classList.remove('red');
-    clearInterval(autoT);
-  }
+function toggleAuto(){
+  autoOn=!autoOn;
+  const btn=document.getElementById('autoBtn');
+  if(autoOn){btn.textContent='⬛ Peata';btn.classList.add('red');analyze();autoT=setInterval(analyze,20000);}
+  else{btn.textContent='Auto';btn.classList.remove('red');clearInterval(autoT);}
 }
 
-function shareIG() {
-  if (navigator.share) {
-    navigator.share({
-      title: 'GLÓW · AI Stiilianalüüs',
-      text: lastFb + '\n\n✦ GLÓW AI Assistent\n#GLOW #AI #Stiil #Meik',
-      url: window.location.href
-    }).catch(() => {});
-  } else {
-    alert('Ava Instagram → Lisa postitus → vali pilt galeriist');
-  }
+function shareIG(){
+  if(navigator.share){navigator.share({title:'GLÓW · AI Stiilianalüüs',text:lastFb+'\n\n✦ GLÓW AI Assistent\n#GLOW #AI #Stiil #Meik',url:window.location.href}).catch(()=>{});}
+  else{alert('Ava Instagram → Lisa postitus → vali pilt galeriist');}
 }
 
-function shareFB() {
-  const text = encodeURIComponent('✦ GLÓW AI Stiilianalüüs\n\n' + lastFb + '\n\n' + Object.entries(lastScores).map(([l,v]) => l+': '+v+'/10').join(' · '));
-  const url = encodeURIComponent(window.location.href);
-  window.open('https://www.facebook.com/sharer/sharer.php?u=' + url + '&quote=' + text, '_blank');
+function shareFB(){
+  const text=encodeURIComponent('✦ GLÓW AI Stiilianalüüs\n\n'+lastFb+'\n\n'+Object.entries(lastScores).map(([l,v])=>l+': '+v+'/10').join(' · '));
+  window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(window.location.href)+'&quote='+text,'_blank');
 }
 
-function shareX() {
-  const text = encodeURIComponent('✦ GLÓW AI Stiilianalüüs\n\n' + lastFb.substring(0, 200) + '\n\n' + Object.entries(lastScores).map(([l,v]) => l+': '+v+'/10').join(' · ') + '\n\n#GLOW #AI #Stiil');
-  const url = encodeURIComponent(window.location.href);
-  window.open('https://twitter.com/intent/tweet?text=' + text + '&url=' + url, '_blank');
+function shareX(){
+  const text=encodeURIComponent('✦ GLÓW AI Stiilianalüüs\n\n'+lastFb.substring(0,200)+'\n\n'+Object.entries(lastScores).map(([l,v])=>l+': '+v+'/10').join(' · ')+'\n\n#GLOW #AI #Stiil');
+  window.open('https://twitter.com/intent/tweet?text='+text+'&url='+encodeURIComponent(window.location.href),'_blank');
 }
 
-function shareCopy() {
-  const text = '✦ GLÓW AI Stiilianalüüs\n\n' + lastFb + '\n\n' + Object.entries(lastScores).map(([l,v]) => l+': '+v+'/10').join(' · ') + '\n\n' + window.location.href + '\n#GLOW #AI #Stiil';
-  if (navigator.clipboard) {
-    navigator.clipboard.writeText(text).then(() => alert('✓ Kopeeritud! Kleebi kuhu soovid.'));
-  } else {
-    const ta = document.createElement('textarea');
-    ta.value = text; document.body.appendChild(ta);
-    ta.select(); document.execCommand('copy');
-    document.body.removeChild(ta);
-    alert('✓ Kopeeritud!');
-  }
+function shareCopy(){
+  const text='✦ GLÓW AI Stiilianalüüs\n\n'+lastFb+'\n\n'+Object.entries(lastScores).map(([l,v])=>l+': '+v+'/10').join(' · ')+'\n\n'+window.location.href+'\n#GLOW #AI #Stiil';
+  if(navigator.clipboard){navigator.clipboard.writeText(text).then(()=>alert('✓ Kopeeritud!'));}
+  else{const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);alert('✓ Kopeeritud!');}
 }
 
-function previewExtra(n) {
-  const input = document.getElementById('extraPhoto' + n);
-  const label = document.getElementById('extra' + n + 'label');
-  const previews = document.getElementById('extraPreviews');
-  if (input.files && input.files[0]) {
-    const reader = new FileReader();
-    reader.onload = e => {
-      label.textContent = '✓ Lisatud';
+function previewExtra(n){
+  const input=document.getElementById('extraPhoto'+n);
+  const label=document.getElementById('extra'+n+'label');
+  const previews=document.getElementById('extraPreviews');
+  if(input.files&&input.files[0]){
+    const reader=new FileReader();
+    reader.onload=e=>{
+      label.textContent='✓ Lisatud';
       input.parentElement.classList.add('has-photo');
-      const existing = document.getElementById('eprev' + n);
-      if (existing) existing.remove();
-      const img = document.createElement('img');
-      img.className = 'extra-preview';
-      img.id = 'eprev' + n;
-      img.src = e.target.result;
+      const existing=document.getElementById('eprev'+n);
+      if(existing) existing.remove();
+      const img=document.createElement('img');
+      img.className='extra-preview'; img.id='eprev'+n; img.src=e.target.result;
       previews.appendChild(img);
     };
     reader.readAsDataURL(input.files[0]);
   }
 }
 
-function getExtraPhotos() {
-  const extras = [];
-  for (let i = 1; i <= 3; i++) {
-    const input = document.getElementById('extraPhoto' + i);
-    if (input && input.files && input.files[0]) {
-      extras.push(input.files[0]);
-    }
-  }
+function getExtraPhotos(){
+  const extras=[];
+  for(let i=1;i<=3;i++){const input=document.getElementById('extraPhoto'+i);if(input&&input.files&&input.files[0])extras.push(input.files[0]);}
   return extras;
 }
 
-function fileToBase64(file) {
-  return new Promise((resolve) => {
-    const reader = new FileReader();
-    reader.onload = e => resolve(e.target.result.split(',')[1]);
+function fileToBase64(file){
+  return new Promise(resolve=>{
+    const reader=new FileReader();
+    reader.onload=e=>resolve(e.target.result.split(',')[1]);
     reader.readAsDataURL(file);
   });
-}
-  const d = document.getElementById('dot');
-  d.className = 'dot' + (state !== 'idle' ? ' ' + state : '');
-  document.getElementById('smsg').textContent = msg;
 }
 </script>
 </body>
 </html>
+Kopeeri kõik alates <!DOCTYPE html> kuni </html> — see on terve fail. GitHub'is: pliiats → Ctrl+A → kustuta → Ctrl+V → Commit changes.
+
+
+Ütle kui sa oled kirjuatmise lõpetanud ning kood on salvestamiseks valmis
+
+Claude is AI and can make mistakes. Please double-check responses.
