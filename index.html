@@ -10,133 +10,234 @@
 <meta name="apple-mobile-web-app-title" content="GLÓW">
 <meta name="theme-color" content="#c9a96e">
 <link rel="apple-touch-icon" href="icon.svg">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #0e0c0b; --cream: #f0e6d3; --gold: #c9a96e;
-  --gold-dim: rgba(201,169,110,0.2); --blush: #d4957a;
-  --sage: #7a9e8e; --lav: #9b8fb5; --rose: #c4736b;
-  --dim: rgba(240,230,211,0.5);
+:root{
+  --bg:#0e0c0b;--cream:#f0e6d3;--gold:#c9a96e;
+  --gold-dim:rgba(201,169,110,0.2);--blush:#d4957a;
+  --sage:#7a9e8e;--lav:#9b8fb5;--rose:#c4736b;
+  --dim:rgba(240,230,211,0.5);
+  --yes-bg:rgba(122,158,142,0.12);--yes-border:rgba(122,158,142,0.5);--yes-color:#a8d4c4;
+  --no-bg:rgba(196,115,107,0.12);--no-border:rgba(196,115,107,0.5);--no-color:#e8a090;
+  --maybe-bg:rgba(201,169,110,0.12);--maybe-border:rgba(201,169,110,0.5);--maybe-color:#c9a96e;
 }
-* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
-body { background:var(--bg); font-family:'DM Mono',monospace; color:var(--cream); min-height:100vh; }
-.ambient { position:fixed; inset:0; pointer-events:none; z-index:0;
-  background: radial-gradient(ellipse 70% 50% at 15% 10%, rgba(196,115,107,0.12) 0%, transparent 60%),
-  radial-gradient(ellipse 50% 70% at 85% 90%, rgba(123,158,142,0.10) 0%, transparent 60%); }
-.app { position:relative; z-index:1; max-width:500px; margin:0 auto; padding:24px 16px 60px; }
-header { text-align:center; padding:24px 0 32px; animation:fadeUp .7s ease both; }
-.logo { font-family:'Cormorant Garamond',serif; font-size:clamp(72px,20vw,104px); font-weight:300; letter-spacing:.25em; color:var(--cream); line-height:1; }
-.logo-o { color:var(--gold); font-style:italic; font-weight:300; text-shadow:0 0 30px rgba(201,169,110,0.9),0 0 70px rgba(201,169,110,0.4); animation:oglow 3s ease-in-out infinite; display:inline-block; }
-@keyframes oglow { 0%,100%{text-shadow:0 0 30px rgba(201,169,110,0.9),0 0 70px rgba(201,169,110,0.4)} 50%{text-shadow:0 0 50px rgba(201,169,110,1),0 0 100px rgba(201,169,110,0.7)} }
-.logo-line { display:flex; align-items:center; justify-content:center; gap:10px; margin-top:10px; }
-.logo-line::before,.logo-line::after { content:''; flex:1; max-width:40px; height:1px; background:linear-gradient(90deg,transparent,rgba(201,169,110,0.4)); }
-.logo-line::after { background:linear-gradient(90deg,rgba(201,169,110,0.4),transparent); }
-.tagline { font-size:9px; letter-spacing:.45em; color:var(--blush); text-transform:uppercase; opacity:.8; }
-.card { border:1px solid var(--gold-dim); border-radius:3px; background:rgba(0,0,0,0.3); padding:16px; margin-bottom:16px; }
-.lbl { font-size:9px; letter-spacing:.4em; color:var(--gold); text-transform:uppercase; margin-bottom:10px; }
-.card input,.card textarea { width:100%; background:rgba(0,0,0,0.4); border:1px solid rgba(201,169,110,0.25); color:var(--cream); font-family:'DM Mono',monospace; font-size:11px; padding:10px 12px; border-radius:2px; outline:none; box-sizing:border-box; }
-.card input:focus,.card textarea:focus { border-color:var(--gold); }
-.card input::placeholder,.card textarea::placeholder { color:rgba(240,230,211,0.25); }
-.card textarea { resize:none; height:76px; line-height:1.6; }
-.note { font-size:9px; color:var(--dim); margin-top:6px; }
-.modes { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin-bottom:16px; }
-.mode { border:1px solid rgba(240,230,211,0.1); border-radius:3px; background:rgba(0,0,0,0.25); padding:14px 6px; cursor:pointer; text-align:center; transition:all .25s; position:relative; overflow:hidden; }
-.mode::before { content:''; position:absolute; inset:0; opacity:0; transition:opacity .25s; }
-.mode.m-meik { --mc:#d4957a; } .mode.m-nahk { --mc:#7a9e8e; } .mode.m-stiil { --mc:#9b8fb5; }
-.mode.m-meik::before { background:radial-gradient(ellipse at 50% 0%,rgba(212,149,122,0.3),transparent 70%); }
-.mode.m-nahk::before { background:radial-gradient(ellipse at 50% 0%,rgba(122,158,142,0.3),transparent 70%); }
-.mode.m-stiil::before { background:radial-gradient(ellipse at 50% 0%,rgba(155,143,181,0.3),transparent 70%); }
-.mode.active { border-color:var(--mc); } .mode.active::before { opacity:1; } .mode.active .mname { color:var(--mc); }
-.micon { font-size:22px; margin-bottom:6px; }
-.mname { font-family:'Cormorant Garamond',serif; font-size:13px; color:var(--cream); transition:color .25s; }
-.mdesc { font-size:8px; color:var(--dim); margin-top:3px; line-height:1.4; }
-.disclaimer { border:1px solid rgba(122,158,142,0.3); border-radius:3px; background:rgba(122,158,142,0.07); padding:14px; margin-bottom:16px; font-size:10px; color:rgba(122,158,142,0.9); line-height:1.7; display:none; }
-.disclaimer.show { display:block; }
-.cam-frame { position:relative; border-radius:2px; overflow:hidden; background:#050303; aspect-ratio:3/4; border:1px solid rgba(255,255,255,0.06); }
-#vid { width:100%; height:100%; object-fit:cover; display:block; transform:scaleX(-1); }
-.cam-ph { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; background:rgba(14,12,11,0.9); }
-.cam-ph p { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:14px; color:var(--dim); text-align:center; padding:0 20px; }
-.corner { position:absolute; width:16px; height:16px; pointer-events:none; z-index:2; }
-.corner.tl { top:8px; left:8px; border-top:1px solid var(--gold); border-left:1px solid var(--gold); }
-.corner.br { bottom:8px; right:8px; border-bottom:1px solid var(--gold); border-right:1px solid var(--gold); }
-.scanline { position:absolute; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); pointer-events:none; z-index:3; opacity:0; }
-.scanline.on { opacity:1; animation:scan 2.5s linear infinite; }
-@keyframes scan { from{top:0%} to{top:100%} }
-.srow { display:flex; align-items:center; gap:8px; margin-top:10px; font-size:10px; letter-spacing:.15em; color:var(--dim); }
-.dot { width:6px; height:6px; border-radius:50%; background:var(--dim); flex-shrink:0; transition:all .3s; }
-.dot.live { background:#7ec98a; box-shadow:0 0 8px rgba(126,201,138,.6); animation:pulse 2s ease infinite; }
-.dot.thinking { background:var(--gold); box-shadow:0 0 8px rgba(201,169,110,.6); animation:pulse .8s ease infinite; }
-@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.4)} }
-.wave { display:none; align-items:center; gap:2px; height:16px; }
-.wave.on { display:flex; }
-.wave span { width:2px; background:var(--gold); border-radius:2px; animation:wv .8s ease infinite; }
-.wave span:nth-child(1){height:4px} .wave span:nth-child(2){height:10px;animation-delay:.1s} .wave span:nth-child(3){height:16px;animation-delay:.2s} .wave span:nth-child(4){height:10px;animation-delay:.3s} .wave span:nth-child(5){height:4px;animation-delay:.4s}
-@keyframes wv { 0%,100%{transform:scaleY(.5);opacity:.5} 50%{transform:scaleY(1);opacity:1} }
-.errmsg { font-size:10px; color:var(--rose); margin-top:8px; line-height:1.6; }
-.brow { display:flex; gap:8px; margin-top:12px; }
-.btn { flex:1; padding:11px 6px; border-radius:2px; cursor:pointer; font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.25em; text-transform:uppercase; transition:all .2s; border:1px solid var(--gold-dim); background:transparent; color:var(--cream); }
-.btn.pri { background:var(--gold); color:var(--bg); border-color:var(--gold); font-weight:500; }
-.btn:disabled { opacity:.35; cursor:not-allowed; }
-.btn.red { border-color:rgba(196,115,107,.4); color:var(--rose); }
-.res-inner { padding-left:12px; border-left:2px solid var(--gold-dim); min-height:80px; }
-.res-empty { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:15px; color:var(--dim); text-align:center; padding:16px 0; }
-.loading { display:none; align-items:center; gap:6px; padding:16px 0; }
-.loading.on { display:flex; }
-.loading span { width:6px; height:6px; border-radius:50%; background:var(--gold); animation:pulse 1.2s ease infinite; }
-.loading span:nth-child(2){animation-delay:.2s} .loading span:nth-child(3){animation-delay:.4s}
-.fbtext { font-family:'Cormorant Garamond',serif; font-size:17px; line-height:1.8; color:var(--cream); display:none; }
-.fbtext.on { display:block; }
-.tiptext { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:15px; color:var(--gold); margin-top:12px; line-height:1.7; }
-.scores-card { display:none; } .scores-card.on { display:block; }
-.sgrid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
-.sitem { padding:12px; border:1px solid rgba(255,255,255,0.06); border-radius:2px; background:rgba(0,0,0,0.2); }
-.slbl { font-size:8px; letter-spacing:.3em; color:var(--dim); text-transform:uppercase; margin-bottom:7px; }
-.bwrap { height:2px; background:rgba(255,255,255,0.08); border-radius:2px; overflow:hidden; margin-bottom:6px; }
-.bar { height:100%; border-radius:2px; width:0%; transition:width 1s ease; }
-.bar.c1 { background:linear-gradient(90deg,var(--rose),var(--gold)); }
-.bar.c2 { background:linear-gradient(90deg,var(--sage),#a8d4c4); }
-.bar.c3 { background:linear-gradient(90deg,var(--lav),#c4b8e0); }
-.sval { font-family:'Cormorant Garamond',serif; font-size:22px; color:var(--cream); }
-.share-card { display:none; } .share-card.on { display:block; }
-.share-preview { background:linear-gradient(135deg,#1a0a08,#0e0c0b); border:1px solid var(--gold-dim); border-radius:3px; padding:16px; }
-.sp-photo { width:100%; height:180px; object-fit:cover; border-radius:3px; display:block; margin-bottom:12px; }
-.sp-logo { font-family:'Cormorant Garamond',serif; font-size:26px; letter-spacing:.2em; color:var(--cream); text-align:center; }
-.sp-logo em { color:var(--gold); font-style:italic; }
-.sp-mode { font-size:9px; letter-spacing:.3em; color:var(--blush); text-transform:uppercase; text-align:center; margin-bottom:12px; }
-.sp-text { font-family:'Cormorant Garamond',serif; font-size:14px; line-height:1.7; color:var(--cream); font-style:italic; margin-bottom:10px; }
-.sp-tip { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:13px; color:var(--gold); margin-bottom:12px; }
-.sp-scores { display:flex; justify-content:center; gap:16px; flex-wrap:wrap; }
-.sp-sv { font-family:'Cormorant Garamond',serif; font-size:22px; color:var(--gold); text-align:center; }
-.sp-sl { font-size:8px; letter-spacing:.2em; color:var(--dim); text-transform:uppercase; text-align:center; }
-.share-btns { display:flex; gap:8px; margin-top:14px; }
-.sbtn { flex:1; padding:11px 6px; border-radius:2px; cursor:pointer; font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.2em; text-transform:uppercase; background:transparent; transition:all .2s; }
-.sbtn.ig { border:1px solid rgba(225,48,108,0.4); color:#e1306c; }
-.sbtn.fb { border:1px solid rgba(66,103,178,0.4); color:#4267b2; }
-.sbtn.xtwitter { border:1px solid rgba(255,255,255,0.2); color:var(--cream); }
-.sbtn.cp { border:1px solid var(--gold-dim); color:var(--gold); }
-.share-note { font-size:9px; color:var(--dim); margin-top:8px; text-align:center; }
-.api-info { margin-top:12px; padding-top:12px; border-top:1px solid var(--gold-dim); }
-.api-price { display:flex; align-items:center; gap:8px; font-size:12px; color:var(--cream); margin-bottom:10px; }
-.api-price strong { color:var(--gold); }
-.api-link { display:block; background:rgba(201,169,110,0.1); border:1px solid rgba(201,169,110,0.4); border-radius:2px; padding:10px 14px; color:var(--gold); font-size:11px; letter-spacing:.05em; text-decoration:none; text-align:center; margin-bottom:10px; transition:all .2s; }
-.api-link:hover { background:rgba(201,169,110,0.2); }
-.api-steps { display:flex; flex-direction:column; gap:5px; }
-.step { font-size:10px; color:var(--dim); padding-left:8px; border-left:1px solid rgba(201,169,110,0.3); line-height:1.5; }
-.outfit-tips { display:flex; flex-direction:column; gap:8px; margin-bottom:4px; }
-.otip { font-size:11px; color:var(--cream); line-height:1.6; }
-.otip strong { color:var(--lav); }
-.photo-uploads { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-top:8px; }
-.upload-btn { display:block; padding:10px 6px; border:1px dashed rgba(155,143,181,0.4); border-radius:2px; text-align:center; cursor:pointer; transition:all .2s; }
-.upload-btn:hover { border-color:var(--lav); background:rgba(155,143,181,0.1); }
-.upload-btn input { display:none; }
-.upload-btn span { font-size:9px; letter-spacing:.1em; color:var(--lav); }
-.upload-btn.has-photo { border-color:var(--lav); background:rgba(155,143,181,0.15); }
-.extra-preview { width:60px; height:60px; object-fit:cover; border-radius:2px; border:1px solid var(--lav); }
-canvas { display:none; }
-@keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{background:var(--bg);font-family:'DM Mono',monospace;color:var(--cream);min-height:100vh}
+.ambient{position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(ellipse 70% 50% at 15% 10%,rgba(196,115,107,0.12) 0%,transparent 60%),
+  radial-gradient(ellipse 50% 70% at 85% 90%,rgba(123,158,142,0.10) 0%,transparent 60%)}
+.app{position:relative;z-index:1;max-width:500px;margin:0 auto;padding:24px 16px 60px}
+header{text-align:center;padding:24px 0 32px;animation:fadeUp .7s ease both}
+.logo{font-family:'Cormorant Garamond',serif;font-size:clamp(72px,20vw,104px);font-weight:300;letter-spacing:.25em;color:var(--cream);line-height:1}
+.logo-o{color:var(--gold);font-style:italic;animation:oglow 3s ease-in-out infinite;display:inline-block}
+@keyframes oglow{0%,100%{text-shadow:0 0 30px rgba(201,169,110,0.9),0 0 70px rgba(201,169,110,0.4)}50%{text-shadow:0 0 50px rgba(201,169,110,1),0 0 100px rgba(201,169,110,0.7)}}
+.logo-line{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:10px}
+.logo-line::before,.logo-line::after{content:'';flex:1;max-width:40px;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,110,0.4))}
+.logo-line::after{background:linear-gradient(90deg,rgba(201,169,110,0.4),transparent)}
+.tagline{font-size:9px;letter-spacing:.45em;color:var(--blush);text-transform:uppercase;opacity:.8}
+.card{border:1px solid var(--gold-dim);border-radius:3px;background:rgba(0,0,0,0.3);padding:16px;margin-bottom:16px}
+.lbl{font-size:9px;letter-spacing:.4em;color:var(--gold);text-transform:uppercase;margin-bottom:10px}
+.setup-title{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--cream);margin-bottom:6px}
+.setup-sub{font-size:10px;color:var(--dim);line-height:1.7;margin-bottom:20px}
+.setup-steps{display:flex;flex-direction:column;gap:12px;margin-bottom:20px}
+.setup-step{display:flex;gap:12px;align-items:flex-start}
+.step-num{width:22px;height:22px;border-radius:50%;border:1px solid var(--gold);color:var(--gold);font-size:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.step-text{font-size:11px;color:var(--cream);line-height:1.6}
+.step-text a{color:var(--gold);text-decoration:none}
+.step-text strong{color:var(--gold)}
+.key-input-wrap{position:relative;margin-bottom:12px}
+.key-input-wrap input{width:100%;background:rgba(0,0,0,0.5);border:1px solid rgba(201,169,110,0.4);color:var(--cream);font-family:'DM Mono',monospace;font-size:12px;padding:14px 48px 14px 14px;border-radius:3px;outline:none;box-sizing:border-box}
+.key-input-wrap input:focus{border-color:var(--gold)}
+.key-input-wrap input::placeholder{color:rgba(240,230,211,0.2);letter-spacing:0}
+.toggle-vis{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--dim);cursor:pointer;font-size:16px;padding:4px}
+.save-btn{width:100%;padding:14px;background:var(--gold);color:var(--bg);border:none;border-radius:3px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;cursor:pointer;font-weight:500;transition:all .2s}
+.save-btn:disabled{opacity:.4;cursor:not-allowed}
+.key-error{font-size:10px;color:var(--rose);margin-top:8px;display:none}
+.key-status{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:rgba(122,158,142,0.1);border:1px solid rgba(122,158,142,0.3);border-radius:3px;margin-bottom:16px}
+.key-status-left{display:flex;align-items:center;gap:8px}
+.key-dot{width:6px;height:6px;border-radius:50%;background:#7ec98a;box-shadow:0 0 8px rgba(126,201,138,.6)}
+.key-status-text{font-size:10px;color:var(--sage);letter-spacing:.1em}
+.key-change{font-size:9px;cursor:pointer;text-decoration:underline;text-underline-offset:3px;background:none;border:none;color:var(--dim)}
+.modes{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:16px}
+.mode{border:1px solid rgba(240,230,211,0.1);border-radius:3px;background:rgba(0,0,0,0.25);padding:14px 6px;cursor:pointer;text-align:center;transition:all .25s;position:relative;overflow:hidden}
+.mode::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .25s}
+.mode.m-meik{--mc:#d4957a}.mode.m-nahk{--mc:#7a9e8e}.mode.m-stiil{--mc:#9b8fb5}
+.mode.m-meik::before{background:radial-gradient(ellipse at 50% 0%,rgba(212,149,122,0.3),transparent 70%)}
+.mode.m-nahk::before{background:radial-gradient(ellipse at 50% 0%,rgba(122,158,142,0.3),transparent 70%)}
+.mode.m-stiil::before{background:radial-gradient(ellipse at 50% 0%,rgba(155,143,181,0.3),transparent 70%)}
+.mode.active{border-color:var(--mc)}.mode.active::before{opacity:1}.mode.active .mname{color:var(--mc)}
+.micon{font-size:22px;margin-bottom:6px}
+.mname{font-family:'Cormorant Garamond',serif;font-size:13px;color:var(--cream);transition:color .25s}
+.mdesc{font-size:8px;color:var(--dim);margin-top:3px;line-height:1.4}
+.disclaimer{border:1px solid rgba(122,158,142,0.3);border-radius:3px;background:rgba(122,158,142,0.07);padding:14px;margin-bottom:16px;font-size:10px;color:rgba(122,158,142,0.9);line-height:1.7;display:none}
+.disclaimer.show{display:block}
+.store-tip{border:1px solid rgba(155,143,181,0.3);border-radius:3px;background:rgba(155,143,181,0.07);padding:14px;margin-bottom:16px;font-size:10px;color:rgba(155,143,181,0.9);line-height:1.8;display:none}
+.store-tip.show{display:block}
+.store-tip strong{color:var(--lav)}
+.cam-frame{position:relative;border-radius:2px;overflow:hidden;background:#050303;aspect-ratio:3/4;border:1px solid rgba(255,255,255,0.06)}
+#vid{width:100%;height:100%;object-fit:cover;display:block;transform:scaleX(-1)}
+.cam-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:rgba(14,12,11,0.9)}
+.cam-ph p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;color:var(--dim);text-align:center;padding:0 20px}
+.corner{position:absolute;width:16px;height:16px;pointer-events:none;z-index:2}
+.corner.tl{top:8px;left:8px;border-top:1px solid var(--gold);border-left:1px solid var(--gold)}
+.corner.br{bottom:8px;right:8px;border-bottom:1px solid var(--gold);border-right:1px solid var(--gold)}
+.scanline{position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);pointer-events:none;z-index:3;opacity:0}
+.scanline.on{opacity:1;animation:scan 2.5s linear infinite}
+@keyframes scan{from{top:0%}to{top:100%}}
+.srow{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:10px;letter-spacing:.15em;color:var(--dim)}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--dim);flex-shrink:0;transition:all .3s}
+.dot.live{background:#7ec98a;box-shadow:0 0 8px rgba(126,201,138,.6);animation:pulse 2s ease infinite}
+.dot.thinking{background:var(--gold);box-shadow:0 0 8px rgba(201,169,110,.6);animation:pulse .8s ease infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.4)}}
+.wave{display:none;align-items:center;gap:2px;height:16px}
+.wave.on{display:flex}
+.wave span{width:2px;background:var(--gold);border-radius:2px;animation:wv .8s ease infinite}
+.wave span:nth-child(1){height:4px}.wave span:nth-child(2){height:10px;animation-delay:.1s}.wave span:nth-child(3){height:16px;animation-delay:.2s}.wave span:nth-child(4){height:10px;animation-delay:.3s}.wave span:nth-child(5){height:4px;animation-delay:.4s}
+@keyframes wv{0%,100%{transform:scaleY(.5);opacity:.5}50%{transform:scaleY(1);opacity:1}}
+.errmsg{font-size:10px;color:var(--rose);margin-top:8px;line-height:1.6}
+.brow{display:flex;gap:8px;margin-top:12px}
+.btn{flex:1;padding:11px 6px;border-radius:2px;cursor:pointer;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.25em;text-transform:uppercase;transition:all .2s;border:1px solid var(--gold-dim);background:transparent;color:var(--cream)}
+.btn.pri{background:var(--gold);color:var(--bg);border-color:var(--gold);font-weight:500}
+.btn:disabled{opacity:.35;cursor:not-allowed}
+.btn.red{border-color:rgba(196,115,107,.4);color:var(--rose)}
+.res-inner{min-height:80px}
+.res-empty{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:var(--dim);text-align:center;padding:24px 0}
+.loading{display:none;flex-direction:column;align-items:center;gap:12px;padding:32px 0}
+.loading.on{display:flex}
+.loading-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;color:var(--dim)}
+.loading-dots{display:flex;gap:6px}
+.loading-dots span{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 1.2s ease infinite}
+.loading-dots span:nth-child(2){animation-delay:.2s}.loading-dots span:nth-child(3){animation-delay:.4s}
+.result-wrap{display:none;animation:fadeUp .5s ease both}
+.result-wrap.on{display:block}
+.verdict-card{border-radius:4px;padding:24px 20px;margin-bottom:16px;text-align:center;position:relative;overflow:hidden}
+.verdict-card.yes{background:var(--yes-bg);border:1px solid var(--yes-border)}
+.verdict-card.no{background:var(--no-bg);border:1px solid var(--no-border)}
+.verdict-card.maybe{background:var(--maybe-bg);border:1px solid var(--maybe-border)}
+.verdict-icon{font-size:42px;margin-bottom:10px;display:block}
+.verdict-text{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;letter-spacing:.05em;line-height:1.2;margin-bottom:6px}
+.verdict-card.yes .verdict-text{color:var(--yes-color)}
+.verdict-card.no .verdict-text{color:var(--no-color)}
+.verdict-card.maybe .verdict-text{color:var(--maybe-color)}
+.verdict-sub{font-size:9px;letter-spacing:.3em;text-transform:uppercase;opacity:.6;margin-top:4px}
+.verdict-card.yes .verdict-sub{color:var(--yes-color)}
+.verdict-card.no .verdict-sub{color:var(--no-color)}
+.verdict-card.maybe .verdict-sub{color:var(--maybe-color)}
+.feedback-text{font-family:'Cormorant Garamond',serif;font-size:17px;line-height:1.8;color:var(--cream);margin-bottom:16px;padding:0 2px}
+.details-grid{display:flex;flex-direction:column;gap:10px;margin-bottom:16px}
+.detail-item{padding:12px 14px;border-radius:3px;background:rgba(0,0,0,0.25);border:1px solid rgba(255,255,255,0.06)}
+.detail-label{font-size:8px;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:5px;opacity:.8}
+.detail-value{font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--cream);line-height:1.6}
+.scores-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+.score-item{padding:14px 12px;border:1px solid rgba(255,255,255,0.06);border-radius:3px;background:rgba(0,0,0,0.2);text-align:center}
+.score-label{font-size:8px;letter-spacing:.25em;color:var(--dim);text-transform:uppercase;margin-bottom:8px}
+.score-circle{position:relative;width:56px;height:56px;margin:0 auto 6px}
+.score-circle svg{transform:rotate(-90deg)}
+.score-circle-bg{fill:none;stroke:rgba(255,255,255,0.08);stroke-width:3}
+.score-circle-fill{fill:none;stroke-width:3;stroke-linecap:round;transition:stroke-dashoffset 1s ease}
+.score-circle.c1 .score-circle-fill{stroke:url(#grad1)}
+.score-circle.c2 .score-circle-fill{stroke:url(#grad2)}
+.score-circle.c3 .score-circle-fill{stroke:url(#grad3)}
+.score-num{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--cream)}
+.tip-card{padding:14px 16px;border-radius:3px;background:rgba(201,169,110,0.08);border:1px solid rgba(201,169,110,0.25);margin-bottom:16px}
+.tip-label{font-size:8px;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;opacity:.8}
+.tip-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;color:var(--gold);line-height:1.7}
+
+/* SALDO RIBA */
+.saldo-bar{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:rgba(201,169,110,0.08);border:1px solid rgba(201,169,110,0.2);border-radius:3px;margin-bottom:16px;cursor:pointer;transition:all .2s}
+.saldo-bar:hover{background:rgba(201,169,110,0.14)}
+.saldo-left{display:flex;align-items:center;gap:8px}
+.saldo-icon{font-size:14px}
+.saldo-info{display:flex;flex-direction:column}
+.saldo-count{font-size:12px;color:var(--gold);font-weight:500;letter-spacing:.05em}
+.saldo-sub{font-size:9px;color:var(--dim)}
+.saldo-btn{font-size:9px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;border:1px solid rgba(201,169,110,0.4);border-radius:2px;padding:4px 10px;background:transparent;cursor:pointer;font-family:'DM Mono',monospace}
+.saldo-free{background:rgba(122,158,142,0.1);border-color:rgba(122,158,142,0.3)}
+.saldo-free .saldo-count{color:var(--sage)}
+.saldo-free .saldo-btn{color:var(--sage);border-color:rgba(122,158,142,0.4)}
+
+/* HINNAKIRJA EKRAAN */
+.pricing-screen{display:none;animation:fadeUp .4s ease both}
+.pricing-screen.show{display:block}
+.pricing-back{display:flex;align-items:center;gap:8px;background:none;border:none;color:var(--dim);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;cursor:pointer;margin-bottom:16px;padding:0}
+.pricing-back:hover{color:var(--cream)}
+.pricing-title{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--cream);margin-bottom:4px}
+.pricing-sub{font-size:10px;color:var(--dim);margin-bottom:20px;line-height:1.6}
+.free-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(122,158,142,0.12);border:1px solid rgba(122,158,142,0.3);border-radius:3px;padding:10px 14px;margin-bottom:16px;width:100%}
+.free-badge-icon{font-size:16px}
+.free-badge-text{font-size:11px;color:var(--sage);line-height:1.5}
+.free-badge-text strong{color:#a8d4c4}
+.pkg-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+.pkg{border:1px solid rgba(240,230,211,0.1);border-radius:3px;background:rgba(0,0,0,0.25);padding:14px;text-align:center;cursor:pointer;transition:all .2s;position:relative}
+.pkg:hover{border-color:rgba(201,169,110,0.4);background:rgba(201,169,110,0.06)}
+.pkg.selected{border-color:var(--gold);background:rgba(201,169,110,0.1)}
+.pkg-popular{position:absolute;top:-9px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--bg);font-size:8px;padding:2px 8px;border-radius:8px;white-space:nowrap;font-weight:500;letter-spacing:.1em}
+.pkg-price{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--cream);margin-bottom:2px}
+.pkg-count{font-size:11px;color:var(--dim);margin-bottom:3px}
+.pkg-unit{font-size:10px;color:var(--gold)}
+.buy-btn{width:100%;padding:14px;background:var(--gold);color:var(--bg);border:none;border-radius:3px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.25em;text-transform:uppercase;cursor:pointer;font-weight:500;transition:all .2s;margin-bottom:10px}
+.buy-btn:hover{background:#d4b87a}
+.coming-soon-note{font-size:9px;color:var(--dim);text-align:center;line-height:1.6}
+.coming-soon-note span{color:var(--gold)}
+
+/* MAKSELEHT */
+.checkout-screen{display:none;animation:fadeUp .4s ease both}
+.checkout-screen.show{display:block}
+.checkout-title{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--cream);margin-bottom:4px}
+.checkout-sub{font-size:10px;color:var(--dim);margin-bottom:16px}
+.order-summary{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;background:rgba(0,0,0,0.3);border:1px solid var(--gold-dim);border-radius:3px;margin-bottom:16px}
+.order-left p:first-child{font-size:13px;color:var(--cream);font-weight:500}
+.order-left p:last-child{font-size:10px;color:var(--dim);margin-top:2px}
+.order-price{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--gold)}
+.pay-methods{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+.pay-method{border:1px solid rgba(240,230,211,0.15);border-radius:3px;padding:12px;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;transition:all .2s;background:rgba(0,0,0,0.2);opacity:.5}
+.pay-method-label{font-size:12px;color:var(--cream);font-weight:500}
+.card-fields{margin-bottom:16px}
+.field-label{font-size:9px;letter-spacing:.3em;color:var(--dim);text-transform:uppercase;margin-bottom:6px}
+.field-input{width:100%;background:rgba(0,0,0,0.4);border:1px solid rgba(240,230,211,0.1);color:rgba(240,230,211,0.3);font-family:'DM Mono',monospace;font-size:12px;padding:12px 14px;border-radius:3px;margin-bottom:10px;cursor:not-allowed}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pay-btn{width:100%;padding:14px;background:rgba(201,169,110,0.3);color:rgba(240,230,211,0.4);border:1px solid rgba(201,169,110,0.2);border-radius:3px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.25em;text-transform:uppercase;cursor:not-allowed;margin-bottom:10px}
+.secure-note{display:flex;align-items:center;justify-content:center;gap:6px;font-size:9px;color:var(--dim)}
+.coming-soon-overlay{text-align:center;padding:16px;background:rgba(201,169,110,0.06);border:1px solid rgba(201,169,110,0.2);border-radius:3px;margin-top:8px}
+.coming-soon-overlay p:first-child{font-size:11px;color:var(--gold);margin-bottom:4px;letter-spacing:.1em}
+.coming-soon-overlay p:last-child{font-size:10px;color:var(--dim);line-height:1.6}
+
+.share-card{display:none}.share-card.on{display:block}
+.share-preview{background:linear-gradient(135deg,#1a0a08,#0e0c0b);border:1px solid var(--gold-dim);border-radius:3px;padding:16px}
+.sp-photo{width:100%;height:180px;object-fit:cover;border-radius:3px;display:block;margin-bottom:12px}
+.sp-logo{font-family:'Cormorant Garamond',serif;font-size:26px;letter-spacing:.2em;color:var(--cream);text-align:center}
+.sp-logo em{color:var(--gold);font-style:italic}
+.sp-mode{font-size:9px;letter-spacing:.3em;color:var(--blush);text-transform:uppercase;text-align:center;margin-bottom:12px}
+.sp-text{font-family:'Cormorant Garamond',serif;font-size:14px;line-height:1.7;color:var(--cream);font-style:italic;margin-bottom:10px}
+.sp-tip{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:var(--gold);margin-bottom:12px}
+.sp-scores{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+.sp-sv{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--gold);text-align:center}
+.sp-sl{font-size:8px;letter-spacing:.2em;color:var(--dim);text-transform:uppercase;text-align:center}
+.share-btns{display:flex;gap:8px;margin-top:14px}
+.sbtn{flex:1;padding:11px 6px;border-radius:2px;cursor:pointer;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;background:transparent;transition:all .2s}
+.sbtn.ig{border:1px solid rgba(225,48,108,0.4);color:#e1306c}
+.sbtn.fb{border:1px solid rgba(66,103,178,0.4);color:#4267b2}
+.sbtn.xtwitter{border:1px solid rgba(255,255,255,0.2);color:var(--cream)}
+.sbtn.cp{border:1px solid var(--gold-dim);color:var(--gold)}
+.share-note{font-size:9px;color:var(--dim);margin-top:8px;text-align:center}
+canvas{display:none}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#c4736b"/><stop offset="100%" style="stop-color:#c9a96e"/>
+    </linearGradient>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#7a9e8e"/><stop offset="100%" style="stop-color:#a8d4c4"/>
+    </linearGradient>
+    <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#9b8fb5"/><stop offset="100%" style="stop-color:#c4b8e0"/>
+    </linearGradient>
+  </defs>
+</svg>
 <div class="ambient"></div>
 <canvas id="cv"></canvas>
 <div class="app">
@@ -146,135 +247,351 @@ canvas { display:none; }
   <div class="logo-line"><div class="tagline">AI · Isiklik Stiiliassistent</div></div>
 </header>
 
-<div class="card" style="animation:fadeUp .7s ease .1s both">
-  <div class="lbl">Anthropic API Võti</div>
-  <input type="password" id="apiKey" placeholder="sk-ant-api03-...">
-  <div class="note">Võti töötab ainult selles brauseris · ei salvestata</div>
-  <div class="api-info">
-    <div class="api-price"><span>💰</span><span>Üks analüüs maksab umbes <strong>~0.10€</strong></span></div>
-    <a href="https://console.anthropic.com" target="_blank" class="api-link">✦ Hangi võti siit — console.anthropic.com</a>
-    <div class="api-steps">
-      <div class="step">1. Loo tasuta konto</div>
-      <div class="step">2. Lisa krediiti (min $5 ≈ 4.60€)</div>
-      <div class="step">3. Loo API võti ja kopeeri siia</div>
+<!-- SETUP -->
+<div id="setupScreen" class="card" style="display:none">
+  <div class="setup-title">Alustame ✦</div>
+  <div class="setup-sub">GLÓW kasutab Anthropic AI-d. Vaja on üks kord API võti sisestada — edasi töötab automaatselt.</div>
+  <div class="setup-steps">
+    <div class="setup-step"><div class="step-num">1</div><div class="step-text">Mine <a href="https://console.anthropic.com" target="_blank"><strong>console.anthropic.com</strong></a> ja loo tasuta konto</div></div>
+    <div class="setup-step"><div class="step-num">2</div><div class="step-text">Lisa krediiti — minimaalselt <strong>$5 (≈ 4.60€)</strong></div></div>
+    <div class="setup-step"><div class="step-num">3</div><div class="step-text">Kliki <strong>"API Keys"</strong> → <strong>"Create Key"</strong> → kopeeri siia</div></div>
+  </div>
+  <div class="key-input-wrap">
+    <input type="password" id="keyInput" placeholder="sk-ant-api03-..." oninput="onKeyInput()">
+    <button class="toggle-vis" onclick="toggleKeyVis()">👁</button>
+  </div>
+  <div class="key-error" id="keyError">Võti peab algama sk-ant-iga</div>
+  <button class="save-btn" id="saveBtn" onclick="saveKey()" disabled>Salvesta ja alusta →</button>
+</div>
+
+<div id="keyStatus" style="display:none">
+  <div class="key-status">
+    <div class="key-status-left"><div class="key-dot"></div><div class="key-status-text">API võti aktiivne</div></div>
+    <button class="key-change" onclick="changeKey()">Vaheta võtit</button>
+  </div>
+</div>
+
+<div id="mainApp" style="display:none">
+
+  <!-- SALDO RIBA -->
+  <div class="saldo-bar saldo-free" id="saldoBar" onclick="showPricing()">
+    <div class="saldo-left">
+      <div class="saldo-icon">✦</div>
+      <div class="saldo-info">
+        <div class="saldo-count" id="saldoCount">3 tasuta analüüsi</div>
+        <div class="saldo-sub" id="saldoSub">Prooviperiood · vajuta et osta krediiti</div>
+      </div>
+    </div>
+    <button class="saldo-btn" id="saldoBtn">Osta</button>
+  </div>
+
+  <!-- HINNAKIRJA EKRAAN -->
+  <div class="pricing-screen" id="pricingScreen">
+    <button class="pricing-back" onclick="hidePricing()">← Tagasi</button>
+    <div class="pricing-title">Vali pakett</div>
+    <div class="pricing-sub">Üks analüüs kulutab ühe krediiti. Suurem pakett = odavam hind.</div>
+    <div class="free-badge">
+      <div class="free-badge-icon">🎁</div>
+      <div class="free-badge-text"><strong>3 analüüsi täiesti tasuta</strong> — proovi enne ostmist</div>
+    </div>
+    <div class="pkg-grid">
+      <div class="pkg" onclick="selectPkg(this,'10','0.99','0.10')">
+        <div class="pkg-price">€0.99</div>
+        <div class="pkg-count">10 analüüsi</div>
+        <div class="pkg-unit">0.10€ / tk</div>
+      </div>
+      <div class="pkg selected" onclick="selectPkg(this,'50','4.50','0.09')">
+        <div class="pkg-popular">Populaarne</div>
+        <div class="pkg-price">€4.50</div>
+        <div class="pkg-count">50 analüüsi</div>
+        <div class="pkg-unit">0.09€ / tk</div>
+      </div>
+      <div class="pkg" onclick="selectPkg(this,'100','7.99','0.08')">
+        <div class="pkg-price">€7.99</div>
+        <div class="pkg-count">100 analüüsi</div>
+        <div class="pkg-unit">0.08€ / tk</div>
+      </div>
+      <div class="pkg" onclick="selectPkg(this,'200','12.99','0.06')">
+        <div class="pkg-price">€12.99</div>
+        <div class="pkg-count">200 analüüsi</div>
+        <div class="pkg-unit">0.06€ / tk</div>
+      </div>
+    </div>
+    <button class="buy-btn" id="buyBtn" onclick="showCheckout()">Jätka maksega — €4.50 →</button>
+    <div class="coming-soon-note">Maksed aktiveeritakse peagi · <span>glow4me.ee</span></div>
+  </div>
+
+  <!-- MAKSELEHT -->
+  <div class="checkout-screen" id="checkoutScreen">
+    <button class="pricing-back" onclick="hideCheckout()">← Tagasi</button>
+    <div class="checkout-title">Maksmine</div>
+    <div class="checkout-sub">Vali makseviis</div>
+    <div class="order-summary">
+      <div class="order-left">
+        <p id="orderTitle">50 analüüsi</p>
+        <p id="orderSub">0.09€ analüüsi kohta</p>
+      </div>
+      <div class="order-price" id="orderPrice">€4.50</div>
+    </div>
+    <div class="pay-methods">
+      <div class="pay-method">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--cream)"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        <div class="pay-method-label">Apple Pay</div>
+      </div>
+      <div class="pay-method">
+        <svg width="16" height="16" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+        <div class="pay-method-label">Google Pay</div>
+      </div>
+    </div>
+    <div class="card-fields">
+      <div class="field-label">Kaardi number</div>
+      <input class="field-input" placeholder="1234 5678 9012 3456" disabled>
+      <div class="field-row">
+        <div>
+          <div class="field-label">Kehtivus</div>
+          <input class="field-input" placeholder="KK / AA" disabled>
+        </div>
+        <div>
+          <div class="field-label">CVC</div>
+          <input class="field-input" placeholder="123" disabled>
+        </div>
+      </div>
+    </div>
+    <button class="pay-btn" id="payBtn" disabled>Maksa — €4.50</button>
+    <div class="secure-note">🔒 Turvaline makse · Stripe</div>
+    <div class="coming-soon-overlay">
+      <p>✦ Peagi saadaval</p>
+      <p>Maksed aktiveeritakse kui <strong style="color:var(--gold)">glow4me.ee</strong> on üles seatud</p>
     </div>
   </div>
-</div>
 
-<div style="animation:fadeUp .7s ease .2s both">
-  <div class="lbl">Vali assistent</div>
-  <div class="modes">
-    <div class="mode m-meik active" onclick="setMode('meik')">
-      <div class="micon">💄</div><div class="mname">Meik</div><div class="mdesc">Meigi analüüs ja nõuanded</div>
+  <!-- ASSISTENT VALIK -->
+  <div id="assistentWrap" style="animation:fadeUp .7s ease .1s both">
+    <div class="lbl">Vali assistent</div>
+    <div class="modes">
+      <div class="mode m-meik active" onclick="setMode('meik')">
+        <div class="micon">💄</div><div class="mname">Meik</div><div class="mdesc">Meigi analüüs</div>
+      </div>
+      <div class="mode m-nahk" onclick="setMode('nahk')">
+        <div class="micon">🔬</div><div class="mname">Nahk</div><div class="mdesc">Naha seisund</div>
+      </div>
+      <div class="mode m-stiil" onclick="setMode('stiil')">
+        <div class="micon">🛍️</div><div class="mname">Pood</div><div class="mdesc">Kas sobib mulle?</div>
+      </div>
     </div>
-    <div class="mode m-nahk" onclick="setMode('nahk')">
-      <div class="micon">🔬</div><div class="mname">Nahk</div><div class="mdesc">Naha seisund ja hooldus</div>
+  </div>
+
+  <div class="store-tip" id="storeTip">
+    <strong>🛍️ Poes kasutamiseks:</strong><br>
+    Proovi riie selga ja pildista ennast. AI hindab sobivust, trendi ja annab otsuse — osta või jäta!
+  </div>
+  <div class="disclaimer" id="disc">
+    <strong style="color:#7a9e8e">Oluline:</strong> See analüüs ei asenda arsti vastuvõttu.
+  </div>
+
+  <!-- KAAMERA -->
+  <div class="card" id="cameraCard" style="animation:fadeUp .7s ease .2s both">
+    <div class="lbl">Kaamera</div>
+    <div class="cam-frame">
+      <video id="vid" autoplay playsinline muted></video>
+      <div class="cam-ph" id="camph">
+        <div style="font-size:30px;opacity:.4">✦</div>
+        <p>Ava kaamera et alustada</p>
+      </div>
+      <div class="corner tl"></div><div class="corner br"></div>
+      <div class="scanline" id="scan"></div>
     </div>
-    <div class="mode m-stiil" onclick="setMode('stiil')">
-      <div class="micon">👗</div><div class="mname">Stiil</div><div class="mdesc">Terve outfit, ehted, kott</div>
+    <div class="srow">
+      <div class="dot" id="dot"></div>
+      <span id="smsg">Ootel</span>
+      <div class="wave" id="wave"><span></span><span></span><span></span><span></span><span></span></div>
+    </div>
+    <div class="errmsg" id="err"></div>
+    <div class="brow">
+      <button class="btn pri" id="camBtn" onclick="startCam()">✦ Ava Kaamera</button>
+      <button class="btn" id="anaBtn" onclick="analyze()" disabled>
+        <span id="anaBtnText">Analüüsi</span>
+      </button>
+      <button class="btn" id="autoBtn" onclick="toggleAuto()" disabled>Auto</button>
     </div>
   </div>
-</div>
 
-<div class="card" id="ctxCard" style="display:none;border-color:rgba(155,143,181,0.25)">
-  <div class="lbl">Kirjelda olukorda</div>
-  <textarea id="ctxInput" placeholder="Nt: Mul on homme tööintervjuu IT-firmas..."></textarea>
-</div>
-
-<div class="card" id="outfitGuide" style="display:none;border-color:rgba(155,143,181,0.25)">
-  <div class="lbl">📸 Pildistamise juhend</div>
-  <div class="outfit-tips">
-    <div class="otip">👆 <strong>1. pilt:</strong> Ülemine osa — pluus, jakk, ehted, kott</div>
-    <div class="otip">👇 <strong>2. pilt:</strong> Alumine osa — püksid/seelik + jalanõud</div>
-    <div class="otip">🪞 <strong>Parim viis:</strong> Paluge sõbral teid täies pikkuses pildistada</div>
-  </div>
-  <div class="lbl" style="margin-top:14px">Lisa lisapilte (valikuline)</div>
-  <div class="photo-uploads">
-    <label class="upload-btn"><input type="file" id="extraPhoto1" accept="image/*" onchange="previewExtra(1)"><span id="extra1label">+ Alumine osa</span></label>
-    <label class="upload-btn"><input type="file" id="extraPhoto2" accept="image/*" onchange="previewExtra(2)"><span id="extra2label">+ Jalanõud</span></label>
-    <label class="upload-btn"><input type="file" id="extraPhoto3" accept="image/*" onchange="previewExtra(3)"><span id="extra3label">+ Ehted/Kott</span></label>
-  </div>
-  <div id="extraPreviews" style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;"></div>
-</div>
-
-<div class="disclaimer" id="disc">
-  <strong style="color:#7a9e8e">Oluline:</strong> See analüüs on üldine info naha seisundi kohta ning ei asenda arsti vastuvõttu.
-</div>
-
-<div class="card" style="animation:fadeUp .7s ease .3s both">
-  <div class="lbl">Kaamera · Reaalaeg</div>
-  <div class="cam-frame">
-    <video id="vid" autoplay playsinline muted></video>
-    <div class="cam-ph" id="camph">
-      <div style="font-size:30px;opacity:.4">✦</div>
-      <p>Ava kaamera et alustada</p>
+  <!-- TULEMUS -->
+  <div class="card" id="resultCard" style="animation:fadeUp .7s ease .3s both">
+    <div class="lbl" id="resLbl">Tulemus</div>
+    <div class="res-inner">
+      <div class="res-empty" id="resEmpty">Ava kaamera ja vajuta Analüüsi</div>
+      <div class="loading" id="load">
+        <div class="loading-dots"><span></span><span></span><span></span></div>
+        <div class="loading-text">Analüüsin...</div>
+      </div>
+      <div class="result-wrap" id="resultWrap">
+        <div class="verdict-card" id="verdictCard">
+          <span class="verdict-icon" id="verdictIcon"></span>
+          <div class="verdict-text" id="verdictText"></div>
+          <div class="verdict-sub" id="verdictSub"></div>
+        </div>
+        <div class="feedback-text" id="feedbackText"></div>
+        <div class="details-grid" id="detailsGrid"></div>
+        <div class="scores-row" id="scoresRow"></div>
+        <div class="tip-card" id="tipCard" style="display:none">
+          <div class="tip-label">✦ Soovitus</div>
+          <div class="tip-text" id="tipText"></div>
+        </div>
+      </div>
     </div>
-    <div class="corner tl"></div>
-    <div class="corner br"></div>
-    <div class="scanline" id="scan"></div>
   </div>
-  <div class="srow">
-    <div class="dot" id="dot"></div>
-    <span id="smsg">Ootel</span>
-    <div class="wave" id="wave"><span></span><span></span><span></span><span></span><span></span></div>
-  </div>
-  <div class="errmsg" id="err"></div>
-  <div class="brow">
-    <button class="btn pri" id="camBtn" onclick="startCam()">✦ Ava Kaamera</button>
-    <button class="btn" id="anaBtn" onclick="analyze()" disabled>Analüüsi</button>
-    <button class="btn" id="autoBtn" onclick="toggleAuto()" disabled>Auto</button>
-  </div>
-</div>
 
-<div class="card" style="animation:fadeUp .7s ease .4s both">
-  <div class="lbl" id="resLbl">AI Analüüs</div>
-  <div class="res-inner">
-    <div class="res-empty" id="resEmpty">Vali assistent, ava kaamera ja vajuta Analüüsi</div>
-    <div class="loading" id="load"><span></span><span></span><span></span></div>
-    <div class="fbtext" id="fbtext"></div>
+  <div class="card share-card" id="shareCard">
+    <div class="lbl">Jaga tulemust</div>
+    <div class="share-preview" id="sharePrev"></div>
+    <div class="share-btns">
+      <button class="sbtn ig" onclick="shareIG()">📸 IG</button>
+      <button class="sbtn fb" onclick="shareFB()">📘 FB</button>
+      <button class="sbtn xtwitter" onclick="shareX()">𝕏</button>
+      <button class="sbtn cp" onclick="shareCopy()">🔗</button>
+    </div>
+    <div class="share-note">Pilt salvestatakse galeriisse jagamiseks</div>
   </div>
-</div>
-
-<div class="card scores-card" id="scCard">
-  <div class="lbl">Hinnangud</div>
-  <div class="sgrid" id="sgrid"></div>
-</div>
-
-<div class="card share-card" id="shareCard">
-  <div class="lbl">Jaga tulemust</div>
-  <div class="share-preview" id="sharePrev"></div>
-  <div class="share-btns">
-    <button class="sbtn ig" onclick="shareIG()">📸 IG</button>
-    <button class="sbtn fb" onclick="shareFB()">📘 FB</button>
-    <button class="sbtn xtwitter" onclick="shareX()">𝕏</button>
-    <button class="sbtn cp" onclick="shareCopy()">🔗</button>
-  </div>
-  <div class="share-note">Pilt salvestatakse galeriisse jagamiseks</div>
-</div>
 
 </div>
+</div>
+
 <script>
-const M = {
-  meik: {
-    lbl:'Meigi Analüüs', bar:'c1',
-    sys:'Sa oled GLOW meigi assistent. Analüüsi meiki: jumestus, silmad, huuled, kulmud. Räägi eesti keeles. Vasta AINULT JSON: {"feedback":"2-3 lauset","scores":{"Meik":7,"Värvid":7,"Viimistlus":7,"Üldmulje":7},"tip":"soovitus"}',
-    prompt:'Analüüsi minu meiki. Vasta ainult JSON formaadis.'
-  },
-  nahk: {
-    lbl:'Naha Analüüs', bar:'c2',
-    sys:'Sa oled GLOW nahahoolduse assistent. Analüüsi naha seisundit: niiskus, poorid, toon, tekstuur. Räägi eesti keeles. Vasta AINULT JSON: {"feedback":"2-3 lauset","scores":{"Niiskus":7,"Toon":7,"Tekstuur":7,"Üldseisund":7},"tip":"soovitus"}',
-    prompt:'Analüüsi minu naha seisundit. Vasta ainult JSON formaadis.'
-  },
-  stiil: {
-    lbl:'Stiili Analüüs', bar:'c3',
-    sys:'Sa oled GLOW stiiliassistent. Analüüsi kasutaja täielikku outfiti: ülemine osa, alumine osa, jalanõud, ehted, kott ja muud aksessuaarid. Kui kasutaja on laadinud mitu pilti, analüüsi kõiki tervikliku pildi saamiseks. Kui on kontekst ürituse kohta, hinda sobivust. Räägi eesti keeles. Vasta AINULT JSON: {"feedback":"2-3 lauset","scores":{"Värvid":7,"Sobivus":7,"Stiil":7,"Üldmulje":7},"tip":"üks konkreetne soovitus"}',
-    prompt:'Analüüsi minu täielikku outfiti — riietus, jalanõud, ehted ja kott.'
-  }
+const VERDICT_CONFIG={yes:{icon:'✨',sub:'Suurepärane valik'},maybe:{icon:'🤔',sub:'Kaalumist väärt'},no:{icon:'❌',sub:'Jäta seekord vahele'}};
+const PACKAGES=[
+  {count:'10',price:'0.99',unit:'0.10'},
+  {count:'50',price:'4.50',unit:'0.09'},
+  {count:'100',price:'7.99',unit:'0.08'},
+  {count:'200',price:'12.99',unit:'0.06'}
+];
+const FREE_CREDITS=3;
+const M={
+  meik:{lbl:'Meigi Analüüs',bar:'c1',sys:`Sa oled GLOW meigi ekspert. Analüüsi meiki põhjalikult eesti keeles. Vasta AINULT selles JSON formaadis: {"verdict":"SUUREPÄRANE / HEA / VAJAB PARANDUST","verdict_class":"yes/maybe/no","feedback":"2-3 lauset üldmuljest","details":{"Jumestus":"1-2 lauset","Silmad":"1-2 lauset","Huuled":"1-2 lauset","Kulmud":"1-2 lauset"},"scores":{"Jumestus":7,"Silmameik":7,"Huuled":7,"Üldmulje":7},"tip":"üks konkreetne soovitus"}`,prompt:'Analüüsi minu meiki. Vasta ainult JSON formaadis.'},
+  nahk:{lbl:'Naha Analüüs',bar:'c2',sys:`Sa oled GLOW nahahoolduse ekspert. Analüüsi naha seisundit põhjalikult eesti keeles. Vasta AINULT selles JSON formaadis: {"verdict":"TERVE NAHK / VAJAB HOOLDUST / PÖÖRDU SPETSIALISTI POOLE","verdict_class":"yes/maybe/no","feedback":"2-3 lauset üldseisundist","details":{"Niiskus":"1-2 lauset","Nahatoon":"1-2 lauset","Tekstuur":"1-2 lauset","Probleemid":"1-2 lauset"},"scores":{"Niiskus":7,"Toon":7,"Tekstuur":7,"Üldseisund":7},"tip":"üks konkreetne hooldussoovitus"}`,prompt:'Analüüsi minu naha seisundit. Vasta ainult JSON formaadis.'},
+  stiil:{lbl:'Poe Analüüs',bar:'c3',sys:`Sa oled GLOW personal shopper. Kasutaja on riidepoes ja proovib riiet seljas. Vasta AINULT selles JSON formaadis: {"verdict":"OSTA KINDLASTI / KAALUDA / JÄTA RIIDEPUULE","verdict_class":"yes/maybe/no","feedback":"2-3 lauset põhimuljest","details":{"Sobivus":"1-2 lauset lõike kohta","Värvid":"1-2 lauset värvide kohta","Trend":"1-2 lauset trenditaseme kohta","Kombineeruvus":"1-2 lauset"},"scores":{"Sobivus":7,"Värvid":7,"Trend":7,"Väärtus":7},"tip":"üks konkreetne soovitus"}`,prompt:'Olen riidepoes ja proovin seda riiet seljas. Kas peaksin ostma? Vasta ainult JSON formaadis.'}
 };
 
-let mode='meik', stream=null, autoOn=false, autoT=null, lastFb='', lastScores={}, lastPhoto='';
+let mode='meik',stream=null,autoOn=false,autoT=null,lastFb='',lastScores={};
+let selectedPkg=PACKAGES[1];
 const video=document.getElementById('vid');
 const canvas=document.getElementById('cv');
+
+function getCredits(){return parseInt(localStorage.getItem('glow_credits')||FREE_CREDITS);}
+function setCredits(n){localStorage.setItem('glow_credits',n);updateSaldo();}
+
+function updateSaldo(){
+  const c=getCredits();
+  const bar=document.getElementById('saldoBar');
+  const count=document.getElementById('saldoCount');
+  const sub=document.getElementById('saldoSub');
+  const btn=document.getElementById('saldoBtn');
+  const anaBtn=document.getElementById('anaBtn');
+  const anaTxt=document.getElementById('anaBtnText');
+  if(c>0){
+    count.textContent=c+(c<=FREE_CREDITS&&c===FREE_CREDITS?' tasuta analüüsi':' analüüsi järel');
+    if(c<=FREE_CREDITS){
+      bar.className='saldo-bar saldo-free';
+      sub.textContent='Prooviperiood · vajuta et osta krediiti';
+      btn.textContent='Osta';
+      anaTxt.textContent='Analüüsi';
+    } else {
+      bar.className='saldo-bar';
+      bar.style.background='rgba(201,169,110,0.08)';
+      sub.textContent='Krediiti on · vajuta et täiendada';
+      btn.textContent='Lisa';
+      anaTxt.textContent='Analüüsi';
+    }
+    anaBtn.disabled=!stream;
+  } else {
+    count.textContent='0 analüüsi järel';
+    sub.textContent='Krediit otsas · vajuta et osta';
+    bar.className='saldo-bar';
+    bar.style.background='rgba(196,115,107,0.08)';
+    bar.style.borderColor='rgba(196,115,107,0.3)';
+    count.style.color='var(--rose)';
+    btn.textContent='Osta';
+    anaBtn.disabled=true;
+    anaTxt.textContent='Analüüsi';
+  }
+}
+
+function showPricing(){
+  document.getElementById('pricingScreen').classList.add('show');
+  document.getElementById('checkoutScreen').classList.remove('show');
+  document.getElementById('assistentWrap').style.display='none';
+  document.getElementById('cameraCard').style.display='none';
+  document.getElementById('resultCard').style.display='none';
+  document.getElementById('shareCard').classList.remove('on');
+  document.getElementById('storeTip').style.display='none';
+  document.getElementById('disc').style.display='none';
+}
+
+function hidePricing(){
+  document.getElementById('pricingScreen').classList.remove('show');
+  document.getElementById('assistentWrap').style.display='block';
+  document.getElementById('cameraCard').style.display='block';
+  document.getElementById('resultCard').style.display='block';
+  if(mode==='stiil') document.getElementById('storeTip').classList.add('show');
+  if(mode==='nahk') document.getElementById('disc').classList.add('show');
+}
+
+function showCheckout(){
+  document.getElementById('pricingScreen').classList.remove('show');
+  document.getElementById('checkoutScreen').classList.add('show');
+  document.getElementById('orderTitle').textContent=selectedPkg.count+' analüüsi';
+  document.getElementById('orderSub').textContent=selectedPkg.unit+'€ analüüsi kohta';
+  document.getElementById('orderPrice').textContent='€'+selectedPkg.price;
+  document.getElementById('payBtn').textContent='Maksa — €'+selectedPkg.price;
+}
+
+function hideCheckout(){
+  document.getElementById('checkoutScreen').classList.remove('show');
+  document.getElementById('pricingScreen').classList.add('show');
+}
+
+function selectPkg(el,count,price,unit){
+  document.querySelectorAll('.pkg').forEach(p=>p.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedPkg={count,price,unit};
+  document.getElementById('buyBtn').textContent='Jätka maksega — €'+price+' →';
+}
+
+function init(){
+  if(!localStorage.getItem('glow_credits')) localStorage.setItem('glow_credits',FREE_CREDITS);
+  const saved=localStorage.getItem('glow_api_key');
+  if(saved){showMainApp();}else{document.getElementById('setupScreen').style.display='block';}
+  updateSaldo();
+}
+
+function onKeyInput(){
+  const val=document.getElementById('keyInput').value.trim();
+  const valid=val.startsWith('sk-ant');
+  document.getElementById('saveBtn').disabled=!valid;
+  document.getElementById('keyError').style.display=(val.length>5&&!valid)?'block':'none';
+}
+function toggleKeyVis(){const inp=document.getElementById('keyInput');inp.type=inp.type==='password'?'text':'password';}
+function saveKey(){
+  const val=document.getElementById('keyInput').value.trim();
+  if(!val.startsWith('sk-ant')) return;
+  localStorage.setItem('glow_api_key',val);
+  showMainApp();
+}
+function showMainApp(){
+  document.getElementById('setupScreen').style.display='none';
+  document.getElementById('keyStatus').style.display='block';
+  document.getElementById('mainApp').style.display='block';
+  updateSaldo();
+}
+function changeKey(){
+  localStorage.removeItem('glow_api_key');
+  document.getElementById('keyStatus').style.display='none';
+  document.getElementById('mainApp').style.display='none';
+  document.getElementById('keyInput').value='';
+  document.getElementById('saveBtn').disabled=true;
+  document.getElementById('setupScreen').style.display='block';
+}
+function getKey(){return localStorage.getItem('glow_api_key')||'';}
 
 function setDot(state,msg){
   const d=document.getElementById('dot');
@@ -286,19 +603,17 @@ function setMode(m){
   mode=m;
   document.querySelectorAll('.mode').forEach(b=>b.classList.remove('active'));
   document.querySelector('.mode.m-'+m).classList.add('active');
-  document.getElementById('ctxCard').style.display=m==='stiil'?'block':'none';
-  document.getElementById('outfitGuide').style.display=m==='stiil'?'block':'none';
+  document.getElementById('storeTip').classList.toggle('show',m==='stiil');
   document.getElementById('disc').classList.toggle('show',m==='nahk');
   document.getElementById('resLbl').textContent=M[m].lbl;
   document.getElementById('resEmpty').style.display='block';
-  document.getElementById('fbtext').classList.remove('on');
-  document.getElementById('scCard').classList.remove('on');
+  document.getElementById('resultWrap').classList.remove('on');
   document.getElementById('shareCard').classList.remove('on');
 }
 
 async function startCam(){
   document.getElementById('err').textContent='';
-  try {
+  try{
     stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:'user'},audio:false});
     video.srcObject=stream;
     await video.play();
@@ -306,9 +621,9 @@ async function startCam(){
     setDot('live','Kaamera aktiivne');
     document.getElementById('camBtn').disabled=true;
     document.getElementById('camBtn').textContent='✓ Aktiivne';
-    document.getElementById('anaBtn').disabled=false;
+    if(getCredits()>0) document.getElementById('anaBtn').disabled=false;
     document.getElementById('autoBtn').disabled=false;
-  } catch(e){
+  }catch(e){
     document.getElementById('err').textContent='Kaamera avamine ebaõnnestus. Seaded → Safari → Kaamera → Luba';
   }
 }
@@ -317,87 +632,86 @@ function capture(){
   canvas.width=video.videoWidth||640;
   canvas.height=video.videoHeight||480;
   const ctx=canvas.getContext('2d');
-  ctx.translate(canvas.width,0); ctx.scale(-1,1);
+  ctx.translate(canvas.width,0);ctx.scale(-1,1);
   ctx.drawImage(video,0,0);
-  return canvas.toDataURL('image/jpeg',0.82);
+  return canvas.toDataURL('image/jpeg',0.85);
 }
 
 async function analyze(){
-  const key=document.getElementById('apiKey').value.trim();
-  if(!key){document.getElementById('err').textContent='Palun sisesta API võti!';return;}
+  const key=getKey();
+  if(!key){changeKey();return;}
   if(!stream){document.getElementById('err').textContent='Ava kõigepealt kaamera!';return;}
+  const credits=getCredits();
+  if(credits<=0){showPricing();return;}
   const m=M[mode];
-  const ctx=document.getElementById('ctxInput')?document.getElementById('ctxInput').value.trim():'';
   document.getElementById('err').textContent='';
   setDot('thinking','Analüüsin...');
   document.getElementById('scan').classList.add('on');
   document.getElementById('load').classList.add('on');
   document.getElementById('resEmpty').style.display='none';
-  document.getElementById('fbtext').classList.remove('on');
+  document.getElementById('resultWrap').classList.remove('on');
+  document.getElementById('shareCard').classList.remove('on');
   document.getElementById('anaBtn').disabled=true;
   const dataUrl=capture();
-  lastPhoto=dataUrl;
   const b64=dataUrl.split(',')[1];
-  const prompt=ctx?m.prompt+' Kontekst: '+ctx:m.prompt;
-  const extraFiles=mode==='stiil'?getExtraPhotos():[];
-  const extraB64s=await Promise.all(extraFiles.map(f=>fileToBase64(f)));
-  const contentArr=[{type:'image',source:{type:'base64',media_type:'image/jpeg',data:b64}}];
-  extraB64s.forEach(eb=>{contentArr.push({type:'image',source:{type:'base64',media_type:'image/jpeg',data:eb}});});
-  const extraNote=extraB64s.length>0?' Analüüsi kõiki '+(extraB64s.length+1)+' pilti tervikliku outfiti hindamiseks.':'';
-  contentArr.push({type:'text',text:prompt+extraNote});
-  try {
+  try{
     const res=await fetch('https://api.anthropic.com/v1/messages',{
       method:'POST',
       headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
-      body:JSON.stringify({model:'claude-opus-4-5',max_tokens:800,system:m.sys,messages:[{role:'user',content:contentArr}]})
+      body:JSON.stringify({model:'claude-opus-4-5',max_tokens:1200,system:m.sys,messages:[{role:'user',content:[{type:'image',source:{type:'base64',media_type:'image/jpeg',data:b64}},{type:'text',text:m.prompt}]}]})
     });
     const data=await res.json();
     if(data.error) throw new Error(data.error.message);
     const raw=data.content.map(b=>b.text||'').join('');
     const parsed=JSON.parse(raw.replace(/```json|```/g,'').trim());
-    lastFb=parsed.feedback; lastScores=parsed.scores;
+    lastFb=parsed.feedback;lastScores=parsed.scores||{};
+    setCredits(credits-1);
     document.getElementById('load').classList.remove('on');
     document.getElementById('scan').classList.remove('on');
-    const ft=document.getElementById('fbtext');
-    ft.innerHTML=parsed.feedback+(parsed.tip?'<div class="tiptext">✦ '+parsed.tip+'</div>':'');
-    ft.classList.add('on');
-    if(parsed.scores) showScores(parsed.scores,m.bar);
-    showShare(parsed.feedback,parsed.tip||'',parsed.scores,dataUrl);
+    renderResult(parsed,m.bar,dataUrl);
     speak(parsed.feedback+(parsed.tip?' Soovitus: '+parsed.tip:''));
     setDot('live','Analüüs valmis ✦');
-  } catch(e){
+  }catch(e){
     document.getElementById('load').classList.remove('on');
     document.getElementById('scan').classList.remove('on');
-    const ft=document.getElementById('fbtext');
-    ft.innerHTML='<span style="color:var(--rose)">Viga: '+e.message+'</span>';
-    ft.classList.add('on');
+    document.getElementById('err').textContent='Viga: '+e.message;
     setDot('idle','Viga');
   }
   document.getElementById('anaBtn').disabled=false;
+  updateSaldo();
 }
 
-function showScores(scores,barClass){
-  const grid=document.getElementById('sgrid');
-  grid.innerHTML='';
-  Object.entries(scores).forEach(([label,val])=>{
-    const d=document.createElement('div');
-    d.className='sitem';
-    d.innerHTML='<div class="slbl">'+label+'</div><div class="bwrap"><div class="bar '+barClass+'" id="b_'+label+'"></div></div><div class="sval">'+val+'/10</div>';
-    grid.appendChild(d);
-    setTimeout(()=>{const b=document.getElementById('b_'+label);if(b)b.style.width=(val*10)+'%';},400);
-  });
-  document.getElementById('scCard').classList.add('on');
-}
-
-function showShare(fb,tip,scores,photoUrl){
+function renderResult(parsed,barClass,photoUrl){
+  const vc=parsed.verdict_class||'maybe';
+  const cfg=VERDICT_CONFIG[vc]||VERDICT_CONFIG.maybe;
+  const card=document.getElementById('verdictCard');
+  card.className='verdict-card '+vc;
+  document.getElementById('verdictIcon').textContent=cfg.icon;
+  document.getElementById('verdictText').textContent=parsed.verdict||'';
+  document.getElementById('verdictSub').textContent=cfg.sub;
+  document.getElementById('feedbackText').textContent=parsed.feedback||'';
+  const dg=document.getElementById('detailsGrid');
+  dg.innerHTML='';
+  if(parsed.details){Object.entries(parsed.details).forEach(([k,v])=>{const d=document.createElement('div');d.className='detail-item';d.innerHTML='<div class="detail-label">'+k+'</div><div class="detail-value">'+v+'</div>';dg.appendChild(d);});}
+  const sr=document.getElementById('scoresRow');
+  sr.innerHTML='';
+  if(parsed.scores){
+    const r=24,circ=2*Math.PI*r;
+    Object.entries(parsed.scores).forEach(([label,val])=>{
+      const pct=val/10;const offset=circ*(1-pct);
+      const id='sc_'+label.replace(/\s/g,'_');
+      const div=document.createElement('div');div.className='score-item';
+      div.innerHTML=`<div class="score-label">${label}</div><div class="score-circle ${barClass}" id="${id}"><svg width="56" height="56" viewBox="0 0 56 56"><circle class="score-circle-bg" cx="28" cy="28" r="${r}"/><circle class="score-circle-fill" cx="28" cy="28" r="${r}" stroke-dasharray="${circ}" stroke-dashoffset="${circ}" id="${id}_fill"/></svg><div class="score-num">${val}</div></div>`;
+      sr.appendChild(div);
+      setTimeout(()=>{const b=document.getElementById(id+'_fill');if(b)b.style.strokeDashoffset=offset;},400);
+    });
+  }
+  if(parsed.tip){document.getElementById('tipText').textContent=parsed.tip;document.getElementById('tipCard').style.display='block';}
+  else{document.getElementById('tipCard').style.display='none';}
+  document.getElementById('resultWrap').classList.add('on');
+  const scores=parsed.scores||{};
   const scoreHtml=Object.entries(scores).map(([l,v])=>'<div><div class="sp-sv">'+v+'</div><div class="sp-sl">'+l+'</div></div>').join('');
-  document.getElementById('sharePrev').innerHTML=
-    '<img class="sp-photo" src="'+photoUrl+'">' +
-    '<div class="sp-logo">GL<em>O</em>W</div>' +
-    '<div class="sp-mode">'+M[mode].lbl+'</div>' +
-    '<div class="sp-text">'+fb+'</div>' +
-    (tip?'<div class="sp-tip">✦ '+tip+'</div>':'') +
-    '<div class="sp-scores">'+scoreHtml+'</div>';
+  document.getElementById('sharePrev').innerHTML='<img class="sp-photo" src="'+photoUrl+'">'+'<div class="sp-logo">GL<em>O</em>W</div>'+'<div class="sp-mode">'+(parsed.verdict||M[mode].lbl)+'</div>'+'<div class="sp-text">'+parsed.feedback+'</div>'+(parsed.tip?'<div class="sp-tip">✦ '+parsed.tip+'</div>':'')+' <div class="sp-scores">'+scoreHtml+'</div>';
   document.getElementById('shareCard').classList.add('on');
 }
 
@@ -405,7 +719,7 @@ function speak(text){
   if(!('speechSynthesis' in window)) return;
   window.speechSynthesis.cancel();
   const u=new SpeechSynthesisUtterance(text);
-  u.lang='et-EE'; u.rate=0.95;
+  u.lang='et-EE';u.rate=0.95;
   u.onstart=()=>{document.getElementById('wave').classList.add('on');setDot('live','Räägin...');};
   u.onend=()=>{document.getElementById('wave').classList.remove('on');setDot('live','Analüüs valmis ✦');};
   window.speechSynthesis.speak(u);
@@ -414,63 +728,16 @@ function speak(text){
 function toggleAuto(){
   autoOn=!autoOn;
   const btn=document.getElementById('autoBtn');
-  if(autoOn){btn.textContent='⬛ Peata';btn.classList.add('red');analyze();autoT=setInterval(analyze,20000);}
+  if(autoOn){btn.textContent='⬛ Peata';btn.classList.add('red');analyze();autoT=setInterval(analyze,25000);}
   else{btn.textContent='Auto';btn.classList.remove('red');clearInterval(autoT);}
 }
 
-function shareIG(){
-  if(navigator.share){navigator.share({title:'GLÓW · AI Stiilianalüüs',text:lastFb+'\n\n✦ GLÓW AI Assistent\n#GLOW #AI #Stiil #Meik',url:window.location.href}).catch(()=>{});}
-  else{alert('Ava Instagram → Lisa postitus → vali pilt galeriist');}
-}
+function shareIG(){if(navigator.share){navigator.share({title:'GLÓW · AI Analüüs',text:lastFb+'\n\n✦ GLÓW AI\n#GLOW #AI #Stiil',url:window.location.href}).catch(()=>{});}else{alert('Ava Instagram → Lisa postitus → vali pilt galeriist');}}
+function shareFB(){const text=encodeURIComponent('✦ GLÓW\n\n'+lastFb+'\n\n'+Object.entries(lastScores).map(([l,v])=>l+': '+v+'/10').join(' · '));window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(window.location.href)+'&quote='+text,'_blank');}
+function shareX(){const text=encodeURIComponent('✦ GLÓW AI\n\n'+lastFb.substring(0,200)+'\n\n'+Object.entries(lastScores).map(([l,v])=>l+': '+v+'/10').join(' · ')+'\n\n#GLOW #AI');window.open('https://twitter.com/intent/tweet?text='+text+'&url='+encodeURIComponent(window.location.href),'_blank');}
+function shareCopy(){const text='✦ GLÓW AI\n\n'+lastFb+'\n\n'+Object.entries(lastScores).map(([l,v])=>l+': '+v+'/10').join(' · ')+'\n\n'+window.location.href;if(navigator.clipboard){navigator.clipboard.writeText(text).then(()=>alert('✓ Kopeeritud!'));}else{const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);alert('✓ Kopeeritud!');}}
 
-function shareFB(){
-  const text=encodeURIComponent('✦ GLÓW AI Stiilianalüüs\n\n'+lastFb+'\n\n'+Object.entries(lastScores).map(([l,v])=>l+': '+v+'/10').join(' · '));
-  window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(window.location.href)+'&quote='+text,'_blank');
-}
-
-function shareX(){
-  const text=encodeURIComponent('✦ GLÓW AI Stiilianalüüs\n\n'+lastFb.substring(0,200)+'\n\n'+Object.entries(lastScores).map(([l,v])=>l+': '+v+'/10').join(' · ')+'\n\n#GLOW #AI #Stiil');
-  window.open('https://twitter.com/intent/tweet?text='+text+'&url='+encodeURIComponent(window.location.href),'_blank');
-}
-
-function shareCopy(){
-  const text='✦ GLÓW AI Stiilianalüüs\n\n'+lastFb+'\n\n'+Object.entries(lastScores).map(([l,v])=>l+': '+v+'/10').join(' · ')+'\n\n'+window.location.href+'\n#GLOW #AI #Stiil';
-  if(navigator.clipboard){navigator.clipboard.writeText(text).then(()=>alert('✓ Kopeeritud!'));}
-  else{const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);alert('✓ Kopeeritud!');}
-}
-
-function previewExtra(n){
-  const input=document.getElementById('extraPhoto'+n);
-  const label=document.getElementById('extra'+n+'label');
-  const previews=document.getElementById('extraPreviews');
-  if(input.files&&input.files[0]){
-    const reader=new FileReader();
-    reader.onload=e=>{
-      label.textContent='✓ Lisatud';
-      input.parentElement.classList.add('has-photo');
-      const existing=document.getElementById('eprev'+n);
-      if(existing) existing.remove();
-      const img=document.createElement('img');
-      img.className='extra-preview'; img.id='eprev'+n; img.src=e.target.result;
-      previews.appendChild(img);
-    };
-    reader.readAsDataURL(input.files[0]);
-  }
-}
-
-function getExtraPhotos(){
-  const extras=[];
-  for(let i=1;i<=3;i++){const input=document.getElementById('extraPhoto'+i);if(input&&input.files&&input.files[0])extras.push(input.files[0]);}
-  return extras;
-}
-
-function fileToBase64(file){
-  return new Promise(resolve=>{
-    const reader=new FileReader();
-    reader.onload=e=>resolve(e.target.result.split(',')[1]);
-    reader.readAsDataURL(file);
-  });
-}
+init();
 </script>
 </body>
 </html>
