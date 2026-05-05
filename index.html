@@ -1,10 +1,15 @@
-
 <!DOCTYPE html>
 <html lang="et">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>GLOW · AI Assistent</title>
+<title>GLÓW · AI Assistent</title>
+<link rel="manifest" href="manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="GLÓW">
+<meta name="theme-color" content="#c9a96e">
+<link rel="apple-touch-icon" href="icon.svg">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -581,5 +586,29 @@ function fileToBase64(file) {
   document.getElementById('smsg').textContent = msg;
 }
 </script>
+ {
+  "name": "GLÓW · AI Stiiliassistent",
+  "short_name": "GLÓW",
+  "description": "AI-põhine isiklik stiili- ja meigi assistent",
+  "start_url": "/GLOW/",
+  "display": "standalone",
+  "background_color": "#0e0c0b",
+  "theme_color": "#c9a96e",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "permissions": ["camera"]
+}
+ 
 </body>
 </html>
