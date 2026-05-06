@@ -14,15 +14,108 @@
 <style>
 :root{
   --bg:#0e0c0b;--cream:#f0e6d3;--gold:#c9a96e;
-  --gold-dim:rgba(201,169,110,0.2);--blush:#d4957a;
-  --sage:#7a9e8e;--lav:#9b8fb5;--rose:#c4736b;
+  --gold-dim:rgba(201,169,110,0.2);--gold-bright:#e8c97e;
+  --blush:#d4957a;--sage:#7a9e8e;--lav:#9b8fb5;--rose:#c4736b;
   --dim:rgba(240,230,211,0.5);
   --yes-bg:rgba(122,158,142,0.12);--yes-border:rgba(122,158,142,0.5);--yes-color:#a8d4c4;
   --no-bg:rgba(196,115,107,0.12);--no-border:rgba(196,115,107,0.5);--no-color:#e8a090;
   --maybe-bg:rgba(201,169,110,0.12);--maybe-border:rgba(201,169,110,0.5);--maybe-color:#c9a96e;
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{background:var(--bg);font-family:'DM Mono',monospace;color:var(--cream);min-height:100vh}
+body{background:var(--bg);font-family:'DM Mono',monospace;color:var(--cream);min-height:100vh;overflow-x:hidden}
+
+/* ===== SPLASH SCREEN ===== */
+#splashScreen{position:fixed;inset:0;z-index:1000;background:var(--bg);display:flex;align-items:center;justify-content:center;flex-direction:column}
+.splash-ambient{position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(201,169,110,0.08) 0%,transparent 70%)}
+.gold-frame{position:relative;width:min(340px,88vw);aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;animation:frameAppear 1.2s ease both}
+@keyframes frameAppear{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
+.frame-border{position:absolute;inset:0;border:1px solid var(--gold);border-radius:4px}
+.frame-border::before{content:'';position:absolute;inset:6px;border:1px solid rgba(201,169,110,0.3);border-radius:3px}
+.frame-corner{position:absolute;width:28px;height:28px}
+.frame-corner.tl{top:-1px;left:-1px;border-top:2px solid var(--gold-bright);border-left:2px solid var(--gold-bright);border-radius:4px 0 0 0}
+.frame-corner.tr{top:-1px;right:-1px;border-top:2px solid var(--gold-bright);border-right:2px solid var(--gold-bright);border-radius:0 4px 0 0}
+.frame-corner.bl{bottom:-1px;left:-1px;border-bottom:2px solid var(--gold-bright);border-left:2px solid var(--gold-bright);border-radius:0 0 0 4px}
+.frame-corner.br{bottom:-1px;right:-1px;border-bottom:2px solid var(--gold-bright);border-right:2px solid var(--gold-bright);border-radius:0 0 4px 0}
+.frame-ornament{position:absolute;width:40px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.frame-ornament.top{top:14px;left:50%;transform:translateX(-50%)}
+.frame-ornament.bottom{bottom:14px;left:50%;transform:translateX(-50%)}
+.frame-ornament.left{left:14px;top:50%;transform:translateY(-50%) rotate(90deg)}
+.frame-ornament.right{right:14px;top:50%;transform:translateY(-50%) rotate(90deg)}
+.frame-dot{position:absolute;width:4px;height:4px;border-radius:50%;background:var(--gold)}
+.frame-dot.tc{top:12px;left:50%;transform:translateX(-50%)}
+.frame-dot.bc{bottom:12px;left:50%;transform:translateX(-50%)}
+.frame-dot.lc{left:12px;top:50%;transform:translateY(-50%)}
+.frame-dot.rc{right:12px;top:50%;transform:translateY(-50%)}
+.splash-inner{text-align:center;padding:20px;animation:contentAppear 1.4s ease .3s both}
+@keyframes contentAppear{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.splash-logo{font-family:'Cormorant Garamond',serif;font-size:clamp(64px,18vw,88px);font-weight:300;letter-spacing:.3em;color:var(--cream);line-height:1;margin-bottom:8px}
+.splash-logo-o{color:var(--gold);font-style:italic;text-shadow:0 0 30px rgba(201,169,110,0.9),0 0 60px rgba(201,169,110,0.4);animation:oglow 3s ease-in-out infinite}
+@keyframes oglow{0%,100%{text-shadow:0 0 30px rgba(201,169,110,0.9),0 0 60px rgba(201,169,110,0.4)}50%{text-shadow:0 0 50px rgba(201,169,110,1),0 0 100px rgba(201,169,110,0.6)}}
+.splash-divider{display:flex;align-items:center;justify-content:center;gap:8px;margin:12px 0}
+.splash-divider::before,.splash-divider::after{content:'';flex:1;max-width:50px;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,110,0.5))}
+.splash-divider::after{background:linear-gradient(90deg,rgba(201,169,110,0.5),transparent)}
+.splash-tagline{font-size:8px;letter-spacing:.5em;color:var(--blush);text-transform:uppercase}
+.splash-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;color:var(--dim);margin:20px 0 28px;line-height:1.7}
+.splash-btn{display:inline-block;padding:14px 40px;background:transparent;border:1px solid var(--gold);border-radius:2px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);cursor:pointer;transition:all .3s;position:relative;overflow:hidden}
+.splash-btn::before{content:'';position:absolute;inset:0;background:var(--gold);transform:translateX(-100%);transition:transform .3s ease;z-index:0}
+.splash-btn:hover::before{transform:translateX(0)}
+.splash-btn:hover{color:var(--bg)}
+.splash-btn span{position:relative;z-index:1}
+.splash-footer{margin-top:20px;font-size:9px;color:rgba(240,230,211,0.25);letter-spacing:.2em}
+
+/* ===== TERMS SCREEN ===== */
+#termsScreen{position:fixed;inset:0;z-index:999;background:var(--bg);display:none;flex-direction:column}
+.terms-header{padding:20px 20px 0;flex-shrink:0}
+.terms-logo-small{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;letter-spacing:.3em;color:var(--cream);text-align:center;margin-bottom:4px}
+.terms-logo-small em{color:var(--gold);font-style:italic}
+.terms-title{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--cream);text-align:center;margin:16px 0 4px}
+.terms-sub{font-size:9px;letter-spacing:.3em;color:var(--dim);text-transform:uppercase;text-align:center;margin-bottom:16px}
+.terms-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,110,0.3),transparent);margin-bottom:0}
+.terms-scroll{flex:1;overflow-y:auto;padding:16px 20px;-webkit-overflow-scrolling:touch}
+.terms-scroll::-webkit-scrollbar{width:2px}
+.terms-scroll::-webkit-scrollbar-track{background:transparent}
+.terms-scroll::-webkit-scrollbar-thumb{background:var(--gold-dim);border-radius:2px}
+.terms-section{margin-bottom:20px}
+.terms-section-title{font-size:9px;letter-spacing:.35em;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
+.terms-section p,.terms-section li{font-family:'Cormorant Garamond',serif;font-size:14px;color:rgba(240,230,211,0.75);line-height:1.8;margin-bottom:6px}
+.terms-section ul{padding-left:16px}
+.terms-section li{list-style:none;padding-left:8px;position:relative}
+.terms-section li::before{content:'✦';position:absolute;left:-8px;color:var(--gold);font-size:8px;top:5px}
+.terms-footer{padding:16px 20px 32px;flex-shrink:0;border-top:1px solid var(--gold-dim);background:var(--bg)}
+.terms-agree-wrap{display:flex;align-items:flex-start;gap:12px;margin-bottom:16px}
+.terms-checkbox{width:20px;height:20px;border:1px solid rgba(201,169,110,0.4);border-radius:2px;flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;background:transparent;margin-top:1px}
+.terms-checkbox.checked{background:var(--gold);border-color:var(--gold)}
+.terms-checkbox-icon{font-size:12px;color:var(--bg);display:none}
+.terms-checkbox.checked .terms-checkbox-icon{display:block}
+.terms-agree-text{font-size:11px;color:var(--dim);line-height:1.6}
+.terms-agree-text strong{color:var(--cream)}
+.terms-confirm-btn{width:100%;padding:14px;background:rgba(201,169,110,0.3);color:rgba(240,230,211,0.4);border:1px solid rgba(201,169,110,0.2);border-radius:3px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;cursor:not-allowed;transition:all .3s}
+.terms-confirm-btn.active{background:var(--gold);color:var(--bg);border-color:var(--gold);cursor:pointer}
+.terms-confirm-btn.active:hover{background:var(--gold-bright)}
+
+/* ===== COUNTDOWN SCREEN ===== */
+#countdownScreen{position:fixed;inset:0;z-index:998;background:var(--bg);display:none;align-items:center;justify-content:center;flex-direction:column}
+.countdown-ambient{position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 50% 50% at 50% 50%,rgba(201,169,110,0.1) 0%,transparent 70%)}
+.countdown-wrap{text-align:center;position:relative}
+.countdown-clock{position:relative;width:160px;height:160px;margin:0 auto 24px}
+.clock-svg{width:160px;height:160px;transform:rotate(-90deg)}
+.clock-bg{fill:none;stroke:rgba(201,169,110,0.1);stroke-width:2}
+.clock-track{fill:none;stroke:var(--gold);stroke-width:2;stroke-linecap:round;stroke-dasharray:471;stroke-dashoffset:471;transition:stroke-dashoffset .1s linear;filter:drop-shadow(0 0 6px rgba(201,169,110,0.6))}
+.clock-ticks{position:absolute;inset:0}
+.clock-center{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column}
+.clock-logo{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;letter-spacing:.2em;color:var(--cream);line-height:1}
+.clock-logo-o{color:var(--gold);font-style:italic;text-shadow:0 0 20px rgba(201,169,110,0.8)}
+.clock-num{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;color:var(--gold);line-height:1;text-shadow:0 0 20px rgba(201,169,110,0.5);display:none}
+.clock-decorations{position:absolute;inset:-20px}
+.clock-dec-line{position:absolute;width:1px;height:10px;background:rgba(201,169,110,0.3);transform-origin:bottom center;left:50%;bottom:50%}
+.countdown-label{font-size:9px;letter-spacing:.4em;color:var(--dim);text-transform:uppercase;margin-bottom:8px}
+.countdown-msg{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;color:var(--gold);animation:pulse 1s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+
+/* ===== MAIN APP ===== */
+#mainWrapper{display:none}
 .ambient{position:fixed;inset:0;pointer-events:none;z-index:0;
   background:radial-gradient(ellipse 70% 50% at 15% 10%,rgba(196,115,107,0.12) 0%,transparent 60%),
   radial-gradient(ellipse 50% 70% at 85% 90%,rgba(123,158,142,0.10) 0%,transparent 60%)}
@@ -30,29 +123,12 @@ body{background:var(--bg);font-family:'DM Mono',monospace;color:var(--cream);min
 header{text-align:center;padding:24px 0 32px;animation:fadeUp .7s ease both}
 .logo{font-family:'Cormorant Garamond',serif;font-size:clamp(72px,20vw,104px);font-weight:300;letter-spacing:.25em;color:var(--cream);line-height:1}
 .logo-o{color:var(--gold);font-style:italic;animation:oglow 3s ease-in-out infinite;display:inline-block}
-@keyframes oglow{0%,100%{text-shadow:0 0 30px rgba(201,169,110,0.9),0 0 70px rgba(201,169,110,0.4)}50%{text-shadow:0 0 50px rgba(201,169,110,1),0 0 100px rgba(201,169,110,0.7)}}
 .logo-line{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:10px}
 .logo-line::before,.logo-line::after{content:'';flex:1;max-width:40px;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,110,0.4))}
 .logo-line::after{background:linear-gradient(90deg,rgba(201,169,110,0.4),transparent)}
 .tagline{font-size:9px;letter-spacing:.45em;color:var(--blush);text-transform:uppercase;opacity:.8}
 .card{border:1px solid var(--gold-dim);border-radius:3px;background:rgba(0,0,0,0.3);padding:16px;margin-bottom:16px}
 .lbl{font-size:9px;letter-spacing:.4em;color:var(--gold);text-transform:uppercase;margin-bottom:10px}
-.setup-title{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--cream);margin-bottom:6px}
-.setup-sub{font-size:10px;color:var(--dim);line-height:1.7;margin-bottom:20px}
-.setup-steps{display:flex;flex-direction:column;gap:12px;margin-bottom:20px}
-.setup-step{display:flex;gap:12px;align-items:flex-start}
-.step-num{width:22px;height:22px;border-radius:50%;border:1px solid var(--gold);color:var(--gold);font-size:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
-.step-text{font-size:11px;color:var(--cream);line-height:1.6}
-.step-text a{color:var(--gold);text-decoration:none}
-.step-text strong{color:var(--gold)}
-.key-input-wrap{position:relative;margin-bottom:12px}
-.key-input-wrap input{width:100%;background:rgba(0,0,0,0.5);border:1px solid rgba(201,169,110,0.4);color:var(--cream);font-family:'DM Mono',monospace;font-size:12px;padding:14px 48px 14px 14px;border-radius:3px;outline:none;box-sizing:border-box}
-.key-input-wrap input:focus{border-color:var(--gold)}
-.key-input-wrap input::placeholder{color:rgba(240,230,211,0.2);letter-spacing:0}
-.toggle-vis{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--dim);cursor:pointer;font-size:16px;padding:4px}
-.save-btn{width:100%;padding:14px;background:var(--gold);color:var(--bg);border:none;border-radius:3px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;cursor:pointer;font-weight:500;transition:all .2s}
-.save-btn:disabled{opacity:.4;cursor:not-allowed}
-.key-error{font-size:10px;color:var(--rose);margin-top:8px;display:none}
 .key-status{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:rgba(122,158,142,0.1);border:1px solid rgba(122,158,142,0.3);border-radius:3px;margin-bottom:16px}
 .key-status-left{display:flex;align-items:center;gap:8px}
 .key-dot{width:6px;height:6px;border-radius:50%;background:#7ec98a;box-shadow:0 0 8px rgba(126,201,138,.6)}
@@ -86,9 +162,9 @@ header{text-align:center;padding:24px 0 32px;animation:fadeUp .7s ease both}
 @keyframes scan{from{top:0%}to{top:100%}}
 .srow{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:10px;letter-spacing:.15em;color:var(--dim)}
 .dot{width:6px;height:6px;border-radius:50%;background:var(--dim);flex-shrink:0;transition:all .3s}
-.dot.live{background:#7ec98a;box-shadow:0 0 8px rgba(126,201,138,.6);animation:pulse 2s ease infinite}
-.dot.thinking{background:var(--gold);box-shadow:0 0 8px rgba(201,169,110,.6);animation:pulse .8s ease infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.4)}}
+.dot.live{background:#7ec98a;box-shadow:0 0 8px rgba(126,201,138,.6);animation:blink 2s ease infinite}
+.dot.thinking{background:var(--gold);box-shadow:0 0 8px rgba(201,169,110,.6);animation:blink .8s ease infinite}
+@keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.4)}}
 .wave{display:none;align-items:center;gap:2px;height:16px}
 .wave.on{display:flex}
 .wave span{width:2px;background:var(--gold);border-radius:2px;animation:wv .8s ease infinite}
@@ -106,7 +182,7 @@ header{text-align:center;padding:24px 0 32px;animation:fadeUp .7s ease both}
 .loading.on{display:flex}
 .loading-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;color:var(--dim)}
 .loading-dots{display:flex;gap:6px}
-.loading-dots span{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 1.2s ease infinite}
+.loading-dots span{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:blink 1.2s ease infinite}
 .loading-dots span:nth-child(2){animation-delay:.2s}.loading-dots span:nth-child(3){animation-delay:.4s}
 .result-wrap{display:none;animation:fadeUp .5s ease both}
 .result-wrap.on{display:block}
@@ -155,7 +231,6 @@ header{text-align:center;padding:24px 0 32px;animation:fadeUp .7s ease both}
 .pricing-screen{display:none;animation:fadeUp .4s ease both}
 .pricing-screen.show{display:block}
 .pricing-back{display:flex;align-items:center;gap:8px;background:none;border:none;color:var(--dim);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;cursor:pointer;margin-bottom:16px;padding:0}
-.pricing-back:hover{color:var(--cream)}
 .pricing-title{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--cream);margin-bottom:4px}
 .pricing-sub{font-size:10px;color:var(--dim);margin-bottom:20px;line-height:1.6}
 .free-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(122,158,142,0.12);border:1px solid rgba(122,158,142,0.3);border-radius:3px;padding:10px 14px;margin-bottom:16px;width:100%}
@@ -163,14 +238,14 @@ header{text-align:center;padding:24px 0 32px;animation:fadeUp .7s ease both}
 .free-badge-text strong{color:#a8d4c4}
 .pkg-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
 .pkg{border:1px solid rgba(240,230,211,0.1);border-radius:3px;background:rgba(0,0,0,0.25);padding:14px;text-align:center;cursor:pointer;transition:all .2s;position:relative}
-.pkg:hover{border-color:rgba(201,169,110,0.4);background:rgba(201,169,110,0.06)}
+.pkg:hover{border-color:rgba(201,169,110,0.4)}
 .pkg.selected{border-color:var(--gold);background:rgba(201,169,110,0.1)}
 .pkg-popular{position:absolute;top:-9px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--bg);font-size:8px;padding:2px 8px;border-radius:8px;white-space:nowrap;font-weight:500;letter-spacing:.1em}
 .pkg-price{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--cream);margin-bottom:2px}
 .pkg-count{font-size:11px;color:var(--dim);margin-bottom:3px}
 .pkg-unit{font-size:10px;color:var(--gold)}
-.buy-btn{width:100%;padding:14px;background:var(--gold);color:var(--bg);border:none;border-radius:3px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.25em;text-transform:uppercase;cursor:pointer;font-weight:500;transition:all .2s;margin-bottom:10px}
-.coming-soon-note{font-size:9px;color:var(--dim);text-align:center;line-height:1.6}
+.buy-btn{width:100%;padding:14px;background:var(--gold);color:var(--bg);border:none;border-radius:3px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.25em;text-transform:uppercase;cursor:pointer;font-weight:500;margin-bottom:10px}
+.coming-soon-note{font-size:9px;color:var(--dim);text-align:center}
 .coming-soon-note span{color:var(--gold)}
 .checkout-screen{display:none;animation:fadeUp .4s ease both}
 .checkout-screen.show{display:block}
@@ -181,7 +256,7 @@ header{text-align:center;padding:24px 0 32px;animation:fadeUp .7s ease both}
 .order-left p:last-child{font-size:10px;color:var(--dim);margin-top:2px}
 .order-price{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--gold)}
 .pay-methods{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
-.pay-method{border:1px solid rgba(240,230,211,0.15);border-radius:3px;padding:12px;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;transition:all .2s;background:rgba(0,0,0,0.2);opacity:.5}
+.pay-method{border:1px solid rgba(240,230,211,0.15);border-radius:3px;padding:12px;display:flex;align-items:center;justify-content:center;gap:8px;opacity:.5}
 .pay-method-label{font-size:12px;color:var(--cream);font-weight:500}
 .card-fields{margin-bottom:16px}
 .field-label{font-size:9px;letter-spacing:.3em;color:var(--dim);text-transform:uppercase;margin-bottom:6px}
@@ -190,7 +265,7 @@ header{text-align:center;padding:24px 0 32px;animation:fadeUp .7s ease both}
 .pay-btn{width:100%;padding:14px;background:rgba(201,169,110,0.3);color:rgba(240,230,211,0.4);border:1px solid rgba(201,169,110,0.2);border-radius:3px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.25em;text-transform:uppercase;cursor:not-allowed;margin-bottom:10px}
 .secure-note{display:flex;align-items:center;justify-content:center;gap:6px;font-size:9px;color:var(--dim)}
 .coming-soon-overlay{text-align:center;padding:16px;background:rgba(201,169,110,0.06);border:1px solid rgba(201,169,110,0.2);border-radius:3px;margin-top:8px}
-.coming-soon-overlay p:first-child{font-size:11px;color:var(--gold);margin-bottom:4px;letter-spacing:.1em}
+.coming-soon-overlay p:first-child{font-size:11px;color:var(--gold);margin-bottom:4px}
 .coming-soon-overlay p:last-child{font-size:10px;color:var(--dim);line-height:1.6}
 .share-card{display:none}.share-card.on{display:block}
 .share-preview{background:linear-gradient(135deg,#1a0a08,#0e0c0b);border:1px solid var(--gold-dim);border-radius:3px;padding:16px}
@@ -210,7 +285,6 @@ header{text-align:center;padding:24px 0 32px;animation:fadeUp .7s ease both}
 .sbtn.xtwitter{border:1px solid rgba(255,255,255,0.2);color:var(--cream)}
 .sbtn.cp{border:1px solid var(--gold-dim);color:var(--gold)}
 .share-note{font-size:9px;color:var(--dim);margin-top:8px;text-align:center}
-/* TAGASISIDE */
 .feedback-card{border:1px solid rgba(155,143,181,0.25);border-radius:3px;background:rgba(155,143,181,0.05);padding:16px;margin-bottom:16px}
 .feedback-card .lbl{color:var(--lav)}
 .feedback-intro{font-size:10px;color:var(--dim);line-height:1.7;margin-bottom:14px}
@@ -222,7 +296,6 @@ header{text-align:center;padding:24px 0 32px;animation:fadeUp .7s ease both}
 .feedback-textarea:focus{border-color:var(--lav)}
 .feedback-textarea::placeholder{color:rgba(240,230,211,0.2)}
 .feedback-submit{width:100%;margin-top:10px;padding:12px;background:transparent;border:1px solid rgba(155,143,181,0.4);border-radius:3px;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--lav);cursor:pointer;transition:all .2s}
-.feedback-submit:hover{background:rgba(155,143,181,0.1)}
 .feedback-submit:disabled{opacity:.4;cursor:not-allowed}
 .feedback-sent{display:none;text-align:center;padding:16px 0}
 .feedback-sent.show{display:block}
@@ -240,6 +313,135 @@ canvas{display:none}
     <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#9b8fb5"/><stop offset="100%" style="stop-color:#c4b8e0"/></linearGradient>
   </defs>
 </svg>
+
+<!-- ===== SPLASH ===== -->
+<div id="splashScreen">
+  <div class="splash-ambient"></div>
+  <div class="gold-frame">
+    <div class="frame-border"></div>
+    <div class="frame-corner tl"></div>
+    <div class="frame-corner tr"></div>
+    <div class="frame-corner bl"></div>
+    <div class="frame-corner br"></div>
+    <div class="frame-ornament top"></div>
+    <div class="frame-ornament bottom"></div>
+    <div class="frame-ornament left"></div>
+    <div class="frame-ornament right"></div>
+    <div class="frame-dot tc"></div>
+    <div class="frame-dot bc"></div>
+    <div class="frame-dot lc"></div>
+    <div class="frame-dot rc"></div>
+    <div class="splash-inner">
+      <div class="splash-logo">GL<span class="splash-logo-o">Ó</span>W</div>
+      <div class="splash-divider"><div class="splash-tagline">AI · Stiiliassistent</div></div>
+      <div class="splash-sub">Sinu isiklik ilu- ja<br>stiilieksperd taskus</div>
+      <button class="splash-btn" onclick="showTerms()"><span>Alusta ✦</span></button>
+      <div class="splash-footer">glow4me.ee</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TINGIMUSED ===== -->
+<div id="termsScreen">
+  <div class="terms-header">
+    <div class="terms-logo-small">GL<em>Ó</em>W</div>
+    <div class="terms-title">Kasutustingimused</div>
+    <div class="terms-sub">Palun loe läbi enne alustamist</div>
+    <div class="terms-divider"></div>
+  </div>
+  <div class="terms-scroll">
+
+    <div class="terms-section">
+      <div class="terms-section-title">1. Teenuse kirjeldus</div>
+      <p>GLÓW on tehisintellektil põhinev ilu- ja stiilianalüüsi rakendus. Rakendus kasutab kaamera pilti reaalajas meigi, naha seisundi ja riiete sobivuse hindamiseks.</p>
+    </div>
+
+    <div class="terms-section">
+      <div class="terms-section-title">2. Privaatsus ja andmete töötlemine</div>
+      <p>GLÓW võtab privaatsust tõsiselt. Seoses kaamera kasutamisega:</p>
+      <ul>
+        <li>Kaamera pilte töödeldakse ainult analüüsi eesmärgil</li>
+        <li>Pilte ei salvestata meie serveritesse</li>
+        <li>Analüüs toimub reaalajas ja pilt kustutatakse kohe pärast vastuse saamist</li>
+        <li>Pildid edastatakse krüpteeritult Anthropic AI serveritele analüüsimiseks</li>
+        <li>Anthropic'i privaatsuspoliitika kehtib andmete töötlemisel</li>
+      </ul>
+    </div>
+
+    <div class="terms-section">
+      <div class="terms-section-title">3. GDPR ja isikuandmed</div>
+      <p>Vastavalt Euroopa Liidu isikuandmete kaitse üldmäärusele (GDPR):</p>
+      <ul>
+        <li>Näopilte loetakse biomeetrilisteks andmeteks</li>
+        <li>Kasutad rakendust vabatahtlikult ja annad sellega nõusoleku piltide töötlemiseks</li>
+        <li>Sul on õigus igal ajal kasutamine lõpetada</li>
+        <li>Rakendus ei tuvasta ega salvesta isiku identiteeti</li>
+      </ul>
+    </div>
+
+    <div class="terms-section">
+      <div class="terms-section-title">4. Analüüsi täpsus ja vastutus</div>
+      <p>GLÓW pakub AI-põhiseid soovitusi, mis on informatiivse iseloomuga:</p>
+      <ul>
+        <li>Naha analüüs ei asenda dermatoloogi või arsti vastuvõttu</li>
+        <li>Meigi ja stiilisoovitused on subjektiivsed ning tuginevad üldistele trendidele</li>
+        <li>GLÓW ei vastuta otsuste eest mis on tehtud analüüsi põhjal</li>
+        <li>Meditsiiniliste murede korral pöördu spetsialisti poole</li>
+      </ul>
+    </div>
+
+    <div class="terms-section">
+      <div class="terms-section-title">5. Kasutaja vanus</div>
+      <p>GLÓW on mõeldud kasutajatele vanuses 16 ja vanemad. Alla 16-aastased vajavad kasutamiseks vanema või eestkostja nõusolekut.</p>
+    </div>
+
+    <div class="terms-section">
+      <div class="terms-section-title">6. Intellektuaalne omand</div>
+      <p>Kõik GLÓW rakenduse sisu, kujundus ja kood on kaitstud autoriõigusega. Rakenduse kopeerimine või levitamine ilma loata on keelatud.</p>
+    </div>
+
+    <div class="terms-section">
+      <div class="terms-section-title">7. Kontakt</div>
+      <p>Küsimuste ja probleemide korral võta ühendust: <strong style="color:var(--gold)">info@glow4me.ee</strong></p>
+    </div>
+
+  </div>
+  <div class="terms-footer">
+    <div class="terms-agree-wrap">
+      <div class="terms-checkbox" id="termsCheckbox" onclick="toggleTerms()">
+        <span class="terms-checkbox-icon">✓</span>
+      </div>
+      <div class="terms-agree-text">
+        Olen lugenud ja nõustun <strong>GLÓW kasutustingimuste</strong> ning <strong>privaatsuspoliitikaga</strong>. Annan nõusoleku kaamera kasutamiseks analüüsi eesmärgil.
+      </div>
+    </div>
+    <button class="terms-confirm-btn" id="termsConfirmBtn" onclick="startCountdown()" disabled>
+      Nõustun ja alustan →
+    </button>
+  </div>
+</div>
+
+<!-- ===== COUNTDOWN ===== -->
+<div id="countdownScreen">
+  <div class="countdown-ambient"></div>
+  <div class="countdown-wrap">
+    <div class="countdown-label">Valmistun käivituma</div>
+    <div class="countdown-clock">
+      <svg class="clock-svg" viewBox="0 0 160 160">
+        <circle class="clock-bg" cx="80" cy="80" r="75"/>
+        <circle class="clock-track" id="clockTrack" cx="80" cy="80" r="75"/>
+      </svg>
+      <div class="clock-center">
+        <div class="clock-logo" id="clockLogo">GL<span class="clock-logo-o">Ó</span>W</div>
+        <div class="clock-num" id="clockNum">3</div>
+      </div>
+    </div>
+    <div class="countdown-msg" id="countdownMsg">✦</div>
+  </div>
+</div>
+
+<!-- ===== MAIN APP ===== -->
+<div id="mainWrapper">
 <div class="ambient"></div>
 <canvas id="cv"></canvas>
 <div class="app">
@@ -249,22 +451,6 @@ canvas{display:none}
   <div class="logo-line"><div class="tagline">AI · Isiklik Stiiliassistent</div></div>
 </header>
 
-<div id="setupScreen" class="card" style="display:none">
-  <div class="setup-title">Alustame ✦</div>
-  <div class="setup-sub">GLÓW kasutab Anthropic AI-d. Vaja on üks kord API võti sisestada — edasi töötab automaatselt.</div>
-  <div class="setup-steps">
-    <div class="setup-step"><div class="step-num">1</div><div class="step-text">Mine <a href="https://console.anthropic.com" target="_blank"><strong>console.anthropic.com</strong></a> ja loo tasuta konto</div></div>
-    <div class="setup-step"><div class="step-num">2</div><div class="step-text">Lisa krediiti — minimaalselt <strong>$5 (≈ 4.60€)</strong></div></div>
-    <div class="setup-step"><div class="step-num">3</div><div class="step-text">Kliki <strong>"API Keys"</strong> → <strong>"Create Key"</strong> → kopeeri siia</div></div>
-  </div>
-  <div class="key-input-wrap">
-    <input type="password" id="keyInput" placeholder="sk-ant-api03-..." oninput="onKeyInput()">
-    <button class="toggle-vis" onclick="toggleKeyVis()">👁</button>
-  </div>
-  <div class="key-error" id="keyError">Võti peab algama sk-ant-iga</div>
-  <button class="save-btn" id="saveBtn" onclick="saveKey()" disabled>Salvesta ja alusta →</button>
-</div>
-
 <div id="keyStatus" style="display:none">
   <div class="key-status">
     <div class="key-status-left"><div class="key-dot"></div><div class="key-status-text">API võti aktiivne</div></div>
@@ -272,162 +458,147 @@ canvas{display:none}
   </div>
 </div>
 
-<div id="mainApp" style="display:none">
+<div id="apiSetupCard" class="card" style="display:none">
+  <div style="font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--cream);margin-bottom:6px">API Võti</div>
+  <div style="font-size:10px;color:var(--dim);line-height:1.6;margin-bottom:14px">Sisesta oma Anthropic API võti. Vajalik ainult üks kord.</div>
+  <div style="position:relative;margin-bottom:10px">
+    <input type="password" id="keyInput" placeholder="sk-ant-api03-..." oninput="onKeyInput()" style="width:100%;background:rgba(0,0,0,0.5);border:1px solid rgba(201,169,110,0.4);color:var(--cream);font-family:'DM Mono',monospace;font-size:12px;padding:12px 44px 12px 12px;border-radius:3px;outline:none;box-sizing:border-box">
+    <button onclick="toggleKeyVis()" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--dim);cursor:pointer;font-size:14px">👁</button>
+  </div>
+  <div id="keyError" style="font-size:10px;color:var(--rose);margin-bottom:8px;display:none">Võti peab algama sk-ant-iga</div>
+  <button id="saveBtn" onclick="saveKey()" disabled style="width:100%;padding:12px;background:var(--gold);color:var(--bg);border:none;border-radius:3px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;cursor:pointer;opacity:.4">Salvesta →</button>
+</div>
 
-  <div class="saldo-bar saldo-free" id="saldoBar" onclick="showPricing()">
-    <div class="saldo-left">
-      <div class="saldo-icon">✦</div>
-      <div class="saldo-info">
-        <div class="saldo-count" id="saldoCount">3 tasuta analüüsi</div>
-        <div class="saldo-sub" id="saldoSub">Prooviperiood · vajuta et osta krediiti</div>
+<div class="saldo-bar saldo-free" id="saldoBar" onclick="showPricing()" style="display:none">
+  <div class="saldo-left">
+    <div class="saldo-icon">✦</div>
+    <div class="saldo-info">
+      <div class="saldo-count" id="saldoCount">3 tasuta analüüsi</div>
+      <div class="saldo-sub" id="saldoSub">Prooviperiood · vajuta et osta krediiti</div>
+    </div>
+  </div>
+  <button class="saldo-btn" id="saldoBtn">Osta</button>
+</div>
+
+<div class="pricing-screen" id="pricingScreen">
+  <button class="pricing-back" onclick="hidePricing()">← Tagasi</button>
+  <div class="pricing-title">Vali pakett</div>
+  <div class="pricing-sub">Üks analüüs kulutab ühe krediiti.</div>
+  <div class="free-badge"><div style="font-size:16px">🎁</div><div class="free-badge-text"><strong>3 analüüsi tasuta</strong> — proovi enne ostmist</div></div>
+  <div class="pkg-grid">
+    <div class="pkg" onclick="selectPkg(this,'10','0.99','0.10')"><div class="pkg-price">€0.99</div><div class="pkg-count">10 analüüsi</div><div class="pkg-unit">0.10€ / tk</div></div>
+    <div class="pkg selected" onclick="selectPkg(this,'50','4.50','0.09')"><div class="pkg-popular">Populaarne</div><div class="pkg-price">€4.50</div><div class="pkg-count">50 analüüsi</div><div class="pkg-unit">0.09€ / tk</div></div>
+    <div class="pkg" onclick="selectPkg(this,'100','7.99','0.08')"><div class="pkg-price">€7.99</div><div class="pkg-count">100 analüüsi</div><div class="pkg-unit">0.08€ / tk</div></div>
+    <div class="pkg" onclick="selectPkg(this,'200','12.99','0.06')"><div class="pkg-price">€12.99</div><div class="pkg-count">200 analüüsi</div><div class="pkg-unit">0.06€ / tk</div></div>
+  </div>
+  <button class="buy-btn" id="buyBtn" onclick="showCheckout()">Jätka maksega — €4.50 →</button>
+  <div class="coming-soon-note">Maksed aktiveeritakse peagi · <span>glow4me.ee</span></div>
+</div>
+
+<div class="checkout-screen" id="checkoutScreen">
+  <button class="pricing-back" onclick="hideCheckout()">← Tagasi</button>
+  <div class="checkout-title">Maksmine</div>
+  <div class="checkout-sub">Vali makseviis</div>
+  <div class="order-summary">
+    <div class="order-left"><p id="orderTitle">50 analüüsi</p><p id="orderSub">0.09€ analüüsi kohta</p></div>
+    <div class="order-price" id="orderPrice">€4.50</div>
+  </div>
+  <div class="pay-methods">
+    <div class="pay-method"><svg width="16" height="16" viewBox="0 0 24 24" fill="var(--cream)"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg><div class="pay-method-label">Apple Pay</div></div>
+    <div class="pay-method"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg><div class="pay-method-label">Google Pay</div></div>
+  </div>
+  <div class="card-fields">
+    <div class="field-label">Kaardi number</div><input class="field-input" placeholder="1234 5678 9012 3456" disabled>
+    <div class="field-row"><div><div class="field-label">Kehtivus</div><input class="field-input" placeholder="KK / AA" disabled></div><div><div class="field-label">CVC</div><input class="field-input" placeholder="123" disabled></div></div>
+  </div>
+  <button class="pay-btn" disabled>Maksa — €4.50</button>
+  <div class="secure-note">🔒 Turvaline makse · Stripe</div>
+  <div class="coming-soon-overlay"><p>✦ Peagi saadaval</p><p>Maksed aktiveeritakse kui <strong style="color:var(--gold)">glow4me.ee</strong> on üles seatud</p></div>
+</div>
+
+<div id="assistentWrap">
+  <div class="lbl">Vali assistent</div>
+  <div class="modes">
+    <div class="mode m-meik active" onclick="setMode('meik')"><div class="micon">💄</div><div class="mname">Meik</div><div class="mdesc">Meigi analüüs</div></div>
+    <div class="mode m-nahk" onclick="setMode('nahk')"><div class="micon">🔬</div><div class="mname">Nahk</div><div class="mdesc">Naha seisund</div></div>
+    <div class="mode m-stiil" onclick="setMode('stiil')"><div class="micon">👗</div><div class="mname">Stiil</div><div class="mdesc">Stiili analüüs</div></div>
+  </div>
+</div>
+
+<div class="store-tip" id="storeTip"><strong>👗 Stiili analüüsiks:</strong><br>Proovi riie selga ja pildista ennast. AI hindab sobivust, trendi ja annab otsuse!</div>
+<div class="disclaimer" id="disc"><strong style="color:#7a9e8e">Oluline:</strong> See analüüs ei asenda arsti vastuvõttu.</div>
+
+<div class="card" id="cameraCard">
+  <div class="lbl">Kaamera</div>
+  <div class="cam-frame">
+    <video id="vid" autoplay playsinline muted></video>
+    <div class="cam-ph" id="camph"><div style="font-size:30px;opacity:.4">✦</div><p>Ava kaamera et alustada</p></div>
+    <div class="corner tl"></div><div class="corner br"></div>
+    <div class="scanline" id="scan"></div>
+  </div>
+  <div class="srow">
+    <div class="dot" id="dot"></div>
+    <span id="smsg">Ootel</span>
+    <div class="wave" id="wave"><span></span><span></span><span></span><span></span><span></span></div>
+  </div>
+  <div class="errmsg" id="err"></div>
+  <div class="brow">
+    <button class="btn pri" id="camBtn" onclick="startCam()">✦ Ava Kaamera</button>
+    <button class="btn" id="anaBtn" onclick="analyze()" disabled>Analüüsi</button>
+    <button class="btn" id="autoBtn" onclick="toggleAuto()" disabled>Auto</button>
+  </div>
+</div>
+
+<div class="card" id="resultCard">
+  <div class="lbl" id="resLbl">Tulemus</div>
+  <div class="res-inner">
+    <div class="res-empty" id="resEmpty">Ava kaamera ja vajuta Analüüsi</div>
+    <div class="loading" id="load"><div class="loading-dots"><span></span><span></span><span></span></div><div class="loading-text">Analüüsin...</div></div>
+    <div class="result-wrap" id="resultWrap">
+      <div class="verdict-card" id="verdictCard">
+        <span class="verdict-icon" id="verdictIcon"></span>
+        <div class="verdict-text" id="verdictText"></div>
+        <div class="verdict-sub" id="verdictSub"></div>
       </div>
+      <div class="feedback-text" id="feedbackText"></div>
+      <div class="details-grid" id="detailsGrid"></div>
+      <div class="scores-row" id="scoresRow"></div>
+      <div class="tip-card" id="tipCard" style="display:none"><div class="tip-label">✦ Soovitus</div><div class="tip-text" id="tipText"></div></div>
     </div>
-    <button class="saldo-btn" id="saldoBtn">Osta</button>
   </div>
+</div>
 
-  <div class="pricing-screen" id="pricingScreen">
-    <button class="pricing-back" onclick="hidePricing()">← Tagasi</button>
-    <div class="pricing-title">Vali pakett</div>
-    <div class="pricing-sub">Üks analüüs kulutab ühe krediiti. Suurem pakett = odavam hind.</div>
-    <div class="free-badge">
-      <div style="font-size:16px">🎁</div>
-      <div class="free-badge-text"><strong>3 analüüsi täiesti tasuta</strong> — proovi enne ostmist</div>
-    </div>
-    <div class="pkg-grid">
-      <div class="pkg" onclick="selectPkg(this,'10','0.99','0.10')"><div class="pkg-price">€0.99</div><div class="pkg-count">10 analüüsi</div><div class="pkg-unit">0.10€ / tk</div></div>
-      <div class="pkg selected" onclick="selectPkg(this,'50','4.50','0.09')"><div class="pkg-popular">Populaarne</div><div class="pkg-price">€4.50</div><div class="pkg-count">50 analüüsi</div><div class="pkg-unit">0.09€ / tk</div></div>
-      <div class="pkg" onclick="selectPkg(this,'100','7.99','0.08')"><div class="pkg-price">€7.99</div><div class="pkg-count">100 analüüsi</div><div class="pkg-unit">0.08€ / tk</div></div>
-      <div class="pkg" onclick="selectPkg(this,'200','12.99','0.06')"><div class="pkg-price">€12.99</div><div class="pkg-count">200 analüüsi</div><div class="pkg-unit">0.06€ / tk</div></div>
-    </div>
-    <button class="buy-btn" id="buyBtn" onclick="showCheckout()">Jätka maksega — €4.50 →</button>
-    <div class="coming-soon-note">Maksed aktiveeritakse peagi · <span>glow4me.ee</span></div>
+<div class="card share-card" id="shareCard">
+  <div class="lbl">Jaga tulemust</div>
+  <div class="share-preview" id="sharePrev"></div>
+  <div class="share-btns">
+    <button class="sbtn ig" onclick="shareIG()">📸 IG</button>
+    <button class="sbtn fb" onclick="shareFB()">📘 FB</button>
+    <button class="sbtn xtwitter" onclick="shareX()">𝕏</button>
+    <button class="sbtn cp" onclick="shareCopy()">🔗</button>
   </div>
+  <div class="share-note">Pilt salvestatakse galeriisse jagamiseks</div>
+</div>
 
-  <div class="checkout-screen" id="checkoutScreen">
-    <button class="pricing-back" onclick="hideCheckout()">← Tagasi</button>
-    <div class="checkout-title">Maksmine</div>
-    <div class="checkout-sub">Vali makseviis</div>
-    <div class="order-summary">
-      <div class="order-left"><p id="orderTitle">50 analüüsi</p><p id="orderSub">0.09€ analüüsi kohta</p></div>
-      <div class="order-price" id="orderPrice">€4.50</div>
+<div class="feedback-card">
+  <div class="lbl">Anna tagasiside</div>
+  <div class="feedback-intro">Sinu arvamus aitab meil GLÓW-i paremaks muuta.</div>
+  <div id="feedbackForm">
+    <div class="stars">
+      <button class="star" onclick="rateStar(1)">★</button>
+      <button class="star" onclick="rateStar(2)">★</button>
+      <button class="star" onclick="rateStar(3)">★</button>
+      <button class="star" onclick="rateStar(4)">★</button>
+      <button class="star" onclick="rateStar(5)">★</button>
     </div>
-    <div class="pay-methods">
-      <div class="pay-method">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--cream)"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-        <div class="pay-method-label">Apple Pay</div>
-      </div>
-      <div class="pay-method">
-        <svg width="16" height="16" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-        <div class="pay-method-label">Google Pay</div>
-      </div>
-    </div>
-    <div class="card-fields">
-      <div class="field-label">Kaardi number</div>
-      <input class="field-input" placeholder="1234 5678 9012 3456" disabled>
-      <div class="field-row">
-        <div><div class="field-label">Kehtivus</div><input class="field-input" placeholder="KK / AA" disabled></div>
-        <div><div class="field-label">CVC</div><input class="field-input" placeholder="123" disabled></div>
-      </div>
-    </div>
-    <button class="pay-btn" disabled id="payBtn">Maksa — €4.50</button>
-    <div class="secure-note">🔒 Turvaline makse · Stripe</div>
-    <div class="coming-soon-overlay">
-      <p>✦ Peagi saadaval</p>
-      <p>Maksed aktiveeritakse kui <strong style="color:var(--gold)">glow4me.ee</strong> on üles seatud</p>
-    </div>
+    <textarea class="feedback-textarea" id="feedbackText2" placeholder="Kirjuta siia oma mõtted..."></textarea>
+    <button class="feedback-submit" id="feedbackSubmitBtn" onclick="submitFeedback()" disabled>Saada tagasiside →</button>
   </div>
-
-  <div id="assistentWrap" style="animation:fadeUp .7s ease .1s both">
-    <div class="lbl">Vali assistent</div>
-    <div class="modes">
-      <div class="mode m-meik active" onclick="setMode('meik')"><div class="micon">💄</div><div class="mname">Meik</div><div class="mdesc">Meigi analüüs</div></div>
-      <div class="mode m-nahk" onclick="setMode('nahk')"><div class="micon">🔬</div><div class="mname">Nahk</div><div class="mdesc">Naha seisund</div></div>
-      <div class="mode m-stiil" onclick="setMode('stiil')"><div class="micon">👗</div><div class="mname">Stiil</div><div class="mdesc">Stiili analüüs</div></div>
-    </div>
+  <div class="feedback-sent" id="feedbackSent">
+    <div class="feedback-sent-icon">✦</div>
+    <div class="feedback-sent-text">Täname tagasiside eest!<br>See aitab meil kasvada.</div>
   </div>
-
-  <div class="store-tip" id="storeTip">
-    <strong>👗 Stiili analüüsiks:</strong><br>
-    Proovi riie selga ja pildista ennast. AI hindab sobivust, trendi ja annab otsuse — osta või jäta!
-  </div>
-  <div class="disclaimer" id="disc">
-    <strong style="color:#7a9e8e">Oluline:</strong> See analüüs ei asenda arsti vastuvõttu.
-  </div>
-
-  <div class="card" id="cameraCard" style="animation:fadeUp .7s ease .2s both">
-    <div class="lbl">Kaamera</div>
-    <div class="cam-frame">
-      <video id="vid" autoplay playsinline muted></video>
-      <div class="cam-ph" id="camph"><div style="font-size:30px;opacity:.4">✦</div><p>Ava kaamera et alustada</p></div>
-      <div class="corner tl"></div><div class="corner br"></div>
-      <div class="scanline" id="scan"></div>
-    </div>
-    <div class="srow">
-      <div class="dot" id="dot"></div>
-      <span id="smsg">Ootel</span>
-      <div class="wave" id="wave"><span></span><span></span><span></span><span></span><span></span></div>
-    </div>
-    <div class="errmsg" id="err"></div>
-    <div class="brow">
-      <button class="btn pri" id="camBtn" onclick="startCam()">✦ Ava Kaamera</button>
-      <button class="btn" id="anaBtn" onclick="analyze()" disabled><span id="anaBtnText">Analüüsi</span></button>
-      <button class="btn" id="autoBtn" onclick="toggleAuto()" disabled>Auto</button>
-    </div>
-  </div>
-
-  <div class="card" id="resultCard" style="animation:fadeUp .7s ease .3s both">
-    <div class="lbl" id="resLbl">Tulemus</div>
-    <div class="res-inner">
-      <div class="res-empty" id="resEmpty">Ava kaamera ja vajuta Analüüsi</div>
-      <div class="loading" id="load"><div class="loading-dots"><span></span><span></span><span></span></div><div class="loading-text">Analüüsin...</div></div>
-      <div class="result-wrap" id="resultWrap">
-        <div class="verdict-card" id="verdictCard">
-          <span class="verdict-icon" id="verdictIcon"></span>
-          <div class="verdict-text" id="verdictText"></div>
-          <div class="verdict-sub" id="verdictSub"></div>
-        </div>
-        <div class="feedback-text" id="feedbackText"></div>
-        <div class="details-grid" id="detailsGrid"></div>
-        <div class="scores-row" id="scoresRow"></div>
-        <div class="tip-card" id="tipCard" style="display:none">
-          <div class="tip-label">✦ Soovitus</div>
-          <div class="tip-text" id="tipText"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="card share-card" id="shareCard">
-    <div class="lbl">Jaga tulemust</div>
-    <div class="share-preview" id="sharePrev"></div>
-    <div class="share-btns">
-      <button class="sbtn ig" onclick="shareIG()">📸 IG</button>
-      <button class="sbtn fb" onclick="shareFB()">📘 FB</button>
-      <button class="sbtn xtwitter" onclick="shareX()">𝕏</button>
-      <button class="sbtn cp" onclick="shareCopy()">🔗</button>
-    </div>
-    <div class="share-note">Pilt salvestatakse galeriisse jagamiseks</div>
-  </div>
-
-  <div class="feedback-card">
-    <div class="lbl">Anna tagasiside</div>
-    <div class="feedback-intro">Sinu arvamus aitab meil GLÓW-i paremaks muuta. Mida tegime hästi? Mida võiksime muuta?</div>
-    <div id="feedbackForm">
-      <div class="stars" id="stars">
-        <button class="star" onclick="rateStar(1)">★</button>
-        <button class="star" onclick="rateStar(2)">★</button>
-        <button class="star" onclick="rateStar(3)">★</button>
-        <button class="star" onclick="rateStar(4)">★</button>
-        <button class="star" onclick="rateStar(5)">★</button>
-      </div>
-      <textarea class="feedback-textarea" id="feedbackText2" placeholder="Kirjuta siia oma mõtted ja ettepanekud..."></textarea>
-      <button class="feedback-submit" id="feedbackSubmitBtn" onclick="submitFeedback()" disabled>Saada tagasiside →</button>
-    </div>
-    <div class="feedback-sent" id="feedbackSent">
-      <div class="feedback-sent-icon">✦</div>
-      <div class="feedback-sent-text">Täname tagasiside eest!<br>See aitab meil kasvada.</div>
-    </div>
-  </div>
+</div>
 
 </div>
 </div>
@@ -439,43 +610,157 @@ const FREE_CREDITS=3;
 const M={
   meik:{lbl:'Meigi Analüüs',bar:'c1',sys:`Sa oled GLOW meigi ekspert. Analüüsi meiki põhjalikult eesti keeles. Vasta AINULT selles JSON formaadis: {"verdict":"SUUREPÄRANE / HEA / VAJAB PARANDUST","verdict_class":"yes/maybe/no","feedback":"2-3 lauset üldmuljest","details":{"Jumestus":"1-2 lauset","Silmad":"1-2 lauset","Huuled":"1-2 lauset","Kulmud":"1-2 lauset"},"scores":{"Jumestus":7,"Silmameik":7,"Huuled":7,"Üldmulje":7},"tip":"üks konkreetne soovitus"}`,prompt:'Analüüsi minu meiki. Vasta ainult JSON formaadis.'},
   nahk:{lbl:'Naha Analüüs',bar:'c2',sys:`Sa oled GLOW nahahoolduse ekspert. Analüüsi naha seisundit põhjalikult eesti keeles. Vasta AINULT selles JSON formaadis: {"verdict":"TERVE NAHK / VAJAB HOOLDUST / PÖÖRDU SPETSIALISTI POOLE","verdict_class":"yes/maybe/no","feedback":"2-3 lauset üldseisundist","details":{"Niiskus":"1-2 lauset","Nahatoon":"1-2 lauset","Tekstuur":"1-2 lauset","Probleemid":"1-2 lauset"},"scores":{"Niiskus":7,"Toon":7,"Tekstuur":7,"Üldseisund":7},"tip":"üks konkreetne hooldussoovitus"}`,prompt:'Analüüsi minu naha seisundit. Vasta ainult JSON formaadis.'},
-  stiil:{lbl:'Stiili Analüüs',bar:'c3',sys:`Sa oled GLOW stiiliekspert ja personal shopper. Kasutaja on riidepoes ja proovib riiet seljas. Vasta AINULT selles JSON formaadis: {"verdict":"OSTA KINDLASTI / KAALUDA / JÄTA RIIDEPUULE","verdict_class":"yes/maybe/no","feedback":"2-3 lauset põhimuljest","details":{"Sobivus":"1-2 lauset lõike kohta","Värvid":"1-2 lauset värvide kohta","Trend":"1-2 lauset trenditaseme kohta","Kombineeruvus":"1-2 lauset"},"scores":{"Sobivus":7,"Värvid":7,"Trend":7,"Väärtus":7},"tip":"üks konkreetne soovitus"}`,prompt:'Olen riidepoes ja proovin seda riiet seljas. Kas peaksin ostma? Vasta ainult JSON formaadis.'}
+  stiil:{lbl:'Stiili Analüüs',bar:'c3',sys:`Sa oled GLOW stiiliekspert. Kasutaja proovib riiet seljas. Vasta AINULT selles JSON formaadis: {"verdict":"OSTA KINDLASTI / KAALUDA / JÄTA RIIDEPUULE","verdict_class":"yes/maybe/no","feedback":"2-3 lauset põhimuljest","details":{"Sobivus":"1-2 lauset","Värvid":"1-2 lauset","Trend":"1-2 lauset","Kombineeruvus":"1-2 lauset"},"scores":{"Sobivus":7,"Värvid":7,"Trend":7,"Väärtus":7},"tip":"üks konkreetne soovitus"}`,prompt:'Olen riidepoes ja proovin seda riiet seljas. Kas peaksin ostma? Vasta ainult JSON formaadis.'}
 };
 
 let mode='meik',stream=null,autoOn=false,autoT=null,lastFb='',lastScores={},selectedPkg=PACKAGES[1],starRating=0;
+let termsAccepted=false,countdownT=null;
 const video=document.getElementById('vid');
 const canvas=document.getElementById('cv');
 
+// ===== SPLASH =====
+function showTerms(){
+  document.getElementById('splashScreen').style.opacity='0';
+  document.getElementById('splashScreen').style.transition='opacity .4s ease';
+  setTimeout(()=>{
+    document.getElementById('splashScreen').style.display='none';
+    const t=document.getElementById('termsScreen');
+    t.style.display='flex';
+    t.style.opacity='0';
+    t.style.transition='opacity .4s ease';
+    setTimeout(()=>t.style.opacity='1',10);
+  },400);
+}
+
+// ===== TERMS =====
+function toggleTerms(){
+  termsAccepted=!termsAccepted;
+  const cb=document.getElementById('termsCheckbox');
+  const btn=document.getElementById('termsConfirmBtn');
+  cb.classList.toggle('checked',termsAccepted);
+  btn.disabled=!termsAccepted;
+  btn.classList.toggle('active',termsAccepted);
+}
+
+function startCountdown(){
+  if(!termsAccepted) return;
+  localStorage.setItem('glow_terms_accepted','true');
+  const t=document.getElementById('termsScreen');
+  t.style.opacity='0';
+  setTimeout(()=>{
+    t.style.display='none';
+    const c=document.getElementById('countdownScreen');
+    c.style.display='flex';
+    c.style.opacity='0';
+    c.style.transition='opacity .4s ease';
+    setTimeout(()=>{c.style.opacity='1';runCountdown();},10);
+  },400);
+}
+
+// ===== COUNTDOWN =====
+function runCountdown(){
+  let count=3;
+  const track=document.getElementById('clockTrack');
+  const clockLogo=document.getElementById('clockLogo');
+  const clockNum=document.getElementById('clockNum');
+  const msg=document.getElementById('countdownMsg');
+  const circumference=471;
+  const msgs=['✦','Analüüsime stiili...','Valmis!'];
+
+  // Logo to number transition
+  setTimeout(()=>{
+    clockLogo.style.transition='opacity .3s ease';
+    clockLogo.style.opacity='0';
+    setTimeout(()=>{
+      clockLogo.style.display='none';
+      clockNum.style.display='block';
+      clockNum.style.opacity='0';
+      clockNum.style.transition='opacity .3s ease';
+      setTimeout(()=>clockNum.style.opacity='1',10);
+    },300);
+  },600);
+
+  let elapsed=0;
+  const total=3000;
+  const interval=50;
+
+  countdownT=setInterval(()=>{
+    elapsed+=interval;
+    const progress=elapsed/total;
+    const offset=circumference*(1-progress);
+    track.style.strokeDashoffset=offset;
+
+    const remaining=Math.ceil((total-elapsed)/1000);
+    if(remaining!==count&&remaining>=1){
+      count=remaining;
+      clockNum.textContent=count;
+      clockNum.style.transform='scale(1.2)';
+      setTimeout(()=>clockNum.style.transform='scale(1)',150);
+    }
+
+    const msgIdx=Math.floor(progress*msgs.length);
+    if(msgs[msgIdx]) msg.textContent=msgs[msgIdx];
+
+    if(elapsed>=total){
+      clearInterval(countdownT);
+      clockNum.textContent='✦';
+      msg.textContent='Tere tulemast!';
+      setTimeout(()=>launchApp(),600);
+    }
+  },interval);
+}
+
+function launchApp(){
+  const c=document.getElementById('countdownScreen');
+  c.style.opacity='0';
+  setTimeout(()=>{
+    c.style.display='none';
+    document.getElementById('mainWrapper').style.display='block';
+    initApp();
+  },400);
+}
+
+// ===== APP INIT =====
+function initApp(){
+  if(!localStorage.getItem('glow_credits')) localStorage.setItem('glow_credits',FREE_CREDITS);
+  const key=localStorage.getItem('glow_api_key');
+  if(key){
+    document.getElementById('keyStatus').style.display='block';
+    document.getElementById('saldoBar').style.display='flex';
+  } else {
+    document.getElementById('apiSetupCard').style.display='block';
+  }
+  updateSaldo();
+}
+
+function init(){
+  // Kas tingimused on juba aktsepteeritud?
+  if(localStorage.getItem('glow_terms_accepted')==='true'){
+    document.getElementById('splashScreen').style.display='none';
+    document.getElementById('mainWrapper').style.display='block';
+    initApp();
+  }
+  // Muidu näita splash ekraani (vaikimisi nähtav)
+}
+
+// ===== SALDO =====
 function getCredits(){return parseInt(localStorage.getItem('glow_credits')||FREE_CREDITS);}
 function setCredits(n){localStorage.setItem('glow_credits',n);updateSaldo();}
-
 function updateSaldo(){
   const c=getCredits();
   const bar=document.getElementById('saldoBar');
   const count=document.getElementById('saldoCount');
   const sub=document.getElementById('saldoSub');
   const anaBtn=document.getElementById('anaBtn');
+  if(!bar) return;
   if(c>0){
-    if(c<=FREE_CREDITS){
-      bar.className='saldo-bar saldo-free';
-      count.textContent=c+' tasuta analüüsi';
-      count.style.color='';
-      sub.textContent='Prooviperiood · vajuta et osta krediiti';
-    } else {
-      bar.className='saldo-bar';
-      bar.style.borderColor='';
-      count.textContent=c+' analüüsi järel';
-      count.style.color='var(--gold)';
-      sub.textContent='Krediiti on · vajuta et täiendada';
-    }
+    if(c<=FREE_CREDITS){bar.className='saldo-bar saldo-free';count.textContent=c+' tasuta analüüsi';count.style.color='';sub.textContent='Prooviperiood · vajuta et osta krediiti';}
+    else{bar.className='saldo-bar';bar.style.borderColor='';count.textContent=c+' analüüsi järel';count.style.color='var(--gold)';sub.textContent='Krediiti on · vajuta et täiendada';}
     if(stream) anaBtn.disabled=false;
   } else {
-    bar.className='saldo-bar';
-    bar.style.borderColor='rgba(196,115,107,0.3)';
-    count.textContent='0 analüüsi järel';
-    count.style.color='var(--rose)';
-    sub.textContent='Krediit otsas · vajuta et osta';
-    anaBtn.disabled=true;
+    bar.className='saldo-bar';bar.style.borderColor='rgba(196,115,107,0.3)';
+    count.textContent='0 analüüsi järel';count.style.color='var(--rose)';
+    sub.textContent='Krediit otsas · vajuta et osta';anaBtn.disabled=true;
   }
 }
 
@@ -503,44 +788,32 @@ function showCheckout(){
   document.getElementById('orderTitle').textContent=selectedPkg.count+' analüüsi';
   document.getElementById('orderSub').textContent=selectedPkg.unit+'€ analüüsi kohta';
   document.getElementById('orderPrice').textContent='€'+selectedPkg.price;
-  document.getElementById('payBtn').textContent='Maksa — €'+selectedPkg.price;
 }
-function hideCheckout(){
-  document.getElementById('checkoutScreen').classList.remove('show');
-  document.getElementById('pricingScreen').classList.add('show');
-}
-function selectPkg(el,count,price,unit){
-  document.querySelectorAll('.pkg').forEach(p=>p.classList.remove('selected'));
-  el.classList.add('selected');
-  selectedPkg={count,price,unit};
-  document.getElementById('buyBtn').textContent='Jätka maksega — €'+price+' →';
-}
+function hideCheckout(){document.getElementById('checkoutScreen').classList.remove('show');document.getElementById('pricingScreen').classList.add('show');}
+function selectPkg(el,count,price,unit){document.querySelectorAll('.pkg').forEach(p=>p.classList.remove('selected'));el.classList.add('selected');selectedPkg={count,price,unit};document.getElementById('buyBtn').textContent='Jätka maksega — €'+price+' →';}
 
-function rateStar(n){
-  starRating=n;
-  document.querySelectorAll('.star').forEach((s,i)=>s.classList.toggle('active',i<n));
-  document.getElementById('feedbackSubmitBtn').disabled=false;
+// ===== API KEY =====
+function onKeyInput(){
+  const val=document.getElementById('keyInput').value.trim();
+  const valid=val.startsWith('sk-ant');
+  const btn=document.getElementById('saveBtn');
+  btn.disabled=!valid;btn.style.opacity=valid?'1':'.4';
+  document.getElementById('keyError').style.display=(val.length>5&&!valid)?'block':'none';
 }
-
-function submitFeedback(){
-  const text=document.getElementById('feedbackText2').value.trim();
-  console.log('Tagasiside:',starRating,'täht,',text);
-  document.getElementById('feedbackForm').style.display='none';
-  document.getElementById('feedbackSent').classList.add('show');
-}
-
-function init(){
-  if(!localStorage.getItem('glow_credits')) localStorage.setItem('glow_credits',FREE_CREDITS);
-  const saved=localStorage.getItem('glow_api_key');
-  if(saved){showMainApp();}else{document.getElementById('setupScreen').style.display='block';}
+function toggleKeyVis(){const inp=document.getElementById('keyInput');inp.type=inp.type==='password'?'text':'password';}
+function saveKey(){
+  const val=document.getElementById('keyInput').value.trim();
+  if(!val.startsWith('sk-ant')) return;
+  localStorage.setItem('glow_api_key',val);
+  document.getElementById('apiSetupCard').style.display='none';
+  document.getElementById('keyStatus').style.display='block';
+  document.getElementById('saldoBar').style.display='flex';
   updateSaldo();
 }
-function onKeyInput(){const val=document.getElementById('keyInput').value.trim();const valid=val.startsWith('sk-ant');document.getElementById('saveBtn').disabled=!valid;document.getElementById('keyError').style.display=(val.length>5&&!valid)?'block':'none';}
-function toggleKeyVis(){const inp=document.getElementById('keyInput');inp.type=inp.type==='password'?'text':'password';}
-function saveKey(){const val=document.getElementById('keyInput').value.trim();if(!val.startsWith('sk-ant')) return;localStorage.setItem('glow_api_key',val);showMainApp();}
-function showMainApp(){document.getElementById('setupScreen').style.display='none';document.getElementById('keyStatus').style.display='block';document.getElementById('mainApp').style.display='block';updateSaldo();}
-function changeKey(){localStorage.removeItem('glow_api_key');document.getElementById('keyStatus').style.display='none';document.getElementById('mainApp').style.display='none';document.getElementById('keyInput').value='';document.getElementById('saveBtn').disabled=true;document.getElementById('setupScreen').style.display='block';}
+function changeKey(){localStorage.removeItem('glow_api_key');document.getElementById('keyStatus').style.display='none';document.getElementById('saldoBar').style.display='none';document.getElementById('apiSetupCard').style.display='block';}
 function getKey(){return localStorage.getItem('glow_api_key')||'';}
+
+// ===== CAMERA & ANALYZE =====
 function setDot(state,msg){const d=document.getElementById('dot');d.className='dot'+(state!=='idle'?' '+state:'');document.getElementById('smsg').textContent=msg;}
 function setMode(m){mode=m;document.querySelectorAll('.mode').forEach(b=>b.classList.remove('active'));document.querySelector('.mode.m-'+m).classList.add('active');document.getElementById('storeTip').classList.toggle('show',m==='stiil');document.getElementById('disc').classList.toggle('show',m==='nahk');document.getElementById('resLbl').textContent=M[m].lbl;document.getElementById('resEmpty').style.display='block';document.getElementById('resultWrap').classList.remove('on');document.getElementById('shareCard').classList.remove('on');}
 async function startCam(){
@@ -550,7 +823,7 @@ async function startCam(){
 }
 function capture(){canvas.width=video.videoWidth||640;canvas.height=video.videoHeight||480;const ctx=canvas.getContext('2d');ctx.translate(canvas.width,0);ctx.scale(-1,1);ctx.drawImage(video,0,0);return canvas.toDataURL('image/jpeg',0.85);}
 async function analyze(){
-  const key=getKey();if(!key){changeKey();return;}
+  const key=getKey();if(!key){document.getElementById('apiSetupCard').style.display='block';return;}
   if(!stream){document.getElementById('err').textContent='Ava kõigepealt kaamera!';return;}
   const credits=getCredits();if(credits<=0){showPricing();return;}
   const m=M[mode];
@@ -563,12 +836,9 @@ async function analyze(){
     const data=await res.json();if(data.error) throw new Error(data.error.message);
     const raw=data.content.map(b=>b.text||'').join('');
     const parsed=JSON.parse(raw.replace(/```json|```/g,'').trim());
-    lastFb=parsed.feedback;lastScores=parsed.scores||{};
-    setCredits(credits-1);
+    lastFb=parsed.feedback;lastScores=parsed.scores||{};setCredits(credits-1);
     document.getElementById('load').classList.remove('on');document.getElementById('scan').classList.remove('on');
-    renderResult(parsed,m.bar,dataUrl);
-    speak(parsed.feedback+(parsed.tip?' Soovitus: '+parsed.tip:''));
-    setDot('live','Analüüs valmis ✦');
+    renderResult(parsed,m.bar,dataUrl);speak(parsed.feedback+(parsed.tip?' Soovitus: '+parsed.tip:''));setDot('live','Analüüs valmis ✦');
   }catch(e){document.getElementById('load').classList.remove('on');document.getElementById('scan').classList.remove('on');document.getElementById('err').textContent='Viga: '+e.message;setDot('idle','Viga');}
   document.getElementById('anaBtn').disabled=false;updateSaldo();
 }
@@ -591,10 +861,13 @@ function renderResult(parsed,barClass,photoUrl){
 }
 function speak(text){if(!('speechSynthesis' in window)) return;window.speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='et-EE';u.rate=0.95;u.onstart=()=>{document.getElementById('wave').classList.add('on');setDot('live','Räägin...');};u.onend=()=>{document.getElementById('wave').classList.remove('on');setDot('live','Analüüs valmis ✦');};window.speechSynthesis.speak(u);}
 function toggleAuto(){autoOn=!autoOn;const btn=document.getElementById('autoBtn');if(autoOn){btn.textContent='⬛ Peata';btn.classList.add('red');analyze();autoT=setInterval(analyze,25000);}else{btn.textContent='Auto';btn.classList.remove('red');clearInterval(autoT);}}
-function shareIG(){if(navigator.share){navigator.share({title:'GLÓW · AI Analüüs',text:lastFb+'\n\n✦ GLÓW AI\n#GLOW #AI #Stiil',url:window.location.href}).catch(()=>{});}else{alert('Ava Instagram → Lisa postitus → vali pilt galeriist');}}
+function rateStar(n){starRating=n;document.querySelectorAll('.star').forEach((s,i)=>s.classList.toggle('active',i<n));document.getElementById('feedbackSubmitBtn').disabled=false;}
+function submitFeedback(){console.log('Tagasiside:',starRating,document.getElementById('feedbackText2').value);document.getElementById('feedbackForm').style.display='none';document.getElementById('feedbackSent').classList.add('show');}
+function shareIG(){if(navigator.share){navigator.share({title:'GLÓW',text:lastFb+'\n\n✦ GLÓW AI\n#GLOW #AI #Stiil',url:window.location.href}).catch(()=>{});}else{alert('Ava Instagram → Lisa postitus → vali pilt galeriist');}}
 function shareFB(){const text=encodeURIComponent('✦ GLÓW\n\n'+lastFb+'\n\n'+Object.entries(lastScores).map(([l,v])=>l+': '+v+'/10').join(' · '));window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(window.location.href)+'&quote='+text,'_blank');}
 function shareX(){const text=encodeURIComponent('✦ GLÓW AI\n\n'+lastFb.substring(0,200)+'\n\n'+Object.entries(lastScores).map(([l,v])=>l+': '+v+'/10').join(' · ')+'\n\n#GLOW #AI');window.open('https://twitter.com/intent/tweet?text='+text+'&url='+encodeURIComponent(window.location.href),'_blank');}
 function shareCopy(){const text='✦ GLÓW AI\n\n'+lastFb+'\n\n'+Object.entries(lastScores).map(([l,v])=>l+': '+v+'/10').join(' · ')+'\n\n'+window.location.href;if(navigator.clipboard){navigator.clipboard.writeText(text).then(()=>alert('✓ Kopeeritud!'));}else{const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);alert('✓ Kopeeritud!');}}
+
 init();
 </script>
 </body>
