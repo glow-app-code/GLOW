@@ -134,14 +134,19 @@ header{text-align:center;padding:24px 0 32px;position:relative;animation:fadeUp 
 .micon{font-size:22px;margin-bottom:6px}
 .mname{font-family:'Cormorant Garamond',serif;font-size:13px;color:var(--cream);transition:color .25s}
 .mdesc{font-size:8px;color:var(--dim);margin-top:3px;line-height:1.4}
-.pro-submodes{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:16px;display:none}
-.pro-submodes.show{display:grid}
-.submode{border:1px solid rgba(201,169,110,0.2);border-radius:3px;background:rgba(201,169,110,0.04);padding:12px 6px;cursor:pointer;text-align:center;transition:all .2s}
-.submode.active{border-color:var(--gold);background:rgba(201,169,110,0.12)}
-.submode.active .submode-name{color:var(--gold)}
-.submode-icon{font-size:18px;margin-bottom:4px}
-.submode-name{font-family:'Cormorant Garamond',serif;font-size:12px;color:var(--dim);transition:color .2s}
-.submode-desc{font-size:7px;color:rgba(240,230,211,0.3);margin-top:2px;line-height:1.3}
+
+/* PRO PROTSEDUURI VALIK */
+.pro-procedure-select{display:none;margin-bottom:16px;animation:fadeUp .4s ease both}
+.pro-procedure-select.show{display:block}
+.pro-procedure-title{font-size:9px;letter-spacing:.4em;color:var(--gold);text-transform:uppercase;margin-bottom:12px}
+.procedure-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.proc-btn{border:1px solid rgba(201,169,110,0.2);border-radius:3px;background:rgba(201,169,110,0.04);padding:12px 8px;cursor:pointer;text-align:center;transition:all .2s;position:relative}
+.proc-btn:hover{border-color:rgba(201,169,110,0.5);background:rgba(201,169,110,0.1)}
+.proc-btn.active{border-color:var(--gold);background:rgba(201,169,110,0.15)}
+.proc-btn.active .proc-name{color:var(--gold)}
+.proc-icon{font-size:18px;margin-bottom:4px}
+.proc-name{font-family:'Cormorant Garamond',serif;font-size:12px;color:var(--dim);transition:color .2s;line-height:1.3}
+
 .disclaimer{border:1px solid rgba(122,158,142,0.3);border-radius:3px;background:rgba(122,158,142,0.07);padding:14px;margin-bottom:16px;font-size:10px;color:rgba(122,158,142,0.9);line-height:1.7;display:none}
 .disclaimer.show{display:block}
 .store-tip{border:1px solid rgba(155,143,181,0.3);border-radius:3px;background:rgba(155,143,181,0.07);padding:14px;margin-bottom:16px;font-size:10px;color:rgba(155,143,181,0.9);line-height:1.8;display:none}
@@ -215,20 +220,12 @@ header{text-align:center;padding:24px 0 32px;position:relative;animation:fadeUp 
 .score-circle.c2 .score-circle-fill{stroke:url(#grad2)}
 .score-circle.c3 .score-circle-fill{stroke:url(#grad3)}
 .score-circle.c4 .score-circle-fill{stroke:url(#grad4)}
-.score-num{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--cream)}
+.score-num{position:absolute;inset:0;display:flex;align-items:center;justify-content:justify;font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--cream);align-items:center;justify-content:center}
 .tip-card{padding:14px 16px;border-radius:3px;background:rgba(201,169,110,0.08);border:1px solid rgba(201,169,110,0.25);margin-bottom:16px}
 .tip-label{font-size:8px;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;opacity:.8}
 .tip-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;color:var(--gold);line-height:1.7}
-.products-card{border:1px solid rgba(201,169,110,0.3);border-radius:3px;background:rgba(201,169,110,0.05);padding:16px;margin-bottom:16px;display:none}
-.products-card.on{display:block}
-.products-card .lbl{color:var(--gold)}
-.product-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.05)}
-.product-item:last-child{border-bottom:none;padding-bottom:0}
-.product-category{font-size:8px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;margin-bottom:4px;opacity:.8}
-.product-name{font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--cream)}
-.product-brand{font-size:9px;color:var(--dim);margin-top:2px}
-.product-reason{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:rgba(240,230,211,0.6);margin-top:4px;line-height:1.5}
-.product-icon{font-size:20px;flex-shrink:0;margin-top:2px}
+
+/* PROTSEDUURI JUHEND */
 .protocol-card{border:1px solid rgba(201,169,110,0.25);border-radius:3px;background:rgba(0,0,0,0.2);padding:16px;margin-bottom:16px;display:none}
 .protocol-card.on{display:block}
 .protocol-card .lbl{color:var(--gold)}
@@ -237,6 +234,23 @@ header{text-align:center;padding:24px 0 32px;position:relative;animation:fadeUp 
 .proto-num{width:22px;height:22px;border-radius:50%;border:1px solid var(--gold);color:var(--gold);font-size:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
 .proto-text{font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--cream);line-height:1.6}
 .proto-text strong{color:var(--gold)}
+
+/* TOOTEKAARDID */
+.products-section{margin-bottom:16px;display:none}
+.products-section.on{display:block}
+.products-section-title{font-size:9px;letter-spacing:.4em;color:var(--gold);text-transform:uppercase;margin-bottom:12px;padding:0 2px}
+.product-card{border:1px solid rgba(201,169,110,0.2);border-radius:3px;background:rgba(201,169,110,0.04);padding:12px 14px;margin-bottom:8px}
+.product-card:last-child{margin-bottom:0}
+.product-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px}
+.product-left{}
+.product-category{font-size:7px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;margin-bottom:3px;opacity:.8}
+.product-name{font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--cream);line-height:1.3}
+.product-brand{font-size:9px;color:var(--dim);margin-top:2px}
+.product-price{font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--gold);font-weight:600;white-space:nowrap;margin-left:8px}
+.product-reason{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:rgba(240,230,211,0.6);line-height:1.5;margin-bottom:8px}
+.product-link{display:inline-block;font-size:8px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;text-decoration:none;border:1px solid rgba(201,169,110,0.3);padding:4px 10px;border-radius:2px;transition:all .2s}
+.product-link:hover{background:rgba(201,169,110,0.1)}
+
 .saldo-bar{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:rgba(201,169,110,0.08);border:1px solid rgba(201,169,110,0.2);border-radius:3px;margin-bottom:16px;cursor:pointer;transition:all .2s}
 .saldo-bar:hover{background:rgba(201,169,110,0.14)}
 .saldo-left{display:flex;align-items:center;gap:8px}
@@ -362,53 +376,17 @@ canvas{display:none}
     <div class="terms-divider"></div>
   </div>
   <div class="terms-scroll">
-    <div class="terms-section">
-      <div class="terms-section-title">1. Teenuse kirjeldus</div>
-      <p>GLÓW on tehisintellektil põhinev ilu- ja stiilianalüüsi rakendus, mis kasutab kaamerat reaalajas analüüsi tegemiseks.</p>
-    </div>
-    <div class="terms-section">
-      <div class="terms-section-title">2. Privaatsus ja andmete töötlemine</div>
-      <ul>
-        <li>Kaamera pilte töödeldakse ainult analüüsi eesmärgil</li>
-        <li>Pilte ei salvestata meie serveritesse</li>
-        <li>Analüüs toimub reaalajas ja pilt kustutatakse kohe pärast vastuse saamist</li>
-        <li>Pildid edastatakse krüpteeritult Anthropic AI serveritele analüüsimiseks</li>
-      </ul>
-    </div>
-    <div class="terms-section">
-      <div class="terms-section-title">3. GDPR ja isikuandmed</div>
-      <ul>
-        <li>Näopilte loetakse biomeetrilisteks andmeteks</li>
-        <li>Kasutad rakendust vabatahtlikult ja annad sellega nõusoleku</li>
-        <li>Sul on õigus kasutamine igal ajal lõpetada</li>
-        <li>Rakendus ei tuvasta ega salvesta isiku identiteeti</li>
-      </ul>
-    </div>
-    <div class="terms-section">
-      <div class="terms-section-title">4. Analüüsi täpsus ja vastutus</div>
-      <ul>
-        <li>Naha analüüs ei asenda dermatoloogi ega arsti vastuvõttu</li>
-        <li>Meigi ja stiilisoovitused on subjektiivsed ning tuginevad üldistele trendidele</li>
-        <li>GLÓW ei vastuta analüüsi põhjal tehtud otsuste eest</li>
-      </ul>
-    </div>
-    <div class="terms-section">
-      <div class="terms-section-title">5. Kasutaja vanus</div>
-      <p>GLÓW on mõeldud kasutajatele vanuses 16 aastat ja vanemad.</p>
-    </div>
-    <div class="terms-section">
-      <div class="terms-section-title">6. Intellektuaalne omand</div>
-      <p>Kõik GLÓW rakenduse sisu, kujundus ja kood on kaitstud autoriõigusega.</p>
-    </div>
-    <div class="terms-section">
-      <div class="terms-section-title">7. Kontakt</div>
-      <p>Küsimuste korral võta ühendust: <strong style="color:var(--gold)">info@glow4me.ee</strong></p>
-    </div>
+    <div class="terms-section"><div class="terms-section-title">1. Teenuse kirjeldus</div><p>GLÓW on tehisintellektil põhinev ilu- ja stiilianalüüsi rakendus, mis kasutab kaamerat reaalajas analüüsi tegemiseks.</p></div>
+    <div class="terms-section"><div class="terms-section-title">2. Privaatsus</div><ul><li>Kaamera pilte töödeldakse ainult analüüsi eesmärgil</li><li>Pilte ei salvestata meie serveritesse</li><li>Pildid kustutatakse kohe pärast analüüsi</li><li>Edastatakse krüpteeritult Anthropic AI serveritele</li></ul></div>
+    <div class="terms-section"><div class="terms-section-title">3. GDPR</div><ul><li>Näopilte loetakse biomeetrilisteks andmeteks</li><li>Kasutad vabatahtlikult ja annad sellega nõusoleku</li><li>Sul on õigus kasutamine igal ajal lõpetada</li><li>Rakendus ei salvesta isiku identiteeti</li></ul></div>
+    <div class="terms-section"><div class="terms-section-title">4. Vastutus</div><ul><li>Analüüs ei asenda arsti ega dermatoloogi vastuvõttu</li><li>Soovitused on informatiivsed</li><li>GLÓW ei vastuta analüüsi põhjal tehtud otsuste eest</li></ul></div>
+    <div class="terms-section"><div class="terms-section-title">5. Vanus</div><p>GLÓW on mõeldud kasutajatele vanuses 16 aastat ja vanemad.</p></div>
+    <div class="terms-section"><div class="terms-section-title">6. Kontakt</div><p><strong style="color:var(--gold)">info@glow4me.ee</strong></p></div>
   </div>
   <div class="terms-footer">
     <div class="terms-agree-wrap">
       <div class="terms-checkbox" id="termsCheckbox" onclick="toggleTerms()"><span class="terms-checkbox-icon">✓</span></div>
-      <div class="terms-agree-text">Olen lugenud ja nõustun <strong>GLÓW kasutustingimuste</strong> ning <strong>privaatsuspoliitikaga</strong>. Annan nõusoleku kaamera kasutamiseks analüüsi eesmärgil.</div>
+      <div class="terms-agree-text">Olen lugenud ja nõustun <strong>GLÓW kasutustingimuste</strong> ning <strong>privaatsuspoliitikaga</strong>. Annan nõusoleku kaamera kasutamiseks.</div>
     </div>
     <button class="terms-confirm-btn" id="termsConfirmBtn" onclick="startCountdown()" disabled>Nõustun ja alustan →</button>
   </div>
@@ -520,26 +498,15 @@ canvas{display:none}
       <div class="mdesc">Professionaalne abiline</div>
     </div>
   </div>
-  <div class="pro-submodes show" id="proSubmodes">
-    <div class="submode active" onclick="setSubmode('pro-nahk')">
-      <div class="submode-icon">🔬</div>
-      <div class="submode-name">Nahk</div>
-      <div class="submode-desc">Naha analüüs + protseduur</div>
-    </div>
-    <div class="submode" onclick="setSubmode('pro-kulmud')">
-      <div class="submode-icon">✏️</div>
-      <div class="submode-name">Kulmud</div>
-      <div class="submode-desc">Kuju + modelleerimine</div>
-    </div>
-    <div class="submode" onclick="setSubmode('pro-meik')">
-      <div class="submode-icon">💄</div>
-      <div class="submode-name">Meik</div>
-      <div class="submode-desc">Professionaalne meigi analüüs</div>
-    </div>
+
+  <!-- PROTSEDUURI VALIK -->
+  <div class="pro-procedure-select show" id="proProcedureSelect">
+    <div class="pro-procedure-title">Vali protseduur</div>
+    <div class="procedure-grid" id="procedureGrid"></div>
   </div>
 </div>
 
-<div class="pro-tip" id="proTip"><strong id="proTipText">🔬 Suuna kaamera kliendi näole — AI analüüsib naha seisundit ja soovitab protseduuri ning konkreetseid tooteid.</strong></div>
+<div class="pro-tip" id="proTip"><strong id="proTipText">✦ Vali protseduur ja suuna kaamera kliendi näole — AI analüüsib ja koostab täieliku protseduuri plaani koos depile.ee toodetega.</strong></div>
 <div class="store-tip" id="storeTip"><strong>👗 Stiili analüüsiks:</strong><br>Proovi riie selga ja pildista ennast. AI hindab sobivust ja trendi!</div>
 <div class="disclaimer" id="disc"><strong style="color:#7a9e8e">Oluline:</strong> See analüüs ei asenda arsti vastuvõttu.</div>
 
@@ -547,7 +514,7 @@ canvas{display:none}
   <div class="lbl" id="cameraLbl">Kaamera</div>
   <div class="cam-frame">
     <video id="vid" autoplay playsinline muted></video>
-    <div class="cam-ph" id="camph"><div style="font-size:30px;opacity:.4">✦</div><p id="camPhText">Suuna kaamera kliendi näole</p></div>
+    <div class="cam-ph" id="camph"><div style="font-size:30px;opacity:.4">✦</div><p id="camPhText">Ava kaamera et alustada</p></div>
     <div class="corner tl"></div><div class="corner br"></div>
     <div class="scanline" id="scan"></div>
   </div>
@@ -565,26 +532,31 @@ canvas{display:none}
 </div>
 
 <div class="protocol-card" id="protocolCard">
-  <div class="lbl">✦ Protseduuri plaan</div>
+  <div class="lbl">✦ Protseduuri juhend</div>
   <div id="protocolSteps"></div>
 </div>
 
-<div class="products-card" id="productsCard">
-  <div class="lbl">🛍 Tootesoovitused</div>
-  <div id="productsList"></div>
+<div class="products-section" id="proProductsSection">
+  <div class="products-section-title">🛍 Protseduuri tooted · depile.ee</div>
+  <div id="proProductsList"></div>
+</div>
+
+<div class="products-section" id="homeProductsSection">
+  <div class="products-section-title">🏠 Kodune järelhooldus · depile.ee</div>
+  <div id="homeProductsList"></div>
 </div>
 
 <div class="card" id="resultCard">
   <div class="lbl" id="resLbl">Tulemus</div>
   <div class="res-inner">
-    <div class="res-empty" id="resEmpty">Ava kaamera ja vajuta Analüüsi</div>
+    <div class="res-empty" id="resEmpty">Vali protseduur, ava kaamera ja vajuta Analüüsi</div>
     <div class="loading" id="load"><div class="loading-dots"><span></span><span></span><span></span></div><div class="loading-text" id="loadingText">Analüüsin...</div></div>
     <div class="result-wrap" id="resultWrap">
       <div class="verdict-card" id="verdictCard"><span class="verdict-icon" id="verdictIcon"></span><div class="verdict-text" id="verdictText"></div><div class="verdict-sub" id="verdictSub"></div></div>
       <div class="feedback-text" id="feedbackText"></div>
       <div class="details-grid" id="detailsGrid"></div>
       <div class="scores-row" id="scoresRow"></div>
-      <div class="tip-card" id="tipCard" style="display:none"><div class="tip-label">✦ Soovitus</div><div class="tip-text" id="tipText"></div></div>
+      <div class="tip-card" id="tipCard" style="display:none"><div class="tip-label">✦ Kosmeetiku nõuanne</div><div class="tip-text" id="tipText"></div></div>
     </div>
   </div>
 </div>
@@ -628,18 +600,171 @@ const VERDICT_CONFIG={yes:{icon:'✨',sub:'Suurepärane'},maybe:{icon:'🤔',sub
 const PACKAGES=[{count:'10',price:'0.99',unit:'0.10'},{count:'50',price:'4.50',unit:'0.09'},{count:'100',price:'7.99',unit:'0.08'},{count:'200',price:'12.99',unit:'0.06'}];
 const FREE_CREDITS=3;
 
+// DEPILE.EE BRÄNDID
+const DEPILE_BRANDS = `
+AINULT depile.ee tooted! Kasuta AINULT neid brände:
+- ANESI (näohooldus: Aqua Vital, Celestial, Cellular 3, Dermo Controle, Harmonie, Haute Protection, Infini Jeunesse, Luminosity, Silhouette sarjad)
+- BDR (professionaalne nahahooldus)
+- DERMIA (nahahooldus, seerumid)
+- CHRISTIAN BRETON (näohooldus)
+- PHYTOMER (merekosmeetika)
+- DEPILÉVE (epilatsioon, vahatamine)
+- ALLPRESAN (jalahooldus)
+- ALESSANDRO (küüned, kätehooldus)
+- ALFAPARF (juuksehooldus)
+- PINO (massaaž)
+Ära kasuta KUNAGI teisi brände! Kõik tooted peavad olema depile.ee-lt.
+`;
+
+// PROTSEDUURID
+const PROCEDURES = [
+  {id:'nahooldus', icon:'✨', name:'Näopuhastus\nja hooldus', sys_key:'nahooldus'},
+  {id:'niisutus', icon:'💧', name:'Niisutus-\nhooldus', sys_key:'niisutus'},
+  {id:'vananemine', icon:'🌿', name:'Vananemis-\nvastane', sys_key:'vananemine'},
+  {id:'akne', icon:'🎯', name:'Akne-\nhooldus', sys_key:'akne'},
+  {id:'pigment', icon:'🌟', name:'Pigmentsatsiooni-\nravi', sys_key:'pigment'},
+  {id:'koorimine', icon:'✨', name:'Keemiline\nkoorimine', sys_key:'koorimine'},
+  {id:'kulmud', icon:'✏️', name:'Kulmude\nmodelleerimine', sys_key:'kulmud'},
+  {id:'ripsmed', icon:'👁', name:'Ripsmete ja\nkulmude värvimine', sys_key:'ripsmed'},
+  {id:'massaaz', icon:'🤲', name:'Näo-\nmassaaž', sys_key:'massaaz'},
+  {id:'depilatsioon', icon:'🌸', name:'Depilatsioon\nja vahatamine', sys_key:'depilatsioon'},
+  {id:'kehahooldus', icon:'💆', name:'Keha-\nhooldus', sys_key:'kehahooldus'},
+  {id:'jalahooldus', icon:'🦶', name:'Jala-\nhooldus', sys_key:'jalahooldus'},
+];
+
+const PROCEDURE_PROMPTS = {
+  nahooldus: {
+    lbl:'Näopuhastus ja hooldus',
+    sys:`Sa oled professionaalne kosmeetik. Analüüsi kliendi nahka näopuhastuse ja hoolduse jaoks eesti keeles.
+${DEPILE_BRANDS}
+Vasta AINULT JSON:
+{"verdict":"KERGE HOOLDUS/STANDARDNE HOOLDUS/INTENSIIVNE HOOLDUS","verdict_class":"yes/maybe/no","nahatuup":"Nahatüüp lühidalt","feedback":"3-4 lauset naha seisundist","details":{"Nahatüüp":"2 lauset","Poorid ja puhastuse vajadus":"2 lauset","Niiskustase":"2 lauset","Erivajadused":"2 lauset"},"scores":{"Puhtus":7,"Niiskus":7,"Toon":7,"Üldseisund":7},"protseduur":["Samm 1: Meigieemaldus sobiva vahendiga","Samm 2: Puhastus","Samm 3: Auruteenimine/pooride avamine","Samm 4: Koorimine nahatüübile vastavalt","Samm 5: Mask","Samm 6: Seerum","Samm 7: Niisutus ja lõpetus"],"pro_tooted":[{"kategooria":"Puhastus","nimi":"ANESI toote nimi","bränd":"ANESI","hind":"~XX€","põhjus":"Miks sobib","link":"https://depile.ee/"},{"kategooria":"Mask","nimi":"ANESI toote nimi","bränd":"ANESI","hind":"~XX€","põhjus":"Miks sobib","link":"https://depile.ee/"},{"kategooria":"Niisutus","nimi":"ANESI toote nimi","bränd":"ANESI","hind":"~XX€","põhjus":"Miks sobib","link":"https://depile.ee/"}],"kodu_tooted":[{"kategooria":"Igapäevane puhastus","nimi":"ANESI toote nimi","bränd":"ANESI","hind":"~XX€","põhjus":"Koduseks kasutamiseks","link":"https://depile.ee/"},{"kategooria":"Niisutuskreem","nimi":"ANESI toote nimi","bränd":"ANESI","hind":"~XX€","põhjus":"Järelhoolduseks","link":"https://depile.ee/"}],"tip":"Kõige olulisem soovitus kosmeetikule"}`
+  },
+  niisutus: {
+    lbl:'Niisutushooldus',
+    sys:`Sa oled professionaalne kosmeetik. Analüüsi kliendi naha niiskusvajadust eesti keeles.
+${DEPILE_BRANDS}
+Vasta AINULT JSON:
+{"verdict":"KERGE NIISUTUS/INTENSIIVNE NIISUTUS/SÜGAVNIISUTUS","verdict_class":"yes/maybe/no","nahatuup":"Nahatüüp ja niiskustase","feedback":"3-4 lauset","details":{"Niiskustase":"2 lauset","Dehüdratsiooni tunnused":"2 lauset","Nahatüüp":"2 lauset","Soovituslik hooldus":"2 lauset"},"scores":{"Niiskus":7,"Elastsus":7,"Sära":7,"Üldseisund":7},"protseduur":["Samm 1: Õrn puhastus","Samm 2: Toonik","Samm 3: Hüaluroonhappeseerum","Samm 4: Niisutav mask","Samm 5: Rikkalik niisutuskreem"],"pro_tooted":[{"kategooria":"Niisutav seerum","nimi":"ANESI Aqua Vital toote nimi","bränd":"ANESI","hind":"~XX€","põhjus":"Intensiivne niisutus","link":"https://depile.ee/"},{"kategooria":"Niisutav mask","nimi":"ANESI toote nimi","bränd":"ANESI","hind":"~XX€","põhjus":"Sügavniisutus","link":"https://depile.ee/"}],"kodu_tooted":[{"kategooria":"Igapäevane niisutaja","nimi":"ANESI toote nimi","bränd":"ANESI","hind":"~XX€","põhjus":"Koduseks kasutamiseks","link":"https://depile.ee/"}],"tip":"Peamine niisutussoovitus"}`
+  },
+  vananemine: {
+    lbl:'Vananemisvastane hooldus',
+    sys:`Sa oled professionaalne kosmeetik. Analüüsi kliendi naha vananemise tunnuseid eesti keeles.
+${DEPILE_BRANDS}
+Vasta AINULT JSON:
+{"verdict":"ENNETAV HOOLDUS/AKTIIVNE HOOLDUS/INTENSIIVNE RAVI","verdict_class":"yes/maybe/no","nahatuup":"Nahatüüp ja vananemise aste","feedback":"3-4 lauset","details":{"Kortsud ja peenjooned":"2 lauset","Elastsus":"2 lauset","Nahatoon":"2 lauset","Kollageen ja turgoor":"2 lauset"},"scores":{"Elastsus":7,"Niiskus":7,"Toon":7,"Noorukus":7},"protseduur":["Samm 1: Õrn puhastus","Samm 2: Pinguldav toonik","Samm 3: Kollageenikompleks","Samm 4: Pinguldav mask","Samm 5: Vananemisvastane kreem"],"pro_tooted":[{"kategooria":"Vananemisvastane seerum","nimi":"ANESI Infini Jeunesse toote nimi","bränd":"ANESI","hind":"~XX€","põhjus":"Kortse siluv","link":"https://depile.ee/"},{"kategooria":"Pinguldav mask","nimi":"ANESI toote nimi","bränd":"ANESI","hind":"~XX€","põhjus":"Pinguldav toime","link":"https://depile.ee/"}],"kodu_tooted":[{"kategooria":"Öökreem","nimi":"ANESI Infini Jeunesse toote nimi","bränd":"ANESI","hind":"~XX€","põhjus":"Öine regeneratsioon","link":"https://depile.ee/"}],"tip":"Peamine vananemisvastane soovitus"}`
+  },
+  akne: {
+    lbl:'Aknehooldus',
+    sys:`Sa oled professionaalne kosmeetik. Analüüsi kliendi aknelist nahka eesti keeles.
+${DEPILE_BRANDS}
+Vasta AINULT JSON:
+{"verdict":"KERGE AKNE/MÕÕDUKAS AKNE/RASKE AKNE","verdict_class":"yes/maybe/no","nahatuup":"Nahatüüp ja akne aste","feedback":"3-4 lauset","details":{"Akne tüüp ja raskus":"2 lauset","Pooride seisund":"2 lauset","Naha rasvasus":"2 lauset","Põletikulised piirkonnad":"2 lauset"},"scores":{"Puhtus":7,"Poorid":7,"Rasvasus":7,"Üldseisund":7},"protseduur":["Samm 1: Akneravi puhastus","Samm 2: Sügavpuhastus","Samm 3: Komedoonide eemaldus","Samm 4: Antibakteriaalne mask","Samm 5: Kerge niisutus"],"pro_tooted":[{"kategooria":"Akneravi puhastus","nimi":"ANESI Dermo Controle toote nimi","bränd":"ANESI","hind":"~XX€","põhjus":"Rasuse ja aknelise naha jaoks","link":"https://depile.ee/"},{"kategooria":"Antibakteriaalne mask","nimi":"ANESI toote nimi","bränd":"ANESI","hind":"~XX€","põhjus":"Vähendab põletikku","link":"https://depile.ee/"}],"kodu_tooted":[{"kategooria":"Igapäevane puhastus","nimi":"ANESI Dermo Controle toote nimi","bränd":"ANESI","hind":"~XX€","põhjus":"Akne ennetamiseks","link":"https://depile.ee/"}],"tip":"Peamine akneravi soovitus"}`
+  },
+  pigment: {
+    lbl:'Pigmentatsiooniravi',
+    sys:`Sa oled professionaalne kosmeetik. Analüüsi kliendi naha pigmentatsiooni eesti keeles.
+${DEPILE_BRANDS}
+Vasta AINULT JSON:
+{"verdict":"KERGE PIGMENTATSIOON/MÕÕDUKAS/INTENSIIVNE RAVI VAJALIK","verdict_class":"yes/maybe/no","nahatuup":"Nahatüüp ja pigmentatsiooni aste","feedback":"3-4 lauset","details":{"Pigmentflekkide tüüp":"2 lauset","Paiknemine":"2 lauset","Nahatoon":"2 lauset","Ravi sobivus":"2 lauset"},"scores":{"Tooni ühtlus":7,"Sära":7,"Pigmentatsioon":7,"Üldseisund":7},"protseduur":["Samm 1: Õrn puhastus","Samm 2: Keemiline koorimine (AHA/BHA)","Samm 3: Heledamaks muutev seerum","Samm 4: Heledamaks muutev mask","Samm 5: SPF kaitse"],"pro_tooted":[{"kategooria":"Heledamaks muutev seerum","nimi":"ANESI Luminosity toote nimi","bränd":"ANESI","hind":"~XX€","põhjus":"Pigmentatsiooni vähendamine","link":"https://depile.ee/"},{"kategooria":"Mask","nimi":"ANESI toote nimi","bränd":"ANESI","hind":"~XX€","põhjus":"Nahatooni ühtlustamine","link":"https://depile.ee/"}],"kodu_tooted":[{"kategooria":"Päevakreem SPF-iga","nimi":"ANESI toote nimi","bränd":"ANESI","hind":"~XX€","põhjus":"Pigmentatsiooni ennetamiseks","link":"https://depile.ee/"}],"tip":"Kõige olulisem pigmentatsiooniravi soovitus"}`
+  },
+  koorimine: {
+    lbl:'Keemiline koorimine',
+    sys:`Sa oled professionaalne kosmeetik. Analüüsi kliendi naha sobivust keemiliseks koorimiseks eesti keeles.
+${DEPILE_BRANDS}
+Vasta AINULT JSON:
+{"verdict":"KERGE KOORIMINE/KESKMISE SÜGAVUSEGA/SÜGAV KOORIMINE","verdict_class":"yes/maybe/no","nahatuup":"Nahatüüp ja koorimise sobivus","feedback":"3-4 lauset","details":{"Naha seisund":"2 lauset","Sobiv koorimise tüüp":"2 lauset","Vastunäidustused":"2 lauset","Eeldatav tulemus":"2 lauset"},"scores":{"Koorimise sobivus":7,"Naha tugevus":7,"Niiskus":7,"Üldseisund":7},"protseduur":["Samm 1: Põhjalik puhastus","Samm 2: Naha ettevalmistus","Samm 3: Koorimislahuse kandmine","Samm 4: Neutraliseerimine","Samm 5: Rahustav mask","Samm 6: Intensiivne niisutus ja SPF"],"pro_tooted":[{"kategooria":"Koorimislahus","nimi":"BDR toote nimi","bränd":"BDR","hind":"~XX€","põhjus":"Professionaalne koorimine","link":"https://depile.ee/"},{"kategooria":"Rahustav mask","nimi":"ANESI toote nimi","bränd":"ANESI","hind":"~XX€","põhjus":"Naha rahustamine pärast koorimist","link":"https://depile.ee/"}],"kodu_tooted":[{"kategooria":"Taastav kreem","nimi":"ANESI Haute Protection toote nimi","bränd":"ANESI","hind":"~XX€","põhjus":"Naha taastumine koorimise järel","link":"https://depile.ee/"}],"tip":"Kõige olulisem koorimise järelhoolduse soovitus"}`
+  },
+  kulmud: {
+    lbl:'Kulmude modelleerimine',
+    sys:`Sa oled professionaalne kulmude modelleerimise spetsialist. Analüüsi kliendi kulme põhjalikult eesti keeles.
+${DEPILE_BRANDS}
+Vasta AINULT JSON:
+{"verdict":"IDEAALSED/VAJAB KUJUNDAMIST/VAJAB TÄITMIST","verdict_class":"yes/maybe/no","kulutuup":"Kulmude tüüp lühidalt","feedback":"3-4 lauset","details":{"Kuju ja kaar":"2 lauset","Sümmeetria":"2 lauset","Tihedus ja täidlus":"2 lauset","Sobivus näoga":"2 lauset"},"scores":{"Kuju":7,"Sümmeetria":7,"Tihedus":7,"Üldmulje":7},"protseduur":["Samm 1: Kulmude desinfitseerimine","Samm 2: Kuju märkimine vastavalt näokujule","Samm 3: Üleliigsete karvade eemaldus Depilève vahaga","Samm 4: Peente karvade eemaldus pintsetiga","Samm 5: Kulmude kuju korrigeerimine","Samm 6: Rahustava kreemi kandmine"],"pro_tooted":[{"kategooria":"Vahatamine","nimi":"Depiléve roll-on vaha sensitiivsele nahale","bränd":"DEPILÉVE","hind":"~XX€","põhjus":"Professionaalne kulmude vahatamine","link":"https://depile.ee/"},{"kategooria":"Rahustamine","nimi":"Depiléve järelhooldusõli","bränd":"DEPILÉVE","hind":"~XX€","põhjus":"Naha rahustamine pärast vahatamist","link":"https://depile.ee/"}],"kodu_tooted":[{"kategooria":"Kulmugeel","nimi":"Alessandro kulmugeel","bränd":"ALESSANDRO","hind":"~XX€","põhjus":"Kulmude fikseerimiseks","link":"https://depile.ee/"},{"kategooria":"Kasvuseerum","nimi":"Alessandro kulmude kasvuseerum","bränd":"ALESSANDRO","hind":"~XX€","põhjus":"Kulmude tiheduse suurendamiseks","link":"https://depile.ee/"}],"tip":"Kõige olulisem kulmude modelleerimise soovitus"}`
+  },
+  ripsmed: {
+    lbl:'Ripsmete ja kulmude värvimine',
+    sys:`Sa oled professionaalne kosmeetik. Analüüsi kliendi ripsmeid ja kulme värvimise vajaduse hindamiseks eesti keeles.
+${DEPILE_BRANDS}
+Vasta AINULT JSON:
+{"verdict":"KERGE TOON/KESKMINE TOON/TUMEDA TOONI VAJADUS","verdict_class":"yes/maybe/no","nahatuup":"Kliendi üldine värvitüüp","feedback":"3-4 lauset","details":{"Ripsmete seisund":"2 lauset","Kulmude värvus ja tihedus":"2 lauset","Soovituslik toon":"2 lauset","Vastunäidustused":"2 lauset"},"scores":{"Tihedus":7,"Värvus":7,"Pikkus":7,"Üldmulje":7},"protseduur":["Samm 1: Tundlikkuse test (24h enne)","Samm 2: Piirkonna kaitsmine","Samm 3: Värvaine segamine ja kandmine","Samm 4: Säilitusaeg 10-15 minutit","Samm 5: Eemaldamine ja puhastamine","Samm 6: Toitva seerumi kandmine"],"pro_tooted":[{"kategooria":"Ripsme/kulmu värv","nimi":"Professionaalne ripsmevärv","bränd":"DEPILE sortiment","hind":"~XX€","põhjus":"Professionaalne värvimistulemus","link":"https://depile.ee/"},{"kategooria":"Järelhooldus","nimi":"Toitev ripsmeseerum","bränd":"DEPILE sortiment","hind":"~XX€","põhjus":"Ripsmete tugevdamine","link":"https://depile.ee/"}],"kodu_tooted":[{"kategooria":"Ripsmete toitev seerum","nimi":"Toitev ripsmeseerum","bränd":"DEPILE sortiment","hind":"~XX€","põhjus":"Ripsmete tugevdamine kodus","link":"https://depile.ee/"}],"tip":"Kõige olulisem värvimise soovitus"}`
+  },
+  massaaz: {
+    lbl:'Näomassaaž',
+    sys:`Sa oled professionaalne kosmeetik. Analüüsi kliendi nahka näomassaaži jaoks eesti keeles.
+${DEPILE_BRANDS}
+Vasta AINULT JSON:
+{"verdict":"LÜMFIMASSAAŽ/KLASSIKALINE/PINGULDAV MASSAAŽ","verdict_class":"yes/maybe/no","nahatuup":"Nahatüüp ja massaaži sobivus","feedback":"3-4 lauset","details":{"Naha toonus":"2 lauset","Turse ja lümfiringe":"2 lauset","Lihaspinged":"2 lauset","Sobiv massaaži tüüp":"2 lauset"},"scores":{"Toonus":7,"Elastsus":7,"Vereringe":7,"Üldseisund":7},"protseduur":["Samm 1: Puhastus","Samm 2: Massaaži-õli kandmine","Samm 3: Soojendavad liigutused","Samm 4: Lümfidrenaaž","Samm 5: Pinguldavad liigutused","Samm 6: Lõpetav mask","Samm 7: Niisutus"],"pro_tooted":[{"kategooria":"Massaaži õli","nimi":"PINO massaaži-õli","bränd":"PINO","hind":"~XX€","põhjus":"Professionaalne massaaž","link":"https://depile.ee/"},{"kategooria":"Pinguldav mask","nimi":"ANESI Infini Jeunesse mask","bränd":"ANESI","hind":"~XX€","põhjus":"Massaaži järel pinguldamine","link":"https://depile.ee/"}],"kodu_tooted":[{"kategooria":"Massaaži õli koduseks kasutamiseks","nimi":"PINO massaaži õli","bränd":"PINO","hind":"~XX€","põhjus":"Koduseks massaažiks","link":"https://depile.ee/"}],"tip":"Kõige olulisem massaaži soovitus"}`
+  },
+  depilatsioon: {
+    lbl:'Depilatsioon ja vahatamine',
+    sys:`Sa oled professionaalne kosmeetik. Hinda kliendi naha seisundit depilatsiooni/vahatamise jaoks eesti keeles.
+${DEPILE_BRANDS}
+Vasta AINULT JSON:
+{"verdict":"SOBIB VAHATAMISEKS/NÕUAB ETTEVALMISTUST/EI SOBI PRAEGU","verdict_class":"yes/maybe/no","nahatuup":"Nahatüüp ja karvade tüüp","feedback":"3-4 lauset","details":{"Naha seisund":"2 lauset","Karvade pikkus ja tüüp":"2 lauset","Tundlikkus":"2 lauset","Soovituslik vaha tüüp":"2 lauset"},"scores":{"Naha sobivus":7,"Karvade sobivus":7,"Tundlikkus":7,"Üldseisund":7},"protseduur":["Samm 1: Naha puhastus ja desinfitseerimine","Samm 2: Vaha soojendamine optimaalsele temperatuurile","Samm 3: Naha kuivatamine talgiga","Samm 4: Vaha kandmine karvade kasvusuunas","Samm 5: Eemaldamine vastu karvade kasvusuunda","Samm 6: Rahustava õli kandmine"],"pro_tooted":[{"kategooria":"Kõvavaha","nimi":"Depiléve kõvavaha tundlikule nahale","bränd":"DEPILÉVE","hind":"~XX€","põhjus":"Professionaalne vahatamine","link":"https://depile.ee/"},{"kategooria":"Järelhooldus","nimi":"Depiléve rahustav õli","bränd":"DEPILÉVE","hind":"~XX€","põhjus":"Nahka rahustav pärast vahatamist","link":"https://depile.ee/"}],"kodu_tooted":[{"kategooria":"Järelhoolduskreem","nimi":"Depiléve järelhoolduskreem","bränd":"DEPILÉVE","hind":"~XX€","põhjus":"Kodune järelhooldus","link":"https://depile.ee/"}],"tip":"Kõige olulisem depilatsiooni soovitus"}`
+  },
+  kehahooldus: {
+    lbl:'Kehahooldus',
+    sys:`Sa oled professionaalne kosmeetik. Hinda kliendi kehanahal kehahoolduse jaoks eesti keeles.
+${DEPILE_BRANDS}
+Vasta AINULT JSON:
+{"verdict":"KERGE HOOLDUS/INTENSIIVNE HOOLDUS/ERIKOHTLEMINE VAJALIK","verdict_class":"yes/maybe/no","nahatuup":"Kehanaha tüüp","feedback":"3-4 lauset","details":{"Naha seisund":"2 lauset","Niiskustase":"2 lauset","Erivajadused (tselluliit, venitusarmid)":"2 lauset","Soovituslik hooldus":"2 lauset"},"scores":{"Niiskus":7,"Sära":7,"Tekstuur":7,"Üldseisund":7},"protseduur":["Samm 1: Kehakoorija kandmine","Samm 2: Dušš","Samm 3: Massaaž massaaži-õliga","Samm 4: Kehamask","Samm 5: Rikkalik kehakreem"],"pro_tooted":[{"kategooria":"Kehakoorija","nimi":"PINO kehakoorija","bränd":"PINO","hind":"~XX€","põhjus":"Professionaalne kehahooldus","link":"https://depile.ee/"},{"kategooria":"Massaaži-õli","nimi":"PINO massaaži-õli","bränd":"PINO","hind":"~XX€","põhjus":"Keha niisutamine ja massaaž","link":"https://depile.ee/"}],"kodu_tooted":[{"kategooria":"Kehakreem","nimi":"Kehakreem kuivale nahale","bränd":"DEPILE sortiment","hind":"~XX€","põhjus":"Igapäevane keha niisutamine","link":"https://depile.ee/"}],"tip":"Kõige olulisem kehahoolduse soovitus"}`
+  },
+  jalahooldus: {
+    lbl:'Jalahooldus',
+    sys:`Sa oled professionaalne kosmeetik. Hinda kliendi jalgu jalahoolduse jaoks eesti keeles.
+${DEPILE_BRANDS}
+Vasta AINULT JSON:
+{"verdict":"KERGE HOOLDUS/STANDARDNE PEDIKÜÜR/INTENSIIVNE HOOLDUS","verdict_class":"yes/maybe/no","nahatuup":"Jala naha seisund","feedback":"3-4 lauset","details":{"Nahapaksendid":"2 lauset","Niiskustase":"2 lauset","Küünte seisund":"2 lauset","Erivajadused":"2 lauset"},"scores":{"Puhtus":7,"Niiskus":7,"Küüned":7,"Üldseisund":7},"protseduur":["Samm 1: Jalavann","Samm 2: Nahapaksendite eemaldus","Samm 3: Koorija","Samm 4: Küünte hooldus","Samm 5: Massaaž","Samm 6: Niisutav jalakraam"],"pro_tooted":[{"kategooria":"Jalakreem","nimi":"Allpresan jalakreem lõhenenud jaladele","bränd":"ALLPRESAN","hind":"~XX€","põhjus":"Professionaalne jalahooldus","link":"https://depile.ee/"},{"kategooria":"Nahapaksendite eemaldus","nimi":"Allpresan nahapaksendite eemaldus","bränd":"ALLPRESAN","hind":"~XX€","põhjus":"Nahapaksendite pehmenemiseks","link":"https://depile.ee/"}],"kodu_tooted":[{"kategooria":"Jalakreem koduseks kasutamiseks","nimi":"Allpresan jalakreem","bränd":"ALLPRESAN","hind":"~XX€","põhjus":"Igapäevane jalahooldus","link":"https://depile.ee/"}],"tip":"Kõige olulisem jalahoolduse soovitus"}`
+  }
+};
+
 const M={
   meik:{lbl:'Meigi analüüs',bar:'c1',sys:`Sa oled GLOW meigi ekspert. Analüüsi meiki põhjalikult eesti keeles. Vasta AINULT JSON: {"verdict":"SUUREPÄRANE/HEA/VAJAB PARANDUST","verdict_class":"yes/maybe/no","feedback":"2-3 lauset","details":{"Jumestus":"1-2 lauset","Silmad":"1-2 lauset","Huuled":"1-2 lauset","Kulmud":"1-2 lauset"},"scores":{"Jumestus":7,"Silmameik":7,"Huuled":7,"Üldmulje":7},"tip":"soovitus"}`,prompt:'Analüüsi minu meiki. Vasta ainult JSON.'},
   nahk:{lbl:'Naha analüüs',bar:'c2',sys:`Sa oled GLOW nahahoolduse ekspert. Analüüsi nahka põhjalikult eesti keeles. Vasta AINULT JSON: {"verdict":"TERVE NAHK/VAJAB HOOLDUST/PÖÖRDU SPETSIALISTI POOLE","verdict_class":"yes/maybe/no","feedback":"2-3 lauset","details":{"Niiskus":"1-2 lauset","Nahatoon":"1-2 lauset","Tekstuur":"1-2 lauset","Probleemid":"1-2 lauset"},"scores":{"Niiskus":7,"Toon":7,"Tekstuur":7,"Üldseisund":7},"tip":"soovitus"}`,prompt:'Analüüsi minu nahka. Vasta ainult JSON.'},
   stiil:{lbl:'Stiili analüüs',bar:'c3',sys:`Sa oled GLOW stiiliekspert. Analüüsi riietust eesti keeles. Vasta AINULT JSON: {"verdict":"OSTA KINDLASTI/KAALUDA/JÄTA RIIDEPUULE","verdict_class":"yes/maybe/no","feedback":"2-3 lauset","details":{"Sobivus":"1-2 lauset","Värvid":"1-2 lauset","Trend":"1-2 lauset","Kombineeruvus":"1-2 lauset"},"scores":{"Sobivus":7,"Värvid":7,"Trend":7,"Väärtus":7},"tip":"soovitus"}`,prompt:'Olen riidepoes. Kas peaksin ostma? Vasta ainult JSON.'},
-  'pro-nahk':{lbl:'Naha analüüs · Pro',bar:'c4',sys:`Sa oled kogenud kosmeetik ja nahahoolduse spetsialist. Analüüsi kliendi nahka väga põhjalikult professionaalsel tasemel eesti keeles. Hinda: nahatüüp, poorid, niiskus, toon, tekstuur, pigmentatsioon, akne, rosaatsea, elastsus. Vasta AINULT JSON: {"verdict":"TERVE NAHK/VAJAB HOOLDUST/VAJAB RAVI","verdict_class":"yes/maybe/no","nahatuup":"Nahatüüp lühidalt","feedback":"3-4 lauset professionaalsest hinnangust","details":{"Nahatüüp ja toon":"2 lauset","Poorid ja tekstuur":"2 lauset","Niiskus ja elastsus":"2 lauset","Probleempiirkonnad":"2 lauset"},"scores":{"Niiskus":7,"Tekstuur":7,"Toon":7,"Elastsus":7},"protseduur":["Protseduuri soovitus 1","Protseduuri soovitus 2","Protseduuri soovitus 3"],"tooted":[{"kategooria":"Puhastus","nimi":"Toote nimi","bränd":"La Roche-Posay / Clinique / Vichy / CeraVe","põhjus":"Miks see toode sobib"},{"kategooria":"Seerum","nimi":"Toote nimi","bränd":"Bränd","põhjus":"Põhjus"},{"kategooria":"Niisutus","nimi":"Toote nimi","bränd":"Bränd","põhjus":"Põhjus"}],"tip":"Kõige olulisem professionaalne nõuanne"}`,prompt:'Analüüsi kliendi nahka professionaalselt enne protseduuri. Vasta ainult JSON.'},
-  'pro-kulmud':{lbl:'Kulmude analüüs · Pro',bar:'c4',sys:`Sa oled professionaalne kulmude modelleerimise spetsialist. Analüüsi kliendi kulme väga põhjalikult eesti keeles. Hinda: kulmude kuju, paksus, sümmeetria, tihedus, kasvu suund, sobivus näokujuga. Vasta AINULT JSON: {"verdict":"IDEAALSED KULMUD/VAJAB KUJUNDAMIST/VAJAB TÄITMIST","verdict_class":"yes/maybe/no","kulutuup":"Kulmude tüüp lühidalt","feedback":"3-4 lauset professionaalsest hinnangust","details":{"Kuju ja kaar":"2 lauset","Sümmeetria":"2 lauset","Tihedus ja täidlus":"2 lauset","Sobivus näoga":"2 lauset"},"scores":{"Kuju":7,"Sümmeetria":7,"Tihedus":7,"Üldmulje":7},"modelleerimine":["Modelleerimise samm 1","Modelleerimise samm 2","Modelleerimise samm 3","Modelleerimise samm 4"],"tooted":[{"kategooria":"Kulmupliiats","nimi":"Toote nimi","bränd":"MAC / NYX / Anastasia Beverly Hills / Benefit","põhjus":"Miks see sobib"},{"kategooria":"Kulmugeel","nimi":"Toote nimi","bränd":"Bränd","põhjus":"Põhjus"},{"kategooria":"Kasvuseerum","nimi":"Toote nimi","bränd":"Bränd","põhjus":"Põhjus"}],"tip":"Kõige olulisem soovitus kulmude kujundamiseks"}`,prompt:'Analüüsi kliendi kulme professionaalselt. Vasta ainult JSON.'},
-  'pro-meik':{lbl:'Meigi analüüs · Pro',bar:'c4',sys:`Sa oled professionaalne meigispetsialist. Analüüsi kliendi meiki väga põhjalikult professionaalsel tasemel eesti keeles. Hinda jumestuskreemi toon, kontuuri paigutus, silmameigi tehnika, kulmud, huuled, üldine harmoonia nahatooniga. Vasta AINULT JSON: {"verdict":"SUUREPÄRANE MEIK/HEA MEIK/VAJAB PARANDUST","verdict_class":"yes/maybe/no","meigistiil":"Meigi stiil lühidalt","feedback":"3-4 lauset professionaalsest hinnangust","details":{"Jumestus ja kontuuring":"2 lauset","Silmameik":"2 lauset","Huuled ja kulmud":"2 lauset","Üldine harmoonia":"2 lauset"},"scores":{"Jumestus":7,"Silmad":7,"Huuled":7,"Harmoonia":7},"tehnikad":["Tehnika soovitus 1","Tehnika soovitus 2","Tehnika soovitus 3"],"tooted":[{"kategooria":"Jumestuskreem","nimi":"Toote nimi","bränd":"MAC / Clinique / NARS / Charlotte Tilbury","põhjus":"Miks see sobib"},{"kategooria":"Kontuuring","nimi":"Toote nimi","bränd":"Bränd","põhjus":"Põhjus"},{"kategooria":"Silmameik","nimi":"Toote nimi","bränd":"Bränd","põhjus":"Põhjus"}],"tip":"Kõige olulisem professionaalne meigialane nõuanne"}`,prompt:'Analüüsi kliendi meiki professionaalselt. Vasta ainult JSON.'}
 };
 
-let mode='pro',submode='pro-nahk',stream=null,autoOn=false,autoT=null,lastFb='',lastScores={},selectedPkg=PACKAGES[1],starRating=0,termsAccepted=false;
+let mode='pro', selectedProcedure='nahooldus', stream=null, autoOn=false, autoT=null, lastFb='', lastScores={}, selectedPkg=PACKAGES[1], starRating=0, termsAccepted=false;
 const video=document.getElementById('vid');
 const canvas=document.getElementById('cv');
+
+// Ehita protseduuri grid
+function buildProcedureGrid(){
+  const grid=document.getElementById('procedureGrid');
+  grid.innerHTML='';
+  PROCEDURES.forEach(p=>{
+    const btn=document.createElement('div');
+    btn.className='proc-btn'+(p.id===selectedProcedure?' active':'');
+    btn.innerHTML=`<div class="proc-icon">${p.icon}</div><div class="proc-name">${p.name}</div>`;
+    btn.onclick=()=>selectProcedure(p.id);
+    grid.appendChild(btn);
+  });
+}
+
+function selectProcedure(id){
+  selectedProcedure=id;
+  document.querySelectorAll('.proc-btn').forEach((b,i)=>b.classList.toggle('active',PROCEDURES[i].id===id));
+  const proc=PROCEDURE_PROMPTS[id];
+  if(proc){
+    document.getElementById('resLbl').textContent=proc.lbl;
+    document.getElementById('resEmpty').style.display='block';
+    document.getElementById('resultWrap').classList.remove('on');
+    document.getElementById('protocolCard').classList.remove('on');
+    document.getElementById('proProductsSection').classList.remove('on');
+    document.getElementById('homeProductsSection').classList.remove('on');
+    document.getElementById('shareCard').classList.remove('on');
+    document.getElementById('proTipText').textContent=`✦ ${proc.lbl} valitud — suuna kaamera kliendile ja vajuta Analüüsi`;
+    const camTexts={
+      kulmud:'Suuna kaamera kliendi kulmudele',
+      ripsmed:'Suuna kaamera kliendi ripsmete ja kulmude piirkonnale',
+      depilatsioon:'Suuna kaamera hooldatavale piirkonnale',
+      kehahooldus:'Suuna kaamera kehapiirkonnale',
+      jalahooldus:'Suuna kaamera jalale'
+    };
+    document.getElementById('camPhText').textContent=camTexts[id]||'Suuna kaamera kliendi näole';
+  }
+}
 
 function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));const el=document.getElementById(id);if(el)el.classList.add('active');}
 function showTerms(){showScreen('termsScreen');}
@@ -672,7 +797,9 @@ function initApp(){
   const key=localStorage.getItem('glow_api_key');
   if(key){document.getElementById('keyStatus').style.display='block';document.getElementById('saldoBar').style.display='flex';}
   else{document.getElementById('apiSetupCard').style.display='block';}
-  setMode('pro');updateSaldo();
+  setMode('pro');
+  buildProcedureGrid();
+  updateSaldo();
 }
 
 function init(){
@@ -699,44 +826,18 @@ function setMode(m){
   document.getElementById('storeTip').classList.toggle('show',m==='stiil');
   document.getElementById('disc').classList.toggle('show',m==='nahk');
   document.getElementById('proTip').classList.toggle('show',isPro);
-  document.getElementById('proSubmodes').classList.toggle('show',isPro);
+  document.getElementById('proProcedureSelect').classList.toggle('show',isPro);
   document.getElementById('protocolCard').classList.remove('on');
-  document.getElementById('productsCard').classList.remove('on');
-  document.getElementById('resLbl').textContent=isPro?M[submode].lbl:M[m].lbl;
+  document.getElementById('proProductsSection').classList.remove('on');
+  document.getElementById('homeProductsSection').classList.remove('on');
+  document.getElementById('resLbl').textContent=isPro?(PROCEDURE_PROMPTS[selectedProcedure]?.lbl||'Kosmeetiku analüüs'):M[m].lbl;
   document.getElementById('resEmpty').style.display='block';
   document.getElementById('resultWrap').classList.remove('on');
   document.getElementById('shareCard').classList.remove('on');
-  if(isPro)setSubmode(submode);
+  if(isPro)buildProcedureGrid();
 }
 
-function setSubmode(s){
-  submode=s;
-  document.querySelectorAll('.submode').forEach(b=>b.classList.remove('active'));
-  const submodeMap={'pro-nahk':0,'pro-kulmud':1,'pro-meik':2};
-  const subs=document.querySelectorAll('.submode');
-  if(subs[submodeMap[s]])subs[submodeMap[s]].classList.add('active');
-  document.getElementById('resLbl').textContent=M[s].lbl;
-  document.getElementById('protocolCard').classList.remove('on');
-  document.getElementById('productsCard').classList.remove('on');
-  document.getElementById('resEmpty').style.display='block';
-  document.getElementById('resultWrap').classList.remove('on');
-  document.getElementById('shareCard').classList.remove('on');
-  const tips={
-    'pro-nahk':'🔬 Suuna kaamera kliendi näole — AI analüüsib naha seisundit ja soovitab protseduuri ning konkreetseid tooteid.',
-    'pro-kulmud':'✏️ Suuna kaamera kliendi kulmudele — AI analüüsib kuju, sümmeetriat ja soovitab modelleerimise samme ning tooteid.',
-    'pro-meik':'💄 Suuna kaamera kliendi näole — AI analüüsib meigi kvaliteeti professionaalselt ja soovitab sobivaid tooteid.'
-  };
-  document.getElementById('proTipText').textContent=tips[s]||tips['pro-nahk'];
-  const camTexts={
-    'pro-nahk':'Suuna kaamera kliendi näole',
-    'pro-kulmud':'Suuna kaamera kliendi kulmudele',
-    'pro-meik':'Suuna kaamera kliendi meigile'
-  };
-  document.getElementById('camPhText').textContent=camTexts[s]||camTexts['pro-nahk'];
-  document.getElementById('loadingText').textContent='Analüüsin professionaalselt...';
-}
-
-function showPricing(){document.getElementById('pricingScreen').classList.add('show');document.getElementById('checkoutScreen').classList.remove('show');['assistentWrap','cameraCard','resultCard'].forEach(id=>document.getElementById(id).style.display='none');['shareCard','storeTip','disc','proTip','protocolCard','productsCard'].forEach(id=>document.getElementById(id).classList.remove('on','show'));}
+function showPricing(){document.getElementById('pricingScreen').classList.add('show');document.getElementById('checkoutScreen').classList.remove('show');['assistentWrap','cameraCard','resultCard'].forEach(id=>document.getElementById(id).style.display='none');['shareCard','storeTip','disc','proTip','protocolCard','proProductsSection','homeProductsSection'].forEach(id=>document.getElementById(id).classList.remove('on','show'));}
 function hidePricing(){document.getElementById('pricingScreen').classList.remove('show');['assistentWrap','cameraCard','resultCard'].forEach(id=>document.getElementById(id).style.display='block');if(mode==='stiil')document.getElementById('storeTip').classList.add('show');if(mode==='nahk')document.getElementById('disc').classList.add('show');if(mode==='pro')document.getElementById('proTip').classList.add('show');}
 function showCheckout(){document.getElementById('pricingScreen').classList.remove('show');document.getElementById('checkoutScreen').classList.add('show');document.getElementById('orderTitle').textContent=selectedPkg.count+' analüüsi';document.getElementById('orderSub').textContent=selectedPkg.unit+'€ analüüsi kohta';document.getElementById('orderPrice').textContent='€'+selectedPkg.price;}
 function hideCheckout(){document.getElementById('checkoutScreen').classList.remove('show');document.getElementById('pricingScreen').classList.add('show');}
@@ -760,48 +861,106 @@ async function analyze(){
   const key=getKey();if(!key){document.getElementById('apiSetupCard').style.display='block';return;}
   if(!stream){document.getElementById('err').textContent='Ava kõigepealt kaamera!';return;}
   const credits=getCredits();if(credits<=0){showPricing();return;}
-  const activeMode=mode==='pro'?submode:mode;
-  const m=M[activeMode];
+
+  let sys,prompt,lbl,bar;
+  if(mode==='pro'){
+    const proc=PROCEDURE_PROMPTS[selectedProcedure];
+    if(!proc){document.getElementById('err').textContent='Vali protseduur!';return;}
+    sys=proc.sys;prompt='Analüüsi klienti valitud protseduuri jaoks. Vasta ainult JSON.';lbl=proc.lbl;bar='c4';
+  } else {
+    const m=M[mode];sys=m.sys;prompt=m.prompt;lbl=m.lbl;bar=m.bar;
+  }
+
   document.getElementById('err').textContent='';setDot('thinking','Analüüsin...');
   document.getElementById('scan').classList.add('on');document.getElementById('load').classList.add('on');
-  document.getElementById('resEmpty').style.display='none';document.getElementById('resultWrap').classList.remove('on');document.getElementById('shareCard').classList.remove('on');document.getElementById('protocolCard').classList.remove('on');document.getElementById('productsCard').classList.remove('on');document.getElementById('anaBtn').disabled=true;
+  document.getElementById('resEmpty').style.display='none';document.getElementById('resultWrap').classList.remove('on');
+  document.getElementById('shareCard').classList.remove('on');document.getElementById('protocolCard').classList.remove('on');
+  document.getElementById('proProductsSection').classList.remove('on');document.getElementById('homeProductsSection').classList.remove('on');
+  document.getElementById('anaBtn').disabled=true;document.getElementById('loadingText').textContent='Analüüsin professionaalselt...';
+
   const dataUrl=capture();const b64=dataUrl.split(',')[1];
   try{
-    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-opus-4-5',max_tokens:2000,system:m.sys,messages:[{role:'user',content:[{type:'image',source:{type:'base64',media_type:'image/jpeg',data:b64}},{type:'text',text:m.prompt}]}]})});
+    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-opus-4-5',max_tokens:2500,system:sys,messages:[{role:'user',content:[{type:'image',source:{type:'base64',media_type:'image/jpeg',data:b64}},{type:'text',text:prompt}]}]})});
     const data=await res.json();if(data.error)throw new Error(data.error.message);
     const raw=data.content.map(b=>b.text||'').join('');
     const parsed=JSON.parse(raw.replace(/```json|```/g,'').trim());
     lastFb=parsed.feedback;lastScores=parsed.scores||{};setCredits(credits-1);
     document.getElementById('load').classList.remove('on');document.getElementById('scan').classList.remove('on');
-    renderResult(parsed,m.bar,dataUrl,activeMode);
+    renderResult(parsed,bar,dataUrl,lbl);
     speak(parsed.feedback+(parsed.tip?' Soovitus: '+parsed.tip:''));
     setDot('live','Analüüs valmis ✦');
   }catch(e){document.getElementById('load').classList.remove('on');document.getElementById('scan').classList.remove('on');document.getElementById('err').textContent='Viga: '+e.message;setDot('idle','Viga');}
   document.getElementById('anaBtn').disabled=false;updateSaldo();
 }
 
-function renderResult(parsed,barClass,photoUrl,activeMode){
+function renderProductCards(products, containerId){
+  const container=document.getElementById(containerId);
+  container.innerHTML='';
+  if(!products||!products.length)return;
+  products.forEach(p=>{
+    const card=document.createElement('div');
+    card.className='product-card';
+    card.innerHTML=`
+      <div class="product-header">
+        <div class="product-left">
+          <div class="product-category">${p.kategooria||''}</div>
+          <div class="product-name">${p.nimi||''}</div>
+          <div class="product-brand">${p.bränd||''}</div>
+        </div>
+        <div class="product-price">${p.hind||''}</div>
+      </div>
+      <div class="product-reason">${p.põhjus||''}</div>
+      <a href="${p.link||'https://depile.ee/'}" target="_blank" class="product-link">Vaata depile.ee-s →</a>
+    `;
+    container.appendChild(card);
+  });
+}
+
+function renderResult(parsed,barClass,photoUrl,lbl){
   const vc=parsed.verdict_class||'maybe';const cfg=VERDICT_CONFIG[vc]||VERDICT_CONFIG.maybe;
   document.getElementById('verdictCard').className='verdict-card '+vc;
   document.getElementById('verdictIcon').textContent=cfg.icon;
   document.getElementById('verdictText').textContent=parsed.verdict||'';
   document.getElementById('verdictSub').textContent=cfg.sub;
+
   let feedbackHtml='';
-  const subLabel={'pro-nahk':parsed.nahatuup,'pro-kulmud':parsed.kulutuup,'pro-meik':parsed.meigistiil}[activeMode];
+  const subLabel=parsed.nahatuup||parsed.kulutuup||parsed.meigistiil;
   if(subLabel){feedbackHtml=`<div style="font-size:9px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;margin-bottom:6px;font-family:'DM Mono',monospace">Tüüp</div><div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--gold);margin-bottom:14px;font-style:italic">${subLabel}</div>`;}
   feedbackHtml+=`<p style="font-family:'Cormorant Garamond',serif;font-size:17px;line-height:1.8;color:var(--cream)">${parsed.feedback||''}</p>`;
   document.getElementById('feedbackText').innerHTML=feedbackHtml;
+
   const dg=document.getElementById('detailsGrid');dg.innerHTML='';
   if(parsed.details){Object.entries(parsed.details).forEach(([k,v])=>{const d=document.createElement('div');d.className='detail-item';d.innerHTML='<div class="detail-label">'+k+'</div><div class="detail-value">'+v+'</div>';dg.appendChild(d);});}
+
   const sr=document.getElementById('scoresRow');sr.innerHTML='';
   if(parsed.scores){const r=24,circ=2*Math.PI*r;Object.entries(parsed.scores).forEach(([label,val])=>{const offset=circ*(1-val/10);const id='sc_'+label.replace(/\s/g,'_');const div=document.createElement('div');div.className='score-item';div.innerHTML=`<div class="score-label">${label}</div><div class="score-circle ${barClass}" id="${id}"><svg width="56" height="56" viewBox="0 0 56 56"><circle class="score-circle-bg" cx="28" cy="28" r="${r}"/><circle class="score-circle-fill" cx="28" cy="28" r="${r}" stroke-dasharray="${circ}" stroke-dashoffset="${circ}" id="${id}_fill"/></svg><div class="score-num">${val}</div></div>`;sr.appendChild(div);setTimeout(()=>{const b=document.getElementById(id+'_fill');if(b)b.style.strokeDashoffset=offset;},400);});}
+
   if(parsed.tip){document.getElementById('tipText').textContent=parsed.tip;document.getElementById('tipCard').style.display='block';}else{document.getElementById('tipCard').style.display='none';}
   document.getElementById('resultWrap').classList.add('on');
+
+  // Protseduuri sammud
   const steps=parsed.protseduur||parsed.modelleerimine||parsed.tehnikad;
-  if(steps&&steps.length){const stepsEl=document.getElementById('protocolSteps');stepsEl.innerHTML='';steps.forEach((step,i)=>{const div=document.createElement('div');div.className='proto-step';div.innerHTML=`<div class="proto-num">${i+1}</div><div class="proto-text">${step}</div>`;stepsEl.appendChild(div);});document.getElementById('protocolCard').classList.add('on');}
-  if(parsed.tooted&&parsed.tooted.length){const list=document.getElementById('productsList');list.innerHTML='';parsed.tooted.forEach(p=>{const div=document.createElement('div');div.className='product-item';div.innerHTML=`<div class="product-icon">🛍</div><div><div class="product-category">${p.kategooria}</div><div class="product-name">${p.nimi}</div><div class="product-brand">${p.bränd}</div><div class="product-reason">${p.põhjus}</div></div>`;list.appendChild(div);});document.getElementById('productsCard').classList.add('on');}
+  if(steps&&steps.length){
+    const stepsEl=document.getElementById('protocolSteps');stepsEl.innerHTML='';
+    steps.forEach((step,i)=>{const div=document.createElement('div');div.className='proto-step';div.innerHTML=`<div class="proto-num">${i+1}</div><div class="proto-text">${step}</div>`;stepsEl.appendChild(div);});
+    document.getElementById('protocolCard').classList.add('on');
+  }
+
+  // Protseduuri tooted
+  if(parsed.pro_tooted&&parsed.pro_tooted.length){
+    renderProductCards(parsed.pro_tooted,'proProductsList');
+    document.getElementById('proProductsSection').classList.add('on');
+  }
+
+  // Kodu tooted
+  if(parsed.kodu_tooted&&parsed.kodu_tooted.length){
+    renderProductCards(parsed.kodu_tooted,'homeProductsList');
+    document.getElementById('homeProductsSection').classList.add('on');
+  }
+
+  // Jagamine
   const scores=parsed.scores||{};const scoreHtml=Object.entries(scores).map(([l,v])=>'<div><div class="sp-sv">'+v+'</div><div class="sp-sl">'+l+'</div></div>').join('');
-  document.getElementById('sharePrev').innerHTML='<img class="sp-photo" src="'+photoUrl+'">'+'<div class="sp-logo">GL<em>O</em>W</div>'+'<div class="sp-mode">'+(parsed.verdict||M[activeMode].lbl)+'</div>'+'<div class="sp-text">'+parsed.feedback+'</div>'+(parsed.tip?'<div class="sp-tip">✦ '+parsed.tip+'</div>':'')+' <div class="sp-scores">'+scoreHtml+'</div>';
+  document.getElementById('sharePrev').innerHTML='<img class="sp-photo" src="'+photoUrl+'">'+'<div class="sp-logo">GL<em>O</em>W</div>'+'<div class="sp-mode">'+(parsed.verdict||lbl)+'</div>'+'<div class="sp-text">'+parsed.feedback+'</div>'+(parsed.tip?'<div class="sp-tip">✦ '+parsed.tip+'</div>':'')+' <div class="sp-scores">'+scoreHtml+'</div>';
   document.getElementById('shareCard').classList.add('on');
 }
 
