@@ -119,8 +119,6 @@ header{text-align:center;padding:24px 0 32px;position:relative;animation:fadeUp 
 .key-dot{width:6px;height:6px;border-radius:50%;background:#7ec98a;box-shadow:0 0 8px rgba(126,201,138,.6)}
 .key-status-text{font-size:10px;color:var(--sage);letter-spacing:.1em}
 .key-change{font-size:9px;cursor:pointer;text-decoration:underline;text-underline-offset:3px;background:none;border:none;color:var(--dim)}
-
-/* MAIN MODES */
 .modes{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
 .mode{border:1px solid rgba(240,230,211,0.1);border-radius:3px;background:rgba(0,0,0,0.25);padding:14px 6px;cursor:pointer;text-align:center;transition:all .25s;position:relative;overflow:hidden}
 .mode::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .25s}
@@ -136,17 +134,14 @@ header{text-align:center;padding:24px 0 32px;position:relative;animation:fadeUp 
 .micon{font-size:22px;margin-bottom:6px}
 .mname{font-family:'Cormorant Garamond',serif;font-size:13px;color:var(--cream);transition:color .25s}
 .mdesc{font-size:8px;color:var(--dim);margin-top:3px;line-height:1.4}
-
-/* PRO SUBMODES */
 .pro-submodes{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:16px;display:none}
 .pro-submodes.show{display:grid}
-.submode{border:1px solid rgba(201,169,110,0.2);border-radius:3px;background:rgba(201,169,110,0.04);padding:12px 6px;cursor:pointer;text-align:center;transition:all .2s;position:relative}
+.submode{border:1px solid rgba(201,169,110,0.2);border-radius:3px;background:rgba(201,169,110,0.04);padding:12px 6px;cursor:pointer;text-align:center;transition:all .2s}
 .submode.active{border-color:var(--gold);background:rgba(201,169,110,0.12)}
 .submode.active .submode-name{color:var(--gold)}
 .submode-icon{font-size:18px;margin-bottom:4px}
 .submode-name{font-family:'Cormorant Garamond',serif;font-size:12px;color:var(--dim);transition:color .2s}
 .submode-desc{font-size:7px;color:rgba(240,230,211,0.3);margin-top:2px;line-height:1.3}
-
 .disclaimer{border:1px solid rgba(122,158,142,0.3);border-radius:3px;background:rgba(122,158,142,0.07);padding:14px;margin-bottom:16px;font-size:10px;color:rgba(122,158,142,0.9);line-height:1.7;display:none}
 .disclaimer.show{display:block}
 .store-tip{border:1px solid rgba(155,143,181,0.3);border-radius:3px;background:rgba(155,143,181,0.07);padding:14px;margin-bottom:16px;font-size:10px;color:rgba(155,143,181,0.9);line-height:1.8;display:none}
@@ -155,7 +150,6 @@ header{text-align:center;padding:24px 0 32px;position:relative;animation:fadeUp 
 .pro-tip{border:1px solid rgba(201,169,110,0.3);border-radius:3px;background:rgba(201,169,110,0.06);padding:14px;margin-bottom:16px;font-size:10px;color:rgba(201,169,110,0.9);line-height:1.8;display:none}
 .pro-tip.show{display:block}
 .pro-tip strong{color:var(--gold)}
-
 .cam-frame{position:relative;border-radius:2px;overflow:hidden;background:#050303;aspect-ratio:3/4;border:1px solid rgba(255,255,255,0.06)}
 #vid{width:100%;height:100%;object-fit:cover;display:block;transform:scaleX(-1)}
 .cam-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:rgba(14,12,11,0.9)}
@@ -225,8 +219,6 @@ header{text-align:center;padding:24px 0 32px;position:relative;animation:fadeUp 
 .tip-card{padding:14px 16px;border-radius:3px;background:rgba(201,169,110,0.08);border:1px solid rgba(201,169,110,0.25);margin-bottom:16px}
 .tip-label{font-size:8px;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;opacity:.8}
 .tip-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;color:var(--gold);line-height:1.7}
-
-/* TOOTED KAART */
 .products-card{border:1px solid rgba(201,169,110,0.3);border-radius:3px;background:rgba(201,169,110,0.05);padding:16px;margin-bottom:16px;display:none}
 .products-card.on{display:block}
 .products-card .lbl{color:var(--gold)}
@@ -237,8 +229,6 @@ header{text-align:center;padding:24px 0 32px;position:relative;animation:fadeUp 
 .product-brand{font-size:9px;color:var(--dim);margin-top:2px}
 .product-reason{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:rgba(240,230,211,0.6);margin-top:4px;line-height:1.5}
 .product-icon{font-size:20px;flex-shrink:0;margin-top:2px}
-
-/* PROTSEDUUR KAART */
 .protocol-card{border:1px solid rgba(201,169,110,0.25);border-radius:3px;background:rgba(0,0,0,0.2);padding:16px;margin-bottom:16px;display:none}
 .protocol-card.on{display:block}
 .protocol-card .lbl{color:var(--gold)}
@@ -247,7 +237,6 @@ header{text-align:center;padding:24px 0 32px;position:relative;animation:fadeUp 
 .proto-num{width:22px;height:22px;border-radius:50%;border:1px solid var(--gold);color:var(--gold);font-size:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
 .proto-text{font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--cream);line-height:1.6}
 .proto-text strong{color:var(--gold)}
-
 .saldo-bar{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:rgba(201,169,110,0.08);border:1px solid rgba(201,169,110,0.2);border-radius:3px;margin-bottom:16px;cursor:pointer;transition:all .2s}
 .saldo-bar:hover{background:rgba(201,169,110,0.14)}
 .saldo-left{display:flex;align-items:center;gap:8px}
@@ -358,7 +347,7 @@ canvas{display:none}
     <div class="splash-inner">
       <div class="splash-logo">GL<span class="splash-logo-o">Ó</span>W</div>
       <div class="splash-divider"><div class="splash-tagline">AI · Stiiliassistent</div></div>
-      <div class="splash-sub">Sinu isiklik ilu- ja<br>stiilieksperd taskus</div>
+      <div class="splash-sub">Sinu isiklik ilu- ja<br>stiiliekspert taskus</div>
       <button class="splash-btn" onclick="showTerms()"><span>Alusta ✦</span></button>
       <div class="splash-footer">glow4me.ee</div>
     </div>
@@ -373,17 +362,53 @@ canvas{display:none}
     <div class="terms-divider"></div>
   </div>
   <div class="terms-scroll">
-    <div class="terms-section"><div class="terms-section-title">1. Teenuse kirjeldus</div><p>GLÓW on tehisintellektil põhinev ilu- ja stiilianalüüsi rakendus kaamera abil.</p></div>
-    <div class="terms-section"><div class="terms-section-title">2. Privaatsus</div><ul><li>Pilte ei salvestata serveritesse</li><li>Analüüs toimub reaalajas</li><li>Pildid kustutatakse kohe pärast analüüsi</li><li>Edastatakse krüpteeritult Anthropic AI-le</li></ul></div>
-    <div class="terms-section"><div class="terms-section-title">3. GDPR</div><ul><li>Näopilte loetakse biomeetrilisteks andmeteks</li><li>Kasutad vabatahtlikult ja annad nõusoleku</li><li>Rakendus ei salvesta isiku identiteeti</li></ul></div>
-    <div class="terms-section"><div class="terms-section-title">4. Vastutus</div><ul><li>Naha analüüs ei asenda arsti vastuvõttu</li><li>Soovitused on informatiivsed</li><li>GLÓW ei vastuta analüüsi põhjal tehtud otsuste eest</li></ul></div>
-    <div class="terms-section"><div class="terms-section-title">5. Vanus</div><p>Mõeldud kasutajatele 16+.</p></div>
-    <div class="terms-section"><div class="terms-section-title">6. Kontakt</div><p><strong style="color:var(--gold)">info@glow4me.ee</strong></p></div>
+    <div class="terms-section">
+      <div class="terms-section-title">1. Teenuse kirjeldus</div>
+      <p>GLÓW on tehisintellektil põhinev ilu- ja stiilianalüüsi rakendus, mis kasutab kaamerat reaalajas analüüsi tegemiseks.</p>
+    </div>
+    <div class="terms-section">
+      <div class="terms-section-title">2. Privaatsus ja andmete töötlemine</div>
+      <ul>
+        <li>Kaamera pilte töödeldakse ainult analüüsi eesmärgil</li>
+        <li>Pilte ei salvestata meie serveritesse</li>
+        <li>Analüüs toimub reaalajas ja pilt kustutatakse kohe pärast vastuse saamist</li>
+        <li>Pildid edastatakse krüpteeritult Anthropic AI serveritele analüüsimiseks</li>
+      </ul>
+    </div>
+    <div class="terms-section">
+      <div class="terms-section-title">3. GDPR ja isikuandmed</div>
+      <ul>
+        <li>Näopilte loetakse biomeetrilisteks andmeteks</li>
+        <li>Kasutad rakendust vabatahtlikult ja annad sellega nõusoleku</li>
+        <li>Sul on õigus kasutamine igal ajal lõpetada</li>
+        <li>Rakendus ei tuvasta ega salvesta isiku identiteeti</li>
+      </ul>
+    </div>
+    <div class="terms-section">
+      <div class="terms-section-title">4. Analüüsi täpsus ja vastutus</div>
+      <ul>
+        <li>Naha analüüs ei asenda dermatoloogi ega arsti vastuvõttu</li>
+        <li>Meigi ja stiilisoovitused on subjektiivsed ning tuginevad üldistele trendidele</li>
+        <li>GLÓW ei vastuta analüüsi põhjal tehtud otsuste eest</li>
+      </ul>
+    </div>
+    <div class="terms-section">
+      <div class="terms-section-title">5. Kasutaja vanus</div>
+      <p>GLÓW on mõeldud kasutajatele vanuses 16 aastat ja vanemad.</p>
+    </div>
+    <div class="terms-section">
+      <div class="terms-section-title">6. Intellektuaalne omand</div>
+      <p>Kõik GLÓW rakenduse sisu, kujundus ja kood on kaitstud autoriõigusega.</p>
+    </div>
+    <div class="terms-section">
+      <div class="terms-section-title">7. Kontakt</div>
+      <p>Küsimuste korral võta ühendust: <strong style="color:var(--gold)">info@glow4me.ee</strong></p>
+    </div>
   </div>
   <div class="terms-footer">
     <div class="terms-agree-wrap">
       <div class="terms-checkbox" id="termsCheckbox" onclick="toggleTerms()"><span class="terms-checkbox-icon">✓</span></div>
-      <div class="terms-agree-text">Olen lugenud ja nõustun <strong>GLÓW kasutustingimuste</strong> ning <strong>privaatsuspoliitikaga</strong>.</div>
+      <div class="terms-agree-text">Olen lugenud ja nõustun <strong>GLÓW kasutustingimuste</strong> ning <strong>privaatsuspoliitikaga</strong>. Annan nõusoleku kaamera kasutamiseks analüüsi eesmärgil.</div>
     </div>
     <button class="terms-confirm-btn" id="termsConfirmBtn" onclick="startCountdown()" disabled>Nõustun ja alustan →</button>
   </div>
@@ -392,7 +417,7 @@ canvas{display:none}
 <div id="countdownScreen" class="screen">
   <div class="countdown-ambient"></div>
   <div class="countdown-wrap">
-    <div class="countdown-label">Valmistun käivituma</div>
+    <div class="countdown-label">Käivitun</div>
     <div class="countdown-clock">
       <svg class="clock-svg" viewBox="0 0 160 160">
         <circle class="clock-bg" cx="80" cy="80" r="75"/>
@@ -449,7 +474,7 @@ canvas{display:none}
 <div class="pricing-screen" id="pricingScreen">
   <button class="pricing-back" onclick="hidePricing()">← Tagasi</button>
   <div class="pricing-title">Vali pakett</div>
-  <div class="pricing-sub">Üks analüüs kulutab ühe krediiti.</div>
+  <div class="pricing-sub">Üks analüüs kulutab ühe krediidi.</div>
   <div class="free-badge"><div style="font-size:16px">🎁</div><div class="free-badge-text"><strong>3 analüüsi tasuta</strong> — proovi enne ostmist</div></div>
   <div class="pkg-grid">
     <div class="pkg" onclick="selectPkg(this,'10','0.99','0.10')"><div class="pkg-price">€0.99</div><div class="pkg-count">10 analüüsi</div><div class="pkg-unit">0.10€ / tk</div></div>
@@ -475,7 +500,7 @@ canvas{display:none}
   </div>
   <div class="card-fields">
     <div class="field-label">Kaardi number</div><input class="field-input" placeholder="1234 5678 9012 3456" disabled>
-    <div class="field-row"><div><div class="field-label">Kehtivus</div><input class="field-input" placeholder="KK / AA" disabled></div><div><div class="field-label">CVC</div><input class="field-input" placeholder="123" disabled></div></div>
+    <div class="field-row"><div><div class="field-label">Kehtivusaeg</div><input class="field-input" placeholder="KK / AA" disabled></div><div><div class="field-label">Turvakood</div><input class="field-input" placeholder="123" disabled></div></div>
   </div>
   <button class="pay-btn" disabled>Maksa — €4.50</button>
   <div class="secure-note">🔒 Turvaline makse · Stripe</div>
@@ -495,8 +520,6 @@ canvas{display:none}
       <div class="mdesc">Professionaalne abiline</div>
     </div>
   </div>
-
-  <!-- PRO ALAMREŽIIMID -->
   <div class="pro-submodes show" id="proSubmodes">
     <div class="submode active" onclick="setSubmode('pro-nahk')">
       <div class="submode-icon">🔬</div>
@@ -511,13 +534,13 @@ canvas{display:none}
     <div class="submode" onclick="setSubmode('pro-meik')">
       <div class="submode-icon">💄</div>
       <div class="submode-name">Meik</div>
-      <div class="submode-desc">Pro meigi analüüs</div>
+      <div class="submode-desc">Professionaalne meigi analüüs</div>
     </div>
   </div>
 </div>
 
 <div class="pro-tip" id="proTip"><strong id="proTipText">🔬 Suuna kaamera kliendi näole — AI analüüsib naha seisundit ja soovitab protseduuri ning konkreetseid tooteid.</strong></div>
-<div class="store-tip" id="storeTip"><strong>👗 Stiili analüüsiks:</strong><br>Proovi riie selga ja pildista ennast.</div>
+<div class="store-tip" id="storeTip"><strong>👗 Stiili analüüsiks:</strong><br>Proovi riie selga ja pildista ennast. AI hindab sobivust ja trendi!</div>
 <div class="disclaimer" id="disc"><strong style="color:#7a9e8e">Oluline:</strong> See analüüs ei asenda arsti vastuvõttu.</div>
 
 <div class="card" id="cameraCard">
@@ -535,7 +558,7 @@ canvas{display:none}
   </div>
   <div class="errmsg" id="err"></div>
   <div class="brow">
-    <button class="btn pri" id="camBtn" onclick="startCam()">✦ Ava Kaamera</button>
+    <button class="btn pri" id="camBtn" onclick="startCam()">✦ Ava kaamera</button>
     <button class="btn" id="anaBtn" onclick="analyze()" disabled>Analüüsi</button>
     <button class="btn" id="autoBtn" onclick="toggleAuto()" disabled>Auto</button>
   </div>
@@ -589,7 +612,7 @@ canvas{display:none}
       <button class="star" onclick="rateStar(4)">★</button>
       <button class="star" onclick="rateStar(5)">★</button>
     </div>
-    <textarea class="feedback-textarea" id="feedbackText2" placeholder="Kirjuta siia oma mõtted..."></textarea>
+    <textarea class="feedback-textarea" id="feedbackText2" placeholder="Kirjuta siia oma mõtted ja ettepanekud..."></textarea>
     <button class="feedback-submit" id="feedbackSubmitBtn" onclick="submitFeedback()" disabled>Saada tagasiside →</button>
   </div>
   <div class="feedback-sent" id="feedbackSent">
@@ -606,27 +629,12 @@ const PACKAGES=[{count:'10',price:'0.99',unit:'0.10'},{count:'50',price:'4.50',u
 const FREE_CREDITS=3;
 
 const M={
-  meik:{lbl:'Meigi Analüüs',bar:'c1',sys:`Sa oled GLOW meigi ekspert. Analüüsi meiki eesti keeles. Vasta AINULT JSON: {"verdict":"SUUREPÄRANE/HEA/VAJAB PARANDUST","verdict_class":"yes/maybe/no","feedback":"2-3 lauset","details":{"Jumestus":"1-2 lauset","Silmad":"1-2 lauset","Huuled":"1-2 lauset","Kulmud":"1-2 lauset"},"scores":{"Jumestus":7,"Silmameik":7,"Huuled":7,"Üldmulje":7},"tip":"soovitus"}`,prompt:'Analüüsi minu meiki. Vasta ainult JSON.'},
-  nahk:{lbl:'Naha Analüüs',bar:'c2',sys:`Sa oled GLOW nahahoolduse ekspert. Analüüsi nahka eesti keeles. Vasta AINULT JSON: {"verdict":"TERVE NAHK/VAJAB HOOLDUST/PÖÖRDU SPETSIALISTI POOLE","verdict_class":"yes/maybe/no","feedback":"2-3 lauset","details":{"Niiskus":"1-2 lauset","Nahatoon":"1-2 lauset","Tekstuur":"1-2 lauset","Probleemid":"1-2 lauset"},"scores":{"Niiskus":7,"Toon":7,"Tekstuur":7,"Üldseisund":7},"tip":"soovitus"}`,prompt:'Analüüsi minu nahka. Vasta ainult JSON.'},
-  stiil:{lbl:'Stiili Analüüs',bar:'c3',sys:`Sa oled GLOW stiiliekspert. Analüüsi riietust eesti keeles. Vasta AINULT JSON: {"verdict":"OSTA KINDLASTI/KAALUDA/JÄTA RIIDEPUULE","verdict_class":"yes/maybe/no","feedback":"2-3 lauset","details":{"Sobivus":"1-2 lauset","Värvid":"1-2 lauset","Trend":"1-2 lauset","Kombineeruvus":"1-2 lauset"},"scores":{"Sobivus":7,"Värvid":7,"Trend":7,"Väärtus":7},"tip":"soovitus"}`,prompt:'Olen riidepoes. Kas peaksin ostma? Vasta ainult JSON.'},
-  'pro-nahk':{lbl:'Naha Analüüs · Pro',bar:'c4',sys:`Sa oled kogenud kosmeetik ja nahahoolduse spetsialist. Analüüsi kliendi nahka VÄGA põhjalikult professionaalsel tasemel eesti keeles.
-
-Hinda: nahatüüp, poorid, niiskus, toon, tekstuur, pigmentatsioon, akne/komedoonid, rosaatsea, elastsus, T-tsoon vs põsed.
-
-Vasta AINULT selles JSON formaadis:
-{"verdict":"TERVE NAHK/VAJAB HOOLDUST/VAJAB RAVI","verdict_class":"yes/maybe/no","nahatuup":"Nahatüüp lühidalt","feedback":"3-4 lauset professionaalsest hinnangust","details":{"Nahatüüp ja toon":"2 lauset","Poorid ja tekstuur":"2 lauset","Niiskus ja elastsus":"2 lauset","Probleempiirkonnad":"2 lauset"},"scores":{"Niiskus":7,"Tekstuur":7,"Toon":7,"Elastsus":7},"protseduur":["Protseduuri soovitus 1","Protseduuri soovitus 2","Protseduuri soovitus 3"],"tooted":[{"kategooria":"Puhastus","nimi":"Toote nimi","bränd":"La Roche-Posay / Clinique / Vichy / CeraVe / Dermalogica / COSRX","põhjus":"Miks see toode sobib"},{"kategooria":"Seerum","nimi":"Toote nimi","bränd":"Bränd","põhjus":"Põhjus"},{"kategooria":"Niisutus","nimi":"Toote nimi","bränd":"Bränd","põhjus":"Põhjus"}],"tip":"Kõige olulisem professionaalne nõuanne"}`,prompt:'Analüüsi kliendi nahka professionaalselt enne protseduuri. Vasta ainult JSON.'},
-  'pro-kulmud':{lbl:'Kulmude Analüüs · Pro',bar:'c4',sys:`Sa oled professionaalne kulmude modelleerimisspetsialist ja kosmeetik. Analüüsi kliendi kulme VÄGA põhjalikult eesti keeles.
-
-Hinda: kulmude kuju (arch), paksus, sümmeetria, tihedus, kasvu suund, sobivus näokujuga (ovaalne/ümmargune/ruudukujuline/südamekujuline/piklik), puuduvad piirkonnad, liigsed karvad.
-
-Vasta AINULT selles JSON formaadis:
-{"verdict":"IDEAALSED KULMUD/VAJAB KUJUNDAMIST/VAJAB TÄITMIST","verdict_class":"yes/maybe/no","kulutuup":"Kulmude tüüp ja praegune kuju lühidalt","feedback":"3-4 lauset professionaalsest hinnangust","details":{"Kuju ja kaar":"2 lauset","Sümmeetria":"2 lauset","Tihedus ja täidlus":"2 lauset","Sobivus näoga":"2 lauset"},"scores":{"Kuju":7,"Sümmeetria":7,"Tihedus":7,"Üldmulje":7},"modelleerimine":["Modelleerimise samm 1","Modelleerimise samm 2","Modelleerimise samm 3","Modelleerimise samm 4"],"tooted":[{"kategooria":"Kulmupliiats","nimi":"Toote nimi sobiva tooniga","bränd":"MAC / NYX / Anastasia Beverly Hills / Benefit / KIKO","põhjus":"Miks see sobib"},{"kategooria":"Kulmugeel","nimi":"Toote nimi","bränd":"Bränd","põhjus":"Põhjus"},{"kategooria":"Kasvuseeru","nimi":"Toote nimi kulmude tiheduse jaoks","bränd":"Bränd","põhjus":"Põhjus"}],"tip":"Kõige olulisem soovitus kulmude kujundamiseks"}`,prompt:'Analüüsi kliendi kulme professionaalselt. Vasta ainult JSON.'},
-  'pro-meik':{lbl:'Meigi Analüüs · Pro',bar:'c4',sys:`Sa oled professionaalne meigispetsialist ja visagist. Analüüsi kliendi meiki VÄGA põhjalikult professionaalsel tasemel eesti keeles.
-
-Hinda kõike: jumestuskreemi toon ja ühtlus, kontuuri ja hailaiter paigutus, silmameigi tehnika (lauvärv, liner, maskara), kulmude täitmine, huulte kontuur ja lipstick, blush paigutus, üldine sobivus nahatooniga ja näokujuga.
-
-Vasta AINULT selles JSON formaadis:
-{"verdict":"SUUREPÄRANE MEIK/HEA MEIK/VAJAB PARANDUST","verdict_class":"yes/maybe/no","meigistiil":"Meigi stiil lühidalt","feedback":"3-4 lauset professionaalsest hinnangust","details":{"Jumestus ja kontuuring":"2 lauset","Silmameik":"2 lauset","Huuled ja kulmud":"2 lauset","Üldine harmoonia":"2 lauset"},"scores":{"Jumestus":7,"Silmad":7,"Huuled":7,"Üldharmoonia":7},"tehnikad":["Tehnika soovitus 1","Tehnika soovitus 2","Tehnika soovitus 3"],"tooted":[{"kategooria":"Jumestuskreem","nimi":"Toote nimi","bränd":"MAC / Clinique / NARS / Charlotte Tilbury / Lancôme","põhjus":"Miks see sobib"},{"kategooria":"Kontuuring","nimi":"Toote nimi","bränd":"Bränd","põhjus":"Põhjus"},{"kategooria":"Silmameik","nimi":"Toote nimi","bränd":"Bränd","põhjus":"Põhjus"}],"tip":"Kõige olulisem professionaalne meigialane nõuanne"}`,prompt:'Analüüsi kliendi meiki professionaalselt. Vasta ainult JSON.'}
+  meik:{lbl:'Meigi analüüs',bar:'c1',sys:`Sa oled GLOW meigi ekspert. Analüüsi meiki põhjalikult eesti keeles. Vasta AINULT JSON: {"verdict":"SUUREPÄRANE/HEA/VAJAB PARANDUST","verdict_class":"yes/maybe/no","feedback":"2-3 lauset","details":{"Jumestus":"1-2 lauset","Silmad":"1-2 lauset","Huuled":"1-2 lauset","Kulmud":"1-2 lauset"},"scores":{"Jumestus":7,"Silmameik":7,"Huuled":7,"Üldmulje":7},"tip":"soovitus"}`,prompt:'Analüüsi minu meiki. Vasta ainult JSON.'},
+  nahk:{lbl:'Naha analüüs',bar:'c2',sys:`Sa oled GLOW nahahoolduse ekspert. Analüüsi nahka põhjalikult eesti keeles. Vasta AINULT JSON: {"verdict":"TERVE NAHK/VAJAB HOOLDUST/PÖÖRDU SPETSIALISTI POOLE","verdict_class":"yes/maybe/no","feedback":"2-3 lauset","details":{"Niiskus":"1-2 lauset","Nahatoon":"1-2 lauset","Tekstuur":"1-2 lauset","Probleemid":"1-2 lauset"},"scores":{"Niiskus":7,"Toon":7,"Tekstuur":7,"Üldseisund":7},"tip":"soovitus"}`,prompt:'Analüüsi minu nahka. Vasta ainult JSON.'},
+  stiil:{lbl:'Stiili analüüs',bar:'c3',sys:`Sa oled GLOW stiiliekspert. Analüüsi riietust eesti keeles. Vasta AINULT JSON: {"verdict":"OSTA KINDLASTI/KAALUDA/JÄTA RIIDEPUULE","verdict_class":"yes/maybe/no","feedback":"2-3 lauset","details":{"Sobivus":"1-2 lauset","Värvid":"1-2 lauset","Trend":"1-2 lauset","Kombineeruvus":"1-2 lauset"},"scores":{"Sobivus":7,"Värvid":7,"Trend":7,"Väärtus":7},"tip":"soovitus"}`,prompt:'Olen riidepoes. Kas peaksin ostma? Vasta ainult JSON.'},
+  'pro-nahk':{lbl:'Naha analüüs · Pro',bar:'c4',sys:`Sa oled kogenud kosmeetik ja nahahoolduse spetsialist. Analüüsi kliendi nahka väga põhjalikult professionaalsel tasemel eesti keeles. Hinda: nahatüüp, poorid, niiskus, toon, tekstuur, pigmentatsioon, akne, rosaatsea, elastsus. Vasta AINULT JSON: {"verdict":"TERVE NAHK/VAJAB HOOLDUST/VAJAB RAVI","verdict_class":"yes/maybe/no","nahatuup":"Nahatüüp lühidalt","feedback":"3-4 lauset professionaalsest hinnangust","details":{"Nahatüüp ja toon":"2 lauset","Poorid ja tekstuur":"2 lauset","Niiskus ja elastsus":"2 lauset","Probleempiirkonnad":"2 lauset"},"scores":{"Niiskus":7,"Tekstuur":7,"Toon":7,"Elastsus":7},"protseduur":["Protseduuri soovitus 1","Protseduuri soovitus 2","Protseduuri soovitus 3"],"tooted":[{"kategooria":"Puhastus","nimi":"Toote nimi","bränd":"La Roche-Posay / Clinique / Vichy / CeraVe","põhjus":"Miks see toode sobib"},{"kategooria":"Seerum","nimi":"Toote nimi","bränd":"Bränd","põhjus":"Põhjus"},{"kategooria":"Niisutus","nimi":"Toote nimi","bränd":"Bränd","põhjus":"Põhjus"}],"tip":"Kõige olulisem professionaalne nõuanne"}`,prompt:'Analüüsi kliendi nahka professionaalselt enne protseduuri. Vasta ainult JSON.'},
+  'pro-kulmud':{lbl:'Kulmude analüüs · Pro',bar:'c4',sys:`Sa oled professionaalne kulmude modelleerimise spetsialist. Analüüsi kliendi kulme väga põhjalikult eesti keeles. Hinda: kulmude kuju, paksus, sümmeetria, tihedus, kasvu suund, sobivus näokujuga. Vasta AINULT JSON: {"verdict":"IDEAALSED KULMUD/VAJAB KUJUNDAMIST/VAJAB TÄITMIST","verdict_class":"yes/maybe/no","kulutuup":"Kulmude tüüp lühidalt","feedback":"3-4 lauset professionaalsest hinnangust","details":{"Kuju ja kaar":"2 lauset","Sümmeetria":"2 lauset","Tihedus ja täidlus":"2 lauset","Sobivus näoga":"2 lauset"},"scores":{"Kuju":7,"Sümmeetria":7,"Tihedus":7,"Üldmulje":7},"modelleerimine":["Modelleerimise samm 1","Modelleerimise samm 2","Modelleerimise samm 3","Modelleerimise samm 4"],"tooted":[{"kategooria":"Kulmupliiats","nimi":"Toote nimi","bränd":"MAC / NYX / Anastasia Beverly Hills / Benefit","põhjus":"Miks see sobib"},{"kategooria":"Kulmugeel","nimi":"Toote nimi","bränd":"Bränd","põhjus":"Põhjus"},{"kategooria":"Kasvuseerum","nimi":"Toote nimi","bränd":"Bränd","põhjus":"Põhjus"}],"tip":"Kõige olulisem soovitus kulmude kujundamiseks"}`,prompt:'Analüüsi kliendi kulme professionaalselt. Vasta ainult JSON.'},
+  'pro-meik':{lbl:'Meigi analüüs · Pro',bar:'c4',sys:`Sa oled professionaalne meigispetsialist. Analüüsi kliendi meiki väga põhjalikult professionaalsel tasemel eesti keeles. Hinda jumestuskreemi toon, kontuuri paigutus, silmameigi tehnika, kulmud, huuled, üldine harmoonia nahatooniga. Vasta AINULT JSON: {"verdict":"SUUREPÄRANE MEIK/HEA MEIK/VAJAB PARANDUST","verdict_class":"yes/maybe/no","meigistiil":"Meigi stiil lühidalt","feedback":"3-4 lauset professionaalsest hinnangust","details":{"Jumestus ja kontuuring":"2 lauset","Silmameik":"2 lauset","Huuled ja kulmud":"2 lauset","Üldine harmoonia":"2 lauset"},"scores":{"Jumestus":7,"Silmad":7,"Huuled":7,"Harmoonia":7},"tehnikad":["Tehnika soovitus 1","Tehnika soovitus 2","Tehnika soovitus 3"],"tooted":[{"kategooria":"Jumestuskreem","nimi":"Toote nimi","bränd":"MAC / Clinique / NARS / Charlotte Tilbury","põhjus":"Miks see sobib"},{"kategooria":"Kontuuring","nimi":"Toote nimi","bränd":"Bränd","põhjus":"Põhjus"},{"kategooria":"Silmameik","nimi":"Toote nimi","bränd":"Bränd","põhjus":"Põhjus"}],"tip":"Kõige olulisem professionaalne meigialane nõuanne"}`,prompt:'Analüüsi kliendi meiki professionaalselt. Vasta ainult JSON.'}
 };
 
 let mode='pro',submode='pro-nahk',stream=null,autoOn=false,autoT=null,lastFb='',lastScores={},selectedPkg=PACKAGES[1],starRating=0,termsAccepted=false;
@@ -641,7 +649,7 @@ function startCountdown(){if(!termsAccepted)return;localStorage.setItem('glow_te
 function runCountdown(){
   let count=3;
   const track=document.getElementById('clockTrack'),clockLogo=document.getElementById('clockLogo'),clockNum=document.getElementById('clockNum'),msg=document.getElementById('countdownMsg');
-  const circ=471,msgs=['✦','Analüüsime stiili...','Valmis!'];
+  const circ=471,msgs=['✦','Käivitun...','Valmis!'];
   setTimeout(()=>{clockLogo.style.transition='opacity .3s ease';clockLogo.style.opacity='0';setTimeout(()=>{clockLogo.style.display='none';clockNum.style.display='block';clockNum.style.opacity='0';clockNum.style.transition='opacity .3s ease';setTimeout(()=>clockNum.style.opacity='1',10);},300);},500);
   let elapsed=0;const total=3000,interval=50;
   const timer=setInterval(()=>{elapsed+=interval;const p=elapsed/total;track.style.strokeDashoffset=circ*(1-p);const rem=Math.ceil((total-elapsed)/1000);if(rem!==count&&rem>=1){count=rem;clockNum.textContent=count;clockNum.style.transform='scale(1.3)';setTimeout(()=>clockNum.style.transform='scale(1)',150);}msg.textContent=msgs[Math.min(Math.floor(p*msgs.length),msgs.length-1)];if(elapsed>=total){clearInterval(timer);clockNum.textContent='✦';msg.textContent='Tere tulemast!';setTimeout(()=>launchApp(),700);}},interval);
@@ -713,11 +721,17 @@ function setSubmode(s){
   document.getElementById('resEmpty').style.display='block';
   document.getElementById('resultWrap').classList.remove('on');
   document.getElementById('shareCard').classList.remove('on');
-  const tips={'pro-nahk':'🔬 Suuna kaamera kliendi näole — AI analüüsib naha seisundit ja soovitab protseduuri ning konkreetseid tooteid.',
+  const tips={
+    'pro-nahk':'🔬 Suuna kaamera kliendi näole — AI analüüsib naha seisundit ja soovitab protseduuri ning konkreetseid tooteid.',
     'pro-kulmud':'✏️ Suuna kaamera kliendi kulmudele — AI analüüsib kuju, sümmeetriat ja soovitab modelleerimise samme ning tooteid.',
-    'pro-meik':'💄 Suuna kaamera kliendi näole — AI analüüsib meigi kvaliteeti professionaalselt ja soovitab sobivaid tooteid.'};
+    'pro-meik':'💄 Suuna kaamera kliendi näole — AI analüüsib meigi kvaliteeti professionaalselt ja soovitab sobivaid tooteid.'
+  };
   document.getElementById('proTipText').textContent=tips[s]||tips['pro-nahk'];
-  const camTexts={'pro-nahk':'Suuna kaamera kliendi näole','pro-kulmud':'Suuna kaamera kliendi kulmudele','pro-meik':'Suuna kaamera kliendi meigile'};
+  const camTexts={
+    'pro-nahk':'Suuna kaamera kliendi näole',
+    'pro-kulmud':'Suuna kaamera kliendi kulmudele',
+    'pro-meik':'Suuna kaamera kliendi meigile'
+  };
   document.getElementById('camPhText').textContent=camTexts[s]||camTexts['pro-nahk'];
   document.getElementById('loadingText').textContent='Analüüsin professionaalselt...';
 }
@@ -772,47 +786,20 @@ function renderResult(parsed,barClass,photoUrl,activeMode){
   document.getElementById('verdictIcon').textContent=cfg.icon;
   document.getElementById('verdictText').textContent=parsed.verdict||'';
   document.getElementById('verdictSub').textContent=cfg.sub;
-
   let feedbackHtml='';
-  const subLabel={
-    'pro-nahk':parsed.nahatuup,
-    'pro-kulmud':parsed.kulutuup,
-    'pro-meik':parsed.meigistiil
-  }[activeMode];
-  if(subLabel){
-    feedbackHtml=`<div style="font-size:9px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;margin-bottom:6px;font-family:'DM Mono',monospace">Tüüp</div><div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--gold);margin-bottom:14px;font-style:italic">${subLabel}</div>`;
-  }
+  const subLabel={'pro-nahk':parsed.nahatuup,'pro-kulmud':parsed.kulutuup,'pro-meik':parsed.meigistiil}[activeMode];
+  if(subLabel){feedbackHtml=`<div style="font-size:9px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;margin-bottom:6px;font-family:'DM Mono',monospace">Tüüp</div><div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--gold);margin-bottom:14px;font-style:italic">${subLabel}</div>`;}
   feedbackHtml+=`<p style="font-family:'Cormorant Garamond',serif;font-size:17px;line-height:1.8;color:var(--cream)">${parsed.feedback||''}</p>`;
   document.getElementById('feedbackText').innerHTML=feedbackHtml;
-
   const dg=document.getElementById('detailsGrid');dg.innerHTML='';
   if(parsed.details){Object.entries(parsed.details).forEach(([k,v])=>{const d=document.createElement('div');d.className='detail-item';d.innerHTML='<div class="detail-label">'+k+'</div><div class="detail-value">'+v+'</div>';dg.appendChild(d);});}
-
   const sr=document.getElementById('scoresRow');sr.innerHTML='';
   if(parsed.scores){const r=24,circ=2*Math.PI*r;Object.entries(parsed.scores).forEach(([label,val])=>{const offset=circ*(1-val/10);const id='sc_'+label.replace(/\s/g,'_');const div=document.createElement('div');div.className='score-item';div.innerHTML=`<div class="score-label">${label}</div><div class="score-circle ${barClass}" id="${id}"><svg width="56" height="56" viewBox="0 0 56 56"><circle class="score-circle-bg" cx="28" cy="28" r="${r}"/><circle class="score-circle-fill" cx="28" cy="28" r="${r}" stroke-dasharray="${circ}" stroke-dashoffset="${circ}" id="${id}_fill"/></svg><div class="score-num">${val}</div></div>`;sr.appendChild(div);setTimeout(()=>{const b=document.getElementById(id+'_fill');if(b)b.style.strokeDashoffset=offset;},400);});}
-
   if(parsed.tip){document.getElementById('tipText').textContent=parsed.tip;document.getElementById('tipCard').style.display='block';}else{document.getElementById('tipCard').style.display='none';}
   document.getElementById('resultWrap').classList.add('on');
-
-  // PRO protokoll / tehnikad
   const steps=parsed.protseduur||parsed.modelleerimine||parsed.tehnikad;
-  if(steps&&steps.length){
-    const stepsEl=document.getElementById('protocolSteps');stepsEl.innerHTML='';
-    steps.forEach((step,i)=>{const div=document.createElement('div');div.className='proto-step';div.innerHTML=`<div class="proto-num">${i+1}</div><div class="proto-text">${step}</div>`;stepsEl.appendChild(div);});
-    document.getElementById('protocolCard').classList.add('on');
-  }
-
-  // Tootesoovitused
-  if(parsed.tooted&&parsed.tooted.length){
-    const list=document.getElementById('productsList');list.innerHTML='';
-    parsed.tooted.forEach(p=>{
-      const div=document.createElement('div');div.className='product-item';
-      div.innerHTML=`<div class="product-icon">🛍</div><div><div class="product-category">${p.kategooria}</div><div class="product-name">${p.nimi}</div><div class="product-brand">${p.bränd}</div><div class="product-reason">${p.põhjus}</div></div>`;
-      list.appendChild(div);
-    });
-    document.getElementById('productsCard').classList.add('on');
-  }
-
+  if(steps&&steps.length){const stepsEl=document.getElementById('protocolSteps');stepsEl.innerHTML='';steps.forEach((step,i)=>{const div=document.createElement('div');div.className='proto-step';div.innerHTML=`<div class="proto-num">${i+1}</div><div class="proto-text">${step}</div>`;stepsEl.appendChild(div);});document.getElementById('protocolCard').classList.add('on');}
+  if(parsed.tooted&&parsed.tooted.length){const list=document.getElementById('productsList');list.innerHTML='';parsed.tooted.forEach(p=>{const div=document.createElement('div');div.className='product-item';div.innerHTML=`<div class="product-icon">🛍</div><div><div class="product-category">${p.kategooria}</div><div class="product-name">${p.nimi}</div><div class="product-brand">${p.bränd}</div><div class="product-reason">${p.põhjus}</div></div>`;list.appendChild(div);});document.getElementById('productsCard').classList.add('on');}
   const scores=parsed.scores||{};const scoreHtml=Object.entries(scores).map(([l,v])=>'<div><div class="sp-sv">'+v+'</div><div class="sp-sl">'+l+'</div></div>').join('');
   document.getElementById('sharePrev').innerHTML='<img class="sp-photo" src="'+photoUrl+'">'+'<div class="sp-logo">GL<em>O</em>W</div>'+'<div class="sp-mode">'+(parsed.verdict||M[activeMode].lbl)+'</div>'+'<div class="sp-text">'+parsed.feedback+'</div>'+(parsed.tip?'<div class="sp-tip">✦ '+parsed.tip+'</div>':'')+' <div class="sp-scores">'+scoreHtml+'</div>';
   document.getElementById('shareCard').classList.add('on');
