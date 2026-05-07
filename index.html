@@ -103,7 +103,7 @@ body{background:var(--bg);font-family:'DM Mono',monospace;color:var(--cream);min
 @keyframes fadePulse{0%,100%{opacity:1}50%{opacity:.4}}
 #mainWrapper{display:none;position:relative;z-index:1}
 .ambient{position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 70% 50% at 15% 10%,rgba(196,115,107,0.12) 0%,transparent 60%),radial-gradient(ellipse 50% 70% at 85% 90%,rgba(123,158,142,0.10) 0%,transparent 60%)}
-.app{position:relative;z-index:1;max-width:500px;margin:0 auto;padding:24px 16px 60px}
+.app{position:relative;z-index:1;max-width:500px;margin:0 auto;padding:24px 16px 0}
 header{text-align:center;padding:24px 0 32px;position:relative;animation:fadeUp .7s ease both}
 .logo{font-family:'Cormorant Garamond',serif;font-size:clamp(72px,20vw,104px);font-weight:300;letter-spacing:.25em;color:var(--cream);line-height:1}
 .logo-o{color:var(--gold);font-style:italic;animation:oglow 3s ease-in-out infinite;display:inline-block}
@@ -143,8 +143,6 @@ header{text-align:center;padding:24px 0 32px;position:relative;animation:fadeUp 
 .micon{font-size:22px;margin-bottom:6px}
 .mname{font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--cream);transition:color .25s}
 .mdesc{font-size:9px;color:var(--dim);margin-top:3px;line-height:1.4}
-
-/* STIILI VALIK */
 .style-select{display:none;margin-bottom:16px;animation:fadeUp .4s ease both}
 .style-select.show{display:block}
 .style-select-title{font-size:10px;letter-spacing:.4em;color:var(--gold);text-transform:uppercase;margin-bottom:12px}
@@ -160,8 +158,6 @@ header{text-align:center;padding:24px 0 32px;position:relative;animation:fadeUp 
 .style-btn.stiil-btn.active .style-name{color:var(--stiil)}
 .style-icon{font-size:18px;margin-bottom:4px}
 .style-name{font-family:'Cormorant Garamond',serif;font-size:13px;color:var(--dim);transition:color .2s;line-height:1.3}
-
-/* PRO PROTSEDUURI VALIK */
 .pro-procedure-select{display:none;margin-bottom:16px;animation:fadeUp .4s ease both}
 .pro-procedure-select.show{display:block}
 .pro-procedure-title{font-size:10px;letter-spacing:.4em;color:var(--gold);text-transform:uppercase;margin-bottom:12px}
@@ -172,14 +168,12 @@ header{text-align:center;padding:24px 0 32px;position:relative;animation:fadeUp 
 .proc-btn.active .proc-name{color:var(--gold)}
 .proc-icon{font-size:18px;margin-bottom:4px}
 .proc-name{font-family:'Cormorant Garamond',serif;font-size:13px;color:var(--dim);transition:color .2s;line-height:1.3}
-
 .tip-banner{border-radius:3px;padding:14px;margin-bottom:16px;font-size:11px;line-height:1.8;display:none}
 .tip-banner.show{display:block}
 .tip-banner.meik{border:1px solid rgba(212,149,122,0.3);background:rgba(212,149,122,0.06);color:rgba(212,149,122,0.9)}
 .tip-banner.stiil{border:1px solid rgba(155,143,181,0.3);background:rgba(155,143,181,0.07);color:rgba(155,143,181,0.9)}
 .tip-banner.pro{border:1px solid rgba(201,169,110,0.3);background:rgba(201,169,110,0.06);color:rgba(201,169,110,0.9)}
 .tip-banner strong{color:inherit}
-
 .cam-frame{position:relative;border-radius:2px;overflow:hidden;background:#050303;aspect-ratio:3/4;border:1px solid rgba(255,255,255,0.06)}
 #vid{width:100%;height:100%;object-fit:cover;display:block;transform:scaleX(-1)}
 .cam-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:rgba(14,12,11,0.9)}
@@ -249,8 +243,6 @@ header{text-align:center;padding:24px 0 32px;position:relative;animation:fadeUp 
 .tip-card{padding:14px 16px;border-radius:3px;background:rgba(201,169,110,0.08);border:1px solid rgba(201,169,110,0.25);margin-bottom:16px}
 .tip-label{font-size:9px;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;opacity:.8}
 .tip-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;color:var(--gold);line-height:1.7}
-
-/* STIILI SOOVITUSED */
 .outfit-section{margin-bottom:16px;display:none}
 .outfit-section.on{display:block}
 .outfit-section-title{font-size:10px;letter-spacing:.4em;color:var(--stiil);text-transform:uppercase;margin-bottom:12px}
@@ -263,16 +255,12 @@ header{text-align:center;padding:24px 0 32px;position:relative;animation:fadeUp 
 .outfit-reason{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:rgba(240,230,211,0.6);line-height:1.5;margin-bottom:8px}
 .outfit-link{display:inline-block;font-size:9px;letter-spacing:.2em;color:var(--stiil);text-transform:uppercase;text-decoration:none;border:1px solid rgba(155,143,181,0.3);padding:5px 12px;border-radius:2px;transition:all .2s}
 .outfit-link:hover,.outfit-link:active{background:rgba(155,143,181,0.15)}
-
-/* KOMBINEERIMIS NÕUANDED */
 .kombineering-card{border:1px solid rgba(155,143,181,0.25);border-radius:3px;background:rgba(0,0,0,0.2);padding:16px;margin-bottom:16px;display:none}
 .kombineering-card.on{display:block}
 .komb-step{display:flex;gap:10px;margin-bottom:10px;align-items:flex-start}
 .komb-step:last-child{margin-bottom:0}
 .komb-num{width:24px;height:24px;border-radius:50%;border:1px solid var(--stiil);color:var(--stiil);font-size:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
 .komb-text{font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--cream);line-height:1.6}
-
-/* MEIGI TOOTED */
 .products-section{margin-bottom:16px;display:none}
 .products-section.on{display:block}
 .products-section-title{font-size:10px;letter-spacing:.4em;color:var(--blush);text-transform:uppercase;margin-bottom:12px}
@@ -286,8 +274,6 @@ header{text-align:center;padding:24px 0 32px;position:relative;animation:fadeUp 
 .product-reason{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:rgba(240,230,211,0.6);line-height:1.5;margin-bottom:8px}
 .product-link{display:inline-block;font-size:9px;letter-spacing:.2em;color:var(--blush);text-transform:uppercase;text-decoration:none;border:1px solid rgba(212,149,122,0.3);padding:5px 12px;border-radius:2px;transition:all .2s}
 .product-link:hover,.product-link:active{background:rgba(212,149,122,0.15)}
-
-/* PRO TOOTED */
 .pro-products-section{margin-bottom:16px;display:none}
 .pro-products-section.on{display:block}
 .pro-products-title{font-size:10px;letter-spacing:.4em;color:var(--gold);text-transform:uppercase;margin-bottom:12px}
@@ -384,6 +370,18 @@ header{text-align:center;padding:24px 0 32px;position:relative;animation:fadeUp 
 .coming-soon-overlay{text-align:center;padding:16px;background:rgba(201,169,110,0.06);border:1px solid rgba(201,169,110,0.2);border-radius:3px;margin-top:8px}
 .coming-soon-overlay p:first-child{font-size:12px;color:var(--gold);margin-bottom:4px}
 .coming-soon-overlay p:last-child{font-size:11px;color:var(--dim);line-height:1.6}
+
+/* FOOTER */
+.app-footer{max-width:500px;margin:0 auto;padding:32px 16px 40px;text-align:center;border-top:1px solid rgba(201,169,110,0.1)}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:22px;letter-spacing:.3em;color:var(--cream);margin-bottom:4px}
+.footer-logo em{color:var(--gold);font-style:italic}
+.footer-tagline{font-size:9px;letter-spacing:.4em;color:rgba(240,230,211,0.3);text-transform:uppercase;margin-bottom:14px}
+.footer-divider{width:40px;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,110,0.3),transparent);margin:0 auto 14px}
+.footer-copy{font-size:10px;color:rgba(240,230,211,0.25);line-height:2;letter-spacing:.03em}
+.footer-copy a{color:rgba(201,169,110,0.4);text-decoration:none}
+.footer-copy a:hover{color:var(--gold)}
+.footer-bottom{margin-top:12px;font-size:9px;color:rgba(240,230,211,0.15);letter-spacing:.1em}
+
 canvas{display:none}
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 </style>
@@ -431,7 +429,8 @@ canvas{display:none}
     <div class="terms-section"><div class="terms-section-title">3. GDPR</div><ul><li>Näopilte loetakse biomeetrilisteks andmeteks</li><li>Kasutad vabatahtlikult ja annad nõusoleku</li><li>Õigus kasutamine igal ajal lõpetada</li></ul></div>
     <div class="terms-section"><div class="terms-section-title">4. Vastutus</div><ul><li>Soovitused on informatiivsed</li><li>GLÓW ei vastuta analüüsi põhjal tehtud otsuste eest</li></ul></div>
     <div class="terms-section"><div class="terms-section-title">5. Vanus</div><p>Mõeldud kasutajatele 16 aastat ja vanemad.</p></div>
-    <div class="terms-section"><div class="terms-section-title">6. Kontakt</div><p><strong style="color:var(--gold)">info@glow4me.ee</strong></p></div>
+    <div class="terms-section"><div class="terms-section-title">6. Intellektuaalne omand</div><p>Kõik GLÓW rakenduse sisu, kujundus ja kood on kaitstud autoriõigusega. Kopeerimine ilma loata on keelatud.</p></div>
+    <div class="terms-section"><div class="terms-section-title">7. Kontakt</div><p><strong style="color:var(--gold)">info@glow4me.ee</strong></p></div>
   </div>
   <div class="terms-footer">
     <div class="terms-agree-wrap">
@@ -464,6 +463,7 @@ canvas{display:none}
 <div class="ambient"></div>
 <canvas id="cv"></canvas>
 <div class="app">
+
 <header>
   <div class="logo">GL<span class="logo-o">Ó</span>W</div>
   <div class="logo-line"><div class="tagline">AI · Isiklik Stiiliassistent</div></div>
@@ -539,17 +539,14 @@ canvas{display:none}
     <div class="mode m-stiil active" onclick="setMode('stiil')"><div class="micon">👗</div><div class="mname">Stiil</div><div class="mdesc">Riietuse analüüs</div></div>
     <div class="mode m-pro" onclick="setMode('pro')"><div class="pro-badge">PRO</div><div class="micon">💆</div><div class="mname">AI Kosmeetik</div><div class="mdesc">Professionaalne analüüs</div></div>
   </div>
-
   <div class="style-select" id="meikStyleSelect">
     <div class="style-select-title">Vali meigistiil</div>
     <div class="style-grid" id="meikStyleGrid"></div>
   </div>
-
   <div class="style-select show" id="stiilStyleSelect">
     <div class="style-select-title">Vali riietusstiil</div>
     <div class="style-grid" id="stiilStyleGrid"></div>
   </div>
-
   <div class="pro-procedure-select" id="proProcedureSelect">
     <div class="pro-procedure-title">Vali protseduur</div>
     <div class="procedure-grid" id="procedureGrid"></div>
@@ -581,7 +578,6 @@ canvas{display:none}
   </div>
 </div>
 
-<!-- STIILI KAARDID -->
 <div class="kombineering-card" id="kombineringCard">
   <div class="lbl" style="color:var(--stiil)">✦ Kombineerimise nõuanded</div>
   <div id="kombineringSteps"></div>
@@ -594,8 +590,6 @@ canvas{display:none}
   <div class="outfit-section-title">✨ Täiendavad soovitused · denimdream.ee</div>
   <div id="outfitNextList"></div>
 </div>
-
-<!-- MEIGI KAARDID -->
 <div class="techniques-card" id="techniquesCard">
   <div class="lbl" style="color:var(--blush)">✦ Meigitehnikad</div>
   <div id="techniqueSteps"></div>
@@ -608,8 +602,6 @@ canvas{display:none}
   <div class="products-section-title">🛍 Tooted järgmiseks korraks · mactabeauty.com</div>
   <div id="meikNextList"></div>
 </div>
-
-<!-- PRO KAARDID -->
 <div class="protocol-card" id="protocolCard">
   <div class="lbl">✦ Protseduuri juhend</div>
   <div id="protocolSteps"></div>
@@ -667,7 +659,23 @@ canvas{display:none}
     <div class="feedback-sent-text">Täname tagasiside eest!<br>See aitab meil kasvada.</div>
   </div>
 </div>
+
 </div>
+
+<!-- FOOTER -->
+<footer class="app-footer">
+  <div class="footer-logo">GL<em>Ó</em>W</div>
+  <div class="footer-tagline">AI · Isiklik Stiiliassistent</div>
+  <div class="footer-divider"></div>
+  <div class="footer-copy">
+    © 2026 GLÓW · Kõik õigused kaitstud<br>
+    Rakendus on loodud ja arendatud Eestis · <a href="mailto:info@glow4me.ee">info@glow4me.ee</a><br>
+    Lehe sisu, kujunduse ja koodi kopeerimine ning levitamine<br>
+    ilma autori kirjaliku loata on keelatud
+  </div>
+  <div class="footer-bottom">glow4me.ee · Powered by Anthropic AI</div>
+</footer>
+
 </div>
 
 <script>
@@ -675,7 +683,6 @@ const VERDICT_CONFIG={yes:{icon:'✨',sub:'Suurepärane'},maybe:{icon:'🤔',sub
 const PACKAGES=[{count:'10',price:'0.99',unit:'0.10'},{count:'50',price:'4.50',unit:'0.09'},{count:'100',price:'7.99',unit:'0.08'},{count:'200',price:'12.99',unit:'0.06'}];
 const FREE_CREDITS=3;
 
-// MEIGISTIILID
 const MAKEUP_STYLES=[
   {id:'hommik',icon:'🌅',name:'Hommikumeik'},{id:'kontor',icon:'💼',name:'Kontorimeik'},
   {id:'ostlemine',icon:'🛍️',name:'Ostlemismeik'},{id:'nadalavahetus',icon:'☕',name:'Nädalavahetuse meik'},
@@ -689,24 +696,15 @@ const MAKEUP_STYLES=[
   {id:'romantiline',icon:'🌸',name:'Romantiline meik'},{id:'kunstiline',icon:'🎨',name:'Kunstiline meik'},
 ];
 
-// RIIETUSSTIILID
 const OUTFIT_STYLES=[
-  {id:'kontor',icon:'💼',name:'Kontori\nriietus'},
-  {id:'kool',icon:'🎒',name:'Kooli\nriietus'},
-  {id:'arikoosolek',icon:'🤝',name:'Ärikoosolek /\nÄrikohtumine'},
-  {id:'shopping',icon:'🛍️',name:'Riietus\nshoppamiseks'},
-  {id:'sport',icon:'🏃',name:'Spordi- ja\ntreeningriietus'},
-  {id:'ohtu',icon:'🌙',name:'Õhtu-\nriietus'},
-  {id:'pidu',icon:'🎉',name:'Pidu ja\nklubiriiietus'},
-  {id:'pidulik_ohtusoek',icon:'🍽️',name:'Pidulik\nõhtusöök'},
-  {id:'synnipaev',icon:'🎂',name:'Sünnipäeva\nriietus'},
-  {id:'lopuaktus',icon:'🎓',name:'Lõpuaktus ja\ntseremoonia'},
-  {id:'reisile',icon:'✈️',name:'Reisile\nminekuks'},
-  {id:'rand',icon:'🌊',name:'Ranna-\nriietus'},
-  {id:'minimalistlik',icon:'🖤',name:'Minimalistlik\nstiil'},
-  {id:'boho',icon:'🎨',name:'Bohoo\nstiil'},
-  {id:'luksus',icon:'👑',name:'Luksus /\nHigh Fashion'},
-  {id:'looduslik',icon:'🌿',name:'Looduslikud\nmaterjalid'},
+  {id:'kontor',icon:'💼',name:'Kontori\nriietus'},{id:'kool',icon:'🎒',name:'Kooli\nriietus'},
+  {id:'arikoosolek',icon:'🤝',name:'Ärikoosolek /\nÄrikohtumine'},{id:'shopping',icon:'🛍️',name:'Riietus\nshoppamiseks'},
+  {id:'sport',icon:'🏃',name:'Spordi- ja\ntreeningriietus'},{id:'ohtu',icon:'🌙',name:'Õhtu-\nriietus'},
+  {id:'pidu',icon:'🎉',name:'Pidu ja\nklubiriiietus'},{id:'pidulik_ohtusoek',icon:'🍽️',name:'Pidulik\nõhtusöök'},
+  {id:'synnipaev',icon:'🎂',name:'Sünnipäeva\nriietus'},{id:'lopuaktus',icon:'🎓',name:'Lõpuaktus ja\ntseremoonia'},
+  {id:'reisile',icon:'✈️',name:'Reisile\nminekuks'},{id:'rand',icon:'🌊',name:'Ranna-\nriietus'},
+  {id:'minimalistlik',icon:'🖤',name:'Minimalistlik\nstiil'},{id:'boho',icon:'🎨',name:'Bohoo\nstiil'},
+  {id:'luksus',icon:'👑',name:'Luksus /\nHigh Fashion'},{id:'looduslik',icon:'🌿',name:'Looduslikud\nmaterjalid'},
   {id:'streetwear',icon:'🔥',name:'Street-\nwear'},
 ];
 
@@ -734,40 +732,38 @@ const MEIK_CONTEXTS={
 };
 
 const OUTFIT_CONTEXTS={
-  kontor:{focus:'kontorisse sobiv, professionaalne, elegantne, mitte liiga casual',verdict_yes:'KONTORISSE SOBIV',verdict_no:'EI SOBI KONTORISSE'},
-  kool:{focus:'kooliriietuseks sobiv, nooruslik, mugav, asjakohane',verdict_yes:'KOOLIRIIETUSEKS SOBIV',verdict_no:'VAJAB KOHANDAMIST'},
-  arikoosolek:{focus:'ärikoosolekuks sobiv, formaalne, usaldusväärne, professionaalne',verdict_yes:'ÄRIKOOSOLEKUKS SOBIV',verdict_no:'LIIGA CASUAL ÄRIKOHTUMISEKS'},
+  kontor:{focus:'kontorisse sobiv, professionaalne, elegantne',verdict_yes:'KONTORISSE SOBIV',verdict_no:'EI SOBI KONTORISSE'},
+  kool:{focus:'kooliriietuseks sobiv, nooruslik, mugav',verdict_yes:'KOOLIRIIETUSEKS SOBIV',verdict_no:'VAJAB KOHANDAMIST'},
+  arikoosolek:{focus:'ärikoosolekuks sobiv, formaalne, professionaalne',verdict_yes:'ÄRIKOOSOLEKUKS SOBIV',verdict_no:'LIIGA CASUAL ÄRIKOHTUMISEKS'},
   shopping:{focus:'shoppamiseks mugav ja stiilne, casual chic',verdict_yes:'SHOPPING-STIILIS SUUREPÄRANE',verdict_no:'VAJAB KOHANDAMIST'},
-  sport:{focus:'spordi- ja treeningriietus, funktsionaalne, mugav, sportlik',verdict_yes:'SPORDIKS SOBIV',verdict_no:'EI SOBI TREENIMISEKS'},
-  ohtu:{focus:'õhtuseks väljaminekuks elegantne, sobiv, stiilne',verdict_yes:'ÕHTUKS SUUREPÄRANE',verdict_no:'VAJAB ROHKEM ELEGANTSI'},
-  pidu:{focus:'peoks ja klubisse sobiv, trendikas, julge, festiivne',verdict_yes:'PEOKS SUUREPÄRANE',verdict_no:'VAJAB ROHKEM ENERGIA'},
-  pidulik_ohtusoek:{focus:'pidulikuks õhtusöögiks sobiv, elegantne, formaalne',verdict_yes:'PIDULIKUKS ÕHTUSÖÖGIKS SOBIV',verdict_no:'VAJAB ROHKEM FORMAALUST'},
+  sport:{focus:'spordi- ja treeningriietus, funktsionaalne, mugav',verdict_yes:'SPORDIKS SOBIV',verdict_no:'EI SOBI TREENIMISEKS'},
+  ohtu:{focus:'õhtuseks väljaminekuks elegantne, stiilne',verdict_yes:'ÕHTUKS SUUREPÄRANE',verdict_no:'VAJAB ROHKEM ELEGANTSI'},
+  pidu:{focus:'peoks ja klubisse sobiv, trendikas, julge',verdict_yes:'PEOKS SUUREPÄRANE',verdict_no:'VAJAB ROHKEM ENERGIAT'},
+  pidulik_ohtusoek:{focus:'pidulikuks õhtusöögiks elegantne, formaalne',verdict_yes:'PIDULIKUKS ÕHTUSÖÖGIKS SOBIV',verdict_no:'VAJAB ROHKEM FORMAALUST'},
   synnipaev:{focus:'sünnipäevaks pidulik, rõõmus, festiivne',verdict_yes:'SÜNNIPÄEVAKS SUUREPÄRANE',verdict_no:'VAJAB ROHKEM PIDULIKUST'},
-  lopuaktus:{focus:'lõpuaktuseks ja tseremooniaks sobiv, pidulik, asjakohane',verdict_yes:'TSEREMOONIAKS SOBIV',verdict_no:'VAJAB KOHANDAMIST'},
+  lopuaktus:{focus:'lõpuaktuseks sobiv, pidulik, asjakohane',verdict_yes:'TSEREMOONIAKS SOBIV',verdict_no:'VAJAB KOHANDAMIST'},
   reisile:{focus:'reisimiseks mugav ja stiilne, praktiline',verdict_yes:'REISIMISEKS SUUREPÄRANE',verdict_no:'VAJAB PRAKTILISUST'},
   rand:{focus:'rannariietuseks sobiv, kerge, suvisus',verdict_yes:'RANNAKS SUUREPÄRANE',verdict_no:'EI SOBI RANNALE'},
-  minimalistlik:{focus:'minimalistliku stiili põhimõtted: less is more, puhas, lihtne',verdict_yes:'MINIMALISTLIKULT ELEGANTNE',verdict_no:'LIIGA PALJU DETAILE'},
-  boho:{focus:'bohoo stiil: vaba, loominguline, looduslik, romantilis',verdict_yes:'BOHO STIILIS SUUREPÄRANE',verdict_no:'VAJAB BOHO TUNNET'},
-  luksus:{focus:'luksus ja high fashion: eksklusiivsus, kvaliteet, trenditeadlikkus',verdict_yes:'LUKSUSLIKULT STIILNE',verdict_no:'VAJAB ROHKEM LUKSUST'},
-  looduslik:{focus:'looduslikud materjalid: linane, puuvillane, ökoloogiline, jätkusuutlik',verdict_yes:'LOODUSSÕBRALIKULT STIILNE',verdict_no:'VAJAB LOODUSLIKUMAID MATERJALE'},
-  streetwear:{focus:'streetwear stiil: urban, julge, trendikas, sportlik luksus',verdict_yes:'STREETWEAR STIILIS SUUREPÄRANE',verdict_no:'VAJAB ROHKEM STREET-TUNNET'},
+  minimalistlik:{focus:'minimalistliku stiil: less is more, puhas, lihtne',verdict_yes:'MINIMALISTLIKULT ELEGANTNE',verdict_no:'LIIGA PALJU DETAILE'},
+  boho:{focus:'bohoo stiil: vaba, loominguline, looduslik',verdict_yes:'BOHO STIILIS SUUREPÄRANE',verdict_no:'VAJAB BOHO TUNNET'},
+  luksus:{focus:'luksus ja high fashion: eksklusiivsus, kvaliteet',verdict_yes:'LUKSUSLIKULT STIILNE',verdict_no:'VAJAB ROHKEM LUKSUST'},
+  looduslik:{focus:'looduslikud materjalid: linane, puuvillane, ökoloogiline',verdict_yes:'LOODUSSÕBRALIKULT STIILNE',verdict_no:'VAJAB LOODUSLIKUMAID MATERJALE'},
+  streetwear:{focus:'streetwear stiil: urban, julge, trendikas',verdict_yes:'STREETWEAR STIILIS SUUREPÄRANE',verdict_no:'VAJAB ROHKEM STREET-TUNNET'},
 };
 
 function getMeikSystem(styleId){
   const ctx=MEIK_CONTEXTS[styleId]||MEIK_CONTEXTS.hommik;
   const styleName=MAKEUP_STYLES.find(m=>m.id===styleId)?.name||'Meik';
   return `Sa oled GLÓW meigi ekspert. Kasutaja soovib "${styleName}" analüüsi. Fookus: ${ctx.focus}.
-Vasta AINULT JSON:
-{"verdict":"${ctx.verdict_yes} / ${ctx.verdict_no}","verdict_class":"yes/maybe/no","meigistiil":"Praeguse meigi stiil lühidalt","feedback":"3-4 lauset hinnangust ${styleName} sobivuse kohta","details":{"Jumestus ja alusmeik":"2 lauset","Silmameik":"2 lauset","Huuled ja kulmud":"2 lauset","Sobivus ${styleName} jaoks":"2 lauset"},"scores":{"Jumestus":7,"Silmad":7,"Huuled":7,"Üldmulje":7},"tehnikad":["Tehnika soovitus 1","Tehnika soovitus 2","Tehnika soovitus 3"],"kohe_tooted":[{"kategooria":"Jumestus","nimi":"Konkreetne tootenimi","bränd":"MAC / NYX / Catrice / Essence / Rimmel / Max Factor / Maybelline","hind":"~XX€","põhjus":"Miks sobib ${styleName} jaoks","link":"https://www.mactabeauty.com/meik"},{"kategooria":"Silmameik","nimi":"Konkreetne tootenimi","bränd":"bränd","hind":"~XX€","põhjus":"põhjus","link":"https://www.mactabeauty.com/meik/silmad"}],"jarmine_tooted":[{"kategooria":"Jumestuskreem","nimi":"Konkreetne tootenimi","bränd":"MAC / NYX / Catrice / Essence","hind":"~XX€","põhjus":"Miks soovitad järgmiseks korraks","link":"https://www.mactabeauty.com/meik"},{"kategooria":"Silmameik","nimi":"tootenimi","bränd":"bränd","hind":"~XX€","põhjus":"põhjus","link":"https://www.mactabeauty.com/meik/silmad"},{"kategooria":"Huuled","nimi":"tootenimi","bränd":"bränd","hind":"~XX€","põhjus":"põhjus","link":"https://www.mactabeauty.com/meik/huuled"}],"tip":"Kõige olulisem soovitus ${styleName} meigi jaoks"}`;
+Vasta AINULT JSON: {"verdict":"${ctx.verdict_yes} / ${ctx.verdict_no}","verdict_class":"yes/maybe/no","meigistiil":"Praeguse meigi stiil lühidalt","feedback":"3-4 lauset hinnangust ${styleName} sobivuse kohta","details":{"Jumestus ja alusmeik":"2 lauset","Silmameik":"2 lauset","Huuled ja kulmud":"2 lauset","Sobivus ${styleName} jaoks":"2 lauset"},"scores":{"Jumestus":7,"Silmad":7,"Huuled":7,"Üldmulje":7},"tehnikad":["Tehnika soovitus 1","Tehnika soovitus 2","Tehnika soovitus 3"],"kohe_tooted":[{"kategooria":"Jumestus","nimi":"Konkreetne tootenimi","bränd":"MAC / NYX / Catrice / Essence / Rimmel / Max Factor / Maybelline","hind":"~XX€","põhjus":"Miks sobib ${styleName} jaoks","link":"https://www.mactabeauty.com/meik"},{"kategooria":"Silmameik","nimi":"Konkreetne tootenimi","bränd":"bränd","hind":"~XX€","põhjus":"põhjus","link":"https://www.mactabeauty.com/meik/silmad"}],"jarmine_tooted":[{"kategooria":"Jumestuskreem","nimi":"Konkreetne tootenimi","bränd":"MAC / NYX / Catrice / Essence","hind":"~XX€","põhjus":"Miks soovitad järgmiseks korraks","link":"https://www.mactabeauty.com/meik"},{"kategooria":"Silmameik","nimi":"tootenimi","bränd":"bränd","hind":"~XX€","põhjus":"põhjus","link":"https://www.mactabeauty.com/meik/silmad"},{"kategooria":"Huuled","nimi":"tootenimi","bränd":"bränd","hind":"~XX€","põhjus":"põhjus","link":"https://www.mactabeauty.com/meik/huuled"}],"tip":"Kõige olulisem soovitus ${styleName} meigi jaoks"}`;
 }
 
 function getStiilSystem(styleId){
   const ctx=OUTFIT_CONTEXTS[styleId]||OUTFIT_CONTEXTS.kontor;
   const styleName=OUTFIT_STYLES.find(s=>s.id===styleId)?.name?.replace('\n',' ')||'Riietus';
   return `Sa oled GLÓW stiiliekspert. Kasutaja soovib "${styleName}" analüüsi. Fookus: ${ctx.focus}.
-Kasutaja on proovinud riiet selga ja pildistanud ennast. Hinda kas praegune riietus sobib selleks stiilikx.
-Vasta AINULT JSON:
-{"verdict":"${ctx.verdict_yes} / ${ctx.verdict_no}","verdict_class":"yes/maybe/no","riietusstiil":"Praeguse riietuse stiil lühidalt","feedback":"3-4 lauset hinnangust ${styleName} sobivuse kohta","details":{"Üleriietus":"2 lauset","Värvikombinatsioon":"2 lauset","Sobivus ${styleName} jaoks":"2 lauset","Aksessuaarid ja viimistlus":"2 lauset"},"scores":{"Sobivus":7,"Värvid":7,"Stiil":7,"Üldmulje":7},"kombineerimised":["Kombineerimise soovitus 1 ${styleName} jaoks","Kombineerimise soovitus 2","Kombineerimise soovitus 3"],"soovitused":[{"kategooria":"Põhitükk","nimi":"Konkreetne rõivaese","bränd":"Zara / H&M / Mango / & Other Stories / COS","hind":"~XX€","põhjus":"Miks sobib ${styleName} jaoks","link":"https://www.denimdream.ee/"},{"kategooria":"Lisatükk","nimi":"Konkreetne rõivaese","bränd":"bränd","hind":"~XX€","põhjus":"põhjus","link":"https://www.denimdream.ee/"},{"kategooria":"Aksessuaar","nimi":"Konkreetne aksessuaar","bränd":"bränd","hind":"~XX€","põhjus":"põhjus","link":"https://www.denimdream.ee/"}],"jarmine_soovitused":[{"kategooria":"Investeeringuese","nimi":"Konkreetne rõivaese","bränd":"bränd","hind":"~XX€","põhjus":"Miks soovitad järgmiseks korraks","link":"https://www.denimdream.ee/"},{"kategooria":"Täiendav tükk","nimi":"Konkreetne rõivaese","bränd":"bränd","hind":"~XX€","põhjus":"põhjus","link":"https://www.denimdream.ee/"}],"tip":"Kõige olulisem soovitus ${styleName} riietuse jaoks"}`;
+Kasutaja on proovinud riiet selga. Hinda kas praegune riietus sobib.
+Vasta AINULT JSON: {"verdict":"${ctx.verdict_yes} / ${ctx.verdict_no}","verdict_class":"yes/maybe/no","riietusstiil":"Praeguse riietuse stiil lühidalt","feedback":"3-4 lauset hinnangust ${styleName} sobivuse kohta","details":{"Üleriietus":"2 lauset","Värvikombinatsioon":"2 lauset","Sobivus ${styleName} jaoks":"2 lauset","Aksessuaarid ja viimistlus":"2 lauset"},"scores":{"Sobivus":7,"Värvid":7,"Stiil":7,"Üldmulje":7},"kombineerimised":["Kombineerimise soovitus 1","Kombineerimise soovitus 2","Kombineerimise soovitus 3"],"soovitused":[{"kategooria":"Põhitükk","nimi":"Konkreetne rõivaese","bränd":"Zara / H&M / Mango / & Other Stories / COS","hind":"~XX€","põhjus":"Miks sobib ${styleName} jaoks","link":"https://www.denimdream.ee/"},{"kategooria":"Lisatükk","nimi":"Konkreetne rõivaese","bränd":"bränd","hind":"~XX€","põhjus":"põhjus","link":"https://www.denimdream.ee/"},{"kategooria":"Aksessuaar","nimi":"Konkreetne aksessuaar","bränd":"bränd","hind":"~XX€","põhjus":"põhjus","link":"https://www.denimdream.ee/"}],"jarmine_soovitused":[{"kategooria":"Investeeringuese","nimi":"Konkreetne rõivaese","bränd":"bränd","hind":"~XX€","põhjus":"Miks soovitad järgmiseks korraks","link":"https://www.denimdream.ee/"},{"kategooria":"Täiendav tükk","nimi":"Konkreetne rõivaese","bränd":"bränd","hind":"~XX€","põhjus":"põhjus","link":"https://www.denimdream.ee/"}],"tip":"Kõige olulisem soovitus ${styleName} riietuse jaoks"}`;
 }
 
 const PROCEDURES=[
@@ -801,35 +797,17 @@ const canvas=document.getElementById('cv');
 
 function buildMeikGrid(){
   const grid=document.getElementById('meikStyleGrid');grid.innerHTML='';
-  MAKEUP_STYLES.forEach(s=>{
-    const btn=document.createElement('div');
-    btn.className='style-btn meik-btn'+(s.id===selectedMeikStyle?' active':'');
-    btn.innerHTML=`<div class="style-icon">${s.icon}</div><div class="style-name">${s.name}</div>`;
-    btn.onclick=()=>selectMeikStyle(s.id);
-    grid.appendChild(btn);
-  });
+  MAKEUP_STYLES.forEach(s=>{const btn=document.createElement('div');btn.className='style-btn meik-btn'+(s.id===selectedMeikStyle?' active':'');btn.innerHTML=`<div class="style-icon">${s.icon}</div><div class="style-name">${s.name}</div>`;btn.onclick=()=>selectMeikStyle(s.id);grid.appendChild(btn);});
 }
 
 function buildStiilGrid(){
   const grid=document.getElementById('stiilStyleGrid');grid.innerHTML='';
-  OUTFIT_STYLES.forEach(s=>{
-    const btn=document.createElement('div');
-    btn.className='style-btn stiil-btn'+(s.id===selectedStiilStyle?' active':'');
-    btn.innerHTML=`<div class="style-icon">${s.icon}</div><div class="style-name">${s.name.replace('\n','<br>')}</div>`;
-    btn.onclick=()=>selectStiilStyle(s.id);
-    grid.appendChild(btn);
-  });
+  OUTFIT_STYLES.forEach(s=>{const btn=document.createElement('div');btn.className='style-btn stiil-btn'+(s.id===selectedStiilStyle?' active':'');btn.innerHTML=`<div class="style-icon">${s.icon}</div><div class="style-name">${s.name.replace('\n','<br>')}</div>`;btn.onclick=()=>selectStiilStyle(s.id);grid.appendChild(btn);});
 }
 
 function buildProcedureGrid(){
   const grid=document.getElementById('procedureGrid');grid.innerHTML='';
-  PROCEDURES.forEach(p=>{
-    const btn=document.createElement('div');
-    btn.className='proc-btn'+(p.id===selectedProcedure?' active':'');
-    btn.innerHTML=`<div class="proc-icon">${p.icon}</div><div class="proc-name">${p.name}</div>`;
-    btn.onclick=()=>selectProcedure(p.id);
-    grid.appendChild(btn);
-  });
+  PROCEDURES.forEach(p=>{const btn=document.createElement('div');btn.className='proc-btn'+(p.id===selectedProcedure?' active':'');btn.innerHTML=`<div class="proc-icon">${p.icon}</div><div class="proc-name">${p.name}</div>`;btn.onclick=()=>selectProcedure(p.id);grid.appendChild(btn);});
 }
 
 function selectMeikStyle(id){
@@ -843,13 +821,7 @@ function selectStiilStyle(id){
   selectedStiilStyle=id;
   document.querySelectorAll('#stiilStyleGrid .style-btn').forEach((b,i)=>b.classList.toggle('active',OUTFIT_STYLES[i].id===id));
   const s=OUTFIT_STYLES.find(o=>o.id===id);
-  if(s){
-    const name=s.name.replace('\n',' ');
-    document.getElementById('resLbl').textContent=name;
-    resetResults();
-    document.getElementById('stiilTipText').textContent=`${s.icon} ${name} valitud — proovi riie selga ja pildista ennast`;
-    document.getElementById('camPhText').textContent='Proovi riie selga ja pildista ennast';
-  }
+  if(s){const name=s.name.replace('\n',' ');document.getElementById('resLbl').textContent=name;resetResults();document.getElementById('stiilTipText').textContent=`${s.icon} ${name} valitud — proovi riie selga ja pildista ennast`;document.getElementById('camPhText').textContent='Proovi riie selga ja pildista ennast';}
 }
 
 function selectProcedure(id){
@@ -935,20 +907,8 @@ function setMode(m){
   else if(m==='pro'){buildProcedureGrid();document.getElementById('resLbl').textContent=PROC_LABELS[selectedProcedure]||'AI Kosmeetiku analüüs';}
 }
 
-function showPricing(){
-  document.getElementById('pricingScreen').classList.add('show');
-  document.getElementById('checkoutScreen').classList.remove('show');
-  ['assistentWrap','cameraCard','resultCard'].forEach(id=>document.getElementById(id).style.display='none');
-  ['shareCard','meikTip','stiilTip','proTip'].forEach(id=>document.getElementById(id).classList.remove('on','show'));
-  resetResults();
-}
-function hidePricing(){
-  document.getElementById('pricingScreen').classList.remove('show');
-  ['assistentWrap','cameraCard','resultCard'].forEach(id=>document.getElementById(id).style.display='block');
-  if(mode==='meik')document.getElementById('meikTip').classList.add('show');
-  if(mode==='stiil')document.getElementById('stiilTip').classList.add('show');
-  if(mode==='pro')document.getElementById('proTip').classList.add('show');
-}
+function showPricing(){document.getElementById('pricingScreen').classList.add('show');document.getElementById('checkoutScreen').classList.remove('show');['assistentWrap','cameraCard','resultCard'].forEach(id=>document.getElementById(id).style.display='none');['shareCard','meikTip','stiilTip','proTip'].forEach(id=>document.getElementById(id).classList.remove('on','show'));resetResults();}
+function hidePricing(){document.getElementById('pricingScreen').classList.remove('show');['assistentWrap','cameraCard','resultCard'].forEach(id=>document.getElementById(id).style.display='block');if(mode==='meik')document.getElementById('meikTip').classList.add('show');if(mode==='stiil')document.getElementById('stiilTip').classList.add('show');if(mode==='pro')document.getElementById('proTip').classList.add('show');}
 function showCheckout(){document.getElementById('pricingScreen').classList.remove('show');document.getElementById('checkoutScreen').classList.add('show');document.getElementById('orderTitle').textContent=selectedPkg.count+' analüüsi';document.getElementById('orderSub').textContent=selectedPkg.unit+'€ analüüsi kohta';document.getElementById('orderPrice').textContent='€'+selectedPkg.price;}
 function hideCheckout(){document.getElementById('checkoutScreen').classList.remove('show');document.getElementById('pricingScreen').classList.add('show');}
 function selectPkg(el,count,price,unit){document.querySelectorAll('.pkg').forEach(p=>p.classList.remove('selected'));el.classList.add('selected');selectedPkg={count,price,unit};document.getElementById('buyBtn').textContent='Jätka maksega — €'+price+' →';}
@@ -971,28 +931,14 @@ async function analyze(){
   const key=getKey();if(!key){document.getElementById('apiSetupCard').style.display='block';return;}
   if(!stream){document.getElementById('err').textContent='Ava kõigepealt kaamera!';return;}
   const credits=getCredits();if(credits<=0){showPricing();return;}
-
   let sys,prompt,lbl,bar;
-  if(mode==='meik'){
-    sys=getMeikSystem(selectedMeikStyle);prompt='Analüüsi minu meiki. Vasta ainult JSON.';
-    lbl=MAKEUP_STYLES.find(s=>s.id===selectedMeikStyle)?.name||'Meigi analüüs';bar='c1';
-    document.getElementById('loadingText').textContent='Analüüsin meiki...';
-  } else if(mode==='stiil'){
-    sys=getStiilSystem(selectedStiilStyle);prompt='Analüüsi minu riietust. Vasta ainult JSON.';
-    lbl=OUTFIT_STYLES.find(s=>s.id===selectedStiilStyle)?.name?.replace('\n',' ')||'Stiili analüüs';bar='c3';
-    document.getElementById('loadingText').textContent='Analüüsin riietust...';
-  } else {
-    sys=PROC_SYS[selectedProcedure];prompt='Analüüsi klienti. Vasta ainult JSON.';
-    lbl=PROC_LABELS[selectedProcedure]||'AI Kosmeetiku analüüs';bar='c4';
-    document.getElementById('loadingText').textContent='Analüüsin professionaalselt...';
-  }
-
+  if(mode==='meik'){sys=getMeikSystem(selectedMeikStyle);prompt='Analüüsi minu meiki. Vasta ainult JSON.';lbl=MAKEUP_STYLES.find(s=>s.id===selectedMeikStyle)?.name||'Meigi analüüs';bar='c1';document.getElementById('loadingText').textContent='Analüüsin meiki...';}
+  else if(mode==='stiil'){sys=getStiilSystem(selectedStiilStyle);prompt='Analüüsi minu riietust. Vasta ainult JSON.';lbl=OUTFIT_STYLES.find(s=>s.id===selectedStiilStyle)?.name?.replace('\n',' ')||'Stiili analüüs';bar='c3';document.getElementById('loadingText').textContent='Analüüsin riietust...';}
+  else{sys=PROC_SYS[selectedProcedure];prompt='Analüüsi klienti. Vasta ainult JSON.';lbl=PROC_LABELS[selectedProcedure]||'AI Kosmeetiku analüüs';bar='c4';document.getElementById('loadingText').textContent='Analüüsin professionaalselt...';}
   document.getElementById('err').textContent='';setDot('thinking','Analüüsin...');
   document.getElementById('scan').classList.add('on');document.getElementById('load').classList.add('on');
-  document.getElementById('resEmpty').style.display='none';resetResults();
-  document.getElementById('load').classList.add('on');
+  document.getElementById('resEmpty').style.display='none';resetResults();document.getElementById('load').classList.add('on');
   document.getElementById('anaBtn').disabled=true;
-
   const dataUrl=capture();const b64=dataUrl.split(',')[1];
   try{
     const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-opus-4-5',max_tokens:2500,system:sys,messages:[{role:'user',content:[{type:'image',source:{type:'base64',media_type:'image/jpeg',data:b64}},{type:'text',text:prompt}]}]})});
@@ -1010,7 +956,7 @@ async function analyze(){
 
 function makeCard(p,type){
   const card=document.createElement('div');
-  const isOutfit=type==='outfit';const isMeik=type==='meik';const isPro=type==='pro';
+  const isOutfit=type==='outfit';const isMeik=type==='meik';
   if(isOutfit)card.className='outfit-card';
   else if(isMeik)card.className='product-card';
   else card.className='pro-product-card';
@@ -1033,81 +979,34 @@ function renderResult(parsed,barClass,photoUrl,lbl){
   document.getElementById('verdictIcon').textContent=cfg.icon;
   document.getElementById('verdictText').textContent=parsed.verdict||'';
   document.getElementById('verdictSub').textContent=cfg.sub;
-
   let feedbackHtml='';
   const subLabel=parsed.riietusstiil||parsed.meigistiil||parsed.nahatuup||parsed.kulutuup;
   const subColor=mode==='stiil'?'var(--stiil)':mode==='meik'?'var(--blush)':'var(--gold)';
   if(subLabel){feedbackHtml=`<div style="font-size:10px;letter-spacing:.3em;color:${subColor};text-transform:uppercase;margin-bottom:6px;font-family:'DM Mono',monospace">Stiil</div><div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:${subColor};margin-bottom:14px;font-style:italic">${subLabel}</div>`;}
   feedbackHtml+=`<p style="font-family:'Cormorant Garamond',serif;font-size:17px;line-height:1.8;color:var(--cream)">${parsed.feedback||''}</p>`;
   document.getElementById('feedbackText').innerHTML=feedbackHtml;
-
   const dg=document.getElementById('detailsGrid');dg.innerHTML='';
   if(parsed.details){Object.entries(parsed.details).forEach(([k,v])=>{const d=document.createElement('div');d.className='detail-item';d.innerHTML='<div class="detail-label">'+k+'</div><div class="detail-value">'+v+'</div>';dg.appendChild(d);});}
-
   const sr=document.getElementById('scoresRow');sr.innerHTML='';
   if(parsed.scores){const r=24,circ=2*Math.PI*r;Object.entries(parsed.scores).forEach(([label,val])=>{const offset=circ*(1-val/10);const id='sc_'+label.replace(/\s/g,'_');const div=document.createElement('div');div.className='score-item';div.innerHTML=`<div class="score-label">${label}</div><div class="score-circle ${barClass}" id="${id}"><svg width="56" height="56" viewBox="0 0 56 56"><circle class="score-circle-bg" cx="28" cy="28" r="${r}"/><circle class="score-circle-fill" cx="28" cy="28" r="${r}" stroke-dasharray="${circ}" stroke-dashoffset="${circ}" id="${id}_fill"/></svg><div class="score-num">${val}</div></div>`;sr.appendChild(div);setTimeout(()=>{const b=document.getElementById(id+'_fill');if(b)b.style.strokeDashoffset=offset;},400);});}
-
   if(parsed.tip){document.getElementById('tipText').textContent=parsed.tip;document.getElementById('tipCard').style.display='block';}else{document.getElementById('tipCard').style.display='none';}
   document.getElementById('resultWrap').classList.add('on');
-
-  // STIIL kaardid
   if(mode==='stiil'){
-    if(parsed.kombineerimised?.length){
-      const el=document.getElementById('kombineringSteps');el.innerHTML='';
-      parsed.kombineerimised.forEach((k,i)=>{const d=document.createElement('div');d.className='komb-step';d.innerHTML=`<div class="komb-num">${i+1}</div><div class="komb-text">${k}</div>`;el.appendChild(d);});
-      document.getElementById('kombineringCard').classList.add('on');
-    }
-    if(parsed.soovitused?.length){
-      const list=document.getElementById('outfitNowList');list.innerHTML='';
-      parsed.soovitused.forEach(p=>list.appendChild(makeCard(p,'outfit')));
-      document.getElementById('outfitNowSection').classList.add('on');
-    }
-    if(parsed.jarmine_soovitused?.length){
-      const list=document.getElementById('outfitNextList');list.innerHTML='';
-      parsed.jarmine_soovitused.forEach(p=>list.appendChild(makeCard(p,'outfit')));
-      document.getElementById('outfitNextSection').classList.add('on');
-    }
+    if(parsed.kombineerimised?.length){const el=document.getElementById('kombineringSteps');el.innerHTML='';parsed.kombineerimised.forEach((k,i)=>{const d=document.createElement('div');d.className='komb-step';d.innerHTML=`<div class="komb-num">${i+1}</div><div class="komb-text">${k}</div>`;el.appendChild(d);});document.getElementById('kombineringCard').classList.add('on');}
+    if(parsed.soovitused?.length){const list=document.getElementById('outfitNowList');list.innerHTML='';parsed.soovitused.forEach(p=>list.appendChild(makeCard(p,'outfit')));document.getElementById('outfitNowSection').classList.add('on');}
+    if(parsed.jarmine_soovitused?.length){const list=document.getElementById('outfitNextList');list.innerHTML='';parsed.jarmine_soovitused.forEach(p=>list.appendChild(makeCard(p,'outfit')));document.getElementById('outfitNextSection').classList.add('on');}
   }
-
-  // MEIK kaardid
   if(mode==='meik'){
-    if(parsed.tehnikad?.length){
-      const el=document.getElementById('techniqueSteps');el.innerHTML='';
-      parsed.tehnikad.forEach((t,i)=>{const d=document.createElement('div');d.className='tech-step';d.innerHTML=`<div class="tech-num">${i+1}</div><div class="tech-text">${t}</div>`;el.appendChild(d);});
-      document.getElementById('techniquesCard').classList.add('on');
-    }
-    if(parsed.kohe_tooted?.length){
-      const list=document.getElementById('meikNowList');list.innerHTML='';
-      parsed.kohe_tooted.forEach(p=>list.appendChild(makeCard(p,'meik')));
-      document.getElementById('meikNowSection').classList.add('on');
-    }
-    if(parsed.jarmine_tooted?.length){
-      const list=document.getElementById('meikNextList');list.innerHTML='';
-      parsed.jarmine_tooted.forEach(p=>list.appendChild(makeCard(p,'meik')));
-      document.getElementById('meikNextSection').classList.add('on');
-    }
+    if(parsed.tehnikad?.length){const el=document.getElementById('techniqueSteps');el.innerHTML='';parsed.tehnikad.forEach((t,i)=>{const d=document.createElement('div');d.className='tech-step';d.innerHTML=`<div class="tech-num">${i+1}</div><div class="tech-text">${t}</div>`;el.appendChild(d);});document.getElementById('techniquesCard').classList.add('on');}
+    if(parsed.kohe_tooted?.length){const list=document.getElementById('meikNowList');list.innerHTML='';parsed.kohe_tooted.forEach(p=>list.appendChild(makeCard(p,'meik')));document.getElementById('meikNowSection').classList.add('on');}
+    if(parsed.jarmine_tooted?.length){const list=document.getElementById('meikNextList');list.innerHTML='';parsed.jarmine_tooted.forEach(p=>list.appendChild(makeCard(p,'meik')));document.getElementById('meikNextSection').classList.add('on');}
   }
-
-  // PRO kaardid
   if(mode==='pro'){
     const steps=parsed.protseduur||parsed.modelleerimine||parsed.tehnikad;
-    if(steps?.length){
-      const el=document.getElementById('protocolSteps');el.innerHTML='';
-      steps.forEach((s,i)=>{const d=document.createElement('div');d.className='proto-step';d.innerHTML=`<div class="proto-num">${i+1}</div><div class="proto-text">${s}</div>`;el.appendChild(d);});
-      document.getElementById('protocolCard').classList.add('on');
-    }
-    if(parsed.pro_tooted?.length){
-      const list=document.getElementById('proProductsList');list.innerHTML='';
-      parsed.pro_tooted.forEach(p=>list.appendChild(makeCard(p,'pro')));
-      document.getElementById('proProductsSection').classList.add('on');
-    }
-    if(parsed.kodu_tooted?.length){
-      const list=document.getElementById('homeProductsList');list.innerHTML='';
-      parsed.kodu_tooted.forEach(p=>list.appendChild(makeCard(p,'pro')));
-      document.getElementById('homeProductsSection').classList.add('on');
-    }
+    if(steps?.length){const el=document.getElementById('protocolSteps');el.innerHTML='';steps.forEach((s,i)=>{const d=document.createElement('div');d.className='proto-step';d.innerHTML=`<div class="proto-num">${i+1}</div><div class="proto-text">${s}</div>`;el.appendChild(d);});document.getElementById('protocolCard').classList.add('on');}
+    if(parsed.pro_tooted?.length){const list=document.getElementById('proProductsList');list.innerHTML='';parsed.pro_tooted.forEach(p=>list.appendChild(makeCard(p,'pro')));document.getElementById('proProductsSection').classList.add('on');}
+    if(parsed.kodu_tooted?.length){const list=document.getElementById('homeProductsList');list.innerHTML='';parsed.kodu_tooted.forEach(p=>list.appendChild(makeCard(p,'pro')));document.getElementById('homeProductsSection').classList.add('on');}
   }
-
   const scores=parsed.scores||{};const scoreHtml=Object.entries(scores).map(([l,v])=>'<div><div class="sp-sv">'+v+'</div><div class="sp-sl">'+l+'</div></div>').join('');
   document.getElementById('sharePrev').innerHTML='<img class="sp-photo" src="'+photoUrl+'">'+'<div class="sp-logo">GL<em>O</em>W</div>'+'<div class="sp-mode">'+(parsed.verdict||lbl)+'</div>'+'<div class="sp-text">'+parsed.feedback+'</div>'+(parsed.tip?'<div class="sp-tip">✦ '+parsed.tip+'</div>':'')+' <div class="sp-scores">'+scoreHtml+'</div>';
   document.getElementById('shareCard').classList.add('on');
