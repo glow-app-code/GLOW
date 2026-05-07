@@ -174,17 +174,27 @@ header{text-align:center;padding:24px 0 32px;position:relative;animation:fadeUp 
 .tip-banner.stiil{border:1px solid rgba(155,143,181,0.3);background:rgba(155,143,181,0.07);color:rgba(155,143,181,0.9)}
 .tip-banner.pro{border:1px solid rgba(201,169,110,0.3);background:rgba(201,169,110,0.06);color:rgba(201,169,110,0.9)}
 .tip-banner strong{color:inherit}
-.cam-frame{position:relative;border-radius:2px;overflow:hidden;background:#050303;aspect-ratio:3/4;border:1px solid rgba(255,255,255,0.06)}
+
+/* KAAMERA — nupud üleval peal */
+.cam-wrap{border:1px solid var(--gold-dim);border-radius:3px;background:rgba(0,0,0,0.3);overflow:hidden;margin-bottom:16px}
+.cam-top-bar{display:flex;gap:8px;padding:10px 10px 0}
+.cam-top-btn{flex:1;padding:11px 6px;border-radius:2px;cursor:pointer;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;transition:all .2s;border:1px solid var(--gold-dim);background:rgba(0,0,0,0.4);color:var(--cream);text-align:center}
+.cam-top-btn.pri{background:var(--gold);color:var(--bg);border-color:var(--gold);font-weight:500}
+.cam-top-btn:disabled{opacity:.35;cursor:not-allowed}
+.cam-top-btn.red{border-color:rgba(196,115,107,.4);color:var(--rose)}
+.cam-frame{position:relative;border-radius:0;overflow:hidden;background:#050303;aspect-ratio:3/4;margin:10px 10px 0}
 #vid{width:100%;height:100%;object-fit:cover;display:block;transform:scaleX(-1)}
-.cam-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:rgba(14,12,11,0.9)}
-.cam-ph p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:var(--dim);text-align:center;padding:0 20px}
+.cam-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:rgba(14,12,11,0.95)}
+.cam-ph-icon{font-size:40px;opacity:.3}
+.cam-ph p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:var(--dim);text-align:center;padding:0 24px;line-height:1.6}
+.cam-ph-hint{font-size:9px;letter-spacing:.3em;color:rgba(201,169,110,0.4);text-transform:uppercase}
 .corner{position:absolute;width:16px;height:16px;pointer-events:none;z-index:2}
 .corner.tl{top:8px;left:8px;border-top:1px solid var(--gold);border-left:1px solid var(--gold)}
 .corner.br{bottom:8px;right:8px;border-bottom:1px solid var(--gold);border-right:1px solid var(--gold)}
 .scanline{position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);pointer-events:none;z-index:3;opacity:0}
 .scanline.on{opacity:1;animation:scan 2.5s linear infinite}
 @keyframes scan{from{top:0%}to{top:100%}}
-.srow{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:11px;letter-spacing:.15em;color:var(--dim)}
+.cam-status-bar{display:flex;align-items:center;gap:8px;padding:10px 12px;font-size:11px;letter-spacing:.15em;color:var(--dim)}
 .dot{width:7px;height:7px;border-radius:50%;background:var(--dim);flex-shrink:0;transition:all .3s}
 .dot.live{background:#7ec98a;box-shadow:0 0 8px rgba(126,201,138,.6);animation:blink 2s ease infinite}
 .dot.thinking{background:var(--gold);box-shadow:0 0 8px rgba(201,169,110,.6);animation:blink .8s ease infinite}
@@ -194,12 +204,8 @@ header{text-align:center;padding:24px 0 32px;position:relative;animation:fadeUp 
 .wave span{width:2px;background:var(--gold);border-radius:2px;animation:wv .8s ease infinite}
 .wave span:nth-child(1){height:4px}.wave span:nth-child(2){height:10px;animation-delay:.1s}.wave span:nth-child(3){height:16px;animation-delay:.2s}.wave span:nth-child(4){height:10px;animation-delay:.3s}.wave span:nth-child(5){height:4px;animation-delay:.4s}
 @keyframes wv{0%,100%{transform:scaleY(.5);opacity:.5}50%{transform:scaleY(1);opacity:1}}
-.errmsg{font-size:11px;color:var(--rose);margin-top:8px;line-height:1.6}
-.brow{display:flex;gap:8px;margin-top:12px}
-.btn{flex:1;padding:12px 6px;border-radius:2px;cursor:pointer;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.25em;text-transform:uppercase;transition:all .2s;border:1px solid var(--gold-dim);background:transparent;color:var(--cream)}
-.btn.pri{background:var(--gold);color:var(--bg);border-color:var(--gold);font-weight:500}
-.btn:disabled{opacity:.35;cursor:not-allowed}
-.btn.red{border-color:rgba(196,115,107,.4);color:var(--rose)}
+.errmsg{font-size:11px;color:var(--rose);padding:0 12px 10px;line-height:1.6}
+
 .res-inner{min-height:80px}
 .res-empty{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;color:var(--dim);text-align:center;padding:24px 0}
 .loading{display:none;flex-direction:column;align-items:center;gap:12px;padding:32px 0}
@@ -296,8 +302,6 @@ header{text-align:center;padding:24px 0 32px;position:relative;animation:fadeUp 
 .tech-num{width:24px;height:24px;border-radius:50%;border:1px solid var(--blush);color:var(--blush);font-size:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
 .proto-num{width:24px;height:24px;border-radius:50%;border:1px solid var(--gold);color:var(--gold);font-size:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
 .tech-text,.proto-text{font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--cream);line-height:1.6}
-.tech-text strong{color:var(--blush)}
-.proto-text strong{color:var(--gold)}
 .share-card{display:none}.share-card.on{display:block}
 .share-preview{background:linear-gradient(135deg,#1a0a08,#0e0c0b);border:1px solid var(--gold-dim);border-radius:3px;padding:16px}
 .sp-photo{width:100%;height:180px;object-fit:cover;border-radius:3px;display:block;margin-bottom:12px}
@@ -370,8 +374,6 @@ header{text-align:center;padding:24px 0 32px;position:relative;animation:fadeUp 
 .coming-soon-overlay{text-align:center;padding:16px;background:rgba(201,169,110,0.06);border:1px solid rgba(201,169,110,0.2);border-radius:3px;margin-top:8px}
 .coming-soon-overlay p:first-child{font-size:12px;color:var(--gold);margin-bottom:4px}
 .coming-soon-overlay p:last-child{font-size:11px;color:var(--dim);line-height:1.6}
-
-/* FOOTER */
 .app-footer{max-width:500px;margin:0 auto;padding:32px 16px 40px;text-align:center;border-top:1px solid rgba(201,169,110,0.1)}
 .footer-logo{font-family:'Cormorant Garamond',serif;font-size:22px;letter-spacing:.3em;color:var(--cream);margin-bottom:4px}
 .footer-logo em{color:var(--gold);font-style:italic}
@@ -381,7 +383,6 @@ header{text-align:center;padding:24px 0 32px;position:relative;animation:fadeUp 
 .footer-copy a{color:rgba(201,169,110,0.4);text-decoration:none}
 .footer-copy a:hover{color:var(--gold)}
 .footer-bottom{margin-top:12px;font-size:9px;color:rgba(240,230,211,0.15);letter-spacing:.1em}
-
 canvas{display:none}
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 </style>
@@ -539,81 +540,49 @@ canvas{display:none}
     <div class="mode m-stiil active" onclick="setMode('stiil')"><div class="micon">👗</div><div class="mname">Stiil</div><div class="mdesc">Riietuse analüüs</div></div>
     <div class="mode m-pro" onclick="setMode('pro')"><div class="pro-badge">PRO</div><div class="micon">💆</div><div class="mname">AI Kosmeetik</div><div class="mdesc">Professionaalne analüüs</div></div>
   </div>
-  <div class="style-select" id="meikStyleSelect">
-    <div class="style-select-title">Vali meigistiil</div>
-    <div class="style-grid" id="meikStyleGrid"></div>
-  </div>
-  <div class="style-select show" id="stiilStyleSelect">
-    <div class="style-select-title">Vali riietusstiil</div>
-    <div class="style-grid" id="stiilStyleGrid"></div>
-  </div>
-  <div class="pro-procedure-select" id="proProcedureSelect">
-    <div class="pro-procedure-title">Vali protseduur</div>
-    <div class="procedure-grid" id="procedureGrid"></div>
-  </div>
+  <div class="style-select" id="meikStyleSelect"><div class="style-select-title">Vali meigistiil</div><div class="style-grid" id="meikStyleGrid"></div></div>
+  <div class="style-select show" id="stiilStyleSelect"><div class="style-select-title">Vali riietusstiil</div><div class="style-grid" id="stiilStyleGrid"></div></div>
+  <div class="pro-procedure-select" id="proProcedureSelect"><div class="pro-procedure-title">Vali protseduur</div><div class="procedure-grid" id="procedureGrid"></div></div>
 </div>
 
-<div class="tip-banner meik" id="meikTip"><strong id="meikTipText">💄 Hommikumeik valitud — suuna kaamera oma näole</strong></div>
-<div class="tip-banner stiil" id="stiilTip"><strong id="stiilTipText">👗 Kontoririietus valitud — proovi riie selga ja pildista ennast</strong></div>
-<div class="tip-banner pro" id="proTip"><strong id="proTipText">✦ Vali protseduur ja suuna kaamera kliendile</strong></div>
+<div class="tip-banner meik" id="meikTip"><strong id="meikTipText">💄 Hommikumeik valitud — vajuta kaamera nupp allpool</strong></div>
+<div class="tip-banner stiil" id="stiilTip"><strong id="stiilTipText">👗 Kontoririietus valitud — proovi riie selga ja vajuta kaamera nupp</strong></div>
+<div class="tip-banner pro" id="proTip"><strong id="proTipText">✦ Vali protseduur ja vajuta kaamera nupp</strong></div>
 
-<div class="card" id="cameraCard">
-  <div class="lbl" id="cameraLbl">Kaamera</div>
+<!-- KAAMERA — nupud üleval -->
+<div class="cam-wrap" id="cameraCard">
+  <div class="cam-top-bar">
+    <button class="cam-top-btn pri" id="camBtn" onclick="startCam()">✦ Ava kaamera</button>
+    <button class="cam-top-btn" id="anaBtn" onclick="analyze()" disabled>Analüüsi</button>
+    <button class="cam-top-btn" id="autoBtn" onclick="toggleAuto()" disabled>Auto</button>
+  </div>
   <div class="cam-frame">
     <video id="vid" autoplay playsinline muted></video>
-    <div class="cam-ph" id="camph"><div style="font-size:32px;opacity:.4">✦</div><p id="camPhText">Proovi riie selga ja pildista ennast</p></div>
+    <div class="cam-ph" id="camph">
+      <div class="cam-ph-icon">✦</div>
+      <p id="camPhText">Proovi riie selga ja pildista ennast</p>
+      <div class="cam-ph-hint">vajuta "Ava kaamera" üleval</div>
+    </div>
     <div class="corner tl"></div><div class="corner br"></div>
     <div class="scanline" id="scan"></div>
   </div>
-  <div class="srow">
+  <div class="cam-status-bar">
     <div class="dot" id="dot"></div>
     <span id="smsg">Ootel</span>
     <div class="wave" id="wave"><span></span><span></span><span></span><span></span><span></span></div>
   </div>
   <div class="errmsg" id="err"></div>
-  <div class="brow">
-    <button class="btn pri" id="camBtn" onclick="startCam()">✦ Ava kaamera</button>
-    <button class="btn" id="anaBtn" onclick="analyze()" disabled>Analüüsi</button>
-    <button class="btn" id="autoBtn" onclick="toggleAuto()" disabled>Auto</button>
-  </div>
 </div>
 
-<div class="kombineering-card" id="kombineringCard">
-  <div class="lbl" style="color:var(--stiil)">✦ Kombineerimise nõuanded</div>
-  <div id="kombineringSteps"></div>
-</div>
-<div class="outfit-section" id="outfitNowSection">
-  <div class="outfit-section-title">👗 Soovituslikud tükid · denimdream.ee</div>
-  <div id="outfitNowList"></div>
-</div>
-<div class="outfit-section" id="outfitNextSection">
-  <div class="outfit-section-title">✨ Täiendavad soovitused · denimdream.ee</div>
-  <div id="outfitNextList"></div>
-</div>
-<div class="techniques-card" id="techniquesCard">
-  <div class="lbl" style="color:var(--blush)">✦ Meigitehnikad</div>
-  <div id="techniqueSteps"></div>
-</div>
-<div class="products-section" id="meikNowSection">
-  <div class="products-section-title">💄 Soovituslikud tooted · mactabeauty.com</div>
-  <div id="meikNowList"></div>
-</div>
-<div class="products-section" id="meikNextSection">
-  <div class="products-section-title">🛍 Tooted järgmiseks korraks · mactabeauty.com</div>
-  <div id="meikNextList"></div>
-</div>
-<div class="protocol-card" id="protocolCard">
-  <div class="lbl">✦ Protseduuri juhend</div>
-  <div id="protocolSteps"></div>
-</div>
-<div class="pro-products-section" id="proProductsSection">
-  <div class="pro-products-title">🛍 Protseduuri tooted · depile.ee</div>
-  <div id="proProductsList"></div>
-</div>
-<div class="pro-products-section" id="homeProductsSection">
-  <div class="pro-products-title">🏠 Kodune järelhooldus · depile.ee</div>
-  <div id="homeProductsList"></div>
-</div>
+<div class="kombineering-card" id="kombineringCard"><div class="lbl" style="color:var(--stiil)">✦ Kombineerimise nõuanded</div><div id="kombineringSteps"></div></div>
+<div class="outfit-section" id="outfitNowSection"><div class="outfit-section-title">👗 Soovituslikud tükid · denimdream.ee</div><div id="outfitNowList"></div></div>
+<div class="outfit-section" id="outfitNextSection"><div class="outfit-section-title">✨ Täiendavad soovitused · denimdream.ee</div><div id="outfitNextList"></div></div>
+<div class="techniques-card" id="techniquesCard"><div class="lbl" style="color:var(--blush)">✦ Meigitehnikad</div><div id="techniqueSteps"></div></div>
+<div class="products-section" id="meikNowSection"><div class="products-section-title">💄 Soovituslikud tooted · mactabeauty.com</div><div id="meikNowList"></div></div>
+<div class="products-section" id="meikNextSection"><div class="products-section-title">🛍 Tooted järgmiseks korraks · mactabeauty.com</div><div id="meikNextList"></div></div>
+<div class="protocol-card" id="protocolCard"><div class="lbl">✦ Protseduuri juhend</div><div id="protocolSteps"></div></div>
+<div class="pro-products-section" id="proProductsSection"><div class="pro-products-title">🛍 Protseduuri tooted · depile.ee</div><div id="proProductsList"></div></div>
+<div class="pro-products-section" id="homeProductsSection"><div class="pro-products-title">🏠 Kodune järelhooldus · depile.ee</div><div id="homeProductsList"></div></div>
 
 <div class="card" id="resultCard">
   <div class="lbl" id="resLbl">Tulemus</div>
@@ -662,7 +631,6 @@ canvas{display:none}
 
 </div>
 
-<!-- FOOTER -->
 <footer class="app-footer">
   <div class="footer-logo">GL<em>Ó</em>W</div>
   <div class="footer-tagline">AI · Isiklik Stiiliassistent</div>
@@ -670,8 +638,7 @@ canvas{display:none}
   <div class="footer-copy">
     © 2026 GLÓW · Kõik õigused kaitstud<br>
     Rakendus on loodud ja arendatud Eestis · <a href="mailto:info@glow4me.ee">info@glow4me.ee</a><br>
-    Lehe sisu, kujunduse ja koodi kopeerimine ning levitamine<br>
-    ilma autori kirjaliku loata on keelatud
+    Lehe sisu, kujunduse ja koodi kopeerimine ning levitamine<br>ilma autori kirjaliku loata on keelatud
   </div>
   <div class="footer-bottom">glow4me.ee · Powered by Anthropic AI</div>
 </footer>
@@ -744,7 +711,7 @@ const OUTFIT_CONTEXTS={
   lopuaktus:{focus:'lõpuaktuseks sobiv, pidulik, asjakohane',verdict_yes:'TSEREMOONIAKS SOBIV',verdict_no:'VAJAB KOHANDAMIST'},
   reisile:{focus:'reisimiseks mugav ja stiilne, praktiline',verdict_yes:'REISIMISEKS SUUREPÄRANE',verdict_no:'VAJAB PRAKTILISUST'},
   rand:{focus:'rannariietuseks sobiv, kerge, suvisus',verdict_yes:'RANNAKS SUUREPÄRANE',verdict_no:'EI SOBI RANNALE'},
-  minimalistlik:{focus:'minimalistliku stiil: less is more, puhas, lihtne',verdict_yes:'MINIMALISTLIKULT ELEGANTNE',verdict_no:'LIIGA PALJU DETAILE'},
+  minimalistlik:{focus:'minimalistlik stiil: less is more, puhas, lihtne',verdict_yes:'MINIMALISTLIKULT ELEGANTNE',verdict_no:'LIIGA PALJU DETAILE'},
   boho:{focus:'bohoo stiil: vaba, loominguline, looduslik',verdict_yes:'BOHO STIILIS SUUREPÄRANE',verdict_no:'VAJAB BOHO TUNNET'},
   luksus:{focus:'luksus ja high fashion: eksklusiivsus, kvaliteet',verdict_yes:'LUKSUSLIKULT STIILNE',verdict_no:'VAJAB ROHKEM LUKSUST'},
   looduslik:{focus:'looduslikud materjalid: linane, puuvillane, ökoloogiline',verdict_yes:'LOODUSSÕBRALIKULT STIILNE',verdict_no:'VAJAB LOODUSLIKUMAID MATERJALE'},
@@ -799,12 +766,10 @@ function buildMeikGrid(){
   const grid=document.getElementById('meikStyleGrid');grid.innerHTML='';
   MAKEUP_STYLES.forEach(s=>{const btn=document.createElement('div');btn.className='style-btn meik-btn'+(s.id===selectedMeikStyle?' active':'');btn.innerHTML=`<div class="style-icon">${s.icon}</div><div class="style-name">${s.name}</div>`;btn.onclick=()=>selectMeikStyle(s.id);grid.appendChild(btn);});
 }
-
 function buildStiilGrid(){
   const grid=document.getElementById('stiilStyleGrid');grid.innerHTML='';
   OUTFIT_STYLES.forEach(s=>{const btn=document.createElement('div');btn.className='style-btn stiil-btn'+(s.id===selectedStiilStyle?' active':'');btn.innerHTML=`<div class="style-icon">${s.icon}</div><div class="style-name">${s.name.replace('\n','<br>')}</div>`;btn.onclick=()=>selectStiilStyle(s.id);grid.appendChild(btn);});
 }
-
 function buildProcedureGrid(){
   const grid=document.getElementById('procedureGrid');grid.innerHTML='';
   PROCEDURES.forEach(p=>{const btn=document.createElement('div');btn.className='proc-btn'+(p.id===selectedProcedure?' active':'');btn.innerHTML=`<div class="proc-icon">${p.icon}</div><div class="proc-name">${p.name}</div>`;btn.onclick=()=>selectProcedure(p.id);grid.appendChild(btn);});
@@ -814,22 +779,20 @@ function selectMeikStyle(id){
   selectedMeikStyle=id;
   document.querySelectorAll('#meikStyleGrid .style-btn').forEach((b,i)=>b.classList.toggle('active',MAKEUP_STYLES[i].id===id));
   const s=MAKEUP_STYLES.find(m=>m.id===id);
-  if(s){document.getElementById('resLbl').textContent=s.name;resetResults();document.getElementById('meikTipText').textContent=`${s.icon} ${s.name} valitud — suuna kaamera oma näole`;}
+  if(s){document.getElementById('resLbl').textContent=s.name;resetResults();document.getElementById('meikTipText').textContent=`${s.icon} ${s.name} valitud — vajuta "Ava kaamera" nupp`;}
 }
-
 function selectStiilStyle(id){
   selectedStiilStyle=id;
   document.querySelectorAll('#stiilStyleGrid .style-btn').forEach((b,i)=>b.classList.toggle('active',OUTFIT_STYLES[i].id===id));
   const s=OUTFIT_STYLES.find(o=>o.id===id);
-  if(s){const name=s.name.replace('\n',' ');document.getElementById('resLbl').textContent=name;resetResults();document.getElementById('stiilTipText').textContent=`${s.icon} ${name} valitud — proovi riie selga ja pildista ennast`;document.getElementById('camPhText').textContent='Proovi riie selga ja pildista ennast';}
+  if(s){const name=s.name.replace('\n',' ');document.getElementById('resLbl').textContent=name;resetResults();document.getElementById('stiilTipText').textContent=`${s.icon} ${name} valitud — proovi riie selga ja vajuta "Ava kaamera"`;document.getElementById('camPhText').textContent='Proovi riie selga ja pildista ennast';}
 }
-
 function selectProcedure(id){
   selectedProcedure=id;
   document.querySelectorAll('.proc-btn').forEach((b,i)=>b.classList.toggle('active',PROCEDURES[i].id===id));
   document.getElementById('resLbl').textContent=PROC_LABELS[id]||id;
   resetResults();
-  document.getElementById('proTipText').textContent=`✦ ${PROC_LABELS[id]} valitud — suuna kaamera kliendile`;
+  document.getElementById('proTipText').textContent=`✦ ${PROC_LABELS[id]} valitud — vajuta "Ava kaamera"`;
   const ct={kulmud:'Suuna kaamera kliendi kulmudele',ripsmed:'Suuna kaamera ripsmete piirkonnale',depilatsioon:'Suuna kaamera hooldatavale piirkonnale',kehahooldus:'Suuna kaamera kehapiirkonnale',jalahooldus:'Suuna kaamera jalale'};
   document.getElementById('camPhText').textContent=ct[id]||'Suuna kaamera kliendi näole';
 }
@@ -867,8 +830,12 @@ function logout(){
   showScreen('splashScreen');
 }
 
+// PARANDATUD initApp — krediitide vea fix
 function initApp(){
-  if(!localStorage.getItem('glow_credits'))localStorage.setItem('glow_credits',FREE_CREDITS);
+  const existing=localStorage.getItem('glow_credits');
+  if(!existing||isNaN(parseInt(existing))||parseInt(existing)<0){
+    localStorage.setItem('glow_credits',String(FREE_CREDITS));
+  }
   const key=localStorage.getItem('glow_api_key');
   if(key){document.getElementById('keyStatus').style.display='block';document.getElementById('saldoBar').style.display='flex';}
   else{document.getElementById('apiSetupCard').style.display='block';}
@@ -882,13 +849,22 @@ function init(){
   }
 }
 
-function getCredits(){return parseInt(localStorage.getItem('glow_credits')||FREE_CREDITS);}
-function setCredits(n){localStorage.setItem('glow_credits',n);updateSaldo();}
+function getCredits(){
+  const c=parseInt(localStorage.getItem('glow_credits'));
+  return isNaN(c)?FREE_CREDITS:Math.max(0,c);
+}
+function setCredits(n){localStorage.setItem('glow_credits',String(Math.max(0,n)));updateSaldo();}
+
 function updateSaldo(){
   const c=getCredits(),bar=document.getElementById('saldoBar'),count=document.getElementById('saldoCount'),sub=document.getElementById('saldoSub'),anaBtn=document.getElementById('anaBtn');
   if(!bar)return;
-  if(c>0){if(c<=FREE_CREDITS){bar.className='saldo-bar saldo-free';count.textContent=c+' tasuta analüüsi';count.style.color='';sub.textContent='Prooviperiood · vajuta et osta krediiti';}else{bar.className='saldo-bar';bar.style.borderColor='';count.textContent=c+' analüüsi järel';count.style.color='var(--gold)';sub.textContent='Krediiti on · vajuta et täiendada';}if(stream)anaBtn.disabled=false;}
-  else{bar.className='saldo-bar';bar.style.borderColor='rgba(196,115,107,0.3)';count.textContent='0 analüüsi järel';count.style.color='var(--rose)';sub.textContent='Krediit otsas · vajuta et osta';anaBtn.disabled=true;}
+  if(c>0){
+    if(c<=FREE_CREDITS){bar.className='saldo-bar saldo-free';count.textContent=c+' tasuta analüüsi';count.style.color='';sub.textContent='Prooviperiood · vajuta et osta krediiti';}
+    else{bar.className='saldo-bar';bar.style.borderColor='';count.textContent=c+' analüüsi järel';count.style.color='var(--gold)';sub.textContent='Krediiti on · vajuta et täiendada';}
+    if(stream)anaBtn.disabled=false;
+  } else {
+    bar.className='saldo-bar';bar.style.borderColor='rgba(196,115,107,0.3)';count.textContent='0 analüüsi järel';count.style.color='var(--rose)';sub.textContent='Krediit otsas · vajuta et osta';anaBtn.disabled=true;
+  }
 }
 
 function setMode(m){
@@ -921,15 +897,27 @@ function setDot(state,msg){const d=document.getElementById('dot');d.className='d
 
 async function startCam(){
   document.getElementById('err').textContent='';
-  try{stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:'user'},audio:false});video.srcObject=stream;await video.play();document.getElementById('camph').style.display='none';setDot('live','Kaamera aktiivne');document.getElementById('camBtn').disabled=true;document.getElementById('camBtn').textContent='✓ Aktiivne';if(getCredits()>0)document.getElementById('anaBtn').disabled=false;document.getElementById('autoBtn').disabled=false;}
-  catch(e){document.getElementById('err').textContent='Kaamera avamine ebaõnnestus. Seaded → Safari → Kaamera → Luba';}
+  try{
+    stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:'user'},audio:false});
+    video.srcObject=stream;await video.play();
+    document.getElementById('camph').style.display='none';
+    setDot('live','Kaamera aktiivne');
+    document.getElementById('camBtn').disabled=true;
+    document.getElementById('camBtn').textContent='✓ Aktiivne';
+    document.getElementById('camBtn').classList.remove('pri');
+    document.getElementById('camBtn').style.background='rgba(126,201,138,0.15)';
+    document.getElementById('camBtn').style.borderColor='rgba(126,201,138,0.4)';
+    document.getElementById('camBtn').style.color='#a8d4c4';
+    if(getCredits()>0)document.getElementById('anaBtn').disabled=false;
+    document.getElementById('autoBtn').disabled=false;
+  }catch(e){document.getElementById('err').textContent='Kaamera avamine ebaõnnestus. Seaded → Safari → Kaamera → Luba';}
 }
 
 function capture(){canvas.width=video.videoWidth||640;canvas.height=video.videoHeight||480;const ctx=canvas.getContext('2d');ctx.translate(canvas.width,0);ctx.scale(-1,1);ctx.drawImage(video,0,0);return canvas.toDataURL('image/jpeg',0.85);}
 
 async function analyze(){
   const key=getKey();if(!key){document.getElementById('apiSetupCard').style.display='block';return;}
-  if(!stream){document.getElementById('err').textContent='Ava kõigepealt kaamera!';return;}
+  if(!stream){document.getElementById('err').textContent='Vajuta kõigepealt "Ava kaamera"!';return;}
   const credits=getCredits();if(credits<=0){showPricing();return;}
   let sys,prompt,lbl,bar;
   if(mode==='meik'){sys=getMeikSystem(selectedMeikStyle);prompt='Analüüsi minu meiki. Vasta ainult JSON.';lbl=MAKEUP_STYLES.find(s=>s.id===selectedMeikStyle)?.name||'Meigi analüüs';bar='c1';document.getElementById('loadingText').textContent='Analüüsin meiki...';}
@@ -957,9 +945,7 @@ async function analyze(){
 function makeCard(p,type){
   const card=document.createElement('div');
   const isOutfit=type==='outfit';const isMeik=type==='meik';
-  if(isOutfit)card.className='outfit-card';
-  else if(isMeik)card.className='product-card';
-  else card.className='pro-product-card';
+  if(isOutfit)card.className='outfit-card';else if(isMeik)card.className='product-card';else card.className='pro-product-card';
   const cc=isOutfit?'outfit-category':isMeik?'product-category':'pro-product-category';
   const cn=isOutfit?'outfit-name':isMeik?'product-name':'pro-product-name';
   const cb=isOutfit?'outfit-brand':isMeik?'product-brand':'pro-product-brand';
