@@ -13,23 +13,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#0e0c0b;--cream:#f0e6d3;--gold:#c9a96e;
-  --gold-dim:rgba(201,169,110,0.3);--gold-bright:#e8c97e;
-  --blush:#d4957a;--sage:#7a9e8e;--lav:#9b8fb5;--rose:#c4736b;
-  --stiil:#9b8fb5;
+  --bg:#0e0c0b;--gold:#c9a96e;--gold-dim:rgba(201,169,110,0.3);--gold-bright:#e8c97e;
+  --blush:#d4957a;--sage:#7a9e8e;--lav:#9b8fb5;--rose:#c4736b;--stiil:#9b8fb5;
   --yes-bg:rgba(122,158,142,0.18);--yes-border:rgba(122,158,142,0.7);--yes-color:#a8d4c4;
   --no-bg:rgba(196,115,107,0.18);--no-border:rgba(196,115,107,0.7);--no-color:#e8a090;
   --maybe-bg:rgba(201,169,110,0.18);--maybe-border:rgba(201,169,110,0.7);--maybe-color:#c9a96e;
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{background:var(--bg);font-family:'DM Mono',monospace;color:#ffffff;min-height:100vh;overflow-x:hidden}
+body{background:var(--bg);font-family:'DM Mono',monospace;color:#fff;min-height:100vh;overflow-x:hidden}
 .screen{position:fixed;inset:0;z-index:100;background:var(--bg);opacity:0;pointer-events:none;transition:opacity .4s ease}
 .screen.active{opacity:1;pointer-events:all}
 #splashScreen{display:flex;align-items:center;justify-content:center;flex-direction:column}
 #termsScreen{display:flex;flex-direction:column}
 #countdownScreen{display:flex;align-items:center;justify-content:center;flex-direction:column}
-
-/* SPLASH */
 .splash-ambient{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(201,169,110,0.1) 0%,transparent 70%)}
 .gold-frame{position:relative;width:min(340px,88vw);aspect-ratio:3/4;display:flex;align-items:center;justify-content:center}
 .frame-border{position:absolute;inset:0;border:1px solid var(--gold);border-radius:4px}
@@ -50,7 +46,7 @@ body{background:var(--bg);font-family:'DM Mono',monospace;color:#ffffff;min-heig
 .frame-dot.lc{left:12px;top:50%;transform:translateY(-50%)}
 .frame-dot.rc{right:12px;top:50%;transform:translateY(-50%)}
 .splash-inner{text-align:center;padding:20px}
-.splash-logo{font-family:'Cormorant Garamond',serif;font-size:clamp(64px,18vw,88px);font-weight:300;letter-spacing:.3em;color:#ffffff;line-height:1;margin-bottom:8px}
+.splash-logo{font-family:'Cormorant Garamond',serif;font-size:clamp(64px,18vw,88px);font-weight:300;letter-spacing:.3em;color:#fff;line-height:1;margin-bottom:8px}
 .splash-logo-o{color:var(--gold);font-style:italic;animation:oglow 3s ease-in-out infinite}
 @keyframes oglow{0%,100%{text-shadow:0 0 30px rgba(201,169,110,0.9),0 0 60px rgba(201,169,110,0.4)}50%{text-shadow:0 0 50px rgba(201,169,110,1),0 0 100px rgba(201,169,110,0.6)}}
 .splash-divider{display:flex;align-items:center;justify-content:center;gap:8px;margin:12px 0}
@@ -64,12 +60,10 @@ body{background:var(--bg);font-family:'DM Mono',monospace;color:#ffffff;min-heig
 .splash-btn:hover,.splash-btn:active{color:var(--bg)}
 .splash-btn span{position:relative;z-index:1}
 .splash-footer{margin-top:20px;font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:.2em}
-
-/* TINGIMUSED */
 .terms-header{padding:20px 20px 0;flex-shrink:0}
-.terms-logo-small{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;letter-spacing:.3em;color:#ffffff;text-align:center;margin-bottom:4px}
+.terms-logo-small{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;letter-spacing:.3em;color:#fff;text-align:center;margin-bottom:4px}
 .terms-logo-small em{color:var(--gold);font-style:italic}
-.terms-title{font-family:'Cormorant Garamond',serif;font-size:22px;color:#ffffff;text-align:center;margin:16px 0 4px}
+.terms-title{font-family:'Cormorant Garamond',serif;font-size:22px;color:#fff;text-align:center;margin:16px 0 4px}
 .terms-sub{font-size:10px;letter-spacing:.3em;color:rgba(255,255,255,0.6);text-transform:uppercase;text-align:center;margin-bottom:16px}
 .terms-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,110,0.4),transparent)}
 .terms-scroll{flex:1;overflow-y:auto;padding:16px 20px;-webkit-overflow-scrolling:touch}
@@ -88,11 +82,9 @@ body{background:var(--bg);font-family:'DM Mono',monospace;color:#ffffff;min-heig
 .terms-checkbox-icon{font-size:13px;color:var(--bg);display:none}
 .terms-checkbox.checked .terms-checkbox-icon{display:block}
 .terms-agree-text{font-size:12px;color:rgba(255,255,255,0.9);line-height:1.6}
-.terms-agree-text strong{color:#ffffff}
+.terms-agree-text strong{color:#fff}
 .terms-confirm-btn{width:100%;padding:15px;background:rgba(201,169,110,0.15);color:rgba(255,255,255,0.3);border:1px solid rgba(201,169,110,0.2);border-radius:3px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.3em;text-transform:uppercase;cursor:not-allowed;transition:all .3s}
 .terms-confirm-btn.active{background:var(--gold);color:var(--bg);border-color:var(--gold);cursor:pointer}
-
-/* COUNTDOWN */
 .countdown-ambient{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 50% 50% at 50% 50%,rgba(201,169,110,0.12) 0%,transparent 70%)}
 .countdown-wrap{text-align:center;position:relative;z-index:1}
 .countdown-clock{position:relative;width:180px;height:180px;margin:0 auto 28px}
@@ -100,19 +92,17 @@ body{background:var(--bg);font-family:'DM Mono',monospace;color:#ffffff;min-heig
 .clock-bg{fill:none;stroke:rgba(255,255,255,0.1);stroke-width:3}
 .clock-track{fill:none;stroke:var(--gold);stroke-width:3;stroke-linecap:round;stroke-dasharray:534;stroke-dashoffset:534;filter:drop-shadow(0 0 8px rgba(201,169,110,0.7))}
 .clock-center{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column}
-.clock-logo{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;letter-spacing:.2em;color:#ffffff;line-height:1}
+.clock-logo{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;letter-spacing:.2em;color:#fff;line-height:1}
 .clock-logo-o{color:var(--gold);font-style:italic}
 .clock-num{font-family:'DM Mono',monospace;font-size:72px;font-weight:400;color:var(--gold);line-height:1;text-shadow:0 0 24px rgba(201,169,110,0.8);display:none;letter-spacing:-.02em}
 .countdown-label{font-size:10px;letter-spacing:.4em;color:rgba(255,255,255,0.5);text-transform:uppercase;margin-bottom:10px}
 .countdown-msg{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--gold);animation:fadePulse 1s ease-in-out infinite}
 @keyframes fadePulse{0%,100%{opacity:1}50%{opacity:.4}}
-
-/* MAIN */
 #mainWrapper{display:none;position:relative;z-index:1}
 .ambient{position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 70% 50% at 15% 10%,rgba(196,115,107,0.1) 0%,transparent 60%),radial-gradient(ellipse 50% 70% at 85% 90%,rgba(123,158,142,0.08) 0%,transparent 60%)}
 .app{position:relative;z-index:1;max-width:500px;margin:0 auto;padding:24px 16px 0}
 header{text-align:center;padding:24px 0 32px;position:relative;animation:fadeUp .7s ease both}
-.logo{font-family:'Cormorant Garamond',serif;font-size:clamp(72px,20vw,104px);font-weight:300;letter-spacing:.25em;color:#ffffff;line-height:1}
+.logo{font-family:'Cormorant Garamond',serif;font-size:clamp(72px,20vw,104px);font-weight:300;letter-spacing:.25em;color:#fff;line-height:1}
 .logo-o{color:var(--gold);font-style:italic;animation:oglow 3s ease-in-out infinite;display:inline-block}
 .logo-line{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:10px}
 .logo-line::before,.logo-line::after{content:'';flex:1;max-width:40px;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,110,0.5))}
@@ -120,12 +110,8 @@ header{text-align:center;padding:24px 0 32px;position:relative;animation:fadeUp 
 .tagline{font-size:10px;letter-spacing:.45em;color:var(--blush);text-transform:uppercase}
 .logout-btn{position:absolute;top:4px;right:0;background:none;border:1px solid rgba(255,255,255,0.2);border-radius:2px;color:rgba(255,255,255,0.7);font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;padding:7px 11px;cursor:pointer;transition:all .2s}
 .logout-btn:hover{border-color:var(--gold);color:var(--gold)}
-
-/* KAARDID — tugevalt kontrastsed */
 .card{border:1px solid rgba(255,255,255,0.25);border-radius:4px;background:rgba(255,255,255,0.09);padding:16px;margin-bottom:16px}
 .lbl{font-size:11px;letter-spacing:.4em;color:var(--gold);text-transform:uppercase;margin-bottom:12px;font-weight:500}
-
-/* API & SALDO */
 .key-status{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:rgba(122,158,142,0.18);border:1px solid rgba(122,158,142,0.5);border-radius:3px;margin-bottom:16px}
 .key-status-left{display:flex;align-items:center;gap:8px}
 .key-dot{width:8px;height:8px;border-radius:50%;background:#7ec98a;box-shadow:0 0 10px rgba(126,201,138,.8)}
@@ -137,71 +123,49 @@ header{text-align:center;padding:24px 0 32px;position:relative;animation:fadeUp 
 .saldo-count{font-size:14px;font-weight:600;letter-spacing:.05em}
 .saldo-sub{font-size:11px;color:rgba(255,255,255,0.6)}
 .saldo-btn{font-size:10px;letter-spacing:.2em;text-transform:uppercase;border:1px solid;border-radius:2px;padding:6px 12px;background:transparent;cursor:pointer;font-family:'DM Mono',monospace;font-weight:500}
-
-/* ASSISTENDID — tugevalt nähtavad */
 .modes{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:16px}
 .mode{border:2px solid rgba(255,255,255,0.2);border-radius:4px;background:rgba(255,255,255,0.1);padding:16px 6px;cursor:pointer;text-align:center;transition:all .25s;position:relative;overflow:hidden}
 .mode::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .25s}
-.mode.m-meik{--mc:#d4957a}
-.mode.m-stiil{--mc:#9b8fb5}
-.mode.m-pro{--mc:#c9a96e}
+.mode.m-meik{--mc:#d4957a}.mode.m-stiil{--mc:#9b8fb5}.mode.m-pro{--mc:#c9a96e}
 .mode.m-meik::before{background:radial-gradient(ellipse at 50% 0%,rgba(212,149,122,0.3),transparent 70%)}
 .mode.m-stiil::before{background:radial-gradient(ellipse at 50% 0%,rgba(155,143,181,0.3),transparent 70%)}
 .mode.m-pro::before{background:radial-gradient(ellipse at 50% 0%,rgba(201,169,110,0.25),transparent 70%)}
-.mode.active{border-color:var(--mc);background:rgba(255,255,255,0.15)}.mode.active::before{opacity:1}
-.mode.active .mname{color:var(--mc)}
-.mode.m-pro{border-color:rgba(201,169,110,0.4);background:rgba(201,169,110,0.1)}
-.mode.m-pro.active{border-color:var(--gold);background:rgba(201,169,110,0.2)}
+.mode.active{border-color:var(--mc);background:rgba(255,255,255,0.15)}.mode.active::before{opacity:1}.mode.active .mname{color:var(--mc)}
+.mode.m-pro{border-color:rgba(201,169,110,0.4);background:rgba(201,169,110,0.1)}.mode.m-pro.active{border-color:var(--gold);background:rgba(201,169,110,0.2)}
 .pro-badge{position:absolute;top:-1px;right:-1px;background:var(--gold);color:var(--bg);font-size:7px;padding:3px 7px;border-radius:0 4px 0 4px;letter-spacing:.1em;font-weight:700}
 .micon{font-size:26px;margin-bottom:8px}
-.mname{font-family:'Cormorant Garamond',serif;font-size:16px;color:#ffffff;transition:color .25s;font-weight:600}
+.mname{font-family:'Cormorant Garamond',serif;font-size:16px;color:#fff;transition:color .25s;font-weight:600}
 .mdesc{font-size:10px;color:rgba(255,255,255,0.7);margin-top:4px;line-height:1.4}
-
-/* STIILI VALIK — tugevad kontrastid */
-.style-select{display:none;margin-bottom:16px;animation:fadeUp .4s ease both}
-.style-select.show{display:block}
+.style-select{display:none;margin-bottom:16px;animation:fadeUp .4s ease both}.style-select.show{display:block}
 .style-select-title{font-size:11px;letter-spacing:.4em;color:var(--gold);text-transform:uppercase;margin-bottom:12px;font-weight:500}
 .style-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .style-btn{border-radius:3px;padding:12px 8px;cursor:pointer;text-align:center;transition:all .2s}
 .style-btn.meik-btn{border:2px solid rgba(212,149,122,0.45);background:rgba(212,149,122,0.12)}
-.style-btn.meik-btn:active{border-color:rgba(212,149,122,0.7);background:rgba(212,149,122,0.2)}
-.style-btn.meik-btn.active{border-color:var(--blush);background:rgba(212,149,122,0.22)}
-.style-btn.meik-btn.active .style-name{color:#f0b090}
+.style-btn.meik-btn.active{border-color:var(--blush);background:rgba(212,149,122,0.22)}.style-btn.meik-btn.active .style-name{color:#f0b090}
 .style-btn.stiil-btn{border:2px solid rgba(155,143,181,0.45);background:rgba(155,143,181,0.12)}
-.style-btn.stiil-btn:active{border-color:rgba(155,143,181,0.7);background:rgba(155,143,181,0.2)}
-.style-btn.stiil-btn.active{border-color:var(--stiil);background:rgba(155,143,181,0.22)}
-.style-btn.stiil-btn.active .style-name{color:#c4b8e0}
+.style-btn.stiil-btn.active{border-color:var(--stiil);background:rgba(155,143,181,0.22)}.style-btn.stiil-btn.active .style-name{color:#c4b8e0}
 .style-icon{font-size:22px;margin-bottom:5px}
-.style-name{font-family:'Cormorant Garamond',serif;font-size:15px;color:#ffffff;transition:color .2s;line-height:1.3;font-weight:500}
-
-/* PROTSEDUURI VALIK */
-.pro-procedure-select{display:none;margin-bottom:16px;animation:fadeUp .4s ease both}
-.pro-procedure-select.show{display:block}
+.style-name{font-family:'Cormorant Garamond',serif;font-size:15px;color:#fff;transition:color .2s;line-height:1.3;font-weight:500}
+.pro-procedure-select{display:none;margin-bottom:16px;animation:fadeUp .4s ease both}.pro-procedure-select.show{display:block}
 .pro-procedure-title{font-size:11px;letter-spacing:.4em;color:var(--gold);text-transform:uppercase;margin-bottom:12px;font-weight:500}
 .procedure-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .proc-btn{border:2px solid rgba(201,169,110,0.45);border-radius:3px;background:rgba(201,169,110,0.12);padding:13px 8px;cursor:pointer;text-align:center;transition:all .2s}
-.proc-btn:active{border-color:rgba(201,169,110,0.7);background:rgba(201,169,110,0.2)}
-.proc-btn.active{border-color:var(--gold);background:rgba(201,169,110,0.22)}
-.proc-btn.active .proc-name{color:var(--gold-bright)}
+.proc-btn.active{border-color:var(--gold);background:rgba(201,169,110,0.22)}.proc-btn.active .proc-name{color:var(--gold-bright)}
+.proc-btn.recommend{border-color:rgba(155,143,181,0.6);background:rgba(155,143,181,0.15)}
+.proc-btn.recommend.active{border-color:#c4b8e0;background:rgba(155,143,181,0.25)}.proc-btn.recommend.active .proc-name{color:#c4b8e0}
 .proc-icon{font-size:22px;margin-bottom:5px}
-.proc-name{font-family:'Cormorant Garamond',serif;font-size:15px;color:#ffffff;transition:color .2s;line-height:1.3;font-weight:500}
-
-/* NÕUANDED */
-.tip-banner{border-radius:3px;padding:14px 16px;margin-bottom:16px;font-size:12px;line-height:1.8;display:none}
-.tip-banner.show{display:block}
+.proc-name{font-family:'Cormorant Garamond',serif;font-size:15px;color:#fff;transition:color .2s;line-height:1.3;font-weight:500}
+.tip-banner{border-radius:3px;padding:14px 16px;margin-bottom:16px;font-size:12px;line-height:1.8;display:none}.tip-banner.show{display:block}
 .tip-banner.meik{border:1px solid rgba(212,149,122,0.5);background:rgba(212,149,122,0.14);color:#f0c0a8}
 .tip-banner.stiil{border:1px solid rgba(155,143,181,0.5);background:rgba(155,143,181,0.14);color:#d0c8f0}
 .tip-banner.pro{border:1px solid rgba(201,169,110,0.5);background:rgba(201,169,110,0.14);color:#f0d898}
-.tip-banner strong{color:#ffffff}
-
-/* KAAMERA */
+.tip-banner strong{color:#fff}
 .cam-wrap{border:1px solid rgba(255,255,255,0.2);border-radius:4px;background:rgba(255,255,255,0.06);overflow:hidden;margin-bottom:16px}
 .cam-top-bar{display:flex;gap:8px;padding:12px 12px 0}
-.cam-top-btn{flex:1;padding:13px 6px;border-radius:2px;cursor:pointer;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;transition:all .2s;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);color:#ffffff;text-align:center;font-weight:500}
+.cam-top-btn{flex:1;padding:13px 6px;border-radius:2px;cursor:pointer;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;transition:all .2s;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);color:#fff;text-align:center;font-weight:500}
 .cam-top-btn.pri{background:var(--gold);color:var(--bg);border-color:var(--gold);font-weight:600}
 .cam-top-btn.ok{background:rgba(126,201,138,0.2);border-color:rgba(126,201,138,0.6);color:#a8d4c4}
-.cam-top-btn:disabled{opacity:.3;cursor:not-allowed}
-.cam-top-btn.red{border-color:rgba(196,115,107,.6);color:#e8a090}
+.cam-top-btn:disabled{opacity:.3;cursor:not-allowed}.cam-top-btn.red{border-color:rgba(196,115,107,.6);color:#e8a090}
 .cam-frame{position:relative;overflow:hidden;background:#050303;aspect-ratio:3/4;margin:12px 12px 0}
 #vid{width:100%;height:100%;object-fit:cover;display:block;transform:scaleX(-1)}
 .cam-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:rgba(14,12,11,0.95)}
@@ -219,42 +183,33 @@ header{text-align:center;padding:24px 0 32px;position:relative;animation:fadeUp 
 .dot.live{background:#7ec98a;box-shadow:0 0 10px rgba(126,201,138,.8);animation:blink 2s ease infinite}
 .dot.thinking{background:var(--gold);box-shadow:0 0 10px rgba(201,169,110,.8);animation:blink .8s ease infinite}
 @keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.4)}}
-.wave{display:none;align-items:center;gap:2px;height:16px}
-.wave.on{display:flex}
+.wave{display:none;align-items:center;gap:2px;height:16px}.wave.on{display:flex}
 .wave span{width:2px;background:var(--gold);border-radius:2px;animation:wv .8s ease infinite}
 .wave span:nth-child(1){height:4px}.wave span:nth-child(2){height:10px;animation-delay:.1s}.wave span:nth-child(3){height:16px;animation-delay:.2s}.wave span:nth-child(4){height:10px;animation-delay:.3s}.wave span:nth-child(5){height:4px;animation-delay:.4s}
 @keyframes wv{0%,100%{transform:scaleY(.5);opacity:.5}50%{transform:scaleY(1);opacity:1}}
 .errmsg{font-size:11px;color:#e8a090;padding:0 14px 10px;line-height:1.6}
-
-/* TULEMUSED */
 .res-inner{min-height:80px}
 .res-empty{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:rgba(255,255,255,0.55);text-align:center;padding:28px 0}
-.loading{display:none;flex-direction:column;align-items:center;gap:12px;padding:36px 0}
-.loading.on{display:flex}
+.loading{display:none;flex-direction:column;align-items:center;gap:12px;padding:36px 0}.loading.on{display:flex}
 .loading-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:rgba(255,255,255,0.8)}
 .loading-dots{display:flex;gap:8px}
 .loading-dots span{width:8px;height:8px;border-radius:50%;background:var(--gold);animation:blink 1.2s ease infinite}
 .loading-dots span:nth-child(2){animation-delay:.2s}.loading-dots span:nth-child(3){animation-delay:.4s}
-.result-wrap{display:none;animation:fadeUp .5s ease both}
-.result-wrap.on{display:block}
+.result-wrap{display:none;animation:fadeUp .5s ease both}.result-wrap.on{display:block}
 .verdict-card{border-radius:4px;padding:24px 20px;margin-bottom:16px;text-align:center}
 .verdict-card.yes{background:var(--yes-bg);border:1px solid var(--yes-border)}
 .verdict-card.no{background:var(--no-bg);border:1px solid var(--no-border)}
 .verdict-card.maybe{background:var(--maybe-bg);border:1px solid var(--maybe-border)}
 .verdict-icon{font-size:44px;margin-bottom:10px;display:block}
 .verdict-text{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;letter-spacing:.05em;line-height:1.2;margin-bottom:6px}
-.verdict-card.yes .verdict-text{color:var(--yes-color)}
-.verdict-card.no .verdict-text{color:var(--no-color)}
-.verdict-card.maybe .verdict-text{color:var(--maybe-color)}
+.verdict-card.yes .verdict-text{color:var(--yes-color)}.verdict-card.no .verdict-text{color:var(--no-color)}.verdict-card.maybe .verdict-text{color:var(--maybe-color)}
 .verdict-sub{font-size:10px;letter-spacing:.3em;text-transform:uppercase;opacity:.8}
-.verdict-card.yes .verdict-sub{color:var(--yes-color)}
-.verdict-card.no .verdict-sub{color:var(--no-color)}
-.verdict-card.maybe .verdict-sub{color:var(--maybe-color)}
-.feedback-text{font-family:'Cormorant Garamond',serif;font-size:18px;line-height:1.9;color:#ffffff;margin-bottom:16px;padding:0 2px}
+.verdict-card.yes .verdict-sub{color:var(--yes-color)}.verdict-card.no .verdict-sub{color:var(--no-color)}.verdict-card.maybe .verdict-sub{color:var(--maybe-color)}
+.feedback-text{font-family:'Cormorant Garamond',serif;font-size:18px;line-height:1.9;color:#fff;margin-bottom:16px;padding:0 2px}
 .details-grid{display:flex;flex-direction:column;gap:10px;margin-bottom:16px}
 .detail-item{padding:14px 16px;border-radius:3px;background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.18)}
 .detail-label{font-size:10px;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;font-weight:500}
-.detail-value{font-family:'Cormorant Garamond',serif;font-size:16px;color:#ffffff;line-height:1.6}
+.detail-value{font-family:'Cormorant Garamond',serif;font-size:16px;color:#fff;line-height:1.6}
 .scores-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
 .score-item{padding:16px 12px;border:1px solid rgba(255,255,255,0.18);border-radius:4px;background:rgba(255,255,255,0.08);text-align:center}
 .score-label{font-size:10px;letter-spacing:.25em;color:rgba(255,255,255,0.8);text-transform:uppercase;margin-bottom:10px}
@@ -262,39 +217,57 @@ header{text-align:center;padding:24px 0 32px;position:relative;animation:fadeUp 
 .score-circle svg{transform:rotate(-90deg)}
 .score-circle-bg{fill:none;stroke:rgba(255,255,255,0.12);stroke-width:3}
 .score-circle-fill{fill:none;stroke-width:3;stroke-linecap:round;transition:stroke-dashoffset 1s ease}
-.score-circle.c1 .score-circle-fill{stroke:url(#grad1)}
-.score-circle.c2 .score-circle-fill{stroke:url(#grad2)}
-.score-circle.c3 .score-circle-fill{stroke:url(#grad3)}
-.score-circle.c4 .score-circle-fill{stroke:url(#grad4)}
-.score-num{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:20px;color:#ffffff;font-weight:600}
+.score-circle.c1 .score-circle-fill{stroke:url(#grad1)}.score-circle.c2 .score-circle-fill{stroke:url(#grad2)}
+.score-circle.c3 .score-circle-fill{stroke:url(#grad3)}.score-circle.c4 .score-circle-fill{stroke:url(#grad4)}
+.score-num{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:20px;color:#fff;font-weight:600}
 .tip-card{padding:16px;border-radius:3px;background:rgba(201,169,110,0.14);border:1px solid rgba(201,169,110,0.45);margin-bottom:16px}
 .tip-label{font-size:10px;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;font-weight:500}
 .tip-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:var(--gold-bright);line-height:1.7}
-
-/* TOOTEKAARDID */
+.derm-warning{margin-top:14px;padding:14px 16px;background:rgba(196,115,107,0.18);border:1px solid rgba(196,115,107,0.6);border-radius:3px}
+.derm-warning-title{font-size:10px;letter-spacing:.3em;color:#e8a090;text-transform:uppercase;margin-bottom:8px;font-weight:500}
+.derm-warning-text{font-family:'Cormorant Garamond',serif;font-size:15px;color:#fff;line-height:1.7}
+.moodboard-section{margin-bottom:16px;display:none}.moodboard-section.on{display:block;animation:fadeUp .5s ease both}
+.moodboard-title{font-size:11px;letter-spacing:.4em;color:#c4b8e0;text-transform:uppercase;font-weight:500;margin-bottom:4px}
+.moodboard-subtitle{font-size:10px;color:rgba(255,255,255,0.5);margin-bottom:14px}
+.moodboard-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.moodboard-card{border:1px solid rgba(155,143,181,0.3);border-radius:4px;background:rgba(155,143,181,0.08);overflow:hidden;transition:all .2s;cursor:pointer}
+.moodboard-card.liked{border-color:#c4b8e0;background:rgba(155,143,181,0.2)}
+.moodboard-card.liked .mc-like{background:rgba(155,143,181,0.8);color:#fff}
+.moodboard-visual{height:120px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.moodboard-emoji-bg{font-size:52px;opacity:.2;position:absolute}
+.moodboard-outfit-info{position:relative;z-index:1;text-align:center;padding:8px}
+.moodboard-outfit-name{font-family:'Cormorant Garamond',serif;font-size:15px;color:#fff;font-weight:600;margin-bottom:3px}
+.moodboard-outfit-style{font-size:9px;letter-spacing:.2em;color:rgba(255,255,255,0.65);text-transform:uppercase;line-height:1.4}
+.moodboard-card-footer{padding:10px 12px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(255,255,255,0.08)}
+.mc-colors{display:flex;gap:5px}
+.mc-color{width:14px;height:14px;border-radius:50%;border:1px solid rgba(255,255,255,0.25)}
+.mc-like{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.moodboard-actions{display:flex;gap:8px;margin-bottom:10px}
+.mb-action-btn{flex:1;padding:12px 6px;border-radius:3px;cursor:pointer;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;transition:all .2s;border:1px solid;background:transparent;text-align:center}
+.mb-action-btn.more{border-color:rgba(155,143,181,0.5);color:#c4b8e0}
+.mb-action-btn.shop{border-color:rgba(201,169,110,0.5);color:var(--gold);background:rgba(201,169,110,0.1)}
+.moodboard-denim-note{font-size:10px;color:rgba(255,255,255,0.4);text-align:center;padding:6px 0;font-style:italic}
 .outfit-section{margin-bottom:16px;display:none}.outfit-section.on{display:block}
 .outfit-section-title{font-size:11px;letter-spacing:.4em;color:#c4b8e0;text-transform:uppercase;margin-bottom:12px;font-weight:500}
 .outfit-card{border:1px solid rgba(155,143,181,0.4);border-radius:3px;background:rgba(155,143,181,0.12);padding:14px;margin-bottom:8px}
 .outfit-card:last-child{margin-bottom:0}
 .outfit-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px}
 .outfit-category{font-size:9px;letter-spacing:.3em;color:#c4b8e0;text-transform:uppercase;margin-bottom:3px}
-.outfit-name{font-family:'Cormorant Garamond',serif;font-size:17px;color:#ffffff;line-height:1.3;font-weight:500}
+.outfit-name{font-family:'Cormorant Garamond',serif;font-size:17px;color:#fff;line-height:1.3;font-weight:500}
 .outfit-brand{font-size:11px;color:rgba(255,255,255,0.65);margin-top:2px}
 .outfit-reason{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;color:rgba(255,255,255,0.8);line-height:1.5;margin-bottom:10px}
-.outfit-link{display:inline-block;font-size:9px;letter-spacing:.2em;color:#c4b8e0;text-transform:uppercase;text-decoration:none;border:1px solid rgba(155,143,181,0.5);padding:6px 14px;border-radius:2px;transition:all .2s}
-.kombineering-card{border:1px solid rgba(155,143,181,0.4);border-radius:3px;background:rgba(155,143,181,0.1);padding:16px;margin-bottom:16px;display:none}
-.kombineering-card.on{display:block}
-.komb-step{display:flex;gap:10px;margin-bottom:10px;align-items:flex-start}
-.komb-step:last-child{margin-bottom:0}
+.outfit-link{display:inline-block;font-size:9px;letter-spacing:.2em;color:#c4b8e0;text-transform:uppercase;text-decoration:none;border:1px solid rgba(155,143,181,0.5);padding:6px 14px;border-radius:2px}
+.kombineering-card{border:1px solid rgba(155,143,181,0.4);border-radius:3px;background:rgba(155,143,181,0.1);padding:16px;margin-bottom:16px;display:none}.kombineering-card.on{display:block}
+.komb-step{display:flex;gap:10px;margin-bottom:10px;align-items:flex-start}.komb-step:last-child{margin-bottom:0}
 .komb-num{width:26px;height:26px;border-radius:50%;border:1px solid #c4b8e0;color:#c4b8e0;font-size:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
-.komb-text{font-family:'Cormorant Garamond',serif;font-size:16px;color:#ffffff;line-height:1.6}
+.komb-text{font-family:'Cormorant Garamond',serif;font-size:16px;color:#fff;line-height:1.6}
 .products-section{margin-bottom:16px;display:none}.products-section.on{display:block}
 .products-section-title{font-size:11px;letter-spacing:.4em;color:#f0b890;text-transform:uppercase;margin-bottom:12px;font-weight:500}
 .product-card{border:1px solid rgba(212,149,122,0.4);border-radius:3px;background:rgba(212,149,122,0.12);padding:14px;margin-bottom:8px}
 .product-card:last-child{margin-bottom:0}
 .product-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px}
 .product-category{font-size:9px;letter-spacing:.3em;color:#f0b890;text-transform:uppercase;margin-bottom:3px}
-.product-name{font-family:'Cormorant Garamond',serif;font-size:17px;color:#ffffff;line-height:1.3;font-weight:500}
+.product-name{font-family:'Cormorant Garamond',serif;font-size:17px;color:#fff;line-height:1.3;font-weight:500}
 .product-brand{font-size:11px;color:rgba(255,255,255,0.65);margin-top:2px}
 .product-price{font-family:'Cormorant Garamond',serif;font-size:17px;color:#f0b890;font-weight:600;white-space:nowrap;margin-left:8px}
 .product-reason{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;color:rgba(255,255,255,0.8);line-height:1.5;margin-bottom:10px}
@@ -305,26 +278,22 @@ header{text-align:center;padding:24px 0 32px;position:relative;animation:fadeUp 
 .pro-product-card:last-child{margin-bottom:0}
 .pro-product-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px}
 .pro-product-category{font-size:9px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;margin-bottom:3px}
-.pro-product-name{font-family:'Cormorant Garamond',serif;font-size:17px;color:#ffffff;font-weight:500}
+.pro-product-name{font-family:'Cormorant Garamond',serif;font-size:17px;color:#fff;font-weight:500}
 .pro-product-brand{font-size:11px;color:rgba(255,255,255,0.65);margin-top:2px}
 .pro-product-price{font-family:'Cormorant Garamond',serif;font-size:17px;color:var(--gold);font-weight:600;white-space:nowrap;margin-left:8px}
 .pro-product-reason{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;color:rgba(255,255,255,0.8);line-height:1.5;margin-bottom:10px}
 .pro-product-link{display:inline-block;font-size:9px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;text-decoration:none;border:1px solid rgba(201,169,110,0.5);padding:6px 14px;border-radius:2px}
-.techniques-card{border:1px solid rgba(212,149,122,0.4);border-radius:3px;background:rgba(212,149,122,0.1);padding:16px;margin-bottom:16px;display:none}
-.techniques-card.on{display:block}
-.protocol-card{border:1px solid rgba(201,169,110,0.4);border-radius:3px;background:rgba(201,169,110,0.1);padding:16px;margin-bottom:16px;display:none}
-.protocol-card.on{display:block}
+.techniques-card{border:1px solid rgba(212,149,122,0.4);border-radius:3px;background:rgba(212,149,122,0.1);padding:16px;margin-bottom:16px;display:none}.techniques-card.on{display:block}
+.protocol-card{border:1px solid rgba(201,169,110,0.4);border-radius:3px;background:rgba(201,169,110,0.1);padding:16px;margin-bottom:16px;display:none}.protocol-card.on{display:block}
 .tech-step,.proto-step{display:flex;gap:10px;margin-bottom:10px;align-items:flex-start}
 .tech-step:last-child,.proto-step:last-child{margin-bottom:0}
 .tech-num{width:26px;height:26px;border-radius:50%;border:1px solid #f0b890;color:#f0b890;font-size:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
 .proto-num{width:26px;height:26px;border-radius:50%;border:1px solid var(--gold);color:var(--gold);font-size:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
-.tech-text,.proto-text{font-family:'Cormorant Garamond',serif;font-size:16px;color:#ffffff;line-height:1.6}
-
-/* JAGAMINE */
+.tech-text,.proto-text{font-family:'Cormorant Garamond',serif;font-size:16px;color:#fff;line-height:1.6}
 .share-card{display:none}.share-card.on{display:block}
 .share-preview{background:linear-gradient(135deg,#1a0a08,#0e0c0b);border:1px solid rgba(255,255,255,0.12);border-radius:3px;padding:16px}
 .sp-photo{width:100%;height:180px;object-fit:cover;border-radius:3px;display:block;margin-bottom:12px}
-.sp-logo{font-family:'Cormorant Garamond',serif;font-size:26px;letter-spacing:.2em;color:#ffffff;text-align:center}
+.sp-logo{font-family:'Cormorant Garamond',serif;font-size:26px;letter-spacing:.2em;color:#fff;text-align:center}
 .sp-logo em{color:var(--gold);font-style:italic}
 .sp-mode{font-size:10px;letter-spacing:.3em;color:var(--blush);text-transform:uppercase;text-align:center;margin-bottom:12px}
 .sp-text{font-family:'Cormorant Garamond',serif;font-size:14px;line-height:1.7;color:rgba(255,255,255,0.9);font-style:italic;margin-bottom:10px}
@@ -334,59 +303,46 @@ header{text-align:center;padding:24px 0 32px;position:relative;animation:fadeUp 
 .sp-sl{font-size:9px;letter-spacing:.2em;color:rgba(255,255,255,0.5);text-transform:uppercase;text-align:center}
 .share-btns{display:flex;gap:8px;margin-top:14px}
 .sbtn{flex:1;padding:12px 6px;border-radius:2px;cursor:pointer;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;background:transparent;transition:all .2s}
-.sbtn.ig{border:1px solid rgba(225,48,108,0.5);color:#e1306c}
-.sbtn.fb{border:1px solid rgba(66,103,178,0.5);color:#6b8fd4}
-.sbtn.xtwitter{border:1px solid rgba(255,255,255,0.3);color:#ffffff}
-.sbtn.cp{border:1px solid rgba(201,169,110,0.5);color:var(--gold)}
+.sbtn.ig{border:1px solid rgba(225,48,108,0.5);color:#e1306c}.sbtn.fb{border:1px solid rgba(66,103,178,0.5);color:#6b8fd4}
+.sbtn.xtwitter{border:1px solid rgba(255,255,255,0.3);color:#fff}.sbtn.cp{border:1px solid rgba(201,169,110,0.5);color:var(--gold)}
 .share-note{font-size:10px;color:rgba(255,255,255,0.4);margin-top:8px;text-align:center}
-
-/* TAGASISIDE */
 .feedback-card{border:1px solid rgba(155,143,181,0.35);border-radius:4px;background:rgba(155,143,181,0.1);padding:16px;margin-bottom:16px}
 .feedback-card .lbl{color:#c4b8e0}
 .feedback-intro{font-size:12px;color:rgba(255,255,255,0.7);line-height:1.7;margin-bottom:14px}
 .stars{display:flex;gap:6px;margin-bottom:14px}
 .star{font-size:32px;cursor:pointer;color:var(--gold);opacity:.25;transition:all .25s;background:none;border:none;padding:0;line-height:1}
 .star.active{opacity:1;text-shadow:0 0 14px rgba(201,169,110,0.9)}
-.feedback-textarea{width:100%;background:rgba(255,255,255,0.07);border:1px solid rgba(155,143,181,0.35);color:#ffffff;font-family:'DM Mono',monospace;font-size:12px;padding:12px;border-radius:3px;outline:none;resize:none;height:100px;line-height:1.6;box-sizing:border-box}
+.feedback-textarea{width:100%;background:rgba(255,255,255,0.07);border:1px solid rgba(155,143,181,0.35);color:#fff;font-family:'DM Mono',monospace;font-size:12px;padding:12px;border-radius:3px;outline:none;resize:none;height:100px;line-height:1.6;box-sizing:border-box}
 .feedback-textarea:focus{border-color:#c4b8e0}
 .feedback-textarea::placeholder{color:rgba(255,255,255,0.3)}
 .feedback-submit{width:100%;margin-top:10px;padding:13px;background:transparent;border:1px solid rgba(155,143,181,0.5);border-radius:3px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:#c4b8e0;cursor:pointer}
 .feedback-submit:disabled{opacity:.35;cursor:not-allowed}
-.feedback-sent{display:none;text-align:center;padding:16px 0}
-.feedback-sent.show{display:block}
+.feedback-sent{display:none;text-align:center;padding:16px 0}.feedback-sent.show{display:block}
 .feedback-sent-icon{font-size:30px;color:var(--gold)}
 .feedback-sent-text{font-family:'Cormorant Garamond',serif;font-size:17px;color:#c4b8e0;margin-top:8px}
-
-/* HINNAKIRI */
-.pricing-screen{display:none;animation:fadeUp .4s ease both}
-.pricing-screen.show{display:block}
+.pricing-screen{display:none;animation:fadeUp .4s ease both}.pricing-screen.show{display:block}
 .pricing-back{display:flex;align-items:center;gap:8px;background:none;border:none;color:rgba(255,255,255,0.7);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.2em;cursor:pointer;margin-bottom:16px;padding:0}
-.pricing-title{font-family:'Cormorant Garamond',serif;font-size:30px;color:#ffffff;margin-bottom:4px}
+.pricing-title{font-family:'Cormorant Garamond',serif;font-size:30px;color:#fff;margin-bottom:4px}
 .pricing-sub{font-size:12px;color:rgba(255,255,255,0.6);margin-bottom:20px;line-height:1.6}
 .free-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(122,158,142,0.18);border:1px solid rgba(122,158,142,0.5);border-radius:3px;padding:12px 14px;margin-bottom:16px;width:100%}
-.free-badge-text{font-size:13px;color:#a8d4c4;line-height:1.5}
-.free-badge-text strong{color:#ffffff}
+.free-badge-text{font-size:13px;color:#a8d4c4;line-height:1.5}.free-badge-text strong{color:#fff}
 .pkg-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
 .pkg{border:1px solid rgba(255,255,255,0.18);border-radius:4px;background:rgba(255,255,255,0.07);padding:16px;text-align:center;cursor:pointer;transition:all .2s;position:relative}
 .pkg.selected{border-color:var(--gold);background:rgba(201,169,110,0.15)}
 .pkg-popular{position:absolute;top:-9px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--bg);font-size:9px;padding:2px 10px;border-radius:8px;white-space:nowrap;font-weight:600}
-.pkg-price{font-family:'Cormorant Garamond',serif;font-size:28px;color:#ffffff;margin-bottom:2px}
-.pkg-count{font-size:12px;color:rgba(255,255,255,0.65);margin-bottom:3px}
-.pkg-unit{font-size:11px;color:var(--gold)}
+.pkg-price{font-family:'Cormorant Garamond',serif;font-size:28px;color:#fff;margin-bottom:2px}
+.pkg-count{font-size:12px;color:rgba(255,255,255,0.65);margin-bottom:3px}.pkg-unit{font-size:11px;color:var(--gold)}
 .buy-btn{width:100%;padding:15px;background:var(--gold);color:var(--bg);border:none;border-radius:3px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.25em;text-transform:uppercase;cursor:pointer;font-weight:600;margin-bottom:10px}
-.coming-soon-note{font-size:10px;color:rgba(255,255,255,0.4);text-align:center}
-.coming-soon-note span{color:var(--gold)}
-.checkout-screen{display:none;animation:fadeUp .4s ease both}
-.checkout-screen.show{display:block}
-.checkout-title{font-family:'Cormorant Garamond',serif;font-size:26px;color:#ffffff;margin-bottom:4px}
+.coming-soon-note{font-size:10px;color:rgba(255,255,255,0.4);text-align:center}.coming-soon-note span{color:var(--gold)}
+.checkout-screen{display:none;animation:fadeUp .4s ease both}.checkout-screen.show{display:block}
+.checkout-title{font-family:'Cormorant Garamond',serif;font-size:26px;color:#fff;margin-bottom:4px}
 .checkout-sub{font-size:11px;color:rgba(255,255,255,0.6);margin-bottom:16px}
 .order-summary{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.18);border-radius:3px;margin-bottom:16px}
-.order-left p:first-child{font-size:15px;color:#ffffff;font-weight:500}
-.order-left p:last-child{font-size:11px;color:rgba(255,255,255,0.55);margin-top:2px}
+.order-left p:first-child{font-size:15px;color:#fff;font-weight:500}.order-left p:last-child{font-size:11px;color:rgba(255,255,255,0.5);margin-top:2px}
 .order-price{font-family:'Cormorant Garamond',serif;font-size:30px;color:var(--gold)}
 .pay-methods{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
 .pay-method{border:1px solid rgba(255,255,255,0.18);border-radius:3px;padding:12px;display:flex;align-items:center;justify-content:center;gap:8px;opacity:.5}
-.pay-method-label{font-size:13px;color:#ffffff;font-weight:500}
+.pay-method-label{font-size:13px;color:#fff;font-weight:500}
 .card-fields{margin-bottom:16px}
 .field-label{font-size:10px;letter-spacing:.3em;color:rgba(255,255,255,0.6);text-transform:uppercase;margin-bottom:6px}
 .field-input{width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.3);font-family:'DM Mono',monospace;font-size:13px;padding:12px 14px;border-radius:3px;margin-bottom:10px;cursor:not-allowed}
@@ -396,17 +352,14 @@ header{text-align:center;padding:24px 0 32px;position:relative;animation:fadeUp 
 .coming-soon-overlay{text-align:center;padding:16px;background:rgba(201,169,110,0.08);border:1px solid rgba(201,169,110,0.25);border-radius:3px;margin-top:8px}
 .coming-soon-overlay p:first-child{font-size:12px;color:var(--gold);margin-bottom:4px}
 .coming-soon-overlay p:last-child{font-size:11px;color:rgba(255,255,255,0.55);line-height:1.6}
-
-/* FOOTER */
 .app-footer{max-width:500px;margin:0 auto;padding:32px 16px 40px;text-align:center;border-top:1px solid rgba(255,255,255,0.1)}
-.footer-logo{font-family:'Cormorant Garamond',serif;font-size:22px;letter-spacing:.3em;color:#ffffff;margin-bottom:4px}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:22px;letter-spacing:.3em;color:#fff;margin-bottom:4px}
 .footer-logo em{color:var(--gold);font-style:italic}
 .footer-tagline{font-size:9px;letter-spacing:.4em;color:rgba(255,255,255,0.3);text-transform:uppercase;margin-bottom:14px}
 .footer-divider{width:40px;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,110,0.3),transparent);margin:0 auto 14px}
 .footer-copy{font-size:10px;color:rgba(255,255,255,0.25);line-height:2;letter-spacing:.03em}
 .footer-copy a{color:rgba(201,169,110,0.5);text-decoration:none}
 .footer-bottom{margin-top:12px;font-size:9px;color:rgba(255,255,255,0.15);letter-spacing:.1em}
-
 canvas{display:none}
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 </style>
@@ -488,7 +441,6 @@ canvas{display:none}
 <div class="ambient"></div>
 <canvas id="cv"></canvas>
 <div class="app">
-
 <header>
   <div class="logo">GL<span class="logo-o">Ó</span>W</div>
   <div class="logo-line"><div class="tagline">AI · Isiklik Stiiliassistent</div></div>
@@ -502,10 +454,10 @@ canvas{display:none}
   </div>
 </div>
 <div id="apiSetupCard" class="card" style="display:none">
-  <div style="font-family:'Cormorant Garamond',serif;font-size:20px;color:#ffffff;margin-bottom:6px">API Võti</div>
+  <div style="font-family:'Cormorant Garamond',serif;font-size:20px;color:#fff;margin-bottom:6px">API Võti</div>
   <div style="font-size:12px;color:rgba(255,255,255,0.7);line-height:1.6;margin-bottom:14px">Sisesta oma Anthropic API võti. Vajalik ainult üks kord.</div>
   <div style="position:relative;margin-bottom:10px">
-    <input type="password" id="keyInput" placeholder="sk-ant-api03-..." oninput="onKeyInput()" style="width:100%;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.2);color:#ffffff;font-family:'DM Mono',monospace;font-size:13px;padding:13px 46px 13px 13px;border-radius:3px;outline:none;box-sizing:border-box">
+    <input type="password" id="keyInput" placeholder="sk-ant-api03-..." oninput="onKeyInput()" style="width:100%;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.2);color:#fff;font-family:'DM Mono',monospace;font-size:13px;padding:13px 46px 13px 13px;border-radius:3px;outline:none;box-sizing:border-box">
     <button onclick="toggleKeyVis()" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(255,255,255,0.5);cursor:pointer;font-size:16px">👁</button>
   </div>
   <div id="keyError" style="font-size:11px;color:#e8a090;margin-bottom:8px;display:none">Võti peab algama sk-ant-iga</div>
@@ -516,7 +468,7 @@ canvas{display:none}
   <div class="saldo-left"><div class="saldo-icon">✦</div>
     <div class="saldo-info">
       <div class="saldo-count" id="saldoCount">3 tasuta analüüsi</div>
-      <div class="saldo-sub" id="saldoSub">Prooviperiood · vajuta et osta krediiti</div>
+      <div class="saldo-sub" id="saldoSub">Prooviperiood</div>
     </div>
   </div>
   <button class="saldo-btn" id="saldoBtn">Osta</button>
@@ -528,10 +480,10 @@ canvas{display:none}
   <div class="pricing-sub">Üks analüüs kulutab ühe krediidi.</div>
   <div class="free-badge"><div style="font-size:20px">🎁</div><div class="free-badge-text"><strong>3 analüüsi tasuta</strong> — proovi enne ostmist</div></div>
   <div class="pkg-grid">
-    <div class="pkg" onclick="selectPkg(this,'10','0.99','0.10')"><div class="pkg-price">€0.99</div><div class="pkg-count">10 analüüsi</div><div class="pkg-unit">0.10€ / tk</div></div>
-    <div class="pkg selected" onclick="selectPkg(this,'50','4.50','0.09')"><div class="pkg-popular">Populaarne</div><div class="pkg-price">€4.50</div><div class="pkg-count">50 analüüsi</div><div class="pkg-unit">0.09€ / tk</div></div>
-    <div class="pkg" onclick="selectPkg(this,'100','7.99','0.08')"><div class="pkg-price">€7.99</div><div class="pkg-count">100 analüüsi</div><div class="pkg-unit">0.08€ / tk</div></div>
-    <div class="pkg" onclick="selectPkg(this,'200','12.99','0.06')"><div class="pkg-price">€12.99</div><div class="pkg-count">200 analüüsi</div><div class="pkg-unit">0.06€ / tk</div></div>
+    <div class="pkg" onclick="selectPkg(this,'10','0.99','0.10')"><div class="pkg-price">€0.99</div><div class="pkg-count">10 analüüsi</div><div class="pkg-unit">0.10€/tk</div></div>
+    <div class="pkg selected" onclick="selectPkg(this,'50','4.50','0.09')"><div class="pkg-popular">Populaarne</div><div class="pkg-price">€4.50</div><div class="pkg-count">50 analüüsi</div><div class="pkg-unit">0.09€/tk</div></div>
+    <div class="pkg" onclick="selectPkg(this,'100','7.99','0.08')"><div class="pkg-price">€7.99</div><div class="pkg-count">100 analüüsi</div><div class="pkg-unit">0.08€/tk</div></div>
+    <div class="pkg" onclick="selectPkg(this,'200','12.99','0.06')"><div class="pkg-price">€12.99</div><div class="pkg-count">200 analüüsi</div><div class="pkg-unit">0.06€/tk</div></div>
   </div>
   <button class="buy-btn" id="buyBtn" onclick="showCheckout()">Jätka maksega — €4.50 →</button>
   <div class="coming-soon-note">Maksed aktiveeritakse peagi · <span>glow4me.ee</span></div>
@@ -540,17 +492,14 @@ canvas{display:none}
   <button class="pricing-back" onclick="hideCheckout()">← Tagasi</button>
   <div class="checkout-title">Maksmine</div>
   <div class="checkout-sub">Vali makseviis</div>
-  <div class="order-summary">
-    <div class="order-left"><p id="orderTitle">50 analüüsi</p><p id="orderSub">0.09€ analüüsi kohta</p></div>
-    <div class="order-price" id="orderPrice">€4.50</div>
-  </div>
+  <div class="order-summary"><div class="order-left"><p id="orderTitle">50 analüüsi</p><p id="orderSub">0.09€ kohta</p></div><div class="order-price" id="orderPrice">€4.50</div></div>
   <div class="pay-methods">
     <div class="pay-method"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg><div class="pay-method-label">Apple Pay</div></div>
     <div class="pay-method"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg><div class="pay-method-label">Google Pay</div></div>
   </div>
   <div class="card-fields">
     <div class="field-label">Kaardi number</div><input class="field-input" placeholder="1234 5678 9012 3456" disabled>
-    <div class="field-row"><div><div class="field-label">Kehtivusaeg</div><input class="field-input" placeholder="KK / AA" disabled></div><div><div class="field-label">Turvakood</div><input class="field-input" placeholder="123" disabled></div></div>
+    <div class="field-row"><div><div class="field-label">Kehtivusaeg</div><input class="field-input" placeholder="KK/AA" disabled></div><div><div class="field-label">Turvakood</div><input class="field-input" placeholder="123" disabled></div></div>
   </div>
   <button class="pay-btn" disabled>Maksa — €4.50</button>
   <div class="secure-note">🔒 Turvaline makse · Stripe</div>
@@ -571,7 +520,7 @@ canvas{display:none}
 
 <div class="tip-banner meik" id="meikTip"><strong id="meikTipText">💄 Hommikumeik — vajuta "Ava kaamera"</strong></div>
 <div class="tip-banner stiil" id="stiilTip"><strong id="stiilTipText">👗 Kontoririietus — proovi selga ja vajuta "Ava kaamera"</strong></div>
-<div class="tip-banner pro" id="proTip"><strong id="proTipText">✦ Vali protseduur ja vajuta "Ava kaamera"</strong></div>
+<div class="tip-banner pro" id="proTip"><strong id="proTipText">🔍 Soovita protseduuri — suuna kaamera näole</strong></div>
 
 <div class="cam-wrap" id="cameraCard">
   <div class="cam-top-bar">
@@ -595,6 +544,18 @@ canvas{display:none}
     <div class="wave" id="wave"><span></span><span></span><span></span><span></span><span></span></div>
   </div>
   <div class="errmsg" id="err"></div>
+</div>
+
+<!-- STIILI MOODBOARD — kuvatakse pärast analüüsi -->
+<div class="moodboard-section" id="moodboardSection">
+  <div class="moodboard-title">✦ Sinu stiili inspiratsioon</div>
+  <div class="moodboard-subtitle">Vali mis sulle meeldib · denimdream.ee</div>
+  <div class="moodboard-grid" id="moodboardGrid"></div>
+  <div class="moodboard-actions">
+    <button class="mb-action-btn more" onclick="generateMoreMoodboard()">↻ Rohkem valikuid</button>
+    <button class="mb-action-btn shop" onclick="shopDenimDream()">🛍 Vaata denimdream.ee →</button>
+  </div>
+  <div class="moodboard-denim-note">Kõik stiilisoovitused on kättesaadavad denimdream.ee-s</div>
 </div>
 
 <div class="kombineering-card" id="kombineringCard"><div class="lbl" style="color:#c4b8e0">✦ Kombineerimise nõuanded</div><div id="kombineringSteps"></div></div>
@@ -651,7 +612,6 @@ canvas{display:none}
     <div class="feedback-sent-text">Täname tagasiside eest!<br>See aitab meil kasvada.</div>
   </div>
 </div>
-
 </div>
 
 <footer class="app-footer">
@@ -665,59 +625,92 @@ canvas{display:none}
   </div>
   <div class="footer-bottom">glow4me.ee · Powered by Anthropic AI</div>
 </footer>
-
 </div>
 
 <script>
-const FREE_CREDITS = 3;
-const VERDICT_CONFIG = {yes:{icon:'✨',sub:'Suurepärane'},maybe:{icon:'🤔',sub:'Vajab tähelepanu'},no:{icon:'⚠️',sub:'Vajab parandust'}};
-const PACKAGES = [{count:'10',price:'0.99',unit:'0.10'},{count:'50',price:'4.50',unit:'0.09'},{count:'100',price:'7.99',unit:'0.08'},{count:'200',price:'12.99',unit:'0.06'}];
+const FREE_CREDITS=3;
+const VERDICT_CONFIG={yes:{icon:'✨',sub:'Suurepärane'},maybe:{icon:'🤔',sub:'Vajab tähelepanu'},no:{icon:'⚠️',sub:'Vajab parandust'}};
+const PACKAGES=[{count:'10',price:'0.99',unit:'0.10'},{count:'50',price:'4.50',unit:'0.09'},{count:'100',price:'7.99',unit:'0.08'},{count:'200',price:'12.99',unit:'0.06'}];
 
 function getCredits(){const r=localStorage.getItem('glow_credits');if(r===null||r==='')return FREE_CREDITS;const n=parseInt(r,10);return isNaN(n)?FREE_CREDITS:Math.max(0,n);}
 function setCredits(n){localStorage.setItem('glow_credits',String(Math.max(0,parseInt(n,10)||0)));refreshSaldo();refreshAnaBtn();}
 function initCredits(){const r=localStorage.getItem('glow_credits');if(r===null||r===''||isNaN(parseInt(r,10)))localStorage.setItem('glow_credits',String(FREE_CREDITS));}
-
 function refreshSaldo(){
   const c=getCredits(),bar=document.getElementById('saldoBar'),count=document.getElementById('saldoCount'),sub=document.getElementById('saldoSub'),btn=document.getElementById('saldoBtn');
   if(!bar)return;
   if(c>0){
-    if(c<=FREE_CREDITS){bar.style.background='rgba(122,158,142,0.15)';bar.style.borderColor='rgba(122,158,142,0.5)';count.style.color='#7ec98a';count.textContent=c+' tasuta analüüsi';sub.textContent='Prooviperiood · vajuta et osta krediiti';btn.style.color='#7ec98a';btn.style.borderColor='rgba(122,158,142,0.5)';}
+    if(c<=FREE_CREDITS){bar.style.background='rgba(122,158,142,0.15)';bar.style.borderColor='rgba(122,158,142,0.5)';count.style.color='#7ec98a';count.textContent=c+' tasuta analüüsi';sub.textContent='Prooviperiood · vajuta et osta';btn.style.color='#7ec98a';btn.style.borderColor='rgba(122,158,142,0.5)';}
     else{bar.style.background='rgba(201,169,110,0.12)';bar.style.borderColor='rgba(201,169,110,0.4)';count.style.color='var(--gold)';count.textContent=c+' analüüsi järel';sub.textContent='Krediiti on · vajuta et täiendada';btn.style.color='var(--gold)';btn.style.borderColor='rgba(201,169,110,0.5)';}
   }else{bar.style.background='rgba(196,115,107,0.12)';bar.style.borderColor='rgba(196,115,107,0.5)';count.style.color='#e8a090';count.textContent='0 analüüsi järel';sub.textContent='Krediit otsas · vajuta et osta';btn.style.color='#e8a090';btn.style.borderColor='rgba(196,115,107,0.5)';}
 }
-
 function refreshAnaBtn(){const btn=document.getElementById('anaBtn');if(!btn)return;btn.disabled=!(stream!==null&&getCredits()>0);}
 
 const MAKEUP_STYLES=[{id:'hommik',icon:'🌅',name:'Hommikumeik'},{id:'kontor',icon:'💼',name:'Kontorimeik'},{id:'ostlemine',icon:'🛍️',name:'Ostlemismeik'},{id:'nadalavahetus',icon:'☕',name:'Nädalavahetuse meik'},{id:'ohtu',icon:'🌙',name:'Õhtumeik'},{id:'pidu',icon:'🎉',name:'Peomeik'},{id:'gala',icon:'🥂',name:'Gala meik'},{id:'synnipaev',icon:'🎂',name:'Sünnipäevameik'},{id:'pruut',icon:'👰',name:'Pruudimeik'},{id:'kihlumine',icon:'💍',name:'Kihlumismeik'},{id:'lopuaktus',icon:'🎓',name:'Lõpuaktuse meik'},{id:'fotosessioon',icon:'📸',name:'Fotosessioon'},{id:'nomakeup',icon:'🌿',name:'No-makeup meik'},{id:'dewy',icon:'✨',name:'Dewy / Glass skin'},{id:'paevitus',icon:'☀️',name:'Päevitusmeik'},{id:'smoky',icon:'🖤',name:'Smoky eye'},{id:'latte',icon:'☕',name:'Latte meik'},{id:'glam',icon:'💅',name:'Glam meik'},{id:'romantiline',icon:'🌸',name:'Romantiline meik'},{id:'kunstiline',icon:'🎨',name:'Kunstiline meik'}];
 const OUTFIT_STYLES=[{id:'kontor',icon:'💼',name:'Kontori\nriietus'},{id:'kool',icon:'🎒',name:'Kooli\nriietus'},{id:'arikoosolek',icon:'🤝',name:'Ärikoosolek /\nÄrikohtumine'},{id:'shopping',icon:'🛍️',name:'Riietus\nshoppamiseks'},{id:'sport',icon:'🏃',name:'Spordi- ja\ntreeningriietus'},{id:'ohtu',icon:'🌙',name:'Õhtu-\nriietus'},{id:'pidu',icon:'🎉',name:'Pidu ja\nklubiriiietus'},{id:'pidulik_ohtusoek',icon:'🍽️',name:'Pidulik\nõhtusöök'},{id:'synnipaev',icon:'🎂',name:'Sünnipäeva\nriietus'},{id:'lopuaktus',icon:'🎓',name:'Lõpuaktus ja\ntseremoonia'},{id:'reisile',icon:'✈️',name:'Reisile\nminekuks'},{id:'rand',icon:'🌊',name:'Ranna-\nriietus'},{id:'minimalistlik',icon:'🖤',name:'Minimalistlik\nstiil'},{id:'boho',icon:'🎨',name:'Bohoo\nstiil'},{id:'luksus',icon:'👑',name:'Luksus /\nHigh Fashion'},{id:'looduslik',icon:'🌿',name:'Looduslikud\nmaterjalid'},{id:'streetwear',icon:'🔥',name:'Street-\nwear'}];
 const MEIK_CONTEXTS={hommik:{focus:'tööle sobiv, värske',verdict_yes:'VÄRSKE JA ILUS',verdict_no:'VAJAB VIIMISTLUST'},kontor:{focus:'professionaalne, diskreetne',verdict_yes:'PROFESSIONAALNE',verdict_no:'LIIGA DRAMAATILINE'},ostlemine:{focus:'casual, looduslik',verdict_yes:'CASUAL JA ILUS',verdict_no:'VAJAB LIHTSUSTAMIST'},nadalavahetus:{focus:'kerge, pingevaba',verdict_yes:'PINGEVABA JA KENA',verdict_no:'LIIGA FORMAALNE'},ohtu:{focus:'elegantne, sügavam',verdict_yes:'ELEGANTNE ÕHTUMEIK',verdict_no:'VAJAB ROHKEM SÜGAVUST'},pidu:{focus:'julge, särav',verdict_yes:'SUUREPÄRANE PEOMEIK',verdict_no:'VAJAB ROHKEM GLAMUURI'},gala:{focus:'luksuslik, dramaatiline',verdict_yes:'GALA-VÄÄRILINE',verdict_no:'VAJAB ROHKEM LUKSUST'},synnipaev:{focus:'rõõmus, särav',verdict_yes:'PIDULIK JA RÕÕMUS',verdict_no:'VAJAB ROHKEM SÄRA'},pruut:{focus:'romantiline, ajatu',verdict_yes:'PRUUDIVÄÄRILINE',verdict_no:'VAJAB TÄIUSTAMIST'},kihlumine:{focus:'õrn, romantiline',verdict_yes:'ROMANTILISELT ERILINE',verdict_no:'VAJAB ROMANTIKAT'},lopuaktus:{focus:'pidulik, nooruslik',verdict_yes:'PIDULIK JA NOORUSLIK',verdict_no:'VAJAB TASAKAALU'},fotosessioon:{focus:'fotogeniiline, kontrastne',verdict_yes:'KAAMERASÕBRALIK',verdict_no:'VAJAB TUGEVDAMIST'},nomakeup:{focus:'minimalistlik, looduslik',verdict_yes:'LOODUSLIKULT ILUS',verdict_no:'VAJAB LIHTSUSTAMIST'},dewy:{focus:'särav, niiske, glass skin',verdict_yes:'SÄRAV GLASS SKIN',verdict_no:'VAJAB ROHKEM SÄDET'},paevitus:{focus:'päevitunud, soe, bronzer',verdict_yes:'PÄEVITUNULT SÄRAV',verdict_no:'VAJAB ROHKEM SOOJUST'},smoky:{focus:'suitsune, dramaatiline',verdict_yes:'SUITSUNE JA DRAMAATILINE',verdict_no:'VAJAB ROHKEM SÜGAVUST'},latte:{focus:'soojad pruunid toonid',verdict_yes:'SOOJALT ELEGANTNE',verdict_no:'VAJAB ROHKEM SOOJUST'},glam:{focus:'täielik glamuur',verdict_yes:'TÄIELIK GLAMUUR',verdict_no:'VAJAB ROHKEM GLAMI'},romantiline:{focus:'õrn, roosakad toonid',verdict_yes:'ROMANTILISELT KAUNIS',verdict_no:'VAJAB PEHMEMAT LÄHENEMIST'},kunstiline:{focus:'loov, julged värvid',verdict_yes:'LOOVALT JULGE',verdict_no:'VAJAB JULGUST'}};
-const OUTFIT_CONTEXTS={kontor:{focus:'kontorisse sobiv, professionaalne',verdict_yes:'KONTORISSE SOBIV',verdict_no:'EI SOBI KONTORISSE'},kool:{focus:'kooliriietuseks sobiv, nooruslik',verdict_yes:'KOOLIRIIETUSEKS SOBIV',verdict_no:'VAJAB KOHANDAMIST'},arikoosolek:{focus:'ärikoosolekuks formaalne',verdict_yes:'ÄRIKOOSOLEKUKS SOBIV',verdict_no:'LIIGA CASUAL'},shopping:{focus:'shoppamiseks casual chic',verdict_yes:'SHOPPING-STIILIS SUUREPÄRANE',verdict_no:'VAJAB KOHANDAMIST'},sport:{focus:'spordiks funktsionaalne',verdict_yes:'SPORDIKS SOBIV',verdict_no:'EI SOBI TREENIMISEKS'},ohtu:{focus:'õhtuseks elegantne',verdict_yes:'ÕHTUKS SUUREPÄRANE',verdict_no:'VAJAB ELEGANTSI'},pidu:{focus:'peoks trendikas, julge',verdict_yes:'PEOKS SUUREPÄRANE',verdict_no:'VAJAB ROHKEM ENERGIAT'},pidulik_ohtusoek:{focus:'pidulikuks õhtusöögiks elegantne',verdict_yes:'PIDULIKUKS ÕHTUSÖÖGIKS SOBIV',verdict_no:'VAJAB ROHKEM FORMAALUST'},synnipaev:{focus:'sünnipäevaks pidulik',verdict_yes:'SÜNNIPÄEVAKS SUUREPÄRANE',verdict_no:'VAJAB ROHKEM PIDULIKUST'},lopuaktus:{focus:'lõpuaktuseks sobiv',verdict_yes:'TSEREMOONIAKS SOBIV',verdict_no:'VAJAB KOHANDAMIST'},reisile:{focus:'reisimiseks mugav ja stiilne',verdict_yes:'REISIMISEKS SUUREPÄRANE',verdict_no:'VAJAB PRAKTILISUST'},rand:{focus:'rannaks kerge, suvisus',verdict_yes:'RANNAKS SUUREPÄRANE',verdict_no:'EI SOBI RANNALE'},minimalistlik:{focus:'minimalistlik: less is more',verdict_yes:'MINIMALISTLIKULT ELEGANTNE',verdict_no:'LIIGA PALJU DETAILE'},boho:{focus:'bohoo: vaba, loominguline',verdict_yes:'BOHO STIILIS SUUREPÄRANE',verdict_no:'VAJAB BOHO TUNNET'},luksus:{focus:'luksus ja high fashion',verdict_yes:'LUKSUSLIKULT STIILNE',verdict_no:'VAJAB ROHKEM LUKSUST'},looduslik:{focus:'looduslikud materjalid',verdict_yes:'LOODUSSÕBRALIKULT STIILNE',verdict_no:'VAJAB LOODUSLIKUMAID MATERJALE'},streetwear:{focus:'streetwear: urban, julge',verdict_yes:'STREETWEAR STIILIS SUUREPÄRANE',verdict_no:'VAJAB ROHKEM STREET-TUNNET'}};
+const OUTFIT_CONTEXTS={kontor:{focus:'kontorisse sobiv, professionaalne',verdict_yes:'KONTORISSE SOBIV',verdict_no:'EI SOBI KONTORISSE'},kool:{focus:'kooliriietuseks sobiv, nooruslik',verdict_yes:'KOOLIRIIETUSEKS SOBIV',verdict_no:'VAJAB KOHANDAMIST'},arikoosolek:{focus:'ärikoosolekuks formaalne',verdict_yes:'ÄRIKOOSOLEKUKS SOBIV',verdict_no:'LIIGA CASUAL'},shopping:{focus:'shoppamiseks casual chic',verdict_yes:'SHOPPING-STIILIS SUUREPÄRANE',verdict_no:'VAJAB KOHANDAMIST'},sport:{focus:'spordiks funktsionaalne',verdict_yes:'SPORDIKS SOBIV',verdict_no:'EI SOBI TREENIMISEKS'},ohtu:{focus:'õhtuseks elegantne',verdict_yes:'ÕHTUKS SUUREPÄRANE',verdict_no:'VAJAB ELEGANTSI'},pidu:{focus:'peoks trendikas, julge',verdict_yes:'PEOKS SUUREPÄRANE',verdict_no:'VAJAB ROHKEM ENERGIAT'},pidulik_ohtusoek:{focus:'pidulikuks õhtusöögiks elegantne',verdict_yes:'PIDULIKUKS ÕHTUSÖÖGIKS SOBIV',verdict_no:'VAJAB ROHKEM FORMAALUST'},synnipaev:{focus:'sünnipäevaks pidulik',verdict_yes:'SÜNNIPÄEVAKS SUUREPÄRANE',verdict_no:'VAJAB ROHKEM PIDULIKUST'},lopuaktus:{focus:'lõpuaktuseks sobiv, pidulik',verdict_yes:'TSEREMOONIAKS SOBIV',verdict_no:'VAJAB KOHANDAMIST'},reisile:{focus:'reisimiseks mugav ja stiilne',verdict_yes:'REISIMISEKS SUUREPÄRANE',verdict_no:'VAJAB PRAKTILISUST'},rand:{focus:'rannaks kerge, suvisus',verdict_yes:'RANNAKS SUUREPÄRANE',verdict_no:'EI SOBI RANNALE'},minimalistlik:{focus:'minimalistlik: less is more',verdict_yes:'MINIMALISTLIKULT ELEGANTNE',verdict_no:'LIIGA PALJU DETAILE'},boho:{focus:'bohoo: vaba, loominguline',verdict_yes:'BOHO STIILIS SUUREPÄRANE',verdict_no:'VAJAB BOHO TUNNET'},luksus:{focus:'luksus ja high fashion',verdict_yes:'LUKSUSLIKULT STIILNE',verdict_no:'VAJAB ROHKEM LUKSUST'},looduslik:{focus:'looduslikud materjalid',verdict_yes:'LOODUSSÕBRALIKULT STIILNE',verdict_no:'VAJAB LOODUSLIKUMAID MATERJALE'},streetwear:{focus:'streetwear: urban, julge',verdict_yes:'STREETWEAR STIILIS SUUREPÄRANE',verdict_no:'VAJAB ROHKEM STREET-TUNNET'}};
 
-function getMeikSystem(id){const ctx=MEIK_CONTEXTS[id]||MEIK_CONTEXTS.hommik;const n=MAKEUP_STYLES.find(m=>m.id===id)?.name||'Meik';return `Sa oled GLÓW meigi ekspert. Kasutaja soovib "${n}" analüüsi. Fookus: ${ctx.focus}.\nVasta AINULT JSON: {"verdict":"${ctx.verdict_yes} / ${ctx.verdict_no}","verdict_class":"yes/maybe/no","meigistiil":"stiil lühidalt","feedback":"3-4 lauset","details":{"Jumestus":"2 lauset","Silmameik":"2 lauset","Huuled ja kulmud":"2 lauset","Sobivus ${n} jaoks":"2 lauset"},"scores":{"Jumestus":7,"Silmad":7,"Huuled":7,"Üldmulje":7},"tehnikad":["soovitus 1","soovitus 2","soovitus 3"],"kohe_tooted":[{"kategooria":"Jumestus","nimi":"tootenimi","bränd":"MAC/NYX/Catrice/Essence/Rimmel/Max Factor","hind":"~XX€","põhjus":"põhjus","link":"https://www.mactabeauty.com/meik"},{"kategooria":"Silmameik","nimi":"tootenimi","bränd":"bränd","hind":"~XX€","põhjus":"põhjus","link":"https://www.mactabeauty.com/meik/silmad"}],"jarmine_tooted":[{"kategooria":"Jumestuskreem","nimi":"tootenimi","bränd":"bränd","hind":"~XX€","põhjus":"põhjus","link":"https://www.mactabeauty.com/meik"},{"kategooria":"Silmameik","nimi":"tootenimi","bränd":"bränd","hind":"~XX€","põhjus":"põhjus","link":"https://www.mactabeauty.com/meik/silmad"},{"kategooria":"Huuled","nimi":"tootenimi","bränd":"bränd","hind":"~XX€","põhjus":"põhjus","link":"https://www.mactabeauty.com/meik/huuled"}],"tip":"peamine soovitus"}`;}
-function getStiilSystem(id){const ctx=OUTFIT_CONTEXTS[id]||OUTFIT_CONTEXTS.kontor;const n=OUTFIT_STYLES.find(s=>s.id===id)?.name?.replace('\n',' ')||'Riietus';return `Sa oled GLÓW stiiliekspert. Kasutaja soovib "${n}" analüüsi. Fookus: ${ctx.focus}.\nVasta AINULT JSON: {"verdict":"${ctx.verdict_yes} / ${ctx.verdict_no}","verdict_class":"yes/maybe/no","riietusstiil":"stiil lühidalt","feedback":"3-4 lauset","details":{"Üleriietus":"2 lauset","Värvid":"2 lauset","Sobivus ${n} jaoks":"2 lauset","Aksessuaarid":"2 lauset"},"scores":{"Sobivus":7,"Värvid":7,"Stiil":7,"Üldmulje":7},"kombineerimised":["soovitus 1","soovitus 2","soovitus 3"],"soovitused":[{"kategooria":"Põhitükk","nimi":"rõivaese","bränd":"Zara/H&M/Mango/COS","hind":"~XX€","põhjus":"põhjus","link":"https://www.denimdream.ee/"},{"kategooria":"Lisatükk","nimi":"rõivaese","bränd":"bränd","hind":"~XX€","põhjus":"põhjus","link":"https://www.denimdream.ee/"},{"kategooria":"Aksessuaar","nimi":"aksessuaar","bränd":"bränd","hind":"~XX€","põhjus":"põhjus","link":"https://www.denimdream.ee/"}],"jarmine_soovitused":[{"kategooria":"Investeering","nimi":"rõivaese","bränd":"bränd","hind":"~XX€","põhjus":"põhjus","link":"https://www.denimdream.ee/"},{"kategooria":"Täiendav","nimi":"rõivaese","bränd":"bränd","hind":"~XX€","põhjus":"põhjus","link":"https://www.denimdream.ee/"}],"tip":"peamine soovitus"}`;}
+function getMeikSystem(id){const ctx=MEIK_CONTEXTS[id]||MEIK_CONTEXTS.hommik;const n=MAKEUP_STYLES.find(m=>m.id===id)?.name||'Meik';return `Sa oled GLÓW meigi ekspert. Kasutaja soovib "${n}" analüüsi. Fookus: ${ctx.focus}.\nVasta AINULT JSON: {"verdict":"${ctx.verdict_yes} / ${ctx.verdict_no}","verdict_class":"yes/maybe/no","meigistiil":"stiil lühidalt","feedback":"3-4 lauset","details":{"Jumestus":"2 lauset","Silmameik":"2 lauset","Huuled ja kulmud":"2 lauset","Sobivus ${n} jaoks":"2 lauset"},"scores":{"Jumestus":7,"Silmad":7,"Huuled":7,"Üldmulje":7},"tehnikad":["soovitus 1","soovitus 2","soovitus 3"],"kohe_tooted":[{"kategooria":"Jumestus","nimi":"tootenimi","bränd":"MAC/NYX/Catrice/Essence/Rimmel","hind":"~XX€","põhjus":"põhjus","link":"https://www.mactabeauty.com/meik"},{"kategooria":"Silmameik","nimi":"tootenimi","bränd":"bränd","hind":"~XX€","põhjus":"põhjus","link":"https://www.mactabeauty.com/meik/silmad"}],"jarmine_tooted":[{"kategooria":"Jumestuskreem","nimi":"tootenimi","bränd":"bränd","hind":"~XX€","põhjus":"põhjus","link":"https://www.mactabeauty.com/meik"},{"kategooria":"Silmameik","nimi":"tootenimi","bränd":"bränd","hind":"~XX€","põhjus":"põhjus","link":"https://www.mactabeauty.com/meik/silmad"},{"kategooria":"Huuled","nimi":"tootenimi","bränd":"bränd","hind":"~XX€","põhjus":"põhjus","link":"https://www.mactabeauty.com/meik/huuled"}],"tip":"peamine soovitus"}`;}
+function getStiilSystem(id){const ctx=OUTFIT_CONTEXTS[id]||OUTFIT_CONTEXTS.kontor;const n=OUTFIT_STYLES.find(s=>s.id===id)?.name?.replace('\n',' ')||'Riietus';return `Sa oled GLÓW stiiliekspert. Kasutaja soovib "${n}" analüüsi. Fookus: ${ctx.focus}.\nVasta AINULT JSON: {"verdict":"${ctx.verdict_yes} / ${ctx.verdict_no}","verdict_class":"yes/maybe/no","riietusstiil":"stiil lühidalt","feedback":"3-4 lauset","details":{"Üleriietus":"2 lauset","Värvid":"2 lauset","Sobivus ${n} jaoks":"2 lauset","Aksessuaarid":"2 lauset"},"scores":{"Sobivus":7,"Värvid":7,"Stiil":7,"Üldmulje":7},"kombineerimised":["soovitus 1","soovitus 2","soovitus 3"],"soovitused":[{"kategooria":"Põhitükk","nimi":"rõivaese","bränd":"Zara/H&M/Mango/COS","hind":"~XX€","põhjus":"põhjus","link":"https://www.denimdream.ee/"},{"kategooria":"Lisatükk","nimi":"rõivaese","bränd":"bränd","hind":"~XX€","põhjus":"põhjus","link":"https://www.denimdream.ee/"},{"kategooria":"Aksessuaar","nimi":"aksessuaar","bränd":"bränd","hind":"~XX€","põhjus":"põhjus","link":"https://www.denimdream.ee/"}],"jarmine_soovitused":[{"kategooria":"Investeering","nimi":"rõivaese","bränd":"bränd","hind":"~XX€","põhjus":"põhjus","link":"https://www.denimdream.ee/"},{"kategooria":"Täiendav","nimi":"rõivaese","bränd":"bränd","hind":"~XX€","põhjus":"põhjus","link":"https://www.denimdream.ee/"}],"tip":"peamine soovitus","moodboard":[{"nimi":"Outfit 1","kirjeldus":"Lühike kirjeldus","varvid":["#9b8fb5","#c9a96e","#d4957a"],"emoji":"👗","denimdream_link":"https://www.denimdream.ee/"},{"nimi":"Outfit 2","kirjeldus":"Lühike kirjeldus","varvid":["#7a9e8e","#c9a96e","#fff"],"emoji":"✨","denimdream_link":"https://www.denimdream.ee/"},{"nimi":"Outfit 3","kirjeldus":"Lühike kirjeldus","varvid":["#c4736b","#2a1a1a","#c9a96e"],"emoji":"💫","denimdream_link":"https://www.denimdream.ee/"},{"nimi":"Outfit 4","kirjeldus":"Lühike kirjeldus","varvid":["#9b8fb5","#fff","#0e0c0b"],"emoji":"🌟","denimdream_link":"https://www.denimdream.ee/"},{"nimi":"Outfit 5","kirjeldus":"Lühike kirjeldus","varvid":["#d4957a","#c9a96e","#7a9e8e"],"emoji":"💎","denimdream_link":"https://www.denimdream.ee/"},{"nimi":"Outfit 6","kirjeldus":"Lühike kirjeldus","varvid":["#c9a96e","#fff","#9b8fb5"],"emoji":"🎀","denimdream_link":"https://www.denimdream.ee/"}]}`;}
 
 const PROCEDURES=[{id:'nahooldus',icon:'✨',name:'Näopuhastus\nja hooldus'},{id:'niisutus',icon:'💧',name:'Niisutus-\nhooldus'},{id:'vananemine',icon:'🌿',name:'Vananemis-\nvastane'},{id:'akne',icon:'🎯',name:'Akne-\nhooldus'},{id:'pigment',icon:'🌟',name:'Pigmentatsiooni-\nravi'},{id:'koorimine',icon:'✨',name:'Keemiline\nkoorimine'},{id:'kulmud',icon:'✏️',name:'Kulmude\nmodelleerimine'},{id:'ripsmed',icon:'👁',name:'Ripsmete ja\nkulmude värvimine'},{id:'massaaz',icon:'🤲',name:'Näo-\nmassaaž'},{id:'depilatsioon',icon:'🌸',name:'Depilatsioon\nja vahatamine'},{id:'kehahooldus',icon:'💆',name:'Keha-\nhooldus'},{id:'jalahooldus',icon:'🦶',name:'Jala-\nhooldus'}];
-const DB='AINULT depile.ee tooted! Brändid: ANESI,BDR,DERMIA,CHRISTIAN BRETON,PHYTOMER,DEPILÉVE,ALLPRESAN,ALESSANDRO,ALFAPARF,PINO.';
-const PROC_SYS={nahooldus:`Kosmeetik. Näopuhastus. ${DB} JSON: {"verdict":"KERGE/STANDARDNE/INTENSIIVNE","verdict_class":"yes/maybe/no","nahatuup":"tüüp","feedback":"3-4 lauset","details":{"Nahatüüp":"2l","Poorid":"2l","Niiskus":"2l","Erivajadused":"2l"},"scores":{"Puhtus":7,"Niiskus":7,"Toon":7,"Üldseisund":7},"protseduur":["S1: Meigieemaldus","S2: Puhastus","S3: Auruteenimine","S4: Koorimine","S5: Mask","S6: Seerum","S7: Niisutus"],"pro_tooted":[{"kategooria":"Puhastus","nimi":"ANESI toode","bränd":"ANESI","hind":"~XX€","põhjus":"sobivus","link":"https://depile.ee/"}],"kodu_tooted":[{"kategooria":"Puhastus","nimi":"ANESI toode","bränd":"ANESI","hind":"~XX€","põhjus":"koduseks","link":"https://depile.ee/"}],"tip":"soovitus"}`,niisutus:`Kosmeetik. Niisutus. ${DB} JSON: {"verdict":"KERGE/INTENSIIVNE/SÜGAV","verdict_class":"yes/maybe/no","nahatuup":"tüüp","feedback":"3-4 lauset","details":{"Niiskus":"2l","Dehüdratsioon":"2l","Nahatüüp":"2l","Hooldus":"2l"},"scores":{"Niiskus":7,"Elastsus":7,"Sära":7,"Üldseisund":7},"protseduur":["S1","S2","S3","S4","S5"],"pro_tooted":[{"kategooria":"Seerum","nimi":"ANESI Aqua Vital","bränd":"ANESI","hind":"~XX€","põhjus":"sobivus","link":"https://depile.ee/"}],"kodu_tooted":[{"kategooria":"Kreem","nimi":"ANESI toode","bränd":"ANESI","hind":"~XX€","põhjus":"koduseks","link":"https://depile.ee/"}],"tip":"soovitus"}`,vananemine:`Kosmeetik. Vananemisvastane. ${DB} JSON: {"verdict":"ENNETAV/AKTIIVNE/INTENSIIVNE","verdict_class":"yes/maybe/no","nahatuup":"tüüp","feedback":"3-4 lauset","details":{"Kortsud":"2l","Elastsus":"2l","Toon":"2l","Kollageen":"2l"},"scores":{"Elastsus":7,"Niiskus":7,"Toon":7,"Noorukus":7},"protseduur":["S1","S2","S3","S4","S5"],"pro_tooted":[{"kategooria":"Seerum","nimi":"ANESI Infini Jeunesse","bränd":"ANESI","hind":"~XX€","põhjus":"sobivus","link":"https://depile.ee/"}],"kodu_tooted":[{"kategooria":"Öökreem","nimi":"ANESI toode","bränd":"ANESI","hind":"~XX€","põhjus":"koduseks","link":"https://depile.ee/"}],"tip":"soovitus"}`,akne:`Kosmeetik. Akne. ${DB} JSON: {"verdict":"KERGE/MÕÕDUKAS/RASKE","verdict_class":"yes/maybe/no","nahatuup":"tüüp","feedback":"3-4 lauset","details":{"Akne":"2l","Poorid":"2l","Rasvasus":"2l","Põletik":"2l"},"scores":{"Puhtus":7,"Poorid":7,"Rasvasus":7,"Üldseisund":7},"protseduur":["S1","S2","S3","S4","S5"],"pro_tooted":[{"kategooria":"Puhastus","nimi":"ANESI Dermo Controle","bränd":"ANESI","hind":"~XX€","põhjus":"sobivus","link":"https://depile.ee/"}],"kodu_tooted":[{"kategooria":"Puhastus","nimi":"ANESI toode","bränd":"ANESI","hind":"~XX€","põhjus":"koduseks","link":"https://depile.ee/"}],"tip":"soovitus"}`,pigment:`Kosmeetik. Pigmentatsioon. ${DB} JSON: {"verdict":"KERGE/MÕÕDUKAS/INTENSIIVNE","verdict_class":"yes/maybe/no","nahatuup":"tüüp","feedback":"3-4 lauset","details":{"Flekkide tüüp":"2l","Paiknemine":"2l","Nahatoon":"2l","Ravi":"2l"},"scores":{"Tooni ühtlus":7,"Sära":7,"Pigmentatsioon":7,"Üldseisund":7},"protseduur":["S1","S2","S3","S4","S5"],"pro_tooted":[{"kategooria":"Seerum","nimi":"ANESI Luminosity","bränd":"ANESI","hind":"~XX€","põhjus":"sobivus","link":"https://depile.ee/"}],"kodu_tooted":[{"kategooria":"Kreem","nimi":"ANESI toode","bränd":"ANESI","hind":"~XX€","põhjus":"koduseks","link":"https://depile.ee/"}],"tip":"soovitus"}`,koorimine:`Kosmeetik. Keemiline koorimine. ${DB} JSON: {"verdict":"KERGE/KESKMISE/SÜGAV","verdict_class":"yes/maybe/no","nahatuup":"tüüp","feedback":"3-4 lauset","details":{"Seisund":"2l","Tüüp":"2l","Vastunäidustused":"2l","Tulemus":"2l"},"scores":{"Sobivus":7,"Tugevus":7,"Niiskus":7,"Üldseisund":7},"protseduur":["S1","S2","S3","S4","S5","S6"],"pro_tooted":[{"kategooria":"Koorimine","nimi":"BDR toode","bränd":"BDR","hind":"~XX€","põhjus":"sobivus","link":"https://depile.ee/"}],"kodu_tooted":[{"kategooria":"Taastav","nimi":"ANESI toode","bränd":"ANESI","hind":"~XX€","põhjus":"koduseks","link":"https://depile.ee/"}],"tip":"soovitus"}`,kulmud:`Kulmude spetsialist. ${DB} JSON: {"verdict":"IDEAALSED/VAJAB KUJUNDAMIST/VAJAB TÄITMIST","verdict_class":"yes/maybe/no","kulutuup":"tüüp","feedback":"3-4 lauset","details":{"Kuju":"2l","Sümmeetria":"2l","Tihedus":"2l","Sobivus":"2l"},"scores":{"Kuju":7,"Sümmeetria":7,"Tihedus":7,"Üldmulje":7},"protseduur":["S1: Desinf","S2: Kuju","S3: Vahatamine","S4: Pintsetiga","S5: Korrigeerimine","S6: Rahustav"],"pro_tooted":[{"kategooria":"Vahatamine","nimi":"Depiléve vaha","bränd":"DEPILÉVE","hind":"~XX€","põhjus":"sobivus","link":"https://depile.ee/"},{"kategooria":"Järelhooldus","nimi":"Depiléve õli","bränd":"DEPILÉVE","hind":"~XX€","põhjus":"sobivus","link":"https://depile.ee/"}],"kodu_tooted":[{"kategooria":"Kulmugeel","nimi":"Alessandro kulmugeel","bränd":"ALESSANDRO","hind":"~XX€","põhjus":"koduseks","link":"https://depile.ee/"}],"tip":"soovitus"}`,ripsmed:`Kosmeetik. Ripsmete värvimine. ${DB} JSON: {"verdict":"KERGE/KESKMINE/TUMEDA TOONI VAJADUS","verdict_class":"yes/maybe/no","nahatuup":"värvitüüp","feedback":"3-4 lauset","details":{"Ripsmed":"2l","Kulmude värvus":"2l","Toon":"2l","Vastunäidustused":"2l"},"scores":{"Tihedus":7,"Värvus":7,"Pikkus":7,"Üldmulje":7},"protseduur":["S1","S2","S3","S4","S5","S6"],"pro_tooted":[{"kategooria":"Värv","nimi":"Ripsmevärv","bränd":"DEPILE sortiment","hind":"~XX€","põhjus":"sobivus","link":"https://depile.ee/"}],"kodu_tooted":[{"kategooria":"Seerum","nimi":"Ripsmeseerum","bränd":"DEPILE sortiment","hind":"~XX€","põhjus":"koduseks","link":"https://depile.ee/"}],"tip":"soovitus"}`,massaaz:`Kosmeetik. Näomassaaž. ${DB} JSON: {"verdict":"LÜMFI/KLASSIKALINE/PINGULDAV","verdict_class":"yes/maybe/no","nahatuup":"tüüp","feedback":"3-4 lauset","details":{"Toonus":"2l","Turse":"2l","Pinged":"2l","Massaaži tüüp":"2l"},"scores":{"Toonus":7,"Elastsus":7,"Vereringe":7,"Üldseisund":7},"protseduur":["S1","S2","S3","S4","S5","S6","S7"],"pro_tooted":[{"kategooria":"Massaaži õli","nimi":"PINO massaaži-õli","bränd":"PINO","hind":"~XX€","põhjus":"sobivus","link":"https://depile.ee/"}],"kodu_tooted":[{"kategooria":"Õli","nimi":"PINO õli","bränd":"PINO","hind":"~XX€","põhjus":"koduseks","link":"https://depile.ee/"}],"tip":"soovitus"}`,depilatsioon:`Kosmeetik. Depilatsioon. ${DB} JSON: {"verdict":"SOBIB/NÕUAB ETTEVALMISTUST/EI SOBI","verdict_class":"yes/maybe/no","nahatuup":"tüüp","feedback":"3-4 lauset","details":{"Nahk":"2l","Karvad":"2l","Tundlikkus":"2l","Vaha tüüp":"2l"},"scores":{"Sobivus":7,"Karvad":7,"Tundlikkus":7,"Üldseisund":7},"protseduur":["S1","S2","S3","S4","S5","S6"],"pro_tooted":[{"kategooria":"Vaha","nimi":"Depiléve kõvavaha","bränd":"DEPILÉVE","hind":"~XX€","põhjus":"sobivus","link":"https://depile.ee/"}],"kodu_tooted":[{"kategooria":"Järelhooldus","nimi":"Depiléve kreem","bränd":"DEPILÉVE","hind":"~XX€","põhjus":"koduseks","link":"https://depile.ee/"}],"tip":"soovitus"}`,kehahooldus:`Kosmeetik. Kehahooldus. ${DB} JSON: {"verdict":"KERGE/INTENSIIVNE/ERIKOHTLEMINE","verdict_class":"yes/maybe/no","nahatuup":"tüüp","feedback":"3-4 lauset","details":{"Nahk":"2l","Niiskus":"2l","Erivajadused":"2l","Hooldus":"2l"},"scores":{"Niiskus":7,"Sära":7,"Tekstuur":7,"Üldseisund":7},"protseduur":["S1","S2","S3","S4","S5"],"pro_tooted":[{"kategooria":"Koorija","nimi":"PINO kehakoorija","bränd":"PINO","hind":"~XX€","põhjus":"sobivus","link":"https://depile.ee/"}],"kodu_tooted":[{"kategooria":"Kehakreem","nimi":"Kehakreem","bränd":"DEPILE sortiment","hind":"~XX€","põhjus":"koduseks","link":"https://depile.ee/"}],"tip":"soovitus"}`,jalahooldus:`Kosmeetik. Jalahooldus. ${DB} JSON: {"verdict":"KERGE/STANDARDNE/INTENSIIVNE","verdict_class":"yes/maybe/no","nahatuup":"tüüp","feedback":"3-4 lauset","details":{"Nahapaksendid":"2l","Niiskus":"2l","Küüned":"2l","Erivajadused":"2l"},"scores":{"Puhtus":7,"Niiskus":7,"Küüned":7,"Üldseisund":7},"protseduur":["S1","S2","S3","S4","S5","S6"],"pro_tooted":[{"kategooria":"Jalakreem","nimi":"Allpresan jalakreem","bränd":"ALLPRESAN","hind":"~XX€","põhjus":"sobivus","link":"https://depile.ee/"},{"kategooria":"Eemaldus","nimi":"Allpresan eemaldus","bränd":"ALLPRESAN","hind":"~XX€","põhjus":"sobivus","link":"https://depile.ee/"}],"kodu_tooted":[{"kategooria":"Jalakreem","nimi":"Allpresan jalakreem","bränd":"ALLPRESAN","hind":"~XX€","põhjus":"koduseks","link":"https://depile.ee/"}],"tip":"soovitus"}`};
-const PROC_LABELS={nahooldus:'Näopuhastus ja hooldus',niisutus:'Niisutushooldus',vananemine:'Vananemisvastane hooldus',akne:'Aknehooldus',pigment:'Pigmentatsiooniravi',koorimine:'Keemiline koorimine',kulmud:'Kulmude modelleerimine',ripsmed:'Ripsmete ja kulmude värvimine',massaaz:'Näomassaaž',depilatsioon:'Depilatsioon ja vahatamine',kehahooldus:'Kehahooldus',jalahooldus:'Jalahooldus'};
+const DB='AINULT depile.ee tooted! Brändid: ANESI (Aqua Vital, Celestial, Cellular 3, Dermo Controle, Harmonie, Infini Jeunesse, Luminosity, Silhouette), BDR, DERMIA, CHRISTIAN BRETON, PHYTOMER, DEPILÉVE, ALLPRESAN, ALESSANDRO, ALFAPARF, PINO.';
+const PROC_SYS={
+  soovita:`Sa oled professionaalne kosmeetik ja nahahoolduse ekspert. Analüüsi kliendi nägu ja nahka PÕHJALIKULT ning soovita kõige sobivam protseduur. ${DB}\nVasta AINULT JSON: {"verdict":"SOOVITUSLIK PROTSEDUUR / VAJAB TÄHELEPANU / PÖÖRDU SPETSIALISTI POOLE","verdict_class":"yes/maybe/no","nahatuup":"Nahatüüp lühidalt","feedback":"3-4 lauset üldisest naha seisundist","soovituslik_protseduur":"Konkreetne protseduuri nimi","protseduur_pohjus":"2-3 lauset miks just see on praegu kõige vajalikum","details":{"Nahatüüp ja seisund":"2 lauset","Peamised murekohad":"2 lauset","Kiireloomulisus":"2 lauset","Dermatoloogi soovitus":"Kirjuta AINULT kui märkad midagi murettekitavat - ebakorrapärased laigud, põletikulised piirkonnad, kahtlased moodustised. Muidu jäta tühjaks."},"scores":{"Naha üldseisund":7,"Niiskus":7,"Toonus":7,"Kiireloomulisus":7},"protseduurid_jarjestus":["1. Soovituslik protseduur: põhjus","2. Alternatiiv: põhjus","3. Pikaajaline hooldus: põhjus"],"pro_tooted":[{"kategooria":"Peamine toode","nimi":"ANESI toode","bränd":"ANESI","hind":"~XX€","põhjus":"sobivus","link":"https://depile.ee/"},{"kategooria":"Täiendav toode","nimi":"ANESI toode","bränd":"ANESI","hind":"~XX€","põhjus":"sobivus","link":"https://depile.ee/"}],"kodu_tooted":[{"kategooria":"Kodune hooldus","nimi":"ANESI toode","bränd":"ANESI","hind":"~XX€","põhjus":"koduseks","link":"https://depile.ee/"}],"tip":"Kõige olulisem soovitus"}`,
+  nahooldus:`Kosmeetik. Näopuhastus. ${DB} JSON: {"verdict":"KERGE/STANDARDNE/INTENSIIVNE","verdict_class":"yes/maybe/no","nahatuup":"tüüp","feedback":"3-4 lauset","details":{"Nahatüüp":"2l","Poorid":"2l","Niiskus":"2l","Erivajadused":"2l"},"scores":{"Puhtus":7,"Niiskus":7,"Toon":7,"Üldseisund":7},"protseduur":["S1: Meigieemaldus","S2: Puhastus","S3: Auruteenimine","S4: Koorimine","S5: Mask","S6: Seerum","S7: Niisutus"],"pro_tooted":[{"kategooria":"Puhastus","nimi":"ANESI toode","bränd":"ANESI","hind":"~XX€","põhjus":"sobivus","link":"https://depile.ee/"},{"kategooria":"Mask","nimi":"ANESI toode","bränd":"ANESI","hind":"~XX€","põhjus":"sobivus","link":"https://depile.ee/"}],"kodu_tooted":[{"kategooria":"Puhastus","nimi":"ANESI toode","bränd":"ANESI","hind":"~XX€","põhjus":"koduseks","link":"https://depile.ee/"}],"tip":"soovitus"}`,
+  niisutus:`Kosmeetik. Niisutus. ${DB} JSON: {"verdict":"KERGE/INTENSIIVNE/SÜGAV","verdict_class":"yes/maybe/no","nahatuup":"tüüp","feedback":"3-4 lauset","details":{"Niiskus":"2l","Dehüdratsioon":"2l","Nahatüüp":"2l","Hooldus":"2l"},"scores":{"Niiskus":7,"Elastsus":7,"Sära":7,"Üldseisund":7},"protseduur":["S1","S2","S3","S4","S5"],"pro_tooted":[{"kategooria":"Seerum","nimi":"ANESI Aqua Vital","bränd":"ANESI","hind":"~XX€","põhjus":"sobivus","link":"https://depile.ee/"}],"kodu_tooted":[{"kategooria":"Kreem","nimi":"ANESI toode","bränd":"ANESI","hind":"~XX€","põhjus":"koduseks","link":"https://depile.ee/"}],"tip":"soovitus"}`,
+  vananemine:`Kosmeetik. Vananemisvastane. ${DB} JSON: {"verdict":"ENNETAV/AKTIIVNE/INTENSIIVNE","verdict_class":"yes/maybe/no","nahatuup":"tüüp","feedback":"3-4 lauset","details":{"Kortsud":"2l","Elastsus":"2l","Toon":"2l","Kollageen":"2l"},"scores":{"Elastsus":7,"Niiskus":7,"Toon":7,"Noorukus":7},"protseduur":["S1","S2","S3","S4","S5"],"pro_tooted":[{"kategooria":"Seerum","nimi":"ANESI Infini Jeunesse","bränd":"ANESI","hind":"~XX€","põhjus":"sobivus","link":"https://depile.ee/"}],"kodu_tooted":[{"kategooria":"Öökreem","nimi":"ANESI toode","bränd":"ANESI","hind":"~XX€","põhjus":"koduseks","link":"https://depile.ee/"}],"tip":"soovitus"}`,
+  akne:`Kosmeetik. Akne. ${DB} JSON: {"verdict":"KERGE/MÕÕDUKAS/RASKE","verdict_class":"yes/maybe/no","nahatuup":"tüüp","feedback":"3-4 lauset","details":{"Akne":"2l","Poorid":"2l","Rasvasus":"2l","Põletik":"2l"},"scores":{"Puhtus":7,"Poorid":7,"Rasvasus":7,"Üldseisund":7},"protseduur":["S1","S2","S3","S4","S5"],"pro_tooted":[{"kategooria":"Puhastus","nimi":"ANESI Dermo Controle","bränd":"ANESI","hind":"~XX€","põhjus":"sobivus","link":"https://depile.ee/"}],"kodu_tooted":[{"kategooria":"Puhastus","nimi":"ANESI toode","bränd":"ANESI","hind":"~XX€","põhjus":"koduseks","link":"https://depile.ee/"}],"tip":"soovitus"}`,
+  pigment:`Kosmeetik. Pigmentatsioon. ${DB} JSON: {"verdict":"KERGE/MÕÕDUKAS/INTENSIIVNE","verdict_class":"yes/maybe/no","nahatuup":"tüüp","feedback":"3-4 lauset","details":{"Flekkide tüüp":"2l","Paiknemine":"2l","Nahatoon":"2l","Ravi":"2l"},"scores":{"Tooni ühtlus":7,"Sära":7,"Pigmentatsioon":7,"Üldseisund":7},"protseduur":["S1","S2","S3","S4","S5"],"pro_tooted":[{"kategooria":"Seerum","nimi":"ANESI Luminosity","bränd":"ANESI","hind":"~XX€","põhjus":"sobivus","link":"https://depile.ee/"}],"kodu_tooted":[{"kategooria":"Kreem","nimi":"ANESI toode","bränd":"ANESI","hind":"~XX€","põhjus":"koduseks","link":"https://depile.ee/"}],"tip":"soovitus"}`,
+  koorimine:`Kosmeetik. Keemiline koorimine. ${DB} JSON: {"verdict":"KERGE/KESKMISE/SÜGAV","verdict_class":"yes/maybe/no","nahatuup":"tüüp","feedback":"3-4 lauset","details":{"Seisund":"2l","Tüüp":"2l","Vastunäidustused":"2l","Tulemus":"2l"},"scores":{"Sobivus":7,"Tugevus":7,"Niiskus":7,"Üldseisund":7},"protseduur":["S1","S2","S3","S4","S5","S6"],"pro_tooted":[{"kategooria":"Koorimine","nimi":"BDR toode","bränd":"BDR","hind":"~XX€","põhjus":"sobivus","link":"https://depile.ee/"}],"kodu_tooted":[{"kategooria":"Taastav","nimi":"ANESI toode","bränd":"ANESI","hind":"~XX€","põhjus":"koduseks","link":"https://depile.ee/"}],"tip":"soovitus"}`,
+  kulmud:`Kulmude spetsialist. ${DB} JSON: {"verdict":"IDEAALSED/VAJAB KUJUNDAMIST/VAJAB TÄITMIST","verdict_class":"yes/maybe/no","kulutuup":"tüüp","feedback":"3-4 lauset","details":{"Kuju":"2l","Sümmeetria":"2l","Tihedus":"2l","Sobivus":"2l"},"scores":{"Kuju":7,"Sümmeetria":7,"Tihedus":7,"Üldmulje":7},"protseduur":["S1","S2","S3","S4","S5","S6"],"pro_tooted":[{"kategooria":"Vahatamine","nimi":"Depiléve sensitiivne vaha","bränd":"DEPILÉVE","hind":"~XX€","põhjus":"sobivus","link":"https://depile.ee/"},{"kategooria":"Järelhooldus","nimi":"Depiléve rahustav õli","bränd":"DEPILÉVE","hind":"~XX€","põhjus":"sobivus","link":"https://depile.ee/"}],"kodu_tooted":[{"kategooria":"Kulmugeel","nimi":"Alessandro kulmugeel","bränd":"ALESSANDRO","hind":"~XX€","põhjus":"koduseks","link":"https://depile.ee/"}],"tip":"soovitus"}`,
+  ripsmed:`Kosmeetik. Ripsmed. ${DB} JSON: {"verdict":"KERGE/KESKMINE/TUMEDA TOONI VAJADUS","verdict_class":"yes/maybe/no","nahatuup":"tüüp","feedback":"3-4 lauset","details":{"Ripsmed":"2l","Kulmude värvus":"2l","Toon":"2l","Vastunäidustused":"2l"},"scores":{"Tihedus":7,"Värvus":7,"Pikkus":7,"Üldmulje":7},"protseduur":["S1","S2","S3","S4","S5","S6"],"pro_tooted":[{"kategooria":"Värv","nimi":"Ripsmevärv","bränd":"DEPILE sortiment","hind":"~XX€","põhjus":"sobivus","link":"https://depile.ee/"}],"kodu_tooted":[{"kategooria":"Seerum","nimi":"Ripsmeseerum","bränd":"DEPILE sortiment","hind":"~XX€","põhjus":"koduseks","link":"https://depile.ee/"}],"tip":"soovitus"}`,
+  massaaz:`Kosmeetik. Näomassaaž. ${DB} JSON: {"verdict":"LÜMFI/KLASSIKALINE/PINGULDAV","verdict_class":"yes/maybe/no","nahatuup":"tüüp","feedback":"3-4 lauset","details":{"Toonus":"2l","Turse":"2l","Pinged":"2l","Massaaži tüüp":"2l"},"scores":{"Toonus":7,"Elastsus":7,"Vereringe":7,"Üldseisund":7},"protseduur":["S1","S2","S3","S4","S5","S6","S7"],"pro_tooted":[{"kategooria":"Massaaži õli","nimi":"PINO massaaži-õli","bränd":"PINO","hind":"~XX€","põhjus":"sobivus","link":"https://depile.ee/"}],"kodu_tooted":[{"kategooria":"Õli","nimi":"PINO õli","bränd":"PINO","hind":"~XX€","põhjus":"koduseks","link":"https://depile.ee/"}],"tip":"soovitus"}`,
+  depilatsioon:`Kosmeetik. Depilatsioon. ${DB} JSON: {"verdict":"SOBIB/NÕUAB ETTEVALMISTUST/EI SOBI","verdict_class":"yes/maybe/no","nahatuup":"tüüp","feedback":"3-4 lauset","details":{"Nahk":"2l","Karvad":"2l","Tundlikkus":"2l","Vaha tüüp":"2l"},"scores":{"Sobivus":7,"Karvad":7,"Tundlikkus":7,"Üldseisund":7},"protseduur":["S1","S2","S3","S4","S5","S6"],"pro_tooted":[{"kategooria":"Vaha","nimi":"Depiléve kõvavaha","bränd":"DEPILÉVE","hind":"~XX€","põhjus":"sobivus","link":"https://depile.ee/"}],"kodu_tooted":[{"kategooria":"Järelhooldus","nimi":"Depiléve kreem","bränd":"DEPILÉVE","hind":"~XX€","põhjus":"koduseks","link":"https://depile.ee/"}],"tip":"soovitus"}`,
+  kehahooldus:`Kosmeetik. Kehahooldus. ${DB} JSON: {"verdict":"KERGE/INTENSIIVNE/ERIKOHTLEMINE","verdict_class":"yes/maybe/no","nahatuup":"tüüp","feedback":"3-4 lauset","details":{"Nahk":"2l","Niiskus":"2l","Erivajadused":"2l","Hooldus":"2l"},"scores":{"Niiskus":7,"Sära":7,"Tekstuur":7,"Üldseisund":7},"protseduur":["S1","S2","S3","S4","S5"],"pro_tooted":[{"kategooria":"Koorija","nimi":"PINO kehakoorija","bränd":"PINO","hind":"~XX€","põhjus":"sobivus","link":"https://depile.ee/"}],"kodu_tooted":[{"kategooria":"Kehakreem","nimi":"Kehakreem","bränd":"DEPILE sortiment","hind":"~XX€","põhjus":"koduseks","link":"https://depile.ee/"}],"tip":"soovitus"}`,
+  jalahooldus:`Kosmeetik. Jalahooldus. ${DB} JSON: {"verdict":"KERGE/STANDARDNE/INTENSIIVNE","verdict_class":"yes/maybe/no","nahatuup":"tüüp","feedback":"3-4 lauset","details":{"Nahapaksendid":"2l","Niiskus":"2l","Küüned":"2l","Erivajadused":"2l"},"scores":{"Puhtus":7,"Niiskus":7,"Küüned":7,"Üldseisund":7},"protseduur":["S1","S2","S3","S4","S5","S6"],"pro_tooted":[{"kategooria":"Jalakreem","nimi":"Allpresan jalakreem","bränd":"ALLPRESAN","hind":"~XX€","põhjus":"sobivus","link":"https://depile.ee/"},{"kategooria":"Eemaldus","nimi":"Allpresan eemaldus","bränd":"ALLPRESAN","hind":"~XX€","põhjus":"sobivus","link":"https://depile.ee/"}],"kodu_tooted":[{"kategooria":"Jalakreem","nimi":"Allpresan jalakreem","bränd":"ALLPRESAN","hind":"~XX€","põhjus":"koduseks","link":"https://depile.ee/"}],"tip":"soovitus"}`
+};
+const PROC_LABELS={soovita:'Soovita protseduuri',nahooldus:'Näopuhastus ja hooldus',niisutus:'Niisutushooldus',vananemine:'Vananemisvastane hooldus',akne:'Aknehooldus',pigment:'Pigmentatsiooniravi',koorimine:'Keemiline koorimine',kulmud:'Kulmude modelleerimine',ripsmed:'Ripsmete ja kulmude värvimine',massaaz:'Näomassaaž',depilatsioon:'Depilatsioon ja vahatamine',kehahooldus:'Kehahooldus',jalahooldus:'Jalahooldus'};
 
-let mode='stiil',selectedMeikStyle='hommik',selectedStiilStyle='kontor',selectedProcedure='nahooldus',stream=null,autoOn=false,autoT=null,lastFb='',lastScores={},selectedPkg=PACKAGES[1],starRating=0,termsAccepted=false;
+let mode='stiil',selectedMeikStyle='hommik',selectedStiilStyle='kontor',selectedProcedure='soovita';
+let stream=null,autoOn=false,autoT=null,lastFb='',lastScores={},selectedPkg=PACKAGES[1],starRating=0,termsAccepted=false,currentMoodboardData=[];
 const video=document.getElementById('vid'),canvas=document.getElementById('cv');
 
 function buildMeikGrid(){const g=document.getElementById('meikStyleGrid');g.innerHTML='';MAKEUP_STYLES.forEach(s=>{const b=document.createElement('div');b.className='style-btn meik-btn'+(s.id===selectedMeikStyle?' active':'');b.innerHTML=`<div class="style-icon">${s.icon}</div><div class="style-name">${s.name}</div>`;b.onclick=()=>selectMeikStyle(s.id);g.appendChild(b);});}
 function buildStiilGrid(){const g=document.getElementById('stiilStyleGrid');g.innerHTML='';OUTFIT_STYLES.forEach(s=>{const b=document.createElement('div');b.className='style-btn stiil-btn'+(s.id===selectedStiilStyle?' active':'');b.innerHTML=`<div class="style-icon">${s.icon}</div><div class="style-name">${s.name.replace('\n','<br>')}</div>`;b.onclick=()=>selectStiilStyle(s.id);g.appendChild(b);});}
-function buildProcedureGrid(){const g=document.getElementById('procedureGrid');g.innerHTML='';PROCEDURES.forEach(p=>{const b=document.createElement('div');b.className='proc-btn'+(p.id===selectedProcedure?' active':'');b.innerHTML=`<div class="proc-icon">${p.icon}</div><div class="proc-name">${p.name}</div>`;b.onclick=()=>selectProcedure(p.id);g.appendChild(b);});}
-
-function selectMeikStyle(id){selectedMeikStyle=id;document.querySelectorAll('#meikStyleGrid .style-btn').forEach((b,i)=>b.classList.toggle('active',MAKEUP_STYLES[i].id===id));const s=MAKEUP_STYLES.find(m=>m.id===id);if(s){document.getElementById('resLbl').textContent=s.name;resetResults();document.getElementById('meikTipText').textContent=`${s.icon} ${s.name} — vajuta "Ava kaamera"`;}}
-function selectStiilStyle(id){selectedStiilStyle=id;document.querySelectorAll('#stiilStyleGrid .style-btn').forEach((b,i)=>b.classList.toggle('active',OUTFIT_STYLES[i].id===id));const s=OUTFIT_STYLES.find(o=>o.id===id);if(s){const n=s.name.replace('\n',' ');document.getElementById('resLbl').textContent=n;resetResults();document.getElementById('stiilTipText').textContent=`${s.icon} ${n} — proovi selga ja vajuta "Ava kaamera"`;document.getElementById('camPhText').textContent='Proovi riie selga ja pildista ennast';}}
-function selectProcedure(id){selectedProcedure=id;document.querySelectorAll('.proc-btn').forEach((b,i)=>b.classList.toggle('active',PROCEDURES[i].id===id));document.getElementById('resLbl').textContent=PROC_LABELS[id]||id;resetResults();document.getElementById('proTipText').textContent=`✦ ${PROC_LABELS[id]} — vajuta "Ava kaamera"`;const ct={kulmud:'Suuna kaamera kliendi kulmudele',ripsmed:'Suuna kaamera ripsmete piirkonnale',depilatsioon:'Suuna kaamera hooldatavale piirkonnale',kehahooldus:'Suuna kaamera kehapiirkonnale',jalahooldus:'Suuna kaamera jalale'};document.getElementById('camPhText').textContent=ct[id]||'Suuna kaamera kliendi näole';}
-function resetResults(){document.getElementById('resEmpty').style.display='block';document.getElementById('resultWrap').classList.remove('on');document.getElementById('shareCard').classList.remove('on');['techniquesCard','meikNowSection','meikNextSection','kombineringCard','outfitNowSection','outfitNextSection','protocolCard','proProductsSection','homeProductsSection'].forEach(id=>document.getElementById(id).classList.remove('on'));}
-
+function buildProcedureGrid(){
+  const g=document.getElementById('procedureGrid');g.innerHTML='';
+  const rec=document.createElement('div');
+  rec.className='proc-btn recommend'+(selectedProcedure==='soovita'?' active':'');
+  rec.innerHTML='<div class="proc-icon">🔍</div><div class="proc-name" style="color:#c4b8e0">Soovita<br>protseduuri</div>';
+  rec.onclick=()=>selectProcedure('soovita');
+  g.appendChild(rec);
+  PROCEDURES.forEach(p=>{const b=document.createElement('div');b.className='proc-btn'+(p.id===selectedProcedure?' active':'');b.innerHTML=`<div class="proc-icon">${p.icon}</div><div class="proc-name">${p.name}</div>`;b.onclick=()=>selectProcedure(p.id);g.appendChild(b);});
+}
+function selectMeikStyle(id){selectedMeikStyle=id;document.querySelectorAll('#meikStyleGrid .style-btn').forEach((b,i)=>b.classList.toggle('active',MAKEUP_STYLES[i].id===id));const s=MAKEUP_STYLES.find(m=>m.id===id);if(s){document.getElementById('resLbl').textContent=s.name;resetResults();document.getElementById('meikTipText').textContent=s.icon+' '+s.name+' — vajuta "Ava kaamera"';}}
+function selectStiilStyle(id){selectedStiilStyle=id;document.querySelectorAll('#stiilStyleGrid .style-btn').forEach((b,i)=>b.classList.toggle('active',OUTFIT_STYLES[i].id===id));const s=OUTFIT_STYLES.find(o=>o.id===id);if(s){const n=s.name.replace('\n',' ');document.getElementById('resLbl').textContent=n;resetResults();document.getElementById('stiilTipText').textContent=s.icon+' '+n+' — proovi selga ja vajuta "Ava kaamera"';document.getElementById('camPhText').textContent='Proovi riie selga ja pildista ennast';}}
+function selectProcedure(id){
+  selectedProcedure=id;
+  document.querySelectorAll('.proc-btn').forEach(b=>b.classList.remove('active'));
+  const btns=document.querySelectorAll('.proc-btn');
+  if(id==='soovita'){btns[0].classList.add('active');}
+  else{const idx=PROCEDURES.findIndex(p=>p.id===id);if(idx>=0)btns[idx+1].classList.add('active');}
+  document.getElementById('resLbl').textContent=PROC_LABELS[id]||id;
+  resetResults();
+  if(id==='soovita'){document.getElementById('proTipText').textContent='🔍 Soovita protseduuri — suuna kaamera näole';document.getElementById('camPhText').textContent='Suuna kaamera kliendi näole';}
+  else{document.getElementById('proTipText').textContent='✦ '+PROC_LABELS[id]+' — vajuta "Ava kaamera"';const ct={kulmud:'Suuna kaamera kliendi kulmudele',ripsmed:'Suuna kaamera ripsmete piirkonnale',depilatsioon:'Suuna kaamera hooldatavale piirkonnale',kehahooldus:'Suuna kaamera kehapiirkonnale',jalahooldus:'Suuna kaamera jalale'};document.getElementById('camPhText').textContent=ct[id]||'Suuna kaamera kliendi näole';}
+}
+function resetResults(){
+  document.getElementById('resEmpty').style.display='block';
+  document.getElementById('resultWrap').classList.remove('on');
+  document.getElementById('shareCard').classList.remove('on');
+  document.getElementById('moodboardSection').classList.remove('on');
+  ['techniquesCard','meikNowSection','meikNextSection','kombineringCard','outfitNowSection','outfitNextSection','protocolCard','proProductsSection','homeProductsSection'].forEach(id=>document.getElementById(id).classList.remove('on'));
+}
 function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));const el=document.getElementById(id);if(el)el.classList.add('active');}
 function showTerms(){showScreen('termsScreen');}
 function toggleTerms(){termsAccepted=!termsAccepted;document.getElementById('termsCheckbox').classList.toggle('checked',termsAccepted);const btn=document.getElementById('termsConfirmBtn');btn.disabled=!termsAccepted;btn.classList.toggle('active',termsAccepted);}
 function startCountdown(){if(!termsAccepted)return;localStorage.setItem('glow_terms_accepted','true');showScreen('countdownScreen');setTimeout(()=>runCountdown(),200);}
-
 function runCountdown(){
   const track=document.getElementById('clockTrack'),clockLogo=document.getElementById('clockLogo'),clockNum=document.getElementById('clockNum'),msg=document.getElementById('countdownMsg');
   const circ=2*Math.PI*85;
@@ -734,10 +727,8 @@ function runCountdown(){
   }
   requestAnimationFrame(tick);
 }
-
 function launchApp(){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('mainWrapper').style.display='block';initApp();}
 function logout(){if(stream){stream.getTracks().forEach(t=>t.stop());stream=null;}localStorage.removeItem('glow_terms_accepted');document.getElementById('mainWrapper').style.display='none';termsAccepted=false;document.getElementById('termsCheckbox').classList.remove('checked');const btn=document.getElementById('termsConfirmBtn');btn.disabled=true;btn.classList.remove('active');showScreen('splashScreen');}
-
 function initApp(){
   initCredits();
   const key=localStorage.getItem('glow_api_key');
@@ -747,7 +738,6 @@ function initApp(){
   setTimeout(()=>{refreshSaldo();refreshAnaBtn();},50);
 }
 function init(){if(localStorage.getItem('glow_terms_accepted')==='true'){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('mainWrapper').style.display='block';initApp();}}
-
 function setMode(m){
   mode=m;
   document.querySelectorAll('.mode').forEach(b=>b.classList.remove('active'));
@@ -763,10 +753,9 @@ function setMode(m){
   else if(m==='stiil'){buildStiilGrid();const s=OUTFIT_STYLES.find(o=>o.id===selectedStiilStyle);document.getElementById('resLbl').textContent=s?.name?.replace('\n',' ')||'Stiili analüüs';document.getElementById('camPhText').textContent='Proovi riie selga ja pildista ennast';}
   else if(m==='pro'){buildProcedureGrid();document.getElementById('resLbl').textContent=PROC_LABELS[selectedProcedure]||'AI Kosmeetiku analüüs';}
 }
-
-function showPricing(){document.getElementById('pricingScreen').classList.add('show');document.getElementById('checkoutScreen').classList.remove('show');['assistentWrap','cameraCard','resultCard'].forEach(id=>document.getElementById(id).style.display='none');['shareCard','meikTip','stiilTip','proTip'].forEach(id=>document.getElementById(id).classList.remove('on','show'));resetResults();}
+function showPricing(){document.getElementById('pricingScreen').classList.add('show');document.getElementById('checkoutScreen').classList.remove('show');['assistentWrap','cameraCard','resultCard'].forEach(id=>document.getElementById(id).style.display='none');['shareCard','meikTip','stiilTip','proTip','moodboardSection'].forEach(id=>document.getElementById(id).classList.remove('on','show'));resetResults();}
 function hidePricing(){document.getElementById('pricingScreen').classList.remove('show');['assistentWrap','cameraCard','resultCard'].forEach(id=>document.getElementById(id).style.display='block');if(mode==='meik')document.getElementById('meikTip').classList.add('show');if(mode==='stiil')document.getElementById('stiilTip').classList.add('show');if(mode==='pro')document.getElementById('proTip').classList.add('show');}
-function showCheckout(){document.getElementById('pricingScreen').classList.remove('show');document.getElementById('checkoutScreen').classList.add('show');document.getElementById('orderTitle').textContent=selectedPkg.count+' analüüsi';document.getElementById('orderSub').textContent=selectedPkg.unit+'€ analüüsi kohta';document.getElementById('orderPrice').textContent='€'+selectedPkg.price;}
+function showCheckout(){document.getElementById('pricingScreen').classList.remove('show');document.getElementById('checkoutScreen').classList.add('show');document.getElementById('orderTitle').textContent=selectedPkg.count+' analüüsi';document.getElementById('orderSub').textContent=selectedPkg.unit+'€ kohta';document.getElementById('orderPrice').textContent='€'+selectedPkg.price;}
 function hideCheckout(){document.getElementById('checkoutScreen').classList.remove('show');document.getElementById('pricingScreen').classList.add('show');}
 function selectPkg(el,count,price,unit){document.querySelectorAll('.pkg').forEach(p=>p.classList.remove('selected'));el.classList.add('selected');selectedPkg={count,price,unit};document.getElementById('buyBtn').textContent='Jätka maksega — €'+price+' →';}
 function onKeyInput(){const val=document.getElementById('keyInput').value.trim();const valid=val.startsWith('sk-ant');const btn=document.getElementById('saveBtn');btn.disabled=!valid;btn.style.opacity=valid?'1':'.4';document.getElementById('keyError').style.display=(val.length>5&&!valid)?'block':'none';}
@@ -775,22 +764,20 @@ function saveKey(){const val=document.getElementById('keyInput').value.trim();if
 function changeKey(){localStorage.removeItem('glow_api_key');document.getElementById('keyStatus').style.display='none';document.getElementById('saldoBar').style.display='none';document.getElementById('apiSetupCard').style.display='block';}
 function getKey(){return localStorage.getItem('glow_api_key')||'';}
 function setDot(state,msg){const d=document.getElementById('dot');d.className='dot'+(state!=='idle'?' '+state:'');document.getElementById('smsg').textContent=msg;}
-
 async function startCam(){
   document.getElementById('err').textContent='';
   try{stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:'user'},audio:false});video.srcObject=stream;await video.play();document.getElementById('camph').style.display='none';setDot('live','Kaamera aktiivne');const cb=document.getElementById('camBtn');cb.textContent='✓ Kaamera aktiivne';cb.disabled=true;cb.classList.remove('pri');cb.classList.add('ok');document.getElementById('autoBtn').disabled=false;refreshAnaBtn();}
   catch(e){stream=null;document.getElementById('err').textContent='Kaamera avamine ebaõnnestus. Seaded → Safari → Kaamera → Luba';refreshAnaBtn();}
 }
 function capture(){canvas.width=video.videoWidth||640;canvas.height=video.videoHeight||480;const ctx=canvas.getContext('2d');ctx.translate(canvas.width,0);ctx.scale(-1,1);ctx.drawImage(video,0,0);return canvas.toDataURL('image/jpeg',0.85);}
-
 async function analyze(){
   const key=getKey();if(!key){document.getElementById('apiSetupCard').style.display='block';return;}
   if(!stream){document.getElementById('err').textContent='Vajuta kõigepealt "Ava kaamera"!';return;}
   const credits=getCredits();if(credits<=0){showPricing();return;}
   let sys,prompt,lbl,bar;
   if(mode==='meik'){sys=getMeikSystem(selectedMeikStyle);prompt='Analüüsi minu meiki. Vasta ainult JSON.';lbl=MAKEUP_STYLES.find(s=>s.id===selectedMeikStyle)?.name||'Meigi analüüs';bar='c1';document.getElementById('loadingText').textContent='Analüüsin meiki...';}
-  else if(mode==='stiil'){sys=getStiilSystem(selectedStiilStyle);prompt='Analüüsi minu riietust. Vasta ainult JSON.';lbl=OUTFIT_STYLES.find(s=>s.id===selectedStiilStyle)?.name?.replace('\n',' ')||'Stiili analüüs';bar='c3';document.getElementById('loadingText').textContent='Analüüsin riietust...';}
-  else{sys=PROC_SYS[selectedProcedure];prompt='Analüüsi klienti. Vasta ainult JSON.';lbl=PROC_LABELS[selectedProcedure]||'AI Kosmeetiku analüüs';bar='c4';document.getElementById('loadingText').textContent='Analüüsin professionaalselt...';}
+  else if(mode==='stiil'){sys=getStiilSystem(selectedStiilStyle);prompt='Analüüsi minu riietust ja loo moodboard inspiratsioon. Vasta ainult JSON.';lbl=OUTFIT_STYLES.find(s=>s.id===selectedStiilStyle)?.name?.replace('\n',' ')||'Stiili analüüs';bar='c3';document.getElementById('loadingText').textContent='Analüüsin riietust ja loon inspiratsiooni...';}
+  else{sys=PROC_SYS[selectedProcedure];prompt=selectedProcedure==='soovita'?'Analüüsi kliendi nahka põhjalikult ja soovita parim protseduur. Vasta ainult JSON.':'Analüüsi klienti. Vasta ainult JSON.';lbl=PROC_LABELS[selectedProcedure]||'AI Kosmeetiku analüüs';bar='c4';document.getElementById('loadingText').textContent=selectedProcedure==='soovita'?'Analüüsin nahka ja soovitan protseduuri...':'Analüüsin professionaalselt...';}
   document.getElementById('err').textContent='';setDot('thinking','Analüüsin...');
   document.getElementById('scan').classList.add('on');document.getElementById('load').classList.add('on');
   document.getElementById('resEmpty').style.display='none';resetResults();document.getElementById('load').classList.add('on');
@@ -803,11 +790,37 @@ async function analyze(){
     const parsed=JSON.parse(raw.replace(/```json|```/g,'').trim());
     lastFb=parsed.feedback;lastScores=parsed.scores||{};setCredits(credits-1);
     document.getElementById('load').classList.remove('on');document.getElementById('scan').classList.remove('on');
-    renderResult(parsed,bar,dataUrl,lbl);speak(parsed.feedback+(parsed.tip?' Soovitus: '+parsed.tip:''));setDot('live','Analüüs valmis ✦');
-  }catch(e){document.getElementById('load').classList.remove('on');document.getElementById('scan').classList.remove('on');document.getElementById('err').textContent='Viga: '+e.message;setDot('idle','Viga');}
+    renderResult(parsed,bar,dataUrl,lbl);
+    speak(parsed.feedback+(parsed.tip?' Soovitus: '+parsed.tip:''));
+    setDot('live','Analüüs valmis ✦');
+  }catch(e){
+    document.getElementById('load').classList.remove('on');document.getElementById('scan').classList.remove('on');
+    document.getElementById('err').textContent='Viga: '+e.message;setDot('idle','Viga');
+  }
   refreshAnaBtn();
 }
-
+function buildMoodboardCards(items){
+  const grid=document.getElementById('moodboardGrid');grid.innerHTML='';currentMoodboardData=items;
+  items.forEach((item,idx)=>{
+    const card=document.createElement('div');card.className='moodboard-card';card.id='mb_card_'+idx;
+    const c1=item.varvid&&item.varvid[0]?item.varvid[0]:'#9b8fb5';
+    const c2=item.varvid&&item.varvid[1]?item.varvid[1]:'#c9a96e';
+    const colors=(item.varvid||['#9b8fb5','#c9a96e','#d4957a']).map(c=>'<div class="mc-color" style="background:'+c+'"></div>').join('');
+    card.innerHTML='<div class="moodboard-visual" style="background:linear-gradient(135deg,'+c1+'33,'+c2+'22)"><div class="moodboard-emoji-bg">'+(item.emoji||'👗')+'</div><div class="moodboard-outfit-info"><div class="moodboard-outfit-name">'+(item.nimi||'')+'</div><div class="moodboard-outfit-style">'+(item.kirjeldus||'')+'</div></div></div><div class="moodboard-card-footer"><div class="mc-colors">'+colors+'</div><button class="mc-like" id="mc_like_'+idx+'" onclick="toggleLike('+idx+')">♡</button></div>';
+    grid.appendChild(card);
+  });
+  document.getElementById('moodboardSection').classList.add('on');
+}
+function toggleLike(idx){const card=document.getElementById('mb_card_'+idx);const btn=document.getElementById('mc_like_'+idx);const liked=card.classList.contains('liked');card.classList.toggle('liked',!liked);btn.textContent=liked?'♡':'♥';}
+async function generateMoreMoodboard(){
+  const key=getKey();if(!key)return;
+  const btn=document.querySelector('.mb-action-btn.more');btn.textContent='⟳ Laen...';btn.disabled=true;
+  const styleName=OUTFIT_STYLES.find(s=>s.id===selectedStiilStyle)?.name?.replace('\n',' ')||'Stiil';
+  const sys='Loo 6 uut ja erinevat outfit inspiratsiooni "'+styleName+'" stiilis denimdream.ee jaoks. Vasta AINULT JSON massiivina:\n[{"nimi":"Outfiti nimi","kirjeldus":"Lühike kirjeldus","varvid":["#hex1","#hex2","#hex3"],"emoji":"emoji","denimdream_link":"https://www.denimdream.ee/"}]';
+  try{const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-opus-4-5',max_tokens:1000,messages:[{role:'user',content:sys}]})});const data=await res.json();const raw=data.content.map(b=>b.text||'').join('');const parsed=JSON.parse(raw.replace(/```json|```/g,'').trim());buildMoodboardCards(parsed);}catch(e){console.error(e);}
+  btn.textContent='↻ Rohkem valikuid';btn.disabled=false;
+}
+function shopDenimDream(){window.open('https://www.denimdream.ee/','_blank');}
 function makeCard(p,type){
   const card=document.createElement('div');
   const isO=type==='outfit',isM=type==='meik';
@@ -819,12 +832,11 @@ function makeCard(p,type){
   const cl=isO?'outfit-link':isM?'product-link':'pro-product-link';
   const hdr=isO?'outfit-header':isM?'product-header':'pro-product-header';
   const pc=isM?'product-price':'pro-product-price';
-  const lt=isO?'Vaata denimdream.ee-s →':isM?'Vaata mactabeauty.com-is →':'Vaata depile.ee-s →';
+  const lt=isO?'Vaata denimdream.ee →':isM?'Vaata mactabeauty.com →':'Vaata depile.ee →';
   const dl=isO?'https://www.denimdream.ee/':isM?'https://www.mactabeauty.com/meik':'https://depile.ee/';
-  card.innerHTML=`<div class="${hdr}"><div><div class="${cc}">${p.kategooria||''}</div><div class="${cn}">${p.nimi||''}</div><div class="${cb}">${p.bränd||''}</div></div>${p.hind?`<div class="${pc}">${p.hind}</div>`:''}</div><div class="${cr}">${p.põhjus||''}</div><a href="${p.link||dl}" target="_blank" class="${cl}">${lt}</a>`;
+  card.innerHTML='<div class="'+hdr+'"><div><div class="'+cc+'">'+(p.kategooria||'')+'</div><div class="'+cn+'">'+(p.nimi||'')+'</div><div class="'+cb+'">'+(p.bränd||'')+'</div></div>'+(p.hind?'<div class="'+pc+'">'+p.hind+'</div>':'')+'</div><div class="'+cr+'">'+(p.põhjus||'')+'</div><a href="'+(p.link||dl)+'" target="_blank" class="'+cl+'">'+lt+'</a>';
   return card;
 }
-
 function renderResult(parsed,barClass,photoUrl,lbl){
   const vc=parsed.verdict_class||'maybe';const cfg=VERDICT_CONFIG[vc]||VERDICT_CONFIG.maybe;
   document.getElementById('verdictCard').className='verdict-card '+vc;
@@ -834,45 +846,56 @@ function renderResult(parsed,barClass,photoUrl,lbl){
   let fh='';
   const sl=parsed.riietusstiil||parsed.meigistiil||parsed.nahatuup||parsed.kulutuup;
   const sc=mode==='stiil'?'#c4b8e0':mode==='meik'?'#f0b890':'var(--gold)';
-  if(sl){fh=`<div style="font-size:10px;letter-spacing:.3em;color:${sc};text-transform:uppercase;margin-bottom:6px;font-family:'DM Mono',monospace;font-weight:500">Stiil</div><div style="font-family:'Cormorant Garamond',serif;font-size:18px;color:${sc};margin-bottom:14px;font-style:italic;font-weight:500">${sl}</div>`;}
-  fh+=`<p style="font-family:'Cormorant Garamond',serif;font-size:18px;line-height:1.9;color:#ffffff">${parsed.feedback||''}</p>`;
+  if(sl){fh='<div style="font-size:10px;letter-spacing:.3em;color:'+sc+';text-transform:uppercase;margin-bottom:6px;font-family:\'DM Mono\',monospace;font-weight:500">Stiil</div><div style="font-family:\'Cormorant Garamond\',serif;font-size:18px;color:'+sc+';margin-bottom:14px;font-style:italic;font-weight:500">'+sl+'</div>';}
+  if(mode==='pro'&&selectedProcedure==='soovita'&&parsed.soovituslik_protseduur){fh+='<div style="padding:14px 16px;background:rgba(155,143,181,0.15);border:1px solid rgba(155,143,181,0.4);border-radius:3px;margin-bottom:14px"><div style="font-size:10px;letter-spacing:.3em;color:#c4b8e0;text-transform:uppercase;margin-bottom:6px;font-weight:500">✦ Soovituslik protseduur</div><div style="font-family:\'Cormorant Garamond\',serif;font-size:20px;color:#fff;font-weight:600;margin-bottom:8px">'+parsed.soovituslik_protseduur+'</div><div style="font-family:\'Cormorant Garamond\',serif;font-size:15px;color:rgba(255,255,255,0.85);line-height:1.6">'+(parsed.protseduur_pohjus||'')+'</div></div>';}
+  fh+='<p style="font-family:\'Cormorant Garamond\',serif;font-size:18px;line-height:1.9;color:#fff">'+(parsed.feedback||'')+'</p>';
   document.getElementById('feedbackText').innerHTML=fh;
   const dg=document.getElementById('detailsGrid');dg.innerHTML='';
-  if(parsed.details){Object.entries(parsed.details).forEach(([k,v])=>{const d=document.createElement('div');d.className='detail-item';d.innerHTML=`<div class="detail-label">${k}</div><div class="detail-value">${v}</div>`;dg.appendChild(d);});}
+  if(parsed.details){Object.entries(parsed.details).forEach(([k,v])=>{if(!v||v.trim()==='')return;const d=document.createElement('div');d.className='detail-item';d.innerHTML='<div class="detail-label">'+k+'</div><div class="detail-value">'+v+'</div>';dg.appendChild(d);});}
   const sr=document.getElementById('scoresRow');sr.innerHTML='';
-  if(parsed.scores){const r=27,circ=2*Math.PI*r;Object.entries(parsed.scores).forEach(([label,val])=>{const offset=circ*(1-val/10);const id='sc_'+label.replace(/\s/g,'_');const div=document.createElement('div');div.className='score-item';div.innerHTML=`<div class="score-label">${label}</div><div class="score-circle ${barClass}" id="${id}"><svg width="60" height="60" viewBox="0 0 60 60"><circle class="score-circle-bg" cx="30" cy="30" r="${r}"/><circle class="score-circle-fill" cx="30" cy="30" r="${r}" stroke-dasharray="${circ}" stroke-dashoffset="${circ}" id="${id}_fill"/></svg><div class="score-num">${val}</div></div>`;sr.appendChild(div);setTimeout(()=>{const b=document.getElementById(id+'_fill');if(b)b.style.strokeDashoffset=offset;},400);});}
+  if(parsed.scores){const r=27,circ=2*Math.PI*r;Object.entries(parsed.scores).forEach(([label,val])=>{const offset=circ*(1-val/10);const id='sc_'+label.replace(/\s/g,'_');const div=document.createElement('div');div.className='score-item';div.innerHTML='<div class="score-label">'+label+'</div><div class="score-circle '+barClass+'" id="'+id+'"><svg width="60" height="60" viewBox="0 0 60 60"><circle class="score-circle-bg" cx="30" cy="30" r="'+r+'"/><circle class="score-circle-fill" cx="30" cy="30" r="'+r+'" stroke-dasharray="'+circ+'" stroke-dashoffset="'+circ+'" id="'+id+'_fill"/></svg><div class="score-num">'+val+'</div></div>';sr.appendChild(div);setTimeout(()=>{const b=document.getElementById(id+'_fill');if(b)b.style.strokeDashoffset=offset;},400);});}
   if(parsed.tip){document.getElementById('tipText').textContent=parsed.tip;document.getElementById('tipCard').style.display='block';}else{document.getElementById('tipCard').style.display='none';}
   document.getElementById('resultWrap').classList.add('on');
   if(mode==='stiil'){
-    if(parsed.kombineerimised?.length){const el=document.getElementById('kombineringSteps');el.innerHTML='';parsed.kombineerimised.forEach((k,i)=>{const d=document.createElement('div');d.className='komb-step';d.innerHTML=`<div class="komb-num">${i+1}</div><div class="komb-text">${k}</div>`;el.appendChild(d);});document.getElementById('kombineringCard').classList.add('on');}
-    if(parsed.soovitused?.length){const list=document.getElementById('outfitNowList');list.innerHTML='';parsed.soovitused.forEach(p=>list.appendChild(makeCard(p,'outfit')));document.getElementById('outfitNowSection').classList.add('on');}
-    if(parsed.jarmine_soovitused?.length){const list=document.getElementById('outfitNextList');list.innerHTML='';parsed.jarmine_soovitused.forEach(p=>list.appendChild(makeCard(p,'outfit')));document.getElementById('outfitNextSection').classList.add('on');}
+    if(parsed.moodboard&&parsed.moodboard.length>0)buildMoodboardCards(parsed.moodboard);
+    if(parsed.kombineerimised&&parsed.kombineerimised.length){const el=document.getElementById('kombineringSteps');el.innerHTML='';parsed.kombineerimised.forEach((k,i)=>{const d=document.createElement('div');d.className='komb-step';d.innerHTML='<div class="komb-num">'+(i+1)+'</div><div class="komb-text">'+k+'</div>';el.appendChild(d);});document.getElementById('kombineringCard').classList.add('on');}
+    if(parsed.soovitused&&parsed.soovitused.length){const list=document.getElementById('outfitNowList');list.innerHTML='';parsed.soovitused.forEach(p=>list.appendChild(makeCard(p,'outfit')));document.getElementById('outfitNowSection').classList.add('on');}
+    if(parsed.jarmine_soovitused&&parsed.jarmine_soovitused.length){const list=document.getElementById('outfitNextList');list.innerHTML='';parsed.jarmine_soovitused.forEach(p=>list.appendChild(makeCard(p,'outfit')));document.getElementById('outfitNextSection').classList.add('on');}
   }
   if(mode==='meik'){
-    if(parsed.tehnikad?.length){const el=document.getElementById('techniqueSteps');el.innerHTML='';parsed.tehnikad.forEach((t,i)=>{const d=document.createElement('div');d.className='tech-step';d.innerHTML=`<div class="tech-num">${i+1}</div><div class="tech-text">${t}</div>`;el.appendChild(d);});document.getElementById('techniquesCard').classList.add('on');}
-    if(parsed.kohe_tooted?.length){const list=document.getElementById('meikNowList');list.innerHTML='';parsed.kohe_tooted.forEach(p=>list.appendChild(makeCard(p,'meik')));document.getElementById('meikNowSection').classList.add('on');}
-    if(parsed.jarmine_tooted?.length){const list=document.getElementById('meikNextList');list.innerHTML='';parsed.jarmine_tooted.forEach(p=>list.appendChild(makeCard(p,'meik')));document.getElementById('meikNextSection').classList.add('on');}
+    if(parsed.tehnikad&&parsed.tehnikad.length){const el=document.getElementById('techniqueSteps');el.innerHTML='';parsed.tehnikad.forEach((t,i)=>{const d=document.createElement('div');d.className='tech-step';d.innerHTML='<div class="tech-num">'+(i+1)+'</div><div class="tech-text">'+t+'</div>';el.appendChild(d);});document.getElementById('techniquesCard').classList.add('on');}
+    if(parsed.kohe_tooted&&parsed.kohe_tooted.length){const list=document.getElementById('meikNowList');list.innerHTML='';parsed.kohe_tooted.forEach(p=>list.appendChild(makeCard(p,'meik')));document.getElementById('meikNowSection').classList.add('on');}
+    if(parsed.jarmine_tooted&&parsed.jarmine_tooted.length){const list=document.getElementById('meikNextList');list.innerHTML='';parsed.jarmine_tooted.forEach(p=>list.appendChild(makeCard(p,'meik')));document.getElementById('meikNextSection').classList.add('on');}
   }
   if(mode==='pro'){
-    const steps=parsed.protseduur||parsed.modelleerimine||parsed.tehnikad;
-    if(steps?.length){const el=document.getElementById('protocolSteps');el.innerHTML='';steps.forEach((s,i)=>{const d=document.createElement('div');d.className='proto-step';d.innerHTML=`<div class="proto-num">${i+1}</div><div class="proto-text">${s}</div>`;el.appendChild(d);});document.getElementById('protocolCard').classList.add('on');}
-    if(parsed.pro_tooted?.length){const list=document.getElementById('proProductsList');list.innerHTML='';parsed.pro_tooted.forEach(p=>list.appendChild(makeCard(p,'pro')));document.getElementById('proProductsSection').classList.add('on');}
-    if(parsed.kodu_tooted?.length){const list=document.getElementById('homeProductsList');list.innerHTML='';parsed.kodu_tooted.forEach(p=>list.appendChild(makeCard(p,'pro')));document.getElementById('homeProductsSection').classList.add('on');}
+    if(selectedProcedure==='soovita'){
+      if(parsed.protseduurid_jarjestus&&parsed.protseduurid_jarjestus.length){
+        const el=document.getElementById('protocolSteps');el.innerHTML='';
+        const title=document.createElement('div');title.style.cssText='font-size:11px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;margin-bottom:14px;font-weight:500';title.textContent='✦ Soovituslikud protseduurid järjekorras';el.appendChild(title);
+        parsed.protseduurid_jarjestus.forEach((s,i)=>{const d=document.createElement('div');d.className='proto-step';d.innerHTML='<div class="proto-num">'+(i+1)+'</div><div class="proto-text">'+s+'</div>';el.appendChild(d);});
+        const dermText=parsed.details&&parsed.details['Dermatoloogi soovitus'];
+        if(dermText&&dermText.trim()!==''){const warn=document.createElement('div');warn.className='derm-warning';warn.innerHTML='<div class="derm-warning-title">⚠️ Dermatoloogi konsultatsioon soovitatav</div><div class="derm-warning-text">'+dermText+'</div>';el.appendChild(warn);}
+        document.getElementById('protocolCard').classList.add('on');
+      }
+    }else{
+      const steps=parsed.protseduur||parsed.modelleerimine||parsed.tehnikad;
+      if(steps&&steps.length){const el=document.getElementById('protocolSteps');el.innerHTML='';steps.forEach((s,i)=>{const d=document.createElement('div');d.className='proto-step';d.innerHTML='<div class="proto-num">'+(i+1)+'</div><div class="proto-text">'+s+'</div>';el.appendChild(d);});document.getElementById('protocolCard').classList.add('on');}
+    }
+    if(parsed.pro_tooted&&parsed.pro_tooted.length){const list=document.getElementById('proProductsList');list.innerHTML='';parsed.pro_tooted.forEach(p=>list.appendChild(makeCard(p,'pro')));document.getElementById('proProductsSection').classList.add('on');}
+    if(parsed.kodu_tooted&&parsed.kodu_tooted.length){const list=document.getElementById('homeProductsList');list.innerHTML='';parsed.kodu_tooted.forEach(p=>list.appendChild(makeCard(p,'pro')));document.getElementById('homeProductsSection').classList.add('on');}
   }
-  const scores=parsed.scores||{};const scoreHtml=Object.entries(scores).map(([l,v])=>`<div><div class="sp-sv">${v}</div><div class="sp-sl">${l}</div></div>`).join('');
-  document.getElementById('sharePrev').innerHTML=`<img class="sp-photo" src="${photoUrl}"><div class="sp-logo">GL<em>O</em>W</div><div class="sp-mode">${parsed.verdict||lbl}</div><div class="sp-text">${parsed.feedback}</div>${parsed.tip?`<div class="sp-tip">✦ ${parsed.tip}</div>`:''}<div class="sp-scores">${scoreHtml}</div>`;
+  const scores=parsed.scores||{};const scoreHtml=Object.entries(scores).map(([l,v])=>'<div><div class="sp-sv">'+v+'</div><div class="sp-sl">'+l+'</div></div>').join('');
+  document.getElementById('sharePrev').innerHTML='<img class="sp-photo" src="'+photoUrl+'"><div class="sp-logo">GL<em>O</em>W</div><div class="sp-mode">'+(parsed.verdict||lbl)+'</div><div class="sp-text">'+parsed.feedback+'</div>'+(parsed.tip?'<div class="sp-tip">✦ '+parsed.tip+'</div>':'')+'<div class="sp-scores">'+scoreHtml+'</div>';
   document.getElementById('shareCard').classList.add('on');
 }
-
 function speak(text){if(!('speechSynthesis' in window))return;window.speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='et-EE';u.rate=0.95;u.onstart=()=>{document.getElementById('wave').classList.add('on');setDot('live','Räägin...');};u.onend=()=>{document.getElementById('wave').classList.remove('on');setDot('live','Analüüs valmis ✦');};window.speechSynthesis.speak(u);}
 function toggleAuto(){autoOn=!autoOn;const btn=document.getElementById('autoBtn');if(autoOn){btn.textContent='⬛ Peata';btn.classList.add('red');analyze();autoT=setInterval(analyze,25000);}else{btn.textContent='Auto';btn.classList.remove('red');clearInterval(autoT);}}
 function rateStar(n){starRating=n;document.querySelectorAll('.star').forEach((s,i)=>s.classList.toggle('active',i<n));document.getElementById('feedbackSubmitBtn').disabled=false;}
-function submitFeedback(){console.log('Tagasiside:',starRating,document.getElementById('feedbackText2').value);document.getElementById('feedbackForm').style.display='none';document.getElementById('feedbackSent').classList.add('show');}
+function submitFeedback(){document.getElementById('feedbackForm').style.display='none';document.getElementById('feedbackSent').classList.add('show');}
 function shareIG(){if(navigator.share){navigator.share({title:'GLÓW',text:lastFb+'\n\n✦ GLÓW AI\n#GLOW #AI',url:window.location.href}).catch(()=>{});}else{alert('Ava Instagram → Lisa postitus → vali pilt galeriist');}}
-function shareFB(){const text=encodeURIComponent('✦ GLÓW\n\n'+lastFb+'\n\n'+Object.entries(lastScores).map(([l,v])=>l+': '+v+'/10').join(' · '));window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(window.location.href)+'&quote='+text,'_blank');}
-function shareX(){const text=encodeURIComponent('✦ GLÓW AI\n\n'+lastFb.substring(0,200)+'\n\n'+Object.entries(lastScores).map(([l,v])=>l+': '+v+'/10').join(' · ')+'\n\n#GLOW #AI');window.open('https://twitter.com/intent/tweet?text='+text+'&url='+encodeURIComponent(window.location.href),'_blank');}
-function shareCopy(){const text='✦ GLÓW AI\n\n'+lastFb+'\n\n'+Object.entries(lastScores).map(([l,v])=>l+': '+v+'/10').join(' · ')+'\n\n'+window.location.href;if(navigator.clipboard){navigator.clipboard.writeText(text).then(()=>alert('✓ Kopeeritud!'));}else{const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);alert('✓ Kopeeritud!');}}
-
+function shareFB(){window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(window.location.href),'_blank');}
+function shareX(){const text=encodeURIComponent('✦ GLÓW AI\n\n'+lastFb.substring(0,200)+'\n\n#GLOW #AI');window.open('https://twitter.com/intent/tweet?text='+text+'&url='+encodeURIComponent(window.location.href),'_blank');}
+function shareCopy(){const text='✦ GLÓW AI\n\n'+lastFb+'\n\n'+window.location.href;if(navigator.clipboard){navigator.clipboard.writeText(text).then(()=>alert('✓ Kopeeritud!'));}else{const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);alert('✓ Kopeeritud!');}}
 init();
 </script>
 </body>
