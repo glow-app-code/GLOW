@@ -1181,7 +1181,7 @@ function showAlternatiivid(){
   btnEl.disabled=true;
   const uritusNimi=(selectedUritusCam||selectedUritus)?.name||'';
   const feedbackText=document.getElementById('feedbackText')?.innerText||'';
-  fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-opus-4-5',max_tokens:600,messages:[{role:'user',content:'Kasutajal on järgmine riietuse tagasiside ürituse "'+uritusNimi+'" jaoks: '+feedbackText.substring(0,300)+'. Loo 3 konkreetset alternatiivset outfit'i soovitust. Vasta AINULT JSON massiivina: [{"nimi":"outfit nimi","kirjeldus":"KONKREETNE kirjeldus mis esemeid kanda","varvid":["#hex1","#hex2","#hex3"],"emoji":"👗"}]'}]})})
+  fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-opus-4-5',max_tokens:600,messages:[{role:'user',content:'Kasutajal on järgmine riietuse tagasiside ürituse "'+uritusNimi+'" jaoks: '+feedbackText.substring(0,300)+'. Loo 3 konkreetset alternatiivset outfiti soovitust. Vasta AINULT JSON massiivina: [{"nimi":"outfit nimi","kirjeldus":"KONKREETNE kirjeldus mis esemeid kanda","varvid":["#hex1","#hex2","#hex3"],"emoji":"👗"}]'}]})})
   .then(r=>r.json())
   .then(data=>{
     const raw=data.content.map(b=>b.text||'').join('').trim();
