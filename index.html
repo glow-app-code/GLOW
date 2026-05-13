@@ -728,7 +728,7 @@ canvas{display:none}
       <div class="pildipank-info" id="pildipankInfo">Laadi üles kuni <strong>10 pilti</strong>. Üks analüüs = üks krediit.</div>
     </div>
     <div class="uritus-select" id="uritusSelect">
-      <div class="uritus-select-title">1. Vali üritus <span>← kohustuslik</span></div>
+      <div class="uritus-select-title">Tee valik <span>← kohustuslik</span></div>
       <div class="uritus-grid" id="uritusGrid"></div>
     </div>
     <div class="upload-zone" id="uploadZone">
@@ -747,13 +747,13 @@ canvas{display:none}
       <div class="photo-grid" id="photoGrid"></div>
     </div>
     <button class="analyze-bank-btn" id="analyzeBankBtn" onclick="analyzePildipank()" disabled>✦ Analüüsi minu valik</button>
-    <div class="analyze-bank-hint" id="analyzeBankHint">Vali üritus ja lisa vähemalt 1 pilt</div>
+    <div class="analyze-bank-hint" id="analyzeBankHint">Tee valik ja lisa vähemalt 1 pilt</div>
   </div>
 
   <!-- STIILI KAAMERA — selfie ja tavakaamera režiimis -->
   <div class="stiil-cam-wrap" id="stiilCamWrap">
     <div class="stiil-uritus-cam" id="stiilUritusCam">
-      <div class="uritus-select-title">Vali üritus <span>← kohustuslik</span></div>
+      <div class="uritus-select-title">Tee valik <span>← kohustuslik</span></div>
       <div class="uritus-grid" id="uritusGridCam"></div>
     </div>
   </div>
@@ -805,9 +805,15 @@ canvas{display:none}
   <div class="errmsg" id="err"></div>
 </div>
 
+<div id="alternatiividBtn" style="display:none;margin-bottom:16px">
+  <button onclick="showAlternatiivid()" style="width:100%;padding:14px 16px;background:rgba(155,143,181,0.12);border:1px solid rgba(155,143,181,0.4);border-radius:3px;color:#c4b8e0;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:all .2s" onmouseover="this.style.background='rgba(155,143,181,0.22)'" onmouseout="this.style.background='rgba(155,143,181,0.12)'">
+    <span style="font-size:16px">💡</span>
+    <span id="alternatiividBtnTxt">AI pakub mulle alternatiive</span>
+  </button>
+</div>
 <div class="moodboard-section" id="moodboardSection">
-  <div class="moodboard-title">✦ Inspiratsioon</div>
-  <div class="moodboard-subtitle" id="moodboardSubtitle">Outfit ideed sinu stiili jaoks</div>
+  <div class="moodboard-title">✦ AI pakub alternatiive</div>
+  <div class="moodboard-subtitle" id="moodboardSubtitle">Alternatiivid sinu valiku jaoks</div>
   <div class="moodboard-grid" id="moodboardGrid"></div>
   <div class="moodboard-actions">
     <button class="mb-action-btn more" onclick="generateMoreMoodboard()">↻ Rohkem valikuid</button>
@@ -920,7 +926,7 @@ const MAKEUP_STYLES=[
 let meikOpts={nahatoon:null,silmad:null,kogemus:null,tugevus:null};
 let selectedMeikStyle='kontor';
 
-// ÜRITUSED
+// SIHTKOHAD
 const URITUSED_GARDEROOB=[
   {id:'arimeeting',icon:'🤝',name:'Ärimeeting'},{id:'kontor',icon:'💼',name:'Kontoripäev'},
   {id:'linn',icon:'🛍️',name:'Linnas käik'},{id:'kohtumine',icon:'☕',name:'Sõbraga'},
@@ -990,8 +996,7 @@ function getMeikSystem(styleId){
 
 // STIILI AI SÜSTEEMID
 function getStiilCamSystem(uritusNimi,regime){
-  const kontekst=regime==='garderoob'?'Kasutaja kannab riideid ja küsib nõu "${uritusNimi}" jaoks.':'Kasutaja on poes ja proovib riideid. Ürituse stiil: "${uritusNimi}".';
-  return`Sa oled GLÓW stiiliekspert. ${kontekst.replace('${uritusNimi}',uritusNimi)}\nVasta AINULT JSON:\n{"verdict":"SUUREPÄRANE/SOBIV/VAJAB MUUTMIST","verdict_class":"yes/maybe/no","riietusstiil":"stiil lühidalt","feedback":"3-4 lauset","details":{"Üleriietus":"2l","Värvid":"2l","Sobivus ${uritusNimi} jaoks":"2l","Aksessuaarid":"2l"},"scores":{"Sobivus":7,"Värvid":7,"Stiil":7,"Üldmulje":7},"kombineerimised":["nõuanne 1","nõuanne 2","nõuanne 3"],"soovitused":[{"kategooria":"Soovitus","nimi":"ese","bränd":"bränd","hind":"~XX€","põhjus":"põhjus"},{"kategooria":"Aksessuaar","nimi":"ese","bränd":"bränd","hind":"~XX€","põhjus":"põhjus"}],"tip":"peamine soovitus","moodboard":[{"nimi":"Alt 1","kirjeldus":"kirjeldus","varvid":["#9b8fb5","#c9a96e","#d4957a"],"emoji":"👗"},{"nimi":"Alt 2","kirjeldus":"kirjeldus","varvid":["#7a9e8e","#c9a96e","#fff"],"emoji":"✨"},{"nimi":"Alt 3","kirjeldus":"kirjeldus","varvid":["#c4736b","#2a1a1a","#c9a96e"],"emoji":"💫"},{"nimi":"Alt 4","kirjeldus":"kirjeldus","varvid":["#9b8fb5","#fff","#0e0c0b"],"emoji":"🌟"}]}`;}
+  return`Sa oled GLÓW stiiliekspert. Kasutaja näitab oma riietust ürituseks "${uritusNimi}". Hinda KONKREETSELT kas sobib. Ole aus — kui ei sobi, ütle täpselt miks.\nVasta AINULT JSON:\n{"verdict":"SUUREPÄRANE/SOBIB/VAJAB MUUTMIST/EI SOBI","verdict_class":"yes/maybe/no","riietusstiil":"stiil lühidalt","feedback":"3-4 konkreetset lauset miks sobib või ei sobi","details":{"Üleriietus":"2 konkreetset lauset","Värvid ja toonid":"2 konkreetset lauset","Sobivus ${uritusNimi} jaoks":"KONKREETNE hinnang — sobib/ei sobi ja miks","Aksessuaarid":"2 lauset"},"scores":{"Sobivus üritusele":7,"Värvid":7,"Stiil":7,"Üldmulje":7},"kombineerimised":["konkreetne parandus 1","konkreetne parandus 2","konkreetne parandus 3"],"soovitused":[{"kategooria":"Lisand","nimi":"ese","bränd":"bränd","hind":"~XX€","põhjus":"miks parandaks"},{"kategooria":"Asendus","nimi":"ese","bränd":"bränd","hind":"~XX€","põhjus":"miks sobiks paremini"}],"alternatiivid":[{"nimi":"Alt outfit 1","kirjeldus":"konkreetne outfit","varvid":["#9b8fb5","#c9a96e","#d4957a"],"emoji":"👗"},{"nimi":"Alt outfit 2","kirjeldus":"konkreetne outfit","varvid":["#7a9e8e","#c9a96e","#fff"],"emoji":"✨"},{"nimi":"Alt outfit 3","kirjeldus":"konkreetne outfit","varvid":["#c4736b","#2a1a1a","#c9a96e"],"emoji":"💫"}],"tip":"Kõige olulisem nõuanne"}`;}
 
 function getPildipankGarderoobSystem(uritusNimi){return`Sa oled GLÓW garderoobiassistent. Kasutaja on saatnud ${photoBank.length} pilti oma garderoobist. Üritus: "${uritusNimi}".\nVaata KÕIKI pilte. Vali PARIM kombinatsioon.\nVasta AINULT JSON:\n{"verdict":"PARIM KOMBINATSIOON LEITUD/VALIK ON PIIRATUD/VAJAB TÄIENDAMIST","verdict_class":"yes/maybe/no","feedback":"3-4 lauset","parim_kombinatsioon":"Konkreetne kombinatsiooni kirjeldus","details":{"Valitud peamine ese":"konkreetne","Värvide kooskõla":"2l","Sobivus ${uritusNimi} jaoks":"2l","Jalanõude soovitus":"konkreetne"},"scores":{"Sobivus üritusele":7,"Värvid":7,"Stiil":7,"Üldmulje":7},"kombineerimised":["nõuanne 1","nõuanne 2","jalanõud"],"alternatiivid":[{"kategooria":"Alt kombinatsioon","nimi":"teine variant","bränd":"","hind":"","põhjus":"miks hea"},{"kategooria":"Puuduv ese","nimi":"mis puudub","bränd":"Zara/H&M","hind":"~XX€","põhjus":"miks täiendaks"}],"tip":"kõige olulisem soovitus","moodboard":[{"nimi":"Alt 1","kirjeldus":"kirjeldus","varvid":["#9b8fb5","#c9a96e","#d4957a"],"emoji":"👗"},{"nimi":"Alt 2","kirjeldus":"kirjeldus","varvid":["#7a9e8e","#c9a96e","#fff"],"emoji":"✨"},{"nimi":"Alt 3","kirjeldus":"kirjeldus","varvid":["#c4736b","#2a1a1a","#c9a96e"],"emoji":"💫"},{"nimi":"Alt 4","kirjeldus":"kirjeldus","varvid":["#9b8fb5","#fff","#0e0c0b"],"emoji":"🌟"}]}`;}
 function getPildipankPoodSystem(uritusNimi){return`Sa oled GLÓW poeassistent. Kasutaja on saatnud ${photoBank.length} pilti poes proovitud esemetest. Ürituse stiil: "${uritusNimi}".\nVasta AINULT JSON:\n{"verdict":"SUUREPÄRANE LEID/HEA VALIK/EI SOBI","verdict_class":"yes/maybe/no","feedback":"3-4 lauset","parim_valik":"Konkreetselt millised esemed tasub osta","details":{"Parimad leiud":"konkreetsed esemed","Mitte soovituslikud":"mis ei sobi","Sobivus ${uritusNimi} jaoks":"2l","Kombineerimisideed":"kuidas kombineerida"},"scores":{"Sobivus üritusele":7,"Stiil":7,"Väärtus rahale":7,"Üldmulje":7},"osta_soovitus":"Konkreetne lause mida osta","kombineerimised":["kombineerimisidee 1","kombineerimisidee 2","mis juurde osta"],"alternatiivid":[{"kategooria":"Kindlasti osta","nimi":"konkreetne ese","bränd":"","hind":"","põhjus":"miks hea"},{"kategooria":"Täiendav ost","nimi":"mis juurde","bränd":"Zara/H&M","hind":"~XX€","põhjus":"miks sobib"}],"tip":"kõige olulisem nõuanne","moodboard":[{"nimi":"Komplekt 1","kirjeldus":"kirjeldus","varvid":["#9b8fb5","#c9a96e","#d4957a"],"emoji":"🛍️"},{"nimi":"Komplekt 2","kirjeldus":"kirjeldus","varvid":["#7a9e8e","#c9a96e","#fff"],"emoji":"✨"},{"nimi":"Komplekt 3","kirjeldus":"kirjeldus","varvid":["#c4736b","#2a1a1a","#c9a96e"],"emoji":"💫"},{"nimi":"Komplekt 4","kirjeldus":"kirjeldus","varvid":["#9b8fb5","#fff","#0e0c0b"],"emoji":"🌟"}]}`;}
@@ -1074,7 +1079,7 @@ function handleFileUpload(e){const files=Array.from(e.target.files);const remain
 function renderPhotoBank(){const bank=document.getElementById('photoBank');const grid=document.getElementById('photoGrid');const count=document.getElementById('photoBankCount');if(photoBank.length===0){bank.classList.remove('show');return;}bank.classList.add('show');count.textContent=photoBank.length+' pilti lisatud'+(photoBank.length===MAX_PHOTOS?' (max)':'');grid.innerHTML='';photoBank.forEach((p,i)=>{const thumb=document.createElement('div');thumb.className='photo-thumb';thumb.innerHTML='<img src="'+p.dataUrl+'"><button class="photo-thumb-remove" onclick="removePhoto('+i+')">×</button><div class="photo-thumb-num">'+(i+1)+'</div>';grid.appendChild(thumb);});}
 function removePhoto(idx){photoBank.splice(idx,1);document.getElementById('photoLimitWarn').classList.remove('show');renderPhotoBank();refreshAnalyzeBankBtn();}
 function clearPhotoBank(){if(photoBank.length===0)return;if(!confirm('Kustuta kõik '+photoBank.length+' pilti?'))return;photoBank=[];document.getElementById('photoLimitWarn').classList.remove('show');renderPhotoBank();refreshAnalyzeBankBtn();resetResults();}
-function refreshAnalyzeBankBtn(){const btn=document.getElementById('analyzeBankBtn');const hint=document.getElementById('analyzeBankHint');const hasU=selectedUritus!==null,hasP=photoBank.length>0,hasC=getCredits()>0;if(!hasC){btn.className='analyze-bank-btn';btn.disabled=true;hint.textContent='Krediit otsas';hint.className='analyze-bank-hint';}else if(!hasU&&!hasP){btn.className='analyze-bank-btn';btn.disabled=true;hint.textContent='Vali üritus ja lisa vähemalt 1 pilt';hint.className='analyze-bank-hint';}else if(!hasU){btn.className='analyze-bank-btn';btn.disabled=true;hint.textContent='Vali üritus ülalt ← kohustuslik';hint.className='analyze-bank-hint';}else if(!hasP){btn.className='analyze-bank-btn';btn.disabled=true;hint.textContent='Lisa vähemalt 1 pilt';hint.className='analyze-bank-hint';}else{btn.className='analyze-bank-btn active';btn.disabled=false;hint.textContent=photoBank.length+' pilti · '+selectedUritus.name+' · '+getCredits()+' krediiti';hint.className='analyze-bank-hint ready';}}
+function refreshAnalyzeBankBtn(){const btn=document.getElementById('analyzeBankBtn');const hint=document.getElementById('analyzeBankHint');const hasU=selectedUritus!==null,hasP=photoBank.length>0,hasC=getCredits()>0;if(!hasC){btn.className='analyze-bank-btn';btn.disabled=true;hint.textContent='Krediit otsas';hint.className='analyze-bank-hint';}else if(!hasU&&!hasP){btn.className='analyze-bank-btn';btn.disabled=true;hint.textContent='Tee valik ja lisa vähemalt 1 pilt';hint.className='analyze-bank-hint';}else if(!hasU){btn.className='analyze-bank-btn';btn.disabled=true;hint.textContent='Tee valik ülalt ← kohustuslik';hint.className='analyze-bank-hint';}else if(!hasP){btn.className='analyze-bank-btn';btn.disabled=true;hint.textContent='Lisa vähemalt 1 pilt';hint.className='analyze-bank-hint';}else{btn.className='analyze-bank-btn active';btn.disabled=false;hint.textContent=photoBank.length+' pilti · '+selectedUritus.name+' · '+getCredits()+' krediiti';hint.className='analyze-bank-hint ready';}}
 
 async function analyzePildipank(){
   const key=getKey();if(!key){document.getElementById('apiSetupCard').style.display='block';return;}
@@ -1153,6 +1158,43 @@ function setStiilRegime(regime){
 function buildProcedureGrid(){const g=document.getElementById('procedureGrid');g.innerHTML='';const rec=document.createElement('div');rec.className='proc-btn recommend'+(selectedProcedure==='soovita'?' active':'');rec.innerHTML='<div class="proc-icon">🔍</div><div class="proc-name" style="color:#c4b8e0">Soovita<br>protseduuri</div>';rec.onclick=()=>selectProcedure('soovita');g.appendChild(rec);PROCEDURES.forEach(p=>{const b=document.createElement('div');b.className='proc-btn'+(p.id===selectedProcedure?' active':'');b.innerHTML='<div class="proc-icon">'+p.icon+'</div><div class="proc-name">'+p.name+'</div>';b.onclick=()=>selectProcedure(p.id);g.appendChild(b);});}
 function selectProcedure(id){selectedProcedure=id;document.querySelectorAll('.proc-btn').forEach(b=>b.classList.remove('active'));const btns=document.querySelectorAll('.proc-btn');if(id==='soovita'){btns[0].classList.add('active');}else{const idx=PROCEDURES.findIndex(p=>p.id===id);if(idx>=0)btns[idx+1].classList.add('active');}document.getElementById('resLbl').textContent=PROC_LABELS[id]||id;resetResults();if(id==='soovita'){document.getElementById('proTipText').textContent='🔍 Soovita protseduuri — suuna kaamera näole';}else{document.getElementById('proTipText').textContent='✦ '+PROC_LABELS[id]+' — vajuta "Ava kaamera"';}}
 
+
+function showAlternatiivid(){
+  const btn=document.getElementById('alternatiividBtn');
+  const key=getKey();if(!key)return;
+  const btnEl=btn.querySelector('button');
+  const lbl=document.getElementById('alternatiividBtnTxt');
+  if(document.getElementById('moodboardSection').classList.contains('on')){
+    document.getElementById('moodboardSection').classList.remove('on');window.lastAlternatiivid=null;const _ab=document.getElementById('alternatiividBtn');if(_ab)_ab.style.display='none';
+    lbl.textContent='AI pakub mulle alternatiive';
+    return;
+  }
+  // Kui alternatiivid on juba laetud (lastAlternatiivid), näita neid
+  if(window.lastAlternatiivid&&window.lastAlternatiivid.length){
+    buildMoodboardCards(window.lastAlternatiivid);
+    document.getElementById('moodboardSubtitle').textContent='Alternatiivid: '+((selectedUritusCam||selectedUritus)?.name||'');
+    lbl.textContent='Peida alternatiivid';
+    return;
+  }
+  // Laeb API-st
+  lbl.textContent='⟳ Laen alternatiive...';
+  btnEl.disabled=true;
+  const uritusNimi=(selectedUritusCam||selectedUritus)?.name||'';
+  const feedbackText=document.getElementById('feedbackText')?.innerText||'';
+  fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-opus-4-5',max_tokens:600,messages:[{role:'user',content:'Kasutajal on järgmine riietuse tagasiside ürituse "'+uritusNimi+'" jaoks: '+feedbackText.substring(0,300)+'. Loo 3 konkreetset alternatiivset outfit'i soovitust. Vasta AINULT JSON massiivina: [{"nimi":"outfit nimi","kirjeldus":"KONKREETNE kirjeldus mis esemeid kanda","varvid":["#hex1","#hex2","#hex3"],"emoji":"👗"}]'}]})})
+  .then(r=>r.json())
+  .then(data=>{
+    const raw=data.content.map(b=>b.text||'').join('').trim();
+    const items=JSON.parse(raw.replace(/```json|```/g,'').trim());
+    window.lastAlternatiivid=items;
+    buildMoodboardCards(items);
+    document.getElementById('moodboardSubtitle').textContent='Alternatiivid: '+uritusNimi;
+    lbl.textContent='Peida alternatiivid';
+  })
+  .catch(()=>{lbl.textContent='Viga — proovi uuesti';})
+  .finally(()=>{btnEl.disabled=false;});
+}
+
 function resetResults(){document.getElementById('resEmpty').style.display='block';document.getElementById('resultWrap').classList.remove('on');document.getElementById('shareCard').classList.remove('on');document.getElementById('moodboardSection').classList.remove('on');document.getElementById('muudaCard').classList.remove('on');['techniquesCard','meikNowSection','meikNextSection','kombineringCard','outfitNowSection','outfitNextSection','protocolCard','proProductsSection','homeProductsSection'].forEach(id=>document.getElementById(id).classList.remove('on'));}
 
 function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));const el=document.getElementById(id);if(el)el.classList.add('active');}
@@ -1208,7 +1250,7 @@ function setMode(m){
     document.getElementById('stiilCamWrap').style.display='none';
     document.getElementById('cameraCard').style.display='none';
     document.getElementById('resLbl').textContent='Stiili analüüs';
-    document.getElementById('resEmpty').textContent='Vali üritus ja lisa pildid';
+    document.getElementById('resEmpty').textContent='Tee valik ja lisa pildid';
   }else if(m==='pro'){
     buildProcedureGrid();buildBrandGrid();updateSalonActiveView();
     document.getElementById('proProcedureSelect').classList.add('show');
@@ -1241,7 +1283,7 @@ async function analyze(){
   const credits=getCredits();if(credits<=0){showPricing();return;}
 
   // Stiili kaamera puhul kontroll ürituse kohta
-  if(mode==='stiil'&&!selectedUritusCam){document.getElementById('err').textContent='Vali kõigepealt üritus ülalt!';return;}
+  if(mode==='stiil'&&!selectedUritusCam){document.getElementById('err').textContent='Tee kõigepealt valik ülalt!';return;}
 
   let sys,prompt,lbl,bar;
   if(mode==='meik'){
@@ -1304,10 +1346,16 @@ function renderStiilCamResult(parsed,photoUrl,lbl){
   document.getElementById('resultWrap').classList.add('on');
   if(parsed.kombineerimised&&parsed.kombineerimised.length){const el=document.getElementById('kombineringSteps');el.innerHTML='';parsed.kombineerimised.forEach((k,i)=>{const d=document.createElement('div');d.className='komb-step';d.innerHTML='<div class="komb-num">'+(i+1)+'</div><div class="komb-text">'+k+'</div>';el.appendChild(d);});document.getElementById('kombineringCard').classList.add('on');}
   if(parsed.soovitused&&parsed.soovitused.length){const list=document.getElementById('outfitNowList');list.innerHTML='';parsed.soovitused.forEach(p=>{const card=document.createElement('div');card.className='outfit-card';card.innerHTML='<div class="outfit-category">'+(p.kategooria||'')+'</div><div class="outfit-name">'+(p.nimi||'')+'</div><div class="outfit-brand">'+(p.bränd||'')+(p.hind?' · '+p.hind:'')+'</div><div class="outfit-reason">'+(p.põhjus||'')+'</div>';list.appendChild(card);});document.getElementById('outfitNowTitle').textContent='👗 Soovitused';document.getElementById('outfitNowSection').classList.add('on');}
-  if(parsed.moodboard&&parsed.moodboard.length>0){buildMoodboardCards(parsed.moodboard);document.getElementById('moodboardSubtitle').textContent='Inspiratsioon antud ürituse jaoks';}
+  // moodboard laaditakse ainult nupu vajutamisel (showAlternatiivid)
   const scores=parsed.scores||{};const scoreHtml=Object.entries(scores).map(([l,v])=>'<div><div class="sp-sv">'+v+'</div><div class="sp-sl">'+l+'</div></div>').join('');
   document.getElementById('sharePrev').innerHTML='<img class="sp-photo" src="'+photoUrl+'"><div class="sp-logo">GL<em>O</em>W</div><div class="sp-mode">'+lbl+'</div><div class="sp-text">'+parsed.feedback+'</div>'+(parsed.tip?'<div class="sp-tip">✦ '+parsed.tip+'</div>':'')+'<div class="sp-scores">'+scoreHtml+'</div>';
   document.getElementById('shareCard').classList.add('on');
+  // Näita "Näita alternatiive" nuppu
+  window.lastAlternatiivid = parsed.alternatiivid||[];
+  const altBtn=document.getElementById('alternatiividBtn');
+  if(altBtn) altBtn.style.display='block';
+  document.getElementById('moodboardSection').classList.remove('on');
+  document.getElementById('alternatiividBtnTxt').textContent='AI pakub mulle alternatiive';
 }
 
 function renderPildipankResult(parsed,lbl){
@@ -1332,7 +1380,7 @@ function renderPildipankResult(parsed,lbl){
   document.getElementById('resultWrap').classList.add('on');
   if(parsed.kombineerimised&&parsed.kombineerimised.length){const el=document.getElementById('kombineringSteps');el.innerHTML='';parsed.kombineerimised.forEach((k,i)=>{const d=document.createElement('div');d.className='komb-step';d.innerHTML='<div class="komb-num">'+(i+1)+'</div><div class="komb-text">'+k+'</div>';el.appendChild(d);});document.getElementById('kombineringCard').classList.add('on');}
   if(parsed.alternatiivid&&parsed.alternatiivid.length){const list=document.getElementById('outfitNowList');list.innerHTML='';parsed.alternatiivid.forEach(p=>{const card=document.createElement('div');card.className='outfit-card';card.innerHTML='<div class="outfit-category">'+(p.kategooria||'')+'</div><div class="outfit-name">'+(p.nimi||'')+'</div>'+(p.bränd?'<div class="outfit-brand">'+p.bränd+(p.hind?' · '+p.hind:'')+'</div>':'')+'<div class="outfit-reason">'+(p.põhjus||'')+'</div>';list.appendChild(card);});document.getElementById('outfitNowTitle').textContent=stiilRegime==='garderoob'?'👗 Soovitused':'🛍 Ostusoovitused';document.getElementById('outfitNowSection').classList.add('on');}
-  if(parsed.moodboard&&parsed.moodboard.length>0){buildMoodboardCards(parsed.moodboard);document.getElementById('moodboardSubtitle').textContent=stiilRegime==='garderoob'?'Inspiratsioon antud ürituse jaoks':'Kombineerimisideed ostetud esemetele';}
+  if(parsed.moodboard&&parsed.moodboard.length>0){buildMoodboardCards(parsed.moodboard);document.getElementById('moodboardSubtitle').textContent=stiilRegime==='garderoob'?'Alternatiivid sinu valiku jaoks':'Kombineerimisideed ostetud esemetele';}
   document.getElementById('sharePrev').innerHTML='<div class="sp-logo">GL<em>O</em>W</div><div class="sp-mode">'+lbl+'</div><div class="sp-text">'+parsed.feedback+'</div>'+(parsed.tip?'<div class="sp-tip">✦ '+parsed.tip+'</div>':'');
   document.getElementById('shareCard').classList.add('on');
 }
