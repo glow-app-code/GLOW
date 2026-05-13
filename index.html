@@ -553,7 +553,7 @@ canvas{display:none}
   <button class="pricing-back" onclick="hidePricing()">← Tagasi</button>
   <div class="pricing-title">Vali pakett</div>
   <div class="pricing-sub">Üks analüüs kulutab ühe krediidi.</div>
-  <div class="free-badge"><div style="font-size:20px">??</div><div class="free-badge-text"><strong>3 analüüsi tasuta</strong> — proovi enne ostmist</div></div>
+  <div class="free-badge"><div style="font-size:20px">🎁</div><div class="free-badge-text"><strong>3 analüüsi tasuta</strong> — proovi enne ostmist</div></div>
   <div class="pkg-grid">
     <div class="pkg" onclick="selectPkg(this,'10','0.99','0.10')"><div class="pkg-price">€0.99</div><div class="pkg-count">10 analüüsi</div><div class="pkg-unit">0.10€/tk</div></div>
     <div class="pkg selected" onclick="selectPkg(this,'50','4.50','0.09')"><div class="pkg-popular">Populaarne</div><div class="pkg-price">€4.50</div><div class="pkg-count">50 analüüsi</div><div class="pkg-unit">0.09€/tk</div></div>
@@ -584,9 +584,9 @@ canvas{display:none}
 <div id="assistentWrap">
   <div class="lbl">Vali assistent</div>
   <div class="modes">
-    <div class="mode m-meik" onclick="setMode('meik')"><div class="micon">??</div><div class="mname">Meik</div><div class="mdesc">Meigi analüüs</div></div>
-    <div class="mode m-stiil active" onclick="setMode('stiil')"><div class="micon">??</div><div class="mname">Stiil</div><div class="mdesc">Riietuse analüüs</div></div>
-    <div class="mode m-pro" onclick="setMode('pro')"><div class="pro-badge">PRO</div><div class="micon">??</div><div class="mname">AI Kosmeetik</div><div class="mdesc">Professionaalne analüüs</div></div>
+    <div class="mode m-meik" onclick="setMode('meik')"><div class="micon">💄</div><div class="mname">Meik</div><div class="mdesc">Meigi analüüs</div></div>
+    <div class="mode m-stiil active" onclick="setMode('stiil')"><div class="micon">👗</div><div class="mname">Stiil</div><div class="mdesc">Riietuse analüüs</div></div>
+    <div class="mode m-pro" onclick="setMode('pro')"><div class="pro-badge">PRO</div><div class="micon">💆</div><div class="mname">AI Kosmeetik</div><div class="mdesc">Professionaalne analüüs</div></div>
   </div>
 
   <!-- STIILI REŽIIMI VALIK: GARDEROOB vs POOD -->
@@ -594,12 +594,12 @@ canvas{display:none}
     <div class="stiil-regime-title">Vali kasutusviis</div>
     <div class="stiil-regime-grid">
       <div class="regime-btn active" id="regimeGarderoob" onclick="setStiilRegime('garderoob')">
-        <span class="regime-icon">??</span>
+        <span class="regime-icon">🏠</span>
         <div class="regime-name">Garderoob</div>
         <div class="regime-desc">Vali kodus olemasolevate riiete seast sobiv komplekt ürituse jaoks</div>
       </div>
       <div class="regime-btn" id="regimePood" onclick="setStiilRegime('pood')">
-        <span class="regime-icon">??️</span>
+        <span class="regime-icon">🛍️</span>
         <div class="regime-name">Poes</div>
         <div class="regime-desc">Proovi poes uusi asju selga ja saa abi sobiva stiili leidmisel</div>
       </div>
@@ -754,21 +754,21 @@ canvas{display:none}
 
 <script>
 const FREE_CREDITS=3;
-const VERDICT_CONFIG={yes:{icon:'✨',sub:'Suurepärane'},maybe:{icon:'??',sub:'Vajab tähelepanu'},no:{icon:'⚠️',sub:'Vajab parandust'}};
+const VERDICT_CONFIG={yes:{icon:'✨',sub:'Suurepärane'},maybe:{icon:'🤔',sub:'Vajab tähelepanu'},no:{icon:'⚠️',sub:'Vajab parandust'}};
 const PACKAGES=[{count:'10',price:'0.99',unit:'0.10'},{count:'50',price:'4.50',unit:'0.09'},{count:'100',price:'7.99',unit:'0.08'},{count:'200',price:'12.99',unit:'0.06'}];
 
 const DEPILE_BRANDS=[
-  {id:'anesi',icon:'??',name:'ANESI',desc:'Nähooldus & protseduurid',focus:'näohooldus, seerumid, maskid, nahahooldus'},
+  {id:'anesi',icon:'🌿',name:'ANESI',desc:'Nähooldus & protseduurid',focus:'näohooldus, seerumid, maskid, nahahooldus'},
   {id:'bdr',icon:'⚗️',name:'BDR',desc:'Intensiivhooldus & koorimised',focus:'keemiline koorimine, intensiivhooldus, dermatseutilised tooted'},
-  {id:'dermia',icon:'??',name:'DERMIA',desc:'Professionaalne nähooldus',focus:'nähooldus, professionaalsed seerumid ja kreemid'},
+  {id:'dermia',icon:'💊',name:'DERMIA',desc:'Professionaalne nähooldus',focus:'nähooldus, professionaalsed seerumid ja kreemid'},
   {id:'christian',icon:'✨',name:'CHRISTIAN BRETON',desc:'Meik & nähooldus',focus:'meigipealne hooldus, huuled, silmad, dekoratiivkosmeetika'},
-  {id:'phytomer',icon:'??',name:'PHYTOMER',desc:'Merekosmeetika',focus:'merekosmeetika, niisutus, vananemisvastane hooldus'},
-  {id:'depileve',icon:'??',name:'DEPILÉVE',desc:'Vahatamine & epilatsioon',focus:'vahatamine, epilatsioon, vahatamisjärgne hooldus'},
-  {id:'allpresan',icon:'??',name:'ALLPRESAN',desc:'Jalahooldus',focus:'jalahooldus, jalakreemid, nahapaksendite eemaldus'},
-  {id:'alessandro',icon:'??',name:'ALESSANDRO',desc:'Küüned & kulmud',focus:'küünehooldustooted, kulmugeel, küünelakid'},
-  {id:'alfaparf',icon:'??',name:'ALFAPARF',desc:'Professionaalne juuksehooldus',focus:'juuksevärvid, juuksehooldus, salongi juuksuriteenused'},
-  {id:'pino',icon:'??',name:'PINO',desc:'Massaaž & kehahooldus',focus:'massaaži tooted, kehahooldusvahendid, soojendavad tooted'},
-  {id:'kurland',icon:'??',name:'KURLAND',desc:'Savi & spaateraapia',focus:'savimudad, spaateraapia, looduslikud õlid, massaaž'}
+  {id:'phytomer',icon:'🌊',name:'PHYTOMER',desc:'Merekosmeetika',focus:'merekosmeetika, niisutus, vananemisvastane hooldus'},
+  {id:'depileve',icon:'🌸',name:'DEPILÉVE',desc:'Vahatamine & epilatsioon',focus:'vahatamine, epilatsioon, vahatamisjärgne hooldus'},
+  {id:'allpresan',icon:'🦶',name:'ALLPRESAN',desc:'Jalahooldus',focus:'jalahooldus, jalakreemid, nahapaksendite eemaldus'},
+  {id:'alessandro',icon:'💅',name:'ALESSANDRO',desc:'Küüned & kulmud',focus:'küünehooldustooted, kulmugeel, küünelakid'},
+  {id:'alfaparf',icon:'💇',name:'ALFAPARF',desc:'Professionaalne juuksehooldus',focus:'juuksevärvid, juuksehooldus, salongi juuksuriteenused'},
+  {id:'pino',icon:'🤲',name:'PINO',desc:'Massaaž & kehahooldus',focus:'massaaži tooted, kehahooldusvahendid, soojendavad tooted'},
+  {id:'kurland',icon:'🌍',name:'KURLAND',desc:'Savi & spaateraapia',focus:'savimudad, spaateraapia, looduslikud õlid, massaaž'}
 ];
 
 function getCredits(){const r=localStorage.getItem('glow_credits');if(r===null||r==='')return FREE_CREDITS;const n=parseInt(r,10);return isNaN(n)?FREE_CREDITS:Math.max(0,n);}
@@ -789,59 +789,59 @@ function getSalonBrandString(){const saved=loadSalonBrands();if(saved.length===0
 // MEIGISTIILID — 12
 // =====================================================================
 const MAKEUP_STYLES=[
-  {id:'hommik',icon:'??',name:'Hommikumeik'},
-  {id:'kontor',icon:'??',name:'Kontorimeik'},
-  {id:'ostlemine',icon:'??️',name:'Ostlemismeik'},
-  {id:'ohtu',icon:'??',name:'Õhtumeik'},
-  {id:'gala',icon:'??',name:'Gala meik'},
-  {id:'synnipaev',icon:'??',name:'Sünnipäevameik'},
-  {id:'pruut',icon:'??',name:'Pruudimeik'},
-  {id:'lopuaktus',icon:'??',name:'Lõpuaktuse meik'},
-  {id:'fotosessioon',icon:'??',name:'Fotosessioon'},
-  {id:'smoky',icon:'??',name:'Smoky eye'},
-  {id:'glam',icon:'??',name:'Glam meik'},
-  {id:'romantiline',icon:'??',name:'Romantiline meik'}
+  {id:'hommik',icon:'🌅',name:'Hommikumeik'},
+  {id:'kontor',icon:'💼',name:'Kontorimeik'},
+  {id:'ostlemine',icon:'🛍️',name:'Ostlemismeik'},
+  {id:'ohtu',icon:'🌙',name:'Õhtumeik'},
+  {id:'gala',icon:'🥂',name:'Gala meik'},
+  {id:'synnipaev',icon:'🎂',name:'Sünnipäevameik'},
+  {id:'pruut',icon:'👰',name:'Pruudimeik'},
+  {id:'lopuaktus',icon:'🎓',name:'Lõpuaktuse meik'},
+  {id:'fotosessioon',icon:'📸',name:'Fotosessioon'},
+  {id:'smoky',icon:'🖤',name:'Smoky eye'},
+  {id:'glam',icon:'💅',name:'Glam meik'},
+  {id:'romantiline',icon:'🌸',name:'Romantiline meik'}
 ];
 
 // =====================================================================
 // GARDEROOB STIILID — kodus valitud riietus konkreetseks ürituseks
 // =====================================================================
 const GARDEROOB_STYLES=[
-  {id:'kontor',icon:'??',name:'Kontori\nriietus'},
-  {id:'kool',icon:'??',name:'Kooli\nriietus'},
-  {id:'arikoosolek',icon:'??',name:'Ärimeeting'},
-  {id:'shopping',icon:'??️',name:'Ostlemine\nja linn'},
-  {id:'sport',icon:'??',name:'Sport ja\ntreening'},
-  {id:'ohtu',icon:'??',name:'Õhtune\nväljaminek'},
-  {id:'pidu',icon:'??',name:'Pidu ja\nklubi'},
-  {id:'pidulik_ohtusoek',icon:'??️',name:'Pidulik\nõhtusöök'},
-  {id:'synnipaev',icon:'??',name:'Sünnipäev'},
-  {id:'lopuaktus',icon:'??',name:'Lõpuaktus\nja tseremoonia'},
+  {id:'kontor',icon:'💼',name:'Kontori\nriietus'},
+  {id:'kool',icon:'🎒',name:'Kooli\nriietus'},
+  {id:'arikoosolek',icon:'🤝',name:'Ärimeeting'},
+  {id:'shopping',icon:'🛍️',name:'Ostlemine\nja linn'},
+  {id:'sport',icon:'🏃',name:'Sport ja\ntreening'},
+  {id:'ohtu',icon:'🌙',name:'Õhtune\nväljaminek'},
+  {id:'pidu',icon:'🎉',name:'Pidu ja\nklubi'},
+  {id:'pidulik_ohtusoek',icon:'🍽️',name:'Pidulik\nõhtusöök'},
+  {id:'synnipaev',icon:'🎂',name:'Sünnipäev'},
+  {id:'lopuaktus',icon:'🎓',name:'Lõpuaktus\nja tseremoonia'},
   {id:'reisile',icon:'✈️',name:'Reisile\nminekuks'},
-  {id:'rand',icon:'??',name:'Rand ja\nsuvi'},
-  {id:'minimalistlik',icon:'??',name:'Minimalistlik\nstiil'},
-  {id:'boho',icon:'??',name:'Bohoo\nstiil'},
-  {id:'luksus',icon:'??',name:'Luksus /\nHigh Fashion'},
-  {id:'looduslik',icon:'??',name:'Looduslikud\nmaterjalid'},
-  {id:'streetwear',icon:'??',name:'Street-\nwear'}
+  {id:'rand',icon:'🌊',name:'Rand ja\nsuvi'},
+  {id:'minimalistlik',icon:'🖤',name:'Minimalistlik\nstiil'},
+  {id:'boho',icon:'🎨',name:'Bohoo\nstiil'},
+  {id:'luksus',icon:'👑',name:'Luksus /\nHigh Fashion'},
+  {id:'looduslik',icon:'🌿',name:'Looduslikud\nmaterjalid'},
+  {id:'streetwear',icon:'🔥',name:'Street-\nwear'}
 ];
 
 // =====================================================================
 // POOD STIILID — uue eseme sobivuse hindamine poes proovimisel
 // =====================================================================
 const POOD_STYLES=[
-  {id:'kas_sobib',icon:'??',name:'Kas see\nsobib mulle?'},
+  {id:'kas_sobib',icon:'🤔',name:'Kas see\nsobib mulle?'},
   {id:'igapaev',icon:'☀️',name:'Igapäeva\nkandmiseks'},
-  {id:'kontor',icon:'??',name:'Kontori\nstiiliga'},
-  {id:'ohtu',icon:'??',name:'Õhtusteks\nväljamibekuteks'},
-  {id:'sport',icon:'??',name:'Spordi-\nvabaaeg'},
-  {id:'pidu',icon:'??',name:'Pidude\njaoks'},
+  {id:'kontor',icon:'💼',name:'Kontori\nstiiliga'},
+  {id:'ohtu',icon:'🌙',name:'Õhtusteks\nväljamibekuteks'},
+  {id:'sport',icon:'🏃',name:'Spordi-\nvabaaeg'},
+  {id:'pidu',icon:'🎉',name:'Pidude\njaoks'},
   {id:'pidulik',icon:'✨',name:'Pidulikeks\nüritusteks'},
-  {id:'casual',icon:'??',name:'Casual\nstiil'},
-  {id:'minimalistlik',icon:'??',name:'Minimalistlik\nstiil'},
-  {id:'boho',icon:'??',name:'Bohoo\nstiil'},
-  {id:'streetwear',icon:'??',name:'Street-\nwear'},
-  {id:'luksus',icon:'??',name:'Luksus\nstiil'}
+  {id:'casual',icon:'😊',name:'Casual\nstiil'},
+  {id:'minimalistlik',icon:'🖤',name:'Minimalistlik\nstiil'},
+  {id:'boho',icon:'🎨',name:'Bohoo\nstiil'},
+  {id:'streetwear',icon:'🔥',name:'Street-\nwear'},
+  {id:'luksus',icon:'👑',name:'Luksus\nstiil'}
 ];
 
 const MEIK_CONTEXTS={hommik:{focus:'tööle sobiv, värske',verdict_yes:'VÄRSKE JA ILUS',verdict_no:'VAJAB VIIMISTLUST'},kontor:{focus:'professionaalne, diskreetne',verdict_yes:'PROFESSIONAALNE',verdict_no:'LIIGA DRAMAATILINE'},ostlemine:{focus:'casual, looduslik',verdict_yes:'CASUAL JA ILUS',verdict_no:'VAJAB LIHTSUSTAMIST'},ohtu:{focus:'elegantne, sügavam',verdict_yes:'ELEGANTNE ÕHTUMEIK',verdict_no:'VAJAB ROHKEM SÜGAVUST'},gala:{focus:'luksuslik, dramaatiline',verdict_yes:'GALA-VÄÄRILINE',verdict_no:'VAJAB ROHKEM LUKSUST'},synnipaev:{focus:'rõõmus, särav',verdict_yes:'PIDULIK JA RÕÕMUS',verdict_no:'VAJAB ROHKEM SÄRA'},pruut:{focus:'romantiline, ajatu',verdict_yes:'PRUUDIVÄÄRILINE',verdict_no:'VAJAB TÄIUSTAMIST'},lopuaktus:{focus:'pidulik, nooruslik',verdict_yes:'PIDULIK JA NOORUSLIK',verdict_no:'VAJAB TASAKAALU'},fotosessioon:{focus:'fotogeniiline, kontrastne',verdict_yes:'KAAMERASÕBRALIK',verdict_no:'VAJAB TUGEVDAMIST'},smoky:{focus:'suitsune, dramaatiline',verdict_yes:'SUITSUNE JA DRAMAATILINE',verdict_no:'VAJAB ROHKEM SÜGAVUST'},glam:{focus:'täielik glamuur',verdict_yes:'TÄIELIK GLAMUUR',verdict_no:'VAJAB ROHKEM GLAMI'},romantiline:{focus:'õrn, roosakad toonid',verdict_yes:'ROMANTILISELT KAUNIS',verdict_no:'VAJAB PEHMEMAT LÄHENEMIST'}};
@@ -869,7 +869,7 @@ function getPoodSystem(id){
 Analüüsi KONKREETSET rõivaeset mida kasutaja kannab — selle lõiget, värvi, istuvust ja sobivust kasutajale. Vasta AINULT JSON:
 {"verdict":"${ctx.verdict_yes} / ${ctx.verdict_no}","verdict_class":"yes/maybe/no","ese":"Kirjelda lühidalt mida kasutaja kannab","feedback":"3-4 lauset selle konkreetse eseme sobivuse kohta — kas lõige, värv ja istuvus sobivad kasutajale","details":{"Lõige ja istuvus":"2 lauset — kas sobib kehakujule","Värv ja toon":"2 lauset — kas värv sobib nahkatooniga","Sobivus ${n} jaoks":"2 lauset","Kvaliteet ja materjal":"2 lauset — mis on näha materjalist ja viimistlusest"},"scores":{"Istuvus":7,"Värv":7,"Stiil":7,"Üldmulje":7},"osta_soovitus":"Üks selge lause — kas tasub osta või mitte ja miks","kombineerimised":["Kuidas seda eset kombineerida — millega kanda","Teine kombineerimisidee","Kolmas kombineerimisidee"],"alternatiivid":[{"kategooria":"Alternatiiv","nimi":"Sarnane rõivaese nimetus","bränd":"bränd","hind":"~XX€","põhjus":"miks see alternatiiv võiks sobida paremini"},{"kategooria":"Täiendav ost","nimi":"Mis juurde osta","bränd":"bränd","hind":"~XX€","põhjus":"miks see juurde sobiks"}],"tip":"kõige olulisem nõuanne — osta või ära osta, ja miks"}`;}
 
-const PROCEDURES=[{id:'nahooldus',icon:'✨',name:'Näopuhastus\nja hooldus'},{id:'niisutus',icon:'??',name:'Niisutus-\nhooldus'},{id:'vananemine',icon:'??',name:'Vananemis-\nvastane'},{id:'akne',icon:'??',name:'Akne-\nhooldus'},{id:'pigment',icon:'??',name:'Pigmentatsiooni-\nravi'},{id:'koorimine',icon:'✨',name:'Keemiline\nkoorimine'},{id:'kulmud',icon:'✏️',name:'Kulmude\nmodelleerimine'},{id:'ripsmed',icon:'??',name:'Ripsmete ja\nkulmude värvimine'},{id:'massaaz',icon:'??',name:'Näo-\nmassaaž'},{id:'depilatsioon',icon:'??',name:'Depilatsioon\nja vahatamine'},{id:'kehahooldus',icon:'??',name:'Keha-\nhooldus'},{id:'jalahooldus',icon:'??',name:'Jala-\nhooldus'}];
+const PROCEDURES=[{id:'nahooldus',icon:'✨',name:'Näopuhastus\nja hooldus'},{id:'niisutus',icon:'💧',name:'Niisutus-\nhooldus'},{id:'vananemine',icon:'🌿',name:'Vananemis-\nvastane'},{id:'akne',icon:'🎯',name:'Akne-\nhooldus'},{id:'pigment',icon:'🌟',name:'Pigmentatsiooni-\nravi'},{id:'koorimine',icon:'✨',name:'Keemiline\nkoorimine'},{id:'kulmud',icon:'✏️',name:'Kulmude\nmodelleerimine'},{id:'ripsmed',icon:'👁',name:'Ripsmete ja\nkulmude värvimine'},{id:'massaaz',icon:'🤲',name:'Näo-\nmassaaž'},{id:'depilatsioon',icon:'🌸',name:'Depilatsioon\nja vahatamine'},{id:'kehahooldus',icon:'💆',name:'Keha-\nhooldus'},{id:'jalahooldus',icon:'🦶',name:'Jala-\nhooldus'}];
 const PROC_LABELS={soovita:'Soovita protseduuri',nahooldus:'Näopuhastus ja hooldus',niisutus:'Niisutushooldus',vananemine:'Vananemisvastane hooldus',akne:'Aknehooldus',pigment:'Pigmentatsiooniravi',koorimine:'Keemiline koorimine',kulmud:'Kulmude modelleerimine',ripsmed:'Ripsmete ja kulmude värvimine',massaaz:'Näomassaaž',depilatsioon:'Depilatsioon ja vahatamine',kehahooldus:'Kehahooldus',jalahooldus:'Jalahooldus'};
 
 function getProSystem(procId){const brandStr=getSalonBrandString();const base=`Sa oled professionaalne kosmeetik. ${brandStr}
@@ -941,7 +941,7 @@ function buildStiilGrid(){
   });
 }
 
-function buildProcedureGrid(){const g=document.getElementById('procedureGrid');g.innerHTML='';const rec=document.createElement('div');rec.className='proc-btn recommend'+(selectedProcedure==='soovita'?' active':'');rec.innerHTML='<div class="proc-icon">??</div><div class="proc-name" style="color:#c4b8e0">Soovita<br>protseduuri</div>';rec.onclick=()=>selectProcedure('soovita');g.appendChild(rec);PROCEDURES.forEach(p=>{const b=document.createElement('div');b.className='proc-btn'+(p.id===selectedProcedure?' active':'');b.innerHTML='<div class="proc-icon">'+p.icon+'</div><div class="proc-name">'+p.name+'</div>';b.onclick=()=>selectProcedure(p.id);g.appendChild(b);});}
+function buildProcedureGrid(){const g=document.getElementById('procedureGrid');g.innerHTML='';const rec=document.createElement('div');rec.className='proc-btn recommend'+(selectedProcedure==='soovita'?' active':'');rec.innerHTML='<div class="proc-icon">🔍</div><div class="proc-name" style="color:#c4b8e0">Soovita<br>protseduuri</div>';rec.onclick=()=>selectProcedure('soovita');g.appendChild(rec);PROCEDURES.forEach(p=>{const b=document.createElement('div');b.className='proc-btn'+(p.id===selectedProcedure?' active':'');b.innerHTML='<div class="proc-icon">'+p.icon+'</div><div class="proc-name">'+p.name+'</div>';b.onclick=()=>selectProcedure(p.id);g.appendChild(b);});}
 
 function selectMeikStyle(id){selectedMeikStyle=id;document.querySelectorAll('#meikStyleGrid .style-btn').forEach((b,i)=>b.classList.toggle('active',MAKEUP_STYLES[i].id===id));const s=MAKEUP_STYLES.find(m=>m.id===id);if(s){document.getElementById('resLbl').textContent=s.name;resetResults();document.getElementById('meikTipText').textContent=s.icon+' '+s.name+' — vajuta "Ava kaamera"';}}
 
@@ -1065,7 +1065,7 @@ async function analyze(){
   refreshAnaBtn();
 }
 
-function buildMoodboardCards(items){const grid=document.getElementById('moodboardGrid');grid.innerHTML='';currentMoodboardData=items;items.forEach((item,idx)=>{const card=document.createElement('div');card.className='moodboard-card';card.id='mb_card_'+idx;const c1=item.varvid&&item.varvid[0]?item.varvid[0]:'#9b8fb5';const c2=item.varvid&&item.varvid[1]?item.varvid[1]:'#c9a96e';const colors=(item.varvid||['#9b8fb5','#c9a96e','#d4957a']).map(c=>'<div class="mc-color" style="background:'+c+'"></div>').join('');card.innerHTML='<div class="moodboard-visual" style="background:linear-gradient(135deg,'+c1+'33,'+c2+'22)"><div class="moodboard-emoji-bg">'+(item.emoji||'??')+'</div><div class="moodboard-outfit-info"><div class="moodboard-outfit-name">'+(item.nimi||'')+'</div><div class="moodboard-outfit-style">'+(item.kirjeldus||'')+'</div></div></div><div class="moodboard-card-footer"><div class="mc-colors">'+colors+'</div><button class="mc-like" id="mc_like_'+idx+'" onclick="toggleLike('+idx+')">♡</button></div>';grid.appendChild(card);});document.getElementById('moodboardSection').classList.add('on');}
+function buildMoodboardCards(items){const grid=document.getElementById('moodboardGrid');grid.innerHTML='';currentMoodboardData=items;items.forEach((item,idx)=>{const card=document.createElement('div');card.className='moodboard-card';card.id='mb_card_'+idx;const c1=item.varvid&&item.varvid[0]?item.varvid[0]:'#9b8fb5';const c2=item.varvid&&item.varvid[1]?item.varvid[1]:'#c9a96e';const colors=(item.varvid||['#9b8fb5','#c9a96e','#d4957a']).map(c=>'<div class="mc-color" style="background:'+c+'"></div>').join('');card.innerHTML='<div class="moodboard-visual" style="background:linear-gradient(135deg,'+c1+'33,'+c2+'22)"><div class="moodboard-emoji-bg">'+(item.emoji||'👗')+'</div><div class="moodboard-outfit-info"><div class="moodboard-outfit-name">'+(item.nimi||'')+'</div><div class="moodboard-outfit-style">'+(item.kirjeldus||'')+'</div></div></div><div class="moodboard-card-footer"><div class="mc-colors">'+colors+'</div><button class="mc-like" id="mc_like_'+idx+'" onclick="toggleLike('+idx+')">♡</button></div>';grid.appendChild(card);});document.getElementById('moodboardSection').classList.add('on');}
 function toggleLike(idx){const card=document.getElementById('mb_card_'+idx);const btn=document.getElementById('mc_like_'+idx);const liked=card.classList.contains('liked');card.classList.toggle('liked',!liked);btn.textContent=liked?'♡':'♥';}
 async function generateMoreMoodboard(){
   const key=getKey();if(!key)return;
