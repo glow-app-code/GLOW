@@ -1104,7 +1104,6 @@ async function analyzePildipank(){
     lastFb=parsed.feedback;setCredits(credits-1);
     document.getElementById('load').classList.remove('on');
     renderPildipankResult(parsed,stiilRegime==='garderoob'?'🏠 Garderoob · '+selectedUritus.name:'🛍 Pood · '+selectedUritus.name);
-    speak(parsed.feedback+(parsed.tip?' Soovitus: '+parsed.tip:''));
   }catch(e){document.getElementById('load').classList.remove('on');document.getElementById('resEmpty').style.display='block';document.getElementById('resEmpty').textContent='Viga: '+e.message;}
   btn.className='analyze-bank-btn active';btn.disabled=false;btn.textContent='✦ Analüüsi minu valik';refreshAnalyzeBankBtn();
 }
@@ -1320,7 +1319,6 @@ async function analyze(){
     document.getElementById('load').classList.remove('on');document.getElementById('scan').classList.remove('on');
     if(mode==='stiil')renderStiilCamResult(parsed,dataUrl,lbl);
     else renderMeikProResult(parsed,bar,dataUrl,lbl);
-    speak(parsed.feedback+(parsed.tip?' Soovitus: '+parsed.tip:''));
     setDot('live','Analüüs valmis ✦');
   }catch(e){
     document.getElementById('load').classList.remove('on');document.getElementById('scan').classList.remove('on');
@@ -1434,8 +1432,6 @@ function renderMeikProResult(parsed,barClass,photoUrl,lbl){
 function buildMoodboardCards(items){const grid=document.getElementById('moodboardGrid');grid.innerHTML='';currentMoodboardData=items;items.forEach((item,idx)=>{const card=document.createElement('div');card.className='moodboard-card';card.id='mb_card_'+idx;const c1=item.varvid&&item.varvid[0]?item.varvid[0]:'#9b8fb5';const c2=item.varvid&&item.varvid[1]?item.varvid[1]:'#c9a96e';const colors=(item.varvid||['#9b8fb5','#c9a96e','#d4957a']).map(c=>'<div class="mc-color" style="background:'+c+'"></div>').join('');card.innerHTML='<div class="moodboard-visual" style="background:linear-gradient(135deg,'+c1+'33,'+c2+'22)"><div class="moodboard-emoji-bg">'+(item.emoji||'👗')+'</div><div class="moodboard-outfit-info"><div class="moodboard-outfit-name">'+(item.nimi||'')+'</div><div class="moodboard-outfit-style">'+(item.kirjeldus||'')+'</div></div></div><div class="moodboard-card-footer"><div class="mc-colors">'+colors+'</div><button class="mc-like" id="mc_like_'+idx+'" onclick="toggleLike('+idx+')">♡</button></div>';grid.appendChild(card);});document.getElementById('moodboardSection').classList.add('on');}
 function toggleLike(idx){const card=document.getElementById('mb_card_'+idx);const btn=document.getElementById('mc_like_'+idx);const liked=card.classList.contains('liked');card.classList.toggle('liked',!liked);btn.textContent=liked?'♡':'♥';}
 async function generateMoreMoodboard(){const key=getKey();if(!key)return;const btn=document.querySelector('.mb-action-btn.more');btn.textContent='⟳ Laen...';btn.disabled=true;const uritusNimi=(selectedUritus||selectedUritusCam)?.name||'Stiil';const sys='Loo 6 uut outfit inspiratsiooni ürituse "'+uritusNimi+'" jaoks. Vasta AINULT JSON massiivina:\n[{"nimi":"nimi","kirjeldus":"kirjeldus","varvid":["#hex1","#hex2","#hex3"],"emoji":"emoji"}]';try{const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-opus-4-5',max_tokens:800,messages:[{role:'user',content:sys}]})});const data=await res.json();const raw=data.content.map(b=>b.text||'').join('');const parsed=JSON.parse(raw.replace(/```json|```/g,'').trim());buildMoodboardCards(parsed);}catch(e){console.error(e);}btn.textContent='↻ Rohkem valikuid';btn.disabled=false;}
-
-function speak(text){if(!('speechSynthesis' in window))return;window.speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='et-EE';u.rate=0.95;u.onstart=()=>{document.getElementById('wave').classList.add('on');setDot('live','Räägin...');};u.onend=()=>{document.getElementById('wave').classList.remove('on');setDot('live','Analüüs valmis ✦');};window.speechSynthesis.speak(u);}
 function toggleAuto(){autoOn=!autoOn;const btn=document.getElementById('autoBtn');if(autoOn){btn.textContent='⬛ Peata';btn.classList.add('red');analyze();autoT=setInterval(analyze,25000);}else{btn.textContent='Auto';btn.classList.remove('red');clearInterval(autoT);}}
 function rateStar(n){starRating=n;document.querySelectorAll('.star').forEach((s,i)=>s.classList.toggle('active',i<n));document.getElementById('feedbackSubmitBtn').disabled=false;}
 function submitFeedback(){document.getElementById('feedbackForm').style.display='none';document.getElementById('feedbackSent').classList.add('show');}
