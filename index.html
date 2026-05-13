@@ -664,8 +664,8 @@ canvas{display:none}
         <div class="meik-opt-title">Silmade värv <span>← vali üks</span></div>
         <div class="meik-opt-grid" id="silmadGrid">
           <div class="meik-opt-btn" data-group="silmad" data-val="sinised-hallid" onclick="selectMeikOpt(this,'silmad')"><span class="mob-icon">🔵</span><span class="mob-label">Sinised / hallid</span></div>
-          <div class="meik-opt-btn" data-group="silmad" data-val="pruunid-rohelised" onclick="selectMeikOpt(this,'silmad')"><span class="mob-icon">🟤</span><span class="mob-label">Pruunid / rohelised</span></div>
-          <div class="meik-opt-btn" data-group="silmad" data-val="tumedpruunid" onclick="selectMeikOpt(this,'silmad')"><span class="mob-icon">⚫</span><span class="mob-label">Tumedpruunid</span></div>
+          <div class="meik-opt-btn" data-group="silmad" data-val="pruunid" onclick="selectMeikOpt(this,'silmad')"><span class="mob-icon">🟤</span><span class="mob-label">Pruunid</span></div>
+          <div class="meik-opt-btn" data-group="silmad" data-val="rohelised" onclick="selectMeikOpt(this,'silmad')"><span class="mob-icon">🟢</span><span class="mob-label">Rohelised</span></div>
         </div>
       </div>
       <div class="meik-opt-section">
@@ -988,11 +988,11 @@ function buildMeikGrid(){
 function getMeikSystem(styleId){
   const stiil=MAKEUP_STYLES.find(m=>m.id===styleId)?.name||'Meik';
   const nahatoon=meikOpts.nahatoon||'keskmine';
-  const silmad=meikOpts.silmad||'pruunid-rohelised';
+  const silmad=meikOpts.silmad||'pruunid';
   const kogemus=meikOpts.kogemus||'keskpärane';
   const tugevus=meikOpts.tugevus||'keskmine';
   const nahatoonJ={hele:'Hele nahk — roosakas-neutraalsed toonid, väldi oranži. Highlighter sobib.',keskmine:'Keskmise toon — lai valik sobib, soojad toonid toimivad.',tume:'Tume nahk — rikkalikud toonid, sügavad alused. Väldi liiga heledat highlighterit.'}[nahatoon];
-  const silmadJ={'sinised-hallid':'Sinised/hallid silmad — pruunid, kuldsed, virsik toovad esile. Väldi liiga siniseid.','pruunid-rohelised':'Pruunid/rohelised — lilla, roosa, kuld. Rohelistele sobib punakaspruun.','tumedpruunid':'Tumedpruunid — kõik toonid sobivad, dramaatilised kontrastid.'}[silmad];
+  const silmadJ={'sinised-hallid':'Sinised/hallid silmad — pruunid, kuldsed ja virsik toonid toovad esile. Väldi liiga siniseid varje.','pruunid':'Pruunid silmad — lilla, roosa, kuld ja pronks toovad esile. Kontrast loob sügavuse.','rohelised':'Rohelised silmad — punakaspruun, vask ja lilla toovad rohelist esile. Väldi liiga rohelisi varje.'}[silmad];
   const kogemusJ={algaja:'ALGAJA — max 3-4 toodet, lihtsad sammud, selgita täpselt kuidas rakendada.',keskpärane:'KESKPÄRANE — blendimine ja layering on okei, keskmise keerukusega tehnikad.',kogenud:'KOGENUD — professionaalsed tehnikad, contouring, baking, complex looks.'}[kogemus];
   const tugevusJ={loomulik:'LOOMULIK — ainult naha tasandamine, kulmud, maskaar. Naturaalne tulemus, max 3-4 toodet.',keskmine:'KESKMINE — viimistletud igapäevameik, jumestus, silmad, huuled. Tasakaalustatud look, 5-6 toodet.',tugev:'TUGEV — intensiivne meik, täielik contouring, dramaatilised silmad ja huuled. 7+ toodet.'}[tugevus];
   return`Sa oled GLÓW meigi ekspert. Analüüsi kasutaja meiki VÄGA KONKREETSELT.\n\nKASUTAJA INFO:\n- Stiil: ${stiil}\n- Nahatoon: ${nahatoon} — ${nahatoonJ}\n- Silmad: ${silmad} — ${silmadJ}\n- Kogemus: ${kogemus} — ${kogemusJ}\n- Meigi tugevus: ${tugevus} — ${tugevusJ}\n\nOle VÄGA KONKREETNE muutuste osas. Ütle TÄPSELT mida muuta, kuidas rakendada, mis tooni kasutada.\n\nVasta AINULT JSON:\n{"verdict":"SUUREPÄRANE/VAJAB VÄIKESI MUUDATUSI/VAJAB OLULISI MUUDATUSI","verdict_class":"yes/maybe/no","meigistiil":"praeguse meigi kirjeldus","feedback":"3-4 konkreetset lauset","details":{"Jumestus ja nahapind":"2 konkreetset lauset","Silmameik":"2 konkreetset lauset","Kulmud":"2 konkreetset lauset","Huuled":"2 konkreetset lauset","Sobivus ${stiil} jaoks":"2 lauset"},"scores":{"Jumestus":7,"Silmad":7,"Kulmud":7,"Üldmulje":7},"muuda_kohe":[{"prioriteet":"kiireloomuline/soovituslik/valikuline","kategooria":"Jumestus/Silmad/Kulmud/Huuled","probleem":"Täpselt mis on valesti","lahendus":"KONKREETNE samm-sammult juhend koos tootega ja tooniga"}],"tehnikad":["konkreetne tehnika 1","konkreetne tehnika 2","konkreetne tehnika 3"],"kohe_tooted":[{"kategooria":"Jumestus","nimi":"tootenimi","bränd":"MAC/NYX/Catrice","hind":"~XX€","põhjus":"miks sobib nahatooni ja stiiliga","link":"https://www.mactabeauty.com/meik"},{"kategooria":"Silmameik","nimi":"tootenimi","bränd":"bränd","hind":"~XX€","põhjus":"põhjus","link":"https://www.mactabeauty.com/meik/silmad"}],"jarmine_tooted":[{"kategooria":"Primer","nimi":"tootenimi","bränd":"bränd","hind":"~XX€","põhjus":"miks vajalik","link":"https://www.mactabeauty.com/meik"},{"kategooria":"Huuled","nimi":"tootenimi","bränd":"bränd","hind":"~XX€","põhjus":"põhjus","link":"https://www.mactabeauty.com/meik/huuled"}],"tip":"Kõige olulisem konkreetne nõuanne"}`;}
