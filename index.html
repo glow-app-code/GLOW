@@ -1102,7 +1102,7 @@ async function analyzePildipank(){
   const prompt=(stiilRegime==='garderoob'?'Vaata kõiki pilte minu garderoobist. Vali parim kombinatsioon ürituseks "'+selectedUritus.name+'".':'Vaata kõiki pilte poes proovitud esemetest. Soovita mida osta ürituse "'+selectedUritus.name+'" jaoks.')+' Vasta ainult JSON.';
   imageContent.push({type:'text',text:prompt});
   try{
-    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-opus-4-5',max_tokens:2500,system:sys,messages:[{role:'user',content:imageContent}]})});
+    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-sonnet-4-5',max_tokens:2500,system:sys,messages:[{role:'user',content:imageContent}]})});
     const data=await checkRes(res);if(data.error)throw new Error(data.error.message);
     const raw=data.content.map(b=>b.text||'').join('');
     const parsed=extractJson(raw);
@@ -1189,7 +1189,7 @@ function showAlternatiivid(){
   btnEl.disabled=true;
   const uritusNimi=(selectedUritusCam||selectedUritus)?.name||'';
   const feedbackText=document.getElementById('feedbackText')?.innerText||'';
-  fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-opus-4-5',max_tokens:600,messages:[{role:'user',content:'Kasutajal on järgmine riietuse tagasiside ürituse "'+uritusNimi+'" jaoks: '+feedbackText.substring(0,300)+'. Loo 3 konkreetset alternatiivset outfiti soovitust. Vasta AINULT JSON massiivina: [{"nimi":"outfit nimi","kirjeldus":"KONKREETNE kirjeldus mis esemeid kanda","varvid":["#hex1","#hex2","#hex3"],"emoji":"👗"}]'}]})})
+  fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-sonnet-4-5',max_tokens:600,messages:[{role:'user',content:'Kasutajal on järgmine riietuse tagasiside ürituse "'+uritusNimi+'" jaoks: '+feedbackText.substring(0,300)+'. Loo 3 konkreetset alternatiivset outfiti soovitust. Vasta AINULT JSON massiivina: [{"nimi":"outfit nimi","kirjeldus":"KONKREETNE kirjeldus mis esemeid kanda","varvid":["#hex1","#hex2","#hex3"],"emoji":"👗"}]'}]})})
   .then(r=>checkRes(r))
   .then(data=>{
     if(data.error)throw new Error(data.error.message);
@@ -1323,7 +1323,7 @@ async function analyze(){
   document.getElementById('anaBtn').disabled=true;
   const dataUrl=capture();const b64=dataUrl.split(',')[1];
   try{
-    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',signal:currentFetchAbort.signal,headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-opus-4-5',max_tokens:2500,system:sys,messages:[{role:'user',content:[{type:'image',source:{type:'base64',media_type:'image/jpeg',data:b64}},{type:'text',text:prompt}]}]})});
+    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',signal:currentFetchAbort.signal,headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-sonnet-4-5',max_tokens:2500,system:sys,messages:[{role:'user',content:[{type:'image',source:{type:'base64',media_type:'image/jpeg',data:b64}},{type:'text',text:prompt}]}]})});
     const data=await checkRes(res);if(data.error)throw new Error(data.error.message);
     const raw=data.content.map(b=>b.text||'').join('');
     const parsed=extractJson(raw);
@@ -1444,7 +1444,7 @@ function renderMeikProResult(parsed,barClass,photoUrl,lbl){
 function safeColor(c,fallback){if(typeof c!=='string')return fallback;return /^#[0-9a-fA-F]{3,8}$/.test(c.trim())?c.trim():fallback;}
 function buildMoodboardCards(items){const grid=document.getElementById('moodboardGrid');grid.innerHTML='';currentMoodboardData=items;items.forEach((item,idx)=>{const card=document.createElement('div');card.className='moodboard-card';card.id='mb_card_'+idx;const c1=safeColor(item.varvid&&item.varvid[0],'#9b8fb5');const c2=safeColor(item.varvid&&item.varvid[1],'#c9a96e');const colors=(item.varvid||['#9b8fb5','#c9a96e','#d4957a']).map(c=>'<div class="mc-color" style="background:'+safeColor(c,'#9b8fb5')+'"></div>').join('');card.innerHTML='<div class="moodboard-visual" style="background:linear-gradient(135deg,'+c1+'33,'+c2+'22)"><div class="moodboard-emoji-bg">'+esc(item.emoji||'👗')+'</div><div class="moodboard-outfit-info"><div class="moodboard-outfit-name">'+esc(item.nimi||'')+'</div><div class="moodboard-outfit-style">'+esc(item.kirjeldus||'')+'</div></div></div><div class="moodboard-card-footer"><div class="mc-colors">'+colors+'</div><button class="mc-like" id="mc_like_'+idx+'" onclick="toggleLike('+idx+')">♡</button></div>';grid.appendChild(card);});document.getElementById('moodboardSection').classList.add('on');}
 function toggleLike(idx){const card=document.getElementById('mb_card_'+idx);const btn=document.getElementById('mc_like_'+idx);const liked=card.classList.contains('liked');card.classList.toggle('liked',!liked);btn.textContent=liked?'♡':'♥';}
-async function generateMoreMoodboard(){const key=getKey();if(!key)return;const btn=document.querySelector('.mb-action-btn.more');btn.textContent='⟳ Laen...';btn.disabled=true;const uritusNimi=(selectedUritus||selectedUritusCam)?.name||'Stiil';const sys='Loo 6 uut outfit inspiratsiooni ürituse "'+uritusNimi+'" jaoks. Vasta AINULT JSON massiivina:\n[{"nimi":"nimi","kirjeldus":"kirjeldus","varvid":["#hex1","#hex2","#hex3"],"emoji":"emoji"}]';try{const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-opus-4-5',max_tokens:800,messages:[{role:'user',content:sys}]})});const data=await checkRes(res);if(data.error)throw new Error(data.error.message);const raw=data.content.map(b=>b.text||'').join('');const parsed=extractJson(raw);buildMoodboardCards(parsed);}catch(e){console.error(e);}btn.textContent='↻ Rohkem valikuid';btn.disabled=false;}
+async function generateMoreMoodboard(){const key=getKey();if(!key)return;const btn=document.querySelector('.mb-action-btn.more');btn.textContent='⟳ Laen...';btn.disabled=true;const uritusNimi=(selectedUritus||selectedUritusCam)?.name||'Stiil';const sys='Loo 6 uut outfit inspiratsiooni ürituse "'+uritusNimi+'" jaoks. Vasta AINULT JSON massiivina:\n[{"nimi":"nimi","kirjeldus":"kirjeldus","varvid":["#hex1","#hex2","#hex3"],"emoji":"emoji"}]';try{const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-sonnet-4-5',max_tokens:800,messages:[{role:'user',content:sys}]})});const data=await checkRes(res);if(data.error)throw new Error(data.error.message);const raw=data.content.map(b=>b.text||'').join('');const parsed=extractJson(raw);buildMoodboardCards(parsed);}catch(e){console.error(e);}btn.textContent='↻ Rohkem valikuid';btn.disabled=false;}
 function toggleAuto(){autoOn=!autoOn;const btn=document.getElementById('autoBtn');if(autoT){clearInterval(autoT);autoT=null;}if(autoOn){if(!stream){autoOn=false;document.getElementById('err').textContent='Ava kõigepealt kaamera!';return;}btn.textContent='⬛ Peata';btn.classList.add('red');analyze();autoT=setInterval(()=>{if(!stream){clearInterval(autoT);autoT=null;autoOn=false;btn.textContent='Auto';btn.classList.remove('red');return;}analyze();},25000);}else{btn.textContent='Auto';btn.classList.remove('red');}}
 function rateStar(n){starRating=n;document.querySelectorAll('.star').forEach((s,i)=>s.classList.toggle('active',i<n));document.getElementById('feedbackSubmitBtn').disabled=false;}
 function submitFeedback(){document.getElementById('feedbackForm').style.display='none';document.getElementById('feedbackSent').classList.add('show');}
@@ -1453,6 +1453,64 @@ function shareFB(){window.open('https://www.facebook.com/sharer/sharer.php?u='+e
 function shareX(){const fb=lastFb||'';const text=encodeURIComponent('✦ GLÓW AI\n\n'+fb.substring(0,200)+'\n\n#GLOW #AI');window.open('https://twitter.com/intent/tweet?text='+text+'&url='+encodeURIComponent(window.location.href),'_blank');}
 function shareCopy(){const fb=lastFb||'';const text='✦ GLÓW AI\n\n'+fb+'\n\n'+window.location.href;if(navigator.clipboard){navigator.clipboard.writeText(text).then(()=>alert('✓ Kopeeritud!'));}else{const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);alert('✓ Kopeeritud!');}}
 init();
+if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(e=>console.warn('SW registreerimine ebaõnnestus:',e));});}
 </script>
 </body>
 </html>
+{
+  "name": "GLÓW · AI Assistent",
+  "short_name": "GLÓW",
+  "description": "AI ilurakendus meigi, stiili ja kosmeetika nõustamiseks",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0e0c0b",
+  "theme_color": "#c9a96e",
+  "lang": "et",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
+const CACHE_NAME = 'glow-v1';
+const CACHE_ASSETS = ['./', './index.html', './manifest.json', './icon.svg'];
+
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then(cache => cache.addAll(CACHE_ASSETS)).catch(() => {})
+  );
+  self.skipWaiting();
+});
+
+self.addEventListener('activate', event => {
+  event.waitUntil(
+    caches.keys().then(keys =>
+      Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k)))
+    )
+  );
+  self.clients.claim();
+});
+
+self.addEventListener('fetch', event => {
+  const req = event.request;
+  if (req.method !== 'GET') return;
+  const url = new URL(req.url);
+  if (url.origin !== self.location.origin) return;
+
+  event.respondWith(
+    fetch(req)
+      .then(res => {
+        if (res && res.ok) {
+          const copy = res.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put(req, copy)).catch(() => {});
+        }
+        return res;
+      })
+      .catch(() => caches.match(req).then(cached => cached || caches.match('./index.html')))
+  );
+});
