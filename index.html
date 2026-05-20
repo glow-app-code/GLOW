@@ -953,7 +953,7 @@ function initCredits(){const r=localStorage.getItem('glow_credits');if(r===null|
 function refreshSaldo(){const c=getCredits(),bar=document.getElementById('saldoBar'),count=document.getElementById('saldoCount'),sub=document.getElementById('saldoSub'),btn=document.getElementById('saldoBtn');if(!bar)return;if(c>0){if(c<=FREE_CREDITS){bar.style.background='rgba(122,158,142,0.15)';bar.style.borderColor='rgba(122,158,142,0.5)';count.style.color='#7ec98a';count.textContent=c+' tasuta analüüsi';sub.textContent='Prooviperiood';btn.style.color='#7ec98a';btn.style.borderColor='rgba(122,158,142,0.5)';}else{bar.style.background='rgba(201,169,110,0.12)';bar.style.borderColor='rgba(201,169,110,0.4)';count.style.color='var(--gold)';count.textContent=c+' analüüsi järel';sub.textContent='Krediiti on';btn.style.color='var(--gold)';btn.style.borderColor='rgba(201,169,110,0.5)';}}else{bar.style.background='rgba(196,115,107,0.12)';bar.style.borderColor='rgba(196,115,107,0.5)';count.style.color='#e8a090';count.textContent='0 analüüsi järel';sub.textContent='Krediit otsas';btn.style.color='#e8a090';btn.style.borderColor='rgba(196,115,107,0.5)';}}
 
 let salonBrandsConfig=[],salonConfigOpen=false;
-function loadSalonBrands(){const s=localStorage.getItem('glow_salon_brands');salonBrandsConfig=s?JSON.parse(s):[];return salonBrandsConfig;}
+function loadSalonBrands(){const s=localStorage.getItem('glow_salon_brands');try{salonBrandsConfig=s?JSON.parse(s):[];}catch(e){salonBrandsConfig=[];}return salonBrandsConfig;}
 function saveSalonBrands(){const checked=document.querySelectorAll('.brand-btn.active');salonBrandsConfig=Array.from(checked).map(b=>b.dataset.id);if(salonBrandsConfig.length===0){alert('Vali vähemalt üks bränd!');return;}localStorage.setItem('glow_salon_brands',JSON.stringify(salonBrandsConfig));updateSalonActiveView();toggleSalonConfig();}
 function updateSalonActiveView(){const saved=loadSalonBrands();const el=document.getElementById('salonActiveText');if(saved.length===0){el.innerHTML='<span style="color:rgba(255,255,255,0.5);font-size:12px">Brändid pole valitud</span>';document.getElementById('salonEditBtn').textContent='Seadista';}else{const names=saved.map(id=>{const b=DEPILE_BRANDS.find(x=>x.id===id);return b?'<span>'+b.name+'</span>':''}).join(' · ');el.innerHTML=names;document.getElementById('salonEditBtn').textContent='Muuda';}}
 function toggleSalonConfig(){salonConfigOpen=!salonConfigOpen;document.getElementById('salonConfig').classList.toggle('show',salonConfigOpen);document.getElementById('salonEditBtn').textContent=salonConfigOpen?'Sulge':(salonBrandsConfig.length>0?'Muuda':'Seadista');}
@@ -1013,6 +1013,8 @@ function getProSystem(procId){const brandStr=getSalonBrandString();const base=`S
 // OLEKUMUUTUJAD
 let mode='meik',stiilRegime='garderoob',stiilInput='galerii';
 let stream=null,autoOn=false,autoT=null,lastFb='',selectedPkg=PACKAGES[1],starRating=0,termsAccepted=false,currentMoodboardData=[];
+function extractJson(raw){if(!raw)throw new Error('Tühi vastus');const cleaned=raw.replace(/```json|```/g,'').trim();const s=cleaned.indexOf('{'),e=cleaned.lastIndexOf('}');const a=cleaned.indexOf('['),z=cleaned.lastIndexOf(']');let slice=cleaned;if(s>=0&&e>s&&(a<0||s<a))slice=cleaned.substring(s,e+1);else if(a>=0&&z>a)slice=cleaned.substring(a,z+1);return JSON.parse(slice);}
+async function checkRes(res){if(!res.ok){let msg='HTTP '+res.status;try{const t=await res.text();const j=JSON.parse(t);if(j.error&&j.error.message)msg=j.error.message;else msg+=': '+t.substring(0,200);}catch(_){}throw new Error(msg);}return res.json();}
 let currentFacing='user';
 let photoBank=[],selectedUritus=null,selectedUritusCam=null;
 const video=document.getElementById('vid'),canvas=document.getElementById('cv');
@@ -1078,7 +1080,7 @@ function buildUritusGridCam(){
 }
 
 // PILDIPANK
-function handleFileUpload(e){const files=Array.from(e.target.files);const remaining=MAX_PHOTOS-photoBank.length;if(files.length>remaining)document.getElementById('photoLimitWarn').classList.add('show');else document.getElementById('photoLimitWarn').classList.remove('show');files.slice(0,remaining).forEach(file=>{const reader=new FileReader();reader.onload=ev=>{photoBank.push({dataUrl:ev.target.result,b64:ev.target.result.split(',')[1],name:file.name});renderPhotoBank();refreshAnalyzeBankBtn();};reader.readAsDataURL(file);});e.target.value='';}
+function handleFileUpload(e){const files=Array.from(e.target.files);const remaining=MAX_PHOTOS-photoBank.length;if(files.length>remaining)document.getElementById('photoLimitWarn').classList.add('show');else document.getElementById('photoLimitWarn').classList.remove('show');const ALLOWED=['image/jpeg','image/png','image/gif','image/webp'];files.slice(0,remaining).forEach(file=>{const reader=new FileReader();reader.onload=ev=>{const mime=ALLOWED.includes(file.type)?file.type:'image/jpeg';photoBank.push({dataUrl:ev.target.result,b64:ev.target.result.split(',')[1],mime:mime,name:file.name});renderPhotoBank();refreshAnalyzeBankBtn();};reader.readAsDataURL(file);});e.target.value='';}
 function renderPhotoBank(){const bank=document.getElementById('photoBank');const grid=document.getElementById('photoGrid');const count=document.getElementById('photoBankCount');if(photoBank.length===0){bank.classList.remove('show');return;}bank.classList.add('show');count.textContent=photoBank.length+' pilti lisatud'+(photoBank.length===MAX_PHOTOS?' (max)':'');grid.innerHTML='';photoBank.forEach((p,i)=>{const thumb=document.createElement('div');thumb.className='photo-thumb';thumb.innerHTML='<img src="'+p.dataUrl+'"><button class="photo-thumb-remove" onclick="removePhoto('+i+')">×</button><div class="photo-thumb-num">'+(i+1)+'</div>';grid.appendChild(thumb);});}
 function removePhoto(idx){photoBank.splice(idx,1);document.getElementById('photoLimitWarn').classList.remove('show');renderPhotoBank();refreshAnalyzeBankBtn();}
 function clearPhotoBank(){if(photoBank.length===0)return;if(!confirm('Kustuta kõik '+photoBank.length+' pilti?'))return;photoBank=[];document.getElementById('photoLimitWarn').classList.remove('show');renderPhotoBank();refreshAnalyzeBankBtn();resetResults();}
@@ -1093,15 +1095,15 @@ async function analyzePildipank(){
   document.getElementById('loadingText').textContent='Analüüsin '+photoBank.length+' pilti...';
   document.getElementById('resultCard').scrollIntoView({behavior:'smooth',block:'start'});
   const sys=stiilRegime==='garderoob'?getPildipankGarderoobSystem(selectedUritus.name):getPildipankPoodSystem(selectedUritus.name);
-  const imageContent=photoBank.map((p,i)=>([{type:'text',text:'Pilt '+(i+1)+':'},{type:'image',source:{type:'base64',media_type:'image/jpeg',data:p.b64}}])).flat();
+  const imageContent=photoBank.map((p,i)=>([{type:'text',text:'Pilt '+(i+1)+':'},{type:'image',source:{type:'base64',media_type:p.mime||'image/jpeg',data:p.b64}}])).flat();
   const prompt=(stiilRegime==='garderoob'?'Vaata kõiki pilte minu garderoobist. Vali parim kombinatsioon ürituseks "'+selectedUritus.name+'".':'Vaata kõiki pilte poes proovitud esemetest. Soovita mida osta ürituse "'+selectedUritus.name+'" jaoks.')+' Vasta ainult JSON.';
   imageContent.push({type:'text',text:prompt});
   try{
     const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-opus-4-5',max_tokens:2500,system:sys,messages:[{role:'user',content:imageContent}]})});
-    const data=await res.json();if(data.error)throw new Error(data.error.message);
+    const data=await checkRes(res);if(data.error)throw new Error(data.error.message);
     const raw=data.content.map(b=>b.text||'').join('');
-    const parsed=JSON.parse(raw.replace(/```json|```/g,'').trim());
-    lastFb=parsed.feedback;setCredits(credits-1);
+    const parsed=extractJson(raw);
+    lastFb=parsed.feedback||'';setCredits(credits-1);
     document.getElementById('load').classList.remove('on');
     renderPildipankResult(parsed,stiilRegime==='garderoob'?'🏠 Garderoob · '+selectedUritus.name:'🛍 Pood · '+selectedUritus.name);
   }catch(e){document.getElementById('load').classList.remove('on');document.getElementById('resEmpty').style.display='block';document.getElementById('resEmpty').textContent='Viga: '+e.message;}
@@ -1142,7 +1144,7 @@ async function flipCam(){
   await startCam();
 }
 function updateFlipBtn(){const btn=document.getElementById('flipBtn');const badge=document.getElementById('camModeBadge');if(currentFacing==='environment'){btn.classList.add('flip-active');badge.textContent='📷 Tavakaamera';}else{btn.classList.remove('flip-active');badge.textContent='🤳 Selfie kaamera';}badge.classList.add('show');setTimeout(()=>badge.classList.remove('show'),2000);}
-function capture(){canvas.width=video.videoWidth||640;canvas.height=video.videoHeight||480;const ctx=canvas.getContext('2d');if(currentFacing==='user'){ctx.translate(canvas.width,0);ctx.scale(-1,1);}ctx.drawImage(video,0,0);return canvas.toDataURL('image/jpeg',0.85);}
+function capture(){canvas.width=video.videoWidth||640;canvas.height=video.videoHeight||480;const ctx=canvas.getContext('2d');ctx.drawImage(video,0,0);return canvas.toDataURL('image/jpeg',0.85);}
 
 // STIILI REŽIIM
 function setStiilRegime(regime){
@@ -1184,10 +1186,11 @@ function showAlternatiivid(){
   const uritusNimi=(selectedUritusCam||selectedUritus)?.name||'';
   const feedbackText=document.getElementById('feedbackText')?.innerText||'';
   fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-opus-4-5',max_tokens:600,messages:[{role:'user',content:'Kasutajal on järgmine riietuse tagasiside ürituse "'+uritusNimi+'" jaoks: '+feedbackText.substring(0,300)+'. Loo 3 konkreetset alternatiivset outfiti soovitust. Vasta AINULT JSON massiivina: [{"nimi":"outfit nimi","kirjeldus":"KONKREETNE kirjeldus mis esemeid kanda","varvid":["#hex1","#hex2","#hex3"],"emoji":"👗"}]'}]})})
-  .then(r=>r.json())
+  .then(r=>checkRes(r))
   .then(data=>{
+    if(data.error)throw new Error(data.error.message);
     const raw=data.content.map(b=>b.text||'').join('').trim();
-    const items=JSON.parse(raw.replace(/```json|```/g,'').trim());
+    const items=extractJson(raw);
     window.lastAlternatiivid=items;
     buildMoodboardCards(items);
     document.getElementById('moodboardSubtitle').textContent='Alternatiivid: '+uritusNimi;
@@ -1227,8 +1230,10 @@ function setMode(m){
   document.getElementById('proTip').classList.remove('show');
   document.getElementById('cameraCard').style.display='none';
 
-  // Peata kaamera
+  // Peata kaamera ja auto-režiim
   if(stream){stream.getTracks().forEach(t=>t.stop());stream=null;}
+  if(autoT){clearInterval(autoT);autoT=null;}
+  if(autoOn){autoOn=false;const ab=document.getElementById('autoBtn');if(ab){ab.textContent='Auto';ab.classList.remove('red');}}
   resetResults();
 
   if(m==='meik'){
@@ -1312,10 +1317,10 @@ async function analyze(){
   const dataUrl=capture();const b64=dataUrl.split(',')[1];
   try{
     const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-opus-4-5',max_tokens:2500,system:sys,messages:[{role:'user',content:[{type:'image',source:{type:'base64',media_type:'image/jpeg',data:b64}},{type:'text',text:prompt}]}]})});
-    const data=await res.json();if(data.error)throw new Error(data.error.message);
+    const data=await checkRes(res);if(data.error)throw new Error(data.error.message);
     const raw=data.content.map(b=>b.text||'').join('');
-    const parsed=JSON.parse(raw.replace(/```json|```/g,'').trim());
-    lastFb=parsed.feedback;setCredits(credits-1);
+    const parsed=extractJson(raw);
+    lastFb=parsed.feedback||'';setCredits(credits-1);
     document.getElementById('load').classList.remove('on');document.getElementById('scan').classList.remove('on');
     if(mode==='stiil')renderStiilCamResult(parsed,dataUrl,lbl);
     else renderMeikProResult(parsed,bar,dataUrl,lbl);
@@ -1431,14 +1436,14 @@ function renderMeikProResult(parsed,barClass,photoUrl,lbl){
 
 function buildMoodboardCards(items){const grid=document.getElementById('moodboardGrid');grid.innerHTML='';currentMoodboardData=items;items.forEach((item,idx)=>{const card=document.createElement('div');card.className='moodboard-card';card.id='mb_card_'+idx;const c1=item.varvid&&item.varvid[0]?item.varvid[0]:'#9b8fb5';const c2=item.varvid&&item.varvid[1]?item.varvid[1]:'#c9a96e';const colors=(item.varvid||['#9b8fb5','#c9a96e','#d4957a']).map(c=>'<div class="mc-color" style="background:'+c+'"></div>').join('');card.innerHTML='<div class="moodboard-visual" style="background:linear-gradient(135deg,'+c1+'33,'+c2+'22)"><div class="moodboard-emoji-bg">'+(item.emoji||'👗')+'</div><div class="moodboard-outfit-info"><div class="moodboard-outfit-name">'+(item.nimi||'')+'</div><div class="moodboard-outfit-style">'+(item.kirjeldus||'')+'</div></div></div><div class="moodboard-card-footer"><div class="mc-colors">'+colors+'</div><button class="mc-like" id="mc_like_'+idx+'" onclick="toggleLike('+idx+')">♡</button></div>';grid.appendChild(card);});document.getElementById('moodboardSection').classList.add('on');}
 function toggleLike(idx){const card=document.getElementById('mb_card_'+idx);const btn=document.getElementById('mc_like_'+idx);const liked=card.classList.contains('liked');card.classList.toggle('liked',!liked);btn.textContent=liked?'♡':'♥';}
-async function generateMoreMoodboard(){const key=getKey();if(!key)return;const btn=document.querySelector('.mb-action-btn.more');btn.textContent='⟳ Laen...';btn.disabled=true;const uritusNimi=(selectedUritus||selectedUritusCam)?.name||'Stiil';const sys='Loo 6 uut outfit inspiratsiooni ürituse "'+uritusNimi+'" jaoks. Vasta AINULT JSON massiivina:\n[{"nimi":"nimi","kirjeldus":"kirjeldus","varvid":["#hex1","#hex2","#hex3"],"emoji":"emoji"}]';try{const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-opus-4-5',max_tokens:800,messages:[{role:'user',content:sys}]})});const data=await res.json();const raw=data.content.map(b=>b.text||'').join('');const parsed=JSON.parse(raw.replace(/```json|```/g,'').trim());buildMoodboardCards(parsed);}catch(e){console.error(e);}btn.textContent='↻ Rohkem valikuid';btn.disabled=false;}
-function toggleAuto(){autoOn=!autoOn;const btn=document.getElementById('autoBtn');if(autoOn){btn.textContent='⬛ Peata';btn.classList.add('red');analyze();autoT=setInterval(analyze,25000);}else{btn.textContent='Auto';btn.classList.remove('red');clearInterval(autoT);}}
+async function generateMoreMoodboard(){const key=getKey();if(!key)return;const btn=document.querySelector('.mb-action-btn.more');btn.textContent='⟳ Laen...';btn.disabled=true;const uritusNimi=(selectedUritus||selectedUritusCam)?.name||'Stiil';const sys='Loo 6 uut outfit inspiratsiooni ürituse "'+uritusNimi+'" jaoks. Vasta AINULT JSON massiivina:\n[{"nimi":"nimi","kirjeldus":"kirjeldus","varvid":["#hex1","#hex2","#hex3"],"emoji":"emoji"}]';try{const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-opus-4-5',max_tokens:800,messages:[{role:'user',content:sys}]})});const data=await checkRes(res);if(data.error)throw new Error(data.error.message);const raw=data.content.map(b=>b.text||'').join('');const parsed=extractJson(raw);buildMoodboardCards(parsed);}catch(e){console.error(e);}btn.textContent='↻ Rohkem valikuid';btn.disabled=false;}
+function toggleAuto(){autoOn=!autoOn;const btn=document.getElementById('autoBtn');if(autoT){clearInterval(autoT);autoT=null;}if(autoOn){if(!stream){autoOn=false;document.getElementById('err').textContent='Ava kõigepealt kaamera!';return;}btn.textContent='⬛ Peata';btn.classList.add('red');analyze();autoT=setInterval(()=>{if(!stream){clearInterval(autoT);autoT=null;autoOn=false;btn.textContent='Auto';btn.classList.remove('red');return;}analyze();},25000);}else{btn.textContent='Auto';btn.classList.remove('red');}}
 function rateStar(n){starRating=n;document.querySelectorAll('.star').forEach((s,i)=>s.classList.toggle('active',i<n));document.getElementById('feedbackSubmitBtn').disabled=false;}
 function submitFeedback(){document.getElementById('feedbackForm').style.display='none';document.getElementById('feedbackSent').classList.add('show');}
-function shareIG(){if(navigator.share){navigator.share({title:'GLÓW',text:lastFb+'\n\n✦ GLÓW AI\n#GLOW #AI',url:window.location.href}).catch(()=>{});}else{alert('Ava Instagram → Lisa postitus → vali pilt galeriist');}}
+function shareIG(){const fb=lastFb||'';if(navigator.share){navigator.share({title:'GLÓW',text:fb+'\n\n✦ GLÓW AI\n#GLOW #AI',url:window.location.href}).catch(()=>{});}else{alert('Ava Instagram → Lisa postitus → vali pilt galeriist');}}
 function shareFB(){window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(window.location.href),'_blank');}
-function shareX(){const text=encodeURIComponent('✦ GLÓW AI\n\n'+lastFb.substring(0,200)+'\n\n#GLOW #AI');window.open('https://twitter.com/intent/tweet?text='+text+'&url='+encodeURIComponent(window.location.href),'_blank');}
-function shareCopy(){const text='✦ GLÓW AI\n\n'+lastFb+'\n\n'+window.location.href;if(navigator.clipboard){navigator.clipboard.writeText(text).then(()=>alert('✓ Kopeeritud!'));}else{const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);alert('✓ Kopeeritud!');}}
+function shareX(){const fb=lastFb||'';const text=encodeURIComponent('✦ GLÓW AI\n\n'+fb.substring(0,200)+'\n\n#GLOW #AI');window.open('https://twitter.com/intent/tweet?text='+text+'&url='+encodeURIComponent(window.location.href),'_blank');}
+function shareCopy(){const fb=lastFb||'';const text='✦ GLÓW AI\n\n'+fb+'\n\n'+window.location.href;if(navigator.clipboard){navigator.clipboard.writeText(text).then(()=>alert('✓ Kopeeritud!'));}else{const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);alert('✓ Kopeeritud!');}}
 init();
 </script>
 </body>
