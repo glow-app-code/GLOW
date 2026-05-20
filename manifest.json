@@ -1,0 +1,20 @@
+{
+  "name": "GLÓW · AI Assistent",
+  "short_name": "GLÓW",
+  "description": "AI ilurakendus meigi, stiili ja kosmeetika nõustamiseks",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0e0c0b",
+  "theme_color": "#c9a96e",
+  "lang": "et",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
