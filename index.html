@@ -598,6 +598,46 @@ canvas{display:none}
 .install-later:hover{border-color:var(--gold-dim);color:#fff}
 .install-skip{background:none;border:none;color:rgba(255,255,255,0.4);font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;text-decoration:underline;text-underline-offset:3px;padding:6px}
 .install-skip:hover{color:rgba(255,255,255,0.7)}
+
+/* === Sõbra-soovitused === */
+.friend-card{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;background:linear-gradient(135deg,rgba(155,143,181,0.15),rgba(201,169,110,0.1));border:1px solid rgba(155,143,181,0.4);border-radius:4px;margin-bottom:16px;cursor:pointer;transition:transform .15s,border-color .2s}
+.friend-card:hover,.friend-card:active{border-color:var(--gold);transform:translateY(-1px)}
+.friend-left{display:flex;align-items:center;gap:10px;flex:1;min-width:0}
+.friend-icon-box{width:36px;height:36px;border-radius:50%;background:rgba(201,169,110,0.18);border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--gold)}
+.friend-info{flex:1;min-width:0}
+.friend-title{font-size:13px;color:#fff;font-weight:600;line-height:1.2;margin-bottom:2px;font-family:'Cormorant Garamond',serif}
+.friend-sub{font-size:11px;color:rgba(255,255,255,0.55);line-height:1.4}
+.friend-sub strong{color:var(--gold)}
+.friend-arrow{font-size:18px;color:var(--gold);flex-shrink:0;font-family:'DM Mono',monospace}
+
+.friend-modal{position:fixed;inset:0;background:rgba(14,12,11,0.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:2000;display:none;align-items:center;justify-content:center;padding:24px;animation:fadeIn .3s ease}
+.friend-modal.show{display:flex}
+.friend-card-modal{background:linear-gradient(135deg,#1a1614 0%,#0e0c0b 100%);border:1px solid var(--gold);border-radius:12px;padding:28px 24px 20px;max-width:380px;width:100%;position:relative;box-shadow:0 0 50px rgba(201,169,110,0.3),inset 0 0 30px rgba(201,169,110,0.05);animation:fadeUp .4s ease}
+.friend-close{position:absolute;top:10px;right:12px;background:none;border:none;color:rgba(255,255,255,0.45);font-size:26px;cursor:pointer;padding:4px 10px;line-height:1;transition:color .2s}
+.friend-close:hover{color:#fff}
+.friend-logo-row{text-align:center;margin-bottom:8px}
+.friend-logo-row svg{color:var(--gold)}
+.friend-modal-title{font-family:'Cormorant Garamond',serif;font-size:24px;color:#fff;text-align:center;font-weight:600;margin-bottom:6px}
+.friend-modal-sub{font-size:11px;letter-spacing:.25em;color:var(--blush);text-transform:uppercase;text-align:center;margin-bottom:22px}
+.friend-bonus-line{text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;color:var(--gold-bright);margin-bottom:18px;line-height:1.5}
+.friend-bonus-line strong{font-style:normal;font-weight:600;color:var(--gold-bright)}
+.friend-code-display{background:rgba(201,169,110,0.1);border:1px solid var(--gold);border-radius:8px;padding:16px 20px;text-align:center;margin-bottom:14px}
+.friend-code-label{font-size:9px;letter-spacing:.3em;color:rgba(255,255,255,0.5);text-transform:uppercase;margin-bottom:6px}
+.friend-code-value{font-family:'DM Mono',monospace;font-size:26px;color:var(--gold-bright);font-weight:700;letter-spacing:.18em;line-height:1}
+.friend-qr-wrap{display:flex;justify-content:center;margin-bottom:14px}
+.friend-qr{display:block;border-radius:8px;border:1px solid var(--gold-dim);padding:8px;background:#fff;width:160px;height:160px}
+.friend-url{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(255,255,255,0.6);text-align:center;margin-bottom:14px;word-break:break-all;padding:0 10px}
+.friend-share-btn{width:100%;padding:15px;background:var(--gold);color:var(--bg);border:none;border-radius:6px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.25em;text-transform:uppercase;cursor:pointer;font-weight:700;display:flex;align-items:center;justify-content:center;gap:10px;transition:transform .15s,box-shadow .15s;margin-bottom:8px}
+.friend-share-btn:hover,.friend-share-btn:active{transform:translateY(-1px);box-shadow:0 6px 20px rgba(201,169,110,0.4)}
+.friend-copy-btn{width:100%;padding:12px;background:transparent;color:var(--gold);border:1px solid var(--gold);border-radius:6px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.25em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:background .2s}
+.friend-copy-btn:hover{background:rgba(201,169,110,0.12)}
+
+/* Sõbra-boonuse teade (toast) */
+.friend-toast{position:fixed;top:20px;left:50%;transform:translateX(-50%) translateY(-120%);background:linear-gradient(135deg,rgba(232,201,126,0.96),rgba(201,169,110,0.96));color:#0e0c0b;padding:14px 20px;border-radius:10px;box-shadow:0 8px 30px rgba(0,0,0,0.4);z-index:3000;max-width:340px;width:calc(100% - 32px);display:flex;align-items:center;gap:12px;transition:transform .4s cubic-bezier(.2,1,.2,1)}
+.friend-toast.show{transform:translateX(-50%) translateY(0)}
+.friend-toast-icon{width:32px;height:32px;border-radius:50%;background:rgba(14,12,11,0.18);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#0e0c0b}
+.friend-toast-text{font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:600;line-height:1.35}
+.friend-toast-text strong{font-weight:700}
 </style>
 </head>
 <body>
@@ -708,6 +748,18 @@ canvas{display:none}
     </div>
   </div>
   <button class="saldo-btn" id="saldoBtn">Osta</button>
+</div>
+
+<!-- KUTSU SÕPRU kaart -->
+<div class="friend-card" id="friendCard" onclick="showFriendModal()">
+  <div class="friend-left">
+    <div class="friend-icon-box" data-icon="sparkle" data-icon-size="22"></div>
+    <div class="friend-info">
+      <div class="friend-title">Kutsu sõpru, saa krediiti</div>
+      <div class="friend-sub">Iga sõber annab teile mõlemale <strong>+5 analüüsi</strong></div>
+    </div>
+  </div>
+  <span class="friend-arrow">→</span>
 </div>
 
 <div class="pricing-screen" id="pricingScreen">
@@ -1077,6 +1129,40 @@ canvas{display:none}
   </div>
 </div>
 
+<!-- KUTSU SÕPRU modaal -->
+<div id="friendModal" class="friend-modal" role="dialog" aria-modal="true" aria-labelledby="friendModalTitle">
+  <div class="friend-card-modal">
+    <button class="friend-close" onclick="closeFriendModal()" aria-label="Sulge">×</button>
+    <div class="friend-logo-row"><span data-icon="sparkle" data-icon-size="36"></span></div>
+    <div class="friend-modal-title" id="friendModalTitle">Kutsu sõpru</div>
+    <div class="friend-modal-sub">Iga sõber = boonus mõlemale</div>
+    <div class="friend-bonus-line">Saada link sõbrale — kui ta avab GLÓW, saate <strong>mõlemad +5 analüüsi</strong> kingituseks ✦</div>
+
+    <div class="friend-code-display">
+      <div class="friend-code-label">Sinu personaalne kood</div>
+      <div class="friend-code-value" id="friendCodeValue">—</div>
+    </div>
+
+    <div class="friend-qr-wrap"><img class="friend-qr" id="friendQR" alt="QR-kood" src=""></div>
+    <div class="friend-url" id="friendUrl">glow4me.ee</div>
+
+    <button class="friend-share-btn" onclick="shareFriendLink()">
+      <span style="display:inline-flex" data-icon="upload" data-icon-size="18"></span>
+      <span>Jaga linki</span>
+    </button>
+    <button class="friend-copy-btn" onclick="copyFriendLink(this)">
+      <span style="display:inline-flex" data-icon="link" data-icon-size="14"></span>
+      <span id="friendCopyTxt">Kopeeri link</span>
+    </button>
+  </div>
+</div>
+
+<!-- Sõbra-boonuse toast -->
+<div id="friendToast" class="friend-toast" role="status" aria-live="polite">
+  <div class="friend-toast-icon" data-icon="sparkle" data-icon-size="20"></div>
+  <div class="friend-toast-text" id="friendToastText">Tere tulemast! <strong>+5 analüüsi</strong> sõbralt</div>
+</div>
+
 <script>
 // === SVG-IKOONIDE KOGU (Phosphor/Lucide stiil — õhukesed jooned) ===
 const ICONS={
@@ -1127,6 +1213,19 @@ const ICONS={
 };
 function iconHtml(name,size,color){const s=size||24;const c=color||'currentColor';const p=ICONS[name]||ICONS.sparkle;return '<svg xmlns="http://www.w3.org/2000/svg" width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none" stroke="'+c+'" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+p+'</svg>';}
 function renderStaticIcons(){document.querySelectorAll('[data-icon]').forEach(el=>{const name=el.dataset.icon;const size=parseInt(el.dataset.iconSize||'28',10);el.innerHTML=iconHtml(name,size);});}
+
+// === SÕBRA-SOOVITUSED ===
+const REF_BONUS=5;
+function generateRefCode(){const chars='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';let code='GLW';for(let i=0;i<4;i++)code+=chars[Math.floor(Math.random()*chars.length)];return code;}
+function getMyRefCode(){let code=localStorage.getItem('glow_my_code');if(!code||!/^GLW[A-Z2-9]{4}$/.test(code)){code=generateRefCode();localStorage.setItem('glow_my_code',code);}return code;}
+function buildRefUrl(code){return 'https://glow4me.ee/?ref='+encodeURIComponent(code||getMyRefCode());}
+function checkIncomingReferral(){try{const params=new URLSearchParams(window.location.search);const ref=(params.get('ref')||'').toUpperCase().trim();if(!ref)return;if(!/^GLW[A-Z2-9]{4}$/.test(ref))return;if(ref===getMyRefCode())return;if(localStorage.getItem('glow_ref_used')==='true')return;localStorage.setItem('glow_referrer_code',ref);localStorage.setItem('glow_ref_used','true');try{setCredits(getCredits()+REF_BONUS);}catch(_){const cur=parseInt(localStorage.getItem('glow_credits')||'3',10);localStorage.setItem('glow_credits',String(cur+REF_BONUS));}// Clean URL
+try{const u=new URL(window.location.href);u.searchParams.delete('ref');history.replaceState({},'',u.pathname+(u.search?u.search:'')+u.hash);}catch(_){}setTimeout(()=>showRefToast(REF_BONUS),1500);}catch(_){}}
+function showRefToast(bonus){const t=document.getElementById('friendToast');const txt=document.getElementById('friendToastText');if(!t)return;txt.innerHTML='Tere tulemast! <strong>+'+bonus+' analüüsi</strong> sõbralt';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),5500);}
+function showFriendModal(){const code=getMyRefCode();const url=buildRefUrl(code);document.getElementById('friendCodeValue').textContent=code;document.getElementById('friendUrl').textContent=url.replace(/^https?:\/\//,'');document.getElementById('friendQR').src='https://api.qrserver.com/v1/create-qr-code/?size=160x160&margin=2&data='+encodeURIComponent(url);document.getElementById('friendModal').classList.add('show');document.getElementById('friendCopyTxt').textContent='Kopeeri link';}
+function closeFriendModal(){const m=document.getElementById('friendModal');if(m)m.classList.remove('show');}
+async function shareFriendLink(){const code=getMyRefCode();const url=buildRefUrl(code);const text='Proovi GLÓW — AI ilurakendus. Minu kutsega saad +'+REF_BONUS+' tasuta analüüsi. ✦';if(navigator.share){try{await navigator.share({title:'GLÓW · sõbra kutse',text:text,url:url});}catch(_){}}else{copyFriendLink(document.querySelector('.friend-copy-btn'));}}
+function copyFriendLink(btn){const url=buildRefUrl();const txt=document.getElementById('friendCopyTxt');const done=()=>{if(txt)txt.textContent='✓ Kopeeritud';setTimeout(()=>{if(txt)txt.textContent='Kopeeri link';},2000);};if(navigator.clipboard){navigator.clipboard.writeText(url).then(done).catch(()=>{const ta=document.createElement('textarea');ta.value=url;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);done();});}else{const ta=document.createElement('textarea');ta.value=url;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);done();}}
 
 // === Install Prompt (Add to Home Screen) ===
 let deferredInstallPrompt=null;
@@ -1460,7 +1559,7 @@ function startCountdown(){if(!termsAccepted)return;localStorage.setItem('glow_te
 function runCountdown(){const track=document.getElementById('clockTrack'),clockLogo=document.getElementById('clockLogo'),clockNum=document.getElementById('clockNum'),msg=document.getElementById('countdownMsg');const circ=2*Math.PI*85;track.style.strokeDasharray=circ;track.style.strokeDashoffset=circ;setTimeout(()=>{clockLogo.style.transition='opacity 0.3s';clockLogo.style.opacity='0';setTimeout(()=>{clockLogo.style.display='none';clockNum.style.display='block';clockNum.textContent='3';clockNum.style.opacity='0';clockNum.style.transition='opacity 0.2s';setTimeout(()=>{clockNum.style.opacity='1';},50);},300);},300);const totalMs=3000;const startTime=performance.now()+600;let lastNum=4;function tick(now){const elapsed=Math.max(0,now-startTime);const progress=Math.min(elapsed/totalMs,1);track.style.strokeDashoffset=circ*(1-progress);const displayNum=Math.max(1,Math.ceil(3-progress*3));if(displayNum!==lastNum&&displayNum>=1&&displayNum<=3){lastNum=displayNum;clockNum.style.transition='none';clockNum.style.opacity='0';clockNum.textContent=String(displayNum);requestAnimationFrame(()=>{clockNum.style.transition='opacity 0.15s';clockNum.style.opacity='1';clockNum.style.transform='scale(1.2)';setTimeout(()=>{clockNum.style.transform='scale(1)';},150);});}if(progress>=0.85&&msg.textContent==='✦')msg.textContent='Käivitun...';if(progress<1){requestAnimationFrame(tick);}else{clockNum.textContent='✦';clockNum.style.fontSize='48px';msg.textContent='Tere tulemast!';setTimeout(()=>launchApp(),600);}}requestAnimationFrame(tick);}
 function launchApp(){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('mainWrapper').style.display='block';initApp();}
 function logout(){if(stream){stream.getTracks().forEach(t=>t.stop());stream=null;}localStorage.removeItem('glow_terms_accepted');document.getElementById('mainWrapper').style.display='none';termsAccepted=false;currentFacing='user';photoBank=[];document.getElementById('termsCheckbox').classList.remove('checked');const btn=document.getElementById('termsConfirmBtn');btn.disabled=true;btn.classList.remove('active');showScreen('splashScreen');}
-function initApp(){renderStaticIcons();initCredits();const key=localStorage.getItem('glow_api_key');if(key){document.getElementById('keyStatus').style.display='block';document.getElementById('saldoBar').style.display='flex';}else{document.getElementById('apiSetupCard').style.display='block';}setMode('meik');setTimeout(()=>refreshSaldo(),50);}
+function initApp(){renderStaticIcons();initCredits();checkIncomingReferral();getMyRefCode();const key=localStorage.getItem('glow_api_key');if(key){document.getElementById('keyStatus').style.display='block';document.getElementById('saldoBar').style.display='flex';}else{document.getElementById('apiSetupCard').style.display='block';}setMode('meik');setTimeout(()=>refreshSaldo(),50);}
 function init(){renderStaticIcons();if(localStorage.getItem('glow_terms_accepted')==='true'){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('mainWrapper').style.display='block';initApp();}else{showScreen('splashScreen');}}
 
 function setMode(m){
