@@ -1,5 +1,5 @@
-const CACHE_NAME = 'glow-v1';
-const CACHE_ASSETS = ['./', './index.html', './manifest.json', './icon.svg'];
+const CACHE_NAME = 'glow-v2';
+const CACHE_ASSETS = ['./', './index.html', './manifest.json', './icon.svg', './icon-180.png', './icon-192.png', './icon-512.png'];
 
 self.addEventListener('install', event => {
   event.waitUntil(
