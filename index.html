@@ -538,6 +538,39 @@ header{text-align:center;padding:24px 0 32px;position:relative;animation:fadeUp 
 .footer-bottom{margin-top:12px;font-size:9px;color:rgba(255,255,255,0.15);letter-spacing:.1em}
 canvas{display:none}
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+/* Add to Home Screen modaal */
+.install-modal{position:fixed;inset:0;background:rgba(14,12,11,0.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:2000;display:none;align-items:center;justify-content:center;padding:24px;animation:fadeIn .3s ease}
+.install-modal.show{display:flex}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.install-card{background:linear-gradient(135deg,#1a1614 0%,#0e0c0b 100%);border:1px solid var(--gold);border-radius:12px;padding:28px 24px 20px;max-width:380px;width:100%;position:relative;box-shadow:0 0 50px rgba(201,169,110,0.3),inset 0 0 30px rgba(201,169,110,0.05);animation:fadeUp .4s ease}
+.install-close{position:absolute;top:10px;right:12px;background:none;border:none;color:rgba(255,255,255,0.45);font-size:26px;cursor:pointer;padding:4px 10px;line-height:1;transition:color .2s}
+.install-close:hover{color:#fff}
+.install-logo{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:300;letter-spacing:.25em;color:#fff;text-align:center;margin-bottom:6px;line-height:1}
+.install-logo em{color:var(--gold);font-style:italic;text-shadow:0 0 20px rgba(201,169,110,0.7)}
+.install-title{font-family:'Cormorant Garamond',serif;font-size:24px;color:#fff;text-align:center;font-weight:600;margin-bottom:6px}
+.install-sub{font-size:10px;letter-spacing:.3em;color:var(--blush);text-transform:uppercase;text-align:center;margin-bottom:22px}
+.install-content{display:none}
+.install-content.show{display:block;animation:fadeUp .4s ease both}
+.install-steps{margin-bottom:18px}
+.install-step{display:flex;gap:14px;align-items:flex-start;margin-bottom:14px}
+.install-step:last-child{margin-bottom:0}
+.install-step-num{width:32px;height:32px;border-radius:50%;border:1px solid var(--gold);color:var(--gold);font-size:13px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:rgba(201,169,110,0.12);font-family:'DM Mono',monospace}
+.install-step-text{font-family:'Cormorant Garamond',serif;font-size:16px;color:rgba(255,255,255,0.92);line-height:1.5;padding-top:5px}
+.install-step-text strong{color:#fff;font-weight:600}
+.ios-share-glyph{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;background:#0a84ff;border-radius:5px;color:#fff;font-size:13px;font-weight:700;vertical-align:middle;margin:0 2px;line-height:1}
+.install-btn-android{width:100%;padding:16px;background:var(--gold);color:var(--bg);border:none;border-radius:6px;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.3em;text-transform:uppercase;cursor:pointer;font-weight:700;display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:14px;transition:transform .15s,box-shadow .15s}
+.install-btn-android:hover,.install-btn-android:active{transform:translateY(-1px);box-shadow:0 6px 20px rgba(201,169,110,0.4)}
+.install-btn-icon{font-size:18px}
+.install-hint{font-size:13px;color:rgba(255,255,255,0.6);text-align:center;line-height:1.6;margin-bottom:14px;font-family:'Cormorant Garamond',serif;font-style:italic;padding:0 4px}
+.install-qr-wrap{display:flex;justify-content:center;margin-bottom:12px}
+.install-qr{display:block;border-radius:8px;border:1px solid var(--gold-dim);padding:8px;background:#fff;width:180px;height:180px}
+.install-url{font-family:'DM Mono',monospace;font-size:13px;letter-spacing:.2em;color:var(--gold);text-align:center;margin-bottom:18px;font-weight:500}
+.install-actions{display:flex;flex-direction:column;gap:8px;border-top:1px solid rgba(255,255,255,0.08);padding-top:14px;margin-top:6px}
+.install-later{background:none;border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.7);border-radius:5px;padding:10px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.25em;text-transform:uppercase;cursor:pointer;transition:border-color .2s}
+.install-later:hover{border-color:var(--gold-dim);color:#fff}
+.install-skip{background:none;border:none;color:rgba(255,255,255,0.4);font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;text-decoration:underline;text-underline-offset:3px;padding:6px}
+.install-skip:hover{color:rgba(255,255,255,0.7)}
 </style>
 </head>
 <body>
@@ -942,7 +975,79 @@ canvas{display:none}
 </footer>
 </div>
 
+<!-- Add to Home Screen modaal — ilmub pärast esimest analüüsi -->
+<div id="installModal" class="install-modal" role="dialog" aria-modal="true" aria-labelledby="installTitle">
+  <div class="install-card">
+    <button class="install-close" onclick="dismissInstall()" aria-label="Sulge">×</button>
+    <div class="install-logo">GL<em>Ó</em>W</div>
+    <div class="install-title" id="installTitle">Lisa avaekraanile</div>
+    <div class="install-sub">3 sekundit · alati käepärast</div>
+
+    <!-- iOS Safari -->
+    <div id="installIOS" class="install-content">
+      <div class="install-hint" style="margin-bottom:18px">Et avada GLÓW ühe puudutusega:</div>
+      <div class="install-steps">
+        <div class="install-step">
+          <div class="install-step-num">1</div>
+          <div class="install-step-text">Vajuta <strong>Share</strong> <span class="ios-share-glyph">↑</span> nuppu all Safari menüüribal</div>
+        </div>
+        <div class="install-step">
+          <div class="install-step-num">2</div>
+          <div class="install-step-text">Keri alla, vali <strong>"Add to Home Screen"</strong></div>
+        </div>
+        <div class="install-step">
+          <div class="install-step-num">3</div>
+          <div class="install-step-text">Kinnita <strong>"Add"</strong> üleval paremas nurgas</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- iOS Chrome / Firefox -->
+    <div id="installIOSOther" class="install-content">
+      <div class="install-hint">iOS-i puhul töötab paigaldus ainult Safari kaudu.<br>Ava see lehekülg Safari'is:</div>
+      <div class="install-url">glow4me.ee</div>
+      <div class="install-hint" style="font-size:11px;margin-top:8px">Seejärel vajuta Share → "Add to Home Screen"</div>
+    </div>
+
+    <!-- Android Chrome -->
+    <div id="installAndroid" class="install-content">
+      <div class="install-hint">Üks puudutus, kohe valmis:</div>
+      <button class="install-btn-android" onclick="triggerAndroidInstall()">
+        <span class="install-btn-icon">⤓</span>
+        <span>Installi GLÓW</span>
+      </button>
+      <div class="install-hint" style="font-size:12px">Kui ülaolev nupp ei tööta — Chrome'i menüüst (<strong>⋮</strong>) vali <strong>"Install app"</strong> või <strong>"Add to Home Screen"</strong>.</div>
+    </div>
+
+    <!-- Desktop -->
+    <div id="installDesktop" class="install-content">
+      <div class="install-hint">Skaneeri QR-koodiga telefoniga, et avada mobiilis:</div>
+      <div class="install-qr-wrap">
+        <img class="install-qr" alt="QR kood glow4me.ee jaoks" src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=2&data=https%3A%2F%2Fglow4me.ee%2F">
+      </div>
+      <div class="install-url">glow4me.ee</div>
+    </div>
+
+    <div class="install-actions">
+      <button class="install-later" onclick="dismissInstall()">Hiljem</button>
+      <button class="install-skip" onclick="dismissInstallForever()">Mitte näidata uuesti</button>
+    </div>
+  </div>
+</div>
+
 <script>
+// === Install Prompt (Add to Home Screen) ===
+let deferredInstallPrompt=null;
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstallPrompt=e;});
+window.addEventListener('appinstalled',()=>{deferredInstallPrompt=null;localStorage.setItem('glow_install_dismissed','true');dismissInstall();});
+function isStandalone(){return window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone===true;}
+function detectPlatform(){const ua=navigator.userAgent;const isIOS=/iPhone|iPad|iPod/.test(ua)&&!window.MSStream;const isAndroid=/Android/.test(ua);const isSafari=/Safari/.test(ua)&&!/CriOS|FxiOS|EdgiOS|Chrome/.test(ua);if(isIOS&&isSafari)return 'ios-safari';if(isIOS)return 'ios-other';if(isAndroid)return 'android';return 'desktop';}
+function showInstallPrompt(){if(isStandalone())return;if(localStorage.getItem('glow_install_dismissed')==='true')return;const platform=detectPlatform();['installIOS','installIOSOther','installAndroid','installDesktop'].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.remove('show');});let panelId='installDesktop';if(platform==='ios-safari')panelId='installIOS';else if(platform==='ios-other')panelId='installIOSOther';else if(platform==='android')panelId='installAndroid';const panel=document.getElementById(panelId);if(panel)panel.classList.add('show');document.getElementById('installModal').classList.add('show');}
+function dismissInstall(){const m=document.getElementById('installModal');if(m)m.classList.remove('show');}
+function dismissInstallForever(){localStorage.setItem('glow_install_dismissed','true');dismissInstall();}
+async function triggerAndroidInstall(){if(!deferredInstallPrompt){alert('Chrome menüüst (⋮) vali "Install app" või "Add to Home Screen"');return;}deferredInstallPrompt.prompt();try{const {outcome}=await deferredInstallPrompt.userChoice;if(outcome==='accepted')dismissInstall();}catch(_){}deferredInstallPrompt=null;}
+function maybeShowInstallAfterAnalysis(){if(localStorage.getItem('glow_install_shown_once')==='true')return;localStorage.setItem('glow_install_shown_once','true');setTimeout(showInstallPrompt,2500);}
+
 const FREE_CREDITS=3;
 const VERDICT_CONFIG={yes:{icon:'✨',sub:'Suurepärane'},maybe:{icon:'🤔',sub:'Vajab tähelepanu'},no:{icon:'⚠️',sub:'Vajab parandust'}};
 const PACKAGES=[{count:'10',price:'0.99',unit:'0.10'},{count:'50',price:'4.50',unit:'0.09'},{count:'100',price:'7.99',unit:'0.08'},{count:'200',price:'12.99',unit:'0.06'}];
@@ -1158,6 +1263,7 @@ async function analyzePildipank(){
     lastFb=parsed.feedback||'';setCredits(credits-1);
     document.getElementById('load').classList.remove('on');
     renderPildipankResult(parsed,stiilRegime==='garderoob'?'🏠 Garderoob · '+selectedUritus.name:'🛍 Pood · '+selectedUritus.name);
+    maybeShowInstallAfterAnalysis();
   }catch(e){document.getElementById('load').classList.remove('on');document.getElementById('resEmpty').style.display='block';document.getElementById('resEmpty').textContent='Viga: '+e.message;}
   btn.className='analyze-bank-btn active';btn.disabled=false;btn.textContent='✦ Analüüsi minu valik';refreshAnalyzeBankBtn();
 }
@@ -1381,6 +1487,7 @@ async function analyze(){
     if(mode==='stiil')renderStiilCamResult(parsed,dataUrl,lbl);
     else renderMeikProResult(parsed,bar,dataUrl,lbl);
     setDot('live','Analüüs valmis ✦');
+    maybeShowInstallAfterAnalysis();
   }catch(e){
     document.getElementById('load').classList.remove('on');document.getElementById('scan').classList.remove('on');
     if(e.name==='AbortError'){setDot('idle','Tühistatud');}else{document.getElementById('err').textContent='Viga: '+e.message;setDot('idle','Viga');}
