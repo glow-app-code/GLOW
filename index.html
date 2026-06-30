@@ -552,19 +552,42 @@ header{text-align:center;padding:24px 0 32px;position:relative;animation:fadeUp 
 .footer-bottom{margin-top:12px;font-size:9px;color:rgba(255,255,255,0.15);letter-spacing:.1em}
 canvas{display:none}
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-/* SVG-ikoonide üldised stiilid */
+/* SVG-ikoonide üldised stiilid — kasutavad brändi-värve, mitte valget */
 [data-icon]{display:inline-flex;align-items:center;justify-content:center}
-.micon[data-icon]{color:#fff;margin-bottom:8px}
-.mode.active .micon[data-icon]{color:var(--mc,var(--gold))}
-.regime-icon[data-icon]{color:#fff;display:flex;justify-content:center;margin-bottom:10px}
-.regime-btn.active .regime-icon[data-icon]{color:#c4b8e0}
-.sib-icon[data-icon]{color:#fff;display:flex;justify-content:center;margin-bottom:8px}
-.stiil-input-btn.active .sib-icon[data-icon]{color:#c4b8e0}
-.upload-zone-icon[data-icon]{color:var(--stiil);display:flex;justify-content:center;margin-bottom:8px}
-.uritus-btn .uritus-icon svg,.meik-style-btn .msb-icon svg,.proc-btn .proc-icon svg{color:rgba(255,255,255,0.85);display:block;margin:0 auto 4px}
-.uritus-btn.active .uritus-icon svg,.meik-style-btn.active .msb-icon svg,.proc-btn.active .proc-icon svg{color:var(--gold-bright)}
-.proc-btn.recommend .proc-icon svg{color:#c4b8e0}
-.flip-btn [data-icon]{vertical-align:middle}
+
+/* Mode-nupud: meik=blush, stiil=lavender, pro=gold (kasutab --mc muutujat) */
+.mode .micon[data-icon]{color:var(--mc);opacity:.7;margin-bottom:8px;transition:opacity .25s,filter .25s,transform .25s}
+.mode.active .micon[data-icon]{color:var(--mc);opacity:1;filter:drop-shadow(0 0 6px color-mix(in srgb,var(--mc) 50%,transparent));transform:scale(1.08)}
+
+/* Stiili regime + sisendi-nupud: lavender baas */
+.regime-icon[data-icon]{color:#c4b8e0;opacity:.7;display:flex;justify-content:center;margin-bottom:10px;transition:opacity .25s,filter .25s,transform .25s}
+.regime-btn.active .regime-icon[data-icon]{color:#c4b8e0;opacity:1;filter:drop-shadow(0 0 6px rgba(196,184,224,0.5));transform:scale(1.08)}
+.sib-icon[data-icon]{color:#c4b8e0;opacity:.7;display:flex;justify-content:center;margin-bottom:8px;transition:opacity .25s,filter .25s}
+.stiil-input-btn.active .sib-icon[data-icon]{color:#c4b8e0;opacity:1;filter:drop-shadow(0 0 5px rgba(196,184,224,0.5))}
+.upload-zone-icon[data-icon]{color:var(--lav);opacity:.85;display:flex;justify-content:center;margin-bottom:8px;transition:opacity .25s}
+.upload-zone:hover .upload-zone-icon[data-icon],.upload-zone:active .upload-zone-icon[data-icon]{opacity:1;color:#c4b8e0}
+
+/* Kategooria-ruudustikud: meik (blush), stiili üritused (lavender), pro protseduurid (gold) */
+.meik-style-btn .msb-icon svg{color:var(--blush);opacity:.75;display:block;margin:0 auto 4px;transition:opacity .2s,color .2s,transform .2s}
+.meik-style-btn.active .msb-icon svg{color:#f0b890;opacity:1;transform:scale(1.1);filter:drop-shadow(0 0 4px rgba(240,184,144,0.5))}
+.uritus-btn .uritus-icon svg{color:#c4b8e0;opacity:.7;display:block;margin:0 auto 4px;transition:opacity .2s,color .2s,transform .2s}
+.uritus-btn.active .uritus-icon svg{color:#d8c8f0;opacity:1;transform:scale(1.1);filter:drop-shadow(0 0 4px rgba(196,184,224,0.55))}
+.proc-btn .proc-icon svg{color:var(--gold);opacity:.75;display:block;margin:0 auto 4px;transition:opacity .2s,color .2s,transform .2s}
+.proc-btn.active .proc-icon svg{color:var(--gold-bright);opacity:1;transform:scale(1.1);filter:drop-shadow(0 0 4px rgba(232,201,126,0.6))}
+.proc-btn.recommend .proc-icon svg{color:#c4b8e0;opacity:.9}
+.proc-btn.recommend.active .proc-icon svg{color:#d8c8f0;opacity:1;filter:drop-shadow(0 0 4px rgba(196,184,224,0.55))}
+
+/* Free-badge ja friend-card ikoonid */
+.free-badge [data-icon]{color:var(--gold-bright);filter:drop-shadow(0 0 6px rgba(232,201,126,0.4))}
+.friend-icon-box[data-icon]{color:var(--gold-bright)}
+
+/* Kaamera-flip nupp */
+.flip-btn [data-icon]{vertical-align:middle;color:rgba(255,255,255,0.7);transition:color .2s}
+.flip-btn.flip-active [data-icon]{color:var(--gold-bright)}
+
+/* Install-modaali ja sõbra-modaali ikoonid */
+.install-card [data-icon],.friend-card-modal [data-icon]{color:var(--gold-bright)}
+.friend-toast-icon[data-icon]{color:#0e0c0b}
 
 /* Add to Home Screen modaal */
 .install-modal{position:fixed;inset:0;background:rgba(14,12,11,0.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:2000;display:none;align-items:center;justify-content:center;padding:24px;animation:fadeIn .3s ease}
