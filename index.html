@@ -552,6 +552,19 @@ header{text-align:center;padding:24px 0 32px;position:relative;animation:fadeUp 
 .footer-bottom{margin-top:12px;font-size:9px;color:rgba(255,255,255,0.15);letter-spacing:.1em}
 canvas{display:none}
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+/* SVG-ikoonide üldised stiilid */
+[data-icon]{display:inline-flex;align-items:center;justify-content:center}
+.micon[data-icon]{color:#fff;margin-bottom:8px}
+.mode.active .micon[data-icon]{color:var(--mc,var(--gold))}
+.regime-icon[data-icon]{color:#fff;display:flex;justify-content:center;margin-bottom:10px}
+.regime-btn.active .regime-icon[data-icon]{color:#c4b8e0}
+.sib-icon[data-icon]{color:#fff;display:flex;justify-content:center;margin-bottom:8px}
+.stiil-input-btn.active .sib-icon[data-icon]{color:#c4b8e0}
+.upload-zone-icon[data-icon]{color:var(--stiil);display:flex;justify-content:center;margin-bottom:8px}
+.uritus-btn .uritus-icon svg,.meik-style-btn .msb-icon svg,.proc-btn .proc-icon svg{color:rgba(255,255,255,0.85);display:block;margin:0 auto 4px}
+.uritus-btn.active .uritus-icon svg,.meik-style-btn.active .msb-icon svg,.proc-btn.active .proc-icon svg{color:var(--gold-bright)}
+.proc-btn.recommend .proc-icon svg{color:#c4b8e0}
+.flip-btn [data-icon]{vertical-align:middle}
 
 /* Add to Home Screen modaal */
 .install-modal{position:fixed;inset:0;background:rgba(14,12,11,0.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:2000;display:none;align-items:center;justify-content:center;padding:24px;animation:fadeIn .3s ease}
@@ -681,7 +694,7 @@ canvas{display:none}
   <div style="font-size:12px;color:rgba(255,255,255,0.7);line-height:1.6;margin-bottom:14px">Sisesta oma Anthropic API võti. Vajalik ainult üks kord.</div>
   <div style="position:relative;margin-bottom:10px">
     <input type="password" id="keyInput" placeholder="sk-ant-api03-..." oninput="onKeyInput()" style="width:100%;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.2);color:#fff;font-family:'DM Mono',monospace;font-size:13px;padding:13px 46px 13px 13px;border-radius:3px;outline:none;box-sizing:border-box">
-    <button onclick="toggleKeyVis()" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(255,255,255,0.5);cursor:pointer;font-size:16px">👁</button>
+    <button onclick="toggleKeyVis()" aria-label="Näita / peida võti" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(255,255,255,0.55);cursor:pointer;padding:6px;display:inline-flex"><span data-icon="eye" data-icon-size="18"></span></button>
   </div>
   <div id="keyError" style="font-size:11px;color:#e8a090;margin-bottom:8px;display:none">Võti peab algama sk-ant-iga</div>
   <button id="saveBtn" onclick="saveKey()" disabled style="width:100%;padding:13px;background:var(--gold);color:var(--bg);border:none;border-radius:3px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.3em;text-transform:uppercase;cursor:pointer;opacity:.4;font-weight:600">Salvesta →</button>
@@ -701,7 +714,7 @@ canvas{display:none}
   <button class="pricing-back" onclick="hidePricing()">← Tagasi</button>
   <div class="pricing-title">Vali pakett</div>
   <div class="pricing-sub">Üks analüüs kulutab ühe krediidi.</div>
-  <div class="free-badge"><div style="font-size:20px">🎁</div><div class="free-badge-text"><strong>3 analüüsi tasuta</strong> — proovi enne ostmist</div></div>
+  <div class="free-badge"><div style="display:inline-flex;color:var(--gold)" data-icon="sparkle" data-icon-size="22"></div><div class="free-badge-text"><strong>3 analüüsi tasuta</strong> — proovi enne ostmist</div></div>
   <div class="pkg-grid">
     <div class="pkg" onclick="selectPkg(this,'10','0.99','0.10')"><div class="pkg-price">€0.99</div><div class="pkg-count">10 analüüsi</div><div class="pkg-unit">0.10€/tk</div></div>
     <div class="pkg selected" onclick="selectPkg(this,'50','4.50','0.09')"><div class="pkg-popular">Populaarne</div><div class="pkg-price">€4.50</div><div class="pkg-count">50 analüüsi</div><div class="pkg-unit">0.09€/tk</div></div>
@@ -732,9 +745,9 @@ canvas{display:none}
 <div id="assistentWrap">
   <div class="lbl">Vali assistent</div>
   <div class="modes">
-    <div class="mode m-meik active" onclick="setMode('meik')"><div class="micon">💄</div><div class="mname">Meik</div><div class="mdesc">Meigi analüüs</div></div>
-    <div class="mode m-stiil" onclick="setMode('stiil')"><div class="micon">👗</div><div class="mname">Stiil</div><div class="mdesc">Riietuse analüüs</div></div>
-    <div class="mode m-pro" onclick="setMode('pro')"><div class="pro-badge">PRO</div><div class="micon">💆</div><div class="mname">AI Kosmeetik</div><div class="mdesc">Professionaalne analüüs</div></div>
+    <div class="mode m-meik active" onclick="setMode('meik')"><div class="micon" data-icon="makeup" data-icon-size="30"></div><div class="mname">Meik</div><div class="mdesc">Meigi analüüs</div></div>
+    <div class="mode m-stiil" onclick="setMode('stiil')"><div class="micon" data-icon="dress" data-icon-size="30"></div><div class="mname">Stiil</div><div class="mdesc">Riietuse analüüs</div></div>
+    <div class="mode m-pro" onclick="setMode('pro')"><div class="pro-badge">PRO</div><div class="micon" data-icon="spa" data-icon-size="30"></div><div class="mname">AI Kosmeetik</div><div class="mdesc">Professionaalne analüüs</div></div>
   </div>
 
   <!-- MEIGI STIILID -->
@@ -786,12 +799,12 @@ canvas{display:none}
     <div class="stiil-regime-title">Vali kasutusviis</div>
     <div class="stiil-regime-grid">
       <div class="regime-btn active" id="regimeGarderoob" onclick="setStiilRegime('garderoob')">
-        <span class="regime-icon">🏠</span>
+        <span class="regime-icon" data-icon="house" data-icon-size="34"></span>
         <div class="regime-name">Garderoob</div>
         <div class="regime-desc">Vali olemasolevate riiete seast sobiv komplekt</div>
       </div>
       <div class="regime-btn" id="regimePood" onclick="setStiilRegime('pood')">
-        <span class="regime-icon">🛍️</span>
+        <span class="regime-icon" data-icon="shop" data-icon-size="34"></span>
         <div class="regime-name">Poes</div>
         <div class="regime-desc">Proovi poes uusi asju ja saa nõu</div>
       </div>
@@ -803,17 +816,17 @@ canvas{display:none}
     <div class="stiil-input-title">Kuidas soovid pilti lisada?</div>
     <div class="stiil-input-grid">
       <div class="stiil-input-btn active" id="inputGalerii" onclick="setStiilInput('galerii')">
-        <span class="sib-icon">🖼️</span>
+        <span class="sib-icon" data-icon="gallery" data-icon-size="30"></span>
         <div class="sib-name">Galerii</div>
         <div class="sib-desc">Laadi pildid telefoni galeriist</div>
       </div>
       <div class="stiil-input-btn" id="inputSelfie" onclick="setStiilInput('selfie')">
-        <span class="sib-icon">🤳</span>
+        <span class="sib-icon" data-icon="selfie" data-icon-size="30"></span>
         <div class="sib-name">Selfie</div>
         <div class="sib-desc">Pildista ennast eeskaameraga</div>
       </div>
       <div class="stiil-input-btn" id="inputTavakaamera" onclick="setStiilInput('tavakaamera')">
-        <span class="sib-icon">📷</span>
+        <span class="sib-icon" data-icon="camera" data-icon-size="30"></span>
         <div class="sib-name">Tavakaamera</div>
         <div class="sib-desc">Pildista kaaslast või riideid</div>
       </div>
@@ -823,7 +836,7 @@ canvas{display:none}
   <!-- PILDIPANK — galerii režiimis -->
   <div class="pildipank-wrap" id="pildipankWrap">
     <div class="pildipank-header">
-      <div class="pildipank-title" id="pildipankTitle">🏠 Garderoob · Pildipank</div>
+      <div class="pildipank-title" id="pildipankTitle">Garderoob · Pildipank</div>
       <div class="pildipank-info" id="pildipankInfo">Laadi üles kuni <strong>10 pilti</strong>. Üks analüüs = üks krediit.</div>
     </div>
     <div class="uritus-select" id="uritusSelect">
@@ -832,7 +845,7 @@ canvas{display:none}
     </div>
     <div class="upload-zone" id="uploadZone">
       <input type="file" id="fileInput" accept="image/*" multiple onchange="handleFileUpload(event)">
-      <span class="upload-zone-icon">📸</span>
+      <span class="upload-zone-icon" data-icon="upload" data-icon-size="38"></span>
       <div class="upload-zone-text">Lisa pildid galeriist</div>
       <div class="upload-zone-sub" id="uploadZoneSub">Vali mitu pilti korraga</div>
       <div class="upload-zone-limit">Max 10 pilti · 1 krediit analüüsi kohta</div>
@@ -873,9 +886,9 @@ canvas{display:none}
   </div>
 </div>
 
-<div class="tip-banner meik" id="meikTip"><strong id="meikTipText">💄 Suuna kaamera näole ja vajuta Analüüsi</strong></div>
-<div class="tip-banner stiil" id="stiilTip"><strong id="stiilTipText">👗 Suuna kaamera riietusele ja vajuta Analüüsi</strong></div>
-<div class="tip-banner pro" id="proTip"><strong id="proTipText">🔍 Soovita protseduuri — suuna kaamera näole</strong></div>
+<div class="tip-banner meik" id="meikTip"><strong id="meikTipText">Suuna kaamera näole ja vajuta Analüüsi</strong></div>
+<div class="tip-banner stiil" id="stiilTip"><strong id="stiilTipText">Suuna kaamera riietusele ja vajuta Analüüsi</strong></div>
+<div class="tip-banner pro" id="proTip"><strong id="proTipText">Soovita protseduuri — suuna kaamera näole</strong></div>
 
 <!-- KAAMERA — meik, stiil (selfie/tavakaamera), pro -->
 <div class="cam-wrap" id="cameraCard" style="display:none">
@@ -883,7 +896,7 @@ canvas{display:none}
     <button class="cam-top-btn pri" id="camBtn" onclick="startCam()">✦ Ava kaamera</button>
     <button class="cam-top-btn" id="anaBtn" onclick="analyze()" disabled>Analüüsi</button>
     <button class="cam-top-btn" id="autoBtn" onclick="toggleAuto()" disabled>Auto</button>
-    <button class="cam-top-btn flip-btn" id="flipBtn" onclick="flipCam()" disabled title="Vaheta kaamerat">🔄</button>
+    <button class="cam-top-btn flip-btn" id="flipBtn" onclick="flipCam()" disabled title="Vaheta kaamerat"><span data-icon="flip" data-icon-size="20" style="display:inline-flex;vertical-align:middle"></span></button>
   </div>
   <div class="cam-frame">
     <video id="vid" autoplay playsinline muted></video>
@@ -920,15 +933,15 @@ canvas{display:none}
 </div>
 
 <div class="kombineering-card" id="kombineringCard"><div class="lbl" style="color:#c4b8e0">✦ Kombineerimise nõuanded</div><div id="kombineringSteps"></div></div>
-<div class="outfit-section" id="outfitNowSection"><div class="outfit-section-title" id="outfitNowTitle">👗 Soovituslikud komplektid</div><div id="outfitNowList"></div></div>
-<div class="outfit-section" id="outfitNextSection"><div class="outfit-section-title" id="outfitNextTitle">✨ Täiendavad soovitused</div><div id="outfitNextList"></div></div>
+<div class="outfit-section" id="outfitNowSection"><div class="outfit-section-title" id="outfitNowTitle">Soovituslikud komplektid</div><div id="outfitNowList"></div></div>
+<div class="outfit-section" id="outfitNextSection"><div class="outfit-section-title" id="outfitNextTitle">Täiendavad soovitused</div><div id="outfitNextList"></div></div>
 <div class="techniques-card" id="techniquesCard"><div class="lbl" style="color:#f0b890">✦ Meigitehnikad</div><div id="techniqueSteps"></div></div>
 <div class="muuda-card" id="muudaCard"><div class="muuda-card-title">⚠️ Muuda seda — konkreetsed sammud</div><div id="muudaSteps"></div></div>
-<div class="products-section" id="meikNowSection"><div class="products-section-title">💄 Soovituslikud tooted · mactabeauty.com</div><div id="meikNowList"></div></div>
-<div class="products-section" id="meikNextSection"><div class="products-section-title">🛍 Tooted järgmiseks korraks · mactabeauty.com</div><div id="meikNextList"></div></div>
+<div class="products-section" id="meikNowSection"><div class="products-section-title">Soovituslikud tooted · mactabeauty.com</div><div id="meikNowList"></div></div>
+<div class="products-section" id="meikNextSection"><div class="products-section-title">Tooted järgmiseks korraks · mactabeauty.com</div><div id="meikNextList"></div></div>
 <div class="protocol-card" id="protocolCard"><div class="lbl">✦ Protseduuri juhend</div><div id="protocolSteps"></div></div>
-<div class="pro-products-section" id="proProductsSection"><div class="pro-products-title">🛍 Protseduuri tooted · depile.ee</div><div id="proProductsList"></div></div>
-<div class="pro-products-section" id="homeProductsSection"><div class="pro-products-title">🏠 Kodune järelhooldus · depile.ee</div><div id="homeProductsList"></div></div>
+<div class="pro-products-section" id="proProductsSection"><div class="pro-products-title">Protseduuri tooted · depile.ee</div><div id="proProductsList"></div></div>
+<div class="pro-products-section" id="homeProductsSection"><div class="pro-products-title">Kodune järelhooldus · depile.ee</div><div id="homeProductsList"></div></div>
 
 <div class="card" id="resultCard">
   <div class="lbl" id="resLbl">Tulemus</div>
@@ -1065,6 +1078,56 @@ canvas{display:none}
 </div>
 
 <script>
+// === SVG-IKOONIDE KOGU (Phosphor/Lucide stiil — õhukesed jooned) ===
+const ICONS={
+  makeup:'<path d="M9 3 L15 3 L14 8 L10 8 Z M10 8 L14 8 L14 12 L10 12 Z M12 12 L12 21"/>',
+  dress:'<path d="M9 3 L8 7 L11 11 L8 21 L16 21 L13 11 L16 7 L15 3 Z"/>',
+  sparkle:'<path d="M12 3 L13.2 10.8 L21 12 L13.2 13.2 L12 21 L10.8 13.2 L3 12 L10.8 10.8 Z"/><path d="M19 3 L19.5 5.5 L22 6 L19.5 6.5 L19 9 L18.5 6.5 L16 6 L18.5 5.5 Z" opacity="0.6"/>',
+  house:'<path d="M3 11 L12 3 L21 11"/><path d="M5 10 L5 21 L19 21 L19 10"/><path d="M10 21 L10 15 L14 15 L14 21"/>',
+  shop:'<path d="M5 8 L19 8 L18 21 L6 21 Z"/><path d="M9 8 V6 A3 3 0 0 1 15 6 V8"/>',
+  selfie:'<rect x="6" y="3" width="12" height="18" rx="2"/><circle cx="12" cy="9" r="2"/><path d="M8 17 Q12 14 16 17"/><circle cx="12" cy="19" r="0.6"/>',
+  camera:'<rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.8"/><path d="M9 7 L10 4 L14 4 L15 7"/>',
+  gallery:'<rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.5"/><path d="M3 16 L9 11 L14 15 L17 13 L21 17"/>',
+  flip:'<path d="M4 8 H14 M11 5 L14 8 L11 11"/><path d="M20 16 H10 M13 13 L10 16 L13 19"/>',
+  upload:'<path d="M12 4 V15"/><path d="M7 9 L12 4 L17 9"/><path d="M4 17 V19 A2 2 0 0 0 6 21 H18 A2 2 0 0 0 20 19 V17"/>',
+  briefcase:'<rect x="3" y="7" width="18" height="14" rx="2"/><path d="M9 7 V5 A2 2 0 0 1 11 3 L13 3 A2 2 0 0 1 15 5 V7"/><path d="M3 14 H21"/>',
+  sun:'<circle cx="12" cy="12" r="3.5"/><path d="M12 2 V4 M12 20 V22 M2 12 H4 M20 12 H22 M5 5 L6.5 6.5 M17.5 17.5 L19 19 M5 19 L6.5 17.5 M17.5 6.5 L19 5"/>',
+  moon:'<path d="M20 14 A8 8 0 1 1 10 4 A6 6 0 0 0 20 14 Z"/>',
+  crown:'<path d="M3 18 L4 8 L9 12 L12 5 L15 12 L20 8 L21 18 Z"/><path d="M3 21 L21 21"/>',
+  wine:'<path d="M8 3 L16 3 L15 11 A3 3 0 0 1 9 11 Z"/><path d="M12 14 L12 20 M9 20 L15 20"/>',
+  cake:'<rect x="4" y="11" width="16" height="10" rx="1"/><path d="M4 16 L20 16"/><path d="M8 11 V6 M12 11 V5 M16 11 V6"/><path d="M8 5 L8 3 M12 4 L12 2 M16 5 L16 3"/>',
+  graduation:'<path d="M2 9 L12 5 L22 9 L12 13 Z"/><path d="M6 11 V15 A6 4 0 0 0 18 15 V11"/>',
+  handshake:'<path d="M3 12 L7 8 L11 10 L13 9 L17 11 L21 12"/><path d="M3 12 L6 15 A2 2 0 0 0 9 15 L11 13 L13 15 A2 2 0 0 0 16 15 L18 13 L21 14"/>',
+  coffee:'<path d="M5 9 L18 9 L17 18 A2 2 0 0 1 15 20 L8 20 A2 2 0 0 1 6 18 Z"/><path d="M17 11 H19 A2 2 0 0 1 21 13 V14 A2 2 0 0 1 19 16 H17"/><path d="M9 5 V7 M13 5 V7"/>',
+  dish:'<path d="M3 14 A9 6 0 0 1 21 14 Z"/><path d="M3 14 V17 H21 V14"/><path d="M12 6 V3"/>',
+  party:'<path d="M3 21 L9 5 L19 15 Z"/><path d="M9 5 L11 7 M14 10 L16 12"/><path d="M5 19 L7 17"/>',
+  plane:'<path d="M2 13 L10 11 L13 4 L15 4 L13 12 L20 11 L21 13 L13 15 L11 22 L9 22 L11 14 Z"/>',
+  wave:'<path d="M2 11 Q5 7 8 11 T14 11 T20 11"/><path d="M2 16 Q5 12 8 16 T14 16 T20 16"/>',
+  run:'<circle cx="15" cy="4" r="2"/><path d="M15 8 L12 12 L9 11"/><path d="M12 12 L11 16 L14 18"/><path d="M14 18 L12 22"/><path d="M14 18 L17 15 L18 19"/>',
+  smile:'<circle cx="12" cy="12" r="9"/><circle cx="9" cy="10" r="0.6" fill="currentColor"/><circle cx="15" cy="10" r="0.6" fill="currentColor"/><path d="M8 14 Q12 18 16 14"/>',
+  square:'<rect x="5" y="5" width="14" height="14" rx="2"/>',
+  palette:'<path d="M12 3 A9 9 0 1 0 12 21 A2 2 0 0 0 14 19 L14 17 A2 2 0 0 1 16 15 L18 15 A3 3 0 0 0 21 12 A9 9 0 0 0 12 3 Z"/><circle cx="7" cy="11" r="1" fill="currentColor"/><circle cx="9" cy="6" r="1" fill="currentColor"/><circle cx="14" cy="5" r="1" fill="currentColor"/>',
+  fire:'<path d="M12 3 Q14 6 13 10 Q15 9 17 12 A5 5 0 1 1 7 12 Q10 8 12 3 Z"/>',
+  star:'<path d="M12 3 L14 9 L20 10 L15.5 14 L17 21 L12 17 L7 21 L8.5 14 L4 10 L10 9 Z"/>',
+  search:'<circle cx="11" cy="11" r="6"/><path d="M15.5 15.5 L20 20"/>',
+  droplet:'<path d="M12 3 Q5 11 5 15 A7 7 0 0 0 19 15 Q19 11 12 3 Z"/>',
+  leaf:'<path d="M5 19 Q5 5 19 5 Q19 19 5 19 Z"/><path d="M5 19 L13 11"/>',
+  target:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/>',
+  pencil:'<path d="M16 4 L20 8 L8 20 L4 20 L4 16 Z"/><path d="M14 6 L18 10"/>',
+  eye:'<path d="M2 12 Q7 5 12 5 Q17 5 22 12 Q17 19 12 19 Q7 19 2 12 Z"/><circle cx="12" cy="12" r="3"/>',
+  hands:'<path d="M9 5 V13 M9 8 H12 V13 M12 9 H15 V13 M15 10 H17 V13"/><path d="M5 13 V18 A4 4 0 0 0 9 22 H15 A4 4 0 0 0 19 18 V11"/>',
+  flower:'<circle cx="12" cy="12" r="2"/><path d="M12 10 Q9 6 12 4 Q15 6 12 10 Z"/><path d="M14 12 Q18 9 20 12 Q18 15 14 12 Z"/><path d="M12 14 Q9 18 12 20 Q15 18 12 14 Z"/><path d="M10 12 Q6 9 4 12 Q6 15 10 12 Z"/>',
+  spa:'<path d="M12 4 Q8 8 12 12 Q16 8 12 4 Z"/><path d="M4 12 Q8 16 12 12 Q8 8 4 12 Z"/><path d="M20 12 Q16 16 12 12 Q16 8 20 12 Z"/><path d="M12 20 Q16 16 12 12 Q8 16 12 20 Z"/>',
+  foot:'<path d="M9 21 Q6 18 7 14 L8 8 A4 4 0 0 1 16 8 L17 14 Q18 18 15 21 Z"/><circle cx="10" cy="5" r="1.2"/><circle cx="13" cy="3.5" r="1"/>',
+  refresh:'<path d="M3 12 A9 9 0 1 1 12 21 M3 7 V12 H8"/>',
+  check:'<path d="M4 12 L10 18 L20 6"/>',
+  warning:'<path d="M12 4 L22 20 L2 20 Z"/><path d="M12 11 V15"/><circle cx="12" cy="17.5" r="0.8" fill="currentColor"/>',
+  question:'<circle cx="12" cy="12" r="9"/><path d="M9 9 A3 3 0 0 1 15 9 Q15 11 12 13 V14"/><circle cx="12" cy="17.5" r="0.7" fill="currentColor"/>',
+  link:'<path d="M9 15 L15 9"/><path d="M11 6 L13 4 A4 4 0 0 1 18 9 L17 10"/><path d="M13 18 L11 20 A4 4 0 0 1 6 15 L7 14"/>'
+};
+function iconHtml(name,size,color){const s=size||24;const c=color||'currentColor';const p=ICONS[name]||ICONS.sparkle;return '<svg xmlns="http://www.w3.org/2000/svg" width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none" stroke="'+c+'" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+p+'</svg>';}
+function renderStaticIcons(){document.querySelectorAll('[data-icon]').forEach(el=>{const name=el.dataset.icon;const size=parseInt(el.dataset.iconSize||'28',10);el.innerHTML=iconHtml(name,size);});}
+
 // === Install Prompt (Add to Home Screen) ===
 let deferredInstallPrompt=null;
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstallPrompt=e;});
@@ -1098,15 +1161,15 @@ const DEPILE_BRANDS=[
 
 // MEIGISTIILID — 9
 const MAKEUP_STYLES=[
-  {id:'kontor',icon:'💼',name:'Kontorimeik'},
-  {id:'paev',icon:'☀️',name:'Päevameik'},
-  {id:'ohtu',icon:'🌙',name:'Õhtumeik'},
-  {id:'gala',icon:'🥂',name:'Gala meik'},
-  {id:'synnipaev',icon:'🎂',name:'Sünnipäevameik'},
-  {id:'pruut',icon:'👰',name:'Pruudimeik'},
-  {id:'lopuaktus',icon:'🎓',name:'Lõpuaktuse meik'},
-  {id:'foto',icon:'📸',name:'Fotosessioon'},
-  {id:'smoky',icon:'🖤',name:'Smoky eye'}
+  {id:'kontor',icon:'briefcase',name:'Kontorimeik'},
+  {id:'paev',icon:'sun',name:'Päevameik'},
+  {id:'ohtu',icon:'moon',name:'Õhtumeik'},
+  {id:'gala',icon:'wine',name:'Gala meik'},
+  {id:'synnipaev',icon:'cake',name:'Sünnipäevameik'},
+  {id:'pruut',icon:'crown',name:'Pruudimeik'},
+  {id:'lopuaktus',icon:'graduation',name:'Lõpuaktuse meik'},
+  {id:'foto',icon:'camera',name:'Fotosessioon'},
+  {id:'smoky',icon:'eye',name:'Smoky eye'}
 ];
 
 let meikOpts={nahatoon:null,silmad:null,kogemus:null,tugevus:null};
@@ -1114,20 +1177,20 @@ let selectedMeikStyle='kontor';
 
 // SIHTKOHAD
 const URITUSED_GARDEROOB=[
-  {id:'arimeeting',icon:'🤝',name:'Ärimeeting'},{id:'kontor',icon:'💼',name:'Kontoripäev'},
-  {id:'linn',icon:'🛍️',name:'Linnas käik'},{id:'kohtumine',icon:'☕',name:'Sõbraga'},
-  {id:'ohtusoek',icon:'🍽️',name:'Õhtusöök'},{id:'pidu',icon:'🎉',name:'Pidu'},
-  {id:'gala',icon:'🥂',name:'Gala'},{id:'synnipaev',icon:'🎂',name:'Sünnipäev'},
-  {id:'lopuaktus',icon:'🎓',name:'Tseremoonia'},{id:'reisile',icon:'✈️',name:'Reis'},
-  {id:'rand',icon:'🌊',name:'Rand'},{id:'sport',icon:'🏃',name:'Sport'}
+  {id:'arimeeting',icon:'handshake',name:'Ärimeeting'},{id:'kontor',icon:'briefcase',name:'Kontoripäev'},
+  {id:'linn',icon:'shop',name:'Linnas käik'},{id:'kohtumine',icon:'coffee',name:'Sõbraga'},
+  {id:'ohtusoek',icon:'dish',name:'Õhtusöök'},{id:'pidu',icon:'party',name:'Pidu'},
+  {id:'gala',icon:'wine',name:'Gala'},{id:'synnipaev',icon:'cake',name:'Sünnipäev'},
+  {id:'lopuaktus',icon:'graduation',name:'Tseremoonia'},{id:'reisile',icon:'plane',name:'Reis'},
+  {id:'rand',icon:'wave',name:'Rand'},{id:'sport',icon:'run',name:'Sport'}
 ];
 const URITUSED_POOD=[
-  {id:'igapaev',icon:'☀️',name:'Igapäev'},{id:'kontor',icon:'💼',name:'Kontor'},
-  {id:'ohtu',icon:'🌙',name:'Õhtused väljaminekud'},{id:'pidu',icon:'🎉',name:'Pidu'},
-  {id:'pidulik',icon:'✨',name:'Pidulik'},{id:'sport',icon:'🏃',name:'Sport'},
-  {id:'casual',icon:'😊',name:'Casual'},{id:'minimalistlik',icon:'🖤',name:'Minimalistlik'},
-  {id:'boho',icon:'🎨',name:'Boho'},{id:'streetwear',icon:'🔥',name:'Streetwear'},
-  {id:'luksus',icon:'👑',name:'Luksus'},{id:'reisil',icon:'✈️',name:'Reisimine'}
+  {id:'igapaev',icon:'sun',name:'Igapäev'},{id:'kontor',icon:'briefcase',name:'Kontor'},
+  {id:'ohtu',icon:'moon',name:'Õhtused väljaminekud'},{id:'pidu',icon:'party',name:'Pidu'},
+  {id:'pidulik',icon:'sparkle',name:'Pidulik'},{id:'sport',icon:'run',name:'Sport'},
+  {id:'casual',icon:'smile',name:'Casual'},{id:'minimalistlik',icon:'square',name:'Minimalistlik'},
+  {id:'boho',icon:'palette',name:'Boho'},{id:'streetwear',icon:'fire',name:'Streetwear'},
+  {id:'luksus',icon:'crown',name:'Luksus'},{id:'reisil',icon:'plane',name:'Reisimine'}
 ];
 
 function getCredits(){const r=localStorage.getItem('glow_credits');if(r===null||r==='')return FREE_CREDITS;const n=parseInt(r,10);return isNaN(n)?FREE_CREDITS:Math.max(0,n);}
@@ -1161,7 +1224,7 @@ function buildMeikGrid(){
   const g=document.getElementById('meikStyleGrid');g.innerHTML='';
   MAKEUP_STYLES.forEach(s=>{
     const b=document.createElement('div');b.className='meik-style-btn'+(s.id===selectedMeikStyle?' active':'');
-    b.innerHTML='<div class="msb-icon">'+s.icon+'</div><div class="msb-name">'+s.name+'</div>';
+    b.innerHTML='<div class="msb-icon">'+iconHtml(s.icon,26)+'</div><div class="msb-name">'+s.name+'</div>';
     b.onclick=()=>{selectedMeikStyle=s.id;document.querySelectorAll('.meik-style-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById('resLbl').textContent=s.name;resetResults();refreshMeikAnalyzeBtn();};
     g.appendChild(b);
   });
@@ -1187,7 +1250,7 @@ function getStiilCamSystem(uritusNimi,regime){
 function getPildipankGarderoobSystem(uritusNimi){return`Sa oled GLÓW garderoobiassistent. Kasutaja on saatnud ${photoBank.length} pilti oma garderoobist. Üritus: "${uritusNimi}".\nVaata KÕIKI pilte. Vali PARIM kombinatsioon.\nVasta AINULT JSON:\n{"verdict":"PARIM KOMBINATSIOON LEITUD/VALIK ON PIIRATUD/VAJAB TÄIENDAMIST","verdict_class":"yes/maybe/no","feedback":"3-4 lauset","parim_kombinatsioon":"Konkreetne kombinatsiooni kirjeldus","details":{"Valitud peamine ese":"konkreetne","Värvide kooskõla":"2l","Sobivus ${uritusNimi} jaoks":"2l","Jalanõude soovitus":"konkreetne"},"scores":{"Sobivus üritusele":7,"Värvid":7,"Stiil":7,"Üldmulje":7},"kombineerimised":["nõuanne 1","nõuanne 2","jalanõud"],"alternatiivid":[{"kategooria":"Alt kombinatsioon","nimi":"teine variant","bränd":"","hind":"","põhjus":"miks hea"},{"kategooria":"Puuduv ese","nimi":"mis puudub","bränd":"Zara/H&M","põhjus":"miks täiendaks"}],"tip":"kõige olulisem soovitus","moodboard":[{"nimi":"Alt 1","kirjeldus":"kirjeldus","varvid":["#9b8fb5","#c9a96e","#d4957a"],"emoji":"👗"},{"nimi":"Alt 2","kirjeldus":"kirjeldus","varvid":["#7a9e8e","#c9a96e","#fff"],"emoji":"✨"},{"nimi":"Alt 3","kirjeldus":"kirjeldus","varvid":["#c4736b","#2a1a1a","#c9a96e"],"emoji":"💫"},{"nimi":"Alt 4","kirjeldus":"kirjeldus","varvid":["#9b8fb5","#fff","#0e0c0b"],"emoji":"🌟"}]}`;}
 function getPildipankPoodSystem(uritusNimi){return`Sa oled GLÓW poeassistent. Kasutaja on saatnud ${photoBank.length} pilti poes proovitud esemetest. Ürituse stiil: "${uritusNimi}".\nVasta AINULT JSON:\n{"verdict":"SUUREPÄRANE LEID/HEA VALIK/EI SOBI","verdict_class":"yes/maybe/no","feedback":"3-4 lauset","parim_valik":"Konkreetselt millised esemed tasub osta","details":{"Parimad leiud":"konkreetsed esemed","Mitte soovituslikud":"mis ei sobi","Sobivus ${uritusNimi} jaoks":"2l","Kombineerimisideed":"kuidas kombineerida"},"scores":{"Sobivus üritusele":7,"Stiil":7,"Väärtus rahale":7,"Üldmulje":7},"osta_soovitus":"Konkreetne lause mida osta","kombineerimised":["kombineerimisidee 1","kombineerimisidee 2","mis juurde osta"],"alternatiivid":[{"kategooria":"Kindlasti osta","nimi":"konkreetne ese","bränd":"","hind":"","põhjus":"miks hea"},{"kategooria":"Täiendav ost","nimi":"mis juurde","bränd":"Zara/H&M","põhjus":"miks sobib"}],"tip":"kõige olulisem nõuanne","moodboard":[{"nimi":"Komplekt 1","kirjeldus":"kirjeldus","varvid":["#9b8fb5","#c9a96e","#d4957a"],"emoji":"🛍️"},{"nimi":"Komplekt 2","kirjeldus":"kirjeldus","varvid":["#7a9e8e","#c9a96e","#fff"],"emoji":"✨"},{"nimi":"Komplekt 3","kirjeldus":"kirjeldus","varvid":["#c4736b","#2a1a1a","#c9a96e"],"emoji":"💫"},{"nimi":"Komplekt 4","kirjeldus":"kirjeldus","varvid":["#9b8fb5","#fff","#0e0c0b"],"emoji":"🌟"}]}`;}
 
-const PROCEDURES=[{id:'nahooldus',icon:'✨',name:'Näopuhastus\nja hooldus'},{id:'niisutus',icon:'💧',name:'Niisutus-\nhooldus'},{id:'vananemine',icon:'🌿',name:'Vananemis-\nvastane'},{id:'akne',icon:'🎯',name:'Akne-\nhooldus'},{id:'pigment',icon:'🌟',name:'Pigmentatsiooni-\nravi'},{id:'koorimine',icon:'✨',name:'Keemiline\nkoorimine'},{id:'kulmud',icon:'✏️',name:'Kulmude\nmodelleerimine'},{id:'ripsmed',icon:'👁',name:'Ripsmete ja\nkulmude värvimine'},{id:'massaaz',icon:'🤲',name:'Näo-\nmassaaž'},{id:'depilatsioon',icon:'🌸',name:'Depilatsioon\nja vahatamine'},{id:'kehahooldus',icon:'💆',name:'Keha-\nhooldus'},{id:'jalahooldus',icon:'🦶',name:'Jala-\nhooldus'}];
+const PROCEDURES=[{id:'nahooldus',icon:'sparkle',name:'Näopuhastus\nja hooldus'},{id:'niisutus',icon:'droplet',name:'Niisutus-\nhooldus'},{id:'vananemine',icon:'leaf',name:'Vananemis-\nvastane'},{id:'akne',icon:'target',name:'Akne-\nhooldus'},{id:'pigment',icon:'star',name:'Pigmentatsiooni-\nravi'},{id:'koorimine',icon:'flower',name:'Keemiline\nkoorimine'},{id:'kulmud',icon:'pencil',name:'Kulmude\nmodelleerimine'},{id:'ripsmed',icon:'eye',name:'Ripsmete ja\nkulmude värvimine'},{id:'massaaz',icon:'hands',name:'Näo-\nmassaaž'},{id:'depilatsioon',icon:'flower',name:'Depilatsioon\nja vahatamine'},{id:'kehahooldus',icon:'spa',name:'Keha-\nhooldus'},{id:'jalahooldus',icon:'foot',name:'Jala-\nhooldus'}];
 const PROC_LABELS={soovita:'Soovita protseduuri',nahooldus:'Näopuhastus ja hooldus',niisutus:'Niisutushooldus',vananemine:'Vananemisvastane hooldus',akne:'Aknehooldus',pigment:'Pigmentatsiooniravi',koorimine:'Keemiline koorimine',kulmud:'Kulmude modelleerimine',ripsmed:'Ripsmete ja kulmude värvimine',massaaz:'Näomassaaž',depilatsioon:'Depilatsioon ja vahatamine',kehahooldus:'Kehahooldus',jalahooldus:'Jalahooldus'};
 let selectedProcedure='soovita';
 
@@ -1229,7 +1292,7 @@ function setStiilInput(input){
     currentFacing=input==='selfie'?'user':'environment';
     resetCam();
     document.getElementById('stiilTip').classList.add('show');
-    const tipText=input==='selfie'?'🤳 Selfie — pildista ennast eeskaameraga':'📷 Tavakaamera — pildista kaaslast või riideid';
+    const tipText=input==='selfie'?'Selfie — pildista ennast eeskaameraga':'Tavakaamera — pildista kaaslast või riideid';
     document.getElementById('stiilTipText').textContent=tipText;
     document.getElementById('camPhText').textContent=input==='selfie'?'Pildista ennast — proovi riie selga':'Suuna kaamera riietele või kaaslasele';
     // Käivita kaamera automaatselt
@@ -1254,7 +1317,7 @@ function resetCam(){
 function buildUritusGrid(){
   const uritused=stiilRegime==='garderoob'?URITUSED_GARDEROOB:URITUSED_POOD;
   const g=document.getElementById('uritusGrid');g.innerHTML='';selectedUritus=null;
-  uritused.forEach(u=>{const b=document.createElement('div');b.className='uritus-btn';b.dataset.id=u.id;b.innerHTML='<div class="uritus-icon">'+u.icon+'</div><div class="uritus-name">'+u.name+'</div>';b.onclick=()=>{selectedUritus={id:u.id,name:u.name};document.querySelectorAll('#uritusGrid .uritus-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');refreshAnalyzeBankBtn();};g.appendChild(b);});
+  uritused.forEach(u=>{const b=document.createElement('div');b.className='uritus-btn';b.dataset.id=u.id;b.innerHTML='<div class="uritus-icon">'+iconHtml(u.icon,22)+'</div><div class="uritus-name">'+u.name+'</div>';b.onclick=()=>{selectedUritus={id:u.id,name:u.name};document.querySelectorAll('#uritusGrid .uritus-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');refreshAnalyzeBankBtn();};g.appendChild(b);});
   refreshAnalyzeBankBtn();
 }
 
@@ -1262,7 +1325,7 @@ function buildUritusGrid(){
 function buildUritusGridCam(){
   const uritused=stiilRegime==='garderoob'?URITUSED_GARDEROOB:URITUSED_POOD;
   const g=document.getElementById('uritusGridCam');g.innerHTML='';selectedUritusCam=null;
-  uritused.forEach(u=>{const b=document.createElement('div');b.className='uritus-btn';b.dataset.id=u.id;b.innerHTML='<div class="uritus-icon">'+u.icon+'</div><div class="uritus-name">'+u.name+'</div>';b.onclick=()=>{selectedUritusCam={id:u.id,name:u.name};document.querySelectorAll('#uritusGridCam .uritus-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById('anaBtn').disabled=!(stream&&getCredits()>0);};g.appendChild(b);});
+  uritused.forEach(u=>{const b=document.createElement('div');b.className='uritus-btn';b.dataset.id=u.id;b.innerHTML='<div class="uritus-icon">'+iconHtml(u.icon,22)+'</div><div class="uritus-name">'+u.name+'</div>';b.onclick=()=>{selectedUritusCam={id:u.id,name:u.name};document.querySelectorAll('#uritusGridCam .uritus-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById('anaBtn').disabled=!(stream&&getCredits()>0);};g.appendChild(b);});
 }
 
 // PILDIPANK
@@ -1291,7 +1354,7 @@ async function analyzePildipank(){
     const parsed=extractJson(raw);
     lastFb=parsed.feedback||'';setCredits(credits-1);
     document.getElementById('load').classList.remove('on');
-    renderPildipankResult(parsed,stiilRegime==='garderoob'?'🏠 Garderoob · '+selectedUritus.name:'🛍 Pood · '+selectedUritus.name);
+    renderPildipankResult(parsed,stiilRegime==='garderoob'?'Garderoob · '+selectedUritus.name:'Pood · '+selectedUritus.name);
     maybeShowInstallAfterAnalysis();
   }catch(e){document.getElementById('load').classList.remove('on');document.getElementById('resEmpty').style.display='block';document.getElementById('resEmpty').textContent='Viga: '+e.message;}
   btn.className='analyze-bank-btn active';btn.disabled=false;btn.textContent='✦ Analüüsi minu valik';refreshAnalyzeBankBtn();
@@ -1331,7 +1394,7 @@ async function flipCam(){
   if(mode==='stiil'){stiilInput=currentFacing==='user'?'selfie':'tavakaamera';document.getElementById('inputSelfie')?.classList.toggle('active',stiilInput==='selfie');document.getElementById('inputTavakaamera')?.classList.toggle('active',stiilInput==='tavakaamera');document.getElementById('inputGalerii')?.classList.remove('active');}
   await startCam();
 }
-function updateFlipBtn(){const btn=document.getElementById('flipBtn');const badge=document.getElementById('camModeBadge');if(currentFacing==='environment'){btn.classList.add('flip-active');badge.textContent='📷 Tavakaamera';}else{btn.classList.remove('flip-active');badge.textContent='🤳 Selfie kaamera';}badge.classList.add('show');setTimeout(()=>badge.classList.remove('show'),2000);}
+function updateFlipBtn(){const btn=document.getElementById('flipBtn');const badge=document.getElementById('camModeBadge');if(currentFacing==='environment'){btn.classList.add('flip-active');badge.textContent='Tavakaamera';}else{btn.classList.remove('flip-active');badge.textContent='Selfie kaamera';}badge.classList.add('show');setTimeout(()=>badge.classList.remove('show'),2000);}
 function capture(){canvas.width=video.videoWidth||640;canvas.height=video.videoHeight||480;const ctx=canvas.getContext('2d');ctx.drawImage(video,0,0);return canvas.toDataURL('image/jpeg',0.85);}
 
 // STIILI REŽIIM
@@ -1343,12 +1406,12 @@ function setStiilRegime(regime){
   renderPhotoBank();buildUritusGrid();buildUritusGridCam();
   document.getElementById('photoLimitWarn').classList.remove('show');
   resetResults();
-  if(regime==='garderoob'){document.getElementById('pildipankTitle').textContent='🏠 Garderoob · Pildipank';document.getElementById('pildipankInfo').innerHTML='Laadi üles kuni <strong>10 pilti</strong> oma garderoobist.';document.getElementById('uploadZoneSub').innerHTML='Pildista erinevaid riideid — eraldi või komplektidena';}
-  else{document.getElementById('pildipankTitle').textContent='🛍 Pood · Pildipank';document.getElementById('pildipankInfo').innerHTML='Laadi üles kuni <strong>10 pilti</strong> poes proovitud asjadest.';document.getElementById('uploadZoneSub').innerHTML='Pildista asju proovikabiiinis';}
+  if(regime==='garderoob'){document.getElementById('pildipankTitle').textContent='Garderoob · Pildipank';document.getElementById('pildipankInfo').innerHTML='Laadi üles kuni <strong>10 pilti</strong> oma garderoobist.';document.getElementById('uploadZoneSub').innerHTML='Pildista erinevaid riideid — eraldi või komplektidena';}
+  else{document.getElementById('pildipankTitle').textContent='Pood · Pildipank';document.getElementById('pildipankInfo').innerHTML='Laadi üles kuni <strong>10 pilti</strong> poes proovitud asjadest.';document.getElementById('uploadZoneSub').innerHTML='Pildista asju proovikabiiinis';}
 }
 
-function buildProcedureGrid(){const g=document.getElementById('procedureGrid');g.innerHTML='';const rec=document.createElement('div');rec.className='proc-btn recommend'+(selectedProcedure==='soovita'?' active':'');rec.innerHTML='<div class="proc-icon">🔍</div><div class="proc-name" style="color:#c4b8e0">Soovita<br>protseduuri</div>';rec.onclick=()=>selectProcedure('soovita');g.appendChild(rec);PROCEDURES.forEach(p=>{const b=document.createElement('div');b.className='proc-btn'+(p.id===selectedProcedure?' active':'');b.innerHTML='<div class="proc-icon">'+p.icon+'</div><div class="proc-name">'+p.name+'</div>';b.onclick=()=>selectProcedure(p.id);g.appendChild(b);});}
-function selectProcedure(id){selectedProcedure=id;document.querySelectorAll('.proc-btn').forEach(b=>b.classList.remove('active'));const btns=document.querySelectorAll('.proc-btn');if(id==='soovita'){btns[0].classList.add('active');}else{const idx=PROCEDURES.findIndex(p=>p.id===id);if(idx>=0)btns[idx+1].classList.add('active');}document.getElementById('resLbl').textContent=PROC_LABELS[id]||id;resetResults();if(id==='soovita'){document.getElementById('proTipText').textContent='🔍 Soovita protseduuri — suuna kaamera näole';}else{document.getElementById('proTipText').textContent='✦ '+PROC_LABELS[id]+' — vajuta "Ava kaamera"';}}
+function buildProcedureGrid(){const g=document.getElementById('procedureGrid');g.innerHTML='';const rec=document.createElement('div');rec.className='proc-btn recommend'+(selectedProcedure==='soovita'?' active':'');rec.innerHTML='<div class="proc-icon">'+iconHtml('search',22,'#c4b8e0')+'</div><div class="proc-name" style="color:#c4b8e0">Soovita<br>protseduuri</div>';rec.onclick=()=>selectProcedure('soovita');g.appendChild(rec);PROCEDURES.forEach(p=>{const b=document.createElement('div');b.className='proc-btn'+(p.id===selectedProcedure?' active':'');b.innerHTML='<div class="proc-icon">'+iconHtml(p.icon,22)+'</div><div class="proc-name">'+p.name+'</div>';b.onclick=()=>selectProcedure(p.id);g.appendChild(b);});}
+function selectProcedure(id){selectedProcedure=id;document.querySelectorAll('.proc-btn').forEach(b=>b.classList.remove('active'));const btns=document.querySelectorAll('.proc-btn');if(id==='soovita'){btns[0].classList.add('active');}else{const idx=PROCEDURES.findIndex(p=>p.id===id);if(idx>=0)btns[idx+1].classList.add('active');}document.getElementById('resLbl').textContent=PROC_LABELS[id]||id;resetResults();if(id==='soovita'){document.getElementById('proTipText').textContent='Soovita protseduuri — suuna kaamera näole';}else{document.getElementById('proTipText').textContent='✦ '+PROC_LABELS[id]+' — vajuta "Ava kaamera"';}}
 
 
 function showAlternatiivid(){
@@ -1397,8 +1460,8 @@ function startCountdown(){if(!termsAccepted)return;localStorage.setItem('glow_te
 function runCountdown(){const track=document.getElementById('clockTrack'),clockLogo=document.getElementById('clockLogo'),clockNum=document.getElementById('clockNum'),msg=document.getElementById('countdownMsg');const circ=2*Math.PI*85;track.style.strokeDasharray=circ;track.style.strokeDashoffset=circ;setTimeout(()=>{clockLogo.style.transition='opacity 0.3s';clockLogo.style.opacity='0';setTimeout(()=>{clockLogo.style.display='none';clockNum.style.display='block';clockNum.textContent='3';clockNum.style.opacity='0';clockNum.style.transition='opacity 0.2s';setTimeout(()=>{clockNum.style.opacity='1';},50);},300);},300);const totalMs=3000;const startTime=performance.now()+600;let lastNum=4;function tick(now){const elapsed=Math.max(0,now-startTime);const progress=Math.min(elapsed/totalMs,1);track.style.strokeDashoffset=circ*(1-progress);const displayNum=Math.max(1,Math.ceil(3-progress*3));if(displayNum!==lastNum&&displayNum>=1&&displayNum<=3){lastNum=displayNum;clockNum.style.transition='none';clockNum.style.opacity='0';clockNum.textContent=String(displayNum);requestAnimationFrame(()=>{clockNum.style.transition='opacity 0.15s';clockNum.style.opacity='1';clockNum.style.transform='scale(1.2)';setTimeout(()=>{clockNum.style.transform='scale(1)';},150);});}if(progress>=0.85&&msg.textContent==='✦')msg.textContent='Käivitun...';if(progress<1){requestAnimationFrame(tick);}else{clockNum.textContent='✦';clockNum.style.fontSize='48px';msg.textContent='Tere tulemast!';setTimeout(()=>launchApp(),600);}}requestAnimationFrame(tick);}
 function launchApp(){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('mainWrapper').style.display='block';initApp();}
 function logout(){if(stream){stream.getTracks().forEach(t=>t.stop());stream=null;}localStorage.removeItem('glow_terms_accepted');document.getElementById('mainWrapper').style.display='none';termsAccepted=false;currentFacing='user';photoBank=[];document.getElementById('termsCheckbox').classList.remove('checked');const btn=document.getElementById('termsConfirmBtn');btn.disabled=true;btn.classList.remove('active');showScreen('splashScreen');}
-function initApp(){initCredits();const key=localStorage.getItem('glow_api_key');if(key){document.getElementById('keyStatus').style.display='block';document.getElementById('saldoBar').style.display='flex';}else{document.getElementById('apiSetupCard').style.display='block';}setMode('meik');setTimeout(()=>refreshSaldo(),50);}
-function init(){if(localStorage.getItem('glow_terms_accepted')==='true'){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('mainWrapper').style.display='block';initApp();}else{showScreen('splashScreen');}}
+function initApp(){renderStaticIcons();initCredits();const key=localStorage.getItem('glow_api_key');if(key){document.getElementById('keyStatus').style.display='block';document.getElementById('saldoBar').style.display='flex';}else{document.getElementById('apiSetupCard').style.display='block';}setMode('meik');setTimeout(()=>refreshSaldo(),50);}
+function init(){renderStaticIcons();if(localStorage.getItem('glow_terms_accepted')==='true'){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('mainWrapper').style.display='block';initApp();}else{showScreen('splashScreen');}}
 
 function setMode(m){
   mode=m;
@@ -1489,7 +1552,7 @@ async function analyze(){
   }else if(mode==='stiil'){
     sys=getStiilCamSystem(selectedUritusCam.name,stiilRegime);
     prompt='Analüüsi riietust. Üritus: "'+selectedUritusCam.name+'". Vasta ainult JSON.';
-    lbl=(stiilRegime==='garderoob'?'🏠 ':'🛍 ')+selectedUritusCam.name;bar='c3';
+    lbl=(stiilRegime==='garderoob'?'Garderoob · ':'Pood · ')+selectedUritusCam.name;bar='c3';
     document.getElementById('loadingText').textContent='Analüüsin riietust...';
   }else{
     sys=getProSystem(selectedProcedure);
@@ -1567,8 +1630,8 @@ function renderPildipankResult(parsed,lbl){
   let fh='';
   const parim=parsed.parim_kombinatsioon||parsed.parim_valik;
   const osta=parsed.osta_soovitus;
-  if(parim)fh+='<div style="padding:14px;background:rgba(155,143,181,0.15);border:1px solid rgba(155,143,181,0.4);border-radius:3px;margin-bottom:14px"><div style="font-size:10px;letter-spacing:.3em;color:#c4b8e0;text-transform:uppercase;margin-bottom:6px;font-weight:500">'+(stiilRegime==='garderoob'?'🏠 Parim kombinatsioon':'🛍 Parim valik')+'</div><div style="font-family:\'Cormorant Garamond\',serif;font-size:16px;color:#fff;line-height:1.6">'+esc(parim)+'</div></div>';
-  if(osta)fh+='<div style="padding:12px 14px;background:rgba(201,169,110,0.12);border:1px solid rgba(201,169,110,0.4);border-radius:3px;margin-bottom:14px"><div style="font-size:10px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;margin-bottom:5px;font-weight:500">🛍 Ostusoovitus</div><div style="font-family:\'Cormorant Garamond\',serif;font-size:16px;color:#fff;line-height:1.5">'+esc(osta)+'</div></div>';
+  if(parim)fh+='<div style="padding:14px;background:rgba(155,143,181,0.15);border:1px solid rgba(155,143,181,0.4);border-radius:3px;margin-bottom:14px"><div style="font-size:10px;letter-spacing:.3em;color:#c4b8e0;text-transform:uppercase;margin-bottom:6px;font-weight:500">'+(stiilRegime==='garderoob'?'Parim kombinatsioon':'Parim valik')+'</div><div style="font-family:\'Cormorant Garamond\',serif;font-size:16px;color:#fff;line-height:1.6">'+esc(parim)+'</div></div>';
+  if(osta)fh+='<div style="padding:12px 14px;background:rgba(201,169,110,0.12);border:1px solid rgba(201,169,110,0.4);border-radius:3px;margin-bottom:14px"><div style="font-size:10px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;margin-bottom:5px;font-weight:500">Ostusoovitus</div><div style="font-family:\'Cormorant Garamond\',serif;font-size:16px;color:#fff;line-height:1.5">'+esc(osta)+'</div></div>';
   fh+='<p style="font-family:\'Cormorant Garamond\',serif;font-size:18px;line-height:1.9;color:#fff">'+esc(parsed.feedback||'')+'</p>';
   document.getElementById('feedbackText').innerHTML=fh;
   const dg=document.getElementById('detailsGrid');dg.innerHTML='';
@@ -1578,7 +1641,7 @@ function renderPildipankResult(parsed,lbl){
   if(parsed.tip){document.getElementById('tipText').textContent=parsed.tip;document.getElementById('tipCard').style.display='block';}else{document.getElementById('tipCard').style.display='none';}
   document.getElementById('resultWrap').classList.add('on');
   if(parsed.kombineerimised&&parsed.kombineerimised.length){const el=document.getElementById('kombineringSteps');el.innerHTML='';parsed.kombineerimised.forEach((k,i)=>{const d=document.createElement('div');d.className='komb-step';d.innerHTML='<div class="komb-num">'+(i+1)+'</div><div class="komb-text">'+esc(k)+'</div>';el.appendChild(d);});document.getElementById('kombineringCard').classList.add('on');}
-  if(parsed.alternatiivid&&parsed.alternatiivid.length){const list=document.getElementById('outfitNowList');list.innerHTML='';parsed.alternatiivid.forEach(p=>{const card=document.createElement('div');card.className='outfit-card';card.innerHTML='<div class="outfit-category">'+esc(p.kategooria||'')+'</div><div class="outfit-name">'+esc(p.nimi||'')+'</div>'+(p.bränd?'<div class="outfit-brand">'+esc(p.bränd)+'</div>':'')+'<div class="outfit-reason">'+esc(p.põhjus||'')+'</div>';list.appendChild(card);});document.getElementById('outfitNowTitle').textContent=stiilRegime==='garderoob'?'👗 Soovitused':'🛍 Ostusoovitused';document.getElementById('outfitNowSection').classList.add('on');}
+  if(parsed.alternatiivid&&parsed.alternatiivid.length){const list=document.getElementById('outfitNowList');list.innerHTML='';parsed.alternatiivid.forEach(p=>{const card=document.createElement('div');card.className='outfit-card';card.innerHTML='<div class="outfit-category">'+esc(p.kategooria||'')+'</div><div class="outfit-name">'+esc(p.nimi||'')+'</div>'+(p.bränd?'<div class="outfit-brand">'+esc(p.bränd)+'</div>':'')+'<div class="outfit-reason">'+esc(p.põhjus||'')+'</div>';list.appendChild(card);});document.getElementById('outfitNowTitle').textContent=stiilRegime==='garderoob'?'Soovitused':'Ostusoovitused';document.getElementById('outfitNowSection').classList.add('on');}
   if(parsed.moodboard&&parsed.moodboard.length>0){buildMoodboardCards(parsed.moodboard);document.getElementById('moodboardSubtitle').textContent=stiilRegime==='garderoob'?'Alternatiivid sinu valiku jaoks':'Kombineerimisideed ostetud esemetele';}
   document.getElementById('sharePrev').innerHTML='<div class="sp-logo">GL<em>O</em>W</div><div class="sp-mode">'+esc(lbl)+'</div><div class="sp-text">'+esc(parsed.feedback||'')+'</div>'+(parsed.tip?'<div class="sp-tip">✦ '+esc(parsed.tip)+'</div>':'');
   window.lastShareData={parsed:parsed,photoUrl:null,lbl:lbl};
