@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#1f1815"/>
+      <stop offset="100%" stop-color="#0e0c0b"/>
+    </radialGradient>
+    <radialGradient id="oglow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f0d898"/>
+      <stop offset="50%" stop-color="#e8c97e"/>
+      <stop offset="100%" stop-color="#9a7e4d"/>
+    </radialGradient>
+    <linearGradient id="frame" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#c9a96e" stop-opacity="1"/>
+      <stop offset="50%" stop-color="#e8c97e" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#c9a96e" stop-opacity="1"/>
+    </linearGradient>
+    <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#c9a96e" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#c9a96e" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#c9a96e" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="oshadow">
+      <feGaussianBlur stdDeviation="14"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <rect x="40" y="40" width="1120" height="550" rx="14" fill="none" stroke="url(#frame)" stroke-width="2"/>
+  <rect x="56" y="56" width="1088" height="518" rx="10" fill="none" stroke="#c9a96e" stroke-width="1" stroke-opacity="0.3"/>
+
+  <g stroke="#c9a96e" stroke-width="1.5" stroke-opacity="0.8" fill="none">
+    <path d="M 40 40 L 40 90 M 40 40 L 90 40"/>
+    <path d="M 1160 40 L 1160 90 M 1160 40 L 1110 40"/>
+    <path d="M 40 590 L 40 540 M 40 590 L 90 590"/>
+    <path d="M 1160 590 L 1160 540 M 1160 590 L 1110 590"/>
+  </g>
+
+  <line x1="350" y1="190" x2="850" y2="190" stroke="url(#lineGrad)" stroke-width="1"/>
+
+  <text x="600" y="230" text-anchor="middle" font-family="Georgia, 'Cormorant Garamond', serif" font-size="36" fill="#d4957a" letter-spacing="14" font-weight="300">AI ASSISTENT</text>
+
+  <g font-family="Georgia, 'Cormorant Garamond', serif" font-weight="300" text-anchor="middle" letter-spacing="22">
+    <circle cx="600" cy="375" r="80" fill="url(#oglow)" filter="url(#oshadow)" opacity="0.55"/>
+    <text x="430" y="395" font-size="180" fill="#ffffff">G</text>
+    <text x="600" y="395" font-size="180" fill="url(#oglow)" font-style="italic">O</text>
+    <text x="775" y="395" font-size="180" fill="#ffffff">W</text>
+  </g>
+
+  <line x1="350" y1="470" x2="850" y2="470" stroke="url(#lineGrad)" stroke-width="1"/>
+
+  <text x="600" y="520" text-anchor="middle" font-family="Georgia, 'Cormorant Garamond', serif" font-style="italic" font-size="32" fill="rgba(255,255,255,0.92)">meik · stiil · kosmetoloog</text>
+
+  <text x="600" y="565" text-anchor="middle" font-family="'DM Mono', monospace" font-size="16" fill="#c9a96e" letter-spacing="6">glow4me.ee</text>
+</svg>
