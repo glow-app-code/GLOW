@@ -477,11 +477,25 @@ header{text-align:center;padding:24px 0 32px;position:relative;animation:fadeUp 
 .sp-scores{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
 .sp-sv{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--gold);text-align:center}
 .sp-sl{font-size:9px;letter-spacing:.2em;color:rgba(255,255,255,0.5);text-transform:uppercase;text-align:center}
-.share-btns{display:flex;gap:8px;margin-top:14px}
-.sbtn{flex:1;padding:12px 6px;border-radius:2px;cursor:pointer;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;background:transparent;transition:all .2s}
-.sbtn.ig{border:1px solid rgba(225,48,108,0.5);color:#e1306c}.sbtn.fb{border:1px solid rgba(66,103,178,0.5);color:#6b8fd4}
-.sbtn.xtwitter{border:1px solid rgba(255,255,255,0.3);color:#fff}.sbtn.cp{border:1px solid rgba(201,169,110,0.5);color:var(--gold)}
-.share-note{font-size:10px;color:rgba(255,255,255,0.4);margin-top:8px;text-align:center}
+.share-format-row{display:flex;gap:6px;margin-top:14px;margin-bottom:12px}
+.share-fmt{flex:1;padding:9px 4px;border-radius:3px;cursor:pointer;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;background:rgba(255,255,255,0.04);border:1px solid rgba(201,169,110,0.25);color:rgba(255,255,255,0.7);transition:all .2s;display:flex;flex-direction:column;align-items:center;gap:2px;line-height:1.1}
+.share-fmt span{font-size:8px;color:rgba(255,255,255,0.4);letter-spacing:.1em}
+.share-fmt.active{border-color:var(--gold);background:rgba(201,169,110,0.18);color:var(--gold-bright)}
+.share-fmt.active span{color:var(--gold)}
+.share-actions{display:flex;gap:8px;margin-bottom:14px}
+.share-primary{flex:1.4;padding:15px 8px;border-radius:4px;cursor:pointer;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.25em;text-transform:uppercase;background:var(--gold);color:var(--bg);border:none;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px;transition:transform .15s,box-shadow .15s}
+.share-primary:hover,.share-primary:active{transform:translateY(-1px);box-shadow:0 6px 20px rgba(201,169,110,0.4)}
+.share-primary-icon{font-size:16px;font-weight:600}
+.share-secondary{flex:1;padding:15px 8px;border-radius:4px;cursor:pointer;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.25em;text-transform:uppercase;background:transparent;color:var(--gold);border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;gap:8px;transition:all .2s}
+.share-secondary:hover,.share-secondary:active{background:rgba(201,169,110,0.12)}
+.share-secondary-icon{font-size:14px}
+.share-quick{display:flex;gap:8px;margin-bottom:10px}
+.sbtn{flex:1;padding:10px 6px;border-radius:3px;cursor:pointer;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;background:transparent;transition:all .2s}
+.sbtn.fb{border:1px solid rgba(66,103,178,0.5);color:#6b8fd4}
+.sbtn.xtwitter{border:1px solid rgba(255,255,255,0.3);color:#fff}
+.sbtn.cp{border:1px solid rgba(201,169,110,0.5);color:var(--gold)}
+.share-note{font-size:10px;color:rgba(255,255,255,0.4);margin-top:6px;text-align:center;line-height:1.5}
+.share-busy{opacity:.55;pointer-events:none}
 .feedback-card{border:1px solid rgba(155,143,181,0.35);border-radius:4px;background:rgba(155,143,181,0.1);padding:16px;margin-bottom:16px}
 .feedback-card .lbl{color:#c4b8e0}
 .feedback-intro{font-size:12px;color:rgba(255,255,255,0.7);line-height:1.7;margin-bottom:14px}
@@ -934,13 +948,28 @@ canvas{display:none}
 <div class="card share-card" id="shareCard">
   <div class="lbl">Jaga tulemust</div>
   <div class="share-preview" id="sharePrev"></div>
-  <div class="share-btns">
-    <button class="sbtn ig" onclick="shareIG()">📸 IG</button>
-    <button class="sbtn fb" onclick="shareFB()">📘 FB</button>
-    <button class="sbtn xtwitter" onclick="shareX()">𝕏</button>
-    <button class="sbtn cp" onclick="shareCopy()">🔗</button>
+  <div class="share-format-row" id="shareFormatRow">
+    <button class="share-fmt active" data-format="stories" onclick="selectShareFormat(this,'stories')">Stories <span>9:16</span></button>
+    <button class="share-fmt" data-format="square" onclick="selectShareFormat(this,'square')">Square <span>1:1</span></button>
+    <button class="share-fmt" data-format="pinterest" onclick="selectShareFormat(this,'pinterest')">Pinterest <span>2:3</span></button>
   </div>
-  <div class="share-note">Pilt salvestatakse galeriisse jagamiseks</div>
+  <div class="share-actions">
+    <button class="share-primary" id="shareDirectBtn" onclick="shareImageDirect()">
+      <span class="share-primary-icon">↗</span>
+      <span>Jaga pilt</span>
+    </button>
+    <button class="share-secondary" onclick="saveShareImage()">
+      <span class="share-secondary-icon">↓</span>
+      <span>Salvesta galeriisse</span>
+    </button>
+  </div>
+  <div class="share-quick">
+    <button class="sbtn fb" onclick="shareFB()" title="Facebook">FB</button>
+    <button class="sbtn xtwitter" onclick="shareX()" title="X / Twitter">𝕏</button>
+    <button class="sbtn cp" onclick="shareCopy()" title="Kopeeri link">Link</button>
+  </div>
+  <div class="share-note">Stories / TikTok kasutavad 9:16 formaati · Pinterest 2:3 · Facebook/Instagram post 1:1</div>
+  <canvas id="shareCanvas" style="display:none"></canvas>
 </div>
 
 <div class="feedback-card">
@@ -1518,6 +1547,7 @@ function renderStiilCamResult(parsed,photoUrl,lbl){
   // moodboard laaditakse ainult nupu vajutamisel (showAlternatiivid)
   const scores=parsed.scores||{};const scoreHtml=Object.entries(scores).map(([l,v])=>'<div><div class="sp-sv">'+esc(v)+'</div><div class="sp-sl">'+esc(l)+'</div></div>').join('');
   document.getElementById('sharePrev').innerHTML='<img class="sp-photo" src="'+esc(photoUrl)+'"><div class="sp-logo">GL<em>O</em>W</div><div class="sp-mode">'+esc(lbl)+'</div><div class="sp-text">'+esc(parsed.feedback||'')+'</div>'+(parsed.tip?'<div class="sp-tip">✦ '+esc(parsed.tip)+'</div>':'')+'<div class="sp-scores">'+scoreHtml+'</div>';
+  window.lastShareData={parsed:parsed,photoUrl:photoUrl,lbl:lbl};
   document.getElementById('shareCard').classList.add('on');
   // Näita "Näita alternatiive" nuppu
   window.lastAlternatiivid = parsed.alternatiivid||[];
@@ -1551,6 +1581,7 @@ function renderPildipankResult(parsed,lbl){
   if(parsed.alternatiivid&&parsed.alternatiivid.length){const list=document.getElementById('outfitNowList');list.innerHTML='';parsed.alternatiivid.forEach(p=>{const card=document.createElement('div');card.className='outfit-card';card.innerHTML='<div class="outfit-category">'+esc(p.kategooria||'')+'</div><div class="outfit-name">'+esc(p.nimi||'')+'</div>'+(p.bränd?'<div class="outfit-brand">'+esc(p.bränd)+'</div>':'')+'<div class="outfit-reason">'+esc(p.põhjus||'')+'</div>';list.appendChild(card);});document.getElementById('outfitNowTitle').textContent=stiilRegime==='garderoob'?'👗 Soovitused':'🛍 Ostusoovitused';document.getElementById('outfitNowSection').classList.add('on');}
   if(parsed.moodboard&&parsed.moodboard.length>0){buildMoodboardCards(parsed.moodboard);document.getElementById('moodboardSubtitle').textContent=stiilRegime==='garderoob'?'Alternatiivid sinu valiku jaoks':'Kombineerimisideed ostetud esemetele';}
   document.getElementById('sharePrev').innerHTML='<div class="sp-logo">GL<em>O</em>W</div><div class="sp-mode">'+esc(lbl)+'</div><div class="sp-text">'+esc(parsed.feedback||'')+'</div>'+(parsed.tip?'<div class="sp-tip">✦ '+esc(parsed.tip)+'</div>':'');
+  window.lastShareData={parsed:parsed,photoUrl:null,lbl:lbl};
   document.getElementById('shareCard').classList.add('on');
 }
 
@@ -1594,6 +1625,7 @@ function renderMeikProResult(parsed,barClass,photoUrl,lbl){
   }
   const scores=parsed.scores||{};const scoreHtml=Object.entries(scores).map(([l,v])=>'<div><div class="sp-sv">'+esc(v)+'</div><div class="sp-sl">'+esc(l)+'</div></div>').join('');
   document.getElementById('sharePrev').innerHTML='<img class="sp-photo" src="'+esc(photoUrl)+'"><div class="sp-logo">GL<em>O</em>W</div><div class="sp-mode">'+esc(parsed.verdict||lbl)+'</div><div class="sp-text">'+esc(parsed.feedback||'')+'</div>'+(parsed.tip?'<div class="sp-tip">✦ '+esc(parsed.tip)+'</div>':'')+'<div class="sp-scores">'+scoreHtml+'</div>';
+  window.lastShareData={parsed:parsed,photoUrl:photoUrl,lbl:lbl};
   document.getElementById('shareCard').classList.add('on');
 }
 
@@ -1604,7 +1636,220 @@ async function generateMoreMoodboard(){const key=getKey();if(!key)return;const b
 function toggleAuto(){autoOn=!autoOn;const btn=document.getElementById('autoBtn');if(autoT){clearInterval(autoT);autoT=null;}if(autoOn){if(!stream){autoOn=false;document.getElementById('err').textContent='Ava kõigepealt kaamera!';return;}btn.textContent='⬛ Peata';btn.classList.add('red');analyze();autoT=setInterval(()=>{if(!stream){clearInterval(autoT);autoT=null;autoOn=false;btn.textContent='Auto';btn.classList.remove('red');return;}analyze();},25000);}else{btn.textContent='Auto';btn.classList.remove('red');}}
 function rateStar(n){starRating=n;document.querySelectorAll('.star').forEach((s,i)=>s.classList.toggle('active',i<n));document.getElementById('feedbackSubmitBtn').disabled=false;}
 function submitFeedback(){document.getElementById('feedbackForm').style.display='none';document.getElementById('feedbackSent').classList.add('show');}
-function shareIG(){const fb=lastFb||'';if(navigator.share){navigator.share({title:'GLÓW',text:fb+'\n\n✦ GLÓW AI\n#GLOW #AI',url:window.location.href}).catch(()=>{});}else{alert('Ava Instagram → Lisa postitus → vali pilt galeriist');}}
+// === SHARE CARD — Canvas pildi genereerimine ===
+window.lastShareData=null;
+let selectedShareFormat='stories';
+function selectShareFormat(btn,fmt){selectedShareFormat=fmt;document.querySelectorAll('.share-fmt').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
+async function ensureFontsLoaded(){if(document.fonts&&document.fonts.ready){try{await document.fonts.ready;}catch(_){}}}
+function loadImg(src){return new Promise((res,rej)=>{const i=new Image();i.crossOrigin='anonymous';i.onload=()=>res(i);i.onerror=()=>rej(new Error('Img load fail'));i.src=src;});}
+function roundRect(ctx,x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);ctx.quadraticCurveTo(x+w,y,x+w,y+r);ctx.lineTo(x+w,y+h-r);ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);ctx.lineTo(x+r,y+h);ctx.quadraticCurveTo(x,y+h,x,y+h-r);ctx.lineTo(x,y+r);ctx.quadraticCurveTo(x,y,x+r,y);ctx.closePath();}
+function drawCorners(ctx,x,y,w,h,len,col){ctx.strokeStyle=col;ctx.lineWidth=3;ctx.lineCap='square';ctx.beginPath();
+  ctx.moveTo(x,y+len);ctx.lineTo(x,y);ctx.lineTo(x+len,y);
+  ctx.moveTo(x+w-len,y);ctx.lineTo(x+w,y);ctx.lineTo(x+w,y+len);
+  ctx.moveTo(x,y+h-len);ctx.lineTo(x,y+h);ctx.lineTo(x+len,y+h);
+  ctx.moveTo(x+w-len,y+h);ctx.lineTo(x+w,y+h);ctx.lineTo(x+w,y+h-len);
+  ctx.stroke();}
+function wrapLines(ctx,text,maxW){const words=String(text||'').split(/\s+/);const lines=[];let cur='';words.forEach(wd=>{const test=cur?cur+' '+wd:wd;if(ctx.measureText(test).width>maxW&&cur){lines.push(cur);cur=wd;}else{cur=test;}});if(cur)lines.push(cur);return lines;}
+function drawWrapped(ctx,text,x,y,maxW,lineH,maxLines){const lines=wrapLines(ctx,text,maxW);const slice=lines.slice(0,maxLines||lines.length);if(maxLines&&lines.length>maxLines){let last=slice[maxLines-1];while(ctx.measureText(last+'…').width>maxW&&last.length>5)last=last.slice(0,-1);slice[maxLines-1]=last+'…';}slice.forEach((ln,i)=>ctx.fillText(ln,x,y+i*lineH));return slice.length;}
+
+async function generateShareImage(format){
+  format=format||selectedShareFormat||'stories';
+  const PRESETS={stories:{w:1080,h:1920},square:{w:1080,h:1080},pinterest:{w:1000,h:1500}};
+  const {w:W,h:H}=PRESETS[format]||PRESETS.stories;
+  const data=window.lastShareData;
+  if(!data)throw new Error('Pole jagatavaid andmeid');
+  const cv=document.getElementById('shareCanvas');
+  cv.width=W;cv.height=H;
+  const ctx=cv.getContext('2d');
+  await ensureFontsLoaded();
+
+  // 1. Taust — radial gradient
+  const bg=ctx.createRadialGradient(W/2,H*0.4,100,W/2,H*0.5,Math.max(W,H));
+  bg.addColorStop(0,'#231a16');bg.addColorStop(1,'#0e0c0b');
+  ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
+  // kuldne pehme särahus üleval
+  const glow=ctx.createRadialGradient(W/2,H*0.18,40,W/2,H*0.18,W*0.6);
+  glow.addColorStop(0,'rgba(201,169,110,0.22)');glow.addColorStop(1,'rgba(201,169,110,0)');
+  ctx.fillStyle=glow;ctx.fillRect(0,0,W,H);
+
+  // 2. Kuldne raam + nurgad
+  const M=Math.round(W*0.04);
+  ctx.strokeStyle='rgba(201,169,110,0.7)';ctx.lineWidth=2;
+  roundRect(ctx,M,M,W-2*M,H-2*M,18);ctx.stroke();
+  ctx.strokeStyle='rgba(201,169,110,0.25)';ctx.lineWidth=1;
+  roundRect(ctx,M+16,M+16,W-2*M-32,H-2*M-32,12);ctx.stroke();
+  drawCorners(ctx,M,M,W-2*M,H-2*M,Math.round(W*0.06),'#e8c97e');
+
+  // 3. Üleval — logo + label
+  const cx=W/2;
+  const topY=Math.round(H*0.10);
+  ctx.fillStyle='#d4957a';ctx.textAlign='center';ctx.textBaseline='top';
+  ctx.font='400 '+Math.round(W*0.022)+'px "DM Mono",monospace';
+  ctx.fillText('A I   A S S I S T E N T',cx,topY);
+  const logoY=topY+Math.round(W*0.035);
+  ctx.fillStyle='#fff';
+  const logoFs=Math.round(W*0.14);
+  ctx.font='300 '+logoFs+'px "Cormorant Garamond","Georgia",serif';
+  const gW=ctx.measureText('G L').width;
+  const wW=ctx.measureText('W').width;
+  const oFont='italic 300 '+logoFs+'px "Cormorant Garamond","Georgia",serif';
+  ctx.font=oFont;
+  const oW=ctx.measureText('Ó').width;
+  const totalW=gW+oW+wW+Math.round(W*0.012)*2;
+  let curX=cx-totalW/2;
+  ctx.font='300 '+logoFs+'px "Cormorant Garamond","Georgia",serif';
+  ctx.textAlign='left';
+  ctx.fillText('G L',curX,logoY);
+  curX+=gW+Math.round(W*0.012);
+  // O kuldne hõõguv
+  ctx.save();
+  ctx.shadowColor='rgba(232,201,126,0.85)';ctx.shadowBlur=Math.round(W*0.03);
+  ctx.fillStyle='#e8c97e';ctx.font=oFont;
+  ctx.fillText('Ó',curX,logoY);
+  ctx.restore();
+  curX+=oW+Math.round(W*0.012);
+  ctx.fillStyle='#fff';ctx.font='300 '+logoFs+'px "Cormorant Garamond","Georgia",serif';
+  ctx.fillText('W',curX,logoY);
+  ctx.textAlign='center';
+
+  // Eraldajaõhk
+  const divY=logoY+logoFs+Math.round(W*0.025);
+  const dgrad=ctx.createLinearGradient(W*0.25,divY,W*0.75,divY);
+  dgrad.addColorStop(0,'rgba(201,169,110,0)');dgrad.addColorStop(0.5,'rgba(201,169,110,0.8)');dgrad.addColorStop(1,'rgba(201,169,110,0)');
+  ctx.fillStyle=dgrad;ctx.fillRect(W*0.25,divY,W*0.5,1);
+
+  // 4. Kasutaja foto (kui on)
+  let photoBottom=divY+Math.round(W*0.04);
+  if(data.photoUrl){
+    try{
+      const img=await loadImg(data.photoUrl);
+      const photoW=Math.round(W*0.62);
+      const photoH=format==='square'?Math.round(W*0.42):Math.round(W*0.7);
+      const photoX=(W-photoW)/2;
+      const photoY=photoBottom;
+      ctx.save();
+      roundRect(ctx,photoX,photoY,photoW,photoH,Math.round(W*0.025));ctx.clip();
+      // mirror if selfie was from user-facing
+      const iw=img.width,ih=img.height;
+      const sa=iw/ih, da=photoW/photoH;
+      let sx=0,sy=0,sw=iw,sh=ih;
+      if(sa>da){sw=ih*da;sx=(iw-sw)/2;}else{sh=iw/da;sy=(ih-sh)/2;}
+      ctx.drawImage(img,sx,sy,sw,sh,photoX,photoY,photoW,photoH);
+      ctx.restore();
+      // photo border
+      ctx.strokeStyle='rgba(201,169,110,0.55)';ctx.lineWidth=2;
+      roundRect(ctx,photoX,photoY,photoW,photoH,Math.round(W*0.025));ctx.stroke();
+      photoBottom=photoY+photoH+Math.round(W*0.035);
+    }catch(_){}
+  }
+
+  // 5. Verdict
+  const verdict=data.parsed.verdict||'';
+  const vc=data.parsed.verdict_class||'maybe';
+  const verdictColors={yes:'#a8d4c4',no:'#e8a090',maybe:'#e8c97e'};
+  ctx.fillStyle=verdictColors[vc]||verdictColors.maybe;
+  const vFs=Math.round(W*0.07);
+  ctx.font='600 '+vFs+'px "Cormorant Garamond","Georgia",serif';
+  drawWrapped(ctx,verdict,cx,photoBottom,W*0.82,vFs*1.15,2);
+  let curY=photoBottom+vFs*1.15*Math.min(2,wrapLines(ctx,verdict,W*0.82).length)+Math.round(W*0.02);
+
+  // 6. Mood/lbl
+  ctx.fillStyle='rgba(255,255,255,0.6)';
+  const lblFs=Math.round(W*0.022);
+  ctx.font='500 '+lblFs+'px "DM Mono",monospace';
+  ctx.fillText(String(data.lbl||'').toUpperCase().replace(/\W/g,' ').replace(/\s+/g,'  ').trim(),cx,curY);
+  curY+=lblFs*2;
+
+  // 7. Feedback tekst — kuni 4 rida
+  const fb=data.parsed.feedback||'';
+  if(fb){
+    ctx.fillStyle='rgba(255,255,255,0.92)';
+    const fbFs=Math.round(W*0.034);
+    ctx.font='italic 400 '+fbFs+'px "Cormorant Garamond","Georgia",serif';
+    const used=drawWrapped(ctx,fb,cx,curY,W*0.82,fbFs*1.5,format==='square'?3:5);
+    curY+=fbFs*1.5*used+Math.round(W*0.025);
+  }
+
+  // 8. Skoorid (kuni 3) kui on
+  const scores=data.parsed.scores||{};
+  const scoreKeys=Object.keys(scores).slice(0,3);
+  if(scoreKeys.length){
+    const gap=Math.round(W*0.04);
+    const sBoxW=(W*0.82-gap*(scoreKeys.length-1))/scoreKeys.length;
+    const startX=(W-W*0.82)/2;
+    scoreKeys.forEach((k,i)=>{
+      const bx=startX+i*(sBoxW+gap);
+      ctx.fillStyle='rgba(201,169,110,0.1)';
+      roundRect(ctx,bx,curY,sBoxW,Math.round(W*0.13),Math.round(W*0.015));ctx.fill();
+      ctx.strokeStyle='rgba(201,169,110,0.4)';ctx.lineWidth=1;
+      roundRect(ctx,bx,curY,sBoxW,Math.round(W*0.13),Math.round(W*0.015));ctx.stroke();
+      ctx.fillStyle='#e8c97e';
+      const svFs=Math.round(W*0.05);
+      ctx.font='600 '+svFs+'px "Cormorant Garamond","Georgia",serif';
+      ctx.fillText(String(scores[k]||0),bx+sBoxW/2,curY+Math.round(W*0.02));
+      ctx.fillStyle='rgba(255,255,255,0.55)';
+      ctx.font='500 '+Math.round(W*0.018)+'px "DM Mono",monospace';
+      ctx.fillText(String(k).toUpperCase(),bx+sBoxW/2,curY+Math.round(W*0.08));
+    });
+    curY+=Math.round(W*0.16);
+  }
+
+  // 9. Tip kui mahub
+  if(data.parsed.tip&&curY<H*0.82){
+    ctx.fillStyle='#e8c97e';
+    const tFs=Math.round(W*0.028);
+    ctx.font='italic 400 '+tFs+'px "Cormorant Garamond","Georgia",serif';
+    drawWrapped(ctx,'✦ '+data.parsed.tip,cx,curY,W*0.82,tFs*1.5,3);
+  }
+
+  // 10. Vesimärk all
+  const footY=H-Math.round(W*0.08);
+  const wmGrad=ctx.createLinearGradient(W*0.25,footY-30,W*0.75,footY-30);
+  wmGrad.addColorStop(0,'rgba(201,169,110,0)');wmGrad.addColorStop(0.5,'rgba(201,169,110,0.6)');wmGrad.addColorStop(1,'rgba(201,169,110,0)');
+  ctx.fillStyle=wmGrad;ctx.fillRect(W*0.25,footY-Math.round(W*0.025),W*0.5,1);
+  ctx.fillStyle='#c9a96e';
+  const wmFs=Math.round(W*0.025);
+  ctx.font='400 '+wmFs+'px "DM Mono",monospace';
+  ctx.fillText('G L Ó W   ·   glow4me.ee',cx,footY-Math.round(W*0.015));
+
+  return new Promise(res=>cv.toBlob(b=>res(b),'image/jpeg',0.92));
+}
+
+async function saveShareImage(){
+  if(!window.lastShareData){alert('Tee enne analüüs');return;}
+  const btn=event&&event.currentTarget;if(btn)btn.classList.add('share-busy');
+  try{
+    const blob=await generateShareImage();
+    if(!blob)throw new Error('Pildi tegemine ebaõnnestus');
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement('a');a.href=url;a.download='glow-'+selectedShareFormat+'-'+Date.now()+'.jpg';
+    document.body.appendChild(a);a.click();a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),3000);
+  }catch(e){alert('Viga: '+e.message);}
+  finally{if(btn)btn.classList.remove('share-busy');}
+}
+
+async function shareImageDirect(){
+  if(!window.lastShareData){alert('Tee enne analüüs');return;}
+  const btn=event&&event.currentTarget;if(btn)btn.classList.add('share-busy');
+  try{
+    const blob=await generateShareImage();
+    if(!blob)throw new Error('Pildi tegemine ebaõnnestus');
+    const file=new File([blob],'glow-'+selectedShareFormat+'.jpg',{type:'image/jpeg'});
+    const shareData={files:[file],title:'GLÓW',text:'✦ GLÓW AI · glow4me.ee'};
+    if(navigator.canShare&&navigator.canShare({files:[file]})){
+      await navigator.share(shareData);
+    }else{
+      // Fallback — lae alla
+      const url=URL.createObjectURL(blob);
+      const a=document.createElement('a');a.href=url;a.download=file.name;a.click();a.remove();
+      setTimeout(()=>URL.revokeObjectURL(url),3000);
+      alert('Pilt salvestati galeriisse — ava Instagram/TikTok ja vali see üleslaadimiseks');
+    }
+  }catch(e){if(e.name!=='AbortError')alert('Viga: '+e.message);}
+  finally{if(btn)btn.classList.remove('share-busy');}
+}
+
 function shareFB(){window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(window.location.href),'_blank');}
 function shareX(){const fb=lastFb||'';const text=encodeURIComponent('✦ GLÓW AI\n\n'+fb.substring(0,200)+'\n\n#GLOW #AI');window.open('https://twitter.com/intent/tweet?text='+text+'&url='+encodeURIComponent(window.location.href),'_blank');}
 function shareCopy(){const fb=lastFb||'';const text='✦ GLÓW AI\n\n'+fb+'\n\n'+window.location.href;if(navigator.clipboard){navigator.clipboard.writeText(text).then(()=>alert('✓ Kopeeritud!'));}else{const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);alert('✓ Kopeeritud!');}}
