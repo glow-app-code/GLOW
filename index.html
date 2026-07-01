@@ -1605,7 +1605,34 @@ function getProSystem(procId){const brandStr=getSalonBrandString();const base=`S
 // OLEKUMUUTUJAD
 let mode='meik',stiilRegime='garderoob',stiilInput='galerii';
 let stream=null,autoOn=false,autoT=null,lastFb='',selectedPkg=PACKAGES[1],starRating=0,termsAccepted=false,currentMoodboardData=[];
-function extractJson(raw){if(!raw)throw new Error('Tühi vastus');const cleaned=raw.replace(/```json|```/g,'').trim();const s=cleaned.indexOf('{'),e=cleaned.lastIndexOf('}');const a=cleaned.indexOf('['),z=cleaned.lastIndexOf(']');let slice=cleaned;if(s>=0&&e>s&&(a<0||s<a))slice=cleaned.substring(s,e+1);else if(a>=0&&z>a)slice=cleaned.substring(a,z+1);return JSON.parse(slice);}
+function extractJson(raw){
+  if(!raw)throw new Error('Tühi vastus');
+  const cleaned=raw.replace(/```json|```/g,'').trim();
+  const s=cleaned.indexOf('{'),e=cleaned.lastIndexOf('}');
+  const a=cleaned.indexOf('['),z=cleaned.lastIndexOf(']');
+  let slice=cleaned;
+  if(s>=0&&e>s&&(a<0||s<a))slice=cleaned.substring(s,e+1);
+  else if(a>=0&&z>a)slice=cleaned.substring(a,z+1);
+  // 1. Katse — otse
+  try{return JSON.parse(slice);}catch(_){}
+  // 2. Katse — eemalda trailing komad (,] või ,})
+  let fixed=slice.replace(/,(\s*[\]}])/g,'$1');
+  try{return JSON.parse(fixed);}catch(_){}
+  // 3. Katse — parandage "orphan" jutumärgid stringi sees
+  // Otsi mustrit: "abc "def" ghi" — pane siseremärgid escape'itult
+  fixed=fixed.replace(/"([^"\n\\]*)"([^",:\{\}\[\]\s][^"\n]*?)"([^"\n\\]*)"/g,'"$1\\"$2\\"$3"');
+  try{return JSON.parse(fixed);}catch(_){}
+  // 4. Katse — kui poolik JSON, proovi sulgeda kõik lahtised sulud
+  let opens={'[':0,'{':0};let inStr=false;let escaped=false;
+  for(let i=0;i<fixed.length;i++){const c=fixed[i];if(escaped){escaped=false;continue;}if(c==='\\'){escaped=true;continue;}if(c==='"')inStr=!inStr;if(inStr)continue;if(c==='{')opens['{']++;else if(c==='}')opens['{']--;else if(c==='[')opens['[']++;else if(c===']')opens['[']--;}
+  let closed=fixed;
+  if(inStr)closed+='"';
+  while(opens['{']>0){closed+='}';opens['{']--;}
+  while(opens['[']>0){closed+=']';opens['[']--;}
+  try{return JSON.parse(closed);}catch(_){}
+  // Kõik ebaõnnestus — heitke viga
+  throw new Error('JSON-i ei õnnestunud parseerida ka pärast 4 katse');
+}
 async function checkRes(res){if(!res.ok){let msg='HTTP '+res.status;try{const t=await res.text();const j=JSON.parse(t);if(j.error&&j.error.message)msg=j.error.message;else msg+=': '+t.substring(0,200);}catch(_){}throw new Error(msg);}return res.json();}
 function esc(s){if(s==null)return '';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
 function safeUrl(u,fallback){if(typeof u!=='string')return fallback;const t=u.trim();if(/^https?:\/\//i.test(t))return esc(t);return fallback;}
@@ -1694,15 +1721,28 @@ async function analyzePildipank(){
   const prompt=(stiilRegime==='garderoob'?'Vaata kõiki pilte minu garderoobist. Vali parim kombinatsioon ürituseks "'+selectedUritus.name+'".':'Vaata kõiki pilte poes proovitud esemetest. Soovita mida osta ürituse "'+selectedUritus.name+'" jaoks.')+' Vasta ainult JSON.';
   imageContent.push({type:'text',text:prompt});
   try{
-    const res=await fetch(glowApiUrl(),{method:'POST',headers:glowApiHeaders(key),body:JSON.stringify({model:'claude-sonnet-4-5',max_tokens:2500,system:sys,messages:[{role:'user',content:imageContent}]})});
-    const data=await checkRes(res);if(data.error)throw new Error(data.error.message);
-    const raw=data.content.map(b=>b.text||'').join('');
-    const parsed=extractJson(raw);
+    // Kuni 2 katse — kui JSON-viga, proovi uuesti
+    let parsed=null;let lastErr=null;
+    for(let attempt=1;attempt<=2;attempt++){
+      if(attempt===2)document.getElementById('loadingText').textContent='AI vastus oli ebatäielik, proovime uuesti...';
+      try{
+        const res=await fetch(glowApiUrl(),{method:'POST',headers:glowApiHeaders(key),body:JSON.stringify({model:'claude-sonnet-4-5',max_tokens:2500,system:sys,messages:[{role:'user',content:imageContent}]})});
+        const data=await checkRes(res);if(data.error)throw new Error(data.error.message);
+        const raw=data.content.map(b=>b.text||'').join('');
+        parsed=extractJson(raw);
+        break;
+      }catch(err){
+        lastErr=err;
+        if(err.message&&err.message.startsWith('HTTP '))throw err;
+        if(attempt>=2)throw new Error('AI ei suutnud korrektset vastust anda pärast 2 katse. Sinu krediit ei kulutata — proovi mõne aja pärast uuesti.');
+      }
+    }
+    if(!parsed)throw lastErr||new Error('Analüüs ebaõnnestus');
     lastFb=parsed.feedback||'';setCredits(credits-1);
     document.getElementById('load').classList.remove('on');
     renderPildipankResult(parsed,stiilRegime==='garderoob'?'Garderoob · '+selectedUritus.name:'Pood · '+selectedUritus.name);
     maybeShowInstallAfterAnalysis();
-  }catch(e){document.getElementById('load').classList.remove('on');document.getElementById('resEmpty').style.display='block';document.getElementById('resEmpty').textContent='Viga: '+e.message;}
+  }catch(e){document.getElementById('load').classList.remove('on');document.getElementById('resEmpty').style.display='block';document.getElementById('resEmpty').textContent=e.message;}
   btn.className='analyze-bank-btn active';btn.disabled=false;btn.textContent='✦ Analüüsi minu valik';refreshAnalyzeBankBtn();
 }
 
@@ -1925,11 +1965,29 @@ async function analyze(){
   document.getElementById('resEmpty').style.display='none';
   document.getElementById('anaBtn').disabled=true;
   const dataUrl=capture();const b64=dataUrl.split(',')[1];
+  let creditsUsed=false;
   try{
-    const res=await fetch(glowApiUrl(),{method:'POST',signal:currentFetchAbort.signal,headers:glowApiHeaders(key),body:JSON.stringify({model:'claude-sonnet-4-5',max_tokens:2500,system:sys,messages:[{role:'user',content:[{type:'image',source:{type:'base64',media_type:'image/jpeg',data:b64}},{type:'text',text:prompt}]}]})});
-    const data=await checkRes(res);if(data.error)throw new Error(data.error.message);
-    const raw=data.content.map(b=>b.text||'').join('');
-    const parsed=extractJson(raw);
+    // Kuni 2 katsele — kui esimene ebaõnnestub JSON-vea tõttu, proovi uuesti
+    let parsed=null;let lastErr=null;
+    for(let attempt=1;attempt<=2;attempt++){
+      if(attempt===2){setDot('thinking','Proovin uuesti...');document.getElementById('loadingText').textContent='AI vastus oli ebatäielik, proovime uuesti...';}
+      try{
+        const res=await fetch(glowApiUrl(),{method:'POST',signal:currentFetchAbort.signal,headers:glowApiHeaders(key),body:JSON.stringify({model:'claude-sonnet-4-5',max_tokens:2500,system:sys,messages:[{role:'user',content:[{type:'image',source:{type:'base64',media_type:'image/jpeg',data:b64}},{type:'text',text:prompt}]}]})});
+        const data=await checkRes(res);if(data.error)throw new Error(data.error.message);
+        const raw=data.content.map(b=>b.text||'').join('');
+        parsed=extractJson(raw);
+        break; // Kui õnnestus, välju loopist
+      }catch(err){
+        lastErr=err;
+        if(err.name==='AbortError')throw err;
+        // Kui HTTP-viga (mitte JSON), ära proovi uuesti
+        if(err.message&&err.message.startsWith('HTTP '))throw err;
+        // JSON-viga → proovime uuesti (kui pole veel 2. katses)
+        if(attempt>=2)throw new Error('AI ei suutnud korrektset vastust anda pärast 2 katse. Sinu krediit ei kulutata — proovi mõne aja pärast uuesti.');
+      }
+    }
+    if(!parsed)throw lastErr||new Error('Analüüs ebaõnnestus');
+    creditsUsed=true;
     lastFb=parsed.feedback||'';setCredits(credits-1);
     document.getElementById('load').classList.remove('on');document.getElementById('scan').classList.remove('on');
     if(mode==='stiil')renderStiilCamResult(parsed,dataUrl,lbl);
@@ -1938,7 +1996,7 @@ async function analyze(){
     maybeShowInstallAfterAnalysis();
   }catch(e){
     document.getElementById('load').classList.remove('on');document.getElementById('scan').classList.remove('on');
-    if(e.name==='AbortError'){setDot('idle','Tühistatud');}else{document.getElementById('err').textContent='Viga: '+e.message;setDot('idle','Viga');}
+    if(e.name==='AbortError'){setDot('idle','Tühistatud');}else{document.getElementById('err').textContent=e.message;setDot('idle','Viga');}
   }
   if(mode==='stiil')document.getElementById('anaBtn').disabled=!(stream&&selectedUritusCam&&getCredits()>0);
   else document.getElementById('anaBtn').disabled=!(stream&&getCredits()>0);
