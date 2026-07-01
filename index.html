@@ -955,11 +955,6 @@ canvas{display:none}
   <div class="logo">GL<span class="logo-o">Ó</span>W</div>
   <div class="logo-line"><div class="tagline">AI · Isiklik Stiiliassistent</div></div>
   <button class="logout-btn" onclick="logout()">✦ Välju</button>
-  <button class="circles-nav-btn" id="circlesNavBtn" onclick="openCirclesPanelWithOnboard()" style="display:none" title="Ava oma GLÓW Circles pere">
-    <span data-icon="circles" data-icon-size="18"></span>
-    <span>GL<em>Ó</em>W Ring</span>
-    <span class="circles-badge" id="circlesBadge">0</span>
-  </button>
 </header>
 
 <div id="keyStatus" style="display:none">
@@ -1002,8 +997,8 @@ canvas{display:none}
 <div class="circles-invite-card" id="circlesInviteCard" onclick="handleCirclesFirstClick()" style="display:none">
   <div class="circles-invite-icon" data-icon="glowCircle" data-icon-size="30"></div>
   <div class="circles-invite-body">
-    <div class="circles-invite-title">GLÓW <em>Circles</em> <span class="circles-invite-badge-new" id="circlesNewBadge">Uus</span></div>
-    <div class="circles-invite-sub">Loo oma <strong>stiili-pere</strong> — jaga välimust ja saa sõprade tagasisidet reaalajas ✦</div>
+    <div class="circles-invite-title">GL<em>Ó</em>W Circles <span class="circles-invite-badge-new" id="circlesNewBadge">Uus</span></div>
+    <div class="circles-invite-sub">— kus stiil kohtub <strong>sõpruse häälega</strong> ✦</div>
   </div>
   <span class="circles-invite-arrow">→</span>
 </div>
@@ -1878,15 +1873,8 @@ async function handleJoinInvite(){
 }
 
 function updateCirclesNavBtn(){
-  const btn=document.getElementById('circlesNavBtn');
   const card=document.getElementById('circlesInviteCard');
   const logged=isLoggedIn();
-  if(btn){
-    btn.style.display=logged?'inline-flex':'none';
-    // Pulssiv efekt esmakordse kasutaja jaoks
-    if(logged&&!localStorage.getItem('glow_circles_seen'))btn.classList.add('pulse');
-    else btn.classList.remove('pulse');
-  }
   if(card){
     card.style.display=logged?'flex':'none';
     // Peita "Uus" märk kui kasutaja on juba avanud
