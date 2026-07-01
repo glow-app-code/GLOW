@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tagasimakse-poliitika · GLÓW</title>
+<meta name="description" content="GLÓW tagasimakse-poliitika, 14-päeva taganemisõigus ja kviitungid.">
+<meta name="theme-color" content="#c9a96e">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0e0c0b;--gold:#c9a96e;--gold-bright:#e8c97e;--blush:#d4957a;--lav:#9b8fb5;--sage:#7a9e8e}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:#fff;font-family:'Cormorant Garamond',Georgia,serif;line-height:1.8;min-height:100vh}
+.ambient{position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 70% 50% at 15% 10%,rgba(196,115,107,0.08) 0%,transparent 60%),radial-gradient(ellipse 50% 70% at 85% 90%,rgba(123,158,142,0.06) 0%,transparent 60%)}
+.wrap{position:relative;z-index:1;max-width:720px;margin:0 auto;padding:32px 20px 80px}
+.back-link{display:inline-flex;align-items:center;gap:8px;color:var(--gold);text-decoration:none;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.25em;text-transform:uppercase;margin-bottom:28px;padding:8px 12px;border:1px solid rgba(201,169,110,0.4);border-radius:3px;transition:all .2s}
+.back-link:hover{background:rgba(201,169,110,0.1);border-color:var(--gold)}
+header{text-align:center;padding:20px 0 24px;border-bottom:1px solid rgba(201,169,110,0.3);margin-bottom:32px}
+.logo{font-size:44px;font-weight:300;letter-spacing:.25em;color:#fff;line-height:1;margin-bottom:8px}
+.logo em{color:var(--gold);font-style:italic;text-shadow:0 0 20px rgba(201,169,110,0.5)}
+.tagline{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.4em;color:var(--blush);text-transform:uppercase}
+h1{font-size:32px;font-weight:600;color:#fff;text-align:center;margin:24px 0 8px}
+.updated{font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.5);text-align:center;letter-spacing:.2em;text-transform:uppercase;margin-bottom:36px}
+h2{font-size:22px;color:var(--gold);font-weight:600;margin:32px 0 12px;padding-top:16px;border-top:1px solid rgba(201,169,110,0.15)}
+h3{font-size:17px;color:var(--gold-bright);font-weight:600;margin:20px 0 8px}
+p{font-size:16px;color:rgba(255,255,255,0.9);margin-bottom:14px}
+strong{color:#fff;font-weight:600}
+ul,ol{margin:12px 0 16px 0;padding-left:22px}
+li{font-size:16px;color:rgba(255,255,255,0.9);margin-bottom:8px;position:relative;list-style:none;padding-left:18px}
+li::before{content:'✦';position:absolute;left:0;color:var(--gold);font-size:11px;top:4px}
+ol li{padding-left:26px}
+ol li::before{content:counter(list-item) '.';color:var(--gold);font-family:'DM Mono',monospace;font-size:13px;top:2px;left:0}
+ol{counter-reset:list-item;list-style:none}
+ol li{counter-increment:list-item}
+a{color:var(--gold-bright);text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(232,201,126,0.4)}
+a:hover{text-decoration-color:var(--gold-bright)}
+.info-box{background:rgba(123,158,142,0.1);border-left:3px solid var(--sage);padding:16px 20px;border-radius:0 4px 4px 0;margin:20px 0}
+.info-box p{margin:0;color:#a8d4c4}
+.info-box strong{color:#fff}
+.warn-box{background:rgba(196,115,107,0.12);border:1px solid rgba(196,115,107,0.4);border-radius:6px;padding:16px 20px;margin:20px 0}
+.warn-box p{margin:0}
+.warn-box strong{color:#e8a090}
+.email-cta{display:inline-block;background:var(--gold);color:var(--bg);padding:14px 26px;border-radius:4px;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.25em;text-transform:uppercase;font-weight:700;text-decoration:none;margin-top:12px;transition:transform .15s}
+.email-cta:hover{transform:translateY(-1px)}
+.timeline{display:flex;flex-direction:column;gap:14px;margin:20px 0}
+.tl-item{display:flex;gap:14px;align-items:flex-start;padding:12px 16px;background:rgba(255,255,255,0.03);border:1px solid rgba(201,169,110,0.2);border-radius:6px}
+.tl-num{width:32px;height:32px;border-radius:50%;background:rgba(201,169,110,0.15);border:1px solid var(--gold);color:var(--gold);font-family:'DM Mono',monospace;font-size:13px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.tl-text{font-size:15px;line-height:1.6;padding-top:4px}
+footer{text-align:center;margin-top:60px;padding-top:28px;border-top:1px solid rgba(201,169,110,0.2);font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:.2em}
+footer a{color:var(--gold);text-decoration:none;margin:0 6px}
+</style>
+</head>
+<body>
+<div class="ambient"></div>
+<div class="wrap">
+  <a href="index.html" class="back-link">← Tagasi rakendusse</a>
+
+  <header>
+    <div class="logo">GL<em>Ó</em>W</div>
+    <div class="tagline">AI · Stiiliassistent</div>
+  </header>
+
+  <h1>Tagasimakse-poliitika</h1>
+  <div class="updated">Kehtiv alates: {{JOUSTUMISE_KUUP}}</div>
+
+  <div class="info-box">
+    <p><strong>Kokkuvõte:</strong> Sul on <strong>14-päeva taganemisõigus</strong> Eesti tarbijaõigust järgides. Kasutamata krediidid tagastatakse täies mahus. Kasutatud krediite üldjuhul ei tagastata, kuid vaatame iga taotlust individuaalselt.</p>
+  </div>
+
+  <h2>1. Taganemisõigus (14 päeva)</h2>
+  <p>Vastavalt <strong>Võlaõigusseadusele</strong> ja Euroopa tarbijaõiguse direktiivile on sul õigus taganeda lepingust ilma põhjust nimetamata <strong>14 päeva jooksul</strong> krediitide ostust.</p>
+  <p>Taganemisõigus kehtib järgmistel tingimustel:</p>
+  <ul>
+    <li>Ostust on möödas <strong>vähem kui 14 päeva</strong></li>
+    <li>Ostetud krediite ei ole veel <strong>kasutatud</strong></li>
+    <li>Oled ise ostmise teinud (mitte kingitud krediidid või referral-boonused)</li>
+  </ul>
+
+  <h2>2. Kuidas taotleda tagasimakset</h2>
+  <ol>
+    <li>Saada e-kiri aadressile <strong><a href="mailto:{{EMAIL}}?subject=Tagasimakse taotlus">{{EMAIL}}</a></strong></li>
+    <li>Kirja sisus lisa:
+      <ul>
+        <li>Sinu e-post, millega konto on seotud</li>
+        <li>Makse kuupäev ja summa</li>
+        <li>Tagasimakse põhjus (vabatahtlik)</li>
+      </ul>
+    </li>
+    <li>Vastame kinnitusega <strong>2 tööpäeva jooksul</strong></li>
+    <li>Tagasimakse laekub sinu kontosse <strong>5-14 tööpäeva jooksul</strong> (sõltuvalt pangast)</li>
+  </ol>
+
+  <div style="text-align:center;margin:24px 0">
+    <a href="mailto:{{EMAIL}}?subject=Tagasimakse taotlus" class="email-cta">Saada tagasimakse-taotlus →</a>
+  </div>
+
+  <h2>3. Tagasimakse-protsess</h2>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-num">1</div>
+      <div class="tl-text">Sa saadad taotluse e-postiga</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-num">2</div>
+      <div class="tl-text">Kontrollime taotluse tingimustele vastavust (2 tööpäeva)</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-num">3</div>
+      <div class="tl-text">Saadame kinnituse e-postiga koos tagasimakse-summaga</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-num">4</div>
+      <div class="tl-text">Algatame tagasimakse Stripe'i kaudu — sama makseviisi juurde tagasi (kaart, Apple Pay jne)</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-num">5</div>
+      <div class="tl-text">Raha laekub 5-14 tööpäeva jooksul</div>
+    </div>
+  </div>
+
+  <h2>4. Erandid — millal EI ole taganemisõigust</h2>
+  <div class="warn-box">
+    <p><strong>Taganemisõigust ei ole järgmistel juhtudel:</strong></p>
+  </div>
+  <ul>
+    <li>Kui oled <strong>kasutanud kõiki ostetud krediite</strong> — teenus on täies mahus osutatud</li>
+    <li>Kui alates ostust on möödas <strong>rohkem kui 14 päeva</strong></li>
+    <li>Kui olete konto avanud ja loobunud taganemisõigusest kinnitades enne teenuse kasutamist "Alusta koheselt" märkeruudu — see loeb nõusolekuks teenuse osutamise alustamiseks</li>
+    <li>Kui rikutakse teenuse kasutustingimusi (petukatse, robotid, kuritarvitus)</li>
+  </ul>
+
+  <h2>5. Osaline tagasimakse</h2>
+  <p>Kui oled ostnud paketi ja kasutanud osa krediitidest, saame arutada osalise tagasimakse võimalikkust proportsioonaal-põhimõtte alusel. Näiteks:</p>
+  <ul>
+    <li>Ostsid <strong>50-analüüsi paketi</strong> 4,50€ eest (0,09€/analüüs)</li>
+    <li>Kasutasid 10 analüüsi (10 × 0,09€ = 0,90€)</li>
+    <li>Tagasimakse: <strong>4,50€ − 0,90€ = 3,60€</strong></li>
+  </ul>
+  <p>Osaline tagasimakse otsustatakse iga juhtumi puhul eraldi.</p>
+
+  <h2>6. Tehnilised probleemid</h2>
+  <p>Kui teenus <strong>ei toiminud tehniliselt</strong> (näit. AI-vastust ei tulnud, süsteemi tõrge kaotas krediidi), <strong>tagastame krediidid koheselt</strong> ilma ajapiiranguta. Kirjuta lihtsalt kirjeldusega mis juhtus.</p>
+
+  <h2>7. Kviitungid ja arved</h2>
+  <p>Iga makse järel saadame automaatselt <strong>e-posti-kviitungi</strong> Stripe'i kaudu. Kviitung sisaldab:</p>
+  <ul>
+    <li>Ostetud paketi info</li>
+    <li>Summa (eurodes)</li>
+    <li>Makse-kuupäev ja -viis</li>
+    <li>Meie kontaktid</li>
+  </ul>
+  <p>Kui vajad ametlikku <strong>arvet raamatupidamise jaoks</strong>, kirjuta <a href="mailto:{{EMAIL}}?subject=Arve päring">{{EMAIL}}</a>.</p>
+
+  <h2>8. ODR (EL Online Dispute Resolution)</h2>
+  <p>Kui me ei jõua kokkuleppele, on sul õigus kasutada EL-i veebipõhist vaidluste lahendamise platvormi:</p>
+  <p><a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener"><strong>ec.europa.eu/consumers/odr</strong></a></p>
+
+  <h2>9. Kontakt</h2>
+  <p>Tagasimakse-küsimused: <strong><a href="mailto:{{EMAIL}}">{{EMAIL}}</a></strong></p>
+  <p>Vastame tööpäevadel <strong>24 tunni jooksul</strong>.</p>
+
+  <footer>
+    <p><a href="index.html">Rakendus</a> · <a href="privaatsus.html">Privaatsus</a> · <a href="tingimused.html">Tingimused</a> · <a href="kontakt.html">Kontakt</a></p>
+    <p style="margin-top:16px">© {{ETTEVOTE_NIMI}} · glow4me.ee</p>
+  </footer>
+</div>
+</body>
+</html>
