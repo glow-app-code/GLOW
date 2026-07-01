@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kontakt · GLÓW</title>
+<meta name="description" content="Võta GLÓW meeskonnaga ühendust — küsimused, tagasiside, koostöö.">
+<meta name="theme-color" content="#c9a96e">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0e0c0b;--gold:#c9a96e;--gold-bright:#e8c97e;--blush:#d4957a;--lav:#9b8fb5}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:#fff;font-family:'Cormorant Garamond',Georgia,serif;line-height:1.7;min-height:100vh}
+.ambient{position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 70% 50% at 15% 10%,rgba(196,115,107,0.08) 0%,transparent 60%),radial-gradient(ellipse 50% 70% at 85% 90%,rgba(123,158,142,0.06) 0%,transparent 60%)}
+.wrap{position:relative;z-index:1;max-width:640px;margin:0 auto;padding:32px 20px 80px}
+.back-link{display:inline-flex;align-items:center;gap:8px;color:var(--gold);text-decoration:none;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.25em;text-transform:uppercase;margin-bottom:28px;padding:8px 12px;border:1px solid rgba(201,169,110,0.4);border-radius:3px;transition:all .2s}
+.back-link:hover{background:rgba(201,169,110,0.1);border-color:var(--gold)}
+header{text-align:center;padding:24px 0 32px}
+.logo{font-size:56px;font-weight:300;letter-spacing:.25em;color:#fff;line-height:1;margin-bottom:10px}
+.logo em{color:var(--gold);font-style:italic;text-shadow:0 0 26px rgba(201,169,110,0.6)}
+.tagline{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.4em;color:var(--blush);text-transform:uppercase}
+h1{font-size:36px;font-weight:600;color:#fff;text-align:center;margin:32px 0 10px}
+.subtitle{text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:rgba(255,255,255,0.75);margin-bottom:44px}
+.contact-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-bottom:32px}
+.contact-card{background:linear-gradient(135deg,rgba(201,169,110,0.08),rgba(155,143,181,0.06));border:1px solid rgba(201,169,110,0.35);border-radius:8px;padding:24px 22px;transition:transform .2s,border-color .2s}
+.contact-card:hover{transform:translateY(-2px);border-color:var(--gold)}
+.contact-card h3{font-size:11px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;margin-bottom:10px;font-family:'DM Mono',monospace}
+.contact-card .value{font-size:18px;color:#fff;font-weight:500;margin-bottom:6px}
+.contact-card .value a{color:var(--gold-bright);text-decoration:none}
+.contact-card .value a:hover{text-decoration:underline;text-underline-offset:3px}
+.contact-card .note{font-size:14px;color:rgba(255,255,255,0.6);font-style:italic;line-height:1.5}
+.info-block{background:rgba(155,143,181,0.08);border:1px solid rgba(155,143,181,0.3);border-radius:6px;padding:20px 22px;margin-top:32px}
+.info-block h2{font-size:14px;letter-spacing:.3em;color:#c4b8e0;text-transform:uppercase;font-family:'DM Mono',monospace;margin-bottom:12px}
+.info-block p{font-size:15px;color:rgba(255,255,255,0.9);margin-bottom:6px}
+.info-block strong{color:#fff}
+.section-title{font-size:11px;letter-spacing:.35em;color:var(--gold);text-transform:uppercase;font-family:'DM Mono',monospace;text-align:center;margin:32px 0 20px;position:relative}
+.section-title::before,.section-title::after{content:'';position:absolute;top:50%;width:60px;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,110,0.5),transparent)}
+.section-title::before{left:calc(50% - 130px)}
+.section-title::after{right:calc(50% - 130px)}
+.faq-item{background:rgba(255,255,255,0.03);border:1px solid rgba(201,169,110,0.2);border-radius:6px;padding:16px 20px;margin-bottom:10px}
+.faq-q{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;color:var(--gold-bright);margin-bottom:6px}
+.faq-a{font-size:15px;color:rgba(255,255,255,0.85);line-height:1.6}
+.faq-a a{color:var(--gold-bright)}
+footer{text-align:center;margin-top:52px;padding-top:28px;border-top:1px solid rgba(201,169,110,0.2);font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:.2em}
+footer a{color:var(--gold);text-decoration:none;margin:0 6px}
+</style>
+</head>
+<body>
+<div class="ambient"></div>
+<div class="wrap">
+  <a href="index.html" class="back-link">← Tagasi rakendusse</a>
+
+  <header>
+    <div class="logo">GL<em>Ó</em>W</div>
+    <div class="tagline">AI · Stiiliassistent</div>
+  </header>
+
+  <h1>Võta ühendust</h1>
+  <div class="subtitle">Oleme siin sinu jaoks. Vastame tavaliselt 24 tunni jooksul.</div>
+
+  <div class="section-title">Kontaktid</div>
+
+  <div class="contact-grid">
+    <div class="contact-card">
+      <h3>Üldine e-post</h3>
+      <div class="value"><a href="mailto:{{EMAIL}}">{{EMAIL}}</a></div>
+      <div class="note">Küsimused, tagasiside, tehniline abi — kõik siia</div>
+    </div>
+
+    <div class="contact-card">
+      <h3>Andmekaitse & privaatsus</h3>
+      <div class="value"><a href="mailto:{{EMAIL}}?subject=Andmekaitse">{{EMAIL}}</a></div>
+      <div class="note">GDPR-küsimused, andmete kustutamine või eksport</div>
+    </div>
+
+    <div class="contact-card">
+      <h3>Ärikoostöö</h3>
+      <div class="value"><a href="mailto:{{EMAIL}}?subject=Ärikoostöö">{{EMAIL}}</a></div>
+      <div class="note">Partnerlus, integratsioon, ettevõtete-kliendid</div>
+    </div>
+
+    <div class="contact-card">
+      <h3>Meedia & press</h3>
+      <div class="value"><a href="mailto:{{EMAIL}}?subject=Meedia päring">{{EMAIL}}</a></div>
+      <div class="note">Intervjuud, pressiteated, materjalid</div>
+    </div>
+  </div>
+
+  <div class="info-block">
+    <h2>Ettevõtte andmed</h2>
+    <p><strong>{{ETTEVOTE_NIMI}}</strong></p>
+    <p>Registrikood: {{REGISTRIKOOD}}</p>
+    <p>Aadress: {{AADRESS}}</p>
+    <p>Domeen: <strong>glow4me.ee</strong></p>
+  </div>
+
+  <div class="section-title">Sagedased küsimused</div>
+
+  <div class="faq-item">
+    <div class="faq-q">Kuidas ma alustan?</div>
+    <div class="faq-a">Ava <a href="index.html">glow4me.ee</a>, nõustu tingimustega ja lae oma esimene analüüs. Saad <strong>3 tasuta analüüsi</strong> proovimiseks — konto pole vaja luua.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Mis juhtub minu piltidega?</div>
+    <div class="faq-a">Pildid saadetakse turvaliselt Anthropic AI-le analüüsimiseks ja <strong>kustutatakse pärast analüüsi valmimist</strong>. Me ei säilita neid oma serveris. Vt lähemalt <a href="privaatsus.html">privaatsuspoliitikast</a>.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Kas GLÓW asendab kosmeetiku või iluspetsialisti?</div>
+    <div class="faq-a"><strong>Ei.</strong> AI-soovitused on informatiivsed ja need ei asenda professionaalse iluspetsialisti, nahaarsti ega kosmeetilise kirurgi konsultatsiooni.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Kuidas ma tagasimakset küsida saan?</div>
+    <div class="faq-a">Sul on <strong>14-päeva taganemisõigus</strong> kasutamata krediitide osas. Vaata <a href="tagasimaksed.html">tagasimakse-poliitikast</a> täpsemat protseduuri.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Miks mu koduekraani-ikoon on katkine iPhone'is?</div>
+    <div class="faq-a">Kustuta app koduekraanilt, ava <a href="index.html">glow4me.ee</a> Safari'is uuesti ja lisa <strong>Share → Add to Home Screen</strong>. Vahepeal cache on uuendunud.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Kas saan kasutada oma Anthropic API võtit?</div>
+    <div class="faq-a">Praegu mitte — kõik päringud käivad meie serveri kaudu ja krediidid arvestatakse ostu-põhiselt. See on kasutaja jaoks lihtsam ja turvalisem.</div>
+  </div>
+
+  <footer>
+    <p><a href="index.html">Rakendus</a> · <a href="privaatsus.html">Privaatsus</a> · <a href="tingimused.html">Tingimused</a> · <a href="tagasimaksed.html">Tagasimaksed</a></p>
+    <p style="margin-top:16px">© {{ETTEVOTE_NIMI}} · glow4me.ee</p>
+  </footer>
+</div>
+</body>
+</html>
