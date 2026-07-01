@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kasutustingimused · GLÓW</title>
+<meta name="description" content="GLÓW teenuse kasutustingimused ja lepingu põhipunktid.">
+<meta name="theme-color" content="#c9a96e">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0e0c0b;--gold:#c9a96e;--gold-bright:#e8c97e;--blush:#d4957a;--lav:#9b8fb5}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:#fff;font-family:'Cormorant Garamond',Georgia,serif;line-height:1.8;min-height:100vh}
+.ambient{position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 70% 50% at 15% 10%,rgba(196,115,107,0.08) 0%,transparent 60%),radial-gradient(ellipse 50% 70% at 85% 90%,rgba(123,158,142,0.06) 0%,transparent 60%)}
+.wrap{position:relative;z-index:1;max-width:720px;margin:0 auto;padding:32px 20px 80px}
+.back-link{display:inline-flex;align-items:center;gap:8px;color:var(--gold);text-decoration:none;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.25em;text-transform:uppercase;margin-bottom:28px;padding:8px 12px;border:1px solid rgba(201,169,110,0.4);border-radius:3px;transition:all .2s}
+.back-link:hover{background:rgba(201,169,110,0.1);border-color:var(--gold)}
+header{text-align:center;padding:20px 0 24px;border-bottom:1px solid rgba(201,169,110,0.3);margin-bottom:32px}
+.logo{font-size:44px;font-weight:300;letter-spacing:.25em;color:#fff;line-height:1;margin-bottom:8px}
+.logo em{color:var(--gold);font-style:italic;text-shadow:0 0 20px rgba(201,169,110,0.5)}
+.tagline{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.4em;color:var(--blush);text-transform:uppercase}
+h1{font-size:32px;font-weight:600;color:#fff;text-align:center;margin:24px 0 8px}
+.updated{font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.5);text-align:center;letter-spacing:.2em;text-transform:uppercase;margin-bottom:36px}
+h2{font-size:22px;color:var(--gold);font-weight:600;margin:32px 0 12px;padding-top:16px;border-top:1px solid rgba(201,169,110,0.15)}
+h3{font-size:17px;color:var(--gold-bright);font-weight:600;margin:20px 0 8px}
+p{font-size:16px;color:rgba(255,255,255,0.9);margin-bottom:14px}
+strong{color:#fff;font-weight:600}
+ul{margin:12px 0 16px 0;padding-left:22px}
+li{font-size:16px;color:rgba(255,255,255,0.9);margin-bottom:8px;position:relative;list-style:none;padding-left:18px}
+li::before{content:'✦';position:absolute;left:0;color:var(--gold);font-size:11px;top:4px}
+a{color:var(--gold-bright);text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(232,201,126,0.4)}
+a:hover{text-decoration-color:var(--gold-bright)}
+.highlight-box{background:rgba(196,115,107,0.08);border-left:3px solid var(--blush);padding:16px 20px;border-radius:0 4px 4px 0;margin:20px 0}
+.highlight-box p{margin:0}
+.warn-box{background:rgba(196,115,107,0.12);border:1px solid rgba(196,115,107,0.4);border-radius:6px;padding:16px 20px;margin:20px 0}
+.warn-box p{margin:0;color:#e8a090;font-weight:500}
+.contact-block{background:rgba(155,143,181,0.1);border:1px solid rgba(155,143,181,0.4);border-radius:6px;padding:20px 22px;margin:24px 0}
+.contact-block p{margin-bottom:6px;font-size:15px}
+.contact-block strong{color:#c4b8e0}
+footer{text-align:center;margin-top:60px;padding-top:28px;border-top:1px solid rgba(201,169,110,0.2);font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:.2em}
+footer a{color:var(--gold);text-decoration:none;margin:0 6px}
+</style>
+</head>
+<body>
+<div class="ambient"></div>
+<div class="wrap">
+  <a href="index.html" class="back-link">← Tagasi rakendusse</a>
+
+  <header>
+    <div class="logo">GL<em>Ó</em>W</div>
+    <div class="tagline">AI · Stiiliassistent</div>
+  </header>
+
+  <h1>Kasutustingimused</h1>
+  <div class="updated">Kehtiv alates: {{JOUSTUMISE_KUUP}}</div>
+
+  <h2>1. Teenuse tutvustus</h2>
+  <p>GLÓW on veebipõhine tehisintellektil (AI) põhinev nõustamisteenus, mis pakub:</p>
+  <ul>
+    <li>Meigi ja stiili analüüs kasutaja pildipõhiselt</li>
+    <li>Riietuse ja outfit'i hindamine erinevatele üritustele</li>
+    <li>Kosmeetiliste protseduuride soovitused</li>
+    <li>Tooteinfo ja jagamis-materjalid</li>
+  </ul>
+  <p>Teenuse pakkuja:</p>
+  <div class="contact-block">
+    <p><strong>{{ETTEVOTE_NIMI}}</strong></p>
+    <p>Registrikood: {{REGISTRIKOOD}}</p>
+    <p>Aadress: {{AADRESS}}</p>
+    <p>E-post: <a href="mailto:{{EMAIL}}">{{EMAIL}}</a></p>
+  </div>
+
+  <h2>2. Nõustumine tingimustega</h2>
+  <p>Rakenduse kasutamisega nõustud käesolevate tingimustega ja meie <a href="privaatsus.html">privaatsuspoliitikaga</a>. Kui sa tingimustega ei nõustu, palun ära kasuta teenust.</p>
+
+  <h2>3. Vanusepiirang</h2>
+  <div class="warn-box">
+    <p>Teenus on mõeldud kasutajatele vanuses 16+. Alaealised alla 16-aastased võivad teenust kasutada ainult seadusliku esindaja nõusolekul.</p>
+  </div>
+
+  <h2>4. Konto loomine</h2>
+  <p>Krediitide sünkroniseerimiseks eri seadmete vahel võid luua konto e-posti aadressiga. Konto loomiseks:</p>
+  <ul>
+    <li>Sisesta oma toimiv e-posti aadress</li>
+    <li>Kinnita e-postiga saadetud <strong>magic-link</strong></li>
+    <li>Sinu konto seotakse sinu e-postiga (pole vaja luua parooli)</li>
+  </ul>
+  <p>Vastutad e-posti kättesaadavuse ja turvalisuse eest.</p>
+
+  <h2>5. Krediidid ja maksed</h2>
+
+  <h3>5.1. Krediitide süsteem</h3>
+  <p>Iga analüüs kulutab ühe krediidi. Uued kasutajad saavad <strong>3 tasuta krediiti</strong> proovimiseks. Lisakrediite saab osta ette-määratud pakettidega.</p>
+
+  <h3>5.2. Hinnad</h3>
+  <p>Aktuaalsed hinnad on nähtavad rakenduses "Osta" sektsioonis. Hinnad on <strong>eurodes</strong> ja sisaldavad käibemaksu (kui rakendub).</p>
+
+  <h3>5.3. Maksed</h3>
+  <p>Makseid töötleb <strong>Stripe, Inc.</strong> (USA). Aktsepteerime:</p>
+  <ul>
+    <li>Krediitkaardid: Visa, Mastercard, American Express</li>
+    <li>Apple Pay, Google Pay</li>
+    <li>SEPA otsedebiit (Euroopa panganduses)</li>
+  </ul>
+  <p>Makse õnnestumisel lisatakse krediitid sinu kontosse koheselt. Kviitung saadetakse e-postile.</p>
+
+  <h3>5.4. Krediitide kehtivusaeg</h3>
+  <p>Ostetud krediidid ei aegu, kuid võivad tühistuda kui konto on 3 aastat mitteaktiivne.</p>
+
+  <h2>6. Tagasimaksed</h2>
+  <p>Vt eraldi <a href="tagasimaksed.html">tagasimakse-poliitika</a> lehte. Lühidalt:</p>
+  <ul>
+    <li><strong>14-päeva taganemisõigus</strong> kehtib ostetud krediitide kohta, mis ei ole veel kasutatud</li>
+    <li>Kasutatud krediite ei tagastata</li>
+    <li>Tagasimakse taotluse saatmiseks kirjuta <a href="mailto:{{EMAIL}}">{{EMAIL}}</a></li>
+  </ul>
+
+  <h2>7. Kasutaja kohustused</h2>
+  <p>Nõustud järgnevaga:</p>
+  <ul>
+    <li>Ei kasuta teenust <strong>seadusevastasteks</strong> eesmärkideks</li>
+    <li>Ei laadi üles teiste inimeste pilte ilma <strong>nende nõusolekuta</strong></li>
+    <li>Ei kuritarvita teenust automatiseeritult (robotid, skriptid)</li>
+    <li>Ei ürita <strong>hackida</strong>, kopeerida või lammutada teenust</li>
+    <li>Vastutad enda konto turvalisuse eest</li>
+    <li>Ei jaga oma kontot teiste isikutega</li>
+  </ul>
+
+  <h2>8. Intellektuaalne omand</h2>
+  <p>Kogu GLÓW rakenduse sisu, kujundus, kood, logo ja tekstid on kaitstud <strong>autoriõigusega</strong> ja kuuluvad {{ETTEVOTE_NIMI}}-le. Kopeerimine, muutmine või ärikasutus ilma loata on keelatud.</p>
+  <p>Sinu poolt üleslaaditud pildid jäävad sinu omandiks. Andes need meile analüüsiks, annad meile piiratud loa nende <strong>ajutise töötlemise</strong> jaoks.</p>
+
+  <h2>9. AI-vastuste iseloom</h2>
+  <div class="highlight-box">
+    <p><strong>Tähtis:</strong> GLÓW soovitused on <strong>informatiivsed</strong> ja põhinevad AI-tehnoloogial. Need ei asenda:</p>
+  </div>
+  <ul>
+    <li>Professionaalse iluspetsialisti nõu</li>
+    <li>Meditsiinilise nahaarsti diagnoosi</li>
+    <li>Kosmeetilise kirurgi konsultatsiooni</li>
+  </ul>
+  <p>Ei võta vastutust otsuste eest, mis on tehtud üksnes AI-soovituste alusel.</p>
+
+  <h2>10. Vastutuse piirangud</h2>
+  <p>Teenust pakume <strong>"as is"</strong> põhimõttel. {{ETTEVOTE_NIMI}} ei vastuta:</p>
+  <ul>
+    <li>Ajutiste teenuse-katkestuste eest (serveri hooldus, kolmandate osapoolte tõrked)</li>
+    <li>AI-vastuste täpsuse ja täielikkuse eest</li>
+    <li>Kaudsete kahjude eest (saamata jäänud tulu, kahjustatud reputatsioon jne)</li>
+    <li>Kolmandate osapoolte (Anthropic, Stripe, Cloudflare) käitumise eest</li>
+  </ul>
+  <p>Meie vastutus on <strong>piiratud makstud krediitide summaga</strong> viimase 12 kuu jooksul.</p>
+
+  <h2>11. Konto sulgemine</h2>
+  <p>Sul on õigus konto igal ajal sulgeda saates e-kirja <a href="mailto:{{EMAIL}}">{{EMAIL}}</a>. Kontosse jäänud krediite ei tagastata, välja arvatud 14-päeva taganemis-perioodil.</p>
+  <p>Meil on õigus konto sulgeda kui rikud tingimusi (näit. kuritarvitus, robotid, seadusevastane tegevus). Sellisel juhul teavitame sind e-postiga ja krediite ei tagastata.</p>
+
+  <h2>12. Muudatused tingimustes</h2>
+  <p>Võime tingimusi muuta. Olulistest muudatustest teatame vähemalt <strong>30 päeva ette</strong> e-postiga (kui on konto) või app'i teatega. Kui muudatustega ei nõustu, on sul õigus konto sulgeda.</p>
+
+  <h2>13. Kohaldatav õigus ja vaidlused</h2>
+  <p>Käesolevatele tingimustele kohaldub <strong>Eesti Vabariigi õigus</strong>. Vaidlused lahendatakse esmalt läbirääkimiste teel. Kui kokkulepet ei saavutata, on pädev <strong>Harju Maakohus</strong>.</p>
+  <p>Tarbijad võivad kasutada ka EL-i <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">Online Dispute Resolution (ODR)</a> platvormi.</p>
+
+  <h2>14. Kontakt</h2>
+  <p>Küsimuste korral kirjuta:</p>
+  <div class="contact-block">
+    <p><strong>{{ETTEVOTE_NIMI}}</strong></p>
+    <p>E-post: <a href="mailto:{{EMAIL}}">{{EMAIL}}</a></p>
+    <p>Aadress: {{AADRESS}}</p>
+  </div>
+
+  <footer>
+    <p><a href="index.html">Rakendus</a> · <a href="privaatsus.html">Privaatsus</a> · <a href="tagasimaksed.html">Tagasimaksed</a> · <a href="kontakt.html">Kontakt</a></p>
+    <p style="margin-top:16px">© {{ETTEVOTE_NIMI}} · glow4me.ee</p>
+  </footer>
+</div>
+</body>
+</html>
