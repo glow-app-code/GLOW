@@ -304,6 +304,201 @@ async function handleStripeWebhook(request, env) {
   return new Response('OK', { status: 200 });
 }
 
+// ============ CIRCLES (sotsiaalne süsteem) ============
+
+const CIRCLE_ICONS = ['✨','💫','🌸','🎀','🌟','💎','🔥','👗','🎭','🌙'];
+const ALLOWED_REACTIONS = ['🔥','💭','👗','✨','❤️','👎'];
+
+async function ensureUserInited(env, email) {
+  const user = await getOrCreateUser(env, email);
+  if (!user.circleIds) user.circleIds = [];
+  return user;
+}
+
+async function handleCirclesList(request, env, origin) {
+  const sess = await getSession(request, env);
+  if (!sess) return json({error: 'Unauthorized'}, 401, origin);
+  const user = await ensureUserInited(env, sess.email);
+  const circles = [];
+  for (const id of (user.circleIds||[])) {
+    const c = await env.GLOW_KV.get('circle:' + id, 'json');
+    if (c) circles.push(c);
+  }
+  return json({circles}, 200, origin);
+}
+
+async function handleCirclesCreate(request, env, origin) {
+  const sess = await getSession(request, env);
+  if (!sess) return json({error: 'Unauthorized'}, 401, origin);
+  const body = await request.json();
+  const name = String(body.name||'').trim().slice(0,50);
+  const icon = CIRCLE_ICONS.includes(body.icon) ? body.icon : '✨';
+  if (name.length < 2) return json({error: 'Name too short'}, 400, origin);
+  const circleId = 'c_' + generateToken(8);
+  const circle = {
+    id: circleId, name, icon,
+    ownerEmail: sess.email,
+    members: [sess.email],
+    createdAt: Date.now()
+  };
+  await env.GLOW_KV.put('circle:' + circleId, JSON.stringify(circle));
+  const user = await ensureUserInited(env, sess.email);
+  user.circleIds.push(circleId);
+  await env.GLOW_KV.put('user:' + sess.email, JSON.stringify(user));
+  return json({circle}, 200, origin);
+}
+
+async function handleCirclesInvite(request, env, origin, circleId) {
+  const sess = await getSession(request, env);
+  if (!sess) return json({error: 'Unauthorized'}, 401, origin);
+  const circle = await env.GLOW_KV.get('circle:' + circleId, 'json');
+  if (!circle) return json({error: 'Circle not found'}, 404, origin);
+  if (!circle.members.includes(sess.email)) return json({error: 'Not a member'}, 403, origin);
+  const code = generateToken(6).toUpperCase().slice(0,10);
+  await env.GLOW_KV.put('invite:' + code, JSON.stringify({
+    circleId, inviterEmail: sess.email,
+    circleName: circle.name, circleIcon: circle.icon,
+    expiresAt: Date.now() + 48*3600*1000
+  }), {expirationTtl: 48*3600});
+  return json({code, expiresIn: 48*3600}, 200, origin);
+}
+
+async function handleCirclesJoin(request, env, origin, code) {
+  const sess = await getSession(request, env);
+  if (!sess) return json({error: 'Please log in first', needLogin: true}, 401, origin);
+  const invite = await env.GLOW_KV.get('invite:' + String(code).toUpperCase(), 'json');
+  if (!invite) return json({error: 'Invalid or expired invite'}, 404, origin);
+  const circle = await env.GLOW_KV.get('circle:' + invite.circleId, 'json');
+  if (!circle) return json({error: 'Circle no longer exists'}, 404, origin);
+  if (!circle.members.includes(sess.email)) {
+    circle.members.push(sess.email);
+    await env.GLOW_KV.put('circle:' + circle.id, JSON.stringify(circle));
+  }
+  const user = await ensureUserInited(env, sess.email);
+  if (!user.circleIds.includes(circle.id)) {
+    user.circleIds.push(circle.id);
+    await env.GLOW_KV.put('user:' + sess.email, JSON.stringify(user));
+  }
+  return json({circle}, 200, origin);
+}
+
+async function handleCircleLeave(request, env, origin, circleId) {
+  const sess = await getSession(request, env);
+  if (!sess) return json({error: 'Unauthorized'}, 401, origin);
+  const circle = await env.GLOW_KV.get('circle:' + circleId, 'json');
+  if (circle) {
+    circle.members = (circle.members||[]).filter(e => e !== sess.email);
+    if (circle.members.length === 0) {
+      await env.GLOW_KV.delete('circle:' + circleId);
+      await env.GLOW_KV.delete('circle_shares:' + circleId);
+    } else {
+      if (circle.ownerEmail === sess.email) circle.ownerEmail = circle.members[0];
+      await env.GLOW_KV.put('circle:' + circleId, JSON.stringify(circle));
+    }
+  }
+  const user = await ensureUserInited(env, sess.email);
+  user.circleIds = (user.circleIds||[]).filter(id => id !== circleId);
+  await env.GLOW_KV.put('user:' + sess.email, JSON.stringify(user));
+  return json({ok: true}, 200, origin);
+}
+
+async function handleShareCreate(request, env, origin) {
+  const sess = await getSession(request, env);
+  if (!sess) return json({error: 'Unauthorized'}, 401, origin);
+  const body = await request.json();
+  const {circleIds, imageBase64, aiVerdict, aiSummary, mode, userMessage} = body;
+  if (!Array.isArray(circleIds) || circleIds.length === 0) return json({error: 'No circle selected'}, 400, origin);
+  // Kärbi pilti — max 500KB base64 (~350KB päris)
+  const trimmedImg = imageBase64 ? String(imageBase64).slice(0, 500 * 1024) : null;
+  const now = Date.now();
+  const expiresAt = now + 12*3600*1000;
+  const shareId = 's_' + generateToken(10);
+  const share = {
+    id: shareId,
+    authorEmail: sess.email,
+    circleIds,
+    imageBase64: trimmedImg,
+    aiVerdict: String(aiVerdict||'').slice(0,200),
+    aiSummary: String(aiSummary||'').slice(0,600),
+    mode: String(mode||'meik'),
+    userMessage: String(userMessage||'').slice(0,300),
+    createdAt: now, expiresAt,
+    reactions: {}, comments: []
+  };
+  await env.GLOW_KV.put('share:' + shareId, JSON.stringify(share), {expirationTtl: 12*3600});
+  // Lisa igasse circle'i shares-indeksisse
+  for (const cid of circleIds) {
+    const circle = await env.GLOW_KV.get('circle:' + cid, 'json');
+    if (!circle || !circle.members.includes(sess.email)) continue;
+    const idx = await env.GLOW_KV.get('circle_shares:' + cid, 'json') || [];
+    idx.unshift(shareId);
+    await env.GLOW_KV.put('circle_shares:' + cid, JSON.stringify(idx.slice(0, 50)), {expirationTtl: 14*24*3600});
+  }
+  return json({share}, 200, origin);
+}
+
+async function handleFeed(request, env, origin) {
+  const sess = await getSession(request, env);
+  if (!sess) return json({error: 'Unauthorized'}, 401, origin);
+  const user = await ensureUserInited(env, sess.email);
+  const shareIds = new Set();
+  const meta = {};
+  for (const cid of (user.circleIds||[])) {
+    const circle = await env.GLOW_KV.get('circle:' + cid, 'json');
+    if (!circle) continue;
+    meta[cid] = {name: circle.name, icon: circle.icon};
+    const idx = await env.GLOW_KV.get('circle_shares:' + cid, 'json') || [];
+    for (const sid of idx.slice(0, 20)) shareIds.add(sid);
+  }
+  const shares = [];
+  for (const sid of shareIds) {
+    const s = await env.GLOW_KV.get('share:' + sid, 'json');
+    if (s) shares.push(s);
+  }
+  shares.sort((a,b) => (b.createdAt||0) - (a.createdAt||0));
+  return json({shares: shares.slice(0,30), circles: meta}, 200, origin);
+}
+
+async function handleShareGet(request, env, origin, shareId) {
+  const sess = await getSession(request, env);
+  if (!sess) return json({error: 'Unauthorized'}, 401, origin);
+  const share = await env.GLOW_KV.get('share:' + shareId, 'json');
+  if (!share) return json({error: 'Share not found or expired'}, 404, origin);
+  return json({share}, 200, origin);
+}
+
+async function handleShareComment(request, env, origin, shareId) {
+  const sess = await getSession(request, env);
+  if (!sess) return json({error: 'Unauthorized'}, 401, origin);
+  const {text} = await request.json();
+  const clean = String(text||'').trim().slice(0, 500);
+  if (clean.length < 1) return json({error: 'Empty comment'}, 400, origin);
+  const share = await env.GLOW_KV.get('share:' + shareId, 'json');
+  if (!share) return json({error: 'Share not found or expired'}, 404, origin);
+  share.comments = share.comments || [];
+  share.comments.push({email: sess.email, text: clean, createdAt: Date.now()});
+  const ttl = Math.max(60, Math.floor((share.expiresAt - Date.now()) / 1000));
+  await env.GLOW_KV.put('share:' + shareId, JSON.stringify(share), {expirationTtl: ttl});
+  return json({comments: share.comments}, 200, origin);
+}
+
+async function handleShareReact(request, env, origin, shareId) {
+  const sess = await getSession(request, env);
+  if (!sess) return json({error: 'Unauthorized'}, 401, origin);
+  const {emoji} = await request.json();
+  if (!ALLOWED_REACTIONS.includes(emoji)) return json({error: 'Invalid reaction'}, 400, origin);
+  const share = await env.GLOW_KV.get('share:' + shareId, 'json');
+  if (!share) return json({error: 'Share not found or expired'}, 404, origin);
+  share.reactions = share.reactions || {};
+  share.reactions[emoji] = share.reactions[emoji] || [];
+  const idx = share.reactions[emoji].indexOf(sess.email);
+  if (idx >= 0) share.reactions[emoji].splice(idx, 1);
+  else share.reactions[emoji].push(sess.email);
+  const ttl = Math.max(60, Math.floor((share.expiresAt - Date.now()) / 1000));
+  await env.GLOW_KV.put('share:' + shareId, JSON.stringify(share), {expirationTtl: ttl});
+  return json({reactions: share.reactions}, 200, origin);
+}
+
 async function handleAnthropicProxy(request, env, origin) {
   const contentLength = parseInt(request.headers.get('content-length') || '0', 10);
   if (contentLength > MAX_BODY_SIZE) return json({ error: { message: 'Body too large' } }, 413, origin);
@@ -392,6 +587,21 @@ export default {
       if (request.method === 'POST' && path === '/api/checkout') {
         return await handleApiCheckout(request, env, origin);
       }
+      // Circles endpoints
+      if (request.method === 'GET' && path === '/api/circles') return await handleCirclesList(request, env, origin);
+      if (request.method === 'POST' && path === '/api/circles/create') return await handleCirclesCreate(request, env, origin);
+      let m;
+      if ((m = path.match(/^\/api\/circles\/([^\/]+)\/invite$/)) && request.method === 'POST') return await handleCirclesInvite(request, env, origin, m[1]);
+      if ((m = path.match(/^\/api\/circles\/join\/([^\/]+)$/)) && request.method === 'POST') return await handleCirclesJoin(request, env, origin, m[1]);
+      if ((m = path.match(/^\/api\/circles\/([^\/]+)\/leave$/)) && request.method === 'POST') return await handleCircleLeave(request, env, origin, m[1]);
+
+      // Share endpoints
+      if (request.method === 'POST' && path === '/api/shares') return await handleShareCreate(request, env, origin);
+      if (request.method === 'GET' && path === '/api/feed') return await handleFeed(request, env, origin);
+      if ((m = path.match(/^\/api\/shares\/([^\/]+)$/)) && request.method === 'GET') return await handleShareGet(request, env, origin, m[1]);
+      if ((m = path.match(/^\/api\/shares\/([^\/]+)\/comment$/)) && request.method === 'POST') return await handleShareComment(request, env, origin, m[1]);
+      if ((m = path.match(/^\/api\/shares\/([^\/]+)\/react$/)) && request.method === 'POST') return await handleShareReact(request, env, origin, m[1]);
+
       if (request.method === 'POST' && (path === '/v1/messages' || path.endsWith('/v1/messages'))) {
         return await handleAnthropicProxy(request, env, origin);
       }
