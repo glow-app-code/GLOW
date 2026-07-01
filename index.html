@@ -669,6 +669,122 @@ canvas{display:none}
 .friend-toast-text{font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:600;line-height:1.35}
 .friend-toast-text strong{font-weight:700}
 
+/* === GLÓW-CIRCLES === */
+.circles-nav-btn{position:absolute;top:4px;right:88px;background:linear-gradient(135deg,rgba(155,143,181,0.15),rgba(201,169,110,0.1));border:1px solid rgba(155,143,181,0.5);border-radius:20px;padding:7px 12px;cursor:pointer;color:var(--gold-bright);display:inline-flex;align-items:center;gap:6px;transition:all .2s;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase}
+.circles-nav-btn:hover{border-color:var(--gold);background:linear-gradient(135deg,rgba(155,143,181,0.22),rgba(201,169,110,0.18));transform:translateY(-1px)}
+.circles-nav-btn [data-icon]{color:var(--gold-bright)}
+.circles-badge{position:absolute;top:-4px;right:-4px;min-width:16px;height:16px;padding:0 4px;background:var(--rose);color:#fff;border-radius:10px;font-size:9px;font-weight:700;display:none;align-items:center;justify-content:center;font-family:'DM Mono',monospace;box-shadow:0 0 8px rgba(196,115,107,0.6)}
+.circles-badge.show{display:inline-flex}
+
+/* Circles peapaneel */
+.circles-panel{position:fixed;top:0;right:0;bottom:0;width:min(420px,100vw);background:linear-gradient(180deg,#1a1614 0%,#0e0c0b 100%);border-left:1px solid var(--gold-dim);box-shadow:-20px 0 60px rgba(0,0,0,0.6);z-index:2100;transform:translateX(100%);transition:transform .35s cubic-bezier(.2,1,.2,1);display:flex;flex-direction:column;overflow:hidden}
+.circles-panel.show{transform:translateX(0)}
+.circles-backdrop{position:fixed;inset:0;background:rgba(14,12,11,0.7);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);z-index:2099;opacity:0;pointer-events:none;transition:opacity .3s}
+.circles-backdrop.show{opacity:1;pointer-events:all}
+.circles-head{display:flex;align-items:center;justify-content:space-between;padding:20px 20px 14px;border-bottom:1px solid rgba(201,169,110,0.2)}
+.circles-head-title{font-family:'Cormorant Garamond',serif;font-size:22px;color:#fff;font-weight:600;display:flex;align-items:center;gap:10px}
+.circles-head-title em{color:var(--gold);font-style:italic}
+.circles-head-title [data-icon]{color:var(--gold-bright)}
+.circles-close{background:none;border:none;color:rgba(255,255,255,0.55);font-size:26px;cursor:pointer;padding:4px 10px;line-height:1;transition:color .2s}
+.circles-close:hover{color:#fff}
+.circles-tabs{display:flex;padding:0 14px;border-bottom:1px solid rgba(255,255,255,0.06);gap:4px}
+.circles-tab{flex:1;background:none;border:none;color:rgba(255,255,255,0.55);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;padding:12px 6px;cursor:pointer;position:relative;transition:color .2s}
+.circles-tab.active{color:var(--gold-bright)}
+.circles-tab.active::after{content:'';position:absolute;bottom:-1px;left:20%;right:20%;height:2px;background:var(--gold);border-radius:2px}
+.circles-body{flex:1;overflow-y:auto;padding:16px 18px 20px}
+
+/* Circle list */
+.circle-item{display:flex;align-items:center;gap:12px;padding:14px 12px;background:rgba(255,255,255,0.03);border:1px solid rgba(201,169,110,0.18);border-radius:8px;margin-bottom:10px;cursor:pointer;transition:all .2s}
+.circle-item:hover{border-color:var(--gold-dim);background:rgba(255,255,255,0.06);transform:translateX(2px)}
+.circle-emoji{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,rgba(155,143,181,0.25),rgba(201,169,110,0.15));border:1px solid rgba(201,169,110,0.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:20px}
+.circle-info{flex:1;min-width:0}
+.circle-name{font-family:'Cormorant Garamond',serif;font-size:17px;color:#fff;font-weight:600;line-height:1.2;margin-bottom:2px}
+.circle-meta{font-size:11px;color:rgba(255,255,255,0.55);font-family:'DM Mono',monospace;letter-spacing:.05em}
+.circle-arrow{color:var(--gold);font-family:'DM Mono',monospace;font-size:16px;flex-shrink:0}
+
+/* Create circle */
+.circle-create-btn{width:100%;padding:14px;margin-top:12px;background:linear-gradient(135deg,rgba(201,169,110,0.15),rgba(155,143,181,0.1));border:1px dashed rgba(201,169,110,0.5);border-radius:8px;color:var(--gold-bright);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.25em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .2s;font-weight:600}
+.circle-create-btn:hover{background:linear-gradient(135deg,rgba(201,169,110,0.25),rgba(155,143,181,0.18));border-color:var(--gold);transform:translateY(-1px)}
+.circle-create-form{background:rgba(155,143,181,0.08);border:1px solid rgba(155,143,181,0.35);border-radius:8px;padding:16px;margin-bottom:12px}
+.circle-input{width:100%;padding:12px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(201,169,110,0.3);border-radius:6px;color:#fff;font-family:'DM Mono',monospace;font-size:13px;outline:none;box-sizing:border-box;margin-bottom:12px;transition:border-color .2s}
+.circle-input:focus{border-color:var(--gold);background:rgba(255,255,255,0.09)}
+.circle-icons-row{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:14px}
+.circle-icon-opt{aspect-ratio:1;background:rgba(255,255,255,0.05);border:1px solid rgba(201,169,110,0.2);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;transition:all .2s}
+.circle-icon-opt:hover{border-color:var(--gold-dim);background:rgba(255,255,255,0.08)}
+.circle-icon-opt.selected{border-color:var(--gold);background:rgba(201,169,110,0.18);transform:scale(1.05)}
+.circle-form-actions{display:flex;gap:8px}
+.circle-btn{flex:1;padding:11px;border-radius:6px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.25em;text-transform:uppercase;cursor:pointer;font-weight:600;transition:all .15s;border:1px solid}
+.circle-btn.primary{background:var(--gold);color:var(--bg);border-color:var(--gold)}
+.circle-btn.primary:hover{background:var(--gold-bright);border-color:var(--gold-bright);transform:translateY(-1px)}
+.circle-btn.secondary{background:transparent;color:rgba(255,255,255,0.7);border-color:rgba(255,255,255,0.2)}
+.circle-btn.secondary:hover{border-color:var(--gold-dim);color:#fff}
+
+/* Circle detail view — sees on peaaegu sama slaidiv paneel */
+.circle-detail-head{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.circle-detail-back{background:none;border:1px solid rgba(255,255,255,0.15);border-radius:4px;color:var(--gold);padding:6px 10px;cursor:pointer;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em}
+.circle-detail-back:hover{border-color:var(--gold);background:rgba(201,169,110,0.1)}
+.circle-invite-box{background:linear-gradient(135deg,rgba(201,169,110,0.12),rgba(155,143,181,0.08));border:1px dashed var(--gold-dim);border-radius:8px;padding:14px;margin-bottom:16px}
+.circle-invite-label{font-size:10px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;margin-bottom:6px;font-family:'DM Mono',monospace}
+.circle-invite-code{font-family:'DM Mono',monospace;font-size:15px;color:var(--gold-bright);letter-spacing:.15em;margin-bottom:8px;word-break:break-all}
+.circle-invite-actions{display:flex;gap:6px}
+.circle-members-list{margin-bottom:16px}
+.circle-member{display:flex;align-items:center;gap:10px;padding:8px 12px;background:rgba(255,255,255,0.03);border-radius:6px;margin-bottom:6px;font-size:13px}
+.circle-member-avatar{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--lav),var(--gold));display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:13px;flex-shrink:0}
+.circle-member-email{color:rgba(255,255,255,0.85);font-family:'DM Mono',monospace;font-size:11px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
+.circle-member-owner{font-size:9px;color:var(--gold);letter-spacing:.15em;text-transform:uppercase}
+
+/* Feed / share cards */
+.share-card-feed{background:linear-gradient(135deg,#1a1614,#12100e);border:1px solid rgba(201,169,110,0.22);border-radius:10px;padding:14px;margin-bottom:14px;overflow:hidden}
+.share-card-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.share-card-avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--lav),var(--blush));display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:14px;flex-shrink:0}
+.share-card-meta{flex:1;min-width:0}
+.share-card-author{font-family:'Cormorant Garamond',serif;font-size:14px;color:#fff;font-weight:600;line-height:1.2}
+.share-card-time{font-size:10px;color:rgba(255,255,255,0.5);font-family:'DM Mono',monospace;letter-spacing:.05em}
+.share-card-time-badge{background:rgba(196,115,107,0.15);border:1px solid rgba(196,115,107,0.4);color:#e8a090;border-radius:4px;padding:2px 6px;font-size:9px;font-family:'DM Mono',monospace;letter-spacing:.1em}
+.share-card-photo{width:100%;border-radius:8px;margin-bottom:10px;max-height:340px;object-fit:cover;background:#0a0806}
+.share-card-verdict{font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--gold-bright);font-style:italic;margin-bottom:8px;line-height:1.4}
+.share-card-message{font-family:'Cormorant Garamond',serif;font-size:14px;color:rgba(255,255,255,0.85);line-height:1.6;margin-bottom:12px;padding:10px 12px;background:rgba(255,255,255,0.04);border-left:2px solid var(--gold-dim);border-radius:0 4px 4px 0}
+.share-reactions{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.share-reaction{background:rgba(255,255,255,0.05);border:1px solid rgba(201,169,110,0.2);border-radius:20px;padding:5px 10px;font-size:13px;cursor:pointer;display:inline-flex;align-items:center;gap:5px;transition:all .15s}
+.share-reaction:hover{border-color:var(--gold-dim);background:rgba(201,169,110,0.12)}
+.share-reaction.active{border-color:var(--gold);background:rgba(201,169,110,0.22)}
+.share-reaction-count{font-size:11px;color:var(--gold-bright);font-family:'DM Mono',monospace;font-weight:600}
+.share-comments{border-top:1px solid rgba(201,169,110,0.15);padding-top:10px;margin-top:6px}
+.share-comment{display:flex;gap:8px;margin-bottom:8px;font-size:13px}
+.share-comment-avatar{width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,var(--sage),var(--lav));display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:11px;flex-shrink:0}
+.share-comment-body{flex:1;background:rgba(255,255,255,0.04);border-radius:6px;padding:7px 10px}
+.share-comment-author{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;color:var(--gold);margin-bottom:2px}
+.share-comment-text{font-family:'Cormorant Garamond',serif;font-size:14px;color:rgba(255,255,255,0.92);line-height:1.4}
+.share-comment-input-row{display:flex;gap:6px;margin-top:8px}
+.share-comment-input{flex:1;padding:9px 12px;background:rgba(255,255,255,0.04);border:1px solid rgba(201,169,110,0.2);border-radius:6px;color:#fff;font-family:'Cormorant Garamond',serif;font-size:13px;outline:none;transition:border-color .2s}
+.share-comment-input:focus{border-color:var(--gold-dim)}
+.share-comment-send{background:var(--gold);color:var(--bg);border:none;border-radius:6px;padding:0 12px;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;font-weight:700;cursor:pointer;text-transform:uppercase}
+.share-comment-send:hover{background:var(--gold-bright)}
+
+.feed-empty{text-align:center;padding:40px 20px;color:rgba(255,255,255,0.5)}
+.feed-empty-icon{font-size:36px;margin-bottom:12px;color:var(--gold-dim)}
+.feed-empty-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;line-height:1.5}
+
+/* "Küsi sõprade arvamust" nupp */
+.ask-circle-btn{width:100%;padding:14px;margin-top:14px;background:linear-gradient(135deg,rgba(155,143,181,0.2),rgba(201,169,110,0.15));border:1px solid var(--lav);border-radius:8px;color:#c4b8e0;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.25em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:all .2s;font-weight:600}
+.ask-circle-btn:hover{border-color:var(--gold);background:linear-gradient(135deg,rgba(155,143,181,0.3),rgba(201,169,110,0.22));transform:translateY(-1px);box-shadow:0 6px 20px rgba(155,143,181,0.25)}
+.ask-circle-btn [data-icon]{color:#c4b8e0}
+
+/* Share modaal */
+.share-to-modal{position:fixed;inset:0;background:rgba(14,12,11,0.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:2200;display:none;align-items:center;justify-content:center;padding:24px;animation:fadeIn .3s ease}
+.share-to-modal.show{display:flex}
+.share-to-card{background:linear-gradient(135deg,#1a1614,#0e0c0b);border:1px solid var(--gold);border-radius:12px;padding:24px 22px;max-width:400px;width:100%;position:relative;box-shadow:0 0 50px rgba(201,169,110,0.3);animation:fadeUp .4s ease;max-height:85vh;overflow-y:auto}
+.share-to-title{font-family:'Cormorant Garamond',serif;font-size:22px;color:#fff;font-weight:600;text-align:center;margin-bottom:4px}
+.share-to-sub{font-size:10px;letter-spacing:.3em;color:var(--blush);text-transform:uppercase;text-align:center;margin-bottom:18px}
+.share-to-list{margin-bottom:16px}
+.share-to-item{display:flex;align-items:center;gap:12px;padding:10px 12px;background:rgba(255,255,255,0.04);border:1px solid rgba(201,169,110,0.2);border-radius:8px;margin-bottom:8px;cursor:pointer;transition:all .15s}
+.share-to-item:hover{border-color:var(--gold-dim);background:rgba(255,255,255,0.07)}
+.share-to-item.selected{border-color:var(--gold);background:rgba(201,169,110,0.15)}
+.share-to-check{width:22px;height:22px;border:1.5px solid rgba(201,169,110,0.5);border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--bg);font-size:14px;font-weight:700;background:transparent;transition:all .15s}
+.share-to-item.selected .share-to-check{background:var(--gold);border-color:var(--gold)}
+.share-to-message-input{width:100%;padding:12px 14px;background:rgba(255,255,255,0.05);border:1px solid rgba(201,169,110,0.3);border-radius:6px;color:#fff;font-family:'Cormorant Garamond',serif;font-size:14px;outline:none;box-sizing:border-box;margin-bottom:14px;min-height:60px;resize:vertical;transition:border-color .2s}
+.share-to-message-input:focus{border-color:var(--gold-dim)}
+
 /* === Küpsiste-banner === */
 .cookie-banner{position:fixed;bottom:0;left:0;right:0;background:linear-gradient(135deg,rgba(26,22,20,0.98),rgba(14,12,11,0.98));backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--gold);padding:18px 20px;z-index:2500;display:none;box-shadow:0 -8px 30px rgba(0,0,0,0.5)}
 .cookie-banner.show{display:block;animation:cookieSlideUp .4s ease}
@@ -806,6 +922,11 @@ canvas{display:none}
   <div class="logo">GL<span class="logo-o">Ó</span>W</div>
   <div class="logo-line"><div class="tagline">AI · Isiklik Stiiliassistent</div></div>
   <button class="logout-btn" onclick="logout()">✦ Välju</button>
+  <button class="circles-nav-btn" id="circlesNavBtn" onclick="openCirclesPanel()" style="display:none">
+    <span data-icon="circles" data-icon-size="14"></span>
+    <span>Circles</span>
+    <span class="circles-badge" id="circlesBadge">0</span>
+  </button>
 </header>
 
 <div id="keyStatus" style="display:none">
@@ -1122,6 +1243,10 @@ canvas{display:none}
       <span>Salvesta galeriisse</span>
     </button>
   </div>
+  <button class="ask-circle-btn" onclick="openShareToModal()">
+    <span data-icon="circles" data-icon-size="18"></span>
+    Küsi sõprade arvamust — GLÓW Circles
+  </button>
   <div class="share-quick">
     <button class="sbtn fb" onclick="shareFB()" title="Facebook">FB</button>
     <button class="sbtn xtwitter" onclick="shareX()" title="X / Twitter">𝕏</button>
@@ -1204,6 +1329,43 @@ canvas{display:none}
       <div class="login-sent-text">Kontrolli e-posti — saatsime sinule sisselogimise lingi<br><strong id="loginSentEmail"></strong></div>
       <div class="login-hint" style="margin-top:16px">Link kehtib <strong>10 minutit</strong>. Ei näe kirja? Kontrolli Rämpsposti kausta.</div>
     </div>
+  </div>
+</div>
+
+<!-- GLÓW-CIRCLES peapaneel -->
+<div class="circles-backdrop" id="circlesBackdrop" onclick="closeCirclesPanel()"></div>
+<div class="circles-panel" id="circlesPanel" role="dialog" aria-modal="true">
+  <div class="circles-head">
+    <div class="circles-head-title"><span data-icon="circles" data-icon-size="24"></span>GLÓW <em>Circles</em></div>
+    <button class="circles-close" onclick="closeCirclesPanel()" aria-label="Sulge">×</button>
+  </div>
+  <div class="circles-tabs">
+    <button class="circles-tab active" data-tab="my" onclick="switchCirclesTab('my')">Minu Circle'id</button>
+    <button class="circles-tab" data-tab="feed" onclick="switchCirclesTab('feed')">Uudisvoog</button>
+  </div>
+  <div class="circles-body" id="circlesBody">
+    <div id="circlesEmptyLogin" style="display:none;text-align:center;padding:40px 20px">
+      <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;color:rgba(255,255,255,0.7);line-height:1.6;margin-bottom:16px">Logi sisse, et luua Circle ja jagada oma stiili sõpradega ✦</div>
+      <button class="circle-btn primary" style="width:100%" onclick="closeCirclesPanel();showLoginModal('Circles vajavad sisselogimist')">Logi sisse</button>
+    </div>
+    <div id="circlesMyView"></div>
+    <div id="circlesFeedView" style="display:none"></div>
+    <div id="circlesDetailView" style="display:none"></div>
+  </div>
+</div>
+
+<!-- Jagamis-modaal (Circle valimine) -->
+<div id="shareToModal" class="share-to-modal" role="dialog" aria-modal="true">
+  <div class="share-to-card">
+    <button class="install-close" onclick="closeShareToModal()" aria-label="Sulge">×</button>
+    <div class="share-to-title">Küsi sõpru arvamust</div>
+    <div class="share-to-sub">Vali kuhu jagad — kaob 12h pärast</div>
+    <div class="share-to-list" id="shareToList"></div>
+    <textarea class="share-to-message-input" id="shareToMessage" placeholder="Lisa küsimus või kommentaar (vabatahtlik)..." maxlength="300"></textarea>
+    <button class="circle-btn primary" style="width:100%" onclick="submitShareToCircles()">
+      <span style="display:inline-flex;margin-right:6px;vertical-align:middle" data-icon="send" data-icon-size="14"></span>
+      Saada Circle'idesse
+    </button>
   </div>
 </div>
 
@@ -1354,10 +1516,292 @@ const ICONS={
   check:'<path d="M4 12 L10 18 L20 6"/>',
   warning:'<path d="M12 4 L22 20 L2 20 Z"/><path d="M12 11 V15"/><circle cx="12" cy="17.5" r="0.8" fill="currentColor"/>',
   question:'<circle cx="12" cy="12" r="9"/><path d="M9 9 A3 3 0 0 1 15 9 Q15 11 12 13 V14"/><circle cx="12" cy="17.5" r="0.7" fill="currentColor"/>',
-  link:'<path d="M9 15 L15 9"/><path d="M11 6 L13 4 A4 4 0 0 1 18 9 L17 10"/><path d="M13 18 L11 20 A4 4 0 0 1 6 15 L7 14"/>'
+  link:'<path d="M9 15 L15 9"/><path d="M11 6 L13 4 A4 4 0 0 1 18 9 L17 10"/><path d="M13 18 L11 20 A4 4 0 0 1 6 15 L7 14"/>',
+  circles:'<circle cx="8.5" cy="9" r="4.8" opacity="0.9"/><circle cx="15.5" cy="9" r="4.8" opacity="0.75"/><circle cx="12" cy="15.5" r="4.8" opacity="0.6"/>',
+  send:'<path d="M 3 12 L 21 4 L 14 21 L 12 13 Z"/>',
+  people:'<circle cx="8" cy="9" r="3"/><path d="M 3 20 A 5 5 0 0 1 13 20"/><circle cx="17" cy="9" r="3" opacity="0.7"/><path d="M 15 15 A 5 5 0 0 1 21 20" opacity="0.7"/>',
+  plus:'<path d="M 12 5 V 19 M 5 12 H 19"/>',
+  comment:'<path d="M 4 4 H 20 A 2 2 0 0 1 22 6 V 14 A 2 2 0 0 1 20 16 H 12 L 6 21 V 16 H 4 A 2 2 0 0 1 2 14 V 6 A 2 2 0 0 1 4 4 Z"/>'
 };
 function iconHtml(name,size,color){const s=size||24;const c=color||'currentColor';const p=ICONS[name]||ICONS.sparkle;return '<svg xmlns="http://www.w3.org/2000/svg" width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none" stroke="'+c+'" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+p+'</svg>';}
 function renderStaticIcons(){document.querySelectorAll('[data-icon]').forEach(el=>{const name=el.dataset.icon;const size=parseInt(el.dataset.iconSize||'28',10);el.innerHTML=iconHtml(name,size);});}
+
+// === GLÓW-CIRCLES (sotsiaalne süsteem) ===
+window.myCircles=[];
+window.currentCircleDetail=null;
+window.currentShareData=null; // hoiab hetkel analüüsitud pildi ja AI-tulemuse
+window.selectedShareCircles=[];
+
+async function apiCall(path,options){
+  const opts=options||{};
+  opts.headers=opts.headers||{};
+  opts.headers['Content-Type']='application/json';
+  if(isLoggedIn())opts.headers['Authorization']='Bearer '+getSessionToken();
+  const res=await fetch(API_BASE+path,opts);
+  const data=await res.json().catch(()=>({}));
+  if(!res.ok)throw new Error(data.error||('HTTP '+res.status));
+  return data;
+}
+
+function initialsFrom(email){const s=(email||'?').split('@')[0]||'?';return s.slice(0,2).toUpperCase();}
+function relTime(ts){const d=Date.now()-ts;if(d<60000)return 'nüüd';if(d<3600000)return Math.floor(d/60000)+' min';if(d<86400000)return Math.floor(d/3600000)+'h';return Math.floor(d/86400000)+' päeva';}
+function expiryTime(expiresAt){const left=expiresAt-Date.now();if(left<=0)return 'kohe kustub';if(left<3600000)return Math.ceil(left/60000)+' min järel';return Math.ceil(left/3600000)+'h järel';}
+
+async function openCirclesPanel(){
+  document.getElementById('circlesBackdrop').classList.add('show');
+  document.getElementById('circlesPanel').classList.add('show');
+  if(!isLoggedIn()){document.getElementById('circlesEmptyLogin').style.display='block';document.getElementById('circlesMyView').style.display='none';return;}
+  document.getElementById('circlesEmptyLogin').style.display='none';
+  switchCirclesTab('my');
+  await loadMyCircles();
+}
+function closeCirclesPanel(){document.getElementById('circlesBackdrop').classList.remove('show');document.getElementById('circlesPanel').classList.remove('show');}
+
+function switchCirclesTab(tab){
+  document.querySelectorAll('.circles-tab').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));
+  document.getElementById('circlesMyView').style.display=tab==='my'?'block':'none';
+  document.getElementById('circlesFeedView').style.display=tab==='feed'?'block':'none';
+  document.getElementById('circlesDetailView').style.display='none';
+  if(tab==='my')loadMyCircles();else if(tab==='feed')loadFeed();
+}
+
+async function loadMyCircles(){
+  const v=document.getElementById('circlesMyView');
+  v.innerHTML='<div style="text-align:center;padding:24px;color:rgba(255,255,255,0.5);font-family:\'Cormorant Garamond\',serif;font-style:italic">Laen Circle\'id...</div>';
+  try{
+    const data=await apiCall('/api/circles');
+    window.myCircles=data.circles||[];
+    renderMyCircles();
+  }catch(e){v.innerHTML='<div style="text-align:center;color:#e8a090;padding:20px">Viga: '+esc(e.message)+'</div>';}
+}
+
+function renderMyCircles(){
+  const v=document.getElementById('circlesMyView');
+  let html='';
+  if(window.myCircles.length===0){
+    html+='<div class="feed-empty"><div class="feed-empty-icon">✦</div><div class="feed-empty-text">Sul pole veel Circle\'e.<br>Loo esimene ja kutsu sõpru!</div></div>';
+  }else{
+    html+='<div style="font-size:10px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;font-family:\'DM Mono\',monospace;margin-bottom:10px">Sinu Circle\'id</div>';
+    window.myCircles.forEach(c=>{
+      html+='<div class="circle-item" onclick="openCircleDetail(\''+esc(c.id)+'\')">'
+       +'<div class="circle-emoji">'+esc(c.icon||'✨')+'</div>'
+       +'<div class="circle-info"><div class="circle-name">'+esc(c.name)+'</div>'
+       +'<div class="circle-meta">'+(c.members?c.members.length:1)+' liige · '+esc(c.id.slice(2,8))+'</div></div>'
+       +'<div class="circle-arrow">→</div></div>';
+    });
+  }
+  html+='<button class="circle-create-btn" onclick="showCreateCircleForm()"><span data-icon="plus" data-icon-size="14"></span>Loo uus Circle</button>';
+  html+='<div id="createCircleFormWrap"></div>';
+  v.innerHTML=html;renderStaticIcons();
+}
+
+function showCreateCircleForm(){
+  const w=document.getElementById('createCircleFormWrap');
+  const icons=['✨','💫','🌸','🎀','🌟','💎','🔥','👗','🎭','🌙'];
+  let iconHtml='';
+  icons.forEach((ic,i)=>{iconHtml+='<div class="circle-icon-opt'+(i===0?' selected':'')+'" data-icon-emoji="'+ic+'" onclick="selectCircleIcon(this)">'+ic+'</div>';});
+  w.innerHTML='<div class="circle-create-form" style="margin-top:14px"><div style="font-size:10px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;font-family:\'DM Mono\',monospace;margin-bottom:10px">Uus Circle</div>'
+    +'<input class="circle-input" id="newCircleName" placeholder="Nimi (nt. Beauty Squad)" maxlength="50">'
+    +'<div style="font-size:10px;letter-spacing:.2em;color:rgba(255,255,255,0.55);text-transform:uppercase;font-family:\'DM Mono\',monospace;margin-bottom:8px">Vali ikoon</div>'
+    +'<div class="circle-icons-row">'+iconHtml+'</div>'
+    +'<div class="circle-form-actions">'
+    +'<button class="circle-btn secondary" onclick="cancelCreateCircle()">Tühista</button>'
+    +'<button class="circle-btn primary" onclick="submitCreateCircle()">Loo Circle</button>'
+    +'</div></div>';
+  setTimeout(()=>document.getElementById('newCircleName').focus(),100);
+}
+function selectCircleIcon(el){document.querySelectorAll('.circle-icon-opt').forEach(x=>x.classList.remove('selected'));el.classList.add('selected');}
+function cancelCreateCircle(){document.getElementById('createCircleFormWrap').innerHTML='';}
+async function submitCreateCircle(){
+  const name=document.getElementById('newCircleName').value.trim();
+  const icon=document.querySelector('.circle-icon-opt.selected')?.dataset.iconEmoji||'✨';
+  if(name.length<2){alert('Palun kirjuta Circle\'i nimi (vähemalt 2 tähemärki)');return;}
+  try{const data=await apiCall('/api/circles/create',{method:'POST',body:JSON.stringify({name,icon})});
+    window.myCircles.unshift(data.circle);
+    cancelCreateCircle();
+    renderMyCircles();
+    openCircleDetail(data.circle.id);
+  }catch(e){alert('Viga: '+e.message);}
+}
+
+async function openCircleDetail(id){
+  const circle=window.myCircles.find(c=>c.id===id);if(!circle){alert('Circle\'i ei leitud');return;}
+  window.currentCircleDetail=circle;
+  document.getElementById('circlesMyView').style.display='none';
+  document.getElementById('circlesFeedView').style.display='none';
+  const v=document.getElementById('circlesDetailView');v.style.display='block';
+  v.innerHTML='<div style="text-align:center;padding:20px;color:rgba(255,255,255,0.5)">Loon kutselinki...</div>';
+  let inviteCode='';
+  try{const inv=await apiCall('/api/circles/'+id+'/invite',{method:'POST'});inviteCode=inv.code;}catch(e){}
+  const url=(location.origin+location.pathname).replace(/\/$/,'')+'/?join='+inviteCode;
+  let html='<div class="circle-detail-head"><button class="circle-detail-back" onclick="switchCirclesTab(\'my\')">← Tagasi</button></div>'
+    +'<div style="display:flex;align-items:center;gap:12px;margin-bottom:18px">'
+    +'<div class="circle-emoji" style="width:56px;height:56px;font-size:26px">'+esc(circle.icon)+'</div>'
+    +'<div><div style="font-family:\'Cormorant Garamond\',serif;font-size:22px;color:#fff;font-weight:600">'+esc(circle.name)+'</div>'
+    +'<div style="font-size:11px;color:rgba(255,255,255,0.5);font-family:\'DM Mono\',monospace">'+(circle.members?circle.members.length:1)+' liige</div></div></div>';
+  if(inviteCode){
+    html+='<div class="circle-invite-box">'
+    +'<div class="circle-invite-label">Kutselink · kehtib 48h</div>'
+    +'<div class="circle-invite-code">'+esc(url)+'</div>'
+    +'<div class="circle-invite-actions">'
+    +'<button class="circle-btn primary" onclick="copyText(\''+esc(url)+'\',this)">Kopeeri</button>'
+    +'<button class="circle-btn secondary" onclick="shareInviteLink(\''+esc(url)+'\',\''+esc(circle.name)+'\')">Jaga</button>'
+    +'</div></div>';
+  }
+  html+='<div style="font-size:10px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;font-family:\'DM Mono\',monospace;margin-bottom:8px">Liikmed</div>'
+    +'<div class="circle-members-list">';
+  (circle.members||[]).forEach(m=>{
+    html+='<div class="circle-member"><div class="circle-member-avatar">'+esc(initialsFrom(m))+'</div>'
+    +'<div class="circle-member-email">'+esc(m)+'</div>'
+    +(m===circle.ownerEmail?'<div class="circle-member-owner">Omanik</div>':'')+'</div>';
+  });
+  html+='</div>';
+  html+='<button class="circle-btn secondary" style="width:100%" onclick="leaveCircle(\''+esc(circle.id)+'\')">Lahku Circle\'ist</button>';
+  v.innerHTML=html;
+}
+
+function copyText(txt,btn){navigator.clipboard.writeText(txt).then(()=>{const o=btn.textContent;btn.textContent='✓ Kopeeritud';setTimeout(()=>btn.textContent=o,2000);}).catch(()=>alert('Ei õnnestu kopeerida'));}
+async function shareInviteLink(url,name){if(navigator.share){try{await navigator.share({title:'GLÓW Circle: '+name,text:'Liitu minu Circle\'iga GLÓW app\'is: '+name,url});}catch(_){}}else{copyText(url,{textContent:'Jaga'});}}
+
+async function leaveCircle(id){
+  if(!confirm('Kas lahkud sellest Circle\'ist?'))return;
+  try{await apiCall('/api/circles/'+id+'/leave',{method:'POST'});
+    window.myCircles=window.myCircles.filter(c=>c.id!==id);
+    switchCirclesTab('my');
+  }catch(e){alert('Viga: '+e.message);}
+}
+
+async function loadFeed(){
+  const v=document.getElementById('circlesFeedView');
+  v.innerHTML='<div style="text-align:center;padding:24px;color:rgba(255,255,255,0.5);font-family:\'Cormorant Garamond\',serif;font-style:italic">Laen uudisvoogu...</div>';
+  try{const data=await apiCall('/api/feed');renderFeed(data.shares||[],data.circles||{});}
+  catch(e){v.innerHTML='<div style="text-align:center;color:#e8a090;padding:20px">Viga: '+esc(e.message)+'</div>';}
+}
+
+function renderFeed(shares,circleMeta){
+  const v=document.getElementById('circlesFeedView');
+  if(shares.length===0){v.innerHTML='<div class="feed-empty"><div class="feed-empty-icon">✦</div><div class="feed-empty-text">Voog on tühi.<br>Kui sina või sinu Circle\'i sõber jagab midagi, kuvatakse see siin.</div></div>';return;}
+  let html='';
+  shares.forEach(s=>{html+=renderShareCard(s,circleMeta);});
+  v.innerHTML=html;
+}
+
+function renderShareCard(s,circleMeta){
+  const meta=circleMeta||{};
+  const cids=s.circleIds||[];
+  const cname=cids.length&&meta[cids[0]]?meta[cids[0]].name:'Circle';
+  const cicon=cids.length&&meta[cids[0]]?meta[cids[0]].icon:'✨';
+  let reactHtml='';
+  const emojis=['🔥','💭','👗','✨','❤️','👎'];
+  const me=localStorage.getItem('glow_session_email')||'';
+  emojis.forEach(em=>{const arr=(s.reactions&&s.reactions[em])||[];const active=arr.includes(me)?' active':'';
+    reactHtml+='<button class="share-reaction'+active+'" onclick="toggleReact(\''+esc(s.id)+'\',\''+em+'\')">'+em+(arr.length?'<span class="share-reaction-count">'+arr.length+'</span>':'')+'</button>';
+  });
+  let commHtml='';
+  (s.comments||[]).slice(-5).forEach(c=>{
+    commHtml+='<div class="share-comment"><div class="share-comment-avatar">'+esc(initialsFrom(c.email))+'</div>'
+    +'<div class="share-comment-body"><div class="share-comment-author">'+esc(c.email.split('@')[0])+'</div>'
+    +'<div class="share-comment-text">'+esc(c.text)+'</div></div></div>';
+  });
+  return '<div class="share-card-feed" data-share-id="'+esc(s.id)+'">'
+    +'<div class="share-card-head">'
+    +'<div class="share-card-avatar">'+esc(initialsFrom(s.authorEmail))+'</div>'
+    +'<div class="share-card-meta"><div class="share-card-author">'+esc(s.authorEmail.split('@')[0])+'</div>'
+    +'<div class="share-card-time">'+esc(cicon)+' '+esc(cname)+' · '+relTime(s.createdAt)+' tagasi</div></div>'
+    +'<div class="share-card-time-badge">'+esc(expiryTime(s.expiresAt))+'</div>'
+    +'</div>'
+    +(s.imageBase64?'<img class="share-card-photo" src="data:image/jpeg;base64,'+esc(s.imageBase64)+'" alt="jagatud pilt">':'')
+    +(s.aiVerdict?'<div class="share-card-verdict">✦ AI: '+esc(s.aiVerdict)+'</div>':'')
+    +(s.userMessage?'<div class="share-card-message">'+esc(s.userMessage)+'</div>':'')
+    +'<div class="share-reactions">'+reactHtml+'</div>'
+    +'<div class="share-comments">'+commHtml+'</div>'
+    +'<div class="share-comment-input-row">'
+    +'<input class="share-comment-input" placeholder="Kirjuta kommentaar..." data-share-id="'+esc(s.id)+'" onkeydown="if(event.key===\'Enter\')sendComment(this)">'
+    +'<button class="share-comment-send" onclick="sendComment(this.previousElementSibling)">Saada</button>'
+    +'</div>'
+    +'</div>';
+}
+
+async function toggleReact(shareId,emoji){
+  try{const data=await apiCall('/api/shares/'+shareId+'/react',{method:'POST',body:JSON.stringify({emoji})});
+    // Uuenda ainult vastavat kaarti
+    const card=document.querySelector('.share-card-feed[data-share-id="'+shareId+'"]');
+    if(card){const share=await apiCall('/api/shares/'+shareId);const html=renderShareCard(share.share,{});card.outerHTML=html;}
+  }catch(e){alert('Viga: '+e.message);}
+}
+async function sendComment(input){
+  const shareId=input.dataset.shareId;const text=input.value.trim();if(!text)return;
+  try{await apiCall('/api/shares/'+shareId+'/comment',{method:'POST',body:JSON.stringify({text})});
+    input.value='';
+    const card=document.querySelector('.share-card-feed[data-share-id="'+shareId+'"]');
+    if(card){const share=await apiCall('/api/shares/'+shareId);const html=renderShareCard(share.share,{});card.outerHTML=html;}
+  }catch(e){alert('Viga: '+e.message);}
+}
+
+// Analüüsi järel — "Küsi sõprade arvamust" nupp
+function saveShareContext(parsed,dataUrl,mode){
+  window.currentShareData={
+    imageBase64:(dataUrl||'').split(',')[1]||null,
+    aiVerdict:parsed.verdict||'',
+    aiSummary:(parsed.feedback||'').slice(0,600),
+    mode:mode||'meik'
+  };
+}
+function openShareToModal(){
+  if(!isLoggedIn()){showLoginModal('Sisselogimine vajalik jagamiseks');return;}
+  if(!window.currentShareData){alert('Tee kõigepealt analüüs');return;}
+  if(window.myCircles.length===0){
+    if(confirm('Sul pole veel Circle\'e. Kas soovid nüüd luua?')){openCirclesPanel();}
+    return;
+  }
+  // Vaikimisi märgistame KÕIK circle'id (kasutaja soov)
+  window.selectedShareCircles=window.myCircles.map(c=>c.id);
+  const list=document.getElementById('shareToList');
+  let html='';
+  window.myCircles.forEach(c=>{
+    html+='<div class="share-to-item selected" data-cid="'+esc(c.id)+'" onclick="toggleShareCircle(this)">'
+    +'<div class="share-to-check">✓</div>'
+    +'<div class="circle-emoji" style="width:34px;height:34px;font-size:17px">'+esc(c.icon)+'</div>'
+    +'<div class="circle-info" style="flex:1"><div class="circle-name" style="font-size:15px">'+esc(c.name)+'</div>'
+    +'<div class="circle-meta">'+(c.members?c.members.length:1)+' liige</div></div></div>';
+  });
+  list.innerHTML=html;
+  document.getElementById('shareToMessage').value='';
+  document.getElementById('shareToModal').classList.add('show');
+}
+function toggleShareCircle(el){const id=el.dataset.cid;el.classList.toggle('selected');if(el.classList.contains('selected'))window.selectedShareCircles.push(id);else window.selectedShareCircles=window.selectedShareCircles.filter(x=>x!==id);}
+function closeShareToModal(){document.getElementById('shareToModal').classList.remove('show');}
+async function submitShareToCircles(){
+  const cids=[...new Set(window.selectedShareCircles)];
+  if(cids.length===0){alert('Vali vähemalt üks Circle');return;}
+  const msg=document.getElementById('shareToMessage').value.trim();
+  const d=window.currentShareData;
+  try{
+    await apiCall('/api/shares',{method:'POST',body:JSON.stringify({circleIds:cids,imageBase64:d.imageBase64,aiVerdict:d.aiVerdict,aiSummary:d.aiSummary,mode:d.mode,userMessage:msg})});
+    closeShareToModal();
+    const t=document.getElementById('friendToast');const txt=document.getElementById('friendToastText');
+    if(t&&txt){txt.innerHTML='<strong>✦ Jagatud '+cids.length+' Circle\'ile!</strong>';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),4500);}
+  }catch(e){alert('Viga: '+e.message);}
+}
+
+// Kutselinki käsitlemine URL'is (?join=CODE)
+async function handleJoinInvite(){
+  const params=new URLSearchParams(window.location.search);
+  const code=params.get('join');
+  if(!code)return;
+  if(!isLoggedIn()){localStorage.setItem('glow_pending_join',code);showLoginModal('Logi sisse, et liituda Circle\'iga');return;}
+  try{const data=await apiCall('/api/circles/join/'+encodeURIComponent(code),{method:'POST'});
+    try{const u=new URL(window.location.href);u.searchParams.delete('join');history.replaceState({},'',u.pathname+(u.search?u.search:'')+u.hash);}catch(_){}
+    const t=document.getElementById('friendToast');const txt=document.getElementById('friendToastText');
+    if(t&&txt){txt.innerHTML='<strong>✦ Liitusid: '+esc(data.circle.name)+'</strong>';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),4500);}
+    await loadMyCircles();
+  }catch(e){alert('Kutsega liitumine ebaõnnestus: '+e.message);}
+}
+
+function updateCirclesNavBtn(){
+  const btn=document.getElementById('circlesNavBtn');if(!btn)return;
+  btn.style.display=isLoggedIn()?'inline-flex':'none';
+}
 
 // === KÜPSISTE-BANNER ===
 function shouldShowCookieBanner(){return !localStorage.getItem('glow_cookie_choice');}
@@ -1380,6 +1824,7 @@ function updateUserMenu(){
     if(um)um.classList.remove('show');
     if(ln)ln.classList.add('show');
   }
+  if(typeof updateCirclesNavBtn==='function')updateCirclesNavBtn();
 }
 
 function showLoginModal(contextMsg){
@@ -1741,6 +2186,7 @@ async function analyzePildipank(){
     lastFb=parsed.feedback||'';setCredits(credits-1);
     document.getElementById('load').classList.remove('on');
     renderPildipankResult(parsed,stiilRegime==='garderoob'?'Garderoob · '+selectedUritus.name:'Pood · '+selectedUritus.name);
+    if(typeof saveShareContext==='function'&&photoBank[0])saveShareContext(parsed,photoBank[0].dataUrl,'stiil');
     maybeShowInstallAfterAnalysis();
   }catch(e){document.getElementById('load').classList.remove('on');document.getElementById('resEmpty').style.display='block';document.getElementById('resEmpty').textContent=e.message;}
   btn.className='analyze-bank-btn active';btn.disabled=false;btn.textContent='✦ Analüüsi minu valik';refreshAnalyzeBankBtn();
@@ -1846,7 +2292,7 @@ function startCountdown(){if(!termsAccepted)return;localStorage.setItem('glow_te
 function runCountdown(){const track=document.getElementById('clockTrack'),clockLogo=document.getElementById('clockLogo'),clockNum=document.getElementById('clockNum'),msg=document.getElementById('countdownMsg');const circ=2*Math.PI*85;track.style.strokeDasharray=circ;track.style.strokeDashoffset=circ;setTimeout(()=>{clockLogo.style.transition='opacity 0.3s';clockLogo.style.opacity='0';setTimeout(()=>{clockLogo.style.display='none';clockNum.style.display='block';clockNum.textContent='3';clockNum.style.opacity='0';clockNum.style.transition='opacity 0.2s';setTimeout(()=>{clockNum.style.opacity='1';},50);},300);},300);const totalMs=3000;const startTime=performance.now()+600;let lastNum=4;function tick(now){const elapsed=Math.max(0,now-startTime);const progress=Math.min(elapsed/totalMs,1);track.style.strokeDashoffset=circ*(1-progress);const displayNum=Math.max(1,Math.ceil(3-progress*3));if(displayNum!==lastNum&&displayNum>=1&&displayNum<=3){lastNum=displayNum;clockNum.style.transition='none';clockNum.style.opacity='0';clockNum.textContent=String(displayNum);requestAnimationFrame(()=>{clockNum.style.transition='opacity 0.15s';clockNum.style.opacity='1';clockNum.style.transform='scale(1.2)';setTimeout(()=>{clockNum.style.transform='scale(1)';},150);});}if(progress>=0.85&&msg.textContent==='✦')msg.textContent='Käivitun...';if(progress<1){requestAnimationFrame(tick);}else{clockNum.textContent='✦';clockNum.style.fontSize='48px';msg.textContent='Tere tulemast!';setTimeout(()=>launchApp(),600);}}requestAnimationFrame(tick);}
 function launchApp(){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('mainWrapper').style.display='block';initApp();}
 function logout(){if(stream){stream.getTracks().forEach(t=>t.stop());stream=null;}localStorage.removeItem('glow_terms_accepted');document.getElementById('mainWrapper').style.display='none';termsAccepted=false;currentFacing='user';photoBank=[];document.getElementById('termsCheckbox').classList.remove('checked');const btn=document.getElementById('termsConfirmBtn');btn.disabled=true;btn.classList.remove('active');showScreen('splashScreen');}
-function initApp(){renderStaticIcons();initCredits();checkIncomingReferral();getMyRefCode();updateUserMenu();handleUrlParams();showCookieBannerIfNeeded();if(isLoggedIn())syncUserFromServer();if(USE_PROXY){document.getElementById('saldoBar').style.display='flex';const sc=document.getElementById('apiSetupCard');if(sc)sc.style.display='none';const ks=document.getElementById('keyStatus');if(ks)ks.style.display='none';}else{const key=localStorage.getItem('glow_api_key');if(key){document.getElementById('keyStatus').style.display='block';document.getElementById('saldoBar').style.display='flex';}else{document.getElementById('apiSetupCard').style.display='block';}}setMode('meik');setTimeout(()=>refreshSaldo(),50);}
+function initApp(){renderStaticIcons();initCredits();checkIncomingReferral();getMyRefCode();updateUserMenu();handleUrlParams();showCookieBannerIfNeeded();if(isLoggedIn())syncUserFromServer();setTimeout(()=>handleJoinInvite(),300);if(USE_PROXY){document.getElementById('saldoBar').style.display='flex';const sc=document.getElementById('apiSetupCard');if(sc)sc.style.display='none';const ks=document.getElementById('keyStatus');if(ks)ks.style.display='none';}else{const key=localStorage.getItem('glow_api_key');if(key){document.getElementById('keyStatus').style.display='block';document.getElementById('saldoBar').style.display='flex';}else{document.getElementById('apiSetupCard').style.display='block';}}setMode('meik');setTimeout(()=>refreshSaldo(),50);}
 function init(){renderStaticIcons();if(localStorage.getItem('glow_terms_accepted')==='true'){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('mainWrapper').style.display='block';initApp();}else{showScreen('splashScreen');}}
 
 function setMode(m){
@@ -1992,6 +2438,7 @@ async function analyze(){
     document.getElementById('load').classList.remove('on');document.getElementById('scan').classList.remove('on');
     if(mode==='stiil')renderStiilCamResult(parsed,dataUrl,lbl);
     else renderMeikProResult(parsed,bar,dataUrl,lbl);
+    if(typeof saveShareContext==='function')saveShareContext(parsed,dataUrl,mode);
     setDot('live','Analüüs valmis ✦');
     maybeShowInstallAfterAnalysis();
   }catch(e){
