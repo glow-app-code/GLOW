@@ -668,6 +668,61 @@ canvas{display:none}
 .friend-toast-icon{width:32px;height:32px;border-radius:50%;background:rgba(14,12,11,0.18);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#0e0c0b}
 .friend-toast-text{font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:600;line-height:1.35}
 .friend-toast-text strong{font-weight:700}
+
+/* === Küpsiste-banner === */
+.cookie-banner{position:fixed;bottom:0;left:0;right:0;background:linear-gradient(135deg,rgba(26,22,20,0.98),rgba(14,12,11,0.98));backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--gold);padding:18px 20px;z-index:2500;display:none;box-shadow:0 -8px 30px rgba(0,0,0,0.5)}
+.cookie-banner.show{display:block;animation:cookieSlideUp .4s ease}
+@keyframes cookieSlideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.cookie-wrap{max-width:640px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+.cookie-text{font-family:'Cormorant Garamond',serif;font-size:15px;color:rgba(255,255,255,0.9);line-height:1.55}
+.cookie-text a{color:var(--gold-bright);text-decoration:underline;text-underline-offset:3px}
+.cookie-btns{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
+.cookie-btn{padding:10px 18px;border-radius:4px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.25em;text-transform:uppercase;cursor:pointer;transition:all .2s;border:1px solid rgba(255,255,255,0.25);background:transparent;color:rgba(255,255,255,0.8);font-weight:500}
+.cookie-btn:hover{border-color:var(--gold-dim);color:#fff}
+.cookie-btn.primary{background:var(--gold);color:var(--bg);border-color:var(--gold);font-weight:700}
+.cookie-btn.primary:hover{background:var(--gold-bright);border-color:var(--gold-bright)}
+
+/* === Sisselogimise modaal === */
+.login-modal{position:fixed;inset:0;background:rgba(14,12,11,0.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:2100;display:none;align-items:center;justify-content:center;padding:24px;animation:fadeIn .3s ease}
+.login-modal.show{display:flex}
+.login-card{background:linear-gradient(135deg,#1a1614,#0e0c0b);border:1px solid var(--gold);border-radius:12px;padding:32px 26px 24px;max-width:380px;width:100%;position:relative;box-shadow:0 0 50px rgba(201,169,110,0.3),inset 0 0 30px rgba(201,169,110,0.05);animation:fadeUp .4s ease}
+.login-close{position:absolute;top:10px;right:12px;background:none;border:none;color:rgba(255,255,255,0.45);font-size:26px;cursor:pointer;padding:4px 10px;line-height:1}
+.login-close:hover{color:#fff}
+.login-logo{font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:300;letter-spacing:.25em;color:#fff;text-align:center;margin-bottom:8px;line-height:1}
+.login-logo em{color:var(--gold);font-style:italic;text-shadow:0 0 20px rgba(201,169,110,0.6)}
+.login-title{font-family:'Cormorant Garamond',serif;font-size:22px;color:#fff;text-align:center;font-weight:600;margin-bottom:6px}
+.login-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;color:rgba(255,255,255,0.7);text-align:center;margin-bottom:22px;line-height:1.5}
+.login-context{font-size:10px;letter-spacing:.3em;color:var(--blush);text-transform:uppercase;text-align:center;margin-bottom:16px}
+.login-input{width:100%;padding:14px 16px;background:rgba(255,255,255,0.06);border:1px solid rgba(201,169,110,0.35);border-radius:6px;color:#fff;font-family:'DM Mono',monospace;font-size:14px;outline:none;box-sizing:border-box;margin-bottom:14px;transition:border-color .2s}
+.login-input:focus{border-color:var(--gold);background:rgba(255,255,255,0.09)}
+.login-submit{width:100%;padding:15px;background:var(--gold);color:var(--bg);border:none;border-radius:6px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.25em;text-transform:uppercase;cursor:pointer;font-weight:700;transition:transform .15s,box-shadow .15s;margin-bottom:14px}
+.login-submit:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 6px 20px rgba(201,169,110,0.4)}
+.login-submit:disabled{opacity:.5;cursor:not-allowed}
+.login-hint{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:rgba(255,255,255,0.55);text-align:center;line-height:1.6;padding:0 4px}
+.login-hint a{color:var(--gold-bright);text-decoration:underline;text-underline-offset:3px}
+.login-sent{display:none;text-align:center}
+.login-sent.show{display:block;animation:fadeUp .4s ease}
+.login-sent-icon{width:56px;height:56px;border-radius:50%;background:rgba(201,169,110,0.15);border:2px solid var(--gold);color:var(--gold-bright);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:24px}
+.login-sent-text{font-family:'Cormorant Garamond',serif;font-size:16px;color:rgba(255,255,255,0.9);line-height:1.6}
+.login-sent-text strong{color:#fff}
+.login-err{font-family:'Cormorant Garamond',serif;font-size:14px;color:#e8a090;text-align:center;margin-bottom:12px;min-height:20px}
+
+/* Kasutaja-menüü saldos */
+.user-menu{background:rgba(155,143,181,0.1);border:1px solid rgba(155,143,181,0.35);border-radius:4px;padding:10px 14px;margin-bottom:16px;display:none;align-items:center;justify-content:space-between;font-size:12px}
+.user-menu.show{display:flex}
+.user-menu-email{color:rgba(255,255,255,0.85);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.05em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:60%}
+.user-menu-logout{background:none;border:1px solid rgba(255,255,255,0.2);border-radius:2px;color:rgba(255,255,255,0.6);font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;padding:6px 10px;cursor:pointer;transition:all .2s}
+.user-menu-logout:hover{border-color:var(--rose);color:#e8a090}
+.login-nav-btn{width:100%;padding:11px;background:rgba(201,169,110,0.12);border:1px solid var(--gold);border-radius:3px;color:var(--gold-bright);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.25em;text-transform:uppercase;cursor:pointer;font-weight:600;margin-bottom:16px;display:none;transition:background .2s}
+.login-nav-btn.show{display:block}
+.login-nav-btn:hover{background:rgba(201,169,110,0.22)}
+
+/* Rakenduse footer */
+.app-footer{max-width:500px;margin:40px auto 20px;padding:24px 16px;text-align:center;border-top:1px solid rgba(201,169,110,0.15);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;color:rgba(255,255,255,0.4)}
+.app-footer-links{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.app-footer-links a{color:rgba(255,255,255,0.65);text-decoration:none;padding:4px 8px;transition:color .2s}
+.app-footer-links a:hover{color:var(--gold-bright)}
+.app-footer-copy{color:rgba(255,255,255,0.35);letter-spacing:.15em;line-height:1.6}
 </style>
 </head>
 <body>
@@ -780,6 +835,15 @@ canvas{display:none}
   <button class="saldo-btn" id="saldoBtn">Osta</button>
 </div>
 
+<!-- Kasutaja-menüü (sisselogitud olekus) -->
+<div class="user-menu" id="userMenu">
+  <span class="user-menu-email" id="userMenuEmail">—</span>
+  <button class="user-menu-logout" onclick="logoutUser()">Logi välja</button>
+</div>
+
+<!-- Sisselogimise nupp (kui pole sisse loginud) -->
+<button class="login-nav-btn" id="loginNavBtn" onclick="showLoginModal()">Logi sisse — sünkroni krediidid</button>
+
 <!-- KUTSU SÕPRU kaart -->
 <div class="friend-card" id="friendCard" onclick="showFriendModal()">
   <div class="friend-left">
@@ -798,10 +862,10 @@ canvas{display:none}
   <div class="pricing-sub">Üks analüüs kulutab ühe krediidi.</div>
   <div class="free-badge"><div style="display:inline-flex;color:var(--gold)" data-icon="sparkle" data-icon-size="22"></div><div class="free-badge-text"><strong>3 analüüsi tasuta</strong> — proovi enne ostmist</div></div>
   <div class="pkg-grid">
-    <div class="pkg" onclick="selectPkg(this,'10','0.99','0.10')"><div class="pkg-price">€0.99</div><div class="pkg-count">10 analüüsi</div><div class="pkg-unit">0.10€/tk</div></div>
-    <div class="pkg selected" onclick="selectPkg(this,'50','4.50','0.09')"><div class="pkg-popular">Populaarne</div><div class="pkg-price">€4.50</div><div class="pkg-count">50 analüüsi</div><div class="pkg-unit">0.09€/tk</div></div>
-    <div class="pkg" onclick="selectPkg(this,'100','7.99','0.08')"><div class="pkg-price">€7.99</div><div class="pkg-count">100 analüüsi</div><div class="pkg-unit">0.08€/tk</div></div>
-    <div class="pkg" onclick="selectPkg(this,'200','12.99','0.06')"><div class="pkg-price">€12.99</div><div class="pkg-count">200 analüüsi</div><div class="pkg-unit">0.06€/tk</div></div>
+    <div class="pkg" onclick="selectPkg(this,'pkg_10','10','0.99','0.10')"><div class="pkg-price">€0.99</div><div class="pkg-count">10 analüüsi</div><div class="pkg-unit">0.10€/tk</div></div>
+    <div class="pkg selected" onclick="selectPkg(this,'pkg_50','50','4.50','0.09')"><div class="pkg-popular">Populaarne</div><div class="pkg-price">€4.50</div><div class="pkg-count">50 analüüsi</div><div class="pkg-unit">0.09€/tk</div></div>
+    <div class="pkg" onclick="selectPkg(this,'pkg_100','100','7.99','0.08')"><div class="pkg-price">€7.99</div><div class="pkg-count">100 analüüsi</div><div class="pkg-unit">0.08€/tk</div></div>
+    <div class="pkg" onclick="selectPkg(this,'pkg_200','200','12.99','0.06')"><div class="pkg-price">€12.99</div><div class="pkg-count">200 analüüsi</div><div class="pkg-unit">0.06€/tk</div></div>
   </div>
   <button class="buy-btn" id="buyBtn" onclick="showCheckout()">Jätka maksega — €4.50 →</button>
   <div class="coming-soon-note">Maksed aktiveeritakse peagi · <span>glow4me.ee</span></div>
@@ -1099,6 +1163,50 @@ canvas{display:none}
 </footer>
 </div>
 
+<!-- Rakenduse footer legal linkidega -->
+<div class="app-footer">
+  <div class="app-footer-links">
+    <a href="privaatsus.html">Privaatsus</a>·
+    <a href="tingimused.html">Tingimused</a>·
+    <a href="tagasimaksed.html">Tagasimaksed</a>·
+    <a href="kontakt.html">Kontakt</a>
+  </div>
+  <div class="app-footer-copy">© glow4me.ee · AI Stiiliassistent</div>
+</div>
+
+<!-- Küpsiste-banner (EL kohustuslik) -->
+<div class="cookie-banner" id="cookieBanner" role="dialog" aria-label="Küpsiste-teavitus">
+  <div class="cookie-wrap">
+    <div class="cookie-text">Kasutame vajalikke küpsiseid teenuse toimimiseks (sisselogimine, krediidi-saldo). Nõustumisel võime lisada ka anonüümset kasutus-statistikat. <a href="privaatsus.html">Loe rohkem privaatsuspoliitikast →</a></div>
+    <div class="cookie-btns">
+      <button class="cookie-btn" onclick="acceptCookies('essential')">Ainult vajalikud</button>
+      <button class="cookie-btn primary" onclick="acceptCookies('all')">Nõustun kõigega</button>
+    </div>
+  </div>
+</div>
+
+<!-- Sisselogimise / registreerumise modaal -->
+<div id="loginModal" class="login-modal" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+  <div class="login-card">
+    <button class="login-close" onclick="closeLoginModal()" aria-label="Sulge">×</button>
+    <div class="login-logo">GL<em>Ó</em>W</div>
+    <div class="login-title" id="loginTitle">Logi sisse</div>
+    <div class="login-context" id="loginContext" style="display:none"></div>
+    <div class="login-sub">Sisesta oma e-post — saadame sulle sisselogimise lingi. Parooli ei ole vaja.</div>
+    <div id="loginForm">
+      <div class="login-err" id="loginErr"></div>
+      <input type="email" class="login-input" id="loginEmail" placeholder="nimi@näide.ee" autocomplete="email" inputmode="email">
+      <button class="login-submit" id="loginSubmitBtn" onclick="submitLoginRequest()">Saada sisselogimise link</button>
+      <div class="login-hint">Sisselogimisega nõustud <a href="tingimused.html">tingimustega</a> ja <a href="privaatsus.html">privaatsuspoliitikaga</a>.</div>
+    </div>
+    <div class="login-sent" id="loginSent">
+      <div class="login-sent-icon">✉</div>
+      <div class="login-sent-text">Kontrolli e-posti — saatsime sinule sisselogimise lingi<br><strong id="loginSentEmail"></strong></div>
+      <div class="login-hint" style="margin-top:16px">Link kehtib <strong>10 minutit</strong>. Ei näe kirja? Kontrolli Rämpsposti kausta.</div>
+    </div>
+  </div>
+</div>
+
 <!-- Add to Home Screen modaal — ilmub pärast esimest analüüsi -->
 <div id="installModal" class="install-modal" role="dialog" aria-modal="true" aria-labelledby="installTitle">
   <div class="install-card">
@@ -1251,6 +1359,108 @@ const ICONS={
 function iconHtml(name,size,color){const s=size||24;const c=color||'currentColor';const p=ICONS[name]||ICONS.sparkle;return '<svg xmlns="http://www.w3.org/2000/svg" width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none" stroke="'+c+'" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+p+'</svg>';}
 function renderStaticIcons(){document.querySelectorAll('[data-icon]').forEach(el=>{const name=el.dataset.icon;const size=parseInt(el.dataset.iconSize||'28',10);el.innerHTML=iconHtml(name,size);});}
 
+// === KÜPSISTE-BANNER ===
+function shouldShowCookieBanner(){return !localStorage.getItem('glow_cookie_choice');}
+function showCookieBannerIfNeeded(){if(shouldShowCookieBanner())document.getElementById('cookieBanner').classList.add('show');}
+function acceptCookies(mode){localStorage.setItem('glow_cookie_choice',mode);localStorage.setItem('glow_cookie_ts',String(Date.now()));document.getElementById('cookieBanner').classList.remove('show');}
+
+// === SESSIOON & AUTENTIMINE (magic-link) ===
+function getSessionToken(){return localStorage.getItem('glow_session_token')||'';}
+function setSession(token,email){if(token)localStorage.setItem('glow_session_token',token);if(email)localStorage.setItem('glow_session_email',email);updateUserMenu();}
+function clearSession(){localStorage.removeItem('glow_session_token');localStorage.removeItem('glow_session_email');updateUserMenu();}
+function isLoggedIn(){return !!getSessionToken();}
+
+function updateUserMenu(){
+  const um=document.getElementById('userMenu');const em=document.getElementById('userMenuEmail');const ln=document.getElementById('loginNavBtn');
+  if(isLoggedIn()){
+    if(em)em.textContent=localStorage.getItem('glow_session_email')||'';
+    if(um)um.classList.add('show');
+    if(ln)ln.classList.remove('show');
+  }else{
+    if(um)um.classList.remove('show');
+    if(ln)ln.classList.add('show');
+  }
+}
+
+function showLoginModal(contextMsg){
+  const m=document.getElementById('loginModal');
+  const ctx=document.getElementById('loginContext');
+  if(contextMsg){ctx.textContent=contextMsg;ctx.style.display='block';}else{ctx.style.display='none';}
+  document.getElementById('loginForm').style.display='block';
+  document.getElementById('loginSent').classList.remove('show');
+  document.getElementById('loginErr').textContent='';
+  document.getElementById('loginEmail').value='';
+  m.classList.add('show');
+  setTimeout(()=>document.getElementById('loginEmail').focus(),200);
+}
+function closeLoginModal(){document.getElementById('loginModal').classList.remove('show');}
+
+async function submitLoginRequest(){
+  const email=document.getElementById('loginEmail').value.trim();
+  const err=document.getElementById('loginErr');
+  const btn=document.getElementById('loginSubmitBtn');
+  err.textContent='';
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){err.textContent='Palun sisesta korrektne e-posti aadress';return;}
+  btn.disabled=true;btn.textContent='⟳ Saadan...';
+  try{
+    const res=await fetch(API_BASE+'/auth/request-link',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email})});
+    const data=await res.json();
+    if(!res.ok||!data.sent)throw new Error(data.error||'Saatmine ebaõnnestus');
+    document.getElementById('loginSentEmail').textContent=email;
+    document.getElementById('loginForm').style.display='none';
+    document.getElementById('loginSent').classList.add('show');
+  }catch(e){err.textContent='Viga: '+e.message;}
+  btn.disabled=false;btn.textContent='Saada sisselogimise link';
+}
+
+async function verifyMagicLink(token){
+  try{
+    const res=await fetch(API_BASE+'/auth/verify?token='+encodeURIComponent(token));
+    const data=await res.json();
+    if(!res.ok||!data.token)throw new Error(data.error||'Verifitseerimine ebaõnnestus');
+    setSession(data.token,data.email);
+    // Puhasta URL
+    try{const u=new URL(window.location.href);u.searchParams.delete('verify');history.replaceState({},'',u.pathname+(u.search?u.search:'')+u.hash);}catch(_){}
+    // Sünkroni saldo serveri poolelt
+    await syncUserFromServer();
+    showRefToast(0); // kasutame olemasolevat toast'i, aga tekstiga:
+    const t=document.getElementById('friendToast');const txt=document.getElementById('friendToastText');
+    if(t&&txt){txt.innerHTML='<strong>✦ Sisse logitud!</strong> Sinu krediidid on sünkroniseeritud.';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),5500);}
+  }catch(e){alert('Sisselogimine ebaõnnestus: '+e.message);}
+}
+
+async function syncUserFromServer(){
+  if(!isLoggedIn())return;
+  try{
+    const res=await fetch(API_BASE+'/api/me',{headers:{'Authorization':'Bearer '+getSessionToken()}});
+    if(res.status===401){clearSession();return;}
+    const data=await res.json();
+    if(data.credits!==undefined){setCredits(data.credits);}
+    if(data.email){localStorage.setItem('glow_session_email',data.email);}
+    if(data.referralCode){localStorage.setItem('glow_my_code',data.referralCode);}
+    updateUserMenu();
+  }catch(_){}
+}
+
+function logoutUser(){if(confirm('Kas logid välja? Krediidid jäävad kontosse alles kuni järgmise sisselogimiseni.'))clearSession();}
+
+// URL param'ide käsitlemine käivitumisel — magic-link verify ja Stripe checkout return
+function handleUrlParams(){
+  try{
+    const params=new URLSearchParams(window.location.search);
+    const verify=params.get('verify');
+    if(verify){verifyMagicLink(verify);return;}
+    const checkout=params.get('checkout');
+    if(checkout==='success'){
+      setTimeout(()=>{alert('✦ Makse õnnestus! Krediidid lisatud sinu kontosse.');syncUserFromServer();},500);
+      try{const u=new URL(window.location.href);u.searchParams.delete('checkout');u.searchParams.delete('session_id');history.replaceState({},'',u.pathname+(u.search?u.search:'')+u.hash);}catch(_){}
+    }else if(checkout==='cancel'){
+      setTimeout(()=>alert('Makse tühistati. Sinu saldo pole muutunud.'),500);
+      try{const u=new URL(window.location.href);u.searchParams.delete('checkout');history.replaceState({},'',u.pathname+(u.search?u.search:'')+u.hash);}catch(_){}
+    }
+  }catch(_){}
+}
+
 // === SÕBRA-SOOVITUSED ===
 const REF_BONUS=5;
 function generateRefCode(){const chars='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';let code='GLW';for(let i=0;i<4;i++)code+=chars[Math.floor(Math.random()*chars.length)];return code;}
@@ -1278,7 +1488,7 @@ function maybeShowInstallAfterAnalysis(){if(localStorage.getItem('glow_install_s
 
 const FREE_CREDITS=3;
 const VERDICT_CONFIG={yes:{icon:'✨',sub:'Suurepärane'},maybe:{icon:'🤔',sub:'Vajab tähelepanu'},no:{icon:'⚠️',sub:'Vajab parandust'}};
-const PACKAGES=[{count:'10',price:'0.99',unit:'0.10'},{count:'50',price:'4.50',unit:'0.09'},{count:'100',price:'7.99',unit:'0.08'},{count:'200',price:'12.99',unit:'0.06'}];
+const PACKAGES=[{id:'pkg_10',count:'10',price:'0.99',unit:'0.10'},{id:'pkg_50',count:'50',price:'4.50',unit:'0.09'},{id:'pkg_100',count:'100',price:'7.99',unit:'0.08'},{id:'pkg_200',count:'200',price:'12.99',unit:'0.06'}];
 const MAX_PHOTOS=10;
 
 const DEPILE_BRANDS=[
@@ -1596,7 +1806,7 @@ function startCountdown(){if(!termsAccepted)return;localStorage.setItem('glow_te
 function runCountdown(){const track=document.getElementById('clockTrack'),clockLogo=document.getElementById('clockLogo'),clockNum=document.getElementById('clockNum'),msg=document.getElementById('countdownMsg');const circ=2*Math.PI*85;track.style.strokeDasharray=circ;track.style.strokeDashoffset=circ;setTimeout(()=>{clockLogo.style.transition='opacity 0.3s';clockLogo.style.opacity='0';setTimeout(()=>{clockLogo.style.display='none';clockNum.style.display='block';clockNum.textContent='3';clockNum.style.opacity='0';clockNum.style.transition='opacity 0.2s';setTimeout(()=>{clockNum.style.opacity='1';},50);},300);},300);const totalMs=3000;const startTime=performance.now()+600;let lastNum=4;function tick(now){const elapsed=Math.max(0,now-startTime);const progress=Math.min(elapsed/totalMs,1);track.style.strokeDashoffset=circ*(1-progress);const displayNum=Math.max(1,Math.ceil(3-progress*3));if(displayNum!==lastNum&&displayNum>=1&&displayNum<=3){lastNum=displayNum;clockNum.style.transition='none';clockNum.style.opacity='0';clockNum.textContent=String(displayNum);requestAnimationFrame(()=>{clockNum.style.transition='opacity 0.15s';clockNum.style.opacity='1';clockNum.style.transform='scale(1.2)';setTimeout(()=>{clockNum.style.transform='scale(1)';},150);});}if(progress>=0.85&&msg.textContent==='✦')msg.textContent='Käivitun...';if(progress<1){requestAnimationFrame(tick);}else{clockNum.textContent='✦';clockNum.style.fontSize='48px';msg.textContent='Tere tulemast!';setTimeout(()=>launchApp(),600);}}requestAnimationFrame(tick);}
 function launchApp(){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('mainWrapper').style.display='block';initApp();}
 function logout(){if(stream){stream.getTracks().forEach(t=>t.stop());stream=null;}localStorage.removeItem('glow_terms_accepted');document.getElementById('mainWrapper').style.display='none';termsAccepted=false;currentFacing='user';photoBank=[];document.getElementById('termsCheckbox').classList.remove('checked');const btn=document.getElementById('termsConfirmBtn');btn.disabled=true;btn.classList.remove('active');showScreen('splashScreen');}
-function initApp(){renderStaticIcons();initCredits();checkIncomingReferral();getMyRefCode();if(USE_PROXY){document.getElementById('saldoBar').style.display='flex';const sc=document.getElementById('apiSetupCard');if(sc)sc.style.display='none';const ks=document.getElementById('keyStatus');if(ks)ks.style.display='none';}else{const key=localStorage.getItem('glow_api_key');if(key){document.getElementById('keyStatus').style.display='block';document.getElementById('saldoBar').style.display='flex';}else{document.getElementById('apiSetupCard').style.display='block';}}setMode('meik');setTimeout(()=>refreshSaldo(),50);}
+function initApp(){renderStaticIcons();initCredits();checkIncomingReferral();getMyRefCode();updateUserMenu();handleUrlParams();showCookieBannerIfNeeded();if(isLoggedIn())syncUserFromServer();if(USE_PROXY){document.getElementById('saldoBar').style.display='flex';const sc=document.getElementById('apiSetupCard');if(sc)sc.style.display='none';const ks=document.getElementById('keyStatus');if(ks)ks.style.display='none';}else{const key=localStorage.getItem('glow_api_key');if(key){document.getElementById('keyStatus').style.display='block';document.getElementById('saldoBar').style.display='flex';}else{document.getElementById('apiSetupCard').style.display='block';}}setMode('meik');setTimeout(()=>refreshSaldo(),50);}
 function init(){renderStaticIcons();if(localStorage.getItem('glow_terms_accepted')==='true'){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('mainWrapper').style.display='block';initApp();}else{showScreen('splashScreen');}}
 
 function setMode(m){
@@ -1660,9 +1870,19 @@ function setMode(m){
 
 function showPricing(){document.getElementById('pricingScreen').classList.add('show');document.getElementById('checkoutScreen').classList.remove('show');['assistentWrap','resultCard'].forEach(id=>document.getElementById(id).style.display='none');['shareCard','meikTip','stiilTip','proTip','moodboardSection','salonSetup','pildipankWrap','stiilCamWrap','cameraCard','stiilInputSelect','stiilRegimeSelect'].forEach(id=>{const el=document.getElementById(id);if(el){el.classList.remove('on','show');el.style.display='none';}});resetResults();}
 function hidePricing(){document.getElementById('pricingScreen').classList.remove('show');['assistentWrap','resultCard'].forEach(id=>document.getElementById(id).style.display='block');if(mode==='meik'){document.getElementById('meikStyleSelect').style.display='block';}if(mode==='stiil'){document.getElementById('stiilRegimeSelect').style.display='block';document.getElementById('stiilInputSelect').style.display='block';if(stiilInput==='galerii')document.getElementById('pildipankWrap').style.display='block';else{document.getElementById('stiilCamWrap').style.display='block';document.getElementById('cameraCard').style.display='block';}}if(mode==='pro'){document.getElementById('cameraCard').style.display='block';document.getElementById('proTip').classList.add('show');document.getElementById('salonSetup').classList.add('show');}}
-function showCheckout(){document.getElementById('pricingScreen').classList.remove('show');document.getElementById('checkoutScreen').classList.add('show');document.getElementById('orderTitle').textContent=selectedPkg.count+' analüüsi';document.getElementById('orderSub').textContent=selectedPkg.unit+'€ kohta';document.getElementById('orderPrice').textContent='€'+selectedPkg.price;}
+async function showCheckout(){
+  // Kui pole sisse loginud, avame kõigepealt login-modaali
+  if(!getSessionToken()){showLoginModal('Sisselogimine on vajalik enne maksete tegemist');return;}
+  const btn=document.getElementById('buyBtn');const originalTxt=btn.textContent;btn.disabled=true;btn.textContent='⟳ Suunan maksele...';
+  try{
+    const res=await fetch(API_BASE+'/api/checkout',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+getSessionToken()},body:JSON.stringify({pkgId:selectedPkg.id})});
+    const data=await res.json();
+    if(!res.ok||!data.url)throw new Error(data.error||'Makse ebaõnnestus');
+    window.location.href=data.url; // Suuname Stripe Checkout'i
+  }catch(e){alert('Viga: '+e.message);btn.disabled=false;btn.textContent=originalTxt;}
+}
 function hideCheckout(){document.getElementById('checkoutScreen').classList.remove('show');document.getElementById('pricingScreen').classList.add('show');}
-function selectPkg(el,count,price,unit){document.querySelectorAll('.pkg').forEach(p=>p.classList.remove('selected'));el.classList.add('selected');selectedPkg={count,price,unit};document.getElementById('buyBtn').textContent='Jätka maksega — €'+price+' →';}
+function selectPkg(el,id,count,price,unit){document.querySelectorAll('.pkg').forEach(p=>p.classList.remove('selected'));el.classList.add('selected');selectedPkg={id,count,price,unit};document.getElementById('buyBtn').textContent='Jätka maksega — €'+price+' →';}
 function onKeyInput(){const val=document.getElementById('keyInput').value.trim();const valid=val.startsWith('sk-ant');const btn=document.getElementById('saveBtn');btn.disabled=!valid;btn.style.opacity=valid?'1':'.4';document.getElementById('keyError').style.display=(val.length>5&&!valid)?'block':'none';}
 function toggleKeyVis(){const inp=document.getElementById('keyInput');inp.type=inp.type==='password'?'text':'password';}
 function saveKey(){const val=document.getElementById('keyInput').value.trim();if(!val.startsWith('sk-ant'))return;localStorage.setItem('glow_api_key',val);document.getElementById('apiSetupCard').style.display='none';document.getElementById('keyStatus').style.display='block';document.getElementById('saldoBar').style.display='flex';setTimeout(()=>refreshSaldo(),50);}
