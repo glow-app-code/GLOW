@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privaatsuspoliitika · GLÓW</title>
+<meta name="description" content="GLÓW privaatsuspoliitika — kuidas kogume, kasutame ja kaitseme sinu andmeid.">
+<meta name="theme-color" content="#c9a96e">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0e0c0b;--gold:#c9a96e;--gold-bright:#e8c97e;--blush:#d4957a;--lav:#9b8fb5}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:#fff;font-family:'Cormorant Garamond',Georgia,serif;line-height:1.8;min-height:100vh;padding:0}
+.ambient{position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 70% 50% at 15% 10%,rgba(196,115,107,0.08) 0%,transparent 60%),radial-gradient(ellipse 50% 70% at 85% 90%,rgba(123,158,142,0.06) 0%,transparent 60%)}
+.wrap{position:relative;z-index:1;max-width:720px;margin:0 auto;padding:32px 20px 80px}
+.back-link{display:inline-flex;align-items:center;gap:8px;color:var(--gold);text-decoration:none;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.25em;text-transform:uppercase;margin-bottom:28px;padding:8px 12px;border:1px solid rgba(201,169,110,0.4);border-radius:3px;transition:all .2s}
+.back-link:hover{background:rgba(201,169,110,0.1);border-color:var(--gold)}
+header{text-align:center;padding:20px 0 24px;border-bottom:1px solid rgba(201,169,110,0.3);margin-bottom:32px}
+.logo{font-size:44px;font-weight:300;letter-spacing:.25em;color:#fff;line-height:1;margin-bottom:8px}
+.logo em{color:var(--gold);font-style:italic;text-shadow:0 0 20px rgba(201,169,110,0.5)}
+.tagline{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.4em;color:var(--blush);text-transform:uppercase}
+h1{font-size:32px;font-weight:600;color:#fff;text-align:center;margin:24px 0 8px}
+.updated{font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.5);text-align:center;letter-spacing:.2em;text-transform:uppercase;margin-bottom:36px}
+h2{font-size:22px;color:var(--gold);font-weight:600;margin:32px 0 12px;padding-top:16px;border-top:1px solid rgba(201,169,110,0.15)}
+h3{font-size:17px;color:var(--gold-bright);font-weight:600;margin:20px 0 8px;font-family:'Cormorant Garamond',serif}
+p{font-size:16px;color:rgba(255,255,255,0.9);margin-bottom:14px}
+strong{color:#fff;font-weight:600}
+ul{margin:12px 0 16px 0;padding-left:22px}
+li{font-size:16px;color:rgba(255,255,255,0.9);margin-bottom:8px;position:relative;list-style:none;padding-left:18px}
+li::before{content:'✦';position:absolute;left:0;color:var(--gold);font-size:11px;top:4px}
+a{color:var(--gold-bright);text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(232,201,126,0.4);transition:text-decoration-color .2s}
+a:hover{text-decoration-color:var(--gold-bright)}
+.highlight-box{background:rgba(201,169,110,0.08);border-left:3px solid var(--gold);padding:16px 20px;border-radius:0 4px 4px 0;margin:20px 0}
+.highlight-box p{margin:0;color:rgba(255,255,255,0.95)}
+.contact-block{background:rgba(155,143,181,0.1);border:1px solid rgba(155,143,181,0.4);border-radius:6px;padding:20px 22px;margin:32px 0 20px}
+.contact-block p{margin-bottom:6px;font-size:15px}
+.contact-block strong{color:#c4b8e0}
+.toc{background:rgba(255,255,255,0.03);border:1px solid rgba(201,169,110,0.2);border-radius:6px;padding:20px 24px;margin-bottom:32px}
+.toc-title{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;margin-bottom:12px}
+.toc ol{padding-left:20px;margin:0}
+.toc li{padding-left:8px;font-size:15px;margin-bottom:4px}
+.toc li::before{content:none}
+.toc a{color:rgba(255,255,255,0.85);text-decoration:none}
+.toc a:hover{color:var(--gold-bright)}
+footer{text-align:center;margin-top:60px;padding-top:28px;border-top:1px solid rgba(201,169,110,0.2);font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:.2em}
+footer a{color:var(--gold);text-decoration:none;margin:0 6px}
+</style>
+</head>
+<body>
+<div class="ambient"></div>
+<div class="wrap">
+  <a href="index.html" class="back-link">← Tagasi rakendusse</a>
+
+  <header>
+    <div class="logo">GL<em>Ó</em>W</div>
+    <div class="tagline">AI · Stiiliassistent</div>
+  </header>
+
+  <h1>Privaatsuspoliitika</h1>
+  <div class="updated">Kehtiv alates: {{JOUSTUMISE_KUUP}}</div>
+
+  <div class="toc">
+    <div class="toc-title">Sisukord</div>
+    <ol>
+      <li><a href="#1">Üldpõhimõtted</a></li>
+      <li><a href="#2">Vastutav töötleja</a></li>
+      <li><a href="#3">Milliseid andmeid kogume</a></li>
+      <li><a href="#4">Kuidas andmeid kasutame</a></li>
+      <li><a href="#5">Kellega andmeid jagame</a></li>
+      <li><a href="#6">Andmete säilitusaeg</a></li>
+      <li><a href="#7">Sinu õigused (GDPR)</a></li>
+      <li><a href="#8">Küpsised</a></li>
+      <li><a href="#9">Turvalisus</a></li>
+      <li><a href="#10">Muudatused poliitikas</a></li>
+    </ol>
+  </div>
+
+  <h2 id="1">1. Üldpõhimõtted</h2>
+  <p>GLÓW (edaspidi <strong>"Teenus"</strong>) austab sinu privaatsust. Käesolev privaatsuspoliitika selgitab, kuidas kogume, kasutame ja kaitseme sinu isikuandmeid, kui kasutad meie AI-põhist ilu- ja stiilianalüüsi teenust aadressil <strong>glow4me.ee</strong>.</p>
+  <p>Töötleme sinu andmeid vastavalt Euroopa Liidu isikuandmete kaitse üldmäärusele <strong>(EL 2016/679, GDPR)</strong> ning Eesti isikuandmete kaitse seadusele.</p>
+
+  <h2 id="2">2. Vastutav töötleja</h2>
+  <div class="contact-block">
+    <p><strong>{{ETTEVOTE_NIMI}}</strong></p>
+    <p>Registrikood: {{REGISTRIKOOD}}</p>
+    <p>Aadress: {{AADRESS}}</p>
+    <p>E-post: <a href="mailto:{{EMAIL}}">{{EMAIL}}</a></p>
+    <p>Andmekaitse-küsimused: <a href="mailto:{{EMAIL}}">{{EMAIL}}</a></p>
+  </div>
+
+  <h2 id="3">3. Milliseid andmeid kogume</h2>
+
+  <h3>3.1. Pildid</h3>
+  <p>Kasutaja saadab meile pilte oma näost või riietusest analüüsi tegemiseks. <strong>Pildid on biomeetrilised andmed</strong> ning nõuavad sinu selgesõnalist nõusolekut.</p>
+  <div class="highlight-box">
+    <p><strong>Tähtis:</strong> pildid saadetakse krüpteeritult meie serveri kaudu Anthropic PBC (USA) AI-teenusele analüüsimiseks. Pilte <strong>ei säilitata meie serveris ega Anthropic'i serverites</strong> pärast analüüsi valmimist.</p>
+  </div>
+
+  <h3>3.2. E-posti aadress</h3>
+  <p>Kui loote konto või teete makse, kogume sinu e-posti aadressi. Kasutame seda:</p>
+  <ul>
+    <li>Sisselogimislingi saatmiseks (magic-link)</li>
+    <li>Makse-kviitungite saatmiseks</li>
+    <li>Krediitide sünkroniseerimiseks eri seadmete vahel</li>
+    <li>Olulistest muudatustest teavitamiseks (näit. hindade muutmine)</li>
+  </ul>
+
+  <h3>3.3. Makseandmed</h3>
+  <p>Maksete töötlemiseks kasutame teenusepakkujat <strong>Stripe, Inc.</strong> (USA). GLÓW <strong>ei saa juurdepääsu sinu kaardiandmetele</strong> — need töödeldakse otse Stripe'is, mis on PCI-DSS Level 1 sertifitseeritud. Meie näeme ainult makse-summa, valuutat ja edukuse fakti.</p>
+
+  <h3>3.4. Kasutusandmed</h3>
+  <ul>
+    <li>IP-aadress (turvalisuse ja kuritarvituse takistamiseks)</li>
+    <li>Brauseri- ja seadme-tüüp</li>
+    <li>Kasutus-statistika (anonüümne — millised funktsioonid, kui palju analüüse)</li>
+  </ul>
+
+  <h2 id="4">4. Kuidas andmeid kasutame</h2>
+  <p>Kasutame sinu andmeid järgmisteks eesmärkideks:</p>
+  <ul>
+    <li><strong>Teenuse pakkumine:</strong> pildianalüüsi tegemine, tulemuste saatmine, krediidi-saldo hoidmine</li>
+    <li><strong>Klienditugi:</strong> vastamine päringutele, tehniliste probleemide lahendamine</li>
+    <li><strong>Turvalisus:</strong> kuritarvituste tuvastamine ja takistamine</li>
+    <li><strong>Teenuse parandamine:</strong> anonüümne statistiline analüüs, funktsioonide arendamine</li>
+    <li><strong>Juriidilised kohustused:</strong> raamatupidamine, maksuseadused</li>
+  </ul>
+
+  <h2 id="5">5. Kellega andmeid jagame</h2>
+  <p>Me <strong>ei müü sinu andmeid</strong>. Jagame andmeid ainult järgmiste kolmandate osapoolega, kes vajavad neid teenuse osutamiseks:</p>
+  <ul>
+    <li><strong>Anthropic PBC</strong> (San Francisco, USA) — pildianalüüsi teostamiseks. Andmed edastatakse <a href="https://www.anthropic.com/legal/privacy" target="_blank" rel="noopener">Anthropic'i privaatsuspoliitika</a> alusel.</li>
+    <li><strong>Stripe, Inc.</strong> (San Francisco, USA) — maksete töötlemiseks. Töötlemine toimub <a href="https://stripe.com/en-ee/privacy" target="_blank" rel="noopener">Stripe'i privaatsuspoliitika</a> alusel.</li>
+    <li><strong>Cloudflare, Inc.</strong> (San Francisco, USA) — meie serveri infrastruktuur ja turvakiht.</li>
+    <li><strong>Resend / SendGrid</strong> — transaktsiooniliste e-postide saatmiseks.</li>
+    <li><strong>Riigiasutused</strong> — ainult seadusega nõutud juhtudel.</li>
+  </ul>
+  <p>Kui sinu andmed edastatakse EL-ist väljapoole (USA), toimub see <strong>EL Standard Contractual Clauses</strong> alusel ja lisameetmete raames.</p>
+
+  <h2 id="6">6. Andmete säilitusaeg</h2>
+  <ul>
+    <li><strong>Pildid:</strong> ei säilitata (kustutatakse kohe pärast analüüsi)</li>
+    <li><strong>Analüüsi-tulemused:</strong> säilitatakse ainult kasutaja seadmes (localStorage), meil neid ei ole</li>
+    <li><strong>Kasutajakonto (e-post, saldo):</strong> säilitatakse kuni konto sulgemiseni või 3 aastat viimasest tegevusest</li>
+    <li><strong>Makse-info ja kviitungid:</strong> 7 aastat (Eesti raamatupidamise seadus)</li>
+    <li><strong>Kasutuslogid:</strong> kuni 90 päeva</li>
+  </ul>
+
+  <h2 id="7">7. Sinu õigused (GDPR)</h2>
+  <p>Sinul on järgnevad õigused:</p>
+  <ul>
+    <li><strong>Ligipääs</strong> — vaata milliseid andmeid me sinu kohta säilitame</li>
+    <li><strong>Parandamine</strong> — nõua ebatäpsete andmete parandamist</li>
+    <li><strong>Kustutamine ("õigus olla unustatud")</strong> — nõua oma andmete kustutamist</li>
+    <li><strong>Andmete ülekantavus</strong> — saada oma andmed struktureeritud kujul (JSON)</li>
+    <li><strong>Piiramine</strong> — piira teatud töötlemistoiminguid</li>
+    <li><strong>Vastuväide</strong> — esita vastuväide otsestele turundustele</li>
+    <li><strong>Nõusoleku tagasivõtmine</strong> — igal ajal, mõjutamata varasemat töötlemist</li>
+  </ul>
+  <p>Oma õiguste teostamiseks kirjuta meile: <strong><a href="mailto:{{EMAIL}}">{{EMAIL}}</a></strong>. Vastame 30 päeva jooksul.</p>
+  <p>Sul on ka õigus esitada kaebus <strong>Andmekaitse Inspektsioonile</strong> aadressil <a href="https://aki.ee" target="_blank" rel="noopener">aki.ee</a>.</p>
+
+  <h2 id="8">8. Küpsised</h2>
+  <p>Kasutame kolme tüüpi küpsiseid:</p>
+  <ul>
+    <li><strong>Vajalikud (kohustuslikud):</strong> teenuse toimimiseks — sisselogimissessioon, krediidi-saldo, keele-valik. Nõusolekut ei nõuta.</li>
+    <li><strong>Statistilised (vabatahtlikud):</strong> anonüümne kasutus-statistika (näit. Plausible). Ei jälita üksikuid kasutajaid.</li>
+    <li><strong>Turundus (ei kasuta hetkel):</strong> kui hakkame kasutama, küsime eraldi nõusolekut.</li>
+  </ul>
+  <p>Küpsiseid saab hallata brauseri seadetes. Vajalikke küpsiseid välja lülitades võib teenus mitte toimida.</p>
+
+  <h2 id="9">9. Turvalisus</h2>
+  <p>Kasutame tööstusstandarditele vastavaid turvameetmeid:</p>
+  <ul>
+    <li><strong>TLS/HTTPS</strong> krüpteering igale ühendusele</li>
+    <li>Anthropic API võti on peidetud <strong>serveri poolele</strong> (Cloudflare Workers)</li>
+    <li>Makseandmed liiguvad otse <strong>Stripe'ile</strong> (PCI-DSS Level 1)</li>
+    <li>Sisselogimine <strong>magic-link'iga</strong> (ei säilitata paroole)</li>
+    <li>Turvaintsidentidest teavitame kasutajat 72 tunni jooksul GDPR-i alusel</li>
+  </ul>
+
+  <h2 id="10">10. Muudatused poliitikas</h2>
+  <p>Uuendame käesolevat poliitikat vajaduse korral. Oluliste muudatuste puhul teavitame sind e-postiga (kui oled kontot loonud) või app'is nähtava teatega. Väiksematest muudatustest annab teada kuupäev lehe ülaosas.</p>
+
+  <footer>
+    <p><a href="index.html">Rakendus</a> · <a href="tingimused.html">Tingimused</a> · <a href="tagasimaksed.html">Tagasimaksed</a> · <a href="kontakt.html">Kontakt</a></p>
+    <p style="margin-top:16px">© {{ETTEVOTE_NIMI}} · glow4me.ee</p>
+  </footer>
+</div>
+</body>
+</html>
