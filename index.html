@@ -2074,9 +2074,33 @@ async function sendComment(input){
 }
 
 // Analüüsi järel — "Küsi sõprade arvamust" nupp
-function saveShareContext(parsed,dataUrl,mode){
+// Vähenda pilti enne salvestamist — muidu saadetakse suurte piltidega poolik base64 KV-sse
+function downscaleImageForShare(dataUrl, maxDim, quality){
+  return new Promise((resolve)=>{
+    if(!dataUrl){resolve(null);return;}
+    const img=new Image();
+    img.onload=function(){
+      let w=img.naturalWidth||img.width, h=img.naturalHeight||img.height;
+      if(!w||!h){resolve(dataUrl);return;}
+      const md=maxDim||900;
+      if(w>md||h>md){const r=Math.min(md/w,md/h);w=Math.round(w*r);h=Math.round(h*r);}
+      const c=document.createElement('canvas');c.width=w;c.height=h;
+      const ctx=c.getContext('2d');ctx.drawImage(img,0,0,w,h);
+      try{resolve(c.toDataURL('image/jpeg',quality||0.75));}
+      catch(_){resolve(dataUrl);}
+    };
+    img.onerror=function(){resolve(dataUrl);};
+    img.src=dataUrl;
+  });
+}
+async function saveShareContext(parsed,dataUrl,mode){
+  let smallUrl=null;
+  if(dataUrl){
+    try{smallUrl=await downscaleImageForShare(dataUrl,900,0.75);}
+    catch(_){smallUrl=dataUrl;}
+  }
   window.currentShareData={
-    imageBase64:(dataUrl||'').split(',')[1]||null,
+    imageBase64:(smallUrl||'').split(',')[1]||null,
     aiVerdict:parsed.verdict||'',
     aiSummary:(parsed.feedback||'').slice(0,600),
     mode:mode||'meik'
