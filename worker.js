@@ -548,6 +548,57 @@ async function handleShareReact(request, env, origin, shareId) {
   return json({reactions: share.reactions}, 200, origin);
 }
 
+// ============ CIRCLE CHAT / VESTLUS ============
+// Salvestus: circle_msgs:{circleId} = JSON massiiv sõnumeid (kuni 200 uusimat)
+// Sõnum: {id, email, text, cat, ts}
+// Kategooriad: 'ilu' | 'riided' | 'toit' | 'sport' | 'vaba' (default 'vaba')
+
+const CHAT_CATEGORIES = ['ilu','riided','toit','sport','vaba'];
+const CHAT_MSG_TTL = 30 * 24 * 3600; // 30 päeva
+const CHAT_MAX_LEN = 800;
+const CHAT_MAX_MSGS = 200;
+
+async function ensureCircleMember(env, circleId, email) {
+  const circle = await env.GLOW_KV.get('circle:' + circleId, 'json');
+  if (!circle) return null;
+  if (!circle.members || !circle.members.includes(email)) return null;
+  return circle;
+}
+
+async function handleCircleMessagesGet(request, env, origin, circleId) {
+  const sess = await getSession(request, env);
+  if (!sess) return json({error: 'Unauthorized'}, 401, origin);
+  const circle = await ensureCircleMember(env, circleId, sess.email);
+  if (!circle) return json({error: 'Ei ole selle Circle liige'}, 403, origin);
+  const url = new URL(request.url);
+  const cat = url.searchParams.get('cat') || '';
+  const since = parseInt(url.searchParams.get('since') || '0', 10);
+  const msgs = await env.GLOW_KV.get('circle_msgs:' + circleId, 'json') || [];
+  let filtered = msgs;
+  if (cat && CHAT_CATEGORIES.includes(cat)) filtered = filtered.filter(m => m.cat === cat);
+  if (since > 0) filtered = filtered.filter(m => (m.ts || 0) > since);
+  return json({messages: filtered, circleName: circle.name, circleIcon: circle.icon}, 200, origin);
+}
+
+async function handleCircleMessagePost(request, env, origin, circleId) {
+  const sess = await getSession(request, env);
+  if (!sess) return json({error: 'Unauthorized'}, 401, origin);
+  const circle = await ensureCircleMember(env, circleId, sess.email);
+  if (!circle) return json({error: 'Ei ole selle Circle liige'}, 403, origin);
+  const body = await request.json();
+  const text = String(body.text || '').trim().slice(0, CHAT_MAX_LEN);
+  if (text.length < 1) return json({error: 'Tühi sõnum'}, 400, origin);
+  let cat = String(body.cat || 'vaba');
+  if (!CHAT_CATEGORIES.includes(cat)) cat = 'vaba';
+  const msgs = await env.GLOW_KV.get('circle_msgs:' + circleId, 'json') || [];
+  const now = Date.now();
+  const msg = {id: 'm_' + generateToken(8), email: sess.email, text, cat, ts: now};
+  msgs.push(msg);
+  const trimmed = msgs.slice(-CHAT_MAX_MSGS);
+  await env.GLOW_KV.put('circle_msgs:' + circleId, JSON.stringify(trimmed), {expirationTtl: CHAT_MSG_TTL});
+  return json({message: msg}, 200, origin);
+}
+
 async function handleAnthropicProxy(request, env, origin) {
   const contentLength = parseInt(request.headers.get('content-length') || '0', 10);
   if (contentLength > MAX_BODY_SIZE) return json({ error: { message: 'Body too large' } }, 413, origin);
@@ -653,6 +704,10 @@ export default {
       if ((m = path.match(/^\/api\/shares\/([^\/]+)$/)) && request.method === 'GET') return await handleShareGet(request, env, origin, m[1]);
       if ((m = path.match(/^\/api\/shares\/([^\/]+)\/comment$/)) && request.method === 'POST') return await handleShareComment(request, env, origin, m[1]);
       if ((m = path.match(/^\/api\/shares\/([^\/]+)\/react$/)) && request.method === 'POST') return await handleShareReact(request, env, origin, m[1]);
+
+      // Circle chat / vestlus
+      if ((m = path.match(/^\/api\/circles\/([^\/]+)\/messages$/)) && request.method === 'GET') return await handleCircleMessagesGet(request, env, origin, m[1]);
+      if ((m = path.match(/^\/api\/circles\/([^\/]+)\/messages$/)) && request.method === 'POST') return await handleCircleMessagePost(request, env, origin, m[1]);
 
       if (request.method === 'POST' && (path === '/v1/messages' || path.endsWith('/v1/messages'))) {
         return await handleAnthropicProxy(request, env, origin);
