@@ -168,7 +168,10 @@ async function sendMagicLinkEmail(env, email, link, code) {
     },
     body: JSON.stringify(body),
   });
-  return res.ok;
+  if (res.ok) return { ok: true };
+  let errText = '';
+  try { errText = await res.text(); } catch(_) {}
+  return { ok: false, status: res.status, error: errText.slice(0, 400) };
 }
 
 // ============ STRIPE ============
@@ -247,8 +250,18 @@ async function handleAuthRequestLink(request, env, origin) {
   const appUrl = env.APP_URL || 'https://glow4me.ee';
   const link = appUrl + '/?verify=' + token;
 
-  const ok = await sendMagicLinkEmail(env, email, link, code);
-  if (!ok) return json({ error: 'Failed to send email' }, 500, origin);
+  const sendRes = await sendMagicLinkEmail(env, email, link, code);
+  if (!sendRes.ok) {
+    // Kui Resend keeldub domeeni-verifitseerimise tõttu — anna kasutajale selge sõnum
+    const raw = sendRes.error || '';
+    let userMsg = 'Meili saatmine ebaõnnestus';
+    if (raw.includes('verify a domain') || raw.includes('not verified') || raw.includes('testing emails')) {
+      userMsg = 'Testrežiim — administraator peab lisama saatja aadressi. Palun proovi hiljem.';
+    } else if (raw.includes('Invalid `to`') || raw.includes('invalid email')) {
+      userMsg = 'Vigane e-posti aadress';
+    }
+    return json({ error: userMsg, detail: raw, status: sendRes.status }, 500, origin);
+  }
   return json({ sent: true }, 200, origin);
 }
 
