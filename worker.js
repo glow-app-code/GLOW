@@ -67,6 +67,13 @@ function generateToken(len = 32) {
   return Array.from(bytes, b => b.toString(16).padStart(2, '0')).join('');
 }
 
+function generateSixDigitCode() {
+  const bytes = new Uint8Array(3);
+  crypto.getRandomValues(bytes);
+  const num = (bytes[0] << 16) + (bytes[1] << 8) + bytes[2];
+  return String(num % 1000000).padStart(6, '0');
+}
+
 function generateRefCode() {
   const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
   let code = 'GLW';
@@ -119,25 +126,34 @@ async function updateUserCredits(env, email, delta) {
 
 // ============ RESEND E-MAIL ============
 
-async function sendMagicLinkEmail(env, email, link) {
+async function sendMagicLinkEmail(env, email, link, code) {
   const from = env.FROM_EMAIL || 'GLÓW <onboarding@resend.dev>';
+  const displayCode = code || '------';
   const body = {
     from,
     to: [email],
-    subject: '✦ Sinu GLÓW sisselogimise link',
+    subject: '✦ Sinu GLÓW kood: ' + displayCode,
     html: `
 <!DOCTYPE html><html><body style="margin:0;padding:0;background:#0e0c0b;font-family:Georgia,serif">
 <div style="max-width:520px;margin:40px auto;padding:40px 32px;background:linear-gradient(135deg,#1a1614,#0e0c0b);border:1px solid #c9a96e;border-radius:12px">
-  <div style="text-align:center;margin-bottom:32px">
+  <div style="text-align:center;margin-bottom:28px">
     <div style="font-size:44px;color:#fff;letter-spacing:0.25em;font-weight:300">GL<em style="color:#c9a96e">Ó</em>W</div>
     <div style="font-family:'Courier New',monospace;font-size:10px;letter-spacing:0.4em;color:#d4957a;text-transform:uppercase;margin-top:6px">AI · STIILIASSISTENT</div>
   </div>
-  <h2 style="color:#fff;text-align:center;font-weight:600;margin:0 0 16px;font-size:22px">Tere tulemast tagasi ✦</h2>
-  <p style="color:rgba(255,255,255,0.85);font-size:16px;line-height:1.6;text-align:center;margin:0 0 28px">Klõpsa allolevat nuppu, et logida sisse GLÓW rakendusse. Link kehtib <strong style="color:#e8c97e">10 minutit</strong>.</p>
-  <div style="text-align:center;margin-bottom:28px">
-    <a href="${link}" style="display:inline-block;padding:16px 32px;background:#c9a96e;color:#0e0c0b;text-decoration:none;border-radius:6px;font-family:'Courier New',monospace;font-size:12px;letter-spacing:0.25em;font-weight:700">LOGI SISSE →</a>
+  <h2 style="color:#fff;text-align:center;font-weight:600;margin:0 0 8px;font-size:22px">Tere tulemast tagasi ✦</h2>
+  <p style="color:rgba(255,255,255,0.75);font-size:14px;line-height:1.5;text-align:center;margin:0 0 20px">Sisesta allolev 6-kohaline kood GL<em style="color:#c9a96e">Ó</em>W rakenduses</p>
+  <div style="text-align:center;margin:0 0 28px">
+    <div style="display:inline-block;padding:22px 28px;background:rgba(201,169,110,0.12);border:2px solid #c9a96e;border-radius:12px">
+      <div style="font-family:'Courier New',monospace;font-size:40px;letter-spacing:0.35em;color:#e8c97e;font-weight:700;text-shadow:0 0 20px rgba(232,201,126,0.4)">${displayCode}</div>
+    </div>
+    <p style="color:rgba(255,255,255,0.55);font-size:12px;margin:12px 0 0">Kood kehtib <strong style="color:#e8c97e">10 minutit</strong></p>
   </div>
-  <p style="color:rgba(255,255,255,0.6);font-size:13px;line-height:1.6;text-align:center;margin:0 0 20px">Kui nupp ei tööta, kopeeri see link brauserisse:<br><span style="color:#c9a96e;word-break:break-all;font-size:12px">${link}</span></p>
+  <div style="border-top:1px solid rgba(201,169,110,0.2);padding-top:20px;margin-bottom:20px">
+    <p style="color:rgba(255,255,255,0.6);font-size:12px;line-height:1.6;text-align:center;margin:0 0 12px">Või ava ligipääs otse (avab brauseris — parim kui pole veel GLÓW äppi installinud):</p>
+    <div style="text-align:center">
+      <a href="${link}" style="display:inline-block;padding:12px 24px;background:transparent;color:#c9a96e;text-decoration:none;border:1px solid #c9a96e;border-radius:6px;font-family:'Courier New',monospace;font-size:10px;letter-spacing:0.25em;font-weight:600">AVA BRAUSERIS →</a>
+    </div>
+  </div>
   <div style="border-top:1px solid rgba(201,169,110,0.2);padding-top:20px;text-align:center">
     <p style="color:rgba(255,255,255,0.4);font-size:12px;margin:0 0 6px">Kui sa ei taotlenud sisselogimist, ignoreeri seda kirja.</p>
     <p style="color:rgba(255,255,255,0.4);font-size:11px;margin:0">glow4me.ee · AI Stiiliassistent</p>
@@ -212,19 +228,52 @@ async function handleAuthRequestLink(request, env, origin) {
   if (!isValidEmail(email)) return json({ error: 'Invalid email' }, 400, origin);
 
   const token = generateToken();
+  const code = generateSixDigitCode();
   const expiresAt = Date.now() + MAGIC_LINK_TTL * 1000;
+  const emailLower = email.toLowerCase();
+
+  // Salvesta nii link kui kood
   await env.GLOW_KV.put(
     'magiclink:' + token,
-    JSON.stringify({ email: email.toLowerCase(), expiresAt }),
+    JSON.stringify({ email: emailLower, expiresAt }),
+    { expirationTtl: MAGIC_LINK_TTL }
+  );
+  await env.GLOW_KV.put(
+    'magiccode:' + emailLower + ':' + code,
+    JSON.stringify({ email: emailLower, expiresAt }),
     { expirationTtl: MAGIC_LINK_TTL }
   );
 
   const appUrl = env.APP_URL || 'https://glow4me.ee';
   const link = appUrl + '/?verify=' + token;
 
-  const ok = await sendMagicLinkEmail(env, email, link);
+  const ok = await sendMagicLinkEmail(env, email, link, code);
   if (!ok) return json({ error: 'Failed to send email' }, 500, origin);
   return json({ sent: true }, 200, origin);
+}
+
+async function handleAuthVerifyCode(request, env, origin) {
+  const { email, code } = await request.json();
+  if (!isValidEmail(email) || !/^\d{6}$/.test(String(code||''))) {
+    return json({ error: 'Vale e-post või kood' }, 400, origin);
+  }
+  const emailLower = email.toLowerCase();
+  const key = 'magiccode:' + emailLower + ':' + code;
+  const data = await env.GLOW_KV.get(key, 'json');
+  if (!data || data.expiresAt < Date.now()) {
+    return json({ error: 'Vale kood või kood on aegunud' }, 400, origin);
+  }
+  await env.GLOW_KV.delete(key);
+
+  await getOrCreateUser(env, data.email);
+  const sessionToken = generateToken();
+  const sessionExpires = Date.now() + SESSION_TTL * 1000;
+  await env.GLOW_KV.put(
+    'session:' + sessionToken,
+    JSON.stringify({ email: data.email, expiresAt: sessionExpires }),
+    { expirationTtl: SESSION_TTL }
+  );
+  return json({ token: sessionToken, email: data.email }, 200, origin);
 }
 
 async function handleAuthVerify(url, env, origin) {
@@ -577,6 +626,9 @@ export default {
     try {
       if (request.method === 'POST' && path === '/auth/request-link') {
         return await handleAuthRequestLink(request, env, origin);
+      }
+      if (request.method === 'POST' && path === '/auth/verify-code') {
+        return await handleAuthVerifyCode(request, env, origin);
       }
       if (request.method === 'GET' && path === '/auth/verify') {
         return await handleAuthVerify(url, env, origin);
