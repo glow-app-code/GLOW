@@ -457,8 +457,16 @@ async function handleShareCreate(request, env, origin) {
   const body = await request.json();
   const {circleIds, imageBase64, aiVerdict, aiSummary, mode, userMessage} = body;
   if (!Array.isArray(circleIds) || circleIds.length === 0) return json({error: 'No circle selected'}, 400, origin);
-  // Kärbi pilti — max 500KB base64 (~350KB päris)
-  const trimmedImg = imageBase64 ? String(imageBase64).slice(0, 500 * 1024) : null;
+  // Pilt peab tulema kliendipoolt juba vähendatud (~300KB). Kui ületab hard-limiti — keeldu, mitte lõika.
+  const IMG_LIMIT = 900 * 1024; // 900KB base64
+  let trimmedImg = null;
+  if (imageBase64) {
+    const raw = String(imageBase64);
+    if (raw.length > IMG_LIMIT) {
+      return json({error: 'Pilt on liiga suur — palun ürita uuesti (rakendus optimeerib)'}, 413, origin);
+    }
+    trimmedImg = raw;
+  }
   const now = Date.now();
   const expiresAt = now + 12*3600*1000;
   const shareId = 's_' + generateToken(10);
