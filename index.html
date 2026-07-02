@@ -562,69 +562,6 @@ canvas{display:none}
 /* SVG-ikoonide üldised stiilid — kasutavad brändi-värve, mitte valget */
 [data-icon]{display:inline-flex;align-items:center;justify-content:center}
 
-/* === IKOONIDE UNIKAALSED VÄRVID (rikkalik palett) === */
-/* Grid-ikoonid (meik-style, uritus, proc) saavad oma temaatilise värvi */
-.meik-style-btn svg[data-icon-name],.uritus-btn svg[data-icon-name],.proc-btn svg[data-icon-name]{transition:color .25s,filter .25s,transform .25s;stroke-width:1.6}
-
-/* Aeg-päev ikoonid */
-.meik-style-btn svg[data-icon-name="sun"],.uritus-btn svg[data-icon-name="sun"]{color:#e8c97e;filter:drop-shadow(0 0 5px rgba(232,201,126,0.55))}
-.meik-style-btn svg[data-icon-name="moon"],.uritus-btn svg[data-icon-name="moon"]{color:#a888c4;filter:drop-shadow(0 0 4px rgba(168,136,196,0.45))}
-
-/* Sündmused-kohtumised */
-.meik-style-btn svg[data-icon-name="briefcase"],.uritus-btn svg[data-icon-name="briefcase"]{color:#c99568;filter:drop-shadow(0 0 3px rgba(201,149,104,0.4))}
-.meik-style-btn svg[data-icon-name="wine"],.uritus-btn svg[data-icon-name="wine"]{color:#d47a86;filter:drop-shadow(0 0 4px rgba(212,122,134,0.45))}
-.meik-style-btn svg[data-icon-name="cake"],.uritus-btn svg[data-icon-name="cake"]{color:#f0b0c8;filter:drop-shadow(0 0 4px rgba(240,176,200,0.5))}
-.meik-style-btn svg[data-icon-name="crown"],.uritus-btn svg[data-icon-name="crown"]{color:#f0d898;filter:drop-shadow(0 0 6px rgba(240,216,152,0.6))}
-.meik-style-btn svg[data-icon-name="graduation"],.uritus-btn svg[data-icon-name="graduation"]{color:#8fa8c4;filter:drop-shadow(0 0 3px rgba(143,168,196,0.4))}
-.meik-style-btn svg[data-icon-name="camera"],.uritus-btn svg[data-icon-name="camera"]{color:#d4a892;filter:drop-shadow(0 0 3px rgba(212,168,146,0.4))}
-.meik-style-btn svg[data-icon-name="eye"],.proc-btn svg[data-icon-name="eye"]{color:#a89ec4;filter:drop-shadow(0 0 4px rgba(168,158,196,0.5))}
-.meik-style-btn svg[data-icon-name="makeup"]{color:#e88b95;filter:drop-shadow(0 0 4px rgba(232,139,149,0.5))}
-
-/* Uritus-grid: sotsiaalsed, reisi ja meelelahutus */
-.uritus-btn svg[data-icon-name="handshake"]{color:#a5c1a8;filter:drop-shadow(0 0 3px rgba(165,193,168,0.4))}
-.uritus-btn svg[data-icon-name="shop"]{color:#c4a2d0;filter:drop-shadow(0 0 3px rgba(196,162,208,0.4))}
-.uritus-btn svg[data-icon-name="coffee"]{color:#b88960;filter:drop-shadow(0 0 3px rgba(184,137,96,0.4))}
-.uritus-btn svg[data-icon-name="dish"]{color:#e0c8a8;filter:drop-shadow(0 0 3px rgba(224,200,168,0.4))}
-.uritus-btn svg[data-icon-name="party"]{color:#e88ab8;filter:drop-shadow(0 0 5px rgba(232,138,184,0.55))}
-.uritus-btn svg[data-icon-name="plane"]{color:#8bb8d4;filter:drop-shadow(0 0 4px rgba(139,184,212,0.45))}
-.uritus-btn svg[data-icon-name="wave"]{color:#7cb8c9;filter:drop-shadow(0 0 5px rgba(124,184,201,0.5))}
-.uritus-btn svg[data-icon-name="run"]{color:#e8895c;filter:drop-shadow(0 0 4px rgba(232,137,92,0.5))}
-.uritus-btn svg[data-icon-name="sparkle"]{color:#f0d898;filter:drop-shadow(0 0 6px rgba(240,216,152,0.6))}
-.uritus-btn svg[data-icon-name="smile"]{color:#f0b890;filter:drop-shadow(0 0 3px rgba(240,184,144,0.4))}
-.uritus-btn svg[data-icon-name="square"]{color:#c8b8c0}
-.uritus-btn svg[data-icon-name="palette"]{color:#d08bc4;filter:drop-shadow(0 0 5px rgba(208,139,196,0.5))}
-.uritus-btn svg[data-icon-name="fire"]{color:#ec7a52;filter:drop-shadow(0 0 6px rgba(236,122,82,0.6))}
-
-/* Pro protseduurid — luksus ja hooldus */
-.proc-btn svg[data-icon-name="sparkle"]{color:#f0d898;filter:drop-shadow(0 0 6px rgba(240,216,152,0.6))}
-.proc-btn svg[data-icon-name="droplet"]{color:#8cc4d4;filter:drop-shadow(0 0 5px rgba(140,196,212,0.55))}
-.proc-btn svg[data-icon-name="leaf"]{color:#a3c49b;filter:drop-shadow(0 0 4px rgba(163,196,155,0.5))}
-.proc-btn svg[data-icon-name="target"]{color:#e88a70;filter:drop-shadow(0 0 4px rgba(232,138,112,0.5))}
-.proc-btn svg[data-icon-name="star"]{color:#f0d898;filter:drop-shadow(0 0 6px rgba(240,216,152,0.6))}
-.proc-btn svg[data-icon-name="flower"]{color:#f0a5c4;filter:drop-shadow(0 0 5px rgba(240,165,196,0.5))}
-.proc-btn svg[data-icon-name="pencil"]{color:#c99568;filter:drop-shadow(0 0 3px rgba(201,149,104,0.4))}
-.proc-btn svg[data-icon-name="hands"]{color:#d4a892;filter:drop-shadow(0 0 3px rgba(212,168,146,0.4))}
-.proc-btn svg[data-icon-name="spa"]{color:#a8cbc4;filter:drop-shadow(0 0 5px rgba(168,203,196,0.55))}
-.proc-btn svg[data-icon-name="foot"]{color:#d4b28f;filter:drop-shadow(0 0 3px rgba(212,178,143,0.4))}
-.proc-btn svg[data-icon-name="search"]{color:#c4b8e0;filter:drop-shadow(0 0 4px rgba(196,184,224,0.5))}
-
-/* Stiili sisendid: galerii, selfie, tavakaamera */
-.sib-icon svg[data-icon-name="gallery"]{color:#c4b8e0;filter:drop-shadow(0 0 5px rgba(196,184,224,0.55))}
-.sib-icon svg[data-icon-name="selfie"]{color:#f0b890;filter:drop-shadow(0 0 5px rgba(240,184,144,0.55))}
-.sib-icon svg[data-icon-name="camera"]{color:#d4a892;filter:drop-shadow(0 0 5px rgba(212,168,146,0.5))}
-
-/* Mode-nupud on eraldi loogika, kuid lisame drop-shadow ilu */
-.mode.m-meik svg[data-icon-name="makeup"]{color:#e88b95;filter:drop-shadow(0 0 6px rgba(232,139,149,0.55))}
-.mode.m-stiil svg[data-icon-name="dress"]{color:#b8a5d4;filter:drop-shadow(0 0 6px rgba(184,165,212,0.5))}
-.mode.m-pro svg[data-icon-name="spa"]{color:#e8c97e;filter:drop-shadow(0 0 7px rgba(232,201,126,0.65))}
-.mode.active svg[data-icon-name]{transform:scale(1.12) rotate(3deg);animation:iconWiggle 0.55s ease}
-@keyframes iconWiggle{0%,100%{transform:scale(1.12) rotate(3deg)}50%{transform:scale(1.15) rotate(-3deg)}}
-
-/* Aktiivse aju nupp — hõõguv tugevam efekt */
-.meik-style-btn.active svg[data-icon-name],.uritus-btn.active svg[data-icon-name],.proc-btn.active svg[data-icon-name]{transform:scale(1.15);stroke-width:1.9;filter:drop-shadow(0 0 8px currentColor) brightness(1.15)}
-
-/* Hover-efekt igal ikoonil */
-.meik-style-btn:hover svg[data-icon-name],.uritus-btn:hover svg[data-icon-name],.proc-btn:hover svg[data-icon-name]{transform:translateY(-1px) scale(1.04);filter:drop-shadow(0 0 6px currentColor) brightness(1.08)}
 
 
 /* Mode-nupud: meik=blush, stiil=lavender, pro=gold (kasutab --mc muutujat) */
@@ -640,14 +577,12 @@ canvas{display:none}
 .upload-zone:hover .upload-zone-icon[data-icon],.upload-zone:active .upload-zone-icon[data-icon]{opacity:1;color:#c4b8e0}
 
 /* Kategooria-ruudustikud: meik (blush), stiili üritused (lavender), pro protseduurid (gold) */
-.meik-style-btn .msb-icon svg{color:var(--blush);opacity:.75;display:block;margin:0 auto 4px;transition:opacity .2s,color .2s,transform .2s}
-.meik-style-btn.active .msb-icon svg{color:#f0b890;opacity:1;transform:scale(1.1);filter:drop-shadow(0 0 4px rgba(240,184,144,0.5))}
-.uritus-btn .uritus-icon svg{color:#c4b8e0;opacity:.7;display:block;margin:0 auto 4px;transition:opacity .2s,color .2s,transform .2s}
-.uritus-btn.active .uritus-icon svg{color:#d8c8f0;opacity:1;transform:scale(1.1);filter:drop-shadow(0 0 4px rgba(196,184,224,0.55))}
-.proc-btn .proc-icon svg{color:var(--gold);opacity:.75;display:block;margin:0 auto 4px;transition:opacity .2s,color .2s,transform .2s}
-.proc-btn.active .proc-icon svg{color:var(--gold-bright);opacity:1;transform:scale(1.1);filter:drop-shadow(0 0 4px rgba(232,201,126,0.6))}
-.proc-btn.recommend .proc-icon svg{color:#c4b8e0;opacity:.9}
-.proc-btn.recommend.active .proc-icon svg{color:#d8c8f0;opacity:1;filter:drop-shadow(0 0 4px rgba(196,184,224,0.55))}
+.meik-style-btn .msb-icon svg{display:block;margin:0 auto 4px;transition:opacity .2s,color .2s,transform .2s}
+.meik-style-btn.active .msb-icon svg{transform:scale(1.1)}
+.uritus-btn .uritus-icon svg{display:block;margin:0 auto 4px;transition:opacity .2s,color .2s,transform .2s}
+.uritus-btn.active .uritus-icon svg{transform:scale(1.1)}
+.proc-btn .proc-icon svg{display:block;margin:0 auto 4px;transition:opacity .2s,color .2s,transform .2s}
+.proc-btn.active .proc-icon svg{transform:scale(1.1)}
 
 /* Free-badge ja friend-card ikoonid */
 .free-badge [data-icon]{color:var(--gold-bright);filter:drop-shadow(0 0 6px rgba(232,201,126,0.4))}
@@ -792,6 +727,41 @@ canvas{display:none}
 .circles-tab.active{color:var(--gold-bright)}
 .circles-tab.active::after{content:'';position:absolute;bottom:-1px;left:20%;right:20%;height:2px;background:var(--gold);border-radius:2px}
 .circles-body{flex:1;overflow-y:auto;padding:16px 18px 20px}
+
+/* ================ CIRCLE VESTLUS (chat) ================ */
+.chat-wrap{display:flex;flex-direction:column;height:100%;min-height:0}
+.chat-head{display:flex;align-items:center;gap:10px;padding:0 0 12px;border-bottom:1px solid rgba(255,255,255,0.06);margin-bottom:10px}
+.chat-back{background:none;border:none;color:var(--gold-bright);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;padding:6px 4px}
+.chat-title{flex:1;font-family:'Cormorant Garamond',serif;font-size:18px;color:#fff;font-weight:600;display:flex;align-items:center;gap:8px}
+.chat-title-icon{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,rgba(155,143,181,0.25),rgba(201,169,110,0.15));border:1px solid rgba(201,169,110,0.35);display:flex;align-items:center;justify-content:center;font-size:16px}
+.chat-cats{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.chat-cat{background:rgba(255,255,255,0.04);border:1px solid rgba(201,169,110,0.22);color:rgba(255,255,255,0.65);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;padding:6px 10px;border-radius:14px;cursor:pointer;transition:all .18s;display:inline-flex;align-items:center;gap:4px}
+.chat-cat:hover{border-color:var(--gold-dim);color:#fff}
+.chat-cat.active{background:linear-gradient(135deg,rgba(201,169,110,0.28),rgba(155,143,181,0.22));border-color:var(--gold);color:var(--gold-bright);box-shadow:0 0 10px rgba(201,169,110,0.35)}
+.chat-cat-ilu{--dot:#f090c8}.chat-cat-riided{--dot:#9b8fb5}.chat-cat-toit{--dot:#a5c4a8}.chat-cat-sport{--dot:#68c0d8}.chat-cat-vaba{--dot:#e8c97e}
+.chat-cat::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--dot,var(--gold));display:inline-block}
+.chat-scroll{flex:1;overflow-y:auto;padding:8px 4px 12px;display:flex;flex-direction:column;gap:8px;min-height:220px}
+.chat-empty{text-align:center;padding:40px 16px;color:rgba(255,255,255,0.5);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;line-height:1.5}
+.chat-empty-icon{font-size:36px;margin-bottom:12px;opacity:.6}
+.chat-msg{max-width:82%;padding:10px 14px;border-radius:14px;font-size:14px;line-height:1.45;color:#fff;position:relative;word-wrap:break-word;overflow-wrap:anywhere}
+.chat-msg-meta{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;color:rgba(255,255,255,0.5);margin-bottom:4px;display:flex;gap:8px;align-items:center}
+.chat-msg-meta-dot{width:5px;height:5px;border-radius:50%}
+.chat-msg.mine{align-self:flex-end;background:linear-gradient(135deg,rgba(201,169,110,0.25),rgba(232,201,126,0.18));border:1px solid rgba(201,169,110,0.4)}
+.chat-msg.theirs{align-self:flex-start;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1)}
+.chat-msg.mine .chat-msg-meta{color:var(--gold-bright)}
+.chat-msg-cat-ilu{border-left:3px solid #f090c8}
+.chat-msg-cat-riided{border-left:3px solid #9b8fb5}
+.chat-msg-cat-toit{border-left:3px solid #a5c4a8}
+.chat-msg-cat-sport{border-left:3px solid #68c0d8}
+.chat-input-wrap{border-top:1px solid rgba(201,169,110,0.18);padding:12px 0 0;margin-top:8px;display:flex;gap:8px;align-items:flex-end}
+.chat-input{flex:1;background:rgba(255,255,255,0.04);border:1px solid rgba(201,169,110,0.28);border-radius:16px;padding:10px 14px;color:#fff;font-family:'Cormorant Garamond',serif;font-size:15px;resize:none;max-height:120px;min-height:40px;line-height:1.4;transition:border-color .2s}
+.chat-input:focus{outline:none;border-color:var(--gold);background:rgba(255,255,255,0.06)}
+.chat-send{background:linear-gradient(135deg,var(--gold) 0%,var(--gold-bright) 100%);border:none;color:#1a1614;font-weight:700;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.15em;text-transform:uppercase;padding:10px 14px;border-radius:16px;cursor:pointer;flex-shrink:0;transition:transform .15s,box-shadow .2s}
+.chat-send:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(201,169,110,0.35)}
+.chat-send:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.circle-detail-chat-btn{width:100%;background:linear-gradient(135deg,rgba(155,143,181,0.22),rgba(201,169,110,0.16));border:1px solid var(--gold-dim);color:var(--gold-bright);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;padding:14px 12px;border-radius:8px;cursor:pointer;margin-bottom:12px;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:all .2s}
+.circle-detail-chat-btn:hover{border-color:var(--gold);background:linear-gradient(135deg,rgba(155,143,181,0.32),rgba(201,169,110,0.24));transform:translateY(-1px);box-shadow:0 6px 20px rgba(155,143,181,0.35)}
+.chat-newbadge{background:var(--rose);color:#fff;font-family:'DM Mono',monospace;font-size:9px;padding:2px 6px;border-radius:8px;letter-spacing:.1em;font-weight:700;margin-left:4px}
 
 /* Circle list */
 .circle-item{display:flex;align-items:center;gap:12px;padding:14px 12px;background:rgba(255,255,255,0.03);border:1px solid rgba(201,169,110,0.18);border-radius:8px;margin-bottom:10px;cursor:pointer;transition:all .2s}
@@ -947,6 +917,83 @@ canvas{display:none}
 .app-footer-links a{color:rgba(255,255,255,0.65);text-decoration:none;padding:4px 8px;transition:color .2s}
 .app-footer-links a:hover{color:var(--gold-bright)}
 .app-footer-copy{color:rgba(255,255,255,0.35);letter-spacing:.15em;line-height:1.6}
+
+/* ================ IKOONIDE UNIKAALSED VÄRVID (kõrge prioriteet) ================ */
+/* NB! Need reeglid tulevad kõige lõpus, et vööndada Plokk 7 üldrelised */
+
+.meik-style-btn .msb-icon svg[data-icon-name],
+.uritus-btn .uritus-icon svg[data-icon-name],
+.proc-btn .proc-icon svg[data-icon-name]{opacity:1;stroke-width:1.7}
+
+/* Päev / öö */
+.meik-style-btn svg[data-icon-name="sun"],.uritus-btn svg[data-icon-name="sun"]{color:#f0c860;filter:drop-shadow(0 0 6px rgba(240,200,96,0.6))}
+.meik-style-btn svg[data-icon-name="moon"],.uritus-btn svg[data-icon-name="moon"]{color:#b8a5d8;filter:drop-shadow(0 0 5px rgba(184,165,216,0.55))}
+
+/* Kontor / äri */
+.meik-style-btn svg[data-icon-name="briefcase"],.uritus-btn svg[data-icon-name="briefcase"]{color:#d4a878;filter:drop-shadow(0 0 4px rgba(212,168,120,0.5))}
+.uritus-btn svg[data-icon-name="handshake"]{color:#a5c4a8;filter:drop-shadow(0 0 4px rgba(165,196,168,0.5))}
+
+/* Peod / sündmused */
+.meik-style-btn svg[data-icon-name="wine"],.uritus-btn svg[data-icon-name="wine"]{color:#e08090;filter:drop-shadow(0 0 5px rgba(224,128,144,0.55))}
+.meik-style-btn svg[data-icon-name="cake"],.uritus-btn svg[data-icon-name="cake"]{color:#f5b0d0;filter:drop-shadow(0 0 5px rgba(245,176,208,0.6))}
+.meik-style-btn svg[data-icon-name="crown"],.uritus-btn svg[data-icon-name="crown"]{color:#f8d878;filter:drop-shadow(0 0 7px rgba(248,216,120,0.7))}
+.meik-style-btn svg[data-icon-name="graduation"],.uritus-btn svg[data-icon-name="graduation"]{color:#8fb4d0;filter:drop-shadow(0 0 4px rgba(143,180,208,0.5))}
+.uritus-btn svg[data-icon-name="party"]{color:#f090c8;filter:drop-shadow(0 0 6px rgba(240,144,200,0.65))}
+
+/* Kaamera / foto */
+.meik-style-btn svg[data-icon-name="camera"],.uritus-btn svg[data-icon-name="camera"]{color:#d8b090;filter:drop-shadow(0 0 4px rgba(216,176,144,0.5))}
+
+/* Silmad — smoky, ripsmed */
+.meik-style-btn svg[data-icon-name="eye"],.proc-btn svg[data-icon-name="eye"]{color:#b090d8;filter:drop-shadow(0 0 5px rgba(176,144,216,0.55))}
+
+/* Ülevariandid */
+.meik-style-btn svg[data-icon-name="makeup"]{color:#f090a0;filter:drop-shadow(0 0 5px rgba(240,144,160,0.55))}
+
+/* Uritus-grid — reisid, tegevused */
+.uritus-btn svg[data-icon-name="shop"]{color:#d0a0e0;filter:drop-shadow(0 0 4px rgba(208,160,224,0.5))}
+.uritus-btn svg[data-icon-name="coffee"]{color:#c49060;filter:drop-shadow(0 0 4px rgba(196,144,96,0.5))}
+.uritus-btn svg[data-icon-name="dish"]{color:#e8d0a8;filter:drop-shadow(0 0 4px rgba(232,208,168,0.5))}
+.uritus-btn svg[data-icon-name="plane"]{color:#8bc0e0;filter:drop-shadow(0 0 5px rgba(139,192,224,0.6))}
+.uritus-btn svg[data-icon-name="wave"]{color:#68c0d8;filter:drop-shadow(0 0 6px rgba(104,192,216,0.65))}
+.uritus-btn svg[data-icon-name="run"]{color:#f08860;filter:drop-shadow(0 0 5px rgba(240,136,96,0.6))}
+.uritus-btn svg[data-icon-name="sparkle"]{color:#f8d878;filter:drop-shadow(0 0 7px rgba(248,216,120,0.7))}
+.uritus-btn svg[data-icon-name="smile"]{color:#f0c090;filter:drop-shadow(0 0 4px rgba(240,192,144,0.5))}
+.uritus-btn svg[data-icon-name="square"]{color:#c8b8c8;filter:drop-shadow(0 0 3px rgba(200,184,200,0.4))}
+.uritus-btn svg[data-icon-name="palette"]{color:#e090d0;filter:drop-shadow(0 0 6px rgba(224,144,208,0.6))}
+.uritus-btn svg[data-icon-name="fire"]{color:#ff7548;filter:drop-shadow(0 0 7px rgba(255,117,72,0.7))}
+
+/* Pro protseduurid — hooldus ja luksus */
+.proc-btn svg[data-icon-name="sparkle"]{color:#f8d878;filter:drop-shadow(0 0 7px rgba(248,216,120,0.7))}
+.proc-btn svg[data-icon-name="droplet"]{color:#80c8d8;filter:drop-shadow(0 0 6px rgba(128,200,216,0.65))}
+.proc-btn svg[data-icon-name="leaf"]{color:#98c890;filter:drop-shadow(0 0 5px rgba(152,200,144,0.6))}
+.proc-btn svg[data-icon-name="target"]{color:#f08870;filter:drop-shadow(0 0 5px rgba(240,136,112,0.6))}
+.proc-btn svg[data-icon-name="star"]{color:#f8d878;filter:drop-shadow(0 0 7px rgba(248,216,120,0.7))}
+.proc-btn svg[data-icon-name="flower"]{color:#f5a5c8;filter:drop-shadow(0 0 6px rgba(245,165,200,0.65))}
+.proc-btn svg[data-icon-name="pencil"]{color:#d4a878;filter:drop-shadow(0 0 4px rgba(212,168,120,0.5))}
+.proc-btn svg[data-icon-name="hands"]{color:#e0b898;filter:drop-shadow(0 0 4px rgba(224,184,152,0.5))}
+.proc-btn svg[data-icon-name="spa"]{color:#a8d0c8;filter:drop-shadow(0 0 6px rgba(168,208,200,0.65))}
+.proc-btn svg[data-icon-name="foot"]{color:#e0bc90;filter:drop-shadow(0 0 4px rgba(224,188,144,0.5))}
+.proc-btn svg[data-icon-name="search"]{color:#c8b0e0;filter:drop-shadow(0 0 5px rgba(200,176,224,0.6))}
+
+/* Stiili sisendid — galerii, selfie, tavakaamera */
+.sib-icon svg[data-icon-name="gallery"]{color:#c8b8e8;filter:drop-shadow(0 0 5px rgba(200,184,232,0.6))}
+.sib-icon svg[data-icon-name="selfie"]{color:#f0b890;filter:drop-shadow(0 0 5px rgba(240,184,144,0.6))}
+.sib-icon svg[data-icon-name="camera"]{color:#d8b090;filter:drop-shadow(0 0 5px rgba(216,176,144,0.55))}
+
+/* Mode-põhinupud — meik, stiil, pro */
+.mode.m-meik svg[data-icon-name="makeup"]{color:#f090a0;filter:drop-shadow(0 0 7px rgba(240,144,160,0.65))}
+.mode.m-stiil svg[data-icon-name="dress"]{color:#b8a5d8;filter:drop-shadow(0 0 7px rgba(184,165,216,0.6))}
+.mode.m-pro svg[data-icon-name="spa"]{color:#f0d090;filter:drop-shadow(0 0 8px rgba(240,208,144,0.75))}
+
+/* Aktiivse valiku super-glow */
+.meik-style-btn.active svg[data-icon-name],
+.uritus-btn.active svg[data-icon-name],
+.proc-btn.active svg[data-icon-name]{transform:scale(1.15);stroke-width:2;filter:drop-shadow(0 0 10px currentColor) brightness(1.2)}
+
+/* Hover üldiselt — kerge tõus + heledus */
+.meik-style-btn:hover svg[data-icon-name],
+.uritus-btn:hover svg[data-icon-name],
+.proc-btn:hover svg[data-icon-name]{transform:translateY(-1px) scale(1.05);filter:drop-shadow(0 0 8px currentColor) brightness(1.12)}
 </style>
 </head>
 <body>
@@ -1809,6 +1856,10 @@ async function openCircleDetail(id){
     +'<button class="circle-btn secondary" onclick="shareInviteLink(\''+esc(url)+'\',\''+esc(circle.name)+'\')">Jaga</button>'
     +'</div></div>';
   }
+  html+='<button class="circle-detail-chat-btn" onclick="openCircleChat(\''+esc(circle.id)+'\')">'
+    +'<span data-icon="comment" data-icon-size="16"></span>'
+    +'Ava vestlus — kirjuta sõbrannadega'
+    +'</button>';
   html+='<div style="font-size:10px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;font-family:\'DM Mono\',monospace;margin-bottom:8px">Liikmed</div>'
     +'<div class="circle-members-list">';
   (circle.members||[]).forEach(m=>{
@@ -1819,6 +1870,7 @@ async function openCircleDetail(id){
   html+='</div>';
   html+='<button class="circle-btn secondary" style="width:100%" onclick="leaveCircle(\''+esc(circle.id)+'\')">Lahku Circle\'ist</button>';
   v.innerHTML=html;
+  renderStaticIcons();
 }
 
 function copyText(txt,btn){navigator.clipboard.writeText(txt).then(()=>{const o=btn.textContent;btn.textContent='✓ Kopeeritud';setTimeout(()=>btn.textContent=o,2000);}).catch(()=>alert('Ei õnnestu kopeerida'));}
@@ -1831,6 +1883,128 @@ async function leaveCircle(id){
     switchCirclesTab('my');
   }catch(e){alert('Viga: '+e.message);}
 }
+
+// ============ CIRCLE VESTLUS (chat) ============
+window.chatState={circleId:null,cat:'vaba',lastTs:0,pollTimer:null,messages:[],myEmail:null};
+const CHAT_CATS=[
+  {id:'vaba',lbl:'Vaba jutt'},
+  {id:'ilu',lbl:'Ilu & meik'},
+  {id:'riided',lbl:'Riided'},
+  {id:'toit',lbl:'Toit'},
+  {id:'sport',lbl:'Sport'}
+];
+
+async function openCircleChat(circleId){
+  const circle=window.myCircles.find(c=>c.id===circleId);
+  if(!circle){alert('Circle\'i ei leitud');return;}
+  window.chatState.circleId=circleId;
+  window.chatState.cat='vaba';
+  window.chatState.lastTs=0;
+  window.chatState.messages=[];
+  window.chatState.myEmail=(window.currentUser&&window.currentUser.email)||localStorage.getItem('glowUserEmail')||'';
+  document.getElementById('circlesMyView').style.display='none';
+  document.getElementById('circlesFeedView').style.display='none';
+  const v=document.getElementById('circlesDetailView');v.style.display='block';
+  let catsHtml='';
+  CHAT_CATS.forEach(c=>{catsHtml+='<button class="chat-cat chat-cat-'+c.id+(c.id==='vaba'?' active':'')+'" data-cat="'+c.id+'" onclick="switchChatCat(\''+c.id+'\')">'+esc(c.lbl)+'</button>';});
+  v.innerHTML='<div class="chat-wrap">'
+    +'<div class="chat-head">'
+    +'<button class="chat-back" onclick="openCircleDetail(\''+esc(circleId)+'\')">← Circle</button>'
+    +'<div class="chat-title"><span class="chat-title-icon">'+esc(circle.icon||'✦')+'</span>'+esc(circle.name)+'</div>'
+    +'</div>'
+    +'<div class="chat-cats">'+catsHtml+'</div>'
+    +'<div class="chat-scroll" id="chatScroll"><div class="chat-empty"><div class="chat-empty-icon">✦</div>Laen vestlust...</div></div>'
+    +'<div class="chat-input-wrap">'
+    +'<textarea class="chat-input" id="chatInput" rows="1" placeholder="Kirjuta sõbrannadele..." maxlength="800" onkeydown="chatKey(event)" oninput="autoGrowChat(this)"></textarea>'
+    +'<button class="chat-send" id="chatSendBtn" onclick="sendChatMessage()">Saada</button>'
+    +'</div>'
+    +'</div>';
+  await loadChatMessages(true);
+  startChatPolling();
+}
+
+function switchChatCat(cat){
+  window.chatState.cat=cat;
+  window.chatState.lastTs=0;
+  window.chatState.messages=[];
+  document.querySelectorAll('.chat-cat').forEach(b=>b.classList.toggle('active',b.dataset.cat===cat));
+  loadChatMessages(true);
+}
+
+async function loadChatMessages(replace){
+  const cs=window.chatState;
+  if(!cs.circleId)return;
+  const q=new URLSearchParams();
+  if(cs.cat&&cs.cat!=='vaba')q.set('cat',cs.cat);
+  else q.set('cat','vaba');
+  if(!replace&&cs.lastTs)q.set('since',String(cs.lastTs));
+  try{
+    const data=await apiCall('/api/circles/'+cs.circleId+'/messages?'+q.toString());
+    const msgs=data.messages||[];
+    if(replace){cs.messages=msgs;}else{msgs.forEach(m=>{if(!cs.messages.find(x=>x.id===m.id))cs.messages.push(m);});}
+    if(cs.messages.length)cs.lastTs=Math.max(...cs.messages.map(m=>m.ts||0));
+    renderChatMessages();
+  }catch(e){
+    const s=document.getElementById('chatScroll');
+    if(s&&replace)s.innerHTML='<div class="chat-empty" style="color:#e8a090">Viga: '+esc(e.message)+'</div>';
+  }
+}
+
+function renderChatMessages(){
+  const s=document.getElementById('chatScroll');if(!s)return;
+  const cs=window.chatState;
+  if(!cs.messages.length){
+    s.innerHTML='<div class="chat-empty"><div class="chat-empty-icon">✦</div>Ole esimene, kes selles kategoorias sõna võtab.<br><span style="font-size:12px;opacity:.7">Räägi kõigest — stiil, meik, riided, toit, treening.</span></div>';
+    return;
+  }
+  let html='';
+  const nearBottom=(s.scrollHeight-s.scrollTop-s.clientHeight)<80;
+  cs.messages.sort((a,b)=>(a.ts||0)-(b.ts||0)).forEach(m=>{
+    const mine=(m.email===cs.myEmail);
+    const name=mine?'Sina':initialsFrom(m.email||'?');
+    const time=fmtChatTime(m.ts);
+    const cat=m.cat||'vaba';
+    const dotColor={ilu:'#f090c8',riided:'#9b8fb5',toit:'#a5c4a8',sport:'#68c0d8',vaba:'#e8c97e'}[cat]||'#e8c97e';
+    html+='<div class="chat-msg '+(mine?'mine':'theirs')+' chat-msg-cat-'+cat+'">'
+      +'<div class="chat-msg-meta"><span class="chat-msg-meta-dot" style="background:'+dotColor+'"></span>'+esc(name)+' · '+esc(time)+'</div>'
+      +esc(m.text).replace(/\n/g,'<br>')
+      +'</div>';
+  });
+  s.innerHTML=html;
+  if(nearBottom||cs.messages.length<=8)s.scrollTop=s.scrollHeight;
+}
+
+function fmtChatTime(ts){if(!ts)return'';const d=new Date(ts);const now=new Date();const sameDay=d.toDateString()===now.toDateString();const hh=String(d.getHours()).padStart(2,'0');const mm=String(d.getMinutes()).padStart(2,'0');if(sameDay)return hh+':'+mm;const dd=String(d.getDate()).padStart(2,'0');const mo=String(d.getMonth()+1).padStart(2,'0');return dd+'.'+mo+' '+hh+':'+mm;}
+
+function autoGrowChat(el){el.style.height='auto';el.style.height=Math.min(120,el.scrollHeight)+'px';}
+
+function chatKey(e){if(e.key==='Enter'&&!e.shiftKey&&!e.ctrlKey){e.preventDefault();sendChatMessage();}}
+
+async function sendChatMessage(){
+  const inp=document.getElementById('chatInput');if(!inp)return;
+  const text=inp.value.trim();if(!text)return;
+  const cs=window.chatState;if(!cs.circleId)return;
+  const btn=document.getElementById('chatSendBtn');btn.disabled=true;
+  try{
+    const data=await apiCall('/api/circles/'+cs.circleId+'/messages',{method:'POST',body:JSON.stringify({text,cat:cs.cat||'vaba'})});
+    if(data.message){cs.messages.push(data.message);cs.lastTs=Math.max(cs.lastTs,data.message.ts||0);renderChatMessages();}
+    inp.value='';autoGrowChat(inp);
+  }catch(e){alert('Sõnumi saatmine ebaõnnestus: '+e.message);}
+  finally{btn.disabled=false;}
+}
+
+function startChatPolling(){
+  stopChatPolling();
+  window.chatState.pollTimer=setInterval(()=>{
+    if(!window.chatState.circleId){stopChatPolling();return;}
+    if(!document.getElementById('chatScroll')){stopChatPolling();return;}
+    loadChatMessages(false);
+  },6000);
+}
+function stopChatPolling(){if(window.chatState.pollTimer){clearInterval(window.chatState.pollTimer);window.chatState.pollTimer=null;}}
+
+// Peata polling kui Circles paneel suletakse
+(function(){const orig=window.closeCirclesPanel;if(typeof orig==='function'){window.closeCirclesPanel=function(){stopChatPolling();window.chatState.circleId=null;return orig.apply(this,arguments);};}})();
 
 async function loadFeed(){
   const v=document.getElementById('circlesFeedView');
