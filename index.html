@@ -562,6 +562,71 @@ canvas{display:none}
 /* SVG-ikoonide üldised stiilid — kasutavad brändi-värve, mitte valget */
 [data-icon]{display:inline-flex;align-items:center;justify-content:center}
 
+/* === IKOONIDE UNIKAALSED VÄRVID (rikkalik palett) === */
+/* Grid-ikoonid (meik-style, uritus, proc) saavad oma temaatilise värvi */
+.meik-style-btn svg[data-icon-name],.uritus-btn svg[data-icon-name],.proc-btn svg[data-icon-name]{transition:color .25s,filter .25s,transform .25s;stroke-width:1.6}
+
+/* Aeg-päev ikoonid */
+.meik-style-btn svg[data-icon-name="sun"],.uritus-btn svg[data-icon-name="sun"]{color:#e8c97e;filter:drop-shadow(0 0 5px rgba(232,201,126,0.55))}
+.meik-style-btn svg[data-icon-name="moon"],.uritus-btn svg[data-icon-name="moon"]{color:#a888c4;filter:drop-shadow(0 0 4px rgba(168,136,196,0.45))}
+
+/* Sündmused-kohtumised */
+.meik-style-btn svg[data-icon-name="briefcase"],.uritus-btn svg[data-icon-name="briefcase"]{color:#c99568;filter:drop-shadow(0 0 3px rgba(201,149,104,0.4))}
+.meik-style-btn svg[data-icon-name="wine"],.uritus-btn svg[data-icon-name="wine"]{color:#d47a86;filter:drop-shadow(0 0 4px rgba(212,122,134,0.45))}
+.meik-style-btn svg[data-icon-name="cake"],.uritus-btn svg[data-icon-name="cake"]{color:#f0b0c8;filter:drop-shadow(0 0 4px rgba(240,176,200,0.5))}
+.meik-style-btn svg[data-icon-name="crown"],.uritus-btn svg[data-icon-name="crown"]{color:#f0d898;filter:drop-shadow(0 0 6px rgba(240,216,152,0.6))}
+.meik-style-btn svg[data-icon-name="graduation"],.uritus-btn svg[data-icon-name="graduation"]{color:#8fa8c4;filter:drop-shadow(0 0 3px rgba(143,168,196,0.4))}
+.meik-style-btn svg[data-icon-name="camera"],.uritus-btn svg[data-icon-name="camera"]{color:#d4a892;filter:drop-shadow(0 0 3px rgba(212,168,146,0.4))}
+.meik-style-btn svg[data-icon-name="eye"],.proc-btn svg[data-icon-name="eye"]{color:#a89ec4;filter:drop-shadow(0 0 4px rgba(168,158,196,0.5))}
+.meik-style-btn svg[data-icon-name="makeup"]{color:#e88b95;filter:drop-shadow(0 0 4px rgba(232,139,149,0.5))}
+
+/* Uritus-grid: sotsiaalsed, reisi ja meelelahutus */
+.uritus-btn svg[data-icon-name="handshake"]{color:#a5c1a8;filter:drop-shadow(0 0 3px rgba(165,193,168,0.4))}
+.uritus-btn svg[data-icon-name="shop"]{color:#c4a2d0;filter:drop-shadow(0 0 3px rgba(196,162,208,0.4))}
+.uritus-btn svg[data-icon-name="coffee"]{color:#b88960;filter:drop-shadow(0 0 3px rgba(184,137,96,0.4))}
+.uritus-btn svg[data-icon-name="dish"]{color:#e0c8a8;filter:drop-shadow(0 0 3px rgba(224,200,168,0.4))}
+.uritus-btn svg[data-icon-name="party"]{color:#e88ab8;filter:drop-shadow(0 0 5px rgba(232,138,184,0.55))}
+.uritus-btn svg[data-icon-name="plane"]{color:#8bb8d4;filter:drop-shadow(0 0 4px rgba(139,184,212,0.45))}
+.uritus-btn svg[data-icon-name="wave"]{color:#7cb8c9;filter:drop-shadow(0 0 5px rgba(124,184,201,0.5))}
+.uritus-btn svg[data-icon-name="run"]{color:#e8895c;filter:drop-shadow(0 0 4px rgba(232,137,92,0.5))}
+.uritus-btn svg[data-icon-name="sparkle"]{color:#f0d898;filter:drop-shadow(0 0 6px rgba(240,216,152,0.6))}
+.uritus-btn svg[data-icon-name="smile"]{color:#f0b890;filter:drop-shadow(0 0 3px rgba(240,184,144,0.4))}
+.uritus-btn svg[data-icon-name="square"]{color:#c8b8c0}
+.uritus-btn svg[data-icon-name="palette"]{color:#d08bc4;filter:drop-shadow(0 0 5px rgba(208,139,196,0.5))}
+.uritus-btn svg[data-icon-name="fire"]{color:#ec7a52;filter:drop-shadow(0 0 6px rgba(236,122,82,0.6))}
+
+/* Pro protseduurid — luksus ja hooldus */
+.proc-btn svg[data-icon-name="sparkle"]{color:#f0d898;filter:drop-shadow(0 0 6px rgba(240,216,152,0.6))}
+.proc-btn svg[data-icon-name="droplet"]{color:#8cc4d4;filter:drop-shadow(0 0 5px rgba(140,196,212,0.55))}
+.proc-btn svg[data-icon-name="leaf"]{color:#a3c49b;filter:drop-shadow(0 0 4px rgba(163,196,155,0.5))}
+.proc-btn svg[data-icon-name="target"]{color:#e88a70;filter:drop-shadow(0 0 4px rgba(232,138,112,0.5))}
+.proc-btn svg[data-icon-name="star"]{color:#f0d898;filter:drop-shadow(0 0 6px rgba(240,216,152,0.6))}
+.proc-btn svg[data-icon-name="flower"]{color:#f0a5c4;filter:drop-shadow(0 0 5px rgba(240,165,196,0.5))}
+.proc-btn svg[data-icon-name="pencil"]{color:#c99568;filter:drop-shadow(0 0 3px rgba(201,149,104,0.4))}
+.proc-btn svg[data-icon-name="hands"]{color:#d4a892;filter:drop-shadow(0 0 3px rgba(212,168,146,0.4))}
+.proc-btn svg[data-icon-name="spa"]{color:#a8cbc4;filter:drop-shadow(0 0 5px rgba(168,203,196,0.55))}
+.proc-btn svg[data-icon-name="foot"]{color:#d4b28f;filter:drop-shadow(0 0 3px rgba(212,178,143,0.4))}
+.proc-btn svg[data-icon-name="search"]{color:#c4b8e0;filter:drop-shadow(0 0 4px rgba(196,184,224,0.5))}
+
+/* Stiili sisendid: galerii, selfie, tavakaamera */
+.sib-icon svg[data-icon-name="gallery"]{color:#c4b8e0;filter:drop-shadow(0 0 5px rgba(196,184,224,0.55))}
+.sib-icon svg[data-icon-name="selfie"]{color:#f0b890;filter:drop-shadow(0 0 5px rgba(240,184,144,0.55))}
+.sib-icon svg[data-icon-name="camera"]{color:#d4a892;filter:drop-shadow(0 0 5px rgba(212,168,146,0.5))}
+
+/* Mode-nupud on eraldi loogika, kuid lisame drop-shadow ilu */
+.mode.m-meik svg[data-icon-name="makeup"]{color:#e88b95;filter:drop-shadow(0 0 6px rgba(232,139,149,0.55))}
+.mode.m-stiil svg[data-icon-name="dress"]{color:#b8a5d4;filter:drop-shadow(0 0 6px rgba(184,165,212,0.5))}
+.mode.m-pro svg[data-icon-name="spa"]{color:#e8c97e;filter:drop-shadow(0 0 7px rgba(232,201,126,0.65))}
+.mode.active svg[data-icon-name]{transform:scale(1.12) rotate(3deg);animation:iconWiggle 0.55s ease}
+@keyframes iconWiggle{0%,100%{transform:scale(1.12) rotate(3deg)}50%{transform:scale(1.15) rotate(-3deg)}}
+
+/* Aktiivse aju nupp — hõõguv tugevam efekt */
+.meik-style-btn.active svg[data-icon-name],.uritus-btn.active svg[data-icon-name],.proc-btn.active svg[data-icon-name]{transform:scale(1.15);stroke-width:1.9;filter:drop-shadow(0 0 8px currentColor) brightness(1.15)}
+
+/* Hover-efekt igal ikoonil */
+.meik-style-btn:hover svg[data-icon-name],.uritus-btn:hover svg[data-icon-name],.proc-btn:hover svg[data-icon-name]{transform:translateY(-1px) scale(1.04);filter:drop-shadow(0 0 6px currentColor) brightness(1.08)}
+
+
 /* Mode-nupud: meik=blush, stiil=lavender, pro=gold (kasutab --mc muutujat) */
 .mode .micon[data-icon]{color:var(--mc);opacity:.7;margin-bottom:8px;transition:opacity .25s,filter .25s,transform .25s}
 .mode.active .micon[data-icon]{color:var(--mc);opacity:1;filter:drop-shadow(0 0 6px color-mix(in srgb,var(--mc) 50%,transparent));transform:scale(1.08)}
@@ -854,8 +919,16 @@ canvas{display:none}
 .login-sent{display:none;text-align:center}
 .login-sent.show{display:block;animation:fadeUp .4s ease}
 .login-sent-icon{width:56px;height:56px;border-radius:50%;background:rgba(201,169,110,0.15);border:2px solid var(--gold);color:var(--gold-bright);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:24px}
-.login-sent-text{font-family:'Cormorant Garamond',serif;font-size:16px;color:rgba(255,255,255,0.9);line-height:1.6}
-.login-sent-text strong{color:#fff}
+.login-sent-text{font-family:'Cormorant Garamond',serif;font-size:16px;color:rgba(255,255,255,0.9);line-height:1.6;margin-bottom:20px}
+.login-sent-text strong{color:#fff;font-weight:600}
+.code-input-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.25em;color:var(--gold-bright);text-transform:uppercase;text-align:center;margin-bottom:12px;font-weight:600}
+.code-inputs{display:flex;gap:8px;justify-content:center;margin-bottom:14px}
+.code-input{width:44px;height:54px;background:rgba(255,255,255,0.06);border:1.5px solid rgba(201,169,110,0.35);border-radius:8px;color:#e8c97e;font-family:'DM Mono',monospace;font-size:24px;font-weight:700;text-align:center;outline:none;transition:all .15s;padding:0;box-shadow:inset 0 0 0 transparent}
+.code-input:focus{border-color:var(--gold);background:rgba(201,169,110,0.15);box-shadow:0 0 12px rgba(201,169,110,0.3),inset 0 0 8px rgba(201,169,110,0.1);transform:translateY(-1px)}
+.code-input.filled{border-color:var(--gold);background:rgba(201,169,110,0.12);color:var(--gold-bright);text-shadow:0 0 8px rgba(232,201,126,0.5)}
+.code-input.error{border-color:var(--rose);background:rgba(196,115,107,0.15);animation:codeShake .35s ease}
+@keyframes codeShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-4px)}40%{transform:translateX(4px)}60%{transform:translateX(-3px)}80%{transform:translateX(3px)}}
+.code-err{font-family:'Cormorant Garamond',serif;font-size:13px;color:#e8a090;text-align:center;min-height:18px;margin-bottom:6px}
 .login-err{font-family:'Cormorant Garamond',serif;font-size:14px;color:#e8a090;text-align:center;margin-bottom:12px;min-height:20px}
 
 /* Kasutaja-menüü saldos */
@@ -993,7 +1066,7 @@ canvas{display:none}
 </div>
 
 <!-- Sisselogimise nupp (kui pole sisse loginud) -->
-<button class="login-nav-btn" id="loginNavBtn" onclick="showLoginModal()">Logi sisse — sünkroni krediidid</button>
+<button class="login-nav-btn" id="loginNavBtn" onclick="showLoginModal()">Logi sisse — sünkroniseeri krediidid</button>
 
 <!-- GLÓW CIRCLES kutsuv kaart -->
 <div class="circles-invite-card" id="circlesInviteCard" onclick="handleCirclesFirstClick()" style="display:none">
@@ -1367,8 +1440,19 @@ canvas{display:none}
     </div>
     <div class="login-sent" id="loginSent">
       <div class="login-sent-icon">✉</div>
-      <div class="login-sent-text">Kontrolli e-posti — saatsime sinule sisselogimise lingi<br><strong id="loginSentEmail"></strong></div>
-      <div class="login-hint" style="margin-top:16px">Link kehtib <strong>10 minutit</strong>. Ei näe kirja? Kontrolli Rämpsposti kausta.</div>
+      <div class="login-sent-text">Saatsime <strong id="loginSentEmail"></strong>-le<br>6-kohalise koodi</div>
+      <div class="code-input-label">Sisesta e-mailist saadud kood:</div>
+      <div class="code-inputs" id="codeInputs">
+        <input class="code-input" type="tel" inputmode="numeric" maxlength="1" data-idx="0" autocomplete="one-time-code">
+        <input class="code-input" type="tel" inputmode="numeric" maxlength="1" data-idx="1">
+        <input class="code-input" type="tel" inputmode="numeric" maxlength="1" data-idx="2">
+        <input class="code-input" type="tel" inputmode="numeric" maxlength="1" data-idx="3">
+        <input class="code-input" type="tel" inputmode="numeric" maxlength="1" data-idx="4">
+        <input class="code-input" type="tel" inputmode="numeric" maxlength="1" data-idx="5">
+      </div>
+      <div class="code-err" id="codeErr"></div>
+      <button class="login-submit" id="codeSubmitBtn" onclick="submitCodeVerify()" style="margin-top:6px">Kinnita kood</button>
+      <div class="login-hint" style="margin-top:12px">Kood kehtib <strong>10 minutit</strong>. Kirja pole näha? Vaata <strong>Rämpsposti</strong> kausta.<br><a href="#" onclick="event.preventDefault();submitLoginRequest()" style="color:var(--gold-bright)">Saada uus kood →</a></div>
     </div>
   </div>
 </div>
@@ -1600,7 +1684,7 @@ const ICONS={
   plus:'<path d="M 12 5 V 19 M 5 12 H 19"/>',
   comment:'<path d="M 4 4 H 20 A 2 2 0 0 1 22 6 V 14 A 2 2 0 0 1 20 16 H 12 L 6 21 V 16 H 4 A 2 2 0 0 1 2 14 V 6 A 2 2 0 0 1 4 4 Z"/>'
 };
-function iconHtml(name,size,color){const s=size||24;const c=color||'currentColor';const p=ICONS[name]||ICONS.sparkle;return '<svg xmlns="http://www.w3.org/2000/svg" width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none" stroke="'+c+'" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+p+'</svg>';}
+function iconHtml(name,size,color){const s=size||24;const c=color||'currentColor';const p=ICONS[name]||ICONS.sparkle;return '<svg xmlns="http://www.w3.org/2000/svg" data-icon-name="'+name+'" width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none" stroke="'+c+'" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+p+'</svg>';}
 function renderStaticIcons(){document.querySelectorAll('[data-icon]').forEach(el=>{const name=el.dataset.icon;const size=parseInt(el.dataset.iconSize||'28',10);el.innerHTML=iconHtml(name,size);});}
 
 // === GLÓW-CIRCLES (sotsiaalne süsteem) ===
@@ -1962,8 +2046,67 @@ async function submitLoginRequest(){
     document.getElementById('loginSentEmail').textContent=email;
     document.getElementById('loginForm').style.display='none';
     document.getElementById('loginSent').classList.add('show');
+    // Puhasta väljad ja sea fookus
+    document.querySelectorAll('.code-input').forEach(i=>{i.value='';i.classList.remove('filled','error');});
+    document.getElementById('codeErr').textContent='';
+    bindCodeInputs();
+    setTimeout(()=>{const first=document.querySelector('.code-input');if(first)first.focus();},200);
   }catch(e){err.textContent='Viga: '+e.message;}
   btn.disabled=false;btn.textContent='Saada sisselogimise link';
+}
+
+function bindCodeInputs(){
+  const inputs=document.querySelectorAll('.code-input');
+  inputs.forEach((inp,idx)=>{
+    inp.oninput=e=>{
+      const v=e.target.value.replace(/\D/g,'');
+      e.target.value=v.slice(-1);
+      if(v)e.target.classList.add('filled');else e.target.classList.remove('filled');
+      if(v&&idx<inputs.length-1)inputs[idx+1].focus();
+      // Kui kõik täidetud, automaatne kinnitus
+      const all=Array.from(inputs).map(i=>i.value).join('');
+      if(all.length===6)submitCodeVerify();
+    };
+    inp.onkeydown=e=>{
+      if(e.key==='Backspace'&&!e.target.value&&idx>0){inputs[idx-1].focus();inputs[idx-1].value='';inputs[idx-1].classList.remove('filled');}
+      if(e.key==='ArrowLeft'&&idx>0)inputs[idx-1].focus();
+      if(e.key==='ArrowRight'&&idx<inputs.length-1)inputs[idx+1].focus();
+    };
+    inp.onpaste=e=>{
+      e.preventDefault();
+      const txt=(e.clipboardData||window.clipboardData).getData('text').replace(/\D/g,'').slice(0,6);
+      txt.split('').forEach((d,i)=>{if(inputs[i]){inputs[i].value=d;inputs[i].classList.add('filled');}});
+      const last=Math.min(txt.length,inputs.length-1);
+      if(inputs[last])inputs[last].focus();
+      if(txt.length===6)submitCodeVerify();
+    };
+  });
+}
+
+async function submitCodeVerify(){
+  const inputs=document.querySelectorAll('.code-input');
+  const code=Array.from(inputs).map(i=>i.value).join('');
+  const email=document.getElementById('loginSentEmail').textContent.trim();
+  const err=document.getElementById('codeErr');
+  const btn=document.getElementById('codeSubmitBtn');
+  err.textContent='';
+  if(code.length!==6){err.textContent='Sisesta 6-kohaline kood';return;}
+  if(!email){err.textContent='E-post puudub, saada uus kood';return;}
+  btn.disabled=true;btn.textContent='⟳ Kinnitan...';
+  try{
+    const res=await fetch(API_BASE+'/auth/verify-code',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,code})});
+    const data=await res.json();
+    if(!res.ok||!data.token){
+      inputs.forEach(i=>{i.classList.add('error');setTimeout(()=>i.classList.remove('error'),400);});
+      throw new Error(data.error||'Vale kood');
+    }
+    setSession(data.token,data.email);
+    closeLoginModal();
+    await syncUserFromServer();
+    const t=document.getElementById('friendToast');const txt=document.getElementById('friendToastText');
+    if(t&&txt){txt.innerHTML='<strong>✦ Sisse logitud!</strong> Krediidid sünkroniseeritud.';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),5500);}
+  }catch(e){err.textContent=e.message;}
+  btn.disabled=false;btn.textContent='Kinnita kood';
 }
 
 async function verifyMagicLink(token){
