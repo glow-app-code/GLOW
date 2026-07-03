@@ -1514,7 +1514,7 @@ canvas{display:none}
     <div class="onboard-features">
       <div class="onboard-feat">
         <div class="onboard-feat-num">1</div>
-        <div class="onboard-feat-text"><strong>Loo oma ring</strong> — lisa parimad sõbrad, kellelt tahad kiiret stiili-tagasisidet</div>
+        <div class="onboard-feat-text"><strong>Üks loob, teised liituvad</strong> — üks teist loob ringi ja jagab kutselinki; kõik teised liituvad sama lingiga (ära tee igaüks oma ringi)</div>
       </div>
       <div class="onboard-feat">
         <div class="onboard-feat-num">2</div>
@@ -1787,7 +1787,7 @@ function renderMyCircles(){
   const v=document.getElementById('circlesMyView');
   let html='';
   if(window.myCircles.length===0){
-    html+='<div class="feed-empty"><div class="feed-empty-icon">✦</div><div class="feed-empty-text">Sul pole veel Circle\'e.<br>Loo esimene ja kutsu sõpru!</div></div>';
+    html+='<div class="feed-empty"><div class="feed-empty-icon">✦</div><div class="feed-empty-text"><strong>Sul pole veel ühtegi ringi.</strong><br>Loo uus ring ja kutsu sõpru — või liitu sõbra jagatud lingiga (nupp „Liitu koodiga" all).</div></div>';
   }else{
     html+='<div style="font-size:10px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;font-family:\'DM Mono\',monospace;margin-bottom:10px">Sinu Circle\'id</div>';
     window.myCircles.forEach(c=>{
@@ -1798,12 +1798,18 @@ function renderMyCircles(){
        +'<div class="circle-arrow">→</div></div>';
     });
   }
-  html+='<button class="circle-create-btn" onclick="showCreateCircleForm()"><span data-icon="plus" data-icon-size="14"></span>Loo uus Circle</button>';
+  html+='<div style="display:flex;gap:8px;margin-top:12px">';
+  html+='<button class="circle-create-btn" style="margin-top:0;flex:1" onclick="showCreateCircleForm()"><span data-icon="plus" data-icon-size="14"></span>Loo ring</button>';
+  html+='<button class="circle-create-btn" style="margin-top:0;flex:1;border-style:solid;border-color:rgba(155,143,181,0.5)" onclick="showJoinCodeForm()">🔗 Liitu koodiga</button>';
+  html+='</div>';
   html+='<div id="createCircleFormWrap"></div>';
+  html+='<div id="joinCodeFormWrap"></div>';
+  html+='<div style="font-size:12px;color:rgba(255,255,255,0.55);line-height:1.5;margin-top:14px;text-align:center;font-family:\'Cormorant Garamond\',serif;font-style:italic">Üks inimene loob ringi ja jagab linki — kõik teised liituvad <strong style="color:var(--gold);font-style:normal">sama lingiga</strong>. Nii jääte kõik ühte ringi.</div>';
   v.innerHTML=html;renderStaticIcons();
 }
 
 function showCreateCircleForm(){
+  if(typeof cancelJoinCode==='function')cancelJoinCode();
   const w=document.getElementById('createCircleFormWrap');
   const icons=['✨','💫','🌸','🎀','🌟','💎','🔥','👗','🎭','🌙'];
   let iconHtml='';
@@ -1820,6 +1826,38 @@ function showCreateCircleForm(){
 }
 function selectCircleIcon(el){document.querySelectorAll('.circle-icon-opt').forEach(x=>x.classList.remove('selected'));el.classList.add('selected');}
 function cancelCreateCircle(){document.getElementById('createCircleFormWrap').innerHTML='';}
+
+function showJoinCodeForm(){
+  cancelCreateCircle();
+  const w=document.getElementById('joinCodeFormWrap');
+  if(!w)return;
+  w.innerHTML='<div class="circle-create-form" style="margin-top:14px"><div style="font-size:10px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;font-family:\'DM Mono\',monospace;margin-bottom:10px">Liitu olemasoleva ringiga</div>'
+    +'<input class="circle-input" id="joinCodeInput" placeholder="Kleebi kutselink või kood" autocomplete="off">'
+    +'<div style="font-size:11px;color:rgba(255,255,255,0.5);margin-bottom:12px">Sõber saatis sulle lingi (nt WhatsAppis)? Kleebi see siia — ei pea uut ringi looma.</div>'
+    +'<div class="circle-form-actions">'
+    +'<button class="circle-btn secondary" onclick="cancelJoinCode()">Tühista</button>'
+    +'<button class="circle-btn primary" onclick="submitJoinCode()">Liitu</button>'
+    +'</div></div>';
+  setTimeout(()=>{const el=document.getElementById('joinCodeInput');if(el)el.focus();},100);
+}
+function cancelJoinCode(){const w=document.getElementById('joinCodeFormWrap');if(w)w.innerHTML='';}
+async function submitJoinCode(){
+  const raw=(document.getElementById('joinCodeInput').value||'').trim();
+  if(!raw){alert('Kleebi kutselink või kood');return;}
+  let code=raw;
+  const mm=raw.match(/[?&]join=([^&\s]+)/i);
+  if(mm)code=decodeURIComponent(mm[1]);
+  code=code.trim().replace(/[\/\s]+$/,'');
+  if(!code){alert('Koodi ei leitud lingist');return;}
+  try{
+    const data=await apiCall('/api/circles/join/'+encodeURIComponent(code),{method:'POST'});
+    cancelJoinCode();
+    const t=document.getElementById('friendToast');const txt=document.getElementById('friendToastText');
+    if(t&&txt){txt.innerHTML='<strong>✦ Liitusid: '+esc(data.circle.name)+'</strong>';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),4500);}
+    await loadMyCircles();
+  }catch(e){alert('Liitumine ebaõnnestus: '+e.message+'\n\nKontrolli, et link/kood on õige ja pole aegunud (48h).');}
+}
+
 async function submitCreateCircle(){
   const name=document.getElementById('newCircleName').value.trim();
   const icon=document.querySelector('.circle-icon-opt.selected')?.dataset.iconEmoji||'✨';
@@ -2157,6 +2195,21 @@ async function handleJoinInvite(){
   }catch(e){alert('Kutsega liitumine ebaõnnestus: '+e.message);}
 }
 
+// Lõpeta rippuv kutse pärast sisselogimist (kutse salvestati enne login'i, kui kasutaja polnud veel sees)
+async function resumePendingJoin(){
+  const code=localStorage.getItem('glow_pending_join');
+  if(!code)return false;
+  localStorage.removeItem('glow_pending_join');
+  try{
+    const data=await apiCall('/api/circles/join/'+encodeURIComponent(code),{method:'POST'});
+    try{const u=new URL(window.location.href);u.searchParams.delete('join');history.replaceState({},'',u.pathname+(u.search?u.search:'')+u.hash);}catch(_){}
+    const t=document.getElementById('friendToast');const txt=document.getElementById('friendToastText');
+    if(t&&txt){txt.innerHTML='<strong>✦ Liitusid: '+esc(data.circle.name)+'</strong>';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),4500);}
+    if(typeof loadMyCircles==='function'){try{await loadMyCircles();}catch(_){}}
+    return true;
+  }catch(e){return false;}
+}
+
 function updateCirclesNavBtn(){
   const card=document.getElementById('circlesInviteCard');
   const logged=isLoggedIn();
@@ -2301,8 +2354,9 @@ async function submitCodeVerify(){
     setSession(data.token,data.email);
     closeLoginModal();
     await syncUserFromServer();
-    const t=document.getElementById('friendToast');const txt=document.getElementById('friendToastText');
-    if(t&&txt){txt.innerHTML='<strong>✦ Sisse logitud!</strong> Krediidid sünkroniseeritud.';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),5500);}
+    const joined=await resumePendingJoin();
+    if(!joined){const t=document.getElementById('friendToast');const txt=document.getElementById('friendToastText');
+    if(t&&txt){txt.innerHTML='<strong>✦ Sisse logitud!</strong> Krediidid sünkroniseeritud.';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),5500);}}
   }catch(e){err.textContent=e.message;}
   btn.disabled=false;btn.textContent='Kinnita kood';
 }
@@ -2317,9 +2371,10 @@ async function verifyMagicLink(token){
     try{const u=new URL(window.location.href);u.searchParams.delete('verify');history.replaceState({},'',u.pathname+(u.search?u.search:'')+u.hash);}catch(_){}
     // Sünkroni saldo serveri poolelt
     await syncUserFromServer();
-    showRefToast(0); // kasutame olemasolevat toast'i, aga tekstiga:
+    const joined=await resumePendingJoin();
+    if(!joined){showRefToast(0); // kasutame olemasolevat toast'i, aga tekstiga:
     const t=document.getElementById('friendToast');const txt=document.getElementById('friendToastText');
-    if(t&&txt){txt.innerHTML='<strong>✦ Sisse logitud!</strong> Sinu krediidid on sünkroniseeritud.';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),5500);}
+    if(t&&txt){txt.innerHTML='<strong>✦ Sisse logitud!</strong> Sinu krediidid on sünkroniseeritud.';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),5500);}}
   }catch(e){alert('Sisselogimine ebaõnnestus: '+e.message);}
 }
 
