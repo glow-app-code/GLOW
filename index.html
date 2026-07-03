@@ -1880,7 +1880,7 @@ async function openCircleDetail(id){
   v.innerHTML='<div style="text-align:center;padding:20px;color:rgba(255,255,255,0.5)">Loon kutselinki...</div>';
   let inviteCode='';
   try{const inv=await apiCall('/api/circles/'+id+'/invite',{method:'POST'});inviteCode=inv.code;}catch(e){}
-  const url=(location.origin+location.pathname).replace(/\/$/,'')+'/?join='+inviteCode;
+  const url=(location.origin+location.pathname).replace(/index\.html$/i,'').replace(/\/$/,'')+'/?join='+inviteCode;
   let html='<div class="circle-detail-head"><button class="circle-detail-back" onclick="switchCirclesTab(\'my\')">← Tagasi</button></div>'
     +'<div style="display:flex;align-items:center;gap:12px;margin-bottom:18px">'
     +'<div class="circle-emoji" style="width:56px;height:56px;font-size:26px">'+esc(circle.icon)+'</div>'
