@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://glow4me.ee/sitemap.xml
+# glow
