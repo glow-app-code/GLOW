@@ -746,6 +746,7 @@ canvas{display:none}
 .chat-msg{max-width:82%;padding:10px 14px;border-radius:14px;font-size:14px;line-height:1.45;color:#fff;position:relative;word-wrap:break-word;overflow-wrap:anywhere}
 .chat-msg-meta{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;color:rgba(255,255,255,0.5);margin-bottom:4px;display:flex;gap:8px;align-items:center}
 .chat-msg-meta-dot{width:5px;height:5px;border-radius:50%}
+.chat-avatar{display:inline-flex;width:18px;height:18px;border-radius:50%;color:#0e0c0b;font-size:9px;font-weight:700;align-items:center;justify-content:center;margin-right:3px;font-family:'DM Mono',monospace;flex-shrink:0}
 .chat-msg.mine{align-self:flex-end;background:linear-gradient(135deg,rgba(201,169,110,0.25),rgba(232,201,126,0.18));border:1px solid rgba(201,169,110,0.4)}
 .chat-msg.theirs{align-self:flex-start;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1)}
 .chat-msg.mine .chat-msg-meta{color:var(--gold-bright)}
@@ -1478,11 +1479,11 @@ canvas{display:none}
     <div class="login-logo">GL<em>Ó</em>W</div>
     <div class="login-title" id="loginTitle">Logi sisse</div>
     <div class="login-context" id="loginContext" style="display:none"></div>
-    <div class="login-sub">Sisesta oma e-post — saadame sulle sisselogimise lingi. Parooli ei ole vaja.</div>
+    <div class="login-sub">Sisesta oma e-post — saadame sulle 6-kohalise koodi. Parooli ei ole vaja.</div>
     <div id="loginForm">
       <div class="login-err" id="loginErr"></div>
       <input type="email" class="login-input" id="loginEmail" placeholder="nimi@näide.ee" autocomplete="email" inputmode="email">
-      <button class="login-submit" id="loginSubmitBtn" onclick="submitLoginRequest()">Saada sisselogimise link</button>
+      <button class="login-submit" id="loginSubmitBtn" onclick="submitLoginRequest()">Saada kood</button>
       <div class="login-hint">Sisselogimisega nõustud <a href="tingimused.html">tingimustega</a> ja <a href="privaatsus.html">privaatsuspoliitikaga</a>.</div>
     </div>
     <div class="login-sent" id="loginSent">
@@ -1887,12 +1888,15 @@ async function openCircleDetail(id){
     +'<div style="font-size:11px;color:rgba(255,255,255,0.5);font-family:\'DM Mono\',monospace">'+(circle.members?circle.members.length:1)+' liige</div></div></div>';
   if(inviteCode){
     html+='<div class="circle-invite-box">'
-    +'<div class="circle-invite-label">Kutselink · kehtib 48h</div>'
+    +'<div class="circle-invite-label">Kutsu sõbrad · kehtib 48h</div>'
+    +'<div style="font-size:12px;color:rgba(255,255,255,0.65);margin-bottom:8px;line-height:1.5">Saada see link sõbrale (WhatsApp, SMS). Ta avab lingi ja liitub <strong style="color:var(--gold)">sinu ringiga</strong>.</div>'
     +'<div class="circle-invite-code">'+esc(url)+'</div>'
     +'<div class="circle-invite-actions">'
-    +'<button class="circle-btn primary" onclick="copyText(\''+esc(url)+'\',this)">Kopeeri</button>'
+    +'<button class="circle-btn primary" onclick="copyText(\''+esc(url)+'\',this)">Kopeeri link</button>'
     +'<button class="circle-btn secondary" onclick="shareInviteLink(\''+esc(url)+'\',\''+esc(circle.name)+'\')">Jaga</button>'
-    +'</div></div>';
+    +'</div>'
+    +'<div style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.08);font-size:11px;color:rgba(255,255,255,0.55)">Või ütle sõbrale see kood, mille ta sisestab „Liitu koodiga" alla:<br><strong style="color:var(--gold-bright);letter-spacing:.2em;font-size:14px;font-family:\'DM Mono\',monospace">'+esc(inviteCode)+'</strong></div>'
+    +'</div>';
   }
   html+='<button class="circle-detail-chat-btn" onclick="openCircleChat(\''+esc(circle.id)+'\')">'
     +'<span data-icon="comment" data-icon-size="16"></span>'
@@ -1988,6 +1992,22 @@ async function loadChatMessages(replace){
   }
 }
 
+// Igale liikmele püsiv värv (tuletatud emailist) — nagu FB-chatis, et kohe näeks kes kirjutas
+const CIRCLE_MEMBER_COLORS=['#e8c97e','#d4957a','#7a9e8e','#9b8fb5','#c4736b','#68c0d8','#c9a96e','#b58fd6'];
+function memberColor(email){
+  const s=String(email||'?');
+  let h=0;for(let i=0;i<s.length;i++){h=(h*31+s.charCodeAt(i))>>>0;}
+  return CIRCLE_MEMBER_COLORS[h%CIRCLE_MEMBER_COLORS.length];
+}
+// Loetav nimi emailist (nt siret.puller@lhe.ee -> "Siret")
+function chatDisplayName(email){
+  if(!email)return'?';
+  let s=String(email).split('@')[0];
+  s=(s.split(/[._\-]+/)[0]||s);
+  if(!s)return'?';
+  return s.charAt(0).toUpperCase()+s.slice(1);
+}
+
 function renderChatMessages(){
   const s=document.getElementById('chatScroll');if(!s)return;
   const cs=window.chatState;
@@ -1997,14 +2017,22 @@ function renderChatMessages(){
   }
   let html='';
   const nearBottom=(s.scrollHeight-s.scrollTop-s.clientHeight)<80;
+  let prevEmail=null;
   cs.messages.sort((a,b)=>(a.ts||0)-(b.ts||0)).forEach(m=>{
     const mine=(m.email===cs.myEmail);
-    const name=mine?'Sina':initialsFrom(m.email||'?');
+    const col=mine?'var(--gold-bright)':memberColor(m.email);
+    const name=mine?'Sina':chatDisplayName(m.email);
     const time=fmtChatTime(m.ts);
-    const cat=m.cat||'vaba';
-    const dotColor={ilu:'#f090c8',riided:'#9b8fb5',toit:'#a5c4a8',sport:'#68c0d8',vaba:'#e8c97e'}[cat]||'#e8c97e';
-    html+='<div class="chat-msg '+(mine?'mine':'theirs')+' chat-msg-cat-'+cat+'">'
-      +'<div class="chat-msg-meta"><span class="chat-msg-meta-dot" style="background:'+dotColor+'"></span>'+esc(name)+' · '+esc(time)+'</div>'
+    const sameAsPrev=(m.email===prevEmail);
+    prevEmail=m.email;
+    let meta='';
+    if(!sameAsPrev){
+      const av=mine?'':'<span class="chat-avatar" style="background:'+col+'">'+esc(initialsFrom(m.email||'?'))+'</span>';
+      meta='<div class="chat-msg-meta">'+av+'<span style="color:'+col+';font-weight:600">'+esc(name)+'</span> · '+esc(time)+'</div>';
+    }
+    const style=mine?'':' style="border-left:3px solid '+col+'"';
+    html+='<div class="chat-msg '+(mine?'mine':'theirs')+'"'+style+'>'
+      +meta
       +esc(m.text).replace(/\n/g,'<br>')
       +'</div>';
   });
@@ -2303,7 +2331,7 @@ async function submitLoginRequest(){
     bindCodeInputs();
     setTimeout(()=>{const first=document.querySelector('.code-input');if(first)first.focus();},200);
   }catch(e){err.textContent='Viga: '+e.message;}
-  btn.disabled=false;btn.textContent='Saada sisselogimise link';
+  btn.disabled=false;btn.textContent='Saada kood';
 }
 
 function bindCodeInputs(){
