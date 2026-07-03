@@ -2710,7 +2710,7 @@ async function analyzePildipank(){
     for(let attempt=1;attempt<=2;attempt++){
       if(attempt===2)document.getElementById('loadingText').textContent='AI vastus oli ebatäielik, proovime uuesti...';
       try{
-        const res=await fetch(glowApiUrl(),{method:'POST',headers:glowApiHeaders(key),body:JSON.stringify({model:'claude-sonnet-4-5',max_tokens:2500,system:sys,messages:[{role:'user',content:imageContent}]})});
+        const res=await fetch(glowApiUrl(),{method:'POST',headers:glowApiHeaders(key),body:JSON.stringify({model:'claude-sonnet-4-5',max_tokens:5000,system:sys,messages:[{role:'user',content:imageContent}]})});
         const data=await checkRes(res);if(data.error)throw new Error(data.error.message);
         const raw=data.content.map(b=>b.text||'').join('');
         parsed=extractJson(raw);
@@ -2957,7 +2957,7 @@ async function analyze(){
     for(let attempt=1;attempt<=2;attempt++){
       if(attempt===2){setDot('thinking','Proovin uuesti...');document.getElementById('loadingText').textContent='AI vastus oli ebatäielik, proovime uuesti...';}
       try{
-        const res=await fetch(glowApiUrl(),{method:'POST',signal:currentFetchAbort.signal,headers:glowApiHeaders(key),body:JSON.stringify({model:'claude-sonnet-4-5',max_tokens:2500,system:sys,messages:[{role:'user',content:[{type:'image',source:{type:'base64',media_type:'image/jpeg',data:b64}},{type:'text',text:prompt}]}]})});
+        const res=await fetch(glowApiUrl(),{method:'POST',signal:currentFetchAbort.signal,headers:glowApiHeaders(key),body:JSON.stringify({model:'claude-sonnet-4-5',max_tokens:5000,system:sys,messages:[{role:'user',content:[{type:'image',source:{type:'base64',media_type:'image/jpeg',data:b64}},{type:'text',text:prompt}]}]})});
         const data=await checkRes(res);if(data.error)throw new Error(data.error.message);
         const raw=data.content.map(b=>b.text||'').join('');
         parsed=extractJson(raw);
