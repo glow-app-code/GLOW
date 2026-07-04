@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tagasimakse-poliitika · GLÓW</title>
-<meta name="description" content="GLÓW tagasimakse-poliitika, 14-päeva taganemisõigus ja kviitungid.">
+<title data-et="Tagasimakse-poliitika · GLÓW" data-en="Refund Policy · GLÓW">Tagasimakse-poliitika · GLÓW</title>
+<meta name="description" content="GLÓW tagasimakse-poliitika, 14-päeva taganemisõigus ja kviitungid. / GLÓW refund policy, 14-day right of withdrawal and receipts.">
 <meta name="theme-color" content="#c9a96e">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-180.png">
@@ -15,8 +15,12 @@
 body{background:var(--bg);color:#fff;font-family:'Cormorant Garamond',Georgia,serif;line-height:1.8;min-height:100vh}
 .ambient{position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 70% 50% at 15% 10%,rgba(196,115,107,0.08) 0%,transparent 60%),radial-gradient(ellipse 50% 70% at 85% 90%,rgba(123,158,142,0.06) 0%,transparent 60%)}
 .wrap{position:relative;z-index:1;max-width:720px;margin:0 auto;padding:32px 20px 80px}
-.back-link{display:inline-flex;align-items:center;gap:8px;color:var(--gold);text-decoration:none;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.25em;text-transform:uppercase;margin-bottom:28px;padding:8px 12px;border:1px solid rgba(201,169,110,0.4);border-radius:3px;transition:all .2s}
+.back-link{display:inline-flex;align-items:center;gap:8px;color:var(--gold);text-decoration:none;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.25em;text-transform:uppercase;margin-bottom:20px;padding:8px 12px;border:1px solid rgba(201,169,110,0.4);border-radius:3px;transition:all .2s}
 .back-link:hover{background:rgba(201,169,110,0.1);border-color:var(--gold)}
+.lang-toggle{display:flex;gap:6px;justify-content:center;margin-bottom:24px}
+.lang-toggle button{background:none;border:1px solid rgba(201,169,110,0.4);color:rgba(255,255,255,0.7);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;padding:7px 16px;border-radius:3px;cursor:pointer;text-transform:uppercase;transition:all .2s}
+.lang-toggle button:hover{border-color:var(--gold)}
+.lang-toggle button.active{background:var(--gold);color:var(--bg);border-color:var(--gold);font-weight:600}
 header{text-align:center;padding:20px 0 24px;border-bottom:1px solid rgba(201,169,110,0.3);margin-bottom:32px}
 .logo{font-size:44px;font-weight:300;letter-spacing:.25em;color:#fff;line-height:1;margin-bottom:8px}
 .logo em{color:var(--gold);font-style:italic;text-shadow:0 0 20px rgba(201,169,110,0.5)}
@@ -50,18 +54,28 @@ a:hover{text-decoration-color:var(--gold-bright)}
 .tl-text{font-size:15px;line-height:1.6;padding-top:4px}
 footer{text-align:center;margin-top:60px;padding-top:28px;border-top:1px solid rgba(201,169,110,0.2);font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:.2em}
 footer a{color:var(--gold);text-decoration:none;margin:0 6px}
+.lang-en{display:none}
+body[data-lang="en"] .lang-et{display:none}
+body[data-lang="en"] .lang-en{display:block}
 </style>
 </head>
 <body>
 <div class="ambient"></div>
 <div class="wrap">
-  <a href="index.html" class="back-link">← Tagasi rakendusse</a>
+  <a href="index.html" class="back-link"><span class="lang-et">← Tagasi rakendusse</span><span class="lang-en">← Back to app</span></a>
+
+  <div class="lang-toggle">
+    <button data-lang-btn="et" onclick="__setLang('et')">Eesti</button>
+    <button data-lang-btn="en" onclick="__setLang('en')">English</button>
+  </div>
 
   <header>
     <div class="logo">GL<em>Ó</em>W</div>
-    <div class="tagline">AI · Stiiliassistent</div>
+    <div class="tagline"><span class="lang-et">AI · Stiiliassistent</span><span class="lang-en">AI · Style Assistant</span></div>
   </header>
 
+  <!-- ================= ESTONIAN ================= -->
+  <div class="lang-et">
   <h1>Tagasimakse-poliitika</h1>
   <div class="updated">Kehtiv alates: {{JOUSTUMISE_KUUP}}</div>
 
@@ -98,26 +112,11 @@ footer a{color:var(--gold);text-decoration:none;margin:0 6px}
 
   <h2>3. Tagasimakse-protsess</h2>
   <div class="timeline">
-    <div class="tl-item">
-      <div class="tl-num">1</div>
-      <div class="tl-text">Sa saadad taotluse e-postiga</div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-num">2</div>
-      <div class="tl-text">Kontrollime taotluse tingimustele vastavust (2 tööpäeva)</div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-num">3</div>
-      <div class="tl-text">Saadame kinnituse e-postiga koos tagasimakse-summaga</div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-num">4</div>
-      <div class="tl-text">Algatame tagasimakse Stripe'i kaudu — sama makseviisi juurde tagasi (kaart, Apple Pay jne)</div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-num">5</div>
-      <div class="tl-text">Raha laekub 5-14 tööpäeva jooksul</div>
-    </div>
+    <div class="tl-item"><div class="tl-num">1</div><div class="tl-text">Sa saadad taotluse e-postiga</div></div>
+    <div class="tl-item"><div class="tl-num">2</div><div class="tl-text">Kontrollime taotluse tingimustele vastavust (2 tööpäeva)</div></div>
+    <div class="tl-item"><div class="tl-num">3</div><div class="tl-text">Saadame kinnituse e-postiga koos tagasimakse-summaga</div></div>
+    <div class="tl-item"><div class="tl-num">4</div><div class="tl-text">Algatame tagasimakse Stripe'i kaudu — sama makseviisi juurde tagasi (kaart, Apple Pay jne)</div></div>
+    <div class="tl-item"><div class="tl-num">5</div><div class="tl-text">Raha laekub 5-14 tööpäeva jooksul</div></div>
   </div>
 
   <h2>4. Erandid — millal EI ole taganemisõigust</h2>
@@ -165,6 +164,112 @@ footer a{color:var(--gold);text-decoration:none;margin:0 6px}
     <p><a href="index.html">Rakendus</a> · <a href="privaatsus.html">Privaatsus</a> · <a href="tingimused.html">Tingimused</a> · <a href="kontakt.html">Kontakt</a></p>
     <p style="margin-top:16px">© {{ETTEVOTE_NIMI}} · glow4me.ee</p>
   </footer>
+  </div>
+
+  <!-- ================= ENGLISH ================= -->
+  <div class="lang-en">
+  <h1>Refund Policy</h1>
+  <div class="updated">Effective from: {{JOUSTUMISE_KUUP}}</div>
+
+  <div class="info-box">
+    <p><strong>Summary:</strong> You have a <strong>14-day right of withdrawal</strong> under Estonian consumer law. Unused credits are refunded in full. Used credits are generally not refunded, but we review each request individually.</p>
+  </div>
+
+  <h2>1. Right of withdrawal (14 days)</h2>
+  <p>In accordance with the <strong>Estonian Law of Obligations Act</strong> and the European consumer rights directive, you have the right to withdraw from the contract without giving a reason <strong>within 14 days</strong> of purchasing credits.</p>
+  <p>The right of withdrawal applies under the following conditions:</p>
+  <ul>
+    <li><strong>Less than 14 days</strong> have passed since the purchase</li>
+    <li>The purchased credits have not yet been <strong>used</strong></li>
+    <li>You made the purchase yourself (not gifted credits or referral bonuses)</li>
+  </ul>
+
+  <h2>2. How to request a refund</h2>
+  <ol>
+    <li>Send an email to <strong><a href="mailto:info@glow4me.ee?subject=Refund request">info@glow4me.ee</a></strong></li>
+    <li>In the email, include:
+      <ul>
+        <li>The email your account is linked to</li>
+        <li>The date and amount of the payment</li>
+        <li>The reason for the refund (optional)</li>
+      </ul>
+    </li>
+    <li>We respond with confirmation <strong>within 2 business days</strong></li>
+    <li>The refund reaches your account <strong>within 5-14 business days</strong> (depending on your bank)</li>
+  </ol>
+
+  <div style="text-align:center;margin:24px 0">
+    <a href="mailto:info@glow4me.ee?subject=Refund request" class="email-cta">Send a refund request →</a>
+  </div>
+
+  <h2>3. The refund process</h2>
+  <div class="timeline">
+    <div class="tl-item"><div class="tl-num">1</div><div class="tl-text">You send the request by email</div></div>
+    <div class="tl-item"><div class="tl-num">2</div><div class="tl-text">We check that the request meets the conditions (2 business days)</div></div>
+    <div class="tl-item"><div class="tl-num">3</div><div class="tl-text">We send a confirmation by email with the refund amount</div></div>
+    <div class="tl-item"><div class="tl-num">4</div><div class="tl-text">We initiate the refund via Stripe — back to the same payment method (card, Apple Pay, etc.)</div></div>
+    <div class="tl-item"><div class="tl-num">5</div><div class="tl-text">The money arrives within 5-14 business days</div></div>
+  </div>
+
+  <h2>4. Exceptions — when there is NO right of withdrawal</h2>
+  <div class="warn-box">
+    <p><strong>There is no right of withdrawal in the following cases:</strong></p>
+  </div>
+  <ul>
+    <li>If you have <strong>used all the purchased credits</strong> — the service has been fully provided</li>
+    <li>If <strong>more than 14 days</strong> have passed since the purchase</li>
+    <li>If you opened an account and waived the right of withdrawal by ticking the "Start immediately" checkbox before using the service — this counts as consent to begin providing the service</li>
+    <li>If the terms of use are breached (fraud attempt, bots, abuse)</li>
+  </ul>
+
+  <h2>5. Partial refund</h2>
+  <p>If you have bought a package and used some of the credits, we can discuss the possibility of a partial refund on a pro-rata basis. For example:</p>
+  <ul>
+    <li>You bought a <strong>50-analysis package</strong> for €4.50 (€0.09/analysis)</li>
+    <li>You used 10 analyses (10 × €0.09 = €0.90)</li>
+    <li>Refund: <strong>€4.50 − €0.90 = €3.60</strong></li>
+  </ul>
+  <p>Partial refunds are decided on a case-by-case basis.</p>
+
+  <h2>6. Technical problems</h2>
+  <p>If the service <strong>did not work technically</strong> (e.g. no AI response came, a system error consumed a credit), <strong>we refund the credits immediately</strong> with no time limit. Just write to us with a description of what happened.</p>
+
+  <h2>7. Receipts and invoices</h2>
+  <p>After each payment we automatically send an <strong>email receipt</strong> via Stripe. The receipt includes:</p>
+  <ul>
+    <li>Information about the purchased package</li>
+    <li>The amount (in euros)</li>
+    <li>The payment date and method</li>
+    <li>Our contact details</li>
+  </ul>
+  <p>If you need an official <strong>invoice for accounting</strong>, write to <a href="mailto:info@glow4me.ee?subject=Invoice request">info@glow4me.ee</a>.</p>
+
+  <h2>8. ODR (EU Online Dispute Resolution)</h2>
+  <p>If we do not reach an agreement, you have the right to use the EU online dispute resolution platform:</p>
+  <p><a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener"><strong>ec.europa.eu/consumers/odr</strong></a></p>
+
+  <h2>9. Contact</h2>
+  <p>Refund questions: <strong><a href="mailto:info@glow4me.ee">info@glow4me.ee</a></strong></p>
+  <p>We respond on business days <strong>within 24 hours</strong>.</p>
+
+  <footer>
+    <p><a href="index.html">App</a> · <a href="privaatsus.html">Privacy</a> · <a href="tingimused.html">Terms</a> · <a href="kontakt.html">Contact</a></p>
+    <p style="margin-top:16px">© {{ETTEVOTE_NIMI}} · glow4me.ee</p>
+  </footer>
+  </div>
 </div>
+<script>
+(function(){
+  function detect(){try{var s=localStorage.getItem('glow_lang');if(s==='et'||s==='en')return s;}catch(e){}
+    var tz='';try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||'';}catch(e){}
+    var l=(navigator.language||navigator.userLanguage||'').toLowerCase();
+    if(tz==='Europe/Tallinn'||l.indexOf('et')===0)return'et';return'en';}
+  function apply(lang){document.body.setAttribute('data-lang',lang);document.documentElement.lang=lang;
+    document.querySelectorAll('[data-lang-btn]').forEach(function(b){b.classList.toggle('active',b.getAttribute('data-lang-btn')===lang);});
+    var t=document.querySelector('title');if(t&&t.getAttribute('data-'+lang))document.title=t.getAttribute('data-'+lang);}
+  window.__setLang=function(l){if(l!=='et'&&l!=='en')return;try{localStorage.setItem('glow_lang',l);}catch(e){}apply(l);};
+  apply(detect());
+})();
+</script>
 </body>
 </html>
