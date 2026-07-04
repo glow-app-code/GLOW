@@ -2493,17 +2493,17 @@ const PACKAGES=[{id:'pkg_10',count:'10',price:'0.99',unit:'0.10'},{id:'pkg_50',c
 const MAX_PHOTOS=10;
 
 const DEPILE_BRANDS=[
-  {id:'anesi',icon:'🌿',name:'ANESI',desc:'Nähooldus & protseduurid',focus:'näohooldus, seerumid, maskid'},
-  {id:'bdr',icon:'⚗️',name:'BDR',desc:'Intensiivhooldus & koorimised',focus:'keemiline koorimine, intensiivhooldus'},
-  {id:'dermia',icon:'💊',name:'DERMIA',desc:'Professionaalne nähooldus',focus:'nähooldus, seerumid ja kreemid'},
-  {id:'christian',icon:'✨',name:'CHRISTIAN BRETON',desc:'Meik & nähooldus',focus:'meigipealne hooldus, huuled, silmad'},
-  {id:'phytomer',icon:'🌊',name:'PHYTOMER',desc:'Merekosmeetika',focus:'merekosmeetika, niisutus'},
-  {id:'depileve',icon:'🌸',name:'DEPILÉVE',desc:'Vahatamine & epilatsioon',focus:'vahatamine, epilatsioon'},
-  {id:'allpresan',icon:'🦶',name:'ALLPRESAN',desc:'Jalahooldus',focus:'jalahooldus, jalakreemid'},
-  {id:'alessandro',icon:'💅',name:'ALESSANDRO',desc:'Küüned & kulmud',focus:'küünehooldustooted, kulmugeel'},
-  {id:'alfaparf',icon:'💇',name:'ALFAPARF',desc:'Professionaalne juuksehooldus',focus:'juuksevärvid, juuksehooldus'},
-  {id:'pino',icon:'🤲',name:'PINO',desc:'Massaaž & kehahooldus',focus:'massaaži tooted, kehahooldus'},
-  {id:'kurland',icon:'🌍',name:'KURLAND',desc:'Savi & spaateraapia',focus:'savimudad, spaateraapia'}
+  {id:'anesi',icon:'🌿',name:'ANESI',desc:'Nähooldus & protseduurid',en:'Facial care & treatments',focus:'näohooldus, seerumid, maskid'},
+  {id:'bdr',icon:'⚗️',name:'BDR',desc:'Intensiivhooldus & koorimised',en:'Intensive care & peels',focus:'keemiline koorimine, intensiivhooldus'},
+  {id:'dermia',icon:'💊',name:'DERMIA',desc:'Professionaalne nähooldus',en:'Professional facial care',focus:'nähooldus, seerumid ja kreemid'},
+  {id:'christian',icon:'✨',name:'CHRISTIAN BRETON',desc:'Meik & nähooldus',en:'Makeup & facial care',focus:'meigipealne hooldus, huuled, silmad'},
+  {id:'phytomer',icon:'🌊',name:'PHYTOMER',desc:'Merekosmeetika',en:'Marine cosmetics',focus:'merekosmeetika, niisutus'},
+  {id:'depileve',icon:'🌸',name:'DEPILÉVE',desc:'Vahatamine & epilatsioon',en:'Waxing & depilation',focus:'vahatamine, epilatsioon'},
+  {id:'allpresan',icon:'🦶',name:'ALLPRESAN',desc:'Jalahooldus',en:'Foot care',focus:'jalahooldus, jalakreemid'},
+  {id:'alessandro',icon:'💅',name:'ALESSANDRO',desc:'Küüned & kulmud',en:'Nails & brows',focus:'küünehooldustooted, kulmugeel'},
+  {id:'alfaparf',icon:'💇',name:'ALFAPARF',desc:'Professionaalne juuksehooldus',en:'Professional hair care',focus:'juuksevärvid, juuksehooldus'},
+  {id:'pino',icon:'🤲',name:'PINO',desc:'Massaaž & kehahooldus',en:'Massage & body care',focus:'massaaži tooted, kehahooldus'},
+  {id:'kurland',icon:'🌍',name:'KURLAND',desc:'Savi & spaateraapia',en:'Clay & spa therapy',focus:'savimudad, spaateraapia'}
 ];
 
 // MEIGISTIILID — 9
@@ -2550,7 +2550,7 @@ function loadSalonBrands(){const s=localStorage.getItem('glow_salon_brands');try
 function saveSalonBrands(){const checked=document.querySelectorAll('.brand-btn.active');salonBrandsConfig=Array.from(checked).map(b=>b.dataset.id);if(salonBrandsConfig.length===0){alert(window.t('salon.pickbrand','Vali vähemalt üks bränd!'));return;}localStorage.setItem('glow_salon_brands',JSON.stringify(salonBrandsConfig));updateSalonActiveView();toggleSalonConfig();}
 function updateSalonActiveView(){const saved=loadSalonBrands();const el=document.getElementById('salonActiveText');if(saved.length===0){el.innerHTML='<span style="color:rgba(255,255,255,0.5);font-size:12px">'+window.t('salon.none','Brändid pole valitud')+'</span>';document.getElementById('salonEditBtn').textContent=window.t('salon.setup','Seadista');}else{const names=saved.map(id=>{const b=DEPILE_BRANDS.find(x=>x.id===id);return b?'<span>'+b.name+'</span>':''}).join(' · ');el.innerHTML=names;document.getElementById('salonEditBtn').textContent=window.t('salon.edit','Muuda');}}
 function toggleSalonConfig(){salonConfigOpen=!salonConfigOpen;document.getElementById('salonConfig').classList.toggle('show',salonConfigOpen);document.getElementById('salonEditBtn').textContent=salonConfigOpen?window.t('salon.close','Sulge'):(salonBrandsConfig.length>0?window.t('salon.edit','Muuda'):window.t('salon.setup','Seadista'));}
-function buildBrandGrid(){const saved=loadSalonBrands();const g=document.getElementById('brandGrid');g.innerHTML='';DEPILE_BRANDS.forEach(b=>{const btn=document.createElement('div');btn.className='brand-btn'+(saved.includes(b.id)?' active':'');btn.dataset.id=b.id;btn.innerHTML='<div class="brand-icon">'+b.icon+'</div><div class="brand-name">'+b.name+'</div><div class="brand-desc">'+b.desc+'</div>';btn.onclick=()=>{btn.classList.toggle('active');document.getElementById('salonSaveBtn').disabled=document.querySelectorAll('.brand-btn.active').length===0;};g.appendChild(btn);});document.getElementById('salonSaveBtn').disabled=saved.length===0;}
+function buildBrandGrid(){const saved=loadSalonBrands();const g=document.getElementById('brandGrid');g.innerHTML='';DEPILE_BRANDS.forEach(b=>{const btn=document.createElement('div');btn.className='brand-btn'+(saved.includes(b.id)?' active':'');btn.dataset.id=b.id;btn.innerHTML='<div class="brand-icon">'+b.icon+'</div><div class="brand-name">'+b.name+'</div><div class="brand-desc">'+((window.glowLang==='en'&&b.en)?b.en:b.desc)+'</div>';btn.onclick=()=>{btn.classList.toggle('active');document.getElementById('salonSaveBtn').disabled=document.querySelectorAll('.brand-btn.active').length===0;};g.appendChild(btn);});document.getElementById('salonSaveBtn').disabled=saved.length===0;}
 function getSalonBrandString(){const saved=loadSalonBrands();if(saved.length===0)return'Kõik depile.ee brändid.';return'Salongi valitud brändid: '+saved.map(id=>{const b=DEPILE_BRANDS.find(x=>x.id===id);return b?b.name+' ('+b.focus+')':''}).filter(Boolean).join('; ')+'.';}
 
 // MEIGI TÄPSUSTUSED
