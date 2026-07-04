@@ -13,6 +13,11 @@
 <meta name="author" content="GLÓW">
 <link rel="canonical" href="https://glow4me.ee/">
 
+<!-- Keeleversioonid (hreflang) — eesti ja inglise -->
+<link rel="alternate" hreflang="et" href="https://glow4me.ee/">
+<link rel="alternate" hreflang="en" href="https://glow4me.ee/?lang=en">
+<link rel="alternate" hreflang="x-default" href="https://glow4me.ee/">
+
 <!-- Open Graph (Facebook, WhatsApp, LinkedIn, Discord, Slack) -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="GLÓW">
@@ -24,6 +29,7 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="GLÓW · AI Assistent">
 <meta property="og:locale" content="et_EE">
+<meta property="og:locale:alternate" content="en_US">
 
 <!-- Twitter / X Card -->
 <meta name="twitter:card" content="summary_large_image">
@@ -43,7 +49,7 @@
   "applicationCategory": "LifestyleApplication",
   "operatingSystem": "Any",
   "browserRequirements": "Vajab tänapäevast brauserit (Safari 14+, Chrome 90+)",
-  "inLanguage": "et",
+  "inLanguage": ["et", "en"],
   "offers": {
     "@type": "Offer",
     "price": "0",
@@ -1007,7 +1013,7 @@ canvas{display:none}
 .lang-switch-header{margin-left:auto;margin-right:8px}
 </style>
 <script>/* i18n varu-definitsioon — tuvasta keel kohe; põhimootor (lehe lõpus) lisab tõlked */
-window.glowLang=(function(){try{var s=localStorage.getItem('glow_lang');if(s==='et'||s==='en')return s;var tz='';try{tz=(Intl.DateTimeFormat().resolvedOptions().timeZone||'');}catch(e){}var l=(navigator.language||navigator.userLanguage||'').toLowerCase();if(tz==='Europe/Tallinn'||l.indexOf('et')===0)return'et';return'en';}catch(e){return'et';}})();
+window.glowLang=(function(){try{var q=(location.search.match(/[?&]lang=(en|et)/)||[])[1];if(q){try{localStorage.setItem('glow_lang',q);}catch(_){}return q;}}catch(e){}try{var s=localStorage.getItem('glow_lang');if(s==='et'||s==='en')return s;var tz='';try{tz=(Intl.DateTimeFormat().resolvedOptions().timeZone||'');}catch(e){}var l=(navigator.language||navigator.userLanguage||'').toLowerCase();if(tz==='Europe/Tallinn'||l.indexOf('et')===0)return'et';return'en';}catch(e){return'et';}})();
 window.t=window.t||function(k,f){return f;};</script>
 </head>
 <body>
@@ -3780,6 +3786,8 @@ if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.s
   const _origPh = new WeakMap();
   const _origTitle = new WeakMap();
   function detectLang(){
+    // URL-i parameeter ?lang=en/et võidab kõike (Google indekseerib eri keeli eraldi URL-ina)
+    try { const q = (location.search.match(/[?&]lang=(en|et)/)||[])[1]; if (q) { try { localStorage.setItem('glow_lang', q); } catch(_){} return q; } } catch(e){}
     const s = localStorage.getItem('glow_lang');
     if (s === 'et' || s === 'en') return s;   // salvestatud valik võidab alati
     // Asukoha-tuvastus: Eesti ajavöönd VÕI eesti brauserikeel → eesti keel.
