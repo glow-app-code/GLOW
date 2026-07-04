@@ -6,6 +6,17 @@
 <title data-et="Privaatsuspoliitika · GLÓW" data-en="Privacy Policy · GLÓW">Privaatsuspoliitika · GLÓW</title>
 <meta name="description" content="GLÓW privaatsuspoliitika — kuidas kogume, kasutame ja kaitseme sinu andmeid. / GLÓW privacy policy — how we collect, use and protect your data.">
 <meta name="theme-color" content="#c9a96e">
+<link rel="canonical" href="https://glow4me.ee/privaatsus.html">
+<link rel="alternate" hreflang="et" href="https://glow4me.ee/privaatsus.html">
+<link rel="alternate" hreflang="en" href="https://glow4me.ee/privaatsus.html?lang=en">
+<link rel="alternate" hreflang="x-default" href="https://glow4me.ee/privaatsus.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="GLÓW">
+<meta property="og:title" content="Privaatsuspoliitika · GLÓW">
+<meta property="og:url" content="https://glow4me.ee/privaatsus.html">
+<meta property="og:image" content="https://glow4me.ee/og-image.svg">
+<meta property="og:locale" content="et_EE">
+<meta property="og:locale:alternate" content="en_US">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-180.png">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
@@ -73,7 +84,7 @@ body[data-lang="en"] .lang-en{display:block}
   <!-- ================= ESTONIAN ================= -->
   <div class="lang-et">
   <h1>Privaatsuspoliitika</h1>
-  <div class="updated">Kehtiv alates: {{JOUSTUMISE_KUUP}}</div>
+  <div class="updated">Kehtiv alates: 01.07.2026</div>
 
   <div class="toc">
     <div class="toc-title">Sisukord</div>
@@ -97,9 +108,9 @@ body[data-lang="en"] .lang-en{display:block}
 
   <h2 id="et2">2. Vastutav töötleja</h2>
   <div class="contact-block">
-    <p><strong>{{ETTEVOTE_NIMI}}</strong></p>
-    <p>Registrikood: {{REGISTRIKOOD}}</p>
-    <p>Aadress: {{AADRESS}}</p>
+    <p><strong>Liinihoolduse Varad OÜ</strong></p>
+    <p>Registrikood: 11905626</p>
+    <p>Aadress: Nurme 24, 68206 Valga, Eesti</p>
     <p>E-post: <a href="mailto:info@glow4me.ee">info@glow4me.ee</a></p>
     <p>Andmekaitse-küsimused: <a href="mailto:info@glow4me.ee">info@glow4me.ee</a></p>
   </div>
@@ -199,14 +210,14 @@ body[data-lang="en"] .lang-en{display:block}
 
   <footer>
     <p><a href="index.html">Rakendus</a> · <a href="tingimused.html">Tingimused</a> · <a href="tagasimaksed.html">Tagasimaksed</a> · <a href="kontakt.html">Kontakt</a></p>
-    <p style="margin-top:16px">© {{ETTEVOTE_NIMI}} · glow4me.ee</p>
+    <p style="margin-top:16px">© Liinihoolduse Varad OÜ · glow4me.ee</p>
   </footer>
   </div>
 
   <!-- ================= ENGLISH ================= -->
   <div class="lang-en">
   <h1>Privacy Policy</h1>
-  <div class="updated">Effective from: {{JOUSTUMISE_KUUP}}</div>
+  <div class="updated">Effective from: 01.07.2026</div>
 
   <div class="toc">
     <div class="toc-title">Contents</div>
@@ -230,9 +241,9 @@ body[data-lang="en"] .lang-en{display:block}
 
   <h2 id="en2">2. Data controller</h2>
   <div class="contact-block">
-    <p><strong>{{ETTEVOTE_NIMI}}</strong></p>
-    <p>Registry code: {{REGISTRIKOOD}}</p>
-    <p>Address: {{AADRESS}}</p>
+    <p><strong>Liinihoolduse Varad OÜ</strong></p>
+    <p>Registry code: 11905626</p>
+    <p>Address: Nurme 24, 68206 Valga, Eesti</p>
     <p>Email: <a href="mailto:info@glow4me.ee">info@glow4me.ee</a></p>
     <p>Data protection enquiries: <a href="mailto:info@glow4me.ee">info@glow4me.ee</a></p>
   </div>
@@ -332,13 +343,13 @@ body[data-lang="en"] .lang-en{display:block}
 
   <footer>
     <p><a href="index.html">App</a> · <a href="tingimused.html">Terms</a> · <a href="tagasimaksed.html">Refunds</a> · <a href="kontakt.html">Contact</a></p>
-    <p style="margin-top:16px">© {{ETTEVOTE_NIMI}} · glow4me.ee</p>
+    <p style="margin-top:16px">© Liinihoolduse Varad OÜ · glow4me.ee</p>
   </footer>
   </div>
 </div>
 <script>
 (function(){
-  function detect(){try{var s=localStorage.getItem('glow_lang');if(s==='et'||s==='en')return s;}catch(e){}
+  function detect(){try{var q=(location.search.match(/[?&]lang=(en|et)/)||[])[1];if(q){try{localStorage.setItem('glow_lang',q);}catch(_){}return q;}}catch(e){}try{var s=localStorage.getItem('glow_lang');if(s==='et'||s==='en')return s;}catch(e){}
     var tz='';try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||'';}catch(e){}
     var l=(navigator.language||navigator.userLanguage||'').toLowerCase();
     if(tz==='Europe/Tallinn'||l.indexOf('et')===0)return'et';return'en';}
