@@ -996,6 +996,14 @@ canvas{display:none}
 .meik-style-btn:hover svg[data-icon-name],
 .uritus-btn:hover svg[data-icon-name],
 .proc-btn:hover svg[data-icon-name]{transform:translateY(-1px) scale(1.05);filter:drop-shadow(0 0 8px currentColor) brightness(1.12)}
+/* Keele-lüliti (ET/EN lipud) */
+.lang-switch{display:flex;gap:8px;justify-content:center;align-items:center}
+.lang-btn{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,0.05);border:1px solid rgba(201,169,110,0.28);border-radius:7px;padding:5px 9px;cursor:pointer;color:rgba(255,255,255,0.55);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.15em;transition:border-color .2s,color .2s,background .2s}
+.lang-btn:hover{border-color:rgba(201,169,110,0.6);color:rgba(255,255,255,0.85)}
+.lang-btn.active{background:rgba(201,169,110,0.16);border-color:var(--gold);color:var(--gold-bright)}
+.lang-btn svg{display:block;border-radius:2px;box-shadow:0 0 0 1px rgba(0,0,0,0.25)}
+.lang-switch-splash{margin-top:20px}
+.lang-switch-header{margin-left:auto;margin-right:8px}
 </style>
 </head>
 <body>
@@ -1020,9 +1028,13 @@ canvas{display:none}
     <div class="frame-dot lc"></div><div class="frame-dot rc"></div>
     <div class="splash-inner">
       <div class="splash-logo">GL<span class="splash-logo-o">Ó</span>W</div>
-      <div class="splash-divider"><div class="splash-tagline">AI · Stiiliassistent</div></div>
-      <div class="splash-sub">Sinu isiklik ilu- ja<br>stiiliekspert taskus</div>
-      <button class="splash-btn" onclick="showTerms()"><span>Alusta ✦</span></button>
+      <div class="splash-divider"><div class="splash-tagline" data-i18n="splash.tagline">AI · Stiiliassistent</div></div>
+      <div class="splash-sub" data-i18n="splash.sub">Sinu isiklik ilu- ja<br>stiiliekspert taskus</div>
+      <button class="splash-btn" onclick="showTerms()"><span data-i18n="splash.btn">Alusta ✦</span></button>
+      <div class="lang-switch lang-switch-splash" role="group" aria-label="Keel / Language">
+        <button type="button" class="lang-btn" data-lang-btn="et" onclick="glowSetLang('et')" aria-label="Eesti keel"><svg viewBox="0 0 30 20" width="22" height="15" aria-hidden="true"><rect width="30" height="20" fill="#fff"/><rect width="30" height="13.34" fill="#000"/><rect width="30" height="6.67" fill="#0072ce"/></svg>ET</button>
+        <button type="button" class="lang-btn" data-lang-btn="en" onclick="glowSetLang('en')" aria-label="English"><svg viewBox="0 0 60 30" width="22" height="15" aria-hidden="true"><rect width="60" height="30" fill="#012169"/><path d="M0,0 60,30 M60,0 0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 60,30 M60,0 0,30" stroke="#c8102e" stroke-width="4"/><path d="M30,0 V30 M0,15 H60" stroke="#fff" stroke-width="10"/><path d="M30,0 V30 M0,15 H60" stroke="#c8102e" stroke-width="6"/></svg>EN</button>
+      </div>
       <div class="splash-footer">glow4me.ee</div>
     </div>
   </div>
@@ -1077,8 +1089,8 @@ canvas{display:none}
 <div class="app">
 <header>
   <div class="logo">GL<span class="logo-o">Ó</span>W</div>
-  <div class="logo-line"><div class="tagline">AI · Isiklik Stiiliassistent</div></div>
-  <button class="logout-btn" onclick="logout()">✦ Välju</button>
+  <div class="logo-line"><div class="tagline" data-i18n="header.tagline">AI · Isiklik Stiiliassistent</div></div>
+  <button class="logout-btn" onclick="logout()" data-i18n="header.logout">✦ Välju</button>
 </header>
 
 <div id="keyStatus" style="display:none">
@@ -3319,6 +3331,48 @@ function shareX(){const fb=lastFb||'';const text=encodeURIComponent('✦ GLÓW A
 function shareCopy(){const fb=lastFb||'';const text='✦ GLÓW AI\n\n'+fb+'\n\n'+window.location.href;if(navigator.clipboard){navigator.clipboard.writeText(text).then(()=>alert('✓ Kopeeritud!'));}else{const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);alert('✓ Kopeeritud!');}}
 init();
 if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(e=>console.warn('SW registreerimine ebaõnnestus:',e));});}
+</script>
+<script>
+/* ===== GLÓW keele-süsteem (i18n) — Samm 1: avaleht ===== */
+(function(){
+  const I18N = {
+    en: {
+      'splash.tagline': 'AI · Style Assistant',
+      'splash.sub': 'Your personal beauty &amp;<br>style expert in your pocket',
+      'splash.btn': 'Begin ✦',
+      'header.tagline': 'AI · Personal Style Assistant',
+      'header.logout': '✦ Exit'
+    }
+  };
+  const _orig = new WeakMap();
+  function detectLang(){
+    const s = localStorage.getItem('glow_lang');
+    if (s === 'et' || s === 'en') return s;
+    const n = (navigator.language || navigator.userLanguage || '').toLowerCase();
+    return n.indexOf('et') === 0 ? 'et' : 'en';   // väljaspool Eestit → inglise keel
+  }
+  function applyLang(lang){
+    try { document.documentElement.lang = lang; } catch(e){}
+    const dict = I18N[lang] || null;
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      const key = el.getAttribute('data-i18n');
+      if (!_orig.has(el)) _orig.set(el, el.innerHTML);   // eesti keel = HTML originaal
+      if (dict && dict[key] != null) el.innerHTML = dict[key];
+      else el.innerHTML = _orig.get(el);
+    });
+    document.querySelectorAll('[data-lang-btn]').forEach(function(b){
+      b.classList.toggle('active', b.getAttribute('data-lang-btn') === lang);
+    });
+  }
+  window.glowSetLang = function(lang){
+    if (lang !== 'et' && lang !== 'en') return;
+    try { localStorage.setItem('glow_lang', lang); } catch(e){}
+    applyLang(lang);
+  };
+  function initLang(){ applyLang(detectLang()); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initLang);
+  else initLang();
+})();
 </script>
 </body>
 </html>
