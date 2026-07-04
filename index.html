@@ -1565,13 +1565,13 @@ window.t=window.t||function(k,f){return f;};</script>
     <button class="circles-close" onclick="closeCirclesPanel()" aria-label="Sulge">×</button>
   </div>
   <div class="circles-tabs">
-    <button class="circles-tab active" data-tab="my" onclick="switchCirclesTab('my')">Minu Circle'id</button>
-    <button class="circles-tab" data-tab="feed" onclick="switchCirclesTab('feed')">Uudisvoog</button>
+    <button class="circles-tab active" data-tab="my" onclick="switchCirclesTab('my')" data-i18n="circ.tab.my">Minu Circle'id</button>
+    <button class="circles-tab" data-tab="feed" onclick="switchCirclesTab('feed')" data-i18n="circ.tab.feed">Uudisvoog</button>
   </div>
   <div class="circles-body" id="circlesBody">
     <div id="circlesEmptyLogin" style="display:none;text-align:center;padding:40px 20px">
-      <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;color:rgba(255,255,255,0.7);line-height:1.6;margin-bottom:16px">Logi sisse, et luua Circle ja jagada oma stiili sõpradega ✦</div>
-      <button class="circle-btn primary" style="width:100%" onclick="closeCirclesPanel();showLoginModal('Circles vajavad sisselogimist')">Logi sisse</button>
+      <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;color:rgba(255,255,255,0.7);line-height:1.6;margin-bottom:16px" data-i18n="circ.login.text">Logi sisse, et luua Circle ja jagada oma stiili sõpradega ✦</div>
+      <button class="circle-btn primary" style="width:100%" onclick="closeCirclesPanel();showLoginModal('Circles vajavad sisselogimist')" data-i18n="circ.login.btn">Logi sisse</button>
     </div>
     <div id="circlesMyView"></div>
     <div id="circlesFeedView" style="display:none"></div>
@@ -1583,13 +1583,13 @@ window.t=window.t||function(k,f){return f;};</script>
 <div id="shareToModal" class="share-to-modal" role="dialog" aria-modal="true">
   <div class="share-to-card">
     <button class="install-close" onclick="closeShareToModal()" aria-label="Sulge">×</button>
-    <div class="share-to-title">Küsi sõpru arvamust</div>
-    <div class="share-to-sub">Vali kuhu jagad — kaob 12h pärast</div>
+    <div class="share-to-title" data-i18n="share.title">Küsi sõpru arvamust</div>
+    <div class="share-to-sub" data-i18n="share.sub">Vali kuhu jagad — kaob 12h pärast</div>
     <div class="share-to-list" id="shareToList"></div>
-    <textarea class="share-to-message-input" id="shareToMessage" placeholder="Lisa küsimus või kommentaar (vabatahtlik)..." maxlength="300"></textarea>
+    <textarea class="share-to-message-input" id="shareToMessage" placeholder="Lisa küsimus või kommentaar (vabatahtlik)..." maxlength="300" data-i18n-ph="share.ph"></textarea>
     <button class="circle-btn primary" style="width:100%" onclick="submitShareToCircles()">
       <span style="display:inline-flex;margin-right:6px;vertical-align:middle" data-icon="send" data-icon-size="14"></span>
-      Saada Circle'idesse
+      <span data-i18n="share.send">Saada Circle'idesse</span>
     </button>
   </div>
 </div>
@@ -1793,36 +1793,36 @@ function switchCirclesTab(tab){
 
 async function loadMyCircles(){
   const v=document.getElementById('circlesMyView');
-  v.innerHTML='<div style="text-align:center;padding:24px;color:rgba(255,255,255,0.5);font-family:\'Cormorant Garamond\',serif;font-style:italic">Laen Circle\'id...</div>';
+  v.innerHTML='<div style="text-align:center;padding:24px;color:rgba(255,255,255,0.5);font-family:\'Cormorant Garamond\',serif;font-style:italic">'+t('circ.loading','Laen Circle\'id...')+'</div>';
   try{
     const data=await apiCall('/api/circles');
     window.myCircles=data.circles||[];
     renderMyCircles();
-  }catch(e){v.innerHTML='<div style="text-align:center;color:#e8a090;padding:20px">Viga: '+esc(e.message)+'</div>';}
+  }catch(e){v.innerHTML='<div style="text-align:center;color:#e8a090;padding:20px">'+t('gen.error','Viga')+': '+esc(e.message)+'</div>';}
 }
 
 function renderMyCircles(){
   const v=document.getElementById('circlesMyView');
   let html='';
   if(window.myCircles.length===0){
-    html+='<div class="feed-empty"><div class="feed-empty-icon">✦</div><div class="feed-empty-text"><strong>Sul pole veel ühtegi ringi.</strong><br>Loo uus ring ja kutsu sõpru — või liitu sõbra jagatud lingiga (nupp „Liitu koodiga" all).</div></div>';
+    html+='<div class="feed-empty"><div class="feed-empty-icon">✦</div><div class="feed-empty-text">'+t('circ.empty','<strong>Sul pole veel ühtegi ringi.</strong><br>Loo uus ring ja kutsu sõpru — või liitu sõbra jagatud lingiga (nupp „Liitu koodiga" all).')+'</div></div>';
   }else{
-    html+='<div style="font-size:10px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;font-family:\'DM Mono\',monospace;margin-bottom:10px">Sinu Circle\'id</div>';
+    html+='<div style="font-size:10px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;font-family:\'DM Mono\',monospace;margin-bottom:10px">'+t('circ.your','Sinu Circle\'id')+'</div>';
     window.myCircles.forEach(c=>{
       html+='<div class="circle-item" onclick="openCircleDetail(\''+esc(c.id)+'\')">'
        +'<div class="circle-emoji">'+esc(c.icon||'✨')+'</div>'
        +'<div class="circle-info"><div class="circle-name">'+esc(c.name)+'</div>'
-       +'<div class="circle-meta">'+(c.members?c.members.length:1)+' liige · '+esc(c.id.slice(2,8))+'</div></div>'
+       +'<div class="circle-meta">'+(c.members?c.members.length:1)+' '+t('circ.members','liiget')+' · '+esc(c.id.slice(2,8))+'</div></div>'
        +'<div class="circle-arrow">→</div></div>';
     });
   }
   html+='<div style="display:flex;gap:8px;margin-top:12px">';
-  html+='<button class="circle-create-btn" style="margin-top:0;flex:1" onclick="showCreateCircleForm()"><span data-icon="plus" data-icon-size="14"></span>Loo ring</button>';
-  html+='<button class="circle-create-btn" style="margin-top:0;flex:1;border-style:solid;border-color:rgba(155,143,181,0.5)" onclick="showJoinCodeForm()">🔗 Liitu koodiga</button>';
+  html+='<button class="circle-create-btn" style="margin-top:0;flex:1" onclick="showCreateCircleForm()"><span data-icon="plus" data-icon-size="14"></span>'+t('circ.create','Loo ring')+'</button>';
+  html+='<button class="circle-create-btn" style="margin-top:0;flex:1;border-style:solid;border-color:rgba(155,143,181,0.5)" onclick="showJoinCodeForm()">🔗 '+t('circ.join','Liitu koodiga')+'</button>';
   html+='</div>';
   html+='<div id="createCircleFormWrap"></div>';
   html+='<div id="joinCodeFormWrap"></div>';
-  html+='<div style="font-size:12px;color:rgba(255,255,255,0.55);line-height:1.5;margin-top:14px;text-align:center;font-family:\'Cormorant Garamond\',serif;font-style:italic">Loo ring ja kutsu sõbrad <strong style="color:var(--gold);font-style:normal">ühe lingiga</strong>. Kõik, kes liituvad, on ühes grupis — näevad üksteist, jagavad pilte ja vestlevad.</div>';
+  html+='<div style="font-size:12px;color:rgba(255,255,255,0.55);line-height:1.5;margin-top:14px;text-align:center;font-family:\'Cormorant Garamond\',serif;font-style:italic">'+t('circ.helper','Loo ring ja kutsu sõbrad <strong style="color:var(--gold);font-style:normal">ühe lingiga</strong>. Kõik, kes liituvad, on ühes grupis — näevad üksteist, jagavad pilte ja vestlevad.')+'</div>';
   v.innerHTML=html;renderStaticIcons();
 }
 
@@ -1832,13 +1832,13 @@ function showCreateCircleForm(){
   const icons=['✨','💫','🌸','🎀','🌟','💎','🔥','👗','🎭','🌙'];
   let iconHtml='';
   icons.forEach((ic,i)=>{iconHtml+='<div class="circle-icon-opt'+(i===0?' selected':'')+'" data-icon-emoji="'+ic+'" onclick="selectCircleIcon(this)">'+ic+'</div>';});
-  w.innerHTML='<div class="circle-create-form" style="margin-top:14px"><div style="font-size:10px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;font-family:\'DM Mono\',monospace;margin-bottom:10px">Uus Circle</div>'
-    +'<input class="circle-input" id="newCircleName" placeholder="Nimi (nt. Beauty Squad)" maxlength="50">'
-    +'<div style="font-size:10px;letter-spacing:.2em;color:rgba(255,255,255,0.55);text-transform:uppercase;font-family:\'DM Mono\',monospace;margin-bottom:8px">Vali ikoon</div>'
+  w.innerHTML='<div class="circle-create-form" style="margin-top:14px"><div style="font-size:10px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;font-family:\'DM Mono\',monospace;margin-bottom:10px">'+t('circ.new','Uus Circle')+'</div>'
+    +'<input class="circle-input" id="newCircleName" placeholder="'+t('circ.name.ph','Nimi (nt. Beauty Squad)')+'" maxlength="50">'
+    +'<div style="font-size:10px;letter-spacing:.2em;color:rgba(255,255,255,0.55);text-transform:uppercase;font-family:\'DM Mono\',monospace;margin-bottom:8px">'+t('circ.chooseicon','Vali ikoon')+'</div>'
     +'<div class="circle-icons-row">'+iconHtml+'</div>'
     +'<div class="circle-form-actions">'
-    +'<button class="circle-btn secondary" onclick="cancelCreateCircle()">Tühista</button>'
-    +'<button class="circle-btn primary" onclick="submitCreateCircle()">Loo Circle</button>'
+    +'<button class="circle-btn secondary" onclick="cancelCreateCircle()">'+t('gen.cancel','Tühista')+'</button>'
+    +'<button class="circle-btn primary" onclick="submitCreateCircle()">'+t('circ.createbtn','Loo Circle')+'</button>'
     +'</div></div>';
   setTimeout(()=>document.getElementById('newCircleName').focus(),100);
 }
@@ -1849,31 +1849,31 @@ function showJoinCodeForm(){
   cancelCreateCircle();
   const w=document.getElementById('joinCodeFormWrap');
   if(!w)return;
-  w.innerHTML='<div class="circle-create-form" style="margin-top:14px"><div style="font-size:10px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;font-family:\'DM Mono\',monospace;margin-bottom:10px">Liitu olemasoleva ringiga</div>'
-    +'<input class="circle-input" id="joinCodeInput" placeholder="Kleebi kutselink või kood" autocomplete="off">'
-    +'<div style="font-size:11px;color:rgba(255,255,255,0.5);margin-bottom:12px">Sõber saatis sulle lingi (nt WhatsAppis)? Kleebi see siia — ei pea uut ringi looma.</div>'
+  w.innerHTML='<div class="circle-create-form" style="margin-top:14px"><div style="font-size:10px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;font-family:\'DM Mono\',monospace;margin-bottom:10px">'+t('circ.join.title','Liitu olemasoleva ringiga')+'</div>'
+    +'<input class="circle-input" id="joinCodeInput" placeholder="'+t('circ.join.ph','Kleebi kutselink või kood')+'" autocomplete="off">'
+    +'<div style="font-size:11px;color:rgba(255,255,255,0.5);margin-bottom:12px">'+t('circ.join.hint','Sõber saatis sulle lingi (nt WhatsAppis)? Kleebi see siia — ei pea uut ringi looma.')+'</div>'
     +'<div class="circle-form-actions">'
-    +'<button class="circle-btn secondary" onclick="cancelJoinCode()">Tühista</button>'
-    +'<button class="circle-btn primary" onclick="submitJoinCode()">Liitu</button>'
+    +'<button class="circle-btn secondary" onclick="cancelJoinCode()">'+t('gen.cancel','Tühista')+'</button>'
+    +'<button class="circle-btn primary" onclick="submitJoinCode()">'+t('circ.join.btn','Liitu')+'</button>'
     +'</div></div>';
   setTimeout(()=>{const el=document.getElementById('joinCodeInput');if(el)el.focus();},100);
 }
 function cancelJoinCode(){const w=document.getElementById('joinCodeFormWrap');if(w)w.innerHTML='';}
 async function submitJoinCode(){
   const raw=(document.getElementById('joinCodeInput').value||'').trim();
-  if(!raw){alert('Kleebi kutselink või kood');return;}
+  if(!raw){alert(window.t('circ.join.ph','Kleebi kutselink või kood'));return;}
   let code=raw;
   const mm=raw.match(/[?&]join=([^&\s]+)/i);
   if(mm)code=decodeURIComponent(mm[1]);
   code=code.trim().replace(/[\/\s]+$/,'');
-  if(!code){alert('Koodi ei leitud lingist');return;}
+  if(!code){alert(window.t('circ.nocode','Koodi ei leitud lingist'));return;}
   try{
     const data=await apiCall('/api/circles/join/'+encodeURIComponent(code),{method:'POST'});
     cancelJoinCode();
     const t=document.getElementById('friendToast');const txt=document.getElementById('friendToastText');
-    if(t&&txt){const nm=(data.circle&&data.circle.name)?esc(data.circle.name):'ring';txt.innerHTML='<strong>✦ Liitusid ringiga: '+nm+'</strong>';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),4500);}
+    if(t&&txt){const nm=(data.circle&&data.circle.name)?esc(data.circle.name):'ring';txt.innerHTML='<strong>✦ '+window.t('circ.joined','Liitusid ringiga')+': '+nm+'</strong>';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),4500);}
     await loadMyCircles();
-  }catch(e){alert('Liitumine ebaõnnestus: '+e.message+'\n\nKontrolli, et link/kood on õige ja pole aegunud (48h).');}
+  }catch(e){alert(window.t('circ.joinfail','Liitumine ebaõnnestus')+': '+e.message+'\n\n'+window.t('circ.joinfail2','Kontrolli, et link/kood on õige ja pole aegunud (48h).'));}
 }
 
 async function submitCreateCircle(){
@@ -1889,45 +1889,45 @@ async function submitCreateCircle(){
 }
 
 async function openCircleDetail(id){
-  const circle=window.myCircles.find(c=>c.id===id);if(!circle){alert('Circle\'i ei leitud');return;}
+  const circle=window.myCircles.find(c=>c.id===id);if(!circle){alert(t('circ.notfound','Circle\'i ei leitud'));return;}
   window.currentCircleDetail=circle;
   document.getElementById('circlesMyView').style.display='none';
   document.getElementById('circlesFeedView').style.display='none';
   const v=document.getElementById('circlesDetailView');v.style.display='block';
-  v.innerHTML='<div style="text-align:center;padding:20px;color:rgba(255,255,255,0.5)">Loon kutselinki...</div>';
+  v.innerHTML='<div style="text-align:center;padding:20px;color:rgba(255,255,255,0.5)">'+t('circ.creatinglink','Loon kutselinki...')+'</div>';
   let inviteCode='';
   try{const inv=await apiCall('/api/circles/'+id+'/invite',{method:'POST'});inviteCode=inv.code;}catch(e){}
   const url=(location.origin+location.pathname).replace(/index\.html$/i,'').replace(/\/$/,'')+'/?join='+inviteCode;
-  let html='<div class="circle-detail-head"><button class="circle-detail-back" onclick="switchCirclesTab(\'my\')">← Tagasi</button></div>'
+  let html='<div class="circle-detail-head"><button class="circle-detail-back" onclick="switchCirclesTab(\'my\')">← '+t('gen.back','Tagasi')+'</button></div>'
     +'<div style="display:flex;align-items:center;gap:12px;margin-bottom:18px">'
     +'<div class="circle-emoji" style="width:56px;height:56px;font-size:26px">'+esc(circle.icon)+'</div>'
     +'<div><div style="font-family:\'Cormorant Garamond\',serif;font-size:22px;color:#fff;font-weight:600">'+esc(circle.name)+'</div>'
-    +'<div style="font-size:11px;color:rgba(255,255,255,0.5);font-family:\'DM Mono\',monospace">'+(circle.members?circle.members.length:1)+' liige</div></div></div>';
+    +'<div style="font-size:11px;color:rgba(255,255,255,0.5);font-family:\'DM Mono\',monospace">'+(circle.members?circle.members.length:1)+' '+t('circ.members','liiget')+'</div></div></div>';
   if(inviteCode){
     html+='<div class="circle-invite-box">'
-    +'<div class="circle-invite-label">Kutsu sõbrad · kehtib 48h</div>'
-    +'<div style="font-size:12px;color:rgba(255,255,255,0.65);margin-bottom:8px;line-height:1.5">Saada see link sõbrale (WhatsApp, SMS). Kui ta lingi avab, <strong style="color:var(--gold)">liitub ta selle ringiga</strong> ja kõik liikmed näevad teda.</div>'
+    +'<div class="circle-invite-label">'+t('circ.invite.label','Kutsu sõbrad · kehtib 48h')+'</div>'
+    +'<div style="font-size:12px;color:rgba(255,255,255,0.65);margin-bottom:8px;line-height:1.5">'+t('circ.invite.desc','Saada see link sõbrale (WhatsApp, SMS). Kui ta lingi avab, <strong style="color:var(--gold)">liitub ta selle ringiga</strong> ja kõik liikmed näevad teda.')+'</div>'
     +'<div class="circle-invite-code">'+esc(url)+'</div>'
     +'<div class="circle-invite-actions">'
-    +'<button class="circle-btn primary" onclick="copyText(\''+esc(url)+'\',this)">Kopeeri link</button>'
-    +'<button class="circle-btn secondary" onclick="shareInviteLink(\''+esc(url)+'\',\''+esc(circle.name)+'\')">Jaga</button>'
+    +'<button class="circle-btn primary" onclick="copyText(\''+esc(url)+'\',this)">'+t('circ.copylink','Kopeeri link')+'</button>'
+    +'<button class="circle-btn secondary" onclick="shareInviteLink(\''+esc(url)+'\',\''+esc(circle.name)+'\')">'+t('gen.share','Jaga')+'</button>'
     +'</div>'
-    +'<div style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.08);font-size:11px;color:rgba(255,255,255,0.55)">Või ütle sõbrale see kood, mille ta sisestab „Liitu koodiga" alla:<br><strong style="color:var(--gold-bright);letter-spacing:.2em;font-size:14px;font-family:\'DM Mono\',monospace">'+esc(inviteCode)+'</strong></div>'
+    +'<div style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.08);font-size:11px;color:rgba(255,255,255,0.55)">'+t('circ.invite.orcode','Või ütle sõbrale see kood, mille ta sisestab „Liitu koodiga" alla:')+'<br><strong style="color:var(--gold-bright);letter-spacing:.2em;font-size:14px;font-family:\'DM Mono\',monospace">'+esc(inviteCode)+'</strong></div>'
     +'</div>';
   }
   html+='<button class="circle-detail-chat-btn" onclick="openCircleChat(\''+esc(circle.id)+'\')">'
     +'<span data-icon="comment" data-icon-size="16"></span>'
-    +'Ava vestlus — kirjuta sõbrannadega'
+    +t('circ.openchat','Ava vestlus — kirjuta sõbrannadega')
     +'</button>';
-  html+='<div style="font-size:10px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;font-family:\'DM Mono\',monospace;margin-bottom:8px">Liikmed</div>'
+  html+='<div style="font-size:10px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;font-family:\'DM Mono\',monospace;margin-bottom:8px">'+t('circ.members.label','Liikmed')+'</div>'
     +'<div class="circle-members-list">';
   (circle.members||[]).forEach(m=>{
     html+='<div class="circle-member"><div class="circle-member-avatar">'+esc(initialsFrom(m))+'</div>'
     +'<div class="circle-member-email">'+esc(m)+'</div>'
-    +(m===circle.ownerEmail?'<div class="circle-member-owner">Omanik</div>':'')+'</div>';
+    +(m===circle.ownerEmail?'<div class="circle-member-owner">'+t('circ.owner','Omanik')+'</div>':'')+'</div>';
   });
   html+='</div>';
-  html+='<button class="circle-btn secondary" style="width:100%" onclick="leaveCircle(\''+esc(circle.id)+'\')">Lahku Circle\'ist</button>';
+  html+='<button class="circle-btn secondary" style="width:100%" onclick="leaveCircle(\''+esc(circle.id)+'\')">'+t('circ.leave','Lahku Circle\'ist')+'</button>';
   v.innerHTML=html;
   renderStaticIcons();
 }
@@ -2242,7 +2242,7 @@ async function handleJoinInvite(){
   try{const data=await apiCall('/api/circles/join/'+encodeURIComponent(code),{method:'POST'});
     try{const u=new URL(window.location.href);u.searchParams.delete('join');history.replaceState({},'',u.pathname+(u.search?u.search:'')+u.hash);}catch(_){}
     const t=document.getElementById('friendToast');const txt=document.getElementById('friendToastText');
-    if(t&&txt){const nm=(data.circle&&data.circle.name)?esc(data.circle.name):'ring';txt.innerHTML='<strong>✦ Liitusid ringiga: '+nm+'</strong>';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),4500);}
+    if(t&&txt){const nm=(data.circle&&data.circle.name)?esc(data.circle.name):'ring';txt.innerHTML='<strong>✦ '+window.t('circ.joined','Liitusid ringiga')+': '+nm+'</strong>';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),4500);}
     await loadMyCircles();
   }catch(e){alert('Kutsega liitumine ebaõnnestus: '+e.message);}
 }
@@ -2256,7 +2256,7 @@ async function resumePendingJoin(){
     const data=await apiCall('/api/circles/join/'+encodeURIComponent(code),{method:'POST'});
     try{const u=new URL(window.location.href);u.searchParams.delete('join');history.replaceState({},'',u.pathname+(u.search?u.search:'')+u.hash);}catch(_){}
     const t=document.getElementById('friendToast');const txt=document.getElementById('friendToastText');
-    if(t&&txt){const nm=(data.circle&&data.circle.name)?esc(data.circle.name):'ring';txt.innerHTML='<strong>✦ Liitusid ringiga: '+nm+'</strong>';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),4500);}
+    if(t&&txt){const nm=(data.circle&&data.circle.name)?esc(data.circle.name):'ring';txt.innerHTML='<strong>✦ '+window.t('circ.joined','Liitusid ringiga')+': '+nm+'</strong>';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),4500);}
     if(typeof loadMyCircles==='function'){try{await loadMyCircles();}catch(_){}}
     return true;
   }catch(e){return false;}
@@ -3509,7 +3509,48 @@ if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.s
       'footer.terms': 'Terms',
       'footer.refunds': 'Refunds',
       'footer.contact': 'Contact',
-      'footer.bottom': '© glow4me.ee · AI Style Assistant'
+      'footer.bottom': '© glow4me.ee · AI Style Assistant',
+      'circ.tab.my': "My Circles",
+      'circ.tab.feed': 'Feed',
+      'circ.login.text': 'Log in to create a Circle and share your style with friends ✦',
+      'circ.login.btn': 'Log in',
+      'share.title': 'Ask friends for their opinion',
+      'share.sub': 'Choose where to share — disappears after 12h',
+      'share.ph': 'Add a question or comment (optional)...',
+      'share.send': 'Send to Circles',
+      'circ.loading': 'Loading Circles...',
+      'gen.error': 'Error',
+      'circ.empty': '<strong>You have no rings yet.</strong><br>Create a new ring and invite friends — or join with a shared link from a friend (the "Join with code" button below).',
+      'circ.your': 'Your Circles',
+      'circ.members': 'members',
+      'circ.create': 'Create ring',
+      'circ.join': 'Join with code',
+      'circ.helper': 'Create a ring and invite friends with <strong style="color:var(--gold);font-style:normal">one link</strong>. Everyone who joins is in one group — they see each other, share photos and chat.',
+      'gen.cancel': 'Cancel',
+      'gen.back': 'Back',
+      'gen.share': 'Share',
+      'circ.new': 'New Circle',
+      'circ.name.ph': 'Name (e.g. Beauty Squad)',
+      'circ.chooseicon': 'Choose an icon',
+      'circ.createbtn': 'Create Circle',
+      'circ.join.title': 'Join an existing ring',
+      'circ.join.ph': 'Paste the invite link or code',
+      'circ.join.hint': 'A friend sent you a link (e.g. on WhatsApp)? Paste it here — no need to create a new ring.',
+      'circ.join.btn': 'Join',
+      'circ.joined': 'Joined ring',
+      'circ.nocode': 'No code found in the link',
+      'circ.joinfail': 'Joining failed',
+      'circ.joinfail2': 'Check that the link/code is correct and not expired (48h).',
+      'circ.notfound': 'Circle not found',
+      'circ.creatinglink': 'Creating invite link...',
+      'circ.invite.label': 'Invite friends · valid 48h',
+      'circ.invite.desc': 'Send this link to a friend (WhatsApp, SMS). When they open it, <strong style="color:var(--gold)">they join this ring</strong> and all members see them.',
+      'circ.copylink': 'Copy link',
+      'circ.invite.orcode': 'Or tell your friend this code to enter under "Join with code":',
+      'circ.openchat': 'Open chat — message your friends',
+      'circ.members.label': 'Members',
+      'circ.owner': 'Owner',
+      'circ.leave': 'Leave Circle'
     }
   };
   const _orig = new WeakMap();
