@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kasutustingimused · GLÓW</title>
-<meta name="description" content="GLÓW teenuse kasutustingimused ja lepingu põhipunktid.">
+<title data-et="Kasutustingimused · GLÓW" data-en="Terms of Use · GLÓW">Kasutustingimused · GLÓW</title>
+<meta name="description" content="GLÓW teenuse kasutustingimused ja lepingu põhipunktid. / GLÓW terms of use and key contract points.">
 <meta name="theme-color" content="#c9a96e">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-180.png">
@@ -15,8 +15,12 @@
 body{background:var(--bg);color:#fff;font-family:'Cormorant Garamond',Georgia,serif;line-height:1.8;min-height:100vh}
 .ambient{position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 70% 50% at 15% 10%,rgba(196,115,107,0.08) 0%,transparent 60%),radial-gradient(ellipse 50% 70% at 85% 90%,rgba(123,158,142,0.06) 0%,transparent 60%)}
 .wrap{position:relative;z-index:1;max-width:720px;margin:0 auto;padding:32px 20px 80px}
-.back-link{display:inline-flex;align-items:center;gap:8px;color:var(--gold);text-decoration:none;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.25em;text-transform:uppercase;margin-bottom:28px;padding:8px 12px;border:1px solid rgba(201,169,110,0.4);border-radius:3px;transition:all .2s}
+.back-link{display:inline-flex;align-items:center;gap:8px;color:var(--gold);text-decoration:none;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.25em;text-transform:uppercase;margin-bottom:20px;padding:8px 12px;border:1px solid rgba(201,169,110,0.4);border-radius:3px;transition:all .2s}
 .back-link:hover{background:rgba(201,169,110,0.1);border-color:var(--gold)}
+.lang-toggle{display:flex;gap:6px;justify-content:center;margin-bottom:24px}
+.lang-toggle button{background:none;border:1px solid rgba(201,169,110,0.4);color:rgba(255,255,255,0.7);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;padding:7px 16px;border-radius:3px;cursor:pointer;text-transform:uppercase;transition:all .2s}
+.lang-toggle button:hover{border-color:var(--gold)}
+.lang-toggle button.active{background:var(--gold);color:var(--bg);border-color:var(--gold);font-weight:600}
 header{text-align:center;padding:20px 0 24px;border-bottom:1px solid rgba(201,169,110,0.3);margin-bottom:32px}
 .logo{font-size:44px;font-weight:300;letter-spacing:.25em;color:#fff;line-height:1;margin-bottom:8px}
 .logo em{color:var(--gold);font-style:italic;text-shadow:0 0 20px rgba(201,169,110,0.5)}
@@ -41,18 +45,28 @@ a:hover{text-decoration-color:var(--gold-bright)}
 .contact-block strong{color:#c4b8e0}
 footer{text-align:center;margin-top:60px;padding-top:28px;border-top:1px solid rgba(201,169,110,0.2);font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:.2em}
 footer a{color:var(--gold);text-decoration:none;margin:0 6px}
+.lang-en{display:none}
+body[data-lang="en"] .lang-et{display:none}
+body[data-lang="en"] .lang-en{display:block}
 </style>
 </head>
 <body>
 <div class="ambient"></div>
 <div class="wrap">
-  <a href="index.html" class="back-link">← Tagasi rakendusse</a>
+  <a href="index.html" class="back-link"><span class="lang-et">← Tagasi rakendusse</span><span class="lang-en">← Back to app</span></a>
+
+  <div class="lang-toggle">
+    <button data-lang-btn="et" onclick="__setLang('et')">Eesti</button>
+    <button data-lang-btn="en" onclick="__setLang('en')">English</button>
+  </div>
 
   <header>
     <div class="logo">GL<em>Ó</em>W</div>
-    <div class="tagline">AI · Stiiliassistent</div>
+    <div class="tagline"><span class="lang-et">AI · Stiiliassistent</span><span class="lang-en">AI · Style Assistant</span></div>
   </header>
 
+  <!-- ================= ESTONIAN ================= -->
+  <div class="lang-et">
   <h1>Kasutustingimused</h1>
   <div class="updated">Kehtiv alates: {{JOUSTUMISE_KUUP}}</div>
 
@@ -176,6 +190,147 @@ footer a{color:var(--gold);text-decoration:none;margin:0 6px}
     <p><a href="index.html">Rakendus</a> · <a href="privaatsus.html">Privaatsus</a> · <a href="tagasimaksed.html">Tagasimaksed</a> · <a href="kontakt.html">Kontakt</a></p>
     <p style="margin-top:16px">© {{ETTEVOTE_NIMI}} · glow4me.ee</p>
   </footer>
+  </div>
+
+  <!-- ================= ENGLISH ================= -->
+  <div class="lang-en">
+  <h1>Terms of Use</h1>
+  <div class="updated">Effective from: {{JOUSTUMISE_KUUP}}</div>
+
+  <h2>1. Service overview</h2>
+  <p>GLÓW is a web-based advisory service powered by artificial intelligence (AI), providing:</p>
+  <ul>
+    <li>Makeup and style analysis based on the user's photos</li>
+    <li>Assessment of outfits for various occasions</li>
+    <li>Recommendations for cosmetic procedures</li>
+    <li>Product information and shareable materials</li>
+  </ul>
+  <p>Service provider:</p>
+  <div class="contact-block">
+    <p><strong>{{ETTEVOTE_NIMI}}</strong></p>
+    <p>Registry code: {{REGISTRIKOOD}}</p>
+    <p>Address: {{AADRESS}}</p>
+    <p>Email: <a href="mailto:info@glow4me.ee">info@glow4me.ee</a></p>
+  </div>
+
+  <h2>2. Acceptance of terms</h2>
+  <p>By using the app you agree to these terms and to our <a href="privaatsus.html">privacy policy</a>. If you do not agree with the terms, please do not use the service.</p>
+
+  <h2>3. Age limit</h2>
+  <div class="warn-box">
+    <p>The service is intended for users aged 16 and over. Minors under 16 may use the service only with the consent of a legal guardian.</p>
+  </div>
+
+  <h2>4. Creating an account</h2>
+  <p>To synchronise credits across your devices you can create an account with an email address. To create an account:</p>
+  <ul>
+    <li>Enter a working email address</li>
+    <li>Confirm the <strong>magic link</strong> sent to your email</li>
+    <li>Your account is linked to your email (no password needed)</li>
+  </ul>
+  <p>You are responsible for the availability and security of your email.</p>
+
+  <h2>5. Credits and payments</h2>
+
+  <h3>5.1. Credit system</h3>
+  <p>Each analysis uses one credit. New users get <strong>3 free credits</strong> to try it out. Additional credits can be bought in predefined packages.</p>
+
+  <h3>5.2. Prices</h3>
+  <p>Current prices are shown in the app's "Buy" section. Prices are in <strong>euros</strong> and include VAT (where applicable).</p>
+
+  <h3>5.3. Payments</h3>
+  <p>Payments are processed by <strong>Stripe, Inc.</strong> (USA). We accept:</p>
+  <ul>
+    <li>Credit cards: Visa, Mastercard, American Express</li>
+    <li>Apple Pay, Google Pay</li>
+    <li>SEPA direct debit (in European banking)</li>
+  </ul>
+  <p>On a successful payment, credits are added to your account immediately. A receipt is sent to your email.</p>
+
+  <h3>5.4. Validity of credits</h3>
+  <p>Purchased credits do not expire, but may be cancelled if the account is inactive for 3 years.</p>
+
+  <h2>6. Refunds</h2>
+  <p>See the separate <a href="tagasimaksed.html">refund policy</a> page. In brief:</p>
+  <ul>
+    <li>A <strong>14-day right of withdrawal</strong> applies to purchased credits that have not yet been used</li>
+    <li>Used credits are not refunded</li>
+    <li>To request a refund, write to <a href="mailto:info@glow4me.ee">info@glow4me.ee</a></li>
+  </ul>
+
+  <h2>7. User obligations</h2>
+  <p>You agree to the following:</p>
+  <ul>
+    <li>Not to use the service for <strong>unlawful</strong> purposes</li>
+    <li>Not to upload photos of other people without <strong>their consent</strong></li>
+    <li>Not to abuse the service in an automated way (bots, scripts)</li>
+    <li>Not to attempt to <strong>hack</strong>, copy or break the service</li>
+    <li>To be responsible for the security of your account</li>
+    <li>Not to share your account with other people</li>
+  </ul>
+
+  <h2>8. Intellectual property</h2>
+  <p>All GLÓW app content, design, code, logo and text are protected by <strong>copyright</strong> and belong to {{ETTEVOTE_NIMI}}. Copying, modification or commercial use without permission is prohibited.</p>
+  <p>Photos you upload remain your property. By giving them to us for analysis, you grant us a limited licence for their <strong>temporary processing</strong>.</p>
+
+  <h2>9. Nature of AI responses</h2>
+  <div class="highlight-box">
+    <p><strong>Important:</strong> GLÓW recommendations are <strong>informational</strong> and based on AI technology. They do not replace:</p>
+  </div>
+  <ul>
+    <li>The advice of a professional beauty specialist</li>
+    <li>The diagnosis of a medical dermatologist</li>
+    <li>The consultation of a cosmetic surgeon</li>
+  </ul>
+  <p>We accept no liability for decisions made solely on the basis of AI recommendations.</p>
+
+  <h2>10. Limitation of liability</h2>
+  <p>The service is provided on an <strong>"as is"</strong> basis. {{ETTEVOTE_NIMI}} is not liable for:</p>
+  <ul>
+    <li>Temporary service interruptions (server maintenance, third-party failures)</li>
+    <li>The accuracy and completeness of AI responses</li>
+    <li>Indirect damages (lost revenue, damaged reputation, etc.)</li>
+    <li>The conduct of third parties (Anthropic, Stripe, Cloudflare)</li>
+  </ul>
+  <p>Our liability is <strong>limited to the amount of credits paid</strong> during the last 12 months.</p>
+
+  <h2>11. Closing your account</h2>
+  <p>You have the right to close your account at any time by emailing <a href="mailto:info@glow4me.ee">info@glow4me.ee</a>. Credits remaining in the account are not refunded, except during the 14-day withdrawal period.</p>
+  <p>We have the right to close an account if you breach the terms (e.g. abuse, bots, unlawful activity). In that case we will notify you by email and credits will not be refunded.</p>
+
+  <h2>12. Changes to the terms</h2>
+  <p>We may change the terms. We will announce significant changes at least <strong>30 days in advance</strong> by email (if you have an account) or with an in-app notice. If you do not agree with the changes, you have the right to close your account.</p>
+
+  <h2>13. Applicable law and disputes</h2>
+  <p>These terms are governed by <strong>the law of the Republic of Estonia</strong>. Disputes are resolved first through negotiation. If no agreement is reached, the <strong>Harju County Court</strong> has jurisdiction.</p>
+  <p>Consumers may also use the EU <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">Online Dispute Resolution (ODR)</a> platform.</p>
+
+  <h2>14. Contact</h2>
+  <p>If you have any questions, write to:</p>
+  <div class="contact-block">
+    <p><strong>{{ETTEVOTE_NIMI}}</strong></p>
+    <p>Email: <a href="mailto:info@glow4me.ee">info@glow4me.ee</a></p>
+    <p>Address: {{AADRESS}}</p>
+  </div>
+
+  <footer>
+    <p><a href="index.html">App</a> · <a href="privaatsus.html">Privacy</a> · <a href="tagasimaksed.html">Refunds</a> · <a href="kontakt.html">Contact</a></p>
+    <p style="margin-top:16px">© {{ETTEVOTE_NIMI}} · glow4me.ee</p>
+  </footer>
+  </div>
 </div>
+<script>
+(function(){
+  function detect(){try{var s=localStorage.getItem('glow_lang');if(s==='et'||s==='en')return s;}catch(e){}
+    var tz='';try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||'';}catch(e){}
+    var l=(navigator.language||navigator.userLanguage||'').toLowerCase();
+    if(tz==='Europe/Tallinn'||l.indexOf('et')===0)return'et';return'en';}
+  function apply(lang){document.body.setAttribute('data-lang',lang);document.documentElement.lang=lang;
+    document.querySelectorAll('[data-lang-btn]').forEach(function(b){b.classList.toggle('active',b.getAttribute('data-lang-btn')===lang);});
+    var t=document.querySelector('title');if(t&&t.getAttribute('data-'+lang))document.title=t.getAttribute('data-'+lang);}
+  window.__setLang=function(l){if(l!=='et'&&l!=='en')return;try{localStorage.setItem('glow_lang',l);}catch(e){}apply(l);};
+  apply(detect());
+})();
+</script>
 </body>
 </html>
