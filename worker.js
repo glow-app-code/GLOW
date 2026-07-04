@@ -389,6 +389,16 @@ function isCircleMember(circle, email) {
   return circle.members.some(m => String(m || '').toLowerCase() === e);
 }
 
+// Grupivestluse jututuba: kõik sama grupi ringid jagavad üht vestlust.
+// Uued ringid saavad püsiva groupId. Vanadel (ilma groupId'ta) tuletame
+// ühise võtme liikmete e-postidest — nii toimivad olemasolevad ühendused
+// kohe, ilma uuesti liitumata (ühesuguse liikmeskonnaga ringid = sama tuba).
+function chatRoom(circle) {
+  if (circle && circle.groupId) return circle.groupId;
+  const members = ((circle && circle.members) || []).map(e => String(e || '').toLowerCase()).sort();
+  return members.length ? ('grp:' + members.join('|')) : ('one:' + (circle && circle.id));
+}
+
 // Igal kasutajal on vähemalt üks isiklik ring, mille omanik ta ise on.
 // Tagastab kasutaja enda ringi (loob selle, kui veel pole).
 async function ensurePrimaryCircle(env, email) {
@@ -400,7 +410,8 @@ async function ensurePrimaryCircle(env, email) {
   const circleId = 'c_' + generateToken(8);
   const circle = {
     id: circleId, name: 'Minu ring', icon: '✨',
-    ownerEmail: email, members: [email], createdAt: Date.now()
+    ownerEmail: email, members: [email], createdAt: Date.now(),
+    groupId: 'g_' + circleId
   };
   await env.GLOW_KV.put('circle:' + circleId, JSON.stringify(circle));
   if (!user.circleIds.includes(circleId)) user.circleIds.push(circleId);
@@ -473,7 +484,8 @@ async function handleCirclesCreate(request, env, origin) {
     id: circleId, name, icon,
     ownerEmail: sess.email,
     members: [sess.email],
-    createdAt: Date.now()
+    createdAt: Date.now(),
+    groupId: 'g_' + circleId
   };
   await env.GLOW_KV.put('circle:' + circleId, JSON.stringify(circle));
   const user = await ensureUserInited(env, sess.email);
@@ -510,11 +522,15 @@ async function handleCirclesJoin(request, env, origin, code) {
     return json({error: 'Sa ei saa iseenda lingiga liituda'}, 400, origin);
   }
 
+  // Taga, et kutsuja ringil oleks püsiv grupi-ID (vana ring võib olla ilma).
+  if (!circle.groupId) circle.groupId = 'g_' + circle.id;
+
   // 1) Lisa liituja kutsuja ringi
   if (!isCircleMember(circle, sess.email)) {
     circle.members.push(sess.email);
-    await env.GLOW_KV.put('circle:' + circle.id, JSON.stringify(circle));
   }
+  await env.GLOW_KV.put('circle:' + circle.id, JSON.stringify(circle));
+
   const user = await ensureUserInited(env, sess.email);
   if (!user.circleIds.includes(circle.id)) {
     user.circleIds.push(circle.id);
@@ -526,11 +542,13 @@ async function handleCirclesJoin(request, env, origin, code) {
   //    kuid nimekirjas ainult oma ringi (handleCirclesList filtreerib omaniku järgi).
   const myCircle = await ensurePrimaryCircle(env, sess.email);
   if (friendEmail) {
-    // a) lisa kutsuja liituja ringi liikmeks
+    // a) lisa kutsuja liituja ringi liikmeks + ühenda vestlusgrupp:
+    //    liituja ring liitub kutsuja grupiga, et vestlus oleks ühine.
     if (!isCircleMember(myCircle, friendEmail)) {
       myCircle.members.push(friendEmail);
-      await env.GLOW_KV.put('circle:' + myCircle.id, JSON.stringify(myCircle));
     }
+    myCircle.groupId = circle.groupId;
+    await env.GLOW_KV.put('circle:' + myCircle.id, JSON.stringify(myCircle));
     // b) kutsuja näeb liituja ringi uudisvoogu (aga MITTE liikmete nimekirja)
     const friendUser = await ensureUserInited(env, friendEmail);
     if (!friendUser.circleIds.includes(myCircle.id)) {
@@ -690,10 +708,12 @@ async function handleCircleMessagesGet(request, env, origin, circleId) {
   if (!sess) return json({error: 'Unauthorized'}, 401, origin);
   const circle = await ensureCircleMember(env, circleId, sess.email);
   if (!circle) return json({error: 'Ei ole selle Circle liige'}, 403, origin);
+  const room = chatRoom(circle);
+  if (!circle.groupId) { circle.groupId = room; await env.GLOW_KV.put('circle:' + circleId, JSON.stringify(circle)); }
   const url = new URL(request.url);
   const cat = url.searchParams.get('cat') || '';
   const since = parseInt(url.searchParams.get('since') || '0', 10);
-  const msgs = await env.GLOW_KV.get('circle_msgs:' + circleId, 'json') || [];
+  const msgs = await env.GLOW_KV.get('circle_msgs:' + room, 'json') || [];
   let filtered = msgs;
   if (cat && CHAT_CATEGORIES.includes(cat)) filtered = filtered.filter(m => m.cat === cat);
   if (since > 0) filtered = filtered.filter(m => (m.ts || 0) > since);
@@ -705,17 +725,19 @@ async function handleCircleMessagePost(request, env, origin, circleId) {
   if (!sess) return json({error: 'Unauthorized'}, 401, origin);
   const circle = await ensureCircleMember(env, circleId, sess.email);
   if (!circle) return json({error: 'Ei ole selle Circle liige'}, 403, origin);
+  const room = chatRoom(circle);
+  if (!circle.groupId) { circle.groupId = room; await env.GLOW_KV.put('circle:' + circleId, JSON.stringify(circle)); }
   const body = await request.json();
   const text = String(body.text || '').trim().slice(0, CHAT_MAX_LEN);
   if (text.length < 1) return json({error: 'Tühi sõnum'}, 400, origin);
   let cat = String(body.cat || 'vaba');
   if (!CHAT_CATEGORIES.includes(cat)) cat = 'vaba';
-  const msgs = await env.GLOW_KV.get('circle_msgs:' + circleId, 'json') || [];
+  const msgs = await env.GLOW_KV.get('circle_msgs:' + room, 'json') || [];
   const now = Date.now();
   const msg = {id: 'm_' + generateToken(8), email: sess.email, text, cat, ts: now};
   msgs.push(msg);
   const trimmed = msgs.slice(-CHAT_MAX_MSGS);
-  await env.GLOW_KV.put('circle_msgs:' + circleId, JSON.stringify(trimmed), {expirationTtl: CHAT_MSG_TTL});
+  await env.GLOW_KV.put('circle_msgs:' + room, JSON.stringify(trimmed), {expirationTtl: CHAT_MSG_TTL});
   return json({message: msg}, 200, origin);
 }
 
