@@ -377,13 +377,24 @@ async function ensureUserInited(env, email) {
   return user;
 }
 
+// E-poste võrreldakse alati suur/väiketähti eirates (nt "Krister..." == "krister...").
+// Vanad ringid loodi mõnikord teistsuguse tähesuurusega — see hoiab need leitavana.
+function sameEmail(a, b) {
+  return String(a || '').toLowerCase() === String(b || '').toLowerCase();
+}
+function isCircleMember(circle, email) {
+  if (!circle || !Array.isArray(circle.members)) return false;
+  const e = String(email || '').toLowerCase();
+  return circle.members.some(m => String(m || '').toLowerCase() === e);
+}
+
 // Igal kasutajal on vähemalt üks isiklik ring, mille omanik ta ise on.
 // Tagastab kasutaja enda ringi (loob selle, kui veel pole).
 async function ensurePrimaryCircle(env, email) {
   const user = await ensureUserInited(env, email);
   for (const id of (user.circleIds || [])) {
     const c = await env.GLOW_KV.get('circle:' + id, 'json');
-    if (c && c.ownerEmail === email) return c;
+    if (c && sameEmail(c.ownerEmail, email)) return c;
   }
   const circleId = 'c_' + generateToken(8);
   const circle = {
@@ -405,7 +416,7 @@ async function handleCirclesList(request, env, origin) {
   const circles = [];
   for (const id of (user.circleIds||[])) {
     const c = await env.GLOW_KV.get('circle:' + id, 'json');
-    if (c && c.ownerEmail === sess.email) circles.push(c);
+    if (c && sameEmail(c.ownerEmail, sess.email)) circles.push(c);
   }
   if (circles.length === 0) {
     circles.push(await ensurePrimaryCircle(env, sess.email));
@@ -439,7 +450,7 @@ async function handleCirclesInvite(request, env, origin, circleId) {
   if (!sess) return json({error: 'Unauthorized'}, 401, origin);
   const circle = await env.GLOW_KV.get('circle:' + circleId, 'json');
   if (!circle) return json({error: 'Circle not found'}, 404, origin);
-  if (!circle.members.includes(sess.email)) return json({error: 'Not a member'}, 403, origin);
+  if (!isCircleMember(circle, sess.email)) return json({error: 'Not a member'}, 403, origin);
   const code = generateToken(6).toUpperCase().slice(0,10);
   await env.GLOW_KV.put('invite:' + code, JSON.stringify({
     circleId, inviterEmail: sess.email,
@@ -458,12 +469,12 @@ async function handleCirclesJoin(request, env, origin, code) {
   if (!circle) return json({error: 'Circle no longer exists'}, 404, origin);
 
   const friendEmail = circle.ownerEmail || invite.inviterEmail;
-  if (friendEmail === sess.email) {
+  if (sameEmail(friendEmail, sess.email)) {
     return json({error: 'Sa ei saa iseenda lingiga liituda'}, 400, origin);
   }
 
   // 1) Lisa liituja kutsuja ringi
-  if (!circle.members.includes(sess.email)) {
+  if (!isCircleMember(circle, sess.email)) {
     circle.members.push(sess.email);
     await env.GLOW_KV.put('circle:' + circle.id, JSON.stringify(circle));
   }
@@ -479,7 +490,7 @@ async function handleCirclesJoin(request, env, origin, code) {
   const myCircle = await ensurePrimaryCircle(env, sess.email);
   if (friendEmail) {
     // a) lisa kutsuja liituja ringi liikmeks
-    if (!myCircle.members.includes(friendEmail)) {
+    if (!isCircleMember(myCircle, friendEmail)) {
       myCircle.members.push(friendEmail);
       await env.GLOW_KV.put('circle:' + myCircle.id, JSON.stringify(myCircle));
     }
@@ -500,12 +511,12 @@ async function handleCircleLeave(request, env, origin, circleId) {
   if (!sess) return json({error: 'Unauthorized'}, 401, origin);
   const circle = await env.GLOW_KV.get('circle:' + circleId, 'json');
   if (circle) {
-    circle.members = (circle.members||[]).filter(e => e !== sess.email);
+    circle.members = (circle.members||[]).filter(e => !sameEmail(e, sess.email));
     if (circle.members.length === 0) {
       await env.GLOW_KV.delete('circle:' + circleId);
       await env.GLOW_KV.delete('circle_shares:' + circleId);
     } else {
-      if (circle.ownerEmail === sess.email) circle.ownerEmail = circle.members[0];
+      if (sameEmail(circle.ownerEmail, sess.email)) circle.ownerEmail = circle.members[0];
       await env.GLOW_KV.put('circle:' + circleId, JSON.stringify(circle));
     }
   }
@@ -550,7 +561,7 @@ async function handleShareCreate(request, env, origin) {
   // Lisa igasse circle'i shares-indeksisse
   for (const cid of circleIds) {
     const circle = await env.GLOW_KV.get('circle:' + cid, 'json');
-    if (!circle || !circle.members.includes(sess.email)) continue;
+    if (!circle || !isCircleMember(circle, sess.email)) continue;
     const idx = await env.GLOW_KV.get('circle_shares:' + cid, 'json') || [];
     idx.unshift(shareId);
     await env.GLOW_KV.put('circle_shares:' + cid, JSON.stringify(idx.slice(0, 50)), {expirationTtl: 14*24*3600});
@@ -633,7 +644,7 @@ const CHAT_MAX_MSGS = 200;
 async function ensureCircleMember(env, circleId, email) {
   const circle = await env.GLOW_KV.get('circle:' + circleId, 'json');
   if (!circle) return null;
-  if (!circle.members || !circle.members.includes(email)) return null;
+  if (!isCircleMember(circle, email)) return null;
   return circle;
 }
 
