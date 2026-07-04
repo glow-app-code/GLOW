@@ -1332,9 +1332,9 @@ window.t=window.t||function(k,f){return f;};</script>
   </div>
 </div>
 
-<div class="tip-banner meik" id="meikTip"><strong id="meikTipText">Suuna kaamera näole ja vajuta Analüüsi</strong></div>
-<div class="tip-banner stiil" id="stiilTip"><strong id="stiilTipText">Suuna kaamera riietusele ja vajuta Analüüsi</strong></div>
-<div class="tip-banner pro" id="proTip"><strong id="proTipText">Soovita protseduuri — suuna kaamera näole</strong></div>
+<div class="tip-banner meik" id="meikTip"><strong id="meikTipText" data-i18n="tip.meik">Suuna kaamera näole ja vajuta Analüüsi</strong></div>
+<div class="tip-banner stiil" id="stiilTip"><strong id="stiilTipText" data-i18n="tip.stiil">Suuna kaamera riietusele ja vajuta Analüüsi</strong></div>
+<div class="tip-banner pro" id="proTip"><strong id="proTipText" data-i18n="tip.pro">Soovita protseduuri — suuna kaamera näole</strong></div>
 
 <!-- KAAMERA — meik, stiil (selfie/tavakaamera), pro -->
 <div class="cam-wrap" id="cameraCard" style="display:none">
@@ -1352,12 +1352,12 @@ window.t=window.t||function(k,f){return f;};</script>
       <div class="cam-ph-hint" data-i18n="cam.phhint">vajuta "Ava kaamera" üleval</div>
     </div>
     <div class="corner tl"></div><div class="corner br"></div>
-    <div class="cam-mode-badge" id="camModeBadge">📷 Tavakaamera</div>
+    <div class="cam-mode-badge" id="camModeBadge" data-i18n="cam.badge">📷 Tavakaamera</div>
     <div class="scanline" id="scan"></div>
   </div>
   <div class="cam-status-bar">
     <div class="dot" id="dot"></div>
-    <span id="smsg">Ootel — vajuta "Ava kaamera"</span>
+    <span id="smsg" data-i18n="cam.idle">Ootel — vajuta "Ava kaamera"</span>
     <div class="wave" id="wave"><span></span><span></span><span></span><span></span><span></span></div>
   </div>
   <div class="errmsg" id="err"></div>
@@ -1386,26 +1386,26 @@ window.t=window.t||function(k,f){return f;};</script>
 <div class="products-section" id="meikNowSection"><div class="products-section-title">Soovituslikud tooted · mactabeauty.com</div><div id="meikNowList"></div></div>
 <div class="products-section" id="meikNextSection"><div class="products-section-title">Tooted järgmiseks korraks · mactabeauty.com</div><div id="meikNextList"></div></div>
 <div class="protocol-card" id="protocolCard"><div class="lbl">✦ Protseduuri juhend</div><div id="protocolSteps"></div></div>
-<div class="pro-products-section" id="proProductsSection"><div class="pro-products-title">Protseduuri tooted · depile.ee</div><div id="proProductsList"></div></div>
-<div class="pro-products-section" id="homeProductsSection"><div class="pro-products-title">Kodune järelhooldus · depile.ee</div><div id="homeProductsList"></div></div>
+<div class="pro-products-section" id="proProductsSection"><div class="pro-products-title" data-i18n="prod.proc">Protseduuri tooted · depile.ee</div><div id="proProductsList"></div></div>
+<div class="pro-products-section" id="homeProductsSection"><div class="pro-products-title" data-i18n="prod.home">Kodune järelhooldus · depile.ee</div><div id="homeProductsList"></div></div>
 
 <div class="card" id="resultCard">
-  <div class="lbl" id="resLbl">Tulemus</div>
+  <div class="lbl" id="resLbl" data-i18n="res.default">Tulemus</div>
   <div class="res-inner">
-    <div class="res-empty" id="resEmpty">Vali stiil ja vajuta Analüüsi</div>
-    <div class="loading" id="load"><div class="loading-dots"><span></span><span></span><span></span></div><div class="loading-text" id="loadingText">Analüüsin...</div></div>
+    <div class="res-empty" id="resEmpty" data-i18n="res.empty.default">Vali stiil ja vajuta Analüüsi</div>
+    <div class="loading" id="load"><div class="loading-dots"><span></span><span></span><span></span></div><div class="loading-text" id="loadingText" data-i18n="load.generic">Analüüsin...</div></div>
     <div class="result-wrap" id="resultWrap">
       <div class="verdict-card" id="verdictCard"><span class="verdict-icon" id="verdictIcon"></span><div class="verdict-text" id="verdictText"></div><div class="verdict-sub" id="verdictSub"></div></div>
       <div class="feedback-text" id="feedbackText"></div>
       <div class="details-grid" id="detailsGrid"></div>
       <div class="scores-row" id="scoresRow"></div>
-      <div class="tip-card" id="tipCard" style="display:none"><div class="tip-label">✦ Soovitus</div><div class="tip-text" id="tipText"></div></div>
+      <div class="tip-card" id="tipCard" style="display:none"><div class="tip-label" data-i18n="res.tip">✦ Soovitus</div><div class="tip-text" id="tipText"></div></div>
     </div>
   </div>
 </div>
 
 <div class="card share-card" id="shareCard">
-  <div class="lbl">Jaga tulemust</div>
+  <div class="lbl" data-i18n="share2.title">Jaga tulemust</div>
   <div class="share-preview" id="sharePrev"></div>
   <div class="share-format-row" id="shareFormatRow">
     <button class="share-fmt active" data-format="stories" onclick="selectShareFormat(this,'stories')">Stories <span>9:16</span></button>
@@ -1415,23 +1415,23 @@ window.t=window.t||function(k,f){return f;};</script>
   <div class="share-actions">
     <button class="share-primary" id="shareDirectBtn" onclick="shareImageDirect()">
       <span class="share-primary-icon">↗</span>
-      <span>Jaga pilt</span>
+      <span data-i18n="share2.image">Jaga pilt</span>
     </button>
     <button class="share-secondary" onclick="saveShareImage()">
       <span class="share-secondary-icon">↓</span>
-      <span>Salvesta galeriisse</span>
+      <span data-i18n="share2.save">Salvesta galeriisse</span>
     </button>
   </div>
   <button class="ask-circle-btn" onclick="openShareToModal()">
     <span data-icon="circles" data-icon-size="18"></span>
-    Küsi sõprade arvamust — GLÓW Circles
+    <span data-i18n="share2.ask">Küsi sõprade arvamust — GLÓW Circles</span>
   </button>
   <div class="share-quick">
     <button class="sbtn fb" onclick="shareFB()" title="Facebook">FB</button>
     <button class="sbtn xtwitter" onclick="shareX()" title="X / Twitter">𝕏</button>
     <button class="sbtn cp" onclick="shareCopy()" title="Kopeeri link">Link</button>
   </div>
-  <div class="share-note">Stories / TikTok kasutavad 9:16 formaati · Pinterest 2:3 · Facebook/Instagram post 1:1</div>
+  <div class="share-note" data-i18n="share2.note">Stories / TikTok kasutavad 9:16 formaati · Pinterest 2:3 · Facebook/Instagram post 1:1</div>
   <canvas id="shareCanvas" style="display:none"></canvas>
 </div>
 
@@ -2673,9 +2673,9 @@ function setStiilInput(input){
     currentFacing=input==='selfie'?'user':'environment';
     resetCam();
     document.getElementById('stiilTip').classList.add('show');
-    const tipText=input==='selfie'?'Selfie — pildista ennast eeskaameraga':'Tavakaamera — pildista kaaslast või riideid';
+    const tipText=input==='selfie'?t('stiiltip.selfie','Selfie — pildista ennast eeskaameraga'):t('stiiltip.camera','Tavakaamera — pildista kaaslast või riideid');
     document.getElementById('stiilTipText').textContent=tipText;
-    document.getElementById('camPhText').textContent=input==='selfie'?'Pildista ennast — proovi riie selga':'Suuna kaamera riietele või kaaslasele';
+    document.getElementById('camPhText').textContent=input==='selfie'?t('camph.selfie','Pildista ennast — proovi riie selga'):t('camph.camera','Suuna kaamera riietele või kaaslasele');
     // Käivita kaamera automaatselt
     setTimeout(()=>startCam(),200);
   }else{
@@ -2688,10 +2688,10 @@ function setStiilInput(input){
 }
 
 function resetCam(){
-  const cb=document.getElementById('camBtn');cb.className='cam-top-btn pri';cb.textContent='✦ Ava kaamera';cb.disabled=false;cb.onclick=startCam;
+  const cb=document.getElementById('camBtn');cb.className='cam-top-btn pri';cb.textContent=t('cam.open','✦ Ava kaamera');cb.disabled=false;cb.onclick=startCam;
   document.getElementById('anaBtn').disabled=true;document.getElementById('autoBtn').disabled=true;document.getElementById('flipBtn').disabled=true;
   document.getElementById('camph').style.display='flex';
-  setDot('idle','Ootel...');
+  setDot('idle',t('cam.waiting','Ootel...'));
 }
 
 // ÜRITUSTE GRID — pildipangale
@@ -2722,7 +2722,7 @@ async function analyzePildipank(){
   if(!selectedUritus||photoBank.length===0)return;
   const btn=document.getElementById('analyzeBankBtn');btn.className='analyze-bank-btn loading';btn.disabled=true;btn.textContent='⟳ Analüüsin...';
   resetResults();document.getElementById('resEmpty').style.display='none';document.getElementById('load').classList.add('on');
-  document.getElementById('loadingText').textContent='Analüüsin '+photoBank.length+' pilti...';
+  document.getElementById('loadingText').textContent=t('load.photos','Analüüsin')+' '+photoBank.length+' '+t('load.photos2','pilti...');
   document.getElementById('resultCard').scrollIntoView({behavior:'smooth',block:'start'});
   const sys=stiilRegime==='garderoob'?getPildipankGarderoobSystem(selectedUritus.name):getPildipankPoodSystem(selectedUritus.name);
   const imageContent=photoBank.map((p,i)=>([{type:'text',text:'Pilt '+(i+1)+':'},{type:'image',source:{type:'base64',media_type:p.mime||'image/jpeg',data:p.b64}}])).flat();
@@ -2732,7 +2732,7 @@ async function analyzePildipank(){
     // Kuni 2 katse — kui JSON-viga, proovi uuesti
     let parsed=null;let lastErr=null;
     for(let attempt=1;attempt<=2;attempt++){
-      if(attempt===2)document.getElementById('loadingText').textContent='AI vastus oli ebatäielik, proovime uuesti...';
+      if(attempt===2)document.getElementById('loadingText').textContent=t('load.incomplete','AI vastus oli ebatäielik, proovime uuesti...');
       try{
         const res=await fetch(glowApiUrl(),{method:'POST',headers:glowApiHeaders(key),body:JSON.stringify({model:'claude-sonnet-4-5',max_tokens:5000,system:sys,messages:[{role:'user',content:imageContent}]})});
         const data=await checkRes(res);if(data.error)throw new Error(data.error.message);
@@ -2764,8 +2764,8 @@ async function startCam(){
     video.srcObject=stream;await video.play();
     video.style.transform=currentFacing==='user'?'scaleX(-1)':'scaleX(1)';
     document.getElementById('camph').style.display='none';
-    setDot('live','Kaamera aktiivne');
-    const cb=document.getElementById('camBtn');cb.textContent='✓ Aktiivne';cb.disabled=true;cb.className='cam-top-btn ok';
+    setDot('live',t('cam.active.msg','Kaamera aktiivne'));
+    const cb=document.getElementById('camBtn');cb.textContent=t('cam.active','✓ Aktiivne');cb.disabled=true;cb.className='cam-top-btn ok';
     document.getElementById('autoBtn').disabled=false;document.getElementById('flipBtn').disabled=false;
     // Stiili kaamera puhul: anaBtn aktiveerub kui üritus on valitud
     if(mode==='stiil'){document.getElementById('anaBtn').disabled=!(selectedUritusCam&&getCredits()>0);}
@@ -2953,22 +2953,22 @@ async function analyze(){
     sys=getMeikSystem(selectedMeikStyle);
     prompt='Analüüsi minu meiki. Nahatoon: '+meikOpts.nahatoon+', silmad: '+meikOpts.silmad+', kogemus: '+meikOpts.kogemus+', tugevus: '+meikOpts.tugevus+'. Vasta ainult JSON.';
     lbl=MAKEUP_STYLES.find(m=>m.id===selectedMeikStyle)?.name+' · '+meikOpts.tugevus;bar='c1';
-    document.getElementById('loadingText').textContent='Analüüsin meiki...';
+    document.getElementById('loadingText').textContent=t('load.meik','Analüüsin meiki...');
   }else if(mode==='stiil'){
     sys=getStiilCamSystem(selectedUritusCam.name,stiilRegime);
     prompt='Analüüsi riietust. Üritus: "'+selectedUritusCam.name+'". Vasta ainult JSON.';
     lbl=(stiilRegime==='garderoob'?'Garderoob · ':'Pood · ')+selectedUritusCam.name;bar='c3';
-    document.getElementById('loadingText').textContent='Analüüsin riietust...';
+    document.getElementById('loadingText').textContent=t('load.stiil','Analüüsin riietust...');
   }else{
     sys=getProSystem(selectedProcedure);
     prompt=selectedProcedure==='soovita'?'Analüüsi nahka. Vasta ainult JSON.':'Analüüsi klienti. Vasta ainult JSON.';
     lbl=PROC_LABELS[selectedProcedure]||'AI Kosmeetiku analüüs';bar='c4';
-    document.getElementById('loadingText').textContent='Analüüsin...';
+    document.getElementById('loadingText').textContent=t('load.generic','Analüüsin...');
   }
 
   if(currentFetchAbort){currentFetchAbort.abort();}
   currentFetchAbort=new AbortController();
-  document.getElementById('err').textContent='';setDot('thinking','Analüüsin...');
+  document.getElementById('err').textContent='';setDot('thinking',t('cam.analyzing','Analüüsin...'));
   resetResults();
   document.getElementById('scan').classList.add('on');document.getElementById('load').classList.add('on');
   document.getElementById('resEmpty').style.display='none';
@@ -2979,7 +2979,7 @@ async function analyze(){
     // Kuni 2 katsele — kui esimene ebaõnnestub JSON-vea tõttu, proovi uuesti
     let parsed=null;let lastErr=null;
     for(let attempt=1;attempt<=2;attempt++){
-      if(attempt===2){setDot('thinking','Proovin uuesti...');document.getElementById('loadingText').textContent='AI vastus oli ebatäielik, proovime uuesti...';}
+      if(attempt===2){setDot('thinking',t('cam.retry','Proovin uuesti...'));document.getElementById('loadingText').textContent=t('load.incomplete','AI vastus oli ebatäielik, proovime uuesti...');}
       try{
         const res=await fetch(glowApiUrl(),{method:'POST',signal:currentFetchAbort.signal,headers:glowApiHeaders(key),body:JSON.stringify({model:'claude-sonnet-4-5',max_tokens:5000,system:sys,messages:[{role:'user',content:[{type:'image',source:{type:'base64',media_type:'image/jpeg',data:b64}},{type:'text',text:prompt}]}]})});
         const data=await checkRes(res);if(data.error)throw new Error(data.error.message);
@@ -3002,11 +3002,11 @@ async function analyze(){
     if(mode==='stiil')renderStiilCamResult(parsed,dataUrl,lbl);
     else renderMeikProResult(parsed,bar,dataUrl,lbl);
     if(typeof saveShareContext==='function')saveShareContext(parsed,dataUrl,mode);
-    setDot('live','Analüüs valmis ✦');
+    setDot('live',t('cam.done','Analüüs valmis ✦'));
     maybeShowInstallAfterAnalysis();
   }catch(e){
     document.getElementById('load').classList.remove('on');document.getElementById('scan').classList.remove('on');
-    if(e.name==='AbortError'){setDot('idle','Tühistatud');}else{document.getElementById('err').textContent=e.message;setDot('idle','Viga');}
+    if(e.name==='AbortError'){setDot('idle',t('cam.cancelled','Tühistatud'));}else{document.getElementById('err').textContent=e.message;setDot('idle',t('gen.error','Viga'));}
   }
   if(mode==='stiil')document.getElementById('anaBtn').disabled=!(stream&&selectedUritusCam&&getCredits()>0);
   else document.getElementById('anaBtn').disabled=!(stream&&getCredits()>0);
@@ -3570,7 +3570,44 @@ if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.s
       'ob.f3': '<strong>Get advice in real time</strong> — friends give feedback, vote and comment',
       'ob.f4': '<strong>Beautiful and private</strong> — posts disappear automatically after 12h, no one else sees them',
       'ob.create': 'Create your first Circle',
-      'ob.later': 'Maybe later'
+      'ob.later': 'Maybe later',
+      'cam.open': '✦ Open camera',
+      'cam.analyze': 'Analyse',
+      'cam.auto': 'Auto',
+      'cam.phtext': 'Point the camera at your face',
+      'cam.phhint': 'tap "Open camera" above',
+      'cam.badge': '📷 Rear camera',
+      'cam.idle': 'Idle — tap "Open camera"',
+      'tip.meik': 'Point the camera at your face and tap Analyse',
+      'tip.stiil': 'Point the camera at the outfit and tap Analyse',
+      'tip.pro': 'Suggest a procedure — point the camera at your face',
+      'stiiltip.selfie': 'Selfie — take a photo of yourself with the front camera',
+      'stiiltip.camera': 'Rear camera — photograph a friend or clothes',
+      'camph.selfie': 'Photograph yourself — try on the clothing',
+      'camph.camera': 'Point the camera at clothes or a friend',
+      'cam.waiting': 'Idle...',
+      'cam.active.msg': 'Camera active',
+      'cam.active': '✓ Active',
+      'cam.analyzing': 'Analysing...',
+      'cam.retry': 'Retrying...',
+      'cam.done': 'Analysis complete ✦',
+      'cam.cancelled': 'Cancelled',
+      'load.photos': 'Analysing',
+      'load.photos2': 'photos...',
+      'load.incomplete': 'The AI response was incomplete, retrying...',
+      'load.meik': 'Analysing makeup...',
+      'load.stiil': 'Analysing outfit...',
+      'load.generic': 'Analysing...',
+      'prod.proc': 'Procedure products · depile.ee',
+      'prod.home': 'At-home aftercare · depile.ee',
+      'res.default': 'Result',
+      'res.empty.default': 'Choose a style and tap Analyse',
+      'res.tip': '✦ Tip',
+      'share2.title': 'Share the result',
+      'share2.image': 'Share image',
+      'share2.save': 'Save to gallery',
+      'share2.ask': 'Ask friends for their opinion — GLÓW Circles',
+      'share2.note': 'Stories / TikTok use 9:16 · Pinterest 2:3 · Facebook/Instagram post 1:1'
     }
   };
   const _orig = new WeakMap();
