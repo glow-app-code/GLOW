@@ -563,53 +563,6 @@ async function handleCircleLeave(request, env, origin, circleId) {
   return json({ok: true}, 200, origin);
 }
 
-// ÜHEKORDNE LÄHTESTAMINE (admin): kustutab KÕIK ringid, vestlused, jagatud
-// postitused ja tühjendab kõigi kasutajate ringi-nimekirjad. Kasutajate kontod,
-// krediidid ja sisselogimised jäävad puutumata. Kaitstud salajase koodiga.
-const ADMIN_RESET_KEY = '9805ba8145679d5d90730767ad08397521e70843c18ec33c';
-
-async function handleAdminResetCircles(request, env, origin, providedKey) {
-  if (providedKey !== ADMIN_RESET_KEY) return json({error: 'Forbidden'}, 403, origin);
-
-  async function deleteByPrefix(prefix) {
-    let cursor, n = 0;
-    do {
-      const list = await env.GLOW_KV.list({ prefix, cursor, limit: 1000 });
-      for (const key of list.keys) { await env.GLOW_KV.delete(key.name); n++; }
-      cursor = list.list_complete ? undefined : list.cursor;
-    } while (cursor);
-    return n;
-  }
-
-  const deletedCircles  = await deleteByPrefix('circle:');
-  const deletedShares   = await deleteByPrefix('circle_shares:');
-  const deletedMsgs     = await deleteByPrefix('circle_msgs:');
-  const deletedInvites  = await deleteByPrefix('invite:');
-  const deletedShareObj = await deleteByPrefix('share:');
-
-  // Tühjenda kõigi kasutajate ringi-nimekirjad ja remondi-lipp
-  let clearedUsers = 0, cursor;
-  do {
-    const list = await env.GLOW_KV.list({ prefix: 'user:', cursor, limit: 1000 });
-    for (const key of list.keys) {
-      const user = await env.GLOW_KV.get(key.name, 'json');
-      if (user) {
-        user.circleIds = [];
-        delete user.circlesRepaired;
-        await env.GLOW_KV.put(key.name, JSON.stringify(user));
-        clearedUsers++;
-      }
-    }
-    cursor = list.list_complete ? undefined : list.cursor;
-  } while (cursor);
-
-  return json({
-    ok: true,
-    message: 'Kõik ringid lähtestatud. Iga kasutaja saab järgmisel avamisel puhta ringi.',
-    deletedCircles, deletedShares, deletedMsgs, deletedInvites, deletedShareObj, clearedUsers
-  }, 200, origin);
-}
-
 async function handleShareCreate(request, env, origin) {
   const sess = await getSession(request, env);
   if (!sess) return json({error: 'Unauthorized'}, 401, origin);
@@ -864,8 +817,6 @@ export default {
       if ((m = path.match(/^\/api\/circles\/([^\/]+)\/invite$/)) && request.method === 'POST') return await handleCirclesInvite(request, env, origin, m[1]);
       if ((m = path.match(/^\/api\/circles\/join\/([^\/]+)$/)) && request.method === 'POST') return await handleCirclesJoin(request, env, origin, m[1]);
       if ((m = path.match(/^\/api\/circles\/([^\/]+)\/leave$/)) && request.method === 'POST') return await handleCircleLeave(request, env, origin, m[1]);
-      // Ühekordne admin-lähtestamine (kaitstud salajase koodiga)
-      if ((m = path.match(/^\/api\/admin\/reset-circles\/([^\/]+)$/)) && request.method === 'GET') return await handleAdminResetCircles(request, env, origin, m[1]);
 
       // Share endpoints
       if (request.method === 'POST' && path === '/api/shares') return await handleShareCreate(request, env, origin);
