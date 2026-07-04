@@ -88,7 +88,7 @@ body{background:var(--bg);font-family:'DM Mono',monospace;color:#fff;min-height:
 #countdownScreen{display:flex;align-items:center;justify-content:center;flex-direction:column}
 .splash-ambient{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(201,169,110,0.1) 0%,transparent 70%)}
 .gold-frame{position:relative;width:min(340px,88vw);aspect-ratio:3/4;display:flex;align-items:center;justify-content:center}
-.frame-border{position:absolute;inset:0;border:1px solid var(--gold);border-radius:4px}
+.frame-border{position:absolute;inset:0;border:1px solid var(--gold);border-radius:4px;pointer-events:none}
 .frame-border::before{content:'';position:absolute;inset:6px;border:1px solid rgba(201,169,110,0.3);border-radius:3px}
 .frame-corner{position:absolute;width:28px;height:28px}
 .frame-corner.tl{top:-1px;left:-1px;border-top:2px solid var(--gold-bright);border-left:2px solid var(--gold-bright);border-radius:4px 0 0 0}
@@ -998,7 +998,7 @@ canvas{display:none}
 .uritus-btn:hover svg[data-icon-name],
 .proc-btn:hover svg[data-icon-name]{transform:translateY(-1px) scale(1.05);filter:drop-shadow(0 0 8px currentColor) brightness(1.12)}
 /* Keele-lüliti (ET/EN lipud) */
-.lang-switch{display:flex;gap:8px;justify-content:center;align-items:center}
+.lang-switch{display:flex;gap:8px;justify-content:center;align-items:center;position:relative;z-index:3}
 .lang-btn{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,0.05);border:1px solid rgba(201,169,110,0.28);border-radius:7px;padding:5px 9px;cursor:pointer;color:rgba(255,255,255,0.55);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.15em;transition:border-color .2s,color .2s,background .2s}
 .lang-btn:hover{border-color:rgba(201,169,110,0.6);color:rgba(255,255,255,0.85)}
 .lang-btn.active{background:rgba(201,169,110,0.16);border-color:var(--gold);color:var(--gold-bright)}
