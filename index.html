@@ -1515,7 +1515,7 @@ canvas{display:none}
     <div class="onboard-features">
       <div class="onboard-feat">
         <div class="onboard-feat-num">1</div>
-        <div class="onboard-feat-text"><strong>Igaühel oma ring</strong> — sul on isiklik ring. Jaga sõbrale kutselinki ja teist saate teineteise ringi liikmeteks. Sina näed ainult oma ringi.</div>
+        <div class="onboard-feat-text"><strong>Loo oma ring</strong> — kutsu sõbrad ühe lingiga. Kõik, kes liituvad, on ühes grupis: näevad üksteist, jagavad pilte ja vestlevad koos.</div>
       </div>
       <div class="onboard-feat">
         <div class="onboard-feat-num">2</div>
@@ -1805,7 +1805,7 @@ function renderMyCircles(){
   html+='</div>';
   html+='<div id="createCircleFormWrap"></div>';
   html+='<div id="joinCodeFormWrap"></div>';
-  html+='<div style="font-size:12px;color:rgba(255,255,255,0.55);line-height:1.5;margin-top:14px;text-align:center;font-family:\'Cormorant Garamond\',serif;font-style:italic">See on <strong style="color:var(--gold);font-style:normal">sinu isiklik ring</strong>. Jaga oma linki sõbrale — nii lisandub tema sinu ringi ja sina tema ringi. Sina näed ainult oma ringi liikmeid.</div>';
+  html+='<div style="font-size:12px;color:rgba(255,255,255,0.55);line-height:1.5;margin-top:14px;text-align:center;font-family:\'Cormorant Garamond\',serif;font-style:italic">Loo ring ja kutsu sõbrad <strong style="color:var(--gold);font-style:normal">ühe lingiga</strong>. Kõik, kes liituvad, on ühes grupis — näevad üksteist, jagavad pilte ja vestlevad.</div>';
   v.innerHTML=html;renderStaticIcons();
 }
 
@@ -1854,7 +1854,7 @@ async function submitJoinCode(){
     const data=await apiCall('/api/circles/join/'+encodeURIComponent(code),{method:'POST'});
     cancelJoinCode();
     const t=document.getElementById('friendToast');const txt=document.getElementById('friendToastText');
-    if(t&&txt){const who=data.friend?esc(data.friend):'sõber';txt.innerHTML='<strong>✦ Ühendus loodud — '+who+' on nüüd sinu ringis</strong>';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),4500);}
+    if(t&&txt){const nm=(data.circle&&data.circle.name)?esc(data.circle.name):'ring';txt.innerHTML='<strong>✦ Liitusid ringiga: '+nm+'</strong>';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),4500);}
     await loadMyCircles();
   }catch(e){alert('Liitumine ebaõnnestus: '+e.message+'\n\nKontrolli, et link/kood on õige ja pole aegunud (48h).');}
 }
@@ -1889,7 +1889,7 @@ async function openCircleDetail(id){
   if(inviteCode){
     html+='<div class="circle-invite-box">'
     +'<div class="circle-invite-label">Kutsu sõbrad · kehtib 48h</div>'
-    +'<div style="font-size:12px;color:rgba(255,255,255,0.65);margin-bottom:8px;line-height:1.5">Saada see link sõbrale (WhatsApp, SMS). Kui ta lingi avab, lisandub <strong style="color:var(--gold)">tema sinu ringi ja sina tema ringi</strong>.</div>'
+    +'<div style="font-size:12px;color:rgba(255,255,255,0.65);margin-bottom:8px;line-height:1.5">Saada see link sõbrale (WhatsApp, SMS). Kui ta lingi avab, <strong style="color:var(--gold)">liitub ta selle ringiga</strong> ja kõik liikmed näevad teda.</div>'
     +'<div class="circle-invite-code">'+esc(url)+'</div>'
     +'<div class="circle-invite-actions">'
     +'<button class="circle-btn primary" onclick="copyText(\''+esc(url)+'\',this)">Kopeeri link</button>'
@@ -2225,7 +2225,7 @@ async function handleJoinInvite(){
   try{const data=await apiCall('/api/circles/join/'+encodeURIComponent(code),{method:'POST'});
     try{const u=new URL(window.location.href);u.searchParams.delete('join');history.replaceState({},'',u.pathname+(u.search?u.search:'')+u.hash);}catch(_){}
     const t=document.getElementById('friendToast');const txt=document.getElementById('friendToastText');
-    if(t&&txt){const who=data.friend?esc(data.friend):'sõber';txt.innerHTML='<strong>✦ Ühendus loodud — '+who+' on nüüd sinu ringis</strong>';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),4500);}
+    if(t&&txt){const nm=(data.circle&&data.circle.name)?esc(data.circle.name):'ring';txt.innerHTML='<strong>✦ Liitusid ringiga: '+nm+'</strong>';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),4500);}
     await loadMyCircles();
   }catch(e){alert('Kutsega liitumine ebaõnnestus: '+e.message);}
 }
@@ -2239,7 +2239,7 @@ async function resumePendingJoin(){
     const data=await apiCall('/api/circles/join/'+encodeURIComponent(code),{method:'POST'});
     try{const u=new URL(window.location.href);u.searchParams.delete('join');history.replaceState({},'',u.pathname+(u.search?u.search:'')+u.hash);}catch(_){}
     const t=document.getElementById('friendToast');const txt=document.getElementById('friendToastText');
-    if(t&&txt){const who=data.friend?esc(data.friend):'sõber';txt.innerHTML='<strong>✦ Ühendus loodud — '+who+' on nüüd sinu ringis</strong>';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),4500);}
+    if(t&&txt){const nm=(data.circle&&data.circle.name)?esc(data.circle.name):'ring';txt.innerHTML='<strong>✦ Liitusid ringiga: '+nm+'</strong>';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),4500);}
     if(typeof loadMyCircles==='function'){try{await loadMyCircles();}catch(_){}}
     return true;
   }catch(e){return false;}
