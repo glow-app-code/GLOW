@@ -1006,6 +1006,8 @@ canvas{display:none}
 .lang-switch-splash{margin-top:20px}
 .lang-switch-header{margin-left:auto;margin-right:8px}
 </style>
+<script>/* i18n varu-definitsioon — põhimootor (lehe lõpus) kirjutab selle üle õigete tõlgetega */
+window.glowLang='et';window.t=window.t||function(k,f){return f;};</script>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute">
@@ -1118,7 +1120,7 @@ canvas{display:none}
       <div class="saldo-sub" id="saldoSub">Prooviperiood</div>
     </div>
   </div>
-  <button class="saldo-btn" id="saldoBtn">Osta</button>
+  <button class="saldo-btn" id="saldoBtn" data-i18n="saldo.buy">Osta</button>
 </div>
 
 <!-- Kasutaja-menüü (sisselogitud olekus) -->
@@ -1195,45 +1197,45 @@ canvas{display:none}
 
   <!-- MEIGI STIILID -->
   <div class="meik-style-select show" id="meikStyleSelect">
-    <div class="meik-style-title">Vali meigistiil</div>
+    <div class="meik-style-title" data-i18n="meik.title">Vali meigistiil</div>
     <div class="meik-style-grid" id="meikStyleGrid"></div>
     <div class="meik-options show" id="meikOptions">
       <div class="meik-opt-section">
-        <div class="meik-opt-title">Nahatoon <span>← vali üks</span></div>
+        <div class="meik-opt-title" data-i18n="meik.skin.title">Nahatoon <span>← vali üks</span></div>
         <div class="meik-opt-grid" id="nahatoonGrid">
-          <div class="meik-opt-btn" data-group="nahatoon" data-val="hele" onclick="selectMeikOpt(this,'nahatoon')"><span class="mob-icon">🌸</span><span class="mob-label">Hele</span></div>
-          <div class="meik-opt-btn" data-group="nahatoon" data-val="keskmine" onclick="selectMeikOpt(this,'nahatoon')"><span class="mob-icon">🌿</span><span class="mob-label">Keskmine</span></div>
-          <div class="meik-opt-btn" data-group="nahatoon" data-val="tume" onclick="selectMeikOpt(this,'nahatoon')"><span class="mob-icon">🍯</span><span class="mob-label">Tume</span></div>
+          <div class="meik-opt-btn" data-group="nahatoon" data-val="hele" onclick="selectMeikOpt(this,'nahatoon')"><span class="mob-icon">🌸</span><span class="mob-label" data-i18n="meik.skin.light">Hele</span></div>
+          <div class="meik-opt-btn" data-group="nahatoon" data-val="keskmine" onclick="selectMeikOpt(this,'nahatoon')"><span class="mob-icon">🌿</span><span class="mob-label" data-i18n="meik.skin.medium">Keskmine</span></div>
+          <div class="meik-opt-btn" data-group="nahatoon" data-val="tume" onclick="selectMeikOpt(this,'nahatoon')"><span class="mob-icon">🍯</span><span class="mob-label" data-i18n="meik.skin.dark">Tume</span></div>
         </div>
       </div>
       <div class="meik-opt-section">
-        <div class="meik-opt-title">Silmade värv <span>← vali üks</span></div>
+        <div class="meik-opt-title" data-i18n="meik.eyes.title">Silmade värv <span>← vali üks</span></div>
         <div class="meik-opt-grid" id="silmadGrid">
-          <div class="meik-opt-btn" data-group="silmad" data-val="sinised-hallid" onclick="selectMeikOpt(this,'silmad')"><span class="mob-icon">🔵</span><span class="mob-label">Sinised / hallid</span></div>
-          <div class="meik-opt-btn" data-group="silmad" data-val="pruunid" onclick="selectMeikOpt(this,'silmad')"><span class="mob-icon">🟤</span><span class="mob-label">Pruunid</span></div>
-          <div class="meik-opt-btn" data-group="silmad" data-val="rohelised" onclick="selectMeikOpt(this,'silmad')"><span class="mob-icon">🟢</span><span class="mob-label">Rohelised</span></div>
+          <div class="meik-opt-btn" data-group="silmad" data-val="sinised-hallid" onclick="selectMeikOpt(this,'silmad')"><span class="mob-icon">🔵</span><span class="mob-label" data-i18n="meik.eyes.blue">Sinised / hallid</span></div>
+          <div class="meik-opt-btn" data-group="silmad" data-val="pruunid" onclick="selectMeikOpt(this,'silmad')"><span class="mob-icon">🟤</span><span class="mob-label" data-i18n="meik.eyes.brown">Pruunid</span></div>
+          <div class="meik-opt-btn" data-group="silmad" data-val="rohelised" onclick="selectMeikOpt(this,'silmad')"><span class="mob-icon">🟢</span><span class="mob-label" data-i18n="meik.eyes.green">Rohelised</span></div>
         </div>
       </div>
       <div class="meik-opt-section">
-        <div class="meik-opt-title">Meigi kogemus <span>← vali üks</span></div>
+        <div class="meik-opt-title" data-i18n="meik.exp.title">Meigi kogemus <span>← vali üks</span></div>
         <div class="meik-opt-grid" id="kogemusGrid">
-          <div class="meik-opt-btn" data-group="kogemus" data-val="algaja" onclick="selectMeikOpt(this,'kogemus')"><span class="mob-icon">✨</span><span class="mob-label">Algaja</span></div>
-          <div class="meik-opt-btn" data-group="kogemus" data-val="keskpärane" onclick="selectMeikOpt(this,'kogemus')"><span class="mob-icon">💄</span><span class="mob-label">Keskpärane</span></div>
-          <div class="meik-opt-btn" data-group="kogemus" data-val="kogenud" onclick="selectMeikOpt(this,'kogemus')"><span class="mob-icon">🎨</span><span class="mob-label">Kogenud</span></div>
+          <div class="meik-opt-btn" data-group="kogemus" data-val="algaja" onclick="selectMeikOpt(this,'kogemus')"><span class="mob-icon">✨</span><span class="mob-label" data-i18n="meik.exp.beginner">Algaja</span></div>
+          <div class="meik-opt-btn" data-group="kogemus" data-val="keskpärane" onclick="selectMeikOpt(this,'kogemus')"><span class="mob-icon">💄</span><span class="mob-label" data-i18n="meik.exp.medium">Keskpärane</span></div>
+          <div class="meik-opt-btn" data-group="kogemus" data-val="kogenud" onclick="selectMeikOpt(this,'kogemus')"><span class="mob-icon">🎨</span><span class="mob-label" data-i18n="meik.exp.expert">Kogenud</span></div>
         </div>
       </div>
       <div class="meik-opt-section">
-        <div class="meik-opt-title">Meigi tugevus <span>← vali üks</span></div>
+        <div class="meik-opt-title" data-i18n="meik.str.title">Meigi tugevus <span>← vali üks</span></div>
         <div class="meik-opt-grid" id="tugevusGrid">
-          <div class="meik-opt-btn" data-group="tugevus" data-val="loomulik" onclick="selectMeikOpt(this,'tugevus')"><span class="mob-icon">🌿</span><span class="mob-label">Loomulik</span></div>
-          <div class="meik-opt-btn" data-group="tugevus" data-val="keskmine" onclick="selectMeikOpt(this,'tugevus')"><span class="mob-icon">✨</span><span class="mob-label">Keskmine</span></div>
-          <div class="meik-opt-btn" data-group="tugevus" data-val="tugev" onclick="selectMeikOpt(this,'tugevus')"><span class="mob-icon">💄</span><span class="mob-label">Tugev</span></div>
+          <div class="meik-opt-btn" data-group="tugevus" data-val="loomulik" onclick="selectMeikOpt(this,'tugevus')"><span class="mob-icon">🌿</span><span class="mob-label" data-i18n="meik.str.natural">Loomulik</span></div>
+          <div class="meik-opt-btn" data-group="tugevus" data-val="keskmine" onclick="selectMeikOpt(this,'tugevus')"><span class="mob-icon">✨</span><span class="mob-label" data-i18n="meik.str.medium">Keskmine</span></div>
+          <div class="meik-opt-btn" data-group="tugevus" data-val="tugev" onclick="selectMeikOpt(this,'tugevus')"><span class="mob-icon">💄</span><span class="mob-label" data-i18n="meik.str.strong">Tugev</span></div>
         </div>
       </div>
     </div>
     <div class="meik-analyze-wrap show" id="meikAnalyzeWrap">
-      <button class="meik-analyze-btn" id="meikAnalyzeBtn" onclick="startMeikCam()" disabled>✦ Ava kaamera</button>
-      <div class="meik-analyze-hint" id="meikAnalyzeHint">Vali kõik 4 valikut ülalt</div>
+      <button class="meik-analyze-btn" id="meikAnalyzeBtn" onclick="startMeikCam()" disabled data-i18n="meik.opencam">✦ Ava kaamera</button>
+      <div class="meik-analyze-hint" id="meikAnalyzeHint" data-i18n="meik.hint">Vali kõik 4 valikut ülalt</div>
     </div>
   </div>
 
@@ -2540,7 +2542,7 @@ const URITUSED_POOD=[
 function getCredits(){const r=localStorage.getItem('glow_credits');if(r===null||r==='')return FREE_CREDITS;const n=parseInt(r,10);return isNaN(n)?FREE_CREDITS:Math.max(0,n);}
 function setCredits(n){localStorage.setItem('glow_credits',String(Math.max(0,parseInt(n,10)||0)));refreshSaldo();refreshMeikAnalyzeBtn();}
 function initCredits(){const r=localStorage.getItem('glow_credits');if(r===null||r===''||isNaN(parseInt(r,10)))localStorage.setItem('glow_credits',String(FREE_CREDITS));}
-function refreshSaldo(){const c=getCredits(),bar=document.getElementById('saldoBar'),count=document.getElementById('saldoCount'),sub=document.getElementById('saldoSub'),btn=document.getElementById('saldoBtn');if(!bar)return;if(c>0){if(c<=FREE_CREDITS){bar.style.background='rgba(122,158,142,0.15)';bar.style.borderColor='rgba(122,158,142,0.5)';count.style.color='#7ec98a';count.textContent=c+' tasuta analüüsi';sub.textContent='Prooviperiood';btn.style.color='#7ec98a';btn.style.borderColor='rgba(122,158,142,0.5)';}else{bar.style.background='rgba(201,169,110,0.12)';bar.style.borderColor='rgba(201,169,110,0.4)';count.style.color='var(--gold)';count.textContent=c+' analüüsi järel';sub.textContent='Krediiti on';btn.style.color='var(--gold)';btn.style.borderColor='rgba(201,169,110,0.5)';}}else{bar.style.background='rgba(196,115,107,0.12)';bar.style.borderColor='rgba(196,115,107,0.5)';count.style.color='#e8a090';count.textContent='0 analüüsi järel';sub.textContent='Krediit otsas';btn.style.color='#e8a090';btn.style.borderColor='rgba(196,115,107,0.5)';}}
+function refreshSaldo(){const c=getCredits(),bar=document.getElementById('saldoBar'),count=document.getElementById('saldoCount'),sub=document.getElementById('saldoSub'),btn=document.getElementById('saldoBtn');if(!bar)return;if(c>0){if(c<=FREE_CREDITS){bar.style.background='rgba(122,158,142,0.15)';bar.style.borderColor='rgba(122,158,142,0.5)';count.style.color='#7ec98a';count.textContent=c+' '+t('saldo.free','tasuta analüüsi');sub.textContent=t('saldo.trial','Prooviperiood');btn.style.color='#7ec98a';btn.style.borderColor='rgba(122,158,142,0.5)';}else{bar.style.background='rgba(201,169,110,0.12)';bar.style.borderColor='rgba(201,169,110,0.4)';count.style.color='var(--gold)';count.textContent=c+' '+t('saldo.left','analüüsi järel');sub.textContent=t('saldo.have','Krediiti on');btn.style.color='var(--gold)';btn.style.borderColor='rgba(201,169,110,0.5)';}}else{bar.style.background='rgba(196,115,107,0.12)';bar.style.borderColor='rgba(196,115,107,0.5)';count.style.color='#e8a090';count.textContent='0 '+t('saldo.left','analüüsi järel');sub.textContent=t('saldo.empty','Krediit otsas');btn.style.color='#e8a090';btn.style.borderColor='rgba(196,115,107,0.5)';}}
 
 let salonBrandsConfig=[],salonConfigOpen=false;
 function loadSalonBrands(){const s=localStorage.getItem('glow_salon_brands');try{salonBrandsConfig=s?JSON.parse(s):[];}catch(e){salonBrandsConfig=[];}return salonBrandsConfig;}
@@ -3380,7 +3382,32 @@ if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.s
       'assist.stiil.name': 'Style',
       'assist.stiil.desc': 'Outfit analysis',
       'assist.pro.name': 'AI Cosmetician',
-      'assist.pro.desc': 'Professional analysis'
+      'assist.pro.desc': 'Professional analysis',
+      'saldo.free': 'free analyses',
+      'saldo.left': 'analyses left',
+      'saldo.trial': 'Trial period',
+      'saldo.have': 'Credits available',
+      'saldo.empty': 'Out of credits',
+      'saldo.buy': 'Buy',
+      'meik.title': 'Choose a makeup style',
+      'meik.skin.title': 'Skin tone <span>← pick one</span>',
+      'meik.skin.light': 'Light',
+      'meik.skin.medium': 'Medium',
+      'meik.skin.dark': 'Dark',
+      'meik.eyes.title': 'Eye colour <span>← pick one</span>',
+      'meik.eyes.blue': 'Blue / grey',
+      'meik.eyes.brown': 'Brown',
+      'meik.eyes.green': 'Green',
+      'meik.exp.title': 'Makeup experience <span>← pick one</span>',
+      'meik.exp.beginner': 'Beginner',
+      'meik.exp.medium': 'Intermediate',
+      'meik.exp.expert': 'Experienced',
+      'meik.str.title': 'Makeup intensity <span>← pick one</span>',
+      'meik.str.natural': 'Natural',
+      'meik.str.medium': 'Medium',
+      'meik.str.strong': 'Bold',
+      'meik.opencam': '✦ Open camera',
+      'meik.hint': 'Pick all 4 options above'
     }
   };
   const _orig = new WeakMap();
@@ -3396,6 +3423,7 @@ if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.s
     return 'en';   // mujal maailmas → inglise keel
   }
   function applyLang(lang){
+    window.glowLang = lang;
     try { document.documentElement.lang = lang; } catch(e){}
     const dict = I18N[lang] || null;
     document.querySelectorAll('[data-i18n]').forEach(function(el){
@@ -3407,7 +3435,15 @@ if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.s
     document.querySelectorAll('[data-lang-btn]').forEach(function(b){
       b.classList.toggle('active', b.getAttribute('data-lang-btn') === lang);
     });
+    // Joonista uuesti dünaamilised tekstid (nt saldo-riba), et need oleks õiges keeles
+    if (typeof refreshSaldo === 'function') { try { refreshSaldo(); } catch(e){} }
   }
+  // Tõlke-funktsioon JavaScriptile: t('võti','eesti vaste'). EN-režiimis tagastab
+  // tõlke (kui olemas), muidu eesti vaste. Kasuta dünaamilistes tekstides.
+  window.t = function(key, fallbackEt){
+    const d = I18N[window.glowLang];
+    return (d && d[key] != null) ? d[key] : fallbackEt;
+  };
   window.glowSetLang = function(lang){
     if (lang !== 'et' && lang !== 'en') return;
     let cur = null;
