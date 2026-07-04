@@ -1456,9 +1456,9 @@ window.t=window.t||function(k,f){return f;};</script>
 
 <footer class="app-footer">
   <div class="footer-logo">GL<em>Ó</em>W</div>
-  <div class="footer-tagline">AI · Isiklik Stiiliassistent</div>
+  <div class="footer-tagline" data-i18n="header.tagline">AI · Isiklik Stiiliassistent</div>
   <div class="footer-divider"></div>
-  <div class="footer-copy">
+  <div class="footer-copy" data-i18n="footer.copy">
     © 2026 GLÓW · Kõik õigused kaitstud<br>
     Rakendus on loodud ja arendatud Eestis · <a href="mailto:info@glow4me.ee">info@glow4me.ee</a><br>
     Lehe sisu, kujunduse ja koodi kopeerimine ning levitamine<br>ilma autori kirjaliku loata on keelatud
@@ -1470,12 +1470,12 @@ window.t=window.t||function(k,f){return f;};</script>
 <!-- Rakenduse footer legal linkidega -->
 <div class="app-footer">
   <div class="app-footer-links">
-    <a href="privaatsus.html">Privaatsus</a>·
-    <a href="tingimused.html">Tingimused</a>·
-    <a href="tagasimaksed.html">Tagasimaksed</a>·
-    <a href="kontakt.html">Kontakt</a>
+    <a href="privaatsus.html" data-i18n="footer.privacy">Privaatsus</a>·
+    <a href="tingimused.html" data-i18n="footer.terms">Tingimused</a>·
+    <a href="tagasimaksed.html" data-i18n="footer.refunds">Tagasimaksed</a>·
+    <a href="kontakt.html" data-i18n="footer.contact">Kontakt</a>
   </div>
-  <div class="app-footer-copy">© glow4me.ee · AI Stiiliassistent</div>
+  <div class="app-footer-copy" data-i18n="footer.bottom">© glow4me.ee · AI Stiiliassistent</div>
 </div>
 
 <!-- Küpsiste-banner (EL kohustuslik) -->
@@ -3503,7 +3503,13 @@ if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.s
       'res.stiil': 'Style analysis',
       'res.empty.stiil': 'Make a choice and add photos',
       'res.pro': 'AI Cosmetician analysis',
-      'res.empty.pro': 'Choose a procedure, open the camera and tap Analyse'
+      'res.empty.pro': 'Choose a procedure, open the camera and tap Analyse',
+      'footer.copy': '© 2026 GLÓW · All rights reserved<br>Created and developed in Estonia · <a href="mailto:info@glow4me.ee">info@glow4me.ee</a><br>Copying and distributing this content, design and code<br>without written permission from the author is prohibited',
+      'footer.privacy': 'Privacy',
+      'footer.terms': 'Terms',
+      'footer.refunds': 'Refunds',
+      'footer.contact': 'Contact',
+      'footer.bottom': '© glow4me.ee · AI Style Assistant'
     }
   };
   const _orig = new WeakMap();
