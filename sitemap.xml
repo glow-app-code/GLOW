@@ -1,32 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://glow4me.ee/</loc>
-    <lastmod>2026-07-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="et" href="https://glow4me.ee/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://glow4me.ee/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://glow4me.ee/"/>
+    <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://glow4me.ee/kontakt.html</loc>
-    <lastmod>2026-07-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="et" href="https://glow4me.ee/kontakt.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://glow4me.ee/kontakt.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://glow4me.ee/kontakt.html"/>
+    <lastmod>2026-07-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://glow4me.ee/privaatsus.html</loc>
-    <lastmod>2026-07-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="et" href="https://glow4me.ee/privaatsus.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://glow4me.ee/privaatsus.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://glow4me.ee/privaatsus.html"/>
+    <lastmod>2026-07-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://glow4me.ee/tingimused.html</loc>
-    <lastmod>2026-07-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="et" href="https://glow4me.ee/tingimused.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://glow4me.ee/tingimused.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://glow4me.ee/tingimused.html"/>
+    <lastmod>2026-07-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://glow4me.ee/tagasimaksed.html</loc>
-    <lastmod>2026-07-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="et" href="https://glow4me.ee/tagasimaksed.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://glow4me.ee/tagasimaksed.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://glow4me.ee/tagasimaksed.html"/>
+    <lastmod>2026-07-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
