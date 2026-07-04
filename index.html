@@ -1157,34 +1157,34 @@ window.glowLang='et';window.t=window.t||function(k,f){return f;};</script>
 
 <div class="pricing-screen" id="pricingScreen">
   <button class="pricing-back" onclick="hidePricing()">← Tagasi</button>
-  <div class="pricing-title">Vali pakett</div>
-  <div class="pricing-sub">Üks analüüs kulutab ühe krediidi.</div>
-  <div class="free-badge"><div style="display:inline-flex;color:var(--gold)" data-icon="sparkle" data-icon-size="22"></div><div class="free-badge-text"><strong>3 analüüsi tasuta</strong> — proovi enne ostmist</div></div>
+  <div class="pricing-title" data-i18n="price.title">Vali pakett</div>
+  <div class="pricing-sub" data-i18n="price.sub">Üks analüüs kulutab ühe krediidi.</div>
+  <div class="free-badge"><div style="display:inline-flex;color:var(--gold)" data-icon="sparkle" data-icon-size="22"></div><div class="free-badge-text" data-i18n="price.freebadge"><strong>3 analüüsi tasuta</strong> — proovi enne ostmist</div></div>
   <div class="pkg-grid">
-    <div class="pkg" onclick="selectPkg(this,'pkg_10','10','0.99','0.10')"><div class="pkg-price">€0.99</div><div class="pkg-count">10 analüüsi</div><div class="pkg-unit">0.10€/tk</div></div>
-    <div class="pkg selected" onclick="selectPkg(this,'pkg_50','50','4.50','0.09')"><div class="pkg-popular">Populaarne</div><div class="pkg-price">€4.50</div><div class="pkg-count">50 analüüsi</div><div class="pkg-unit">0.09€/tk</div></div>
-    <div class="pkg" onclick="selectPkg(this,'pkg_100','100','7.99','0.08')"><div class="pkg-price">€7.99</div><div class="pkg-count">100 analüüsi</div><div class="pkg-unit">0.08€/tk</div></div>
-    <div class="pkg" onclick="selectPkg(this,'pkg_200','200','12.99','0.06')"><div class="pkg-price">€12.99</div><div class="pkg-count">200 analüüsi</div><div class="pkg-unit">0.06€/tk</div></div>
+    <div class="pkg" onclick="selectPkg(this,'pkg_10','10','0.99','0.10')"><div class="pkg-price">€0.99</div><div class="pkg-count" data-i18n="price.c10">10 analüüsi</div><div class="pkg-unit" data-i18n="price.u10">0.10€/tk</div></div>
+    <div class="pkg selected" onclick="selectPkg(this,'pkg_50','50','4.50','0.09')"><div class="pkg-popular" data-i18n="price.popular">Populaarne</div><div class="pkg-price">€4.50</div><div class="pkg-count" data-i18n="price.c50">50 analüüsi</div><div class="pkg-unit" data-i18n="price.u50">0.09€/tk</div></div>
+    <div class="pkg" onclick="selectPkg(this,'pkg_100','100','7.99','0.08')"><div class="pkg-price">€7.99</div><div class="pkg-count" data-i18n="price.c100">100 analüüsi</div><div class="pkg-unit" data-i18n="price.u100">0.08€/tk</div></div>
+    <div class="pkg" onclick="selectPkg(this,'pkg_200','200','12.99','0.06')"><div class="pkg-price">€12.99</div><div class="pkg-count" data-i18n="price.c200">200 analüüsi</div><div class="pkg-unit" data-i18n="price.u200">0.06€/tk</div></div>
   </div>
   <button class="buy-btn" id="buyBtn" onclick="showCheckout()">Jätka maksega — €4.50 →</button>
-  <div class="coming-soon-note">Maksed aktiveeritakse peagi · <span>glow4me.ee</span></div>
+  <div class="coming-soon-note" data-i18n="price.soon">Maksed aktiveeritakse peagi · <span>glow4me.ee</span></div>
 </div>
 <div class="checkout-screen" id="checkoutScreen">
-  <button class="pricing-back" onclick="hideCheckout()">← Tagasi</button>
-  <div class="checkout-title">Maksmine</div>
-  <div class="checkout-sub">Vali makseviis</div>
+  <button class="pricing-back" onclick="hideCheckout()" data-i18n="back">← Tagasi</button>
+  <div class="checkout-title" data-i18n="checkout.title">Maksmine</div>
+  <div class="checkout-sub" data-i18n="checkout.sub">Vali makseviis</div>
   <div class="order-summary"><div class="order-left"><p id="orderTitle">50 analüüsi</p><p id="orderSub">0.09€ kohta</p></div><div class="order-price" id="orderPrice">€4.50</div></div>
   <div class="pay-methods">
     <div class="pay-method"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg><div class="pay-method-label">Apple Pay</div></div>
     <div class="pay-method"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg><div class="pay-method-label">Google Pay</div></div>
   </div>
   <div class="card-fields">
-    <div class="field-label">Kaardi number</div><input class="field-input" placeholder="1234 5678 9012 3456" disabled>
-    <div class="field-row"><div><div class="field-label">Kehtivusaeg</div><input class="field-input" placeholder="KK/AA" disabled></div><div><div class="field-label">Turvakood</div><input class="field-input" placeholder="123" disabled></div></div>
+    <div class="field-label" data-i18n="checkout.cardnum">Kaardi number</div><input class="field-input" placeholder="1234 5678 9012 3456" disabled>
+    <div class="field-row"><div><div class="field-label" data-i18n="checkout.expiry">Kehtivusaeg</div><input class="field-input" placeholder="KK/AA" disabled></div><div><div class="field-label" data-i18n="checkout.cvc">Turvakood</div><input class="field-input" placeholder="123" disabled></div></div>
   </div>
   <button class="pay-btn" disabled>Maksa — €4.50</button>
-  <div class="secure-note">🔒 Turvaline makse · Stripe</div>
-  <div class="coming-soon-overlay"><p>✦ Peagi saadaval</p><p>Maksed aktiveeritakse kui <strong style="color:var(--gold)">glow4me.ee</strong> on üles seatud</p></div>
+  <div class="secure-note" data-i18n="checkout.secure">🔒 Turvaline makse · Stripe</div>
+  <div class="coming-soon-overlay"><p data-i18n="checkout.soon1">✦ Peagi saadaval</p><p data-i18n="checkout.soon2">Maksed aktiveeritakse kui <strong style="color:var(--gold)">glow4me.ee</strong> on üles seatud</p></div>
 </div>
 
 <div id="assistentWrap">
@@ -1320,14 +1320,14 @@ window.glowLang='et';window.t=window.t||function(k,f){return f;};</script>
 
 <div class="salon-setup" id="salonSetup">
   <div class="salon-setup-header">
-    <div class="salon-setup-title">✦ Salongi tootevalik</div>
-    <button class="salon-setup-edit" id="salonEditBtn" onclick="toggleSalonConfig()">Muuda</button>
+    <div class="salon-setup-title" data-i18n="salon.title">✦ Salongi tootevalik</div>
+    <button class="salon-setup-edit" id="salonEditBtn" onclick="toggleSalonConfig()" data-i18n="salon.edit">Muuda</button>
   </div>
-  <div id="salonActiveView"><div class="salon-active" id="salonActiveText">Brändid pole valitud</div></div>
+  <div id="salonActiveView"><div class="salon-active" id="salonActiveText" data-i18n="salon.none">Brändid pole valitud</div></div>
   <div class="salon-config" id="salonConfig">
-    <div class="salon-config-intro">Vali brändid millega sinu salongis töötad.</div>
+    <div class="salon-config-intro" data-i18n="salon.intro">Vali brändid millega sinu salongis töötad.</div>
     <div class="brand-grid" id="brandGrid"></div>
-    <button class="salon-save-btn" id="salonSaveBtn" onclick="saveSalonBrands()">Salvesta salongi valik →</button>
+    <button class="salon-save-btn" id="salonSaveBtn" onclick="saveSalonBrands()" data-i18n="salon.save">Salvesta salongi valik →</button>
   </div>
 </div>
 
@@ -1338,17 +1338,17 @@ window.glowLang='et';window.t=window.t||function(k,f){return f;};</script>
 <!-- KAAMERA — meik, stiil (selfie/tavakaamera), pro -->
 <div class="cam-wrap" id="cameraCard" style="display:none">
   <div class="cam-top-bar">
-    <button class="cam-top-btn pri" id="camBtn" onclick="startCam()">✦ Ava kaamera</button>
-    <button class="cam-top-btn" id="anaBtn" onclick="analyze()" disabled>Analüüsi</button>
-    <button class="cam-top-btn" id="autoBtn" onclick="toggleAuto()" disabled>Auto</button>
+    <button class="cam-top-btn pri" id="camBtn" onclick="startCam()" data-i18n="cam.open">✦ Ava kaamera</button>
+    <button class="cam-top-btn" id="anaBtn" onclick="analyze()" disabled data-i18n="cam.analyze">Analüüsi</button>
+    <button class="cam-top-btn" id="autoBtn" onclick="toggleAuto()" disabled data-i18n="cam.auto">Auto</button>
     <button class="cam-top-btn flip-btn" id="flipBtn" onclick="flipCam()" disabled title="Vaheta kaamerat"><span data-icon="flip" data-icon-size="20" style="display:inline-flex;vertical-align:middle"></span></button>
   </div>
   <div class="cam-frame">
     <video id="vid" autoplay playsinline muted></video>
     <div class="cam-ph" id="camph">
       <div class="cam-ph-icon">✦</div>
-      <p id="camPhText">Suuna kaamera oma näole</p>
-      <div class="cam-ph-hint">vajuta "Ava kaamera" üleval</div>
+      <p id="camPhText" data-i18n="cam.phtext">Suuna kaamera oma näole</p>
+      <div class="cam-ph-hint" data-i18n="cam.phhint">vajuta "Ava kaamera" üleval</div>
     </div>
     <div class="corner tl"></div><div class="corner br"></div>
     <div class="cam-mode-badge" id="camModeBadge">📷 Tavakaamera</div>
@@ -1365,11 +1365,11 @@ window.glowLang='et';window.t=window.t||function(k,f){return f;};</script>
 <div id="alternatiividBtn" style="display:none;margin-bottom:16px">
   <button onclick="showAlternatiivid()" style="width:100%;padding:14px 16px;background:rgba(155,143,181,0.12);border:1px solid rgba(155,143,181,0.4);border-radius:3px;color:#c4b8e0;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:all .2s" onmouseover="this.style.background='rgba(155,143,181,0.22)'" onmouseout="this.style.background='rgba(155,143,181,0.12)'">
     <span style="font-size:16px">💡</span>
-    <span id="alternatiividBtnTxt">AI pakub mulle alternatiive</span>
+    <span id="alternatiividBtnTxt" data-i18n="alt.btn">AI pakub mulle alternatiive</span>
   </button>
 </div>
 <div class="moodboard-section" id="moodboardSection">
-  <div class="moodboard-title">✦ AI pakub alternatiive</div>
+  <div class="moodboard-title" data-i18n="alt.title">✦ AI pakub alternatiive</div>
   <div class="moodboard-subtitle" id="moodboardSubtitle">Alternatiivid sinu valiku jaoks</div>
   <div class="moodboard-grid" id="moodboardGrid"></div>
   <div class="moodboard-actions">
@@ -2523,20 +2523,20 @@ let selectedMeikStyle='kontor';
 
 // SIHTKOHAD
 const URITUSED_GARDEROOB=[
-  {id:'arimeeting',icon:'handshake',name:'Ärimeeting'},{id:'kontor',icon:'briefcase',name:'Kontoripäev'},
-  {id:'linn',icon:'shop',name:'Linnas käik'},{id:'kohtumine',icon:'coffee',name:'Sõbraga'},
-  {id:'ohtusoek',icon:'dish',name:'Õhtusöök'},{id:'pidu',icon:'party',name:'Pidu'},
-  {id:'gala',icon:'wine',name:'Gala'},{id:'synnipaev',icon:'cake',name:'Sünnipäev'},
-  {id:'lopuaktus',icon:'graduation',name:'Tseremoonia'},{id:'reisile',icon:'plane',name:'Reis'},
-  {id:'rand',icon:'wave',name:'Rand'},{id:'sport',icon:'run',name:'Sport'}
+  {id:'arimeeting',icon:'handshake',name:'Ärimeeting',en:'Business meeting'},{id:'kontor',icon:'briefcase',name:'Kontoripäev',en:'Office day'},
+  {id:'linn',icon:'shop',name:'Linnas käik',en:'Out in town'},{id:'kohtumine',icon:'coffee',name:'Sõbraga',en:'With a friend'},
+  {id:'ohtusoek',icon:'dish',name:'Õhtusöök',en:'Dinner'},{id:'pidu',icon:'party',name:'Pidu',en:'Party'},
+  {id:'gala',icon:'wine',name:'Gala',en:'Gala'},{id:'synnipaev',icon:'cake',name:'Sünnipäev',en:'Birthday'},
+  {id:'lopuaktus',icon:'graduation',name:'Tseremoonia',en:'Ceremony'},{id:'reisile',icon:'plane',name:'Reis',en:'Trip'},
+  {id:'rand',icon:'wave',name:'Rand',en:'Beach'},{id:'sport',icon:'run',name:'Sport',en:'Sport'}
 ];
 const URITUSED_POOD=[
-  {id:'igapaev',icon:'sun',name:'Igapäev'},{id:'kontor',icon:'briefcase',name:'Kontor'},
-  {id:'ohtu',icon:'moon',name:'Õhtused väljaminekud'},{id:'pidu',icon:'party',name:'Pidu'},
-  {id:'pidulik',icon:'sparkle',name:'Pidulik'},{id:'sport',icon:'run',name:'Sport'},
-  {id:'casual',icon:'smile',name:'Casual'},{id:'minimalistlik',icon:'square',name:'Minimalistlik'},
-  {id:'boho',icon:'palette',name:'Boho'},{id:'streetwear',icon:'fire',name:'Streetwear'},
-  {id:'luksus',icon:'crown',name:'Luksus'},{id:'reisil',icon:'plane',name:'Reisimine'}
+  {id:'igapaev',icon:'sun',name:'Igapäev',en:'Everyday'},{id:'kontor',icon:'briefcase',name:'Kontor',en:'Office'},
+  {id:'ohtu',icon:'moon',name:'Õhtused väljaminekud',en:'Evening outings'},{id:'pidu',icon:'party',name:'Pidu',en:'Party'},
+  {id:'pidulik',icon:'sparkle',name:'Pidulik',en:'Formal'},{id:'sport',icon:'run',name:'Sport',en:'Sport'},
+  {id:'casual',icon:'smile',name:'Casual',en:'Casual'},{id:'minimalistlik',icon:'square',name:'Minimalistlik',en:'Minimalist'},
+  {id:'boho',icon:'palette',name:'Boho',en:'Boho'},{id:'streetwear',icon:'fire',name:'Streetwear',en:'Streetwear'},
+  {id:'luksus',icon:'crown',name:'Luksus',en:'Luxury'},{id:'reisil',icon:'plane',name:'Reisimine',en:'Travel'}
 ];
 
 function getCredits(){const r=localStorage.getItem('glow_credits');if(r===null||r==='')return FREE_CREDITS;const n=parseInt(r,10);return isNaN(n)?FREE_CREDITS:Math.max(0,n);}
@@ -2570,8 +2570,9 @@ function buildMeikGrid(){
   const g=document.getElementById('meikStyleGrid');g.innerHTML='';
   MAKEUP_STYLES.forEach(s=>{
     const b=document.createElement('div');b.className='meik-style-btn'+(s.id===selectedMeikStyle?' active':'');
-    b.innerHTML='<div class="msb-icon">'+iconHtml(s.icon,26)+'</div><div class="msb-name">'+s.name+'</div>';
-    b.onclick=()=>{selectedMeikStyle=s.id;document.querySelectorAll('.meik-style-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById('resLbl').textContent=s.name;resetResults();refreshMeikAnalyzeBtn();};
+    const sName=t('mstyle.'+s.id,s.name);
+    b.innerHTML='<div class="msb-icon">'+iconHtml(s.icon,26)+'</div><div class="msb-name">'+sName+'</div>';
+    b.onclick=()=>{selectedMeikStyle=s.id;document.querySelectorAll('.meik-style-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById('resLbl').textContent=t('mstyle.'+s.id,s.name);resetResults();refreshMeikAnalyzeBtn();};
     g.appendChild(b);
   });
 }
@@ -2690,7 +2691,7 @@ function resetCam(){
 function buildUritusGrid(){
   const uritused=stiilRegime==='garderoob'?URITUSED_GARDEROOB:URITUSED_POOD;
   const g=document.getElementById('uritusGrid');g.innerHTML='';selectedUritus=null;
-  uritused.forEach(u=>{const b=document.createElement('div');b.className='uritus-btn';b.dataset.id=u.id;b.innerHTML='<div class="uritus-icon">'+iconHtml(u.icon,22)+'</div><div class="uritus-name">'+u.name+'</div>';b.onclick=()=>{selectedUritus={id:u.id,name:u.name};document.querySelectorAll('#uritusGrid .uritus-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');refreshAnalyzeBankBtn();};g.appendChild(b);});
+  uritused.forEach(u=>{const b=document.createElement('div');b.className='uritus-btn';b.dataset.id=u.id;b.innerHTML='<div class="uritus-icon">'+iconHtml(u.icon,22)+'</div><div class="uritus-name">'+((window.glowLang==='en'&&u.en)?u.en:u.name)+'</div>';b.onclick=()=>{selectedUritus={id:u.id,name:u.name};document.querySelectorAll('#uritusGrid .uritus-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');refreshAnalyzeBankBtn();};g.appendChild(b);});
   refreshAnalyzeBankBtn();
 }
 
@@ -2698,7 +2699,7 @@ function buildUritusGrid(){
 function buildUritusGridCam(){
   const uritused=stiilRegime==='garderoob'?URITUSED_GARDEROOB:URITUSED_POOD;
   const g=document.getElementById('uritusGridCam');g.innerHTML='';selectedUritusCam=null;
-  uritused.forEach(u=>{const b=document.createElement('div');b.className='uritus-btn';b.dataset.id=u.id;b.innerHTML='<div class="uritus-icon">'+iconHtml(u.icon,22)+'</div><div class="uritus-name">'+u.name+'</div>';b.onclick=()=>{selectedUritusCam={id:u.id,name:u.name};document.querySelectorAll('#uritusGridCam .uritus-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById('anaBtn').disabled=!(stream&&getCredits()>0);};g.appendChild(b);});
+  uritused.forEach(u=>{const b=document.createElement('div');b.className='uritus-btn';b.dataset.id=u.id;b.innerHTML='<div class="uritus-icon">'+iconHtml(u.icon,22)+'</div><div class="uritus-name">'+((window.glowLang==='en'&&u.en)?u.en:u.name)+'</div>';b.onclick=()=>{selectedUritusCam={id:u.id,name:u.name};document.querySelectorAll('#uritusGridCam .uritus-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById('anaBtn').disabled=!(stream&&getCredits()>0);};g.appendChild(b);});
 }
 
 // PILDIPANK
@@ -3429,7 +3430,50 @@ if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.s
       'upload.clear': '🗑 Clear',
       'upload.analyze': '✦ Analyse my selection',
       'upload.analyzehint': 'Make a choice and add at least 1 photo',
-      'proc.title': 'Choose a procedure'
+      'proc.title': 'Choose a procedure',
+      'salon.title': '✦ Salon product range',
+      'salon.edit': 'Edit',
+      'salon.none': 'No brands selected',
+      'salon.intro': 'Choose the brands you work with in your salon.',
+      'salon.save': 'Save salon selection →',
+      'cam.open': '✦ Open camera',
+      'cam.analyze': 'Analyse',
+      'cam.auto': 'Auto',
+      'cam.phtext': 'Point the camera at your face',
+      'cam.phhint': 'tap "Open camera" above',
+      'alt.btn': 'Let AI suggest alternatives for me',
+      'alt.title': '✦ AI suggests alternatives',
+      'price.title': 'Choose a package',
+      'price.sub': 'One analysis uses one credit.',
+      'price.freebadge': '<strong>3 free analyses</strong> — try before you buy',
+      'price.c10': '10 analyses',
+      'price.u10': '0.10€/ea',
+      'price.popular': 'Popular',
+      'price.c50': '50 analyses',
+      'price.u50': '0.09€/ea',
+      'price.c100': '100 analyses',
+      'price.u100': '0.08€/ea',
+      'price.c200': '200 analyses',
+      'price.u200': '0.06€/ea',
+      'price.soon': 'Payments coming soon · <span>glow4me.ee</span>',
+      'back': '← Back',
+      'checkout.title': 'Payment',
+      'checkout.sub': 'Choose a payment method',
+      'checkout.cardnum': 'Card number',
+      'checkout.expiry': 'Expiry date',
+      'checkout.cvc': 'Security code',
+      'checkout.secure': '🔒 Secure payment · Stripe',
+      'checkout.soon1': '✦ Coming soon',
+      'checkout.soon2': 'Payments will be activated once <strong style="color:var(--gold)">glow4me.ee</strong> is set up',
+      'mstyle.kontor': 'Office makeup',
+      'mstyle.paev': 'Day makeup',
+      'mstyle.ohtu': 'Evening makeup',
+      'mstyle.gala': 'Gala makeup',
+      'mstyle.synnipaev': 'Birthday makeup',
+      'mstyle.pruut': 'Bridal makeup',
+      'mstyle.lopuaktus': 'Graduation makeup',
+      'mstyle.foto': 'Photoshoot',
+      'mstyle.smoky': 'Smoky eye'
     }
   };
   const _orig = new WeakMap();
@@ -3457,8 +3501,9 @@ if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.s
     document.querySelectorAll('[data-lang-btn]').forEach(function(b){
       b.classList.toggle('active', b.getAttribute('data-lang-btn') === lang);
     });
-    // Joonista uuesti dünaamilised tekstid (nt saldo-riba), et need oleks õiges keeles
+    // Joonista uuesti dünaamilised tekstid, et need oleks õiges keeles
     if (typeof refreshSaldo === 'function') { try { refreshSaldo(); } catch(e){} }
+    if (typeof buildMeikGrid === 'function') { try { buildMeikGrid(); } catch(e){} }
   }
   // Tõlke-funktsioon JavaScriptile: t('võti','eesti vaste'). EN-režiimis tagastab
   // tõlke (kui olemas), muidu eesti vaste. Kasuta dünaamilistes tekstides.
