@@ -1157,7 +1157,7 @@ window.t=window.t||function(k,f){return f;};</script>
 </div>
 
 <div class="pricing-screen" id="pricingScreen">
-  <button class="pricing-back" onclick="hidePricing()">← Tagasi</button>
+  <button class="pricing-back" onclick="hidePricing()" data-i18n="back">← Tagasi</button>
   <div class="pricing-title" data-i18n="price.title">Vali pakett</div>
   <div class="pricing-sub" data-i18n="price.sub">Üks analüüs kulutab ühe krediidi.</div>
   <div class="free-badge"><div style="display:inline-flex;color:var(--gold)" data-icon="sparkle" data-icon-size="22"></div><div class="free-badge-text" data-i18n="price.freebadge"><strong>3 analüüsi tasuta</strong> — proovi enne ostmist</div></div>
@@ -1167,14 +1167,14 @@ window.t=window.t||function(k,f){return f;};</script>
     <div class="pkg" onclick="selectPkg(this,'pkg_100','100','7.99','0.08')"><div class="pkg-price">€7.99</div><div class="pkg-count" data-i18n="price.c100">100 analüüsi</div><div class="pkg-unit" data-i18n="price.u100">0.08€/tk</div></div>
     <div class="pkg" onclick="selectPkg(this,'pkg_200','200','12.99','0.06')"><div class="pkg-price">€12.99</div><div class="pkg-count" data-i18n="price.c200">200 analüüsi</div><div class="pkg-unit" data-i18n="price.u200">0.06€/tk</div></div>
   </div>
-  <button class="buy-btn" id="buyBtn" onclick="showCheckout()">Jätka maksega — €4.50 →</button>
+  <button class="buy-btn" id="buyBtn" onclick="showCheckout()" data-i18n="price.buybtn">Jätka maksega — €4.50 →</button>
   <div class="coming-soon-note" data-i18n="price.soon">Maksed aktiveeritakse peagi · <span>glow4me.ee</span></div>
 </div>
 <div class="checkout-screen" id="checkoutScreen">
   <button class="pricing-back" onclick="hideCheckout()" data-i18n="back">← Tagasi</button>
   <div class="checkout-title" data-i18n="checkout.title">Maksmine</div>
   <div class="checkout-sub" data-i18n="checkout.sub">Vali makseviis</div>
-  <div class="order-summary"><div class="order-left"><p id="orderTitle">50 analüüsi</p><p id="orderSub">0.09€ kohta</p></div><div class="order-price" id="orderPrice">€4.50</div></div>
+  <div class="order-summary"><div class="order-left"><p id="orderTitle" data-i18n="checkout.order.title">50 analüüsi</p><p id="orderSub" data-i18n="checkout.order.sub">0.09€ kohta</p></div><div class="order-price" id="orderPrice">€4.50</div></div>
   <div class="pay-methods">
     <div class="pay-method"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg><div class="pay-method-label">Apple Pay</div></div>
     <div class="pay-method"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg><div class="pay-method-label">Google Pay</div></div>
@@ -1183,7 +1183,7 @@ window.t=window.t||function(k,f){return f;};</script>
     <div class="field-label" data-i18n="checkout.cardnum">Kaardi number</div><input class="field-input" placeholder="1234 5678 9012 3456" disabled>
     <div class="field-row"><div><div class="field-label" data-i18n="checkout.expiry">Kehtivusaeg</div><input class="field-input" placeholder="KK/AA" disabled></div><div><div class="field-label" data-i18n="checkout.cvc">Turvakood</div><input class="field-input" placeholder="123" disabled></div></div>
   </div>
-  <button class="pay-btn" disabled>Maksa — €4.50</button>
+  <button class="pay-btn" disabled data-i18n="checkout.paybtn">Maksa — €4.50</button>
   <div class="secure-note" data-i18n="checkout.secure">🔒 Turvaline makse · Stripe</div>
   <div class="coming-soon-overlay"><p data-i18n="checkout.soon1">✦ Peagi saadaval</p><p data-i18n="checkout.soon2">Maksed aktiveeritakse kui <strong style="color:var(--gold)">glow4me.ee</strong> on üles seatud</p></div>
 </div>
@@ -1481,10 +1481,10 @@ window.t=window.t||function(k,f){return f;};</script>
 <!-- Küpsiste-banner (EL kohustuslik) -->
 <div class="cookie-banner" id="cookieBanner" role="dialog" aria-label="Küpsiste-teavitus">
   <div class="cookie-wrap">
-    <div class="cookie-text">Kasutame vajalikke küpsiseid teenuse toimimiseks (sisselogimine, krediidi-saldo). Nõustumisel võime lisada ka anonüümset kasutus-statistikat. <a href="privaatsus.html">Loe rohkem privaatsuspoliitikast →</a></div>
+    <div class="cookie-text" data-i18n="cookie.text">Kasutame vajalikke küpsiseid teenuse toimimiseks (sisselogimine, krediidi-saldo). Nõustumisel võime lisada ka anonüümset kasutus-statistikat. <a href="privaatsus.html">Loe rohkem privaatsuspoliitikast →</a></div>
     <div class="cookie-btns">
-      <button class="cookie-btn" onclick="acceptCookies('essential')">Ainult vajalikud</button>
-      <button class="cookie-btn primary" onclick="acceptCookies('all')">Nõustun kõigega</button>
+      <button class="cookie-btn" onclick="acceptCookies('essential')" data-i18n="cookie.essential">Ainult vajalikud</button>
+      <button class="cookie-btn primary" onclick="acceptCookies('all')" data-i18n="cookie.all">Nõustun kõigega</button>
     </div>
   </div>
 </div>
@@ -1494,19 +1494,19 @@ window.t=window.t||function(k,f){return f;};</script>
   <div class="login-card">
     <button class="login-close" onclick="closeLoginModal()" aria-label="Sulge">×</button>
     <div class="login-logo">GL<em>Ó</em>W</div>
-    <div class="login-title" id="loginTitle">Logi sisse</div>
+    <div class="login-title" id="loginTitle" data-i18n="login.title">Logi sisse</div>
     <div class="login-context" id="loginContext" style="display:none"></div>
-    <div class="login-sub">Sisesta oma e-post — saadame sulle 6-kohalise koodi. Parooli ei ole vaja.</div>
+    <div class="login-sub" data-i18n="login.sub">Sisesta oma e-post — saadame sulle 6-kohalise koodi. Parooli ei ole vaja.</div>
     <div id="loginForm">
       <div class="login-err" id="loginErr"></div>
-      <input type="email" class="login-input" id="loginEmail" placeholder="nimi@näide.ee" autocomplete="email" inputmode="email">
-      <button class="login-submit" id="loginSubmitBtn" onclick="submitLoginRequest()">Saada kood</button>
-      <div class="login-hint">Sisselogimisega nõustud <a href="tingimused.html">tingimustega</a> ja <a href="privaatsus.html">privaatsuspoliitikaga</a>.</div>
+      <input type="email" class="login-input" id="loginEmail" placeholder="nimi@näide.ee" data-i18n-ph="login.email.ph" autocomplete="email" inputmode="email">
+      <button class="login-submit" id="loginSubmitBtn" onclick="submitLoginRequest()" data-i18n="login.send">Saada kood</button>
+      <div class="login-hint" data-i18n="login.hint">Sisselogimisega nõustud <a href="tingimused.html">tingimustega</a> ja <a href="privaatsus.html">privaatsuspoliitikaga</a>.</div>
     </div>
     <div class="login-sent" id="loginSent">
       <div class="login-sent-icon">✉</div>
-      <div class="login-sent-text">Saatsime <strong id="loginSentEmail"></strong>-le<br>6-kohalise koodi</div>
-      <div class="code-input-label">Sisesta e-mailist saadud kood:</div>
+      <div class="login-sent-text" data-i18n="login.sent.text">Saatsime <strong id="loginSentEmail"></strong>-le<br>6-kohalise koodi</div>
+      <div class="code-input-label" data-i18n="login.code.label">Sisesta e-mailist saadud kood:</div>
       <div class="code-inputs" id="codeInputs">
         <input class="code-input" type="tel" inputmode="numeric" maxlength="1" data-idx="0" autocomplete="one-time-code">
         <input class="code-input" type="tel" inputmode="numeric" maxlength="1" data-idx="1">
@@ -1516,8 +1516,8 @@ window.t=window.t||function(k,f){return f;};</script>
         <input class="code-input" type="tel" inputmode="numeric" maxlength="1" data-idx="5">
       </div>
       <div class="code-err" id="codeErr"></div>
-      <button class="login-submit" id="codeSubmitBtn" onclick="submitCodeVerify()" style="margin-top:6px">Kinnita kood</button>
-      <div class="login-hint" style="margin-top:12px">Kood kehtib <strong>10 minutit</strong>. Kirja pole näha? Vaata <strong>Rämpsposti</strong> kausta.<br><a href="#" onclick="event.preventDefault();submitLoginRequest()" style="color:var(--gold-bright)">Saada uus kood →</a></div>
+      <button class="login-submit" id="codeSubmitBtn" onclick="submitCodeVerify()" style="margin-top:6px" data-i18n="login.code.submit">Kinnita kood</button>
+      <div class="login-hint" style="margin-top:12px" data-i18n="login.code.hint">Kood kehtib <strong>10 minutit</strong>. Kirja pole näha? Vaata <strong>Rämpsposti</strong> kausta.<br><a href="#" onclick="event.preventDefault();submitLoginRequest()" style="color:var(--gold-bright)">Saada uus kood →</a></div>
     </div>
   </div>
 </div>
@@ -1599,48 +1599,48 @@ window.t=window.t||function(k,f){return f;};</script>
   <div class="install-card">
     <button class="install-close" onclick="dismissInstall()" aria-label="Sulge">×</button>
     <div class="install-logo">GL<em>Ó</em>W</div>
-    <div class="install-title" id="installTitle">Lisa avaekraanile</div>
-    <div class="install-sub">3 sekundit · alati käepärast</div>
+    <div class="install-title" id="installTitle" data-i18n="install.title">Lisa avaekraanile</div>
+    <div class="install-sub" data-i18n="install.sub">3 sekundit · alati käepärast</div>
 
     <!-- iOS Safari -->
     <div id="installIOS" class="install-content">
-      <div class="install-hint" style="margin-bottom:18px">Et avada GLÓW ühe puudutusega:</div>
+      <div class="install-hint" style="margin-bottom:18px" data-i18n="install.ios.hint">Et avada GLÓW ühe puudutusega:</div>
       <div class="install-steps">
         <div class="install-step">
           <div class="install-step-num">1</div>
-          <div class="install-step-text">Vajuta <strong>Share</strong> <span class="ios-share-glyph">↑</span> nuppu all Safari menüüribal</div>
+          <div class="install-step-text" data-i18n="install.ios.s1">Vajuta <strong>Share</strong> <span class="ios-share-glyph">↑</span> nuppu all Safari menüüribal</div>
         </div>
         <div class="install-step">
           <div class="install-step-num">2</div>
-          <div class="install-step-text">Keri alla, vali <strong>"Add to Home Screen"</strong></div>
+          <div class="install-step-text" data-i18n="install.ios.s2">Keri alla, vali <strong>"Add to Home Screen"</strong></div>
         </div>
         <div class="install-step">
           <div class="install-step-num">3</div>
-          <div class="install-step-text">Kinnita <strong>"Add"</strong> üleval paremas nurgas</div>
+          <div class="install-step-text" data-i18n="install.ios.s3">Kinnita <strong>"Add"</strong> üleval paremas nurgas</div>
         </div>
       </div>
     </div>
 
     <!-- iOS Chrome / Firefox -->
     <div id="installIOSOther" class="install-content">
-      <div class="install-hint">iOS-i puhul töötab paigaldus ainult Safari kaudu.<br>Ava see lehekülg Safari'is:</div>
+      <div class="install-hint" data-i18n="install.iosother.hint">iOS-i puhul töötab paigaldus ainult Safari kaudu.<br>Ava see lehekülg Safari'is:</div>
       <div class="install-url">glow4me.ee</div>
-      <div class="install-hint" style="font-size:11px;margin-top:8px">Seejärel vajuta Share → "Add to Home Screen"</div>
+      <div class="install-hint" style="font-size:11px;margin-top:8px" data-i18n="install.iosother.hint2">Seejärel vajuta Share → "Add to Home Screen"</div>
     </div>
 
     <!-- Android Chrome -->
     <div id="installAndroid" class="install-content">
-      <div class="install-hint">Üks puudutus, kohe valmis:</div>
+      <div class="install-hint" data-i18n="install.android.hint">Üks puudutus, kohe valmis:</div>
       <button class="install-btn-android" onclick="triggerAndroidInstall()">
         <span class="install-btn-icon">⤓</span>
-        <span>Installi GLÓW</span>
+        <span data-i18n="install.android.btn">Installi GLÓW</span>
       </button>
-      <div class="install-hint" style="font-size:12px">Kui ülaolev nupp ei tööta — Chrome'i menüüst (<strong>⋮</strong>) vali <strong>"Install app"</strong> või <strong>"Add to Home Screen"</strong>.</div>
+      <div class="install-hint" style="font-size:12px" data-i18n="install.android.hint2">Kui ülaolev nupp ei tööta — Chrome'i menüüst (<strong>⋮</strong>) vali <strong>"Install app"</strong> või <strong>"Add to Home Screen"</strong>.</div>
     </div>
 
     <!-- Desktop -->
     <div id="installDesktop" class="install-content">
-      <div class="install-hint">Skaneeri QR-koodiga telefoniga, et avada mobiilis:</div>
+      <div class="install-hint" data-i18n="install.desktop.hint">Skaneeri QR-koodiga telefoniga, et avada mobiilis:</div>
       <div class="install-qr-wrap">
         <img class="install-qr" alt="QR kood glow4me.ee jaoks" src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=2&data=https%3A%2F%2Fglow4me.ee%2F">
       </div>
@@ -1648,8 +1648,8 @@ window.t=window.t||function(k,f){return f;};</script>
     </div>
 
     <div class="install-actions">
-      <button class="install-later" onclick="dismissInstall()">Hiljem</button>
-      <button class="install-skip" onclick="dismissInstallForever()">Mitte näidata uuesti</button>
+      <button class="install-later" onclick="dismissInstall()" data-i18n="install.later">Hiljem</button>
+      <button class="install-skip" onclick="dismissInstallForever()" data-i18n="install.never">Mitte näidata uuesti</button>
     </div>
   </div>
 </div>
@@ -1659,12 +1659,12 @@ window.t=window.t||function(k,f){return f;};</script>
   <div class="friend-card-modal">
     <button class="friend-close" onclick="closeFriendModal()" aria-label="Sulge">×</button>
     <div class="friend-logo-row"><span data-icon="sparkle" data-icon-size="36"></span></div>
-    <div class="friend-modal-title" id="friendModalTitle">Kutsu sõpru</div>
-    <div class="friend-modal-sub">Iga sõber = boonus mõlemale</div>
-    <div class="friend-bonus-line">Saada link sõbrale — kui ta avab GLÓW, saate <strong>mõlemad +5 analüüsi</strong> kingituseks ✦</div>
+    <div class="friend-modal-title" id="friendModalTitle" data-i18n="friendm.title">Kutsu sõpru</div>
+    <div class="friend-modal-sub" data-i18n="friendm.sub">Iga sõber = boonus mõlemale</div>
+    <div class="friend-bonus-line" data-i18n="friendm.bonus">Saada link sõbrale — kui ta avab GLÓW, saate <strong>mõlemad +5 analüüsi</strong> kingituseks ✦</div>
 
     <div class="friend-code-display">
-      <div class="friend-code-label">Sinu personaalne kood</div>
+      <div class="friend-code-label" data-i18n="friendm.codelabel">Sinu personaalne kood</div>
       <div class="friend-code-value" id="friendCodeValue">—</div>
     </div>
 
@@ -1673,11 +1673,11 @@ window.t=window.t||function(k,f){return f;};</script>
 
     <button class="friend-share-btn" onclick="shareFriendLink()">
       <span style="display:inline-flex" data-icon="upload" data-icon-size="18"></span>
-      <span>Jaga linki</span>
+      <span data-i18n="friendm.share">Jaga linki</span>
     </button>
     <button class="friend-copy-btn" onclick="copyFriendLink(this)">
       <span style="display:inline-flex" data-icon="link" data-icon-size="14"></span>
-      <span id="friendCopyTxt">Kopeeri link</span>
+      <span id="friendCopyTxt" data-i18n="friendm.copy">Kopeeri link</span>
     </button>
   </div>
 </div>
@@ -1879,13 +1879,13 @@ async function submitJoinCode(){
 async function submitCreateCircle(){
   const name=document.getElementById('newCircleName').value.trim();
   const icon=document.querySelector('.circle-icon-opt.selected')?.dataset.iconEmoji||'✨';
-  if(name.length<2){alert('Palun kirjuta Circle\'i nimi (vähemalt 2 tähemärki)');return;}
+  if(name.length<2){alert(window.t('circ.name.err','Palun kirjuta Circle\'i nimi (vähemalt 2 tähemärki)'));return;}
   try{const data=await apiCall('/api/circles/create',{method:'POST',body:JSON.stringify({name,icon})});
     window.myCircles.unshift(data.circle);
     cancelCreateCircle();
     renderMyCircles();
     openCircleDetail(data.circle.id);
-  }catch(e){alert('Viga: '+e.message);}
+  }catch(e){alert(window.t('gen.error','Viga')+': '+e.message);}
 }
 
 async function openCircleDetail(id){
@@ -1932,7 +1932,7 @@ async function openCircleDetail(id){
   renderStaticIcons();
 }
 
-function copyText(txt,btn){navigator.clipboard.writeText(txt).then(()=>{const o=btn.textContent;btn.textContent='✓ Kopeeritud';setTimeout(()=>btn.textContent=o,2000);}).catch(()=>alert('Ei õnnestu kopeerida'));}
+function copyText(txt,btn){navigator.clipboard.writeText(txt).then(()=>{const o=btn.textContent;btn.textContent=window.t('friendm.copied','✓ Kopeeritud');setTimeout(()=>btn.textContent=o,2000);}).catch(()=>alert(window.t('copy.fail','Ei õnnestu kopeerida')));}
 async function shareInviteLink(url,name){if(navigator.share){try{await navigator.share({title:'GLÓW Circle: '+name,text:'Liitu minu Circle\'iga GLÓW app\'is: '+name,url});}catch(_){}}else{copyText(url,{textContent:'Jaga'});}}
 
 async function leaveCircle(id){
@@ -1940,7 +1940,7 @@ async function leaveCircle(id){
   try{await apiCall('/api/circles/'+id+'/leave',{method:'POST'});
     window.myCircles=window.myCircles.filter(c=>c.id!==id);
     switchCirclesTab('my');
-  }catch(e){alert('Viga: '+e.message);}
+  }catch(e){alert(window.t('gen.error','Viga')+': '+e.message);}
 }
 
 // ============ CIRCLE VESTLUS (chat) ============
@@ -1955,7 +1955,7 @@ const CHAT_CATS=[
 
 async function openCircleChat(circleId){
   const circle=window.myCircles.find(c=>c.id===circleId);
-  if(!circle){alert('Circle\'i ei leitud');return;}
+  if(!circle){alert(window.t('circ.notfound','Circle\'i ei leitud'));return;}
   window.chatState.circleId=circleId;
   window.chatState.cat='vaba';
   window.chatState.lastTs=0;
@@ -2152,7 +2152,7 @@ async function toggleReact(shareId,emoji){
     // Uuenda ainult vastavat kaarti
     const card=document.querySelector('.share-card-feed[data-share-id="'+shareId+'"]');
     if(card){const share=await apiCall('/api/shares/'+shareId);const html=renderShareCard(share.share,{});card.outerHTML=html;}
-  }catch(e){alert('Viga: '+e.message);}
+  }catch(e){alert(window.t('gen.error','Viga')+': '+e.message);}
 }
 async function sendComment(input){
   const shareId=input.dataset.shareId;const text=input.value.trim();if(!text)return;
@@ -2160,7 +2160,7 @@ async function sendComment(input){
     input.value='';
     const card=document.querySelector('.share-card-feed[data-share-id="'+shareId+'"]');
     if(card){const share=await apiCall('/api/shares/'+shareId);const html=renderShareCard(share.share,{});card.outerHTML=html;}
-  }catch(e){alert('Viga: '+e.message);}
+  }catch(e){alert(window.t('gen.error','Viga')+': '+e.message);}
 }
 
 // Analüüsi järel — "Küsi sõprade arvamust" nupp
@@ -2198,7 +2198,7 @@ async function saveShareContext(parsed,dataUrl,mode){
 }
 function openShareToModal(){
   if(!isLoggedIn()){showLoginModal('Sisselogimine vajalik jagamiseks');return;}
-  if(!window.currentShareData){alert('Tee kõigepealt analüüs');return;}
+  if(!window.currentShareData){alert(window.t('share.needanalysis','Tee kõigepealt analüüs'));return;}
   if(window.myCircles.length===0){
     if(confirm('Sul pole veel Circle\'e. Kas soovid nüüd luua?')){openCirclesPanel();}
     return;
@@ -2222,7 +2222,7 @@ function toggleShareCircle(el){const id=el.dataset.cid;el.classList.toggle('sele
 function closeShareToModal(){document.getElementById('shareToModal').classList.remove('show');}
 async function submitShareToCircles(){
   const cids=[...new Set(window.selectedShareCircles)];
-  if(cids.length===0){alert('Vali vähemalt üks Circle');return;}
+  if(cids.length===0){alert(window.t('share.pickcircle','Vali vähemalt üks Circle'));return;}
   const msg=document.getElementById('shareToMessage').value.trim();
   const d=window.currentShareData;
   try{
@@ -2230,7 +2230,7 @@ async function submitShareToCircles(){
     closeShareToModal();
     const t=document.getElementById('friendToast');const txt=document.getElementById('friendToastText');
     if(t&&txt){txt.innerHTML='<strong>✦ '+window.t('feed.shared','Jagatud')+' '+cids.length+' '+window.t('feed.shared2','Circle\'ile!')+'</strong>';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),4500);}
-  }catch(e){alert('Viga: '+e.message);}
+  }catch(e){alert(window.t('gen.error','Viga')+': '+e.message);}
 }
 
 // Kutselinki käsitlemine URL'is (?join=CODE)
@@ -2244,7 +2244,7 @@ async function handleJoinInvite(){
     const t=document.getElementById('friendToast');const txt=document.getElementById('friendToastText');
     if(t&&txt){const nm=(data.circle&&data.circle.name)?esc(data.circle.name):'ring';txt.innerHTML='<strong>✦ '+window.t('circ.joined','Liitusid ringiga')+': '+nm+'</strong>';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),4500);}
     await loadMyCircles();
-  }catch(e){alert('Kutsega liitumine ebaõnnestus: '+e.message);}
+  }catch(e){alert(window.t('circ.joinfail','Liitumine ebaõnnestus')+': '+e.message);}
 }
 
 // Lõpeta rippuv kutse pärast sisselogimist (kutse salvestati enne login'i, kui kasutaja polnud veel sees)
@@ -2340,12 +2340,12 @@ async function submitLoginRequest(){
   const err=document.getElementById('loginErr');
   const btn=document.getElementById('loginSubmitBtn');
   err.textContent='';
-  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){err.textContent='Palun sisesta korrektne e-posti aadress';return;}
-  btn.disabled=true;btn.textContent='⟳ Saadan...';
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){err.textContent=window.t('login.err.email','Palun sisesta korrektne e-posti aadress');return;}
+  btn.disabled=true;btn.textContent=window.t('login.sending','⟳ Saadan...');
   try{
     const res=await fetch(API_BASE+'/auth/request-link',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email})});
     const data=await res.json();
-    if(!res.ok||!data.sent)throw new Error(data.error||'Saatmine ebaõnnestus');
+    if(!res.ok||!data.sent)throw new Error(data.error||window.t('login.sendfail','Saatmine ebaõnnestus'));
     document.getElementById('loginSentEmail').textContent=email;
     document.getElementById('loginForm').style.display='none';
     document.getElementById('loginSent').classList.add('show');
@@ -2354,8 +2354,8 @@ async function submitLoginRequest(){
     document.getElementById('codeErr').textContent='';
     bindCodeInputs();
     setTimeout(()=>{const first=document.querySelector('.code-input');if(first)first.focus();},200);
-  }catch(e){err.textContent='Viga: '+e.message;}
-  btn.disabled=false;btn.textContent='Saada kood';
+  }catch(e){err.textContent=window.t('gen.error','Viga')+': '+e.message;}
+  btn.disabled=false;btn.textContent=window.t('login.send','Saada kood');
 }
 
 function bindCodeInputs(){
@@ -2427,7 +2427,7 @@ async function verifyMagicLink(token){
     if(!joined){showRefToast(0); // kasutame olemasolevat toast'i, aga tekstiga:
     const t=document.getElementById('friendToast');const txt=document.getElementById('friendToastText');
     if(t&&txt){txt.innerHTML='<strong>✦ Sisse logitud!</strong> Sinu krediidid on sünkroniseeritud.';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),5500);}}
-  }catch(e){alert('Sisselogimine ebaõnnestus: '+e.message);}
+  }catch(e){alert(window.t('login.fail','Sisselogimine ebaõnnestus')+': '+e.message);}
 }
 
 async function syncUserFromServer(){
@@ -2453,10 +2453,10 @@ function handleUrlParams(){
     if(verify){verifyMagicLink(verify);return;}
     const checkout=params.get('checkout');
     if(checkout==='success'){
-      setTimeout(()=>{alert('✦ Makse õnnestus! Krediidid lisatud sinu kontosse.');syncUserFromServer();},500);
+      setTimeout(()=>{alert(window.t('pay.success','✦ Makse õnnestus! Krediidid lisatud sinu kontosse.'));syncUserFromServer();},500);
       try{const u=new URL(window.location.href);u.searchParams.delete('checkout');u.searchParams.delete('session_id');history.replaceState({},'',u.pathname+(u.search?u.search:'')+u.hash);}catch(_){}
     }else if(checkout==='cancel'){
-      setTimeout(()=>alert('Makse tühistati. Sinu saldo pole muutunud.'),500);
+      setTimeout(()=>alert(window.t('pay.cancel','Makse tühistati. Sinu saldo pole muutunud.')),500);
       try{const u=new URL(window.location.href);u.searchParams.delete('checkout');history.replaceState({},'',u.pathname+(u.search?u.search:'')+u.hash);}catch(_){}
     }
   }catch(_){}
@@ -2469,11 +2469,11 @@ function getMyRefCode(){let code=localStorage.getItem('glow_my_code');if(!code||
 function buildRefUrl(code){return 'https://glow4me.ee/?ref='+encodeURIComponent(code||getMyRefCode());}
 function checkIncomingReferral(){try{const params=new URLSearchParams(window.location.search);const ref=(params.get('ref')||'').toUpperCase().trim();if(!ref)return;if(!/^GLW[A-Z2-9]{4}$/.test(ref))return;if(ref===getMyRefCode())return;if(localStorage.getItem('glow_ref_used')==='true')return;localStorage.setItem('glow_referrer_code',ref);localStorage.setItem('glow_ref_used','true');try{setCredits(getCredits()+REF_BONUS);}catch(_){const cur=parseInt(localStorage.getItem('glow_credits')||'3',10);localStorage.setItem('glow_credits',String(cur+REF_BONUS));}// Clean URL
 try{const u=new URL(window.location.href);u.searchParams.delete('ref');history.replaceState({},'',u.pathname+(u.search?u.search:'')+u.hash);}catch(_){}setTimeout(()=>showRefToast(REF_BONUS),1500);}catch(_){}}
-function showRefToast(bonus){const t=document.getElementById('friendToast');const txt=document.getElementById('friendToastText');if(!t)return;txt.innerHTML='Tere tulemast! <strong>+'+bonus+' analüüsi</strong> sõbralt';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),5500);}
-function showFriendModal(){const code=getMyRefCode();const url=buildRefUrl(code);document.getElementById('friendCodeValue').textContent=code;document.getElementById('friendUrl').textContent=url.replace(/^https?:\/\//,'');document.getElementById('friendQR').src='https://api.qrserver.com/v1/create-qr-code/?size=160x160&margin=2&data='+encodeURIComponent(url);document.getElementById('friendModal').classList.add('show');document.getElementById('friendCopyTxt').textContent='Kopeeri link';}
+function showRefToast(bonus){const t=document.getElementById('friendToast');const txt=document.getElementById('friendToastText');if(!t)return;txt.innerHTML=window.t('reftoast.pre','Tere tulemast!')+' <strong>+'+bonus+' '+window.t('reftoast.unit','analüüsi')+'</strong> '+window.t('reftoast.post','sõbralt');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),5500);}
+function showFriendModal(){const code=getMyRefCode();const url=buildRefUrl(code);document.getElementById('friendCodeValue').textContent=code;document.getElementById('friendUrl').textContent=url.replace(/^https?:\/\//,'');document.getElementById('friendQR').src='https://api.qrserver.com/v1/create-qr-code/?size=160x160&margin=2&data='+encodeURIComponent(url);document.getElementById('friendModal').classList.add('show');document.getElementById('friendCopyTxt').textContent=window.t('friendm.copy','Kopeeri link');}
 function closeFriendModal(){const m=document.getElementById('friendModal');if(m)m.classList.remove('show');}
-async function shareFriendLink(){const code=getMyRefCode();const url=buildRefUrl(code);const text='Proovi GLÓW — AI ilurakendus. Minu kutsega saad +'+REF_BONUS+' tasuta analüüsi. ✦';if(navigator.share){try{await navigator.share({title:'GLÓW · sõbra kutse',text:text,url:url});}catch(_){}}else{copyFriendLink(document.querySelector('.friend-copy-btn'));}}
-function copyFriendLink(btn){const url=buildRefUrl();const txt=document.getElementById('friendCopyTxt');const done=()=>{if(txt)txt.textContent='✓ Kopeeritud';setTimeout(()=>{if(txt)txt.textContent='Kopeeri link';},2000);};if(navigator.clipboard){navigator.clipboard.writeText(url).then(done).catch(()=>{const ta=document.createElement('textarea');ta.value=url;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);done();});}else{const ta=document.createElement('textarea');ta.value=url;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);done();}}
+async function shareFriendLink(){const code=getMyRefCode();const url=buildRefUrl(code);const text=window.t('friendm.sharetext','Proovi GLÓW — AI ilurakendus. Minu kutsega saad +'+REF_BONUS+' tasuta analüüsi. ✦');if(navigator.share){try{await navigator.share({title:window.t('friendm.sharetitle','GLÓW · sõbra kutse'),text:text,url:url});}catch(_){}}else{copyFriendLink(document.querySelector('.friend-copy-btn'));}}
+function copyFriendLink(btn){const url=buildRefUrl();const txt=document.getElementById('friendCopyTxt');const done=()=>{if(txt)txt.textContent=window.t('friendm.copied','✓ Kopeeritud');setTimeout(()=>{if(txt)txt.textContent=window.t('friendm.copy','Kopeeri link');},2000);};if(navigator.clipboard){navigator.clipboard.writeText(url).then(done).catch(()=>{const ta=document.createElement('textarea');ta.value=url;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);done();});}else{const ta=document.createElement('textarea');ta.value=url;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);done();}}
 
 // === Install Prompt (Add to Home Screen) ===
 let deferredInstallPrompt=null;
@@ -2484,7 +2484,7 @@ function detectPlatform(){const ua=navigator.userAgent;const isIOS=/iPhone|iPad|
 function showInstallPrompt(){if(isStandalone())return;if(localStorage.getItem('glow_install_dismissed')==='true')return;const platform=detectPlatform();['installIOS','installIOSOther','installAndroid','installDesktop'].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.remove('show');});let panelId='installDesktop';if(platform==='ios-safari')panelId='installIOS';else if(platform==='ios-other')panelId='installIOSOther';else if(platform==='android')panelId='installAndroid';const panel=document.getElementById(panelId);if(panel)panel.classList.add('show');document.getElementById('installModal').classList.add('show');}
 function dismissInstall(){const m=document.getElementById('installModal');if(m)m.classList.remove('show');}
 function dismissInstallForever(){localStorage.setItem('glow_install_dismissed','true');dismissInstall();}
-async function triggerAndroidInstall(){if(!deferredInstallPrompt){alert('Chrome menüüst (⋮) vali "Install app" või "Add to Home Screen"');return;}deferredInstallPrompt.prompt();try{const {outcome}=await deferredInstallPrompt.userChoice;if(outcome==='accepted')dismissInstall();}catch(_){}deferredInstallPrompt=null;}
+async function triggerAndroidInstall(){if(!deferredInstallPrompt){alert(window.t('install.android.manual','Chrome menüüst (⋮) vali "Install app" või "Add to Home Screen"'));return;}deferredInstallPrompt.prompt();try{const {outcome}=await deferredInstallPrompt.userChoice;if(outcome==='accepted')dismissInstall();}catch(_){}deferredInstallPrompt=null;}
 function maybeShowInstallAfterAnalysis(){if(localStorage.getItem('glow_install_shown_once')==='true')return;localStorage.setItem('glow_install_shown_once','true');setTimeout(showInstallPrompt,2500);}
 
 const FREE_CREDITS=3;
@@ -2547,9 +2547,9 @@ function refreshSaldo(){const c=getCredits(),bar=document.getElementById('saldoB
 
 let salonBrandsConfig=[],salonConfigOpen=false;
 function loadSalonBrands(){const s=localStorage.getItem('glow_salon_brands');try{salonBrandsConfig=s?JSON.parse(s):[];}catch(e){salonBrandsConfig=[];}return salonBrandsConfig;}
-function saveSalonBrands(){const checked=document.querySelectorAll('.brand-btn.active');salonBrandsConfig=Array.from(checked).map(b=>b.dataset.id);if(salonBrandsConfig.length===0){alert('Vali vähemalt üks bränd!');return;}localStorage.setItem('glow_salon_brands',JSON.stringify(salonBrandsConfig));updateSalonActiveView();toggleSalonConfig();}
-function updateSalonActiveView(){const saved=loadSalonBrands();const el=document.getElementById('salonActiveText');if(saved.length===0){el.innerHTML='<span style="color:rgba(255,255,255,0.5);font-size:12px">Brändid pole valitud</span>';document.getElementById('salonEditBtn').textContent='Seadista';}else{const names=saved.map(id=>{const b=DEPILE_BRANDS.find(x=>x.id===id);return b?'<span>'+b.name+'</span>':''}).join(' · ');el.innerHTML=names;document.getElementById('salonEditBtn').textContent='Muuda';}}
-function toggleSalonConfig(){salonConfigOpen=!salonConfigOpen;document.getElementById('salonConfig').classList.toggle('show',salonConfigOpen);document.getElementById('salonEditBtn').textContent=salonConfigOpen?'Sulge':(salonBrandsConfig.length>0?'Muuda':'Seadista');}
+function saveSalonBrands(){const checked=document.querySelectorAll('.brand-btn.active');salonBrandsConfig=Array.from(checked).map(b=>b.dataset.id);if(salonBrandsConfig.length===0){alert(window.t('salon.pickbrand','Vali vähemalt üks bränd!'));return;}localStorage.setItem('glow_salon_brands',JSON.stringify(salonBrandsConfig));updateSalonActiveView();toggleSalonConfig();}
+function updateSalonActiveView(){const saved=loadSalonBrands();const el=document.getElementById('salonActiveText');if(saved.length===0){el.innerHTML='<span style="color:rgba(255,255,255,0.5);font-size:12px">'+window.t('salon.none','Brändid pole valitud')+'</span>';document.getElementById('salonEditBtn').textContent=window.t('salon.setup','Seadista');}else{const names=saved.map(id=>{const b=DEPILE_BRANDS.find(x=>x.id===id);return b?'<span>'+b.name+'</span>':''}).join(' · ');el.innerHTML=names;document.getElementById('salonEditBtn').textContent=window.t('salon.edit','Muuda');}}
+function toggleSalonConfig(){salonConfigOpen=!salonConfigOpen;document.getElementById('salonConfig').classList.toggle('show',salonConfigOpen);document.getElementById('salonEditBtn').textContent=salonConfigOpen?window.t('salon.close','Sulge'):(salonBrandsConfig.length>0?window.t('salon.edit','Muuda'):window.t('salon.setup','Seadista'));}
 function buildBrandGrid(){const saved=loadSalonBrands();const g=document.getElementById('brandGrid');g.innerHTML='';DEPILE_BRANDS.forEach(b=>{const btn=document.createElement('div');btn.className='brand-btn'+(saved.includes(b.id)?' active':'');btn.dataset.id=b.id;btn.innerHTML='<div class="brand-icon">'+b.icon+'</div><div class="brand-name">'+b.name+'</div><div class="brand-desc">'+b.desc+'</div>';btn.onclick=()=>{btn.classList.toggle('active');document.getElementById('salonSaveBtn').disabled=document.querySelectorAll('.brand-btn.active').length===0;};g.appendChild(btn);});document.getElementById('salonSaveBtn').disabled=saved.length===0;}
 function getSalonBrandString(){const saved=loadSalonBrands();if(saved.length===0)return'Kõik depile.ee brändid.';return'Salongi valitud brändid: '+saved.map(id=>{const b=DEPILE_BRANDS.find(x=>x.id===id);return b?b.name+' ('+b.focus+')':''}).filter(Boolean).join('; ')+'.';}
 
@@ -2711,7 +2711,7 @@ function buildUritusGridCam(){
 
 // PILDIPANK
 function handleFileUpload(e){const files=Array.from(e.target.files);const remaining=MAX_PHOTOS-photoBank.length;if(files.length>remaining)document.getElementById('photoLimitWarn').classList.add('show');else document.getElementById('photoLimitWarn').classList.remove('show');const ALLOWED=['image/jpeg','image/png','image/gif','image/webp'];files.slice(0,remaining).forEach(file=>{const reader=new FileReader();reader.onload=ev=>{const mime=ALLOWED.includes(file.type)?file.type:'image/jpeg';photoBank.push({dataUrl:ev.target.result,b64:ev.target.result.split(',')[1],mime:mime,name:file.name});renderPhotoBank();refreshAnalyzeBankBtn();};reader.readAsDataURL(file);});e.target.value='';}
-function renderPhotoBank(){const bank=document.getElementById('photoBank');const grid=document.getElementById('photoGrid');const count=document.getElementById('photoBankCount');if(photoBank.length===0){bank.classList.remove('show');return;}bank.classList.add('show');count.textContent=photoBank.length+' pilti lisatud'+(photoBank.length===MAX_PHOTOS?' (max)':'');grid.innerHTML='';photoBank.forEach((p,i)=>{const thumb=document.createElement('div');thumb.className='photo-thumb';thumb.innerHTML='<img src="'+p.dataUrl+'"><button class="photo-thumb-remove" onclick="removePhoto('+i+')">×</button><div class="photo-thumb-num">'+(i+1)+'</div>';grid.appendChild(thumb);});}
+function renderPhotoBank(){const bank=document.getElementById('photoBank');const grid=document.getElementById('photoGrid');const count=document.getElementById('photoBankCount');if(photoBank.length===0){bank.classList.remove('show');return;}bank.classList.add('show');count.textContent=photoBank.length+' '+window.t('photobank.added','pilti lisatud')+(photoBank.length===MAX_PHOTOS?' (max)':'');grid.innerHTML='';photoBank.forEach((p,i)=>{const thumb=document.createElement('div');thumb.className='photo-thumb';thumb.innerHTML='<img src="'+p.dataUrl+'"><button class="photo-thumb-remove" onclick="removePhoto('+i+')">×</button><div class="photo-thumb-num">'+(i+1)+'</div>';grid.appendChild(thumb);});}
 function removePhoto(idx){photoBank.splice(idx,1);document.getElementById('photoLimitWarn').classList.remove('show');renderPhotoBank();refreshAnalyzeBankBtn();}
 function clearPhotoBank(){if(photoBank.length===0)return;if(!confirm('Kustuta kõik '+photoBank.length+' pilti?'))return;photoBank=[];document.getElementById('photoLimitWarn').classList.remove('show');renderPhotoBank();refreshAnalyzeBankBtn();resetResults();}
 function refreshAnalyzeBankBtn(){const btn=document.getElementById('analyzeBankBtn');const hint=document.getElementById('analyzeBankHint');const hasU=selectedUritus!==null,hasP=photoBank.length>0,hasC=getCredits()>0;if(!hasC){btn.className='analyze-bank-btn';btn.disabled=true;hint.textContent='Krediit otsas';hint.className='analyze-bank-hint';}else if(!hasU&&!hasP){btn.className='analyze-bank-btn';btn.disabled=true;hint.textContent='Tee valik ja lisa vähemalt 1 pilt';hint.className='analyze-bank-hint';}else if(!hasU){btn.className='analyze-bank-btn';btn.disabled=true;hint.textContent='Tee valik ülalt ← kohustuslik';hint.className='analyze-bank-hint';}else if(!hasP){btn.className='analyze-bank-btn';btn.disabled=true;hint.textContent='Lisa vähemalt 1 pilt';hint.className='analyze-bank-hint';}else{btn.className='analyze-bank-btn active';btn.disabled=false;hint.textContent=photoBank.length+' pilti · '+selectedUritus.name+' · '+getCredits()+' krediiti';hint.className='analyze-bank-hint ready';}}
@@ -2771,7 +2771,7 @@ async function startCam(){
     if(mode==='stiil'){document.getElementById('anaBtn').disabled=!(selectedUritusCam&&getCredits()>0);}
     else{document.getElementById('anaBtn').disabled=!(getCredits()>0);}
     updateFlipBtn();
-  }catch(e){stream=null;document.getElementById('err').textContent='Kaamera avamine ebaõnnestus. Seaded → Safari → Kaamera → Luba';}
+  }catch(e){stream=null;document.getElementById('err').textContent=window.t('cam.openfail','Kaamera avamine ebaõnnestus. Seaded → Safari → Kaamera → Luba');}
 }
 
 async function startMeikCam(){
@@ -2805,8 +2805,8 @@ function setStiilRegime(regime){
   else{document.getElementById('pildipankTitle').textContent=t('pp.title.shop','Pood · Pildipank');document.getElementById('pildipankInfo').innerHTML=t('pp.info.shop','Laadi üles kuni <strong>10 pilti</strong> poes proovitud asjadest.');document.getElementById('uploadZoneSub').innerHTML=t('pp.sub.shop','Pildista asju proovikabiiinis');}
 }
 
-function buildProcedureGrid(){const g=document.getElementById('procedureGrid');g.innerHTML='';const rec=document.createElement('div');rec.className='proc-btn recommend'+(selectedProcedure==='soovita'?' active':'');rec.innerHTML='<div class="proc-icon">'+iconHtml('search',22,'#c4b8e0')+'</div><div class="proc-name" style="color:#c4b8e0">Soovita<br>protseduuri</div>';rec.onclick=()=>selectProcedure('soovita');g.appendChild(rec);PROCEDURES.forEach(p=>{const b=document.createElement('div');b.className='proc-btn'+(p.id===selectedProcedure?' active':'');b.innerHTML='<div class="proc-icon">'+iconHtml(p.icon,22)+'</div><div class="proc-name">'+p.name+'</div>';b.onclick=()=>selectProcedure(p.id);g.appendChild(b);});}
-function selectProcedure(id){selectedProcedure=id;document.querySelectorAll('.proc-btn').forEach(b=>b.classList.remove('active'));const btns=document.querySelectorAll('.proc-btn');if(id==='soovita'){btns[0].classList.add('active');}else{const idx=PROCEDURES.findIndex(p=>p.id===id);if(idx>=0)btns[idx+1].classList.add('active');}document.getElementById('resLbl').textContent=PROC_LABELS[id]||id;resetResults();if(id==='soovita'){document.getElementById('proTipText').textContent='Soovita protseduuri — suuna kaamera näole';}else{document.getElementById('proTipText').textContent='✦ '+PROC_LABELS[id]+' — vajuta "Ava kaamera"';}}
+function buildProcedureGrid(){const g=document.getElementById('procedureGrid');g.innerHTML='';const rec=document.createElement('div');rec.className='proc-btn recommend'+(selectedProcedure==='soovita'?' active':'');rec.innerHTML='<div class="proc-icon">'+iconHtml('search',22,'#c4b8e0')+'</div><div class="proc-name" style="color:#c4b8e0">'+window.t('procg.soovita','Soovita\nprotseduuri')+'</div>';rec.onclick=()=>selectProcedure('soovita');g.appendChild(rec);PROCEDURES.forEach(p=>{const b=document.createElement('div');b.className='proc-btn'+(p.id===selectedProcedure?' active':'');b.innerHTML='<div class="proc-icon">'+iconHtml(p.icon,22)+'</div><div class="proc-name">'+window.t('procg.'+p.id,p.name)+'</div>';b.onclick=()=>selectProcedure(p.id);g.appendChild(b);});}
+function selectProcedure(id){selectedProcedure=id;document.querySelectorAll('.proc-btn').forEach(b=>b.classList.remove('active'));const btns=document.querySelectorAll('.proc-btn');if(id==='soovita'){btns[0].classList.add('active');}else{const idx=PROCEDURES.findIndex(p=>p.id===id);if(idx>=0)btns[idx+1].classList.add('active');}document.getElementById('resLbl').textContent=window.t('proc.'+id,PROC_LABELS[id]||id);resetResults();if(id==='soovita'){document.getElementById('proTipText').textContent=window.t('tip.pro','Soovita protseduuri — suuna kaamera näole');}else{document.getElementById('proTipText').textContent='✦ '+window.t('proc.'+id,PROC_LABELS[id])+' — '+window.t('proc.tapopen','vajuta "Ava kaamera"');}}
 
 
 function showAlternatiivid(){
@@ -2921,17 +2921,17 @@ function showPricing(){document.getElementById('pricingScreen').classList.add('s
 function hidePricing(){document.getElementById('pricingScreen').classList.remove('show');['assistentWrap','resultCard'].forEach(id=>document.getElementById(id).style.display='block');if(mode==='meik'){document.getElementById('meikStyleSelect').style.display='block';}if(mode==='stiil'){document.getElementById('stiilRegimeSelect').style.display='block';document.getElementById('stiilInputSelect').style.display='block';if(stiilInput==='galerii')document.getElementById('pildipankWrap').style.display='block';else{document.getElementById('stiilCamWrap').style.display='block';document.getElementById('cameraCard').style.display='block';}}if(mode==='pro'){document.getElementById('cameraCard').style.display='block';document.getElementById('proTip').classList.add('show');document.getElementById('salonSetup').classList.add('show');}}
 async function showCheckout(){
   // Kui pole sisse loginud, avame kõigepealt login-modaali
-  if(!getSessionToken()){showLoginModal('Sisselogimine on vajalik enne maksete tegemist');return;}
-  const btn=document.getElementById('buyBtn');const originalTxt=btn.textContent;btn.disabled=true;btn.textContent='⟳ Suunan maksele...';
+  if(!getSessionToken()){showLoginModal(window.t('login.ctx.pay','Sisselogimine on vajalik enne maksete tegemist'));return;}
+  const btn=document.getElementById('buyBtn');const originalTxt=btn.textContent;btn.disabled=true;btn.textContent=window.t('checkout.redirecting','⟳ Suunan maksele...');
   try{
     const res=await fetch(API_BASE+'/api/checkout',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+getSessionToken()},body:JSON.stringify({pkgId:selectedPkg.id})});
     const data=await res.json();
-    if(!res.ok||!data.url)throw new Error(data.error||'Makse ebaõnnestus');
+    if(!res.ok||!data.url)throw new Error(data.error||window.t('checkout.payfail','Makse ebaõnnestus'));
     window.location.href=data.url; // Suuname Stripe Checkout'i
-  }catch(e){alert('Viga: '+e.message);btn.disabled=false;btn.textContent=originalTxt;}
+  }catch(e){alert(window.t('gen.error','Viga')+': '+e.message);btn.disabled=false;btn.textContent=originalTxt;}
 }
 function hideCheckout(){document.getElementById('checkoutScreen').classList.remove('show');document.getElementById('pricingScreen').classList.add('show');}
-function selectPkg(el,id,count,price,unit){document.querySelectorAll('.pkg').forEach(p=>p.classList.remove('selected'));el.classList.add('selected');selectedPkg={id,count,price,unit};document.getElementById('buyBtn').textContent='Jätka maksega — €'+price+' →';}
+function selectPkg(el,id,count,price,unit){document.querySelectorAll('.pkg').forEach(p=>p.classList.remove('selected'));el.classList.add('selected');selectedPkg={id,count,price,unit};document.getElementById('buyBtn').textContent=window.t('price.continue','Jätka maksega')+' — €'+price+' →';}
 function onKeyInput(){const val=document.getElementById('keyInput').value.trim();const valid=val.startsWith('sk-ant');const btn=document.getElementById('saveBtn');btn.disabled=!valid;btn.style.opacity=valid?'1':'.4';document.getElementById('keyError').style.display=(val.length>5&&!valid)?'block':'none';}
 function toggleKeyVis(){const inp=document.getElementById('keyInput');inp.type=inp.type==='password'?'text':'password';}
 function saveKey(){const val=document.getElementById('keyInput').value.trim();if(!val.startsWith('sk-ant'))return;localStorage.setItem('glow_api_key',val);document.getElementById('apiSetupCard').style.display='none';document.getElementById('keyStatus').style.display='block';document.getElementById('saldoBar').style.display='flex';setTimeout(()=>refreshSaldo(),50);}
@@ -2942,11 +2942,11 @@ function setDot(state,msg){const d=document.getElementById('dot');d.className='d
 // ANALÜÜS — meik, stiil kaamera, pro
 async function analyze(){
   const key=getKey();if(!key){document.getElementById('apiSetupCard').style.display='block';return;}
-  if(!stream){document.getElementById('err').textContent='Vajuta kõigepealt "Ava kaamera"!';return;}
+  if(!stream){document.getElementById('err').textContent=window.t('err.opencam','Vajuta kõigepealt "Ava kaamera"!');return;}
   const credits=getCredits();if(credits<=0){showPricing();return;}
 
   // Stiili kaamera puhul kontroll ürituse kohta
-  if(mode==='stiil'&&!selectedUritusCam){document.getElementById('err').textContent='Tee kõigepealt valik ülalt!';return;}
+  if(mode==='stiil'&&!selectedUritusCam){document.getElementById('err').textContent=window.t('err.pickfirst','Tee kõigepealt valik ülalt!');return;}
 
   let sys,prompt,lbl,bar;
   if(mode==='meik'){
@@ -3303,7 +3303,7 @@ async function generateShareImage(format){
 }
 
 async function saveShareImage(){
-  if(!window.lastShareData){alert('Tee enne analüüs');return;}
+  if(!window.lastShareData){alert(window.t('share.needanalysis','Tee enne analüüs'));return;}
   const btn=event&&event.currentTarget;if(btn)btn.classList.add('share-busy');
   try{
     const blob=await generateShareImage();
@@ -3312,12 +3312,12 @@ async function saveShareImage(){
     const a=document.createElement('a');a.href=url;a.download='glow-'+selectedShareFormat+'-'+Date.now()+'.jpg';
     document.body.appendChild(a);a.click();a.remove();
     setTimeout(()=>URL.revokeObjectURL(url),3000);
-  }catch(e){alert('Viga: '+e.message);}
+  }catch(e){alert(window.t('gen.error','Viga')+': '+e.message);}
   finally{if(btn)btn.classList.remove('share-busy');}
 }
 
 async function shareImageDirect(){
-  if(!window.lastShareData){alert('Tee enne analüüs');return;}
+  if(!window.lastShareData){alert(window.t('share.needanalysis','Tee enne analüüs'));return;}
   const btn=event&&event.currentTarget;if(btn)btn.classList.add('share-busy');
   try{
     const blob=await generateShareImage();
@@ -3331,15 +3331,15 @@ async function shareImageDirect(){
       const url=URL.createObjectURL(blob);
       const a=document.createElement('a');a.href=url;a.download=file.name;a.click();a.remove();
       setTimeout(()=>URL.revokeObjectURL(url),3000);
-      alert('Pilt salvestati galeriisse — ava Instagram/TikTok ja vali see üleslaadimiseks');
+      alert(window.t('share.saved','Pilt salvestati galeriisse — ava Instagram/TikTok ja vali see üleslaadimiseks'));
     }
-  }catch(e){if(e.name!=='AbortError')alert('Viga: '+e.message);}
+  }catch(e){if(e.name!=='AbortError')alert(window.t('gen.error','Viga')+': '+e.message);}
   finally{if(btn)btn.classList.remove('share-busy');}
 }
 
 function shareFB(){window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(window.location.href),'_blank');}
 function shareX(){const fb=lastFb||'';const text=encodeURIComponent('✦ GLÓW AI\n\n'+fb.substring(0,200)+'\n\n#GLOW #AI');window.open('https://twitter.com/intent/tweet?text='+text+'&url='+encodeURIComponent(window.location.href),'_blank');}
-function shareCopy(){const fb=lastFb||'';const text='✦ GLÓW AI\n\n'+fb+'\n\n'+window.location.href;if(navigator.clipboard){navigator.clipboard.writeText(text).then(()=>alert('✓ Kopeeritud!'));}else{const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);alert('✓ Kopeeritud!');}}
+function shareCopy(){const fb=lastFb||'';const text='✦ GLÓW AI\n\n'+fb+'\n\n'+window.location.href;if(navigator.clipboard){navigator.clipboard.writeText(text).then(()=>alert(window.t('copy.done','✓ Kopeeritud!')));}else{const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);alert(window.t('copy.done','✓ Kopeeritud!'));}}
 init();
 if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(e=>console.warn('SW registreerimine ebaõnnestus:',e));});}
 </script>
@@ -3607,7 +3607,100 @@ if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.s
       'share2.image': 'Share image',
       'share2.save': 'Save to gallery',
       'share2.ask': 'Ask friends for their opinion — GLÓW Circles',
-      'share2.note': 'Stories / TikTok use 9:16 · Pinterest 2:3 · Facebook/Instagram post 1:1'
+      'share2.note': 'Stories / TikTok use 9:16 · Pinterest 2:3 · Facebook/Instagram post 1:1',
+      'login.title': 'Log in',
+      'login.sub': "Enter your email — we'll send you a 6-digit code. No password needed.",
+      'login.email.ph': 'name@example.com',
+      'login.send': 'Send code',
+      'login.hint': 'By logging in you agree to the <a href="tingimused.html">Terms of Use</a> and <a href="privaatsus.html">Privacy Policy</a>.',
+      'login.sent.text': 'We sent a 6-digit code to<br><strong id="loginSentEmail"></strong>',
+      'login.code.label': 'Enter the code from your email:',
+      'login.code.submit': 'Confirm code',
+      'login.code.hint': "The code is valid for <strong>10 minutes</strong>. Can't see the email? Check your <strong>Spam</strong> folder.<br><a href=\"#\" onclick=\"event.preventDefault();submitLoginRequest()\" style=\"color:var(--gold-bright)\">Send a new code →</a>",
+      'login.err.email': 'Please enter a valid email address',
+      'login.sending': '⟳ Sending...',
+      'login.sendfail': 'Sending failed',
+      'login.ctx.pay': 'Login is required before making a payment',
+      'cookie.text': 'We use necessary cookies for the service to work (login, credit balance). If you accept, we may also add anonymous usage statistics. <a href="privaatsus.html">Read more in the privacy policy →</a>',
+      'cookie.essential': 'Only necessary',
+      'cookie.all': 'Accept all',
+      'install.title': 'Add to home screen',
+      'install.sub': '3 seconds · always at hand',
+      'install.ios.hint': 'To open GLÓW with one tap:',
+      'install.ios.s1': 'Tap the <strong>Share</strong> <span class="ios-share-glyph">↑</span> button in the Safari toolbar',
+      'install.ios.s2': 'Scroll down and choose <strong>"Add to Home Screen"</strong>',
+      'install.ios.s3': 'Confirm <strong>"Add"</strong> in the top right corner',
+      'install.iosother.hint': 'On iOS, installation only works via Safari.<br>Open this page in Safari:',
+      'install.iosother.hint2': 'Then tap Share → "Add to Home Screen"',
+      'install.android.hint': 'One tap, ready right away:',
+      'install.android.btn': 'Install GLÓW',
+      'install.android.hint2': "If the button above doesn't work — in the Chrome menu (<strong>⋮</strong>) choose <strong>\"Install app\"</strong> or <strong>\"Add to Home Screen\"</strong>.",
+      'install.desktop.hint': 'Scan the QR code with your phone to open it on mobile:',
+      'install.later': 'Later',
+      'install.never': "Don't show again",
+      'friendm.title': 'Invite friends',
+      'friendm.sub': 'Each friend = a bonus for both',
+      'friendm.bonus': 'Send a link to a friend — when they open GLÓW, you both get <strong>+5 analyses</strong> as a gift ✦',
+      'friendm.codelabel': 'Your personal code',
+      'friendm.share': 'Share link',
+      'friendm.copy': 'Copy link',
+      'friendm.copied': '✓ Copied',
+      'friendm.sharetext': 'Try GLÓW — an AI beauty app. With my invite you get free analyses. ✦',
+      'friendm.sharetitle': 'GLÓW · friend invite',
+      'reftoast.pre': 'Welcome!',
+      'reftoast.post': 'from a friend',
+      'reftoast.unit': 'analyses',
+      'price.buybtn': 'Continue to payment — €4.50 →',
+      'price.continue': 'Continue to payment',
+      'checkout.order.title': '50 analyses',
+      'checkout.order.sub': '0.09€ each',
+      'checkout.paybtn': 'Pay — €4.50',
+      'checkout.redirecting': '⟳ Redirecting to payment...',
+      'checkout.payfail': 'Payment failed',
+      'proc.tapopen': 'tap "Open camera"',
+      'proc.soovita': 'Suggest a procedure',
+      'proc.nahooldus': 'Facial cleansing and care',
+      'proc.niisutus': 'Hydration treatment',
+      'proc.vananemine': 'Anti-ageing treatment',
+      'proc.akne': 'Acne care',
+      'proc.pigment': 'Pigmentation treatment',
+      'proc.koorimine': 'Chemical peel',
+      'proc.kulmud': 'Brow shaping',
+      'proc.ripsmed': 'Lash and brow tinting',
+      'proc.massaaz': 'Facial massage',
+      'proc.depilatsioon': 'Depilation and waxing',
+      'proc.kehahooldus': 'Body care',
+      'proc.jalahooldus': 'Foot care',
+      'procg.soovita': 'Suggest a\nprocedure',
+      'procg.nahooldus': 'Facial\ncleansing',
+      'procg.niisutus': 'Hydration\ntreatment',
+      'procg.vananemine': 'Anti-\nageing',
+      'procg.akne': 'Acne\ncare',
+      'procg.pigment': 'Pigmentation\ntreatment',
+      'procg.koorimine': 'Chemical\npeel',
+      'procg.kulmud': 'Brow\nshaping',
+      'procg.ripsmed': 'Lash & brow\ntinting',
+      'procg.massaaz': 'Facial\nmassage',
+      'procg.depilatsioon': 'Depilation\n& waxing',
+      'procg.kehahooldus': 'Body\ncare',
+      'procg.jalahooldus': 'Foot\ncare',
+      'salon.setup': 'Set up',
+      'salon.close': 'Close',
+      'salon.pickbrand': 'Choose at least one brand!',
+      'photobank.added': 'photos added',
+      'circ.name.err': "Please enter a Circle name (at least 2 characters)",
+      'copy.fail': "Couldn't copy",
+      'copy.done': '✓ Copied!',
+      'share.needanalysis': 'Run an analysis first',
+      'share.pickcircle': 'Choose at least one Circle',
+      'share.saved': 'Image saved to your gallery — open Instagram/TikTok and select it to upload',
+      'login.fail': 'Login failed',
+      'pay.success': '✦ Payment successful! Credits added to your account.',
+      'pay.cancel': 'Payment cancelled. Your balance is unchanged.',
+      'install.android.manual': 'From the Chrome menu (⋮) choose "Install app" or "Add to Home Screen"',
+      'cam.openfail': 'Failed to open the camera. Settings → Safari → Camera → Allow',
+      'err.opencam': 'Tap "Open camera" first!',
+      'err.pickfirst': 'Make a choice above first!'
     }
   };
   const _orig = new WeakMap();
