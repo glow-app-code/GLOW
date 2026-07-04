@@ -1099,19 +1099,19 @@ window.t=window.t||function(k,f){return f;};</script>
 
 <div id="keyStatus" style="display:none">
   <div class="key-status">
-    <div class="key-status-left"><div class="key-dot"></div><div class="key-status-text">API võti aktiivne</div></div>
-    <button class="key-change" onclick="changeKey()">Vaheta võtit</button>
+    <div class="key-status-left"><div class="key-dot"></div><div class="key-status-text" data-i18n="key.active">API võti aktiivne</div></div>
+    <button class="key-change" onclick="changeKey()" data-i18n="key.change">Vaheta võtit</button>
   </div>
 </div>
 <div id="apiSetupCard" class="card" style="display:none">
-  <div style="font-family:'Cormorant Garamond',serif;font-size:20px;color:#fff;margin-bottom:6px">API Võti</div>
-  <div style="font-size:12px;color:rgba(255,255,255,0.7);line-height:1.6;margin-bottom:14px">Sisesta oma Anthropic API võti. Vajalik ainult üks kord.</div>
+  <div style="font-family:'Cormorant Garamond',serif;font-size:20px;color:#fff;margin-bottom:6px" data-i18n="key.title">API Võti</div>
+  <div style="font-size:12px;color:rgba(255,255,255,0.7);line-height:1.6;margin-bottom:14px" data-i18n="key.intro">Sisesta oma Anthropic API võti. Vajalik ainult üks kord.</div>
   <div style="position:relative;margin-bottom:10px">
     <input type="password" id="keyInput" placeholder="sk-ant-api03-..." oninput="onKeyInput()" style="width:100%;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.2);color:#fff;font-family:'DM Mono',monospace;font-size:13px;padding:13px 46px 13px 13px;border-radius:3px;outline:none;box-sizing:border-box">
     <button onclick="toggleKeyVis()" aria-label="Näita / peida võti" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(255,255,255,0.55);cursor:pointer;padding:6px;display:inline-flex"><span data-icon="eye" data-icon-size="18"></span></button>
   </div>
-  <div id="keyError" style="font-size:11px;color:#e8a090;margin-bottom:8px;display:none">Võti peab algama sk-ant-iga</div>
-  <button id="saveBtn" onclick="saveKey()" disabled style="width:100%;padding:13px;background:var(--gold);color:var(--bg);border:none;border-radius:3px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.3em;text-transform:uppercase;cursor:pointer;opacity:.4;font-weight:600">Salvesta →</button>
+  <div id="keyError" style="font-size:11px;color:#e8a090;margin-bottom:8px;display:none" data-i18n="key.error">Võti peab algama sk-ant-iga</div>
+  <button id="saveBtn" onclick="saveKey()" disabled style="width:100%;padding:13px;background:var(--gold);color:var(--bg);border:none;border-radius:3px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.3em;text-transform:uppercase;cursor:pointer;opacity:.4;font-weight:600" data-i18n="key.save">Salvesta →</button>
 </div>
 
 <div class="saldo-bar" id="saldoBar" onclick="showPricing()" style="display:none">
@@ -1181,7 +1181,7 @@ window.t=window.t||function(k,f){return f;};</script>
   </div>
   <div class="card-fields">
     <div class="field-label" data-i18n="checkout.cardnum">Kaardi number</div><input class="field-input" placeholder="1234 5678 9012 3456" disabled>
-    <div class="field-row"><div><div class="field-label" data-i18n="checkout.expiry">Kehtivusaeg</div><input class="field-input" placeholder="KK/AA" disabled></div><div><div class="field-label" data-i18n="checkout.cvc">Turvakood</div><input class="field-input" placeholder="123" disabled></div></div>
+    <div class="field-row"><div><div class="field-label" data-i18n="checkout.expiry">Kehtivusaeg</div><input class="field-input" placeholder="KK/AA" data-i18n-ph="checkout.expiry.ph" disabled></div><div><div class="field-label" data-i18n="checkout.cvc">Turvakood</div><input class="field-input" placeholder="123" disabled></div></div>
   </div>
   <button class="pay-btn" disabled data-i18n="checkout.paybtn">Maksa — €4.50</button>
   <div class="secure-note" data-i18n="checkout.secure">🔒 Turvaline makse · Stripe</div>
@@ -1342,7 +1342,7 @@ window.t=window.t||function(k,f){return f;};</script>
     <button class="cam-top-btn pri" id="camBtn" onclick="startCam()" data-i18n="cam.open">✦ Ava kaamera</button>
     <button class="cam-top-btn" id="anaBtn" onclick="analyze()" disabled data-i18n="cam.analyze">Analüüsi</button>
     <button class="cam-top-btn" id="autoBtn" onclick="toggleAuto()" disabled data-i18n="cam.auto">Auto</button>
-    <button class="cam-top-btn flip-btn" id="flipBtn" onclick="flipCam()" disabled title="Vaheta kaamerat"><span data-icon="flip" data-icon-size="20" style="display:inline-flex;vertical-align:middle"></span></button>
+    <button class="cam-top-btn flip-btn" id="flipBtn" onclick="flipCam()" disabled title="Vaheta kaamerat" data-i18n-title="tip.flip"><span data-icon="flip" data-icon-size="20" style="display:inline-flex;vertical-align:middle"></span></button>
   </div>
   <div class="cam-frame">
     <video id="vid" autoplay playsinline muted></video>
@@ -1429,7 +1429,7 @@ window.t=window.t||function(k,f){return f;};</script>
   <div class="share-quick">
     <button class="sbtn fb" onclick="shareFB()" title="Facebook">FB</button>
     <button class="sbtn xtwitter" onclick="shareX()" title="X / Twitter">𝕏</button>
-    <button class="sbtn cp" onclick="shareCopy()" title="Kopeeri link">Link</button>
+    <button class="sbtn cp" onclick="shareCopy()" title="Kopeeri link" data-i18n-title="friendm.copy">Link</button>
   </div>
   <div class="share-note" data-i18n="share2.note">Stories / TikTok kasutavad 9:16 formaati · Pinterest 2:3 · Facebook/Instagram post 1:1</div>
   <canvas id="shareCanvas" style="display:none"></canvas>
@@ -1770,8 +1770,8 @@ async function apiCall(path,options){
 }
 
 function initialsFrom(email){const s=(email||'?').split('@')[0]||'?';return s.slice(0,2).toUpperCase();}
-function relTime(ts){const d=Date.now()-ts;if(d<60000)return 'nüüd';if(d<3600000)return Math.floor(d/60000)+' min';if(d<86400000)return Math.floor(d/3600000)+'h';return Math.floor(d/86400000)+' päeva';}
-function expiryTime(expiresAt){const left=expiresAt-Date.now();if(left<=0)return 'kohe kustub';if(left<3600000)return Math.ceil(left/60000)+' min järel';return Math.ceil(left/3600000)+'h järel';}
+function relTime(ts){const d=Date.now()-ts;if(d<60000)return window.t('time.now','nüüd');if(d<3600000)return Math.floor(d/60000)+' min';if(d<86400000)return Math.floor(d/3600000)+'h';return Math.floor(d/86400000)+' '+window.t('time.days','päeva');}
+function expiryTime(expiresAt){const left=expiresAt-Date.now();if(left<=0)return window.t('time.expiring','kohe kustub');if(left<3600000)return Math.ceil(left/60000)+' '+window.t('time.minleft','min järel');return Math.ceil(left/3600000)+window.t('time.hleft','h järel');}
 
 async function openCirclesPanel(){
   document.getElementById('circlesBackdrop').classList.add('show');
@@ -1933,10 +1933,10 @@ async function openCircleDetail(id){
 }
 
 function copyText(txt,btn){navigator.clipboard.writeText(txt).then(()=>{const o=btn.textContent;btn.textContent=window.t('friendm.copied','✓ Kopeeritud');setTimeout(()=>btn.textContent=o,2000);}).catch(()=>alert(window.t('copy.fail','Ei õnnestu kopeerida')));}
-async function shareInviteLink(url,name){if(navigator.share){try{await navigator.share({title:'GLÓW Circle: '+name,text:'Liitu minu Circle\'iga GLÓW app\'is: '+name,url});}catch(_){}}else{copyText(url,{textContent:'Jaga'});}}
+async function shareInviteLink(url,name){if(navigator.share){try{await navigator.share({title:'GLÓW Circle: '+name,text:window.t('circ.sharetext','Liitu minu Circle\'iga GLÓW app\'is:')+' '+name,url});}catch(_){}}else{copyText(url,{textContent:window.t('gen.share','Jaga')});}}
 
 async function leaveCircle(id){
-  if(!confirm('Kas lahkud sellest Circle\'ist?'))return;
+  if(!confirm(window.t('circ.leave.confirm','Kas lahkud sellest Circle\'ist?')))return;
   try{await apiCall('/api/circles/'+id+'/leave',{method:'POST'});
     window.myCircles=window.myCircles.filter(c=>c.id!==id);
     switchCirclesTab('my');
@@ -2000,7 +2000,7 @@ async function loadChatMessages(replace){
     renderChatMessages();
   }catch(e){
     const s=document.getElementById('chatScroll');
-    if(s&&replace)s.innerHTML='<div class="chat-empty" style="color:#e8a090">Viga: '+esc(e.message)+'</div>';
+    if(s&&replace)s.innerHTML='<div class="chat-empty" style="color:#e8a090">'+window.t('gen.error','Viga')+': '+esc(e.message)+'</div>';
   }
 }
 
@@ -2142,7 +2142,7 @@ function renderShareCard(s,circleMeta){
     +'<div class="share-comments">'+commHtml+'</div>'
     +'<div class="share-comment-input-row">'
     +'<input class="share-comment-input" placeholder="'+t('feed.comment.ph','Kirjuta kommentaar...')+'" data-share-id="'+esc(s.id)+'" onkeydown="if(event.key===\'Enter\')sendComment(this)">'
-    +'<button class="share-comment-send" onclick="sendComment(this.previousElementSibling)">Saada</button>'
+    +'<button class="share-comment-send" onclick="sendComment(this.previousElementSibling)">'+t('chat.send','Saada')+'</button>'
     +'</div>'
     +'</div>';
 }
@@ -2200,7 +2200,7 @@ function openShareToModal(){
   if(!isLoggedIn()){showLoginModal('Sisselogimine vajalik jagamiseks');return;}
   if(!window.currentShareData){alert(window.t('share.needanalysis','Tee kõigepealt analüüs'));return;}
   if(window.myCircles.length===0){
-    if(confirm('Sul pole veel Circle\'e. Kas soovid nüüd luua?')){openCirclesPanel();}
+    if(confirm(window.t('circ.none.confirm','Sul pole veel Circle\'e. Kas soovid nüüd luua?'))){openCirclesPanel();}
     return;
   }
   // Vaikimisi märgistame KÕIK circle'id (kasutaja soov)
@@ -2393,31 +2393,31 @@ async function submitCodeVerify(){
   const err=document.getElementById('codeErr');
   const btn=document.getElementById('codeSubmitBtn');
   err.textContent='';
-  if(code.length!==6){err.textContent='Sisesta 6-kohaline kood';return;}
-  if(!email){err.textContent='E-post puudub, saada uus kood';return;}
-  btn.disabled=true;btn.textContent='⟳ Kinnitan...';
+  if(code.length!==6){err.textContent=window.t('code.enter6','Sisesta 6-kohaline kood');return;}
+  if(!email){err.textContent=window.t('code.noemail','E-post puudub, saada uus kood');return;}
+  btn.disabled=true;btn.textContent=window.t('code.verifying','⟳ Kinnitan...');
   try{
     const res=await fetch(API_BASE+'/auth/verify-code',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,code})});
     const data=await res.json();
     if(!res.ok||!data.token){
       inputs.forEach(i=>{i.classList.add('error');setTimeout(()=>i.classList.remove('error'),400);});
-      throw new Error(data.error||'Vale kood');
+      throw new Error(data.error||window.t('code.wrong','Vale kood'));
     }
     setSession(data.token,data.email);
     closeLoginModal();
     await syncUserFromServer();
     const joined=await resumePendingJoin();
     if(!joined){const t=document.getElementById('friendToast');const txt=document.getElementById('friendToastText');
-    if(t&&txt){txt.innerHTML='<strong>✦ Sisse logitud!</strong> Krediidid sünkroniseeritud.';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),5500);}}
+    if(t&&txt){txt.innerHTML='<strong>'+window.t('login.done','✦ Sisse logitud!')+'</strong> '+window.t('login.synced','Krediidid sünkroniseeritud.');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),5500);}}
   }catch(e){err.textContent=e.message;}
-  btn.disabled=false;btn.textContent='Kinnita kood';
+  btn.disabled=false;btn.textContent=window.t('login.code.submit','Kinnita kood');
 }
 
 async function verifyMagicLink(token){
   try{
     const res=await fetch(API_BASE+'/auth/verify?token='+encodeURIComponent(token));
     const data=await res.json();
-    if(!res.ok||!data.token)throw new Error(data.error||'Verifitseerimine ebaõnnestus');
+    if(!res.ok||!data.token)throw new Error(data.error||window.t('login.verifyfail','Verifitseerimine ebaõnnestus'));
     setSession(data.token,data.email);
     // Puhasta URL
     try{const u=new URL(window.location.href);u.searchParams.delete('verify');history.replaceState({},'',u.pathname+(u.search?u.search:'')+u.hash);}catch(_){}
@@ -2426,7 +2426,7 @@ async function verifyMagicLink(token){
     const joined=await resumePendingJoin();
     if(!joined){showRefToast(0); // kasutame olemasolevat toast'i, aga tekstiga:
     const t=document.getElementById('friendToast');const txt=document.getElementById('friendToastText');
-    if(t&&txt){txt.innerHTML='<strong>✦ Sisse logitud!</strong> Sinu krediidid on sünkroniseeritud.';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),5500);}}
+    if(t&&txt){txt.innerHTML='<strong>'+window.t('login.done','✦ Sisse logitud!')+'</strong> '+window.t('login.synced','Krediidid sünkroniseeritud.');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),5500);}}
   }catch(e){alert(window.t('login.fail','Sisselogimine ebaõnnestus')+': '+e.message);}
 }
 
@@ -2443,7 +2443,7 @@ async function syncUserFromServer(){
   }catch(_){}
 }
 
-function logoutUser(){if(confirm('Kas logid välja? Krediidid jäävad kontosse alles kuni järgmise sisselogimiseni.'))clearSession();}
+function logoutUser(){if(confirm(window.t('logout.confirm','Kas logid välja? Krediidid jäävad kontosse alles kuni järgmise sisselogimiseni.')))clearSession();}
 
 // URL param'ide käsitlemine käivitumisel — magic-link verify ja Stripe checkout return
 function handleUrlParams(){
@@ -2718,14 +2718,14 @@ function buildUritusGridCam(){
 function handleFileUpload(e){const files=Array.from(e.target.files);const remaining=MAX_PHOTOS-photoBank.length;if(files.length>remaining)document.getElementById('photoLimitWarn').classList.add('show');else document.getElementById('photoLimitWarn').classList.remove('show');const ALLOWED=['image/jpeg','image/png','image/gif','image/webp'];files.slice(0,remaining).forEach(file=>{const reader=new FileReader();reader.onload=ev=>{const mime=ALLOWED.includes(file.type)?file.type:'image/jpeg';photoBank.push({dataUrl:ev.target.result,b64:ev.target.result.split(',')[1],mime:mime,name:file.name});renderPhotoBank();refreshAnalyzeBankBtn();};reader.readAsDataURL(file);});e.target.value='';}
 function renderPhotoBank(){const bank=document.getElementById('photoBank');const grid=document.getElementById('photoGrid');const count=document.getElementById('photoBankCount');if(photoBank.length===0){bank.classList.remove('show');return;}bank.classList.add('show');count.textContent=photoBank.length+' '+window.t('photobank.added','pilti lisatud')+(photoBank.length===MAX_PHOTOS?' (max)':'');grid.innerHTML='';photoBank.forEach((p,i)=>{const thumb=document.createElement('div');thumb.className='photo-thumb';thumb.innerHTML='<img src="'+p.dataUrl+'"><button class="photo-thumb-remove" onclick="removePhoto('+i+')">×</button><div class="photo-thumb-num">'+(i+1)+'</div>';grid.appendChild(thumb);});}
 function removePhoto(idx){photoBank.splice(idx,1);document.getElementById('photoLimitWarn').classList.remove('show');renderPhotoBank();refreshAnalyzeBankBtn();}
-function clearPhotoBank(){if(photoBank.length===0)return;if(!confirm('Kustuta kõik '+photoBank.length+' pilti?'))return;photoBank=[];document.getElementById('photoLimitWarn').classList.remove('show');renderPhotoBank();refreshAnalyzeBankBtn();resetResults();}
-function refreshAnalyzeBankBtn(){const btn=document.getElementById('analyzeBankBtn');const hint=document.getElementById('analyzeBankHint');const hasU=selectedUritus!==null,hasP=photoBank.length>0,hasC=getCredits()>0;if(!hasC){btn.className='analyze-bank-btn';btn.disabled=true;hint.textContent='Krediit otsas';hint.className='analyze-bank-hint';}else if(!hasU&&!hasP){btn.className='analyze-bank-btn';btn.disabled=true;hint.textContent='Tee valik ja lisa vähemalt 1 pilt';hint.className='analyze-bank-hint';}else if(!hasU){btn.className='analyze-bank-btn';btn.disabled=true;hint.textContent='Tee valik ülalt ← kohustuslik';hint.className='analyze-bank-hint';}else if(!hasP){btn.className='analyze-bank-btn';btn.disabled=true;hint.textContent='Lisa vähemalt 1 pilt';hint.className='analyze-bank-hint';}else{btn.className='analyze-bank-btn active';btn.disabled=false;hint.textContent=photoBank.length+' pilti · '+selectedUritus.name+' · '+getCredits()+' krediiti';hint.className='analyze-bank-hint ready';}}
+function clearPhotoBank(){if(photoBank.length===0)return;if(!confirm(window.t('photobank.clearconfirm','Kustuta kõik')+' '+photoBank.length+' '+window.t('bank.photos','pilti')+'?'))return;photoBank=[];document.getElementById('photoLimitWarn').classList.remove('show');renderPhotoBank();refreshAnalyzeBankBtn();resetResults();}
+function refreshAnalyzeBankBtn(){const btn=document.getElementById('analyzeBankBtn');const hint=document.getElementById('analyzeBankHint');const hasU=selectedUritus!==null,hasP=photoBank.length>0,hasC=getCredits()>0;if(!hasC){btn.className='analyze-bank-btn';btn.disabled=true;hint.textContent=window.t('bank.nocredit','Krediit otsas');hint.className='analyze-bank-hint';}else if(!hasU&&!hasP){btn.className='analyze-bank-btn';btn.disabled=true;hint.textContent=window.t('upload.analyzehint','Tee valik ja lisa vähemalt 1 pilt');hint.className='analyze-bank-hint';}else if(!hasU){btn.className='analyze-bank-btn';btn.disabled=true;hint.textContent=window.t('bank.pickabove','Tee valik ülalt ← kohustuslik');hint.className='analyze-bank-hint';}else if(!hasP){btn.className='analyze-bank-btn';btn.disabled=true;hint.textContent=window.t('bank.addphoto','Lisa vähemalt 1 pilt');hint.className='analyze-bank-hint';}else{btn.className='analyze-bank-btn active';btn.disabled=false;hint.textContent=photoBank.length+' '+window.t('bank.photos','pilti')+' · '+((window.glowLang==='en'&&selectedUritus.en)?selectedUritus.en:selectedUritus.name)+' · '+getCredits()+' '+window.t('bank.credits','krediiti');hint.className='analyze-bank-hint ready';}}
 
 async function analyzePildipank(){
   const key=getKey();if(!key){document.getElementById('apiSetupCard').style.display='block';return;}
   const credits=getCredits();if(credits<=0){showPricing();return;}
   if(!selectedUritus||photoBank.length===0)return;
-  const btn=document.getElementById('analyzeBankBtn');btn.className='analyze-bank-btn loading';btn.disabled=true;btn.textContent='⟳ Analüüsin...';
+  const btn=document.getElementById('analyzeBankBtn');btn.className='analyze-bank-btn loading';btn.disabled=true;btn.textContent=window.t('bank.analyzing','⟳ Analüüsin...');
   resetResults();document.getElementById('resEmpty').style.display='none';document.getElementById('load').classList.add('on');
   document.getElementById('loadingText').textContent=window.t('load.photos','Analüüsin')+' '+photoBank.length+' '+window.t('load.photos2','pilti...');
   document.getElementById('resultCard').scrollIntoView({behavior:'smooth',block:'start'});
@@ -2757,7 +2757,7 @@ async function analyzePildipank(){
     if(typeof saveShareContext==='function'&&photoBank[0])saveShareContext(parsed,photoBank[0].dataUrl,'stiil');
     maybeShowInstallAfterAnalysis();
   }catch(e){document.getElementById('load').classList.remove('on');document.getElementById('resEmpty').style.display='block';document.getElementById('resEmpty').textContent=e.message;}
-  btn.className='analyze-bank-btn active';btn.disabled=false;btn.textContent='✦ Analüüsi minu valik';refreshAnalyzeBankBtn();
+  btn.className='analyze-bank-btn active';btn.disabled=false;btn.textContent=window.t('upload.analyze','✦ Analüüsi minu valik');refreshAnalyzeBankBtn();
 }
 
 // KAAMERA
@@ -2794,7 +2794,7 @@ async function flipCam(){
   if(mode==='stiil'){stiilInput=currentFacing==='user'?'selfie':'tavakaamera';document.getElementById('inputSelfie')?.classList.toggle('active',stiilInput==='selfie');document.getElementById('inputTavakaamera')?.classList.toggle('active',stiilInput==='tavakaamera');document.getElementById('inputGalerii')?.classList.remove('active');}
   await startCam();
 }
-function updateFlipBtn(){const btn=document.getElementById('flipBtn');const badge=document.getElementById('camModeBadge');if(currentFacing==='environment'){btn.classList.add('flip-active');badge.textContent='Tavakaamera';}else{btn.classList.remove('flip-active');badge.textContent='Selfie kaamera';}badge.classList.add('show');setTimeout(()=>badge.classList.remove('show'),2000);}
+function updateFlipBtn(){const btn=document.getElementById('flipBtn');const badge=document.getElementById('camModeBadge');if(currentFacing==='environment'){btn.classList.add('flip-active');badge.textContent=window.t('cam.badge.rear','Tavakaamera');}else{btn.classList.remove('flip-active');badge.textContent=window.t('cam.badge.selfie','Selfie kaamera');}badge.classList.add('show');setTimeout(()=>badge.classList.remove('show'),2000);}
 function capture(){canvas.width=video.videoWidth||640;canvas.height=video.videoHeight||480;const ctx=canvas.getContext('2d');ctx.drawImage(video,0,0);return canvas.toDataURL('image/jpeg',0.85);}
 
 // STIILI REŽIIM
@@ -2814,6 +2814,7 @@ function buildProcedureGrid(){const g=document.getElementById('procedureGrid');g
 function selectProcedure(id){selectedProcedure=id;document.querySelectorAll('.proc-btn').forEach(b=>b.classList.remove('active'));const btns=document.querySelectorAll('.proc-btn');if(id==='soovita'){btns[0].classList.add('active');}else{const idx=PROCEDURES.findIndex(p=>p.id===id);if(idx>=0)btns[idx+1].classList.add('active');}document.getElementById('resLbl').textContent=window.t('proc.'+id,PROC_LABELS[id]||id);resetResults();if(id==='soovita'){document.getElementById('proTipText').textContent=window.t('tip.pro','Soovita protseduuri — suuna kaamera näole');}else{document.getElementById('proTipText').textContent='✦ '+window.t('proc.'+id,PROC_LABELS[id])+' — '+window.t('proc.tapopen','vajuta "Ava kaamera"');}}
 
 
+function altUritusName(){const u=selectedUritusCam||selectedUritus;if(!u)return '';return (window.glowLang==='en'&&u.en)?u.en:u.name;}
 function showAlternatiivid(){
   const btn=document.getElementById('alternatiividBtn');
   const key=getKey();if(!key)return;
@@ -2821,18 +2822,18 @@ function showAlternatiivid(){
   const lbl=document.getElementById('alternatiividBtnTxt');
   if(document.getElementById('moodboardSection').classList.contains('on')){
     document.getElementById('moodboardSection').classList.remove('on');window.lastAlternatiivid=null;const _ab=document.getElementById('alternatiividBtn');if(_ab)_ab.style.display='none';
-    lbl.textContent='AI pakub mulle alternatiive';
+    lbl.textContent=window.t('alt.btn','AI pakub mulle alternatiive');
     return;
   }
   // Kui alternatiivid on juba laetud (lastAlternatiivid), näita neid
   if(window.lastAlternatiivid&&window.lastAlternatiivid.length){
     buildMoodboardCards(window.lastAlternatiivid);
-    document.getElementById('moodboardSubtitle').textContent='Alternatiivid: '+((selectedUritusCam||selectedUritus)?.name||'');
-    lbl.textContent='Peida alternatiivid';
+    document.getElementById('moodboardSubtitle').textContent=window.t('alt.prefix','Alternatiivid:')+' '+altUritusName();
+    lbl.textContent=window.t('alt.hide','Peida alternatiivid');
     return;
   }
   // Laeb API-st
-  lbl.textContent='⟳ Laen alternatiive...';
+  lbl.textContent=window.t('alt.loading','⟳ Laen alternatiive...');
   btnEl.disabled=true;
   const uritusNimi=(selectedUritusCam||selectedUritus)?.name||'';
   const feedbackText=document.getElementById('feedbackText')?.innerText||'';
@@ -2844,10 +2845,10 @@ function showAlternatiivid(){
     const items=extractJson(raw);
     window.lastAlternatiivid=items;
     buildMoodboardCards(items);
-    document.getElementById('moodboardSubtitle').textContent='Alternatiivid: '+uritusNimi;
-    lbl.textContent='Peida alternatiivid';
+    document.getElementById('moodboardSubtitle').textContent=window.t('alt.prefix','Alternatiivid:')+' '+altUritusName();
+    lbl.textContent=window.t('alt.hide','Peida alternatiivid');
   })
-  .catch(()=>{lbl.textContent='Viga — proovi uuesti';})
+  .catch(()=>{lbl.textContent=window.t('alt.error','Viga — proovi uuesti');})
   .finally(()=>{btnEl.disabled=false;});
 }
 
@@ -2857,7 +2858,7 @@ function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classL
 function showTerms(){showScreen('termsScreen');}
 function toggleTerms(){termsAccepted=!termsAccepted;document.getElementById('termsCheckbox').classList.toggle('checked',termsAccepted);const btn=document.getElementById('termsConfirmBtn');btn.disabled=!termsAccepted;btn.classList.toggle('active',termsAccepted);}
 function startCountdown(){if(!termsAccepted)return;localStorage.setItem('glow_terms_accepted','true');showScreen('countdownScreen');setTimeout(()=>runCountdown(),200);}
-function runCountdown(){const track=document.getElementById('clockTrack'),clockLogo=document.getElementById('clockLogo'),clockNum=document.getElementById('clockNum'),msg=document.getElementById('countdownMsg');const circ=2*Math.PI*85;track.style.strokeDasharray=circ;track.style.strokeDashoffset=circ;setTimeout(()=>{clockLogo.style.transition='opacity 0.3s';clockLogo.style.opacity='0';setTimeout(()=>{clockLogo.style.display='none';clockNum.style.display='block';clockNum.textContent='3';clockNum.style.opacity='0';clockNum.style.transition='opacity 0.2s';setTimeout(()=>{clockNum.style.opacity='1';},50);},300);},300);const totalMs=3000;const startTime=performance.now()+600;let lastNum=4;function tick(now){const elapsed=Math.max(0,now-startTime);const progress=Math.min(elapsed/totalMs,1);track.style.strokeDashoffset=circ*(1-progress);const displayNum=Math.max(1,Math.ceil(3-progress*3));if(displayNum!==lastNum&&displayNum>=1&&displayNum<=3){lastNum=displayNum;clockNum.style.transition='none';clockNum.style.opacity='0';clockNum.textContent=String(displayNum);requestAnimationFrame(()=>{clockNum.style.transition='opacity 0.15s';clockNum.style.opacity='1';clockNum.style.transform='scale(1.2)';setTimeout(()=>{clockNum.style.transform='scale(1)';},150);});}if(progress>=0.85&&msg.textContent==='✦')msg.textContent='Käivitun...';if(progress<1){requestAnimationFrame(tick);}else{clockNum.textContent='✦';clockNum.style.fontSize='48px';msg.textContent='Tere tulemast!';setTimeout(()=>launchApp(),600);}}requestAnimationFrame(tick);}
+function runCountdown(){const track=document.getElementById('clockTrack'),clockLogo=document.getElementById('clockLogo'),clockNum=document.getElementById('clockNum'),msg=document.getElementById('countdownMsg');const circ=2*Math.PI*85;track.style.strokeDasharray=circ;track.style.strokeDashoffset=circ;setTimeout(()=>{clockLogo.style.transition='opacity 0.3s';clockLogo.style.opacity='0';setTimeout(()=>{clockLogo.style.display='none';clockNum.style.display='block';clockNum.textContent='3';clockNum.style.opacity='0';clockNum.style.transition='opacity 0.2s';setTimeout(()=>{clockNum.style.opacity='1';},50);},300);},300);const totalMs=3000;const startTime=performance.now()+600;let lastNum=4;function tick(now){const elapsed=Math.max(0,now-startTime);const progress=Math.min(elapsed/totalMs,1);track.style.strokeDashoffset=circ*(1-progress);const displayNum=Math.max(1,Math.ceil(3-progress*3));if(displayNum!==lastNum&&displayNum>=1&&displayNum<=3){lastNum=displayNum;clockNum.style.transition='none';clockNum.style.opacity='0';clockNum.textContent=String(displayNum);requestAnimationFrame(()=>{clockNum.style.transition='opacity 0.15s';clockNum.style.opacity='1';clockNum.style.transform='scale(1.2)';setTimeout(()=>{clockNum.style.transform='scale(1)';},150);});}if(progress>=0.85&&msg.textContent==='✦')msg.textContent=window.t('countdown.launching','Käivitun...');if(progress<1){requestAnimationFrame(tick);}else{clockNum.textContent='✦';clockNum.style.fontSize='48px';msg.textContent=window.t('countdown.welcome','Tere tulemast!');setTimeout(()=>launchApp(),600);}}requestAnimationFrame(tick);}
 function launchApp(){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('mainWrapper').style.display='block';initApp();}
 function logout(){if(stream){stream.getTracks().forEach(t=>t.stop());stream=null;}localStorage.removeItem('glow_terms_accepted');document.getElementById('mainWrapper').style.display='none';termsAccepted=false;currentFacing='user';photoBank=[];document.getElementById('termsCheckbox').classList.remove('checked');const btn=document.getElementById('termsConfirmBtn');btn.disabled=true;btn.classList.remove('active');showScreen('splashScreen');}
 function initApp(){renderStaticIcons();initCredits();checkIncomingReferral();getMyRefCode();updateUserMenu();handleUrlParams();showCookieBannerIfNeeded();if(isLoggedIn())syncUserFromServer();setTimeout(()=>handleJoinInvite(),300);if(USE_PROXY){document.getElementById('saldoBar').style.display='flex';const sc=document.getElementById('apiSetupCard');if(sc)sc.style.display='none';const ks=document.getElementById('keyStatus');if(ks)ks.style.display='none';}else{const key=localStorage.getItem('glow_api_key');if(key){document.getElementById('keyStatus').style.display='block';document.getElementById('saldoBar').style.display='flex';}else{document.getElementById('apiSetupCard').style.display='block';}}setMode('meik');setTimeout(()=>refreshSaldo(),50);}
@@ -2957,17 +2958,17 @@ async function analyze(){
   if(mode==='meik'){
     sys=getMeikSystem(selectedMeikStyle);
     prompt='Analüüsi minu meiki. Nahatoon: '+meikOpts.nahatoon+', silmad: '+meikOpts.silmad+', kogemus: '+meikOpts.kogemus+', tugevus: '+meikOpts.tugevus+'. Vasta ainult JSON.';
-    lbl=MAKEUP_STYLES.find(m=>m.id===selectedMeikStyle)?.name+' · '+meikOpts.tugevus;bar='c1';
+    lbl=window.t('mstyle.'+selectedMeikStyle,MAKEUP_STYLES.find(m=>m.id===selectedMeikStyle)?.name)+' · '+window.t('meik.str.'+({loomulik:'natural',keskmine:'medium',tugev:'strong'}[meikOpts.tugevus]||'medium'),meikOpts.tugevus);bar='c1';
     document.getElementById('loadingText').textContent=window.t('load.meik','Analüüsin meiki...');
   }else if(mode==='stiil'){
     sys=getStiilCamSystem(selectedUritusCam.name,stiilRegime);
     prompt='Analüüsi riietust. Üritus: "'+selectedUritusCam.name+'". Vasta ainult JSON.';
-    lbl=(stiilRegime==='garderoob'?'Garderoob · ':'Pood · ')+selectedUritusCam.name;bar='c3';
+    lbl=(stiilRegime==='garderoob'?window.t('stiil.regime.wardrobe','Garderoob'):window.t('stiil.regime.shop','Pood'))+' · '+((window.glowLang==='en'&&selectedUritusCam.en)?selectedUritusCam.en:selectedUritusCam.name);bar='c3';
     document.getElementById('loadingText').textContent=window.t('load.stiil','Analüüsin riietust...');
   }else{
     sys=getProSystem(selectedProcedure);
     prompt=selectedProcedure==='soovita'?'Analüüsi nahka. Vasta ainult JSON.':'Analüüsi klienti. Vasta ainult JSON.';
-    lbl=PROC_LABELS[selectedProcedure]||'AI Kosmeetiku analüüs';bar='c4';
+    lbl=window.t('proc.'+selectedProcedure,PROC_LABELS[selectedProcedure])||window.t('res.pro','AI Kosmeetiku analüüs');bar='c4';
     document.getElementById('loadingText').textContent=window.t('load.generic','Analüüsin...');
   }
 
@@ -3733,11 +3734,51 @@ if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.s
       'res.meiknow': 'Recommended products · mactabeauty.com',
       'res.meiknext': 'Products for next time · mactabeauty.com',
       'res.protocol': '✦ Procedure guide',
-      'res.kombi': '✦ Combination tips'
+      'res.kombi': '✦ Combination tips',
+      'login.done': '✦ Logged in!',
+      'login.synced': 'Credits synced.',
+      'login.verifyfail': 'Verification failed',
+      'code.enter6': 'Enter the 6-digit code',
+      'code.noemail': 'Email missing — request a new code',
+      'code.verifying': '⟳ Verifying...',
+      'code.wrong': 'Wrong code',
+      'bank.nocredit': 'Out of credits',
+      'bank.pickabove': 'Make a choice above ← required',
+      'bank.addphoto': 'Add at least 1 photo',
+      'bank.photos': 'photos',
+      'bank.credits': 'credits',
+      'bank.analyzing': '⟳ Analysing...',
+      'countdown.launching': 'Launching...',
+      'countdown.welcome': 'Welcome!',
+      'time.now': 'now',
+      'time.days': 'days',
+      'time.expiring': 'expiring now',
+      'time.minleft': 'min left',
+      'time.hleft': 'h left',
+      'circ.sharetext': 'Join my Circle in the GLÓW app:',
+      'circ.leave.confirm': "Leave this Circle?",
+      'circ.none.confirm': "You don't have any Circles yet. Create one now?",
+      'logout.confirm': 'Log out? Your credits stay on your account until you next log in.',
+      'photobank.clearconfirm': 'Delete all',
+      'cam.badge.rear': 'Rear camera',
+      'cam.badge.selfie': 'Selfie camera',
+      'alt.prefix': 'Alternatives:',
+      'alt.hide': 'Hide alternatives',
+      'alt.loading': '⟳ Loading alternatives...',
+      'alt.error': 'Error — try again',
+      'tip.flip': 'Switch camera',
+      'checkout.expiry.ph': 'MM/YY',
+      'key.active': 'API key active',
+      'key.change': 'Change key',
+      'key.title': 'API Key',
+      'key.intro': 'Enter your Anthropic API key. Only needed once.',
+      'key.error': 'The key must start with sk-ant',
+      'key.save': 'Save →'
     }
   };
   const _orig = new WeakMap();
   const _origPh = new WeakMap();
+  const _origTitle = new WeakMap();
   function detectLang(){
     const s = localStorage.getItem('glow_lang');
     if (s === 'et' || s === 'en') return s;   // salvestatud valik võidab alati
@@ -3764,6 +3805,12 @@ if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.s
       const key = el.getAttribute('data-i18n-ph');
       if (!_origPh.has(el)) _origPh.set(el, el.getAttribute('placeholder') || '');
       el.setAttribute('placeholder', (dict && dict[key] != null) ? dict[key] : _origPh.get(el));
+    });
+    // Tooltip-tekstid (title="")
+    document.querySelectorAll('[data-i18n-title]').forEach(function(el){
+      const key = el.getAttribute('data-i18n-title');
+      if (!_origTitle.has(el)) _origTitle.set(el, el.getAttribute('title') || '');
+      el.setAttribute('title', (dict && dict[key] != null) ? dict[key] : _origTitle.get(el));
     });
     document.querySelectorAll('[data-lang-btn]').forEach(function(b){
       b.classList.toggle('active', b.getAttribute('data-lang-btn') === lang);
