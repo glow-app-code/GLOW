@@ -1371,21 +1371,21 @@ window.t=window.t||function(k,f){return f;};</script>
 </div>
 <div class="moodboard-section" id="moodboardSection">
   <div class="moodboard-title" data-i18n="alt.title">✦ AI pakub alternatiive</div>
-  <div class="moodboard-subtitle" id="moodboardSubtitle">Alternatiivid sinu valiku jaoks</div>
+  <div class="moodboard-subtitle" id="moodboardSubtitle" data-i18n="res.moodboard.wardrobe">Alternatiivid sinu valiku jaoks</div>
   <div class="moodboard-grid" id="moodboardGrid"></div>
   <div class="moodboard-actions">
-    <button class="mb-action-btn more" onclick="generateMoreMoodboard()">↻ Rohkem valikuid</button>
+    <button class="mb-action-btn more" onclick="generateMoreMoodboard()" data-i18n="res.morechoices">↻ Rohkem valikuid</button>
   </div>
 </div>
 
-<div class="kombineering-card" id="kombineringCard"><div class="lbl" style="color:#c4b8e0">✦ Kombineerimise nõuanded</div><div id="kombineringSteps"></div></div>
-<div class="outfit-section" id="outfitNowSection"><div class="outfit-section-title" id="outfitNowTitle">Soovituslikud komplektid</div><div id="outfitNowList"></div></div>
-<div class="outfit-section" id="outfitNextSection"><div class="outfit-section-title" id="outfitNextTitle">Täiendavad soovitused</div><div id="outfitNextList"></div></div>
-<div class="techniques-card" id="techniquesCard"><div class="lbl" style="color:#f0b890">✦ Meigitehnikad</div><div id="techniqueSteps"></div></div>
-<div class="muuda-card" id="muudaCard"><div class="muuda-card-title">⚠️ Muuda seda — konkreetsed sammud</div><div id="muudaSteps"></div></div>
-<div class="products-section" id="meikNowSection"><div class="products-section-title">Soovituslikud tooted · mactabeauty.com</div><div id="meikNowList"></div></div>
-<div class="products-section" id="meikNextSection"><div class="products-section-title">Tooted järgmiseks korraks · mactabeauty.com</div><div id="meikNextList"></div></div>
-<div class="protocol-card" id="protocolCard"><div class="lbl">✦ Protseduuri juhend</div><div id="protocolSteps"></div></div>
+<div class="kombineering-card" id="kombineringCard"><div class="lbl" style="color:#c4b8e0" data-i18n="res.kombi">✦ Kombineerimise nõuanded</div><div id="kombineringSteps"></div></div>
+<div class="outfit-section" id="outfitNowSection"><div class="outfit-section-title" id="outfitNowTitle" data-i18n="res.outfitnow">Soovituslikud komplektid</div><div id="outfitNowList"></div></div>
+<div class="outfit-section" id="outfitNextSection"><div class="outfit-section-title" id="outfitNextTitle" data-i18n="res.outfitnext">Täiendavad soovitused</div><div id="outfitNextList"></div></div>
+<div class="techniques-card" id="techniquesCard"><div class="lbl" style="color:#f0b890" data-i18n="res.techniques">✦ Meigitehnikad</div><div id="techniqueSteps"></div></div>
+<div class="muuda-card" id="muudaCard"><div class="muuda-card-title" data-i18n="res.muuda">⚠️ Muuda seda — konkreetsed sammud</div><div id="muudaSteps"></div></div>
+<div class="products-section" id="meikNowSection"><div class="products-section-title" data-i18n="res.meiknow">Soovituslikud tooted · mactabeauty.com</div><div id="meikNowList"></div></div>
+<div class="products-section" id="meikNextSection"><div class="products-section-title" data-i18n="res.meiknext">Tooted järgmiseks korraks · mactabeauty.com</div><div id="meikNextList"></div></div>
+<div class="protocol-card" id="protocolCard"><div class="lbl" data-i18n="res.protocol">✦ Protseduuri juhend</div><div id="protocolSteps"></div></div>
 <div class="pro-products-section" id="proProductsSection"><div class="pro-products-title" data-i18n="prod.proc">Protseduuri tooted · depile.ee</div><div id="proProductsList"></div></div>
 <div class="pro-products-section" id="homeProductsSection"><div class="pro-products-title" data-i18n="prod.home">Kodune järelhooldus · depile.ee</div><div id="homeProductsList"></div></div>
 
@@ -3725,7 +3725,15 @@ if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.s
       'res.morechoices': '↻ More options',
       'verdict.sub.yes': 'Excellent',
       'verdict.sub.maybe': 'Needs attention',
-      'verdict.sub.no': 'Needs improvement'
+      'verdict.sub.no': 'Needs improvement',
+      'res.outfitnow': 'Recommended sets',
+      'res.outfitnext': 'Additional suggestions',
+      'res.techniques': '✦ Makeup techniques',
+      'res.muuda': '⚠️ Change this — specific steps',
+      'res.meiknow': 'Recommended products · mactabeauty.com',
+      'res.meiknext': 'Products for next time · mactabeauty.com',
+      'res.protocol': '✦ Procedure guide',
+      'res.kombi': '✦ Combination tips'
     }
   };
   const _orig = new WeakMap();
