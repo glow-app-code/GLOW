@@ -1241,39 +1241,39 @@ window.glowLang='et';window.t=window.t||function(k,f){return f;};</script>
 
   <!-- STIILI REŽIIMI VALIK -->
   <div class="stiil-regime-select" id="stiilRegimeSelect">
-    <div class="stiil-regime-title">Vali kasutusviis</div>
+    <div class="stiil-regime-title" data-i18n="stiil.regime.title">Vali kasutusviis</div>
     <div class="stiil-regime-grid">
       <div class="regime-btn active" id="regimeGarderoob" onclick="setStiilRegime('garderoob')">
         <span class="regime-icon" data-icon="house" data-icon-size="34"></span>
-        <div class="regime-name">Garderoob</div>
-        <div class="regime-desc">Vali olemasolevate riiete seast sobiv komplekt</div>
+        <div class="regime-name" data-i18n="stiil.regime.wardrobe">Garderoob</div>
+        <div class="regime-desc" data-i18n="stiil.regime.wardrobe.desc">Vali olemasolevate riiete seast sobiv komplekt</div>
       </div>
       <div class="regime-btn" id="regimePood" onclick="setStiilRegime('pood')">
         <span class="regime-icon" data-icon="shop" data-icon-size="34"></span>
-        <div class="regime-name">Poes</div>
-        <div class="regime-desc">Proovi poes uusi asju ja saa nõu</div>
+        <div class="regime-name" data-i18n="stiil.regime.shop">Poes</div>
+        <div class="regime-desc" data-i18n="stiil.regime.shop.desc">Proovi poes uusi asju ja saa nõu</div>
       </div>
     </div>
   </div>
 
   <!-- STIILI SISENDI VALIK — 3 võimalust -->
   <div class="stiil-input-select" id="stiilInputSelect">
-    <div class="stiil-input-title">Kuidas soovid pilti lisada?</div>
+    <div class="stiil-input-title" data-i18n="stiil.input.title">Kuidas soovid pilti lisada?</div>
     <div class="stiil-input-grid">
       <div class="stiil-input-btn active" id="inputGalerii" onclick="setStiilInput('galerii')">
         <span class="sib-icon" data-icon="gallery" data-icon-size="30"></span>
-        <div class="sib-name">Galerii</div>
-        <div class="sib-desc">Laadi pildid telefoni galeriist</div>
+        <div class="sib-name" data-i18n="stiil.input.gallery">Galerii</div>
+        <div class="sib-desc" data-i18n="stiil.input.gallery.desc">Laadi pildid telefoni galeriist</div>
       </div>
       <div class="stiil-input-btn" id="inputSelfie" onclick="setStiilInput('selfie')">
         <span class="sib-icon" data-icon="selfie" data-icon-size="30"></span>
-        <div class="sib-name">Selfie</div>
-        <div class="sib-desc">Pildista ennast eeskaameraga</div>
+        <div class="sib-name" data-i18n="stiil.input.selfie">Selfie</div>
+        <div class="sib-desc" data-i18n="stiil.input.selfie.desc">Pildista ennast eeskaameraga</div>
       </div>
       <div class="stiil-input-btn" id="inputTavakaamera" onclick="setStiilInput('tavakaamera')">
         <span class="sib-icon" data-icon="camera" data-icon-size="30"></span>
-        <div class="sib-name">Tavakaamera</div>
-        <div class="sib-desc">Pildista kaaslast või riideid</div>
+        <div class="sib-name" data-i18n="stiil.input.camera">Tavakaamera</div>
+        <div class="sib-desc" data-i18n="stiil.input.camera.desc">Pildista kaaslast või riideid</div>
       </div>
     </div>
   </div>
@@ -1282,40 +1282,40 @@ window.glowLang='et';window.t=window.t||function(k,f){return f;};</script>
   <div class="pildipank-wrap" id="pildipankWrap">
     <div class="pildipank-header">
       <div class="pildipank-title" id="pildipankTitle">Garderoob · Pildipank</div>
-      <div class="pildipank-info" id="pildipankInfo">Laadi üles kuni <strong>10 pilti</strong>. Üks analüüs = üks krediit.</div>
+      <div class="pildipank-info" id="pildipankInfo" data-i18n="pildipank.info">Laadi üles kuni <strong>10 pilti</strong>. Üks analüüs = üks krediit.</div>
     </div>
     <div class="uritus-select" id="uritusSelect">
-      <div class="uritus-select-title">Tee valik <span>← kohustuslik</span></div>
+      <div class="uritus-select-title" data-i18n="uritus.title">Tee valik <span>← kohustuslik</span></div>
       <div class="uritus-grid" id="uritusGrid"></div>
     </div>
     <div class="upload-zone" id="uploadZone">
       <input type="file" id="fileInput" accept="image/*" multiple onchange="handleFileUpload(event)">
       <span class="upload-zone-icon" data-icon="upload" data-icon-size="38"></span>
-      <div class="upload-zone-text">Lisa pildid galeriist</div>
-      <div class="upload-zone-sub" id="uploadZoneSub">Vali mitu pilti korraga</div>
-      <div class="upload-zone-limit">Max 10 pilti · 1 krediit analüüsi kohta</div>
+      <div class="upload-zone-text" data-i18n="upload.text">Lisa pildid galeriist</div>
+      <div class="upload-zone-sub" id="uploadZoneSub" data-i18n="upload.sub">Vali mitu pilti korraga</div>
+      <div class="upload-zone-limit" data-i18n="upload.limit">Max 10 pilti · 1 krediit analüüsi kohta</div>
     </div>
-    <div class="photo-limit-warn" id="photoLimitWarn">⚠️ Maksimaalselt 10 pilti ühe analüüsi kohta.</div>
+    <div class="photo-limit-warn" id="photoLimitWarn" data-i18n="upload.warn">⚠️ Maksimaalselt 10 pilti ühe analüüsi kohta.</div>
     <div class="photo-bank" id="photoBank">
       <div class="photo-bank-header">
         <div class="photo-bank-count" id="photoBankCount">0 pilti lisatud</div>
-        <button class="photo-bank-clear" onclick="clearPhotoBank()">🗑 Tühjenda</button>
+        <button class="photo-bank-clear" onclick="clearPhotoBank()" data-i18n="upload.clear">🗑 Tühjenda</button>
       </div>
       <div class="photo-grid" id="photoGrid"></div>
     </div>
-    <button class="analyze-bank-btn" id="analyzeBankBtn" onclick="analyzePildipank()" disabled>✦ Analüüsi minu valik</button>
-    <div class="analyze-bank-hint" id="analyzeBankHint">Tee valik ja lisa vähemalt 1 pilt</div>
+    <button class="analyze-bank-btn" id="analyzeBankBtn" onclick="analyzePildipank()" disabled data-i18n="upload.analyze">✦ Analüüsi minu valik</button>
+    <div class="analyze-bank-hint" id="analyzeBankHint" data-i18n="upload.analyzehint">Tee valik ja lisa vähemalt 1 pilt</div>
   </div>
 
   <!-- STIILI KAAMERA — selfie ja tavakaamera režiimis -->
   <div class="stiil-cam-wrap" id="stiilCamWrap">
     <div class="stiil-uritus-cam" id="stiilUritusCam">
-      <div class="uritus-select-title">Tee valik <span>← kohustuslik</span></div>
+      <div class="uritus-select-title" data-i18n="uritus.title">Tee valik <span>← kohustuslik</span></div>
       <div class="uritus-grid" id="uritusGridCam"></div>
     </div>
   </div>
 
-  <div class="pro-procedure-select" id="proProcedureSelect"><div class="pro-procedure-title">Vali protseduur</div><div class="procedure-grid" id="procedureGrid"></div></div>
+  <div class="pro-procedure-select" id="proProcedureSelect"><div class="pro-procedure-title" data-i18n="proc.title">Vali protseduur</div><div class="procedure-grid" id="procedureGrid"></div></div>
 </div>
 
 <div class="salon-setup" id="salonSetup">
@@ -3407,7 +3407,29 @@ if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.s
       'meik.str.medium': 'Medium',
       'meik.str.strong': 'Bold',
       'meik.opencam': '✦ Open camera',
-      'meik.hint': 'Pick all 4 options above'
+      'meik.hint': 'Pick all 4 options above',
+      'stiil.regime.title': 'Choose how to use it',
+      'stiil.regime.wardrobe': 'Wardrobe',
+      'stiil.regime.wardrobe.desc': 'Pick a matching outfit from clothes you already own',
+      'stiil.regime.shop': 'In store',
+      'stiil.regime.shop.desc': 'Try new things in a store and get advice',
+      'stiil.input.title': 'How would you like to add a photo?',
+      'stiil.input.gallery': 'Gallery',
+      'stiil.input.gallery.desc': 'Load photos from your phone gallery',
+      'stiil.input.selfie': 'Selfie',
+      'stiil.input.selfie.desc': 'Take a photo of yourself with the front camera',
+      'stiil.input.camera': 'Rear camera',
+      'stiil.input.camera.desc': 'Photograph a friend or clothing',
+      'uritus.title': 'Make a choice <span>← required</span>',
+      'pildipank.info': 'Upload up to <strong>10 photos</strong>. One analysis = one credit.',
+      'upload.text': 'Add photos from gallery',
+      'upload.sub': 'Select several photos at once',
+      'upload.limit': 'Max 10 photos · 1 credit per analysis',
+      'upload.warn': '⚠️ Maximum 10 photos per analysis.',
+      'upload.clear': '🗑 Clear',
+      'upload.analyze': '✦ Analyse my selection',
+      'upload.analyzehint': 'Make a choice and add at least 1 photo',
+      'proc.title': 'Choose a procedure'
     }
   };
   const _orig = new WeakMap();
