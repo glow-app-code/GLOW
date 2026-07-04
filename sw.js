@@ -1,4 +1,4 @@
-const CACHE_NAME = 'glow-v2';
+const CACHE_NAME = 'glow-v3';
 const CACHE_ASSETS = ['./', './index.html', './manifest.json', './icon.svg', './icon-180.png', './icon-192.png', './icon-512.png'];
 
 self.addEventListener('install', event => {
@@ -23,8 +23,13 @@ self.addEventListener('fetch', event => {
   const url = new URL(req.url);
   if (url.origin !== self.location.origin) return;
 
+  // HTML / lehe-navigatsioon: küsi ALATI värske versioon (ära serveeri brauseri
+  // vahemälust vana lehte). Nii jõuavad uuendused kohe kasutajate seadmetesse.
+  const isHTML = req.mode === 'navigate' || url.pathname.endsWith('/') || url.pathname.endsWith('.html');
+  const fetchReq = isHTML ? new Request(req.url, { cache: 'no-store' }) : req;
+
   event.respondWith(
-    fetch(req)
+    fetch(fetchReq)
       .then(res => {
         if (res && res.ok) {
           const copy = res.clone();
