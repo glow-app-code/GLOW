@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kontakt · GLÓW</title>
-<meta name="description" content="Võta GLÓW meeskonnaga ühendust — küsimused, tagasiside, koostöö.">
+<title data-et="Kontakt · GLÓW" data-en="Contact · GLÓW">Kontakt · GLÓW</title>
+<meta name="description" content="Võta GLÓW meeskonnaga ühendust — küsimused, tagasiside, koostöö. / Get in touch with the GLÓW team — questions, feedback, partnerships.">
 <meta name="theme-color" content="#c9a96e">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-180.png">
@@ -15,8 +15,12 @@
 body{background:var(--bg);color:#fff;font-family:'Cormorant Garamond',Georgia,serif;line-height:1.7;min-height:100vh}
 .ambient{position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 70% 50% at 15% 10%,rgba(196,115,107,0.08) 0%,transparent 60%),radial-gradient(ellipse 50% 70% at 85% 90%,rgba(123,158,142,0.06) 0%,transparent 60%)}
 .wrap{position:relative;z-index:1;max-width:640px;margin:0 auto;padding:32px 20px 80px}
-.back-link{display:inline-flex;align-items:center;gap:8px;color:var(--gold);text-decoration:none;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.25em;text-transform:uppercase;margin-bottom:28px;padding:8px 12px;border:1px solid rgba(201,169,110,0.4);border-radius:3px;transition:all .2s}
+.back-link{display:inline-flex;align-items:center;gap:8px;color:var(--gold);text-decoration:none;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.25em;text-transform:uppercase;margin-bottom:20px;padding:8px 12px;border:1px solid rgba(201,169,110,0.4);border-radius:3px;transition:all .2s}
 .back-link:hover{background:rgba(201,169,110,0.1);border-color:var(--gold)}
+.lang-toggle{display:flex;gap:6px;justify-content:center;margin-bottom:24px}
+.lang-toggle button{background:none;border:1px solid rgba(201,169,110,0.4);color:rgba(255,255,255,0.7);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;padding:7px 16px;border-radius:3px;cursor:pointer;text-transform:uppercase;transition:all .2s}
+.lang-toggle button:hover{border-color:var(--gold)}
+.lang-toggle button.active{background:var(--gold);color:var(--bg);border-color:var(--gold);font-weight:600}
 header{text-align:center;padding:24px 0 32px}
 .logo{font-size:56px;font-weight:300;letter-spacing:.25em;color:#fff;line-height:1;margin-bottom:10px}
 .logo em{color:var(--gold);font-style:italic;text-shadow:0 0 26px rgba(201,169,110,0.6)}
@@ -45,18 +49,28 @@ h1{font-size:36px;font-weight:600;color:#fff;text-align:center;margin:32px 0 10p
 .faq-a a{color:var(--gold-bright)}
 footer{text-align:center;margin-top:52px;padding-top:28px;border-top:1px solid rgba(201,169,110,0.2);font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:.2em}
 footer a{color:var(--gold);text-decoration:none;margin:0 6px}
+.lang-en{display:none}
+body[data-lang="en"] .lang-et{display:none}
+body[data-lang="en"] .lang-en{display:block}
 </style>
 </head>
 <body>
 <div class="ambient"></div>
 <div class="wrap">
-  <a href="index.html" class="back-link">← Tagasi rakendusse</a>
+  <a href="index.html" class="back-link"><span class="lang-et">← Tagasi rakendusse</span><span class="lang-en">← Back to app</span></a>
+
+  <div class="lang-toggle">
+    <button data-lang-btn="et" onclick="__setLang('et')">Eesti</button>
+    <button data-lang-btn="en" onclick="__setLang('en')">English</button>
+  </div>
 
   <header>
     <div class="logo">GL<em>Ó</em>W</div>
-    <div class="tagline">AI · Stiiliassistent</div>
+    <div class="tagline"><span class="lang-et">AI · Stiiliassistent</span><span class="lang-en">AI · Style Assistant</span></div>
   </header>
 
+  <!-- ================= ESTONIAN ================= -->
+  <div class="lang-et">
   <h1>Võta ühendust</h1>
   <div class="subtitle">Oleme siin sinu jaoks. Vastame tavaliselt 24 tunni jooksul.</div>
 
@@ -65,25 +79,25 @@ footer a{color:var(--gold);text-decoration:none;margin:0 6px}
   <div class="contact-grid">
     <div class="contact-card">
       <h3>Üldine e-post</h3>
-      <div class="value"><a href="mailto:{{EMAIL}}">{{EMAIL}}</a></div>
+      <div class="value"><a href="mailto:info@glow4me.ee">info@glow4me.ee</a></div>
       <div class="note">Küsimused, tagasiside, tehniline abi — kõik siia</div>
     </div>
 
     <div class="contact-card">
-      <h3>Andmekaitse & privaatsus</h3>
-      <div class="value"><a href="mailto:{{EMAIL}}?subject=Andmekaitse">{{EMAIL}}</a></div>
+      <h3>Andmekaitse &amp; privaatsus</h3>
+      <div class="value"><a href="mailto:info@glow4me.ee?subject=Andmekaitse">info@glow4me.ee</a></div>
       <div class="note">GDPR-küsimused, andmete kustutamine või eksport</div>
     </div>
 
     <div class="contact-card">
       <h3>Ärikoostöö</h3>
-      <div class="value"><a href="mailto:{{EMAIL}}?subject=Ärikoostöö">{{EMAIL}}</a></div>
+      <div class="value"><a href="mailto:info@glow4me.ee?subject=Ärikoostöö">info@glow4me.ee</a></div>
       <div class="note">Partnerlus, integratsioon, ettevõtete-kliendid</div>
     </div>
 
     <div class="contact-card">
-      <h3>Meedia & press</h3>
-      <div class="value"><a href="mailto:{{EMAIL}}?subject=Meedia päring">{{EMAIL}}</a></div>
+      <h3>Meedia &amp; press</h3>
+      <div class="value"><a href="mailto:info@glow4me.ee?subject=Meedia päring">info@glow4me.ee</a></div>
       <div class="note">Intervjuud, pressiteated, materjalid</div>
     </div>
   </div>
@@ -132,6 +146,99 @@ footer a{color:var(--gold);text-decoration:none;margin:0 6px}
     <p><a href="index.html">Rakendus</a> · <a href="privaatsus.html">Privaatsus</a> · <a href="tingimused.html">Tingimused</a> · <a href="tagasimaksed.html">Tagasimaksed</a></p>
     <p style="margin-top:16px">© {{ETTEVOTE_NIMI}} · glow4me.ee</p>
   </footer>
+  </div>
+
+  <!-- ================= ENGLISH ================= -->
+  <div class="lang-en">
+  <h1>Get in touch</h1>
+  <div class="subtitle">We're here for you. We usually reply within 24 hours.</div>
+
+  <div class="section-title">Contacts</div>
+
+  <div class="contact-grid">
+    <div class="contact-card">
+      <h3>General email</h3>
+      <div class="value"><a href="mailto:info@glow4me.ee">info@glow4me.ee</a></div>
+      <div class="note">Questions, feedback, technical help — all here</div>
+    </div>
+
+    <div class="contact-card">
+      <h3>Data protection &amp; privacy</h3>
+      <div class="value"><a href="mailto:info@glow4me.ee?subject=Data protection">info@glow4me.ee</a></div>
+      <div class="note">GDPR questions, data deletion or export</div>
+    </div>
+
+    <div class="contact-card">
+      <h3>Business partnerships</h3>
+      <div class="value"><a href="mailto:info@glow4me.ee?subject=Business partnership">info@glow4me.ee</a></div>
+      <div class="note">Partnership, integration, enterprise clients</div>
+    </div>
+
+    <div class="contact-card">
+      <h3>Media &amp; press</h3>
+      <div class="value"><a href="mailto:info@glow4me.ee?subject=Media enquiry">info@glow4me.ee</a></div>
+      <div class="note">Interviews, press releases, materials</div>
+    </div>
+  </div>
+
+  <div class="info-block">
+    <h2>Company details</h2>
+    <p><strong>{{ETTEVOTE_NIMI}}</strong></p>
+    <p>Registry code: {{REGISTRIKOOD}}</p>
+    <p>Address: {{AADRESS}}</p>
+    <p>Domain: <strong>glow4me.ee</strong></p>
+  </div>
+
+  <div class="section-title">Frequently asked questions</div>
+
+  <div class="faq-item">
+    <div class="faq-q">How do I start?</div>
+    <div class="faq-a">Open <a href="index.html">glow4me.ee</a>, accept the terms and run your first analysis. You get <strong>3 free analyses</strong> to try it out — no account needed.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">What happens to my photos?</div>
+    <div class="faq-a">Photos are sent securely to Anthropic AI for analysis and <strong>deleted once the analysis is complete</strong>. We do not store them on our servers. See the <a href="privaatsus.html">privacy policy</a> for details.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Does GLÓW replace a cosmetician or beauty specialist?</div>
+    <div class="faq-a"><strong>No.</strong> AI recommendations are informational and do not replace the consultation of a professional beauty specialist, dermatologist or cosmetic surgeon.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">How do I request a refund?</div>
+    <div class="faq-a">You have a <strong>14-day right of withdrawal</strong> for unused credits. See the <a href="tagasimaksed.html">refund policy</a> for the exact procedure.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Why is my home-screen icon broken on iPhone?</div>
+    <div class="faq-a">Delete the app from the home screen, open <a href="index.html">glow4me.ee</a> in Safari again and add it via <strong>Share → Add to Home Screen</strong>. The cache will have refreshed by then.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Can I use my own Anthropic API key?</div>
+    <div class="faq-a">Not at the moment — all requests go through our server and credits are counted on a purchase basis. This is simpler and safer for the user.</div>
+  </div>
+
+  <footer>
+    <p><a href="index.html">App</a> · <a href="privaatsus.html">Privacy</a> · <a href="tingimused.html">Terms</a> · <a href="tagasimaksed.html">Refunds</a></p>
+    <p style="margin-top:16px">© {{ETTEVOTE_NIMI}} · glow4me.ee</p>
+  </footer>
+  </div>
 </div>
+<script>
+(function(){
+  function detect(){try{var s=localStorage.getItem('glow_lang');if(s==='et'||s==='en')return s;}catch(e){}
+    var tz='';try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||'';}catch(e){}
+    var l=(navigator.language||navigator.userLanguage||'').toLowerCase();
+    if(tz==='Europe/Tallinn'||l.indexOf('et')===0)return'et';return'en';}
+  function apply(lang){document.body.setAttribute('data-lang',lang);document.documentElement.lang=lang;
+    document.querySelectorAll('[data-lang-btn]').forEach(function(b){b.classList.toggle('active',b.getAttribute('data-lang-btn')===lang);});
+    var t=document.querySelector('title');if(t&&t.getAttribute('data-'+lang))document.title=t.getAttribute('data-'+lang);}
+  window.__setLang=function(l){if(l!=='et'&&l!=='en')return;try{localStorage.setItem('glow_lang',l);}catch(e){}apply(l);};
+  apply(detect());
+})();
+</script>
 </body>
 </html>
