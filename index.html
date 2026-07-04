@@ -6,6 +6,7 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google" content="notranslate">
 <title>GLÓW · AI Assistent — meigi, stiili ja iluabilist taskus</title>
 <meta name="description" content="GLÓW on AI-põhine ilurakendus, mis annab sulle koheselt nõu meigi, stiili ja kosmeetilise hoolduse kohta. Ava kaamera, lase Claude AI sind analüüsida ja saa personaalsed soovitused.">
 <meta name="keywords" content="GLÓW, AI ilurakendus, meigi analüüs, stiili nõustamine, AI nahaanalüüs, kosmeetiku abiline, ilurakendus, AI assistent, Eesti">
@@ -3347,9 +3348,14 @@ if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.s
   const _orig = new WeakMap();
   function detectLang(){
     const s = localStorage.getItem('glow_lang');
-    if (s === 'et' || s === 'en') return s;
-    const n = (navigator.language || navigator.userLanguage || '').toLowerCase();
-    return n.indexOf('et') === 0 ? 'et' : 'en';   // väljaspool Eestit → inglise keel
+    if (s === 'et' || s === 'en') return s;   // salvestatud valik võidab alati
+    // Asukoha-tuvastus: Eesti ajavöönd VÕI eesti brauserikeel → eesti keel.
+    // Nii saab Eestis viibiv kasutaja eesti keele ka siis, kui brauser on inglise keeles.
+    let tz = '';
+    try { tz = (Intl.DateTimeFormat().resolvedOptions().timeZone || ''); } catch(e){}
+    const lang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+    if (tz === 'Europe/Tallinn' || lang.indexOf('et') === 0) return 'et';
+    return 'en';   // mujal maailmas → inglise keel
   }
   function applyLang(lang){
     try { document.documentElement.lang = lang; } catch(e){}
