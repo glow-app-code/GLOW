@@ -399,75 +399,18 @@ function chatRoom(circle) {
   return members.length ? ('grp:' + members.join('|')) : ('one:' + (circle && circle.id));
 }
 
-// Igal kasutajal on vähemalt üks isiklik ring, mille omanik ta ise on.
-// Tagastab kasutaja enda ringi (loob selle, kui veel pole).
-async function ensurePrimaryCircle(env, email) {
-  const user = await ensureUserInited(env, email);
-  for (const id of (user.circleIds || [])) {
-    const c = await env.GLOW_KV.get('circle:' + id, 'json');
-    if (c && sameEmail(c.ownerEmail, email)) return c;
-  }
-  const circleId = 'c_' + generateToken(8);
-  const circle = {
-    id: circleId, name: 'Minu ring', icon: '✨',
-    ownerEmail: email, members: [email], createdAt: Date.now(),
-    groupId: 'g_' + circleId
-  };
-  await env.GLOW_KV.put('circle:' + circleId, JSON.stringify(circle));
-  if (!user.circleIds.includes(circleId)) user.circleIds.push(circleId);
-  await env.GLOW_KV.put('user:' + email, JSON.stringify(user));
-  return circle;
-}
-
 async function handleCirclesList(request, env, origin) {
   const sess = await getSession(request, env);
   if (!sess) return json({error: 'Unauthorized'}, 401, origin);
   const user = await ensureUserInited(env, sess.email);
-  // TURVALISUS: näita ainult ringe, mille omanik on kasutaja ise.
-  // Nii ei saa keegi näha teiste inimeste ringide liikmeid.
+  // GRUPIMUDEL: näita kõiki ringe, mille liige kasutaja on (loodud või liitunud).
+  // Ringi sees näevad kõik liikmed üksteist. Kasutaja ei näe ringe, kuhu ta ei kuulu.
   const circles = [];
   const seen = new Set();
-  let changed = false;
-
-  // 1) Ringid, mis on juba kasutaja nimekirjas
   for (const id of (user.circleIds||[])) {
     if (seen.has(id)) continue;
     const c = await env.GLOW_KV.get('circle:' + id, 'json');
-    if (c && sameEmail(c.ownerEmail, sess.email)) { circles.push(c); seen.add(id); }
-  }
-
-  // 2) ÜHEKORDNE REMONT: otsi üles ka ringid, mis kuuluvad kasutajale, aga on
-  //    tema nimekirjast välja kukkunud (vana e-posti võtme vea tõttu). Pane
-  //    need tagasi nimekirja. Käib läbi ainult üks kord kasutaja kohta.
-  if (!user.circlesRepaired) {
-    let cursor;
-    let scanned = 0;
-    const SCAN_CAP = 2000;
-    do {
-      const list = await env.GLOW_KV.list({ prefix: 'circle:', cursor, limit: 100 });
-      for (const key of list.keys) {
-        const id = key.name.slice('circle:'.length);
-        if (seen.has(id) || scanned >= SCAN_CAP) continue;
-        scanned++;
-        const c = await env.GLOW_KV.get(key.name, 'json');
-        if (c && sameEmail(c.ownerEmail, sess.email)) {
-          circles.push(c);
-          seen.add(id);
-          if (!(user.circleIds||[]).includes(id)) { user.circleIds.push(id); }
-        }
-      }
-      cursor = list.list_complete ? undefined : list.cursor;
-    } while (cursor && scanned < SCAN_CAP);
-    user.circlesRepaired = true;
-    changed = true;
-  }
-
-  if (changed) {
-    await env.GLOW_KV.put('user:' + sess.email, JSON.stringify(user));
-  }
-
-  if (circles.length === 0) {
-    circles.push(await ensurePrimaryCircle(env, sess.email));
+    if (c && isCircleMember(c, sess.email)) { circles.push(c); seen.add(id); }
   }
   return json({circles}, 200, origin);
 }
@@ -517,48 +460,19 @@ async function handleCirclesJoin(request, env, origin, code) {
   const circle = await env.GLOW_KV.get('circle:' + invite.circleId, 'json');
   if (!circle) return json({error: 'Circle no longer exists'}, 404, origin);
 
-  const friendEmail = circle.ownerEmail || invite.inviterEmail;
-  if (sameEmail(friendEmail, sess.email)) {
-    return json({error: 'Sa ei saa iseenda lingiga liituda'}, 400, origin);
-  }
-
-  // Taga, et kutsuja ringil oleks püsiv grupi-ID (vana ring võib olla ilma).
+  // GRUPIMUDEL: liituja lisatakse ühte jagatud ringi (kutsuja loodud ring).
+  // Seejärel näevad kõik liikmed üksteist ja jagavad sama vestlust + uudisvoogu.
   if (!circle.groupId) circle.groupId = 'g_' + circle.id;
-
-  // 1) Lisa liituja kutsuja ringi
   if (!isCircleMember(circle, sess.email)) {
     circle.members.push(sess.email);
+    await env.GLOW_KV.put('circle:' + circle.id, JSON.stringify(circle));
   }
-  await env.GLOW_KV.put('circle:' + circle.id, JSON.stringify(circle));
-
   const user = await ensureUserInited(env, sess.email);
   if (!user.circleIds.includes(circle.id)) {
     user.circleIds.push(circle.id);
     await env.GLOW_KV.put('user:' + sess.email, JSON.stringify(user));
   }
-
-  // 2) VASTASTIKUNE ühendus: kutsuja ja liituja tekivad teineteise ringi.
-  //    Nii tekib mõlemale +1 liige ja mõlemad näevad teineteise uudisvoogu,
-  //    kuid nimekirjas ainult oma ringi (handleCirclesList filtreerib omaniku järgi).
-  const myCircle = await ensurePrimaryCircle(env, sess.email);
-  if (friendEmail) {
-    // a) lisa kutsuja liituja ringi liikmeks + ühenda vestlusgrupp:
-    //    liituja ring liitub kutsuja grupiga, et vestlus oleks ühine.
-    if (!isCircleMember(myCircle, friendEmail)) {
-      myCircle.members.push(friendEmail);
-    }
-    myCircle.groupId = circle.groupId;
-    await env.GLOW_KV.put('circle:' + myCircle.id, JSON.stringify(myCircle));
-    // b) kutsuja näeb liituja ringi uudisvoogu (aga MITTE liikmete nimekirja)
-    const friendUser = await ensureUserInited(env, friendEmail);
-    if (!friendUser.circleIds.includes(myCircle.id)) {
-      friendUser.circleIds.push(myCircle.id);
-      await env.GLOW_KV.put('user:' + friendEmail, JSON.stringify(friendUser));
-    }
-  }
-
-  // Tagasta liituja ENDA ring + kellega ühendus loodi.
-  return json({circle: myCircle, friend: friendEmail}, 200, origin);
+  return json({circle}, 200, origin);
 }
 
 async function handleCircleLeave(request, env, origin, circleId) {
@@ -579,6 +493,52 @@ async function handleCircleLeave(request, env, origin, circleId) {
   user.circleIds = (user.circleIds||[]).filter(id => id !== circleId);
   await env.GLOW_KV.put('user:' + sess.email, JSON.stringify(user));
   return json({ok: true}, 200, origin);
+}
+
+// AJUTINE ARENDUS-TÖÖRIIST: kustutab KÕIK ringid/vestlused/postitused ja
+// tühjendab kõigi kasutajate ringi-nimekirjad. Kontod/krediidid jäävad alles.
+// Kaitstud salajase koodiga. Eemaldame, kui ringide mudel on lõplikult paigas.
+const ADMIN_RESET_KEY = '9805ba8145679d5d90730767ad08397521e70843c18ec33c';
+
+async function handleAdminResetCircles(request, env, origin, providedKey) {
+  if (providedKey !== ADMIN_RESET_KEY) return json({error: 'Forbidden'}, 403, origin);
+
+  async function deleteByPrefix(prefix) {
+    let cursor, n = 0;
+    do {
+      const list = await env.GLOW_KV.list({ prefix, cursor, limit: 1000 });
+      for (const key of list.keys) { await env.GLOW_KV.delete(key.name); n++; }
+      cursor = list.list_complete ? undefined : list.cursor;
+    } while (cursor);
+    return n;
+  }
+
+  const deletedCircles  = await deleteByPrefix('circle:');
+  const deletedShares   = await deleteByPrefix('circle_shares:');
+  const deletedMsgs     = await deleteByPrefix('circle_msgs:');
+  const deletedInvites  = await deleteByPrefix('invite:');
+  const deletedShareObj = await deleteByPrefix('share:');
+
+  let clearedUsers = 0, cursor;
+  do {
+    const list = await env.GLOW_KV.list({ prefix: 'user:', cursor, limit: 1000 });
+    for (const key of list.keys) {
+      const user = await env.GLOW_KV.get(key.name, 'json');
+      if (user) {
+        user.circleIds = [];
+        delete user.circlesRepaired;
+        await env.GLOW_KV.put(key.name, JSON.stringify(user));
+        clearedUsers++;
+      }
+    }
+    cursor = list.list_complete ? undefined : list.cursor;
+  } while (cursor);
+
+  return json({
+    ok: true,
+    message: 'Kõik ringid lähtestatud. Loo uus ring ja kutsu sõbrad.',
+    deletedCircles, deletedShares, deletedMsgs, deletedInvites, deletedShareObj, clearedUsers
+  }, 200, origin);
 }
 
 async function handleShareCreate(request, env, origin) {
@@ -839,6 +799,8 @@ export default {
       if ((m = path.match(/^\/api\/circles\/([^\/]+)\/invite$/)) && request.method === 'POST') return await handleCirclesInvite(request, env, origin, m[1]);
       if ((m = path.match(/^\/api\/circles\/join\/([^\/]+)$/)) && request.method === 'POST') return await handleCirclesJoin(request, env, origin, m[1]);
       if ((m = path.match(/^\/api\/circles\/([^\/]+)\/leave$/)) && request.method === 'POST') return await handleCircleLeave(request, env, origin, m[1]);
+      // Ajutine arendus-lähtestamine (kaitstud salajase koodiga)
+      if ((m = path.match(/^\/api\/admin\/reset-circles\/([^\/]+)$/)) && request.method === 'GET') return await handleAdminResetCircles(request, env, origin, m[1]);
 
       // Share endpoints
       if (request.method === 'POST' && path === '/api/shares') return await handleShareCreate(request, env, origin);
