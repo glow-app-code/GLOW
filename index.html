@@ -1033,8 +1033,8 @@ canvas{display:none}
       <div class="splash-sub" data-i18n="splash.sub">Sinu isiklik ilu- ja<br>stiiliekspert taskus</div>
       <button class="splash-btn" onclick="showTerms()"><span data-i18n="splash.btn">Alusta ✦</span></button>
       <div class="lang-switch lang-switch-splash" role="group" aria-label="Keel / Language">
-        <button type="button" class="lang-btn" data-lang-btn="et" aria-label="Eesti keel"><svg viewBox="0 0 30 20" width="22" height="15" aria-hidden="true"><rect width="30" height="20" fill="#fff"/><rect width="30" height="13.34" fill="#000"/><rect width="30" height="6.67" fill="#0072ce"/></svg>ET</button>
-        <button type="button" class="lang-btn" data-lang-btn="en" aria-label="English"><svg viewBox="0 0 60 30" width="22" height="15" aria-hidden="true"><rect width="60" height="30" fill="#012169"/><path d="M0,0 60,30 M60,0 0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 60,30 M60,0 0,30" stroke="#c8102e" stroke-width="4"/><path d="M30,0 V30 M0,15 H60" stroke="#fff" stroke-width="10"/><path d="M30,0 V30 M0,15 H60" stroke="#c8102e" stroke-width="6"/></svg>EN</button>
+        <button type="button" class="lang-btn" data-lang-btn="et" aria-label="Eesti keel" onclick="try{localStorage.setItem('glow_lang','et');}catch(_){}location.reload();"><svg viewBox="0 0 30 20" width="22" height="15" aria-hidden="true"><rect width="30" height="20" fill="#fff"/><rect width="30" height="13.34" fill="#000"/><rect width="30" height="6.67" fill="#0072ce"/></svg>ET</button>
+        <button type="button" class="lang-btn" data-lang-btn="en" aria-label="English" onclick="try{localStorage.setItem('glow_lang','en');}catch(_){}location.reload();"><svg viewBox="0 0 60 30" width="22" height="15" aria-hidden="true"><rect width="60" height="30" fill="#012169"/><path d="M0,0 60,30 M60,0 0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 60,30 M60,0 0,30" stroke="#c8102e" stroke-width="4"/><path d="M30,0 V30 M0,15 H60" stroke="#fff" stroke-width="10"/><path d="M30,0 V30 M0,15 H60" stroke="#c8102e" stroke-width="6"/></svg>EN</button>
       </div>
       <div class="splash-footer">glow4me.ee</div>
     </div>
