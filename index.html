@@ -746,6 +746,7 @@ canvas{display:none}
 .chat-msg{max-width:82%;padding:10px 14px;border-radius:14px;font-size:14px;line-height:1.45;color:#fff;position:relative;word-wrap:break-word;overflow-wrap:anywhere}
 .chat-msg-meta{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;color:rgba(255,255,255,0.5);margin-bottom:4px;display:flex;gap:8px;align-items:center}
 .chat-msg-meta-dot{width:5px;height:5px;border-radius:50%}
+.chat-msg-meta-timeonly{opacity:.55;margin-bottom:3px;font-size:8px}
 .chat-avatar{display:inline-flex;width:18px;height:18px;border-radius:50%;color:#0e0c0b;font-size:9px;font-weight:700;align-items:center;justify-content:center;margin-right:3px;font-family:'DM Mono',monospace;flex-shrink:0}
 .chat-msg.mine{align-self:flex-end;background:linear-gradient(135deg,rgba(201,169,110,0.25),rgba(232,201,126,0.18));border:1px solid rgba(201,169,110,0.4)}
 .chat-msg.theirs{align-self:flex-start;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1)}
@@ -2017,20 +2018,25 @@ function renderChatMessages(){
   }
   let html='';
   const nearBottom=(s.scrollHeight-s.scrollTop-s.clientHeight)<80;
-  let prevEmail=null;
+  let prevEmail=null, prevTs=0;
   const _circle=(window.myCircles||[]).find(c=>c.id===cs.circleId);
   const _members=(_circle&&_circle.members)||[];
   cs.messages.sort((a,b)=>(a.ts||0)-(b.ts||0)).forEach(m=>{
     const mine=(m.email===cs.myEmail);
     const col=mine?'var(--gold-bright)':memberColorInCircle(m.email,_members);
-    const name=mine?'Sina':chatDisplayName(m.email);
+    const name=mine?'Mina':chatDisplayName(m.email);
     const time=fmtChatTime(m.ts);
-    const sameAsPrev=(m.email===prevEmail);
-    prevEmail=m.email;
-    let meta='';
-    if(!sameAsPrev){
+    // Näita nime uuesti kui saatja muutub VÕI kui eelmisest sõnumist on möödas >5 min.
+    // Iga sõnumi juures on ALATI kellaaeg (grupeeritud sõnumitel ainult aeg).
+    const gap=((m.ts||0)-prevTs)>5*60*1000;
+    const showName=(m.email!==prevEmail)||gap;
+    prevEmail=m.email;prevTs=m.ts||0;
+    let meta;
+    if(showName){
       const av=mine?'':'<span class="chat-avatar" style="background:'+col+'">'+esc(initialsFrom(m.email||'?'))+'</span>';
       meta='<div class="chat-msg-meta">'+av+'<span style="color:'+col+';font-weight:600">'+esc(name)+'</span> · '+esc(time)+'</div>';
+    }else{
+      meta='<div class="chat-msg-meta chat-msg-meta-timeonly">'+esc(time)+'</div>';
     }
     const style=mine?'':' style="border-left:3px solid '+col+'"';
     html+='<div class="chat-msg '+(mine?'mine':'theirs')+'"'+style+'>'
