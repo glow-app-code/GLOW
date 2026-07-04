@@ -2562,11 +2562,17 @@ function refreshMeikAnalyzeBtn(){
   const btn=document.getElementById('meikAnalyzeBtn');const hint=document.getElementById('meikAnalyzeHint');
   const allSelected=meikOpts.nahatoon&&meikOpts.silmad&&meikOpts.kogemus&&meikOpts.tugevus;
   const hasCredits=getCredits()>0;
-  if(!hasCredits){btn.className='meik-analyze-btn';btn.disabled=true;hint.textContent='Krediit otsas';hint.className='meik-analyze-hint';}
-  else if(!allSelected){const missing=[];if(!meikOpts.nahatoon)missing.push('nahatoon');if(!meikOpts.silmad)missing.push('silmade värv');if(!meikOpts.kogemus)missing.push('kogemus');if(!meikOpts.tugevus)missing.push('meigi tugevus');btn.className='meik-analyze-btn';btn.disabled=true;hint.textContent='Vali veel: '+missing.join(', ');hint.className='meik-analyze-hint';}
-  else{btn.className='meik-analyze-btn active';btn.disabled=false;const stiil=MAKEUP_STYLES.find(m=>m.id===selectedMeikStyle)?.name||'Meik';hint.textContent=stiil+' · '+meikOpts.nahatoon+' · '+meikOpts.tugevus+' · '+getCredits()+' krediiti';hint.className='meik-analyze-hint ready';}
+  if(!hasCredits){btn.className='meik-analyze-btn';btn.disabled=true;hint.textContent=t('saldo.empty','Krediit otsas');hint.className='meik-analyze-hint';}
+  else if(!allSelected){const missing=[];if(!meikOpts.nahatoon)missing.push(t('miss.skin','nahatoon'));if(!meikOpts.silmad)missing.push(t('miss.eyes','silmade värv'));if(!meikOpts.kogemus)missing.push(t('miss.exp','kogemus'));if(!meikOpts.tugevus)missing.push(t('miss.str','meigi tugevus'));btn.className='meik-analyze-btn';btn.disabled=true;hint.textContent=t('miss.prefix','Vali veel: ')+missing.join(', ');hint.className='meik-analyze-hint';}
+  else{btn.className='meik-analyze-btn active';btn.disabled=false;const stiil=t('mstyle.'+selectedMeikStyle,MAKEUP_STYLES.find(m=>m.id===selectedMeikStyle)?.name||'Meik');hint.textContent=stiil+' · '+meikOpts.nahatoon+' · '+meikOpts.tugevus+' · '+getCredits()+' '+t('credits.word','krediiti');hint.className='meik-analyze-hint ready';}
 }
 
+function relabelResults(){
+  var rl=document.getElementById('resLbl'),re=document.getElementById('resEmpty');if(!rl)return;
+  if(mode==='meik'){var s=MAKEUP_STYLES.find(x=>x.id===selectedMeikStyle);rl.textContent=s?t('mstyle.'+s.id,s.name):t('res.meik','Meigi analüüs');if(re)re.textContent=t('res.empty.meik','Vali stiil ja täpsustused, seejärel ava kaamera');}
+  else if(mode==='stiil'){rl.textContent=t('res.stiil','Stiili analüüs');if(re)re.textContent=t('res.empty.stiil','Tee valik ja lisa pildid');}
+  else if(mode==='pro'){rl.textContent=t('proc.'+selectedProcedure,PROC_LABELS[selectedProcedure])||t('res.pro','AI Kosmeetiku analüüs');if(re)re.textContent=t('res.empty.pro','Vali protseduur, ava kaamera ja vajuta Analüüsi');}
+}
 function buildMeikGrid(){
   const g=document.getElementById('meikStyleGrid');g.innerHTML='';
   MAKEUP_STYLES.forEach(s=>{
@@ -2879,8 +2885,8 @@ function setMode(m){
   if(m==='meik'){
     document.getElementById('meikStyleSelect').style.display='block';
     buildMeikGrid();
-    document.getElementById('resLbl').textContent=MAKEUP_STYLES.find(s=>s.id===selectedMeikStyle)?.name||'Meigi analüüs';
-    document.getElementById('resEmpty').textContent='Vali stiil ja täpsustused, seejärel ava kaamera';
+    document.getElementById('resLbl').textContent=(function(){var s=MAKEUP_STYLES.find(x=>x.id===selectedMeikStyle);return s?t('mstyle.'+s.id,s.name):t('res.meik','Meigi analüüs');})();
+    document.getElementById('resEmpty').textContent=t('res.empty.meik','Vali stiil ja täpsustused, seejärel ava kaamera');
     refreshMeikAnalyzeBtn();
   }else if(m==='stiil'){
     document.getElementById('stiilRegimeSelect').style.display='block';
@@ -2896,8 +2902,8 @@ function setMode(m){
     document.getElementById('pildipankWrap').style.display='block';
     document.getElementById('stiilCamWrap').style.display='none';
     document.getElementById('cameraCard').style.display='none';
-    document.getElementById('resLbl').textContent='Stiili analüüs';
-    document.getElementById('resEmpty').textContent='Tee valik ja lisa pildid';
+    document.getElementById('resLbl').textContent=t('res.stiil','Stiili analüüs');
+    document.getElementById('resEmpty').textContent=t('res.empty.stiil','Tee valik ja lisa pildid');
   }else if(m==='pro'){
     buildProcedureGrid();buildBrandGrid();updateSalonActiveView();
     document.getElementById('proProcedureSelect').classList.add('show');
@@ -2906,8 +2912,8 @@ function setMode(m){
     document.getElementById('cameraCard').style.display='block';
     resetCam();
     document.getElementById('camBtn').onclick=startCam;
-    document.getElementById('resLbl').textContent=PROC_LABELS[selectedProcedure]||'AI Kosmeetiku analüüs';
-    document.getElementById('resEmpty').textContent='Vali protseduur, ava kaamera ja vajuta Analüüsi';
+    document.getElementById('resLbl').textContent=t('proc.'+selectedProcedure,PROC_LABELS[selectedProcedure])||t('res.pro','AI Kosmeetiku analüüs');
+    document.getElementById('resEmpty').textContent=t('res.empty.pro','Vali protseduur, ava kaamera ja vajuta Analüüsi');
   }
 }
 
@@ -3485,7 +3491,19 @@ if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.s
       'pp.sub.wardrobe': 'Photograph different clothes — separately or as outfits',
       'pp.title.shop': 'Store · Photo bank',
       'pp.info.shop': 'Upload up to <strong>10 photos</strong> of items tried in the store.',
-      'pp.sub.shop': 'Photograph items in the fitting room'
+      'pp.sub.shop': 'Photograph items in the fitting room',
+      'miss.prefix': 'Still to pick: ',
+      'miss.skin': 'skin tone',
+      'miss.eyes': 'eye colour',
+      'miss.exp': 'experience',
+      'miss.str': 'makeup intensity',
+      'credits.word': 'credits',
+      'res.meik': 'Makeup analysis',
+      'res.empty.meik': 'Choose a style and details, then open the camera',
+      'res.stiil': 'Style analysis',
+      'res.empty.stiil': 'Make a choice and add photos',
+      'res.pro': 'AI Cosmetician analysis',
+      'res.empty.pro': 'Choose a procedure, open the camera and tap Analyse'
     }
   };
   const _orig = new WeakMap();
@@ -3524,6 +3542,8 @@ if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.s
     if (typeof refreshSaldo === 'function') { try { refreshSaldo(); } catch(e){} }
     if (typeof buildMeikGrid === 'function') { try { buildMeikGrid(); } catch(e){} }
     if (typeof setStiilRegime === 'function' && typeof stiilRegime !== 'undefined') { try { setStiilRegime(stiilRegime); } catch(e){} }
+    if (typeof relabelResults === 'function') { try { relabelResults(); } catch(e){} }
+    if (typeof refreshMeikAnalyzeBtn === 'function') { try { refreshMeikAnalyzeBtn(); } catch(e){} }
   }
   // Tõlke-funktsioon JavaScriptile: t('võti','eesti vaste'). EN-režiimis tagastab
   // tõlke (kui olemas), muidu eesti vaste. Kasuta dünaamilistes tekstides.
