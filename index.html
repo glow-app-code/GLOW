@@ -2696,7 +2696,7 @@ function resetCam(){
   const cb=document.getElementById('camBtn');cb.className='cam-top-btn pri';cb.textContent=t('cam.open','✦ Ava kaamera');cb.disabled=false;cb.onclick=startCam;
   document.getElementById('anaBtn').disabled=true;document.getElementById('autoBtn').disabled=true;document.getElementById('flipBtn').disabled=true;
   document.getElementById('camph').style.display='flex';
-  setDot('idle',t('cam.waiting','Ootel...'));
+  setDot('idle',window.t('cam.waiting','Ootel...'));
 }
 
 // ÜRITUSTE GRID — pildipangale
@@ -2727,7 +2727,7 @@ async function analyzePildipank(){
   if(!selectedUritus||photoBank.length===0)return;
   const btn=document.getElementById('analyzeBankBtn');btn.className='analyze-bank-btn loading';btn.disabled=true;btn.textContent='⟳ Analüüsin...';
   resetResults();document.getElementById('resEmpty').style.display='none';document.getElementById('load').classList.add('on');
-  document.getElementById('loadingText').textContent=t('load.photos','Analüüsin')+' '+photoBank.length+' '+t('load.photos2','pilti...');
+  document.getElementById('loadingText').textContent=window.t('load.photos','Analüüsin')+' '+photoBank.length+' '+window.t('load.photos2','pilti...');
   document.getElementById('resultCard').scrollIntoView({behavior:'smooth',block:'start'});
   const sys=stiilRegime==='garderoob'?getPildipankGarderoobSystem(selectedUritus.name):getPildipankPoodSystem(selectedUritus.name);
   const imageContent=photoBank.map((p,i)=>([{type:'text',text:'Pilt '+(i+1)+':'},{type:'image',source:{type:'base64',media_type:p.mime||'image/jpeg',data:p.b64}}])).flat();
@@ -2737,7 +2737,7 @@ async function analyzePildipank(){
     // Kuni 2 katse — kui JSON-viga, proovi uuesti
     let parsed=null;let lastErr=null;
     for(let attempt=1;attempt<=2;attempt++){
-      if(attempt===2)document.getElementById('loadingText').textContent=t('load.incomplete','AI vastus oli ebatäielik, proovime uuesti...');
+      if(attempt===2)document.getElementById('loadingText').textContent=window.t('load.incomplete','AI vastus oli ebatäielik, proovime uuesti...');
       try{
         const res=await fetch(glowApiUrl(),{method:'POST',headers:glowApiHeaders(key),body:JSON.stringify({model:'claude-sonnet-4-5',max_tokens:5000,system:sys+aiLangDirective(),messages:[{role:'user',content:imageContent}]})});
         const data=await checkRes(res);if(data.error)throw new Error(data.error.message);
@@ -2769,8 +2769,8 @@ async function startCam(){
     video.srcObject=stream;await video.play();
     video.style.transform=currentFacing==='user'?'scaleX(-1)':'scaleX(1)';
     document.getElementById('camph').style.display='none';
-    setDot('live',t('cam.active.msg','Kaamera aktiivne'));
-    const cb=document.getElementById('camBtn');cb.textContent=t('cam.active','✓ Aktiivne');cb.disabled=true;cb.className='cam-top-btn ok';
+    setDot('live',window.t('cam.active.msg','Kaamera aktiivne'));
+    const cb=document.getElementById('camBtn');cb.textContent=window.t('cam.active','✓ Aktiivne');cb.disabled=true;cb.className='cam-top-btn ok';
     document.getElementById('autoBtn').disabled=false;document.getElementById('flipBtn').disabled=false;
     // Stiili kaamera puhul: anaBtn aktiveerub kui üritus on valitud
     if(mode==='stiil'){document.getElementById('anaBtn').disabled=!(selectedUritusCam&&getCredits()>0);}
@@ -2958,22 +2958,22 @@ async function analyze(){
     sys=getMeikSystem(selectedMeikStyle);
     prompt='Analüüsi minu meiki. Nahatoon: '+meikOpts.nahatoon+', silmad: '+meikOpts.silmad+', kogemus: '+meikOpts.kogemus+', tugevus: '+meikOpts.tugevus+'. Vasta ainult JSON.';
     lbl=MAKEUP_STYLES.find(m=>m.id===selectedMeikStyle)?.name+' · '+meikOpts.tugevus;bar='c1';
-    document.getElementById('loadingText').textContent=t('load.meik','Analüüsin meiki...');
+    document.getElementById('loadingText').textContent=window.t('load.meik','Analüüsin meiki...');
   }else if(mode==='stiil'){
     sys=getStiilCamSystem(selectedUritusCam.name,stiilRegime);
     prompt='Analüüsi riietust. Üritus: "'+selectedUritusCam.name+'". Vasta ainult JSON.';
     lbl=(stiilRegime==='garderoob'?'Garderoob · ':'Pood · ')+selectedUritusCam.name;bar='c3';
-    document.getElementById('loadingText').textContent=t('load.stiil','Analüüsin riietust...');
+    document.getElementById('loadingText').textContent=window.t('load.stiil','Analüüsin riietust...');
   }else{
     sys=getProSystem(selectedProcedure);
     prompt=selectedProcedure==='soovita'?'Analüüsi nahka. Vasta ainult JSON.':'Analüüsi klienti. Vasta ainult JSON.';
     lbl=PROC_LABELS[selectedProcedure]||'AI Kosmeetiku analüüs';bar='c4';
-    document.getElementById('loadingText').textContent=t('load.generic','Analüüsin...');
+    document.getElementById('loadingText').textContent=window.t('load.generic','Analüüsin...');
   }
 
   if(currentFetchAbort){currentFetchAbort.abort();}
   currentFetchAbort=new AbortController();
-  document.getElementById('err').textContent='';setDot('thinking',t('cam.analyzing','Analüüsin...'));
+  document.getElementById('err').textContent='';setDot('thinking',window.t('cam.analyzing','Analüüsin...'));
   resetResults();
   document.getElementById('scan').classList.add('on');document.getElementById('load').classList.add('on');
   document.getElementById('resEmpty').style.display='none';
@@ -2984,7 +2984,7 @@ async function analyze(){
     // Kuni 2 katsele — kui esimene ebaõnnestub JSON-vea tõttu, proovi uuesti
     let parsed=null;let lastErr=null;
     for(let attempt=1;attempt<=2;attempt++){
-      if(attempt===2){setDot('thinking',t('cam.retry','Proovin uuesti...'));document.getElementById('loadingText').textContent=t('load.incomplete','AI vastus oli ebatäielik, proovime uuesti...');}
+      if(attempt===2){setDot('thinking',window.t('cam.retry','Proovin uuesti...'));document.getElementById('loadingText').textContent=window.t('load.incomplete','AI vastus oli ebatäielik, proovime uuesti...');}
       try{
         const res=await fetch(glowApiUrl(),{method:'POST',signal:currentFetchAbort.signal,headers:glowApiHeaders(key),body:JSON.stringify({model:'claude-sonnet-4-5',max_tokens:5000,system:sys+aiLangDirective(),messages:[{role:'user',content:[{type:'image',source:{type:'base64',media_type:'image/jpeg',data:b64}},{type:'text',text:prompt}]}]})});
         const data=await checkRes(res);if(data.error)throw new Error(data.error.message);
@@ -3007,11 +3007,11 @@ async function analyze(){
     if(mode==='stiil')renderStiilCamResult(parsed,dataUrl,lbl);
     else renderMeikProResult(parsed,bar,dataUrl,lbl);
     if(typeof saveShareContext==='function')saveShareContext(parsed,dataUrl,mode);
-    setDot('live',t('cam.done','Analüüs valmis ✦'));
+    setDot('live',window.t('cam.done','Analüüs valmis ✦'));
     maybeShowInstallAfterAnalysis();
   }catch(e){
     document.getElementById('load').classList.remove('on');document.getElementById('scan').classList.remove('on');
-    if(e.name==='AbortError'){setDot('idle',t('cam.cancelled','Tühistatud'));}else{document.getElementById('err').textContent=e.message;setDot('idle',t('gen.error','Viga'));}
+    if(e.name==='AbortError'){setDot('idle',window.t('cam.cancelled','Tühistatud'));}else{document.getElementById('err').textContent=e.message;setDot('idle',window.t('gen.error','Viga'));}
   }
   if(mode==='stiil')document.getElementById('anaBtn').disabled=!(stream&&selectedUritusCam&&getCredits()>0);
   else document.getElementById('anaBtn').disabled=!(stream&&getCredits()>0);
