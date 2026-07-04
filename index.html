@@ -1044,32 +1044,32 @@ canvas{display:none}
 <div id="termsScreen" class="screen">
   <div class="terms-header">
     <div class="terms-logo-small">GL<em>Ó</em>W</div>
-    <div class="terms-title">Kasutustingimused</div>
-    <div class="terms-sub">Palun loe läbi enne alustamist</div>
+    <div class="terms-title" data-i18n="terms.title">Kasutustingimused</div>
+    <div class="terms-sub" data-i18n="terms.sub">Palun loe läbi enne alustamist</div>
     <div class="terms-divider"></div>
   </div>
   <div class="terms-scroll">
-    <div class="terms-section"><div class="terms-section-title">1. Teenuse kirjeldus</div><p>GLÓW on tehisintellektil põhinev ilu- ja stiilianalüüsi rakendus.</p></div>
-    <div class="terms-section"><div class="terms-section-title">2. Privaatsus</div><ul><li>Pilte töödeldakse ainult analüüsi eesmärgil</li><li>Pilte ei salvestata serveritesse</li><li>Kustutatakse kohe pärast analüüsi</li><li>Edastatakse krüpteeritult Anthropic AI-le</li></ul></div>
-    <div class="terms-section"><div class="terms-section-title">3. GDPR</div><ul><li>Näopilte loetakse biomeetrilisteks andmeteks</li><li>Kasutad vabatahtlikult ja annad nõusoleku</li><li>Õigus kasutamine igal ajal lõpetada</li></ul></div>
-    <div class="terms-section"><div class="terms-section-title">4. Vastutus</div><ul><li>Soovitused on informatiivsed</li><li>GLÓW ei vastuta analüüsi põhjal tehtud otsuste eest</li></ul></div>
-    <div class="terms-section"><div class="terms-section-title">5. Vanus</div><p>Mõeldud kasutajatele 16 aastat ja vanemad.</p></div>
-    <div class="terms-section"><div class="terms-section-title">6. Intellektuaalne omand</div><p>Kõik GLÓW rakenduse sisu, kujundus ja kood on kaitstud autoriõigusega. Kopeerimine ilma loata on keelatud.</p></div>
-    <div class="terms-section"><div class="terms-section-title">7. Kontakt</div><p><strong style="color:var(--gold)">info@glow4me.ee</strong></p></div>
+    <div class="terms-section"><div class="terms-section-title" data-i18n="terms.s1.title">1. Teenuse kirjeldus</div><p data-i18n="terms.s1.body">GLÓW on tehisintellektil põhinev ilu- ja stiilianalüüsi rakendus.</p></div>
+    <div class="terms-section"><div class="terms-section-title" data-i18n="terms.s2.title">2. Privaatsus</div><ul><li data-i18n="terms.s2.i1">Pilte töödeldakse ainult analüüsi eesmärgil</li><li data-i18n="terms.s2.i2">Pilte ei salvestata serveritesse</li><li data-i18n="terms.s2.i3">Kustutatakse kohe pärast analüüsi</li><li data-i18n="terms.s2.i4">Edastatakse krüpteeritult Anthropic AI-le</li></ul></div>
+    <div class="terms-section"><div class="terms-section-title" data-i18n="terms.s3.title">3. GDPR</div><ul><li data-i18n="terms.s3.i1">Näopilte loetakse biomeetrilisteks andmeteks</li><li data-i18n="terms.s3.i2">Kasutad vabatahtlikult ja annad nõusoleku</li><li data-i18n="terms.s3.i3">Õigus kasutamine igal ajal lõpetada</li></ul></div>
+    <div class="terms-section"><div class="terms-section-title" data-i18n="terms.s4.title">4. Vastutus</div><ul><li data-i18n="terms.s4.i1">Soovitused on informatiivsed</li><li data-i18n="terms.s4.i2">GLÓW ei vastuta analüüsi põhjal tehtud otsuste eest</li></ul></div>
+    <div class="terms-section"><div class="terms-section-title" data-i18n="terms.s5.title">5. Vanus</div><p data-i18n="terms.s5.body">Mõeldud kasutajatele 16 aastat ja vanemad.</p></div>
+    <div class="terms-section"><div class="terms-section-title" data-i18n="terms.s6.title">6. Intellektuaalne omand</div><p data-i18n="terms.s6.body">Kõik GLÓW rakenduse sisu, kujundus ja kood on kaitstud autoriõigusega. Kopeerimine ilma loata on keelatud.</p></div>
+    <div class="terms-section"><div class="terms-section-title" data-i18n="terms.s7.title">7. Kontakt</div><p><strong style="color:var(--gold)">info@glow4me.ee</strong></p></div>
   </div>
   <div class="terms-footer">
     <div class="terms-agree-wrap">
       <div class="terms-checkbox" id="termsCheckbox" onclick="toggleTerms()"><span class="terms-checkbox-icon">✓</span></div>
-      <div class="terms-agree-text">Olen lugenud ja nõustun <strong>GLÓW kasutustingimuste</strong> ning <strong>privaatsuspoliitikaga</strong>.</div>
+      <div class="terms-agree-text" data-i18n="terms.agree">Olen lugenud ja nõustun <strong>GLÓW kasutustingimuste</strong> ning <strong>privaatsuspoliitikaga</strong>.</div>
     </div>
-    <button class="terms-confirm-btn" id="termsConfirmBtn" onclick="startCountdown()" disabled>Nõustun ja alustan →</button>
+    <button class="terms-confirm-btn" id="termsConfirmBtn" onclick="startCountdown()" disabled data-i18n="terms.confirm">Nõustun ja alustan →</button>
   </div>
 </div>
 
 <div id="countdownScreen" class="screen">
   <div class="countdown-ambient"></div>
   <div class="countdown-wrap">
-    <div class="countdown-label">Käivitun</div>
+    <div class="countdown-label" data-i18n="countdown.label">Käivitun</div>
     <div class="countdown-clock">
       <svg class="clock-svg" viewBox="0 0 180 180">
         <circle class="clock-bg" cx="90" cy="90" r="85"/>
@@ -1124,19 +1124,19 @@ canvas{display:none}
 <!-- Kasutaja-menüü (sisselogitud olekus) -->
 <div class="user-menu" id="userMenu">
   <span class="user-menu-email" id="userMenuEmail">—</span>
-  <button class="user-menu-logout" onclick="logoutUser()">Logi välja</button>
+  <button class="user-menu-logout" onclick="logoutUser()" data-i18n="menu.logout">Logi välja</button>
 </div>
 
 <!-- Sisselogimise nupp (kui pole sisse loginud) -->
-<button class="login-nav-btn" id="loginNavBtn" onclick="showLoginModal()">Logi sisse — sünkroniseeri krediidid</button>
+<button class="login-nav-btn" id="loginNavBtn" onclick="showLoginModal()" data-i18n="login.nav">Logi sisse — sünkroniseeri krediidid</button>
 
 <!-- GLÓW CIRCLES kutsuv kaart -->
 <div class="circles-invite-card" id="circlesInviteCard" onclick="handleCirclesFirstClick()" style="display:none">
   <div class="circles-invite-icon" data-icon="glowCircle" data-icon-size="30"></div>
   <div class="circles-invite-body">
-    <div class="circles-invite-title">GL<em>Ó</em>W Circles<span class="circles-invite-badge-new" id="circlesNewBadge">Uus</span></div>
-    <div class="circles-invite-sub">— kus stiil kohtub <strong>sõpruse häälega</strong> ✦</div>
-    <div class="circles-invite-cta">Alusta suhtlemist sõpradega →</div>
+    <div class="circles-invite-title">GL<em>Ó</em>W Circles<span class="circles-invite-badge-new" id="circlesNewBadge" data-i18n="circles.invite.badge">Uus</span></div>
+    <div class="circles-invite-sub" data-i18n="circles.invite.sub">— kus stiil kohtub <strong>sõpruse häälega</strong> ✦</div>
+    <div class="circles-invite-cta" data-i18n="circles.invite.cta">Alusta suhtlemist sõpradega →</div>
   </div>
   <span class="circles-invite-arrow">→</span>
 </div>
@@ -1146,8 +1146,8 @@ canvas{display:none}
   <div class="friend-left">
     <div class="friend-icon-box" data-icon="sparkle" data-icon-size="22"></div>
     <div class="friend-info">
-      <div class="friend-title">Kutsu sõpru, saa krediiti</div>
-      <div class="friend-sub">Iga sõber annab teile mõlemale <strong>+5 analüüsi</strong></div>
+      <div class="friend-title" data-i18n="friend.title">Kutsu sõpru, saa krediiti</div>
+      <div class="friend-sub" data-i18n="friend.sub">Iga sõber annab teile mõlemale <strong>+5 analüüsi</strong></div>
     </div>
   </div>
   <span class="friend-arrow">→</span>
@@ -1186,11 +1186,11 @@ canvas{display:none}
 </div>
 
 <div id="assistentWrap">
-  <div class="lbl">Vali assistent</div>
+  <div class="lbl" data-i18n="assist.label">Vali assistent</div>
   <div class="modes">
-    <div class="mode m-meik active" onclick="setMode('meik')"><div class="micon" data-icon="makeup" data-icon-size="30"></div><div class="mname">Meik</div><div class="mdesc">Meigi analüüs</div></div>
-    <div class="mode m-stiil" onclick="setMode('stiil')"><div class="micon" data-icon="dress" data-icon-size="30"></div><div class="mname">Stiil</div><div class="mdesc">Riietuse analüüs</div></div>
-    <div class="mode m-pro" onclick="setMode('pro')"><div class="pro-badge">PRO</div><div class="micon" data-icon="spa" data-icon-size="30"></div><div class="mname">AI Kosmeetik</div><div class="mdesc">Professionaalne analüüs</div></div>
+    <div class="mode m-meik active" onclick="setMode('meik')"><div class="micon" data-icon="makeup" data-icon-size="30"></div><div class="mname" data-i18n="assist.meik.name">Meik</div><div class="mdesc" data-i18n="assist.meik.desc">Meigi analüüs</div></div>
+    <div class="mode m-stiil" onclick="setMode('stiil')"><div class="micon" data-icon="dress" data-icon-size="30"></div><div class="mname" data-i18n="assist.stiil.name">Stiil</div><div class="mdesc" data-i18n="assist.stiil.desc">Riietuse analüüs</div></div>
+    <div class="mode m-pro" onclick="setMode('pro')"><div class="pro-badge">PRO</div><div class="micon" data-icon="spa" data-icon-size="30"></div><div class="mname" data-i18n="assist.pro.name">AI Kosmeetik</div><div class="mdesc" data-i18n="assist.pro.desc">Professionaalne analüüs</div></div>
   </div>
 
   <!-- MEIGI STIILID -->
@@ -3342,7 +3342,45 @@ if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.s
       'splash.sub': 'Your personal beauty &amp;<br>style expert in your pocket',
       'splash.btn': 'Begin ✦',
       'header.tagline': 'AI · Personal Style Assistant',
-      'header.logout': '✦ Exit'
+      'header.logout': '✦ Exit',
+      'terms.title': 'Terms of Use',
+      'terms.sub': 'Please read before you start',
+      'terms.s1.title': '1. Service description',
+      'terms.s1.body': 'GLÓW is an AI-based beauty and style analysis app.',
+      'terms.s2.title': '2. Privacy',
+      'terms.s2.i1': 'Photos are processed only for analysis',
+      'terms.s2.i2': 'Photos are not stored on servers',
+      'terms.s2.i3': 'Deleted immediately after analysis',
+      'terms.s2.i4': 'Transmitted encrypted to Anthropic AI',
+      'terms.s3.title': '3. GDPR',
+      'terms.s3.i1': 'Face photos are treated as biometric data',
+      'terms.s3.i2': 'You use it voluntarily and give consent',
+      'terms.s3.i3': 'Right to stop using it at any time',
+      'terms.s4.title': '4. Liability',
+      'terms.s4.i1': 'Recommendations are informational',
+      'terms.s4.i2': 'GLÓW is not liable for decisions made based on the analysis',
+      'terms.s5.title': '5. Age',
+      'terms.s5.body': 'Intended for users aged 16 and older.',
+      'terms.s6.title': '6. Intellectual property',
+      'terms.s6.body': 'All GLÓW app content, design and code are protected by copyright. Copying without permission is prohibited.',
+      'terms.s7.title': '7. Contact',
+      'terms.agree': 'I have read and agree to the <strong>GLÓW Terms of Use</strong> and <strong>Privacy Policy</strong>.',
+      'terms.confirm': 'I agree and start →',
+      'countdown.label': 'Starting',
+      'menu.logout': 'Log out',
+      'login.nav': 'Log in — sync your credits',
+      'circles.invite.badge': 'New',
+      'circles.invite.sub': '— where style meets the <strong>voice of friendship</strong> ✦',
+      'circles.invite.cta': 'Start chatting with friends →',
+      'friend.title': 'Invite friends, earn credits',
+      'friend.sub': 'Each friend gives you both <strong>+5 analyses</strong>',
+      'assist.label': 'Choose assistant',
+      'assist.meik.name': 'Makeup',
+      'assist.meik.desc': 'Makeup analysis',
+      'assist.stiil.name': 'Style',
+      'assist.stiil.desc': 'Outfit analysis',
+      'assist.pro.name': 'AI Cosmetician',
+      'assist.pro.desc': 'Professional analysis'
     }
   };
   const _orig = new WeakMap();
