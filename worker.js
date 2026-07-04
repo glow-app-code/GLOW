@@ -94,7 +94,8 @@ async function getSession(request, env) {
   const token = m[1].trim();
   const sess = await env.GLOW_KV.get('session:' + token, 'json');
   if (!sess || sess.expiresAt < Date.now()) return null;
-  return { token, email: sess.email };
+  // Normaliseeri e-post alati väiketähtedeks, et võtmed ja võrdlused oleks ühtsed.
+  return { token, email: String(sess.email || '').toLowerCase() };
 }
 
 async function getOrCreateUser(env, email) {
@@ -414,10 +415,46 @@ async function handleCirclesList(request, env, origin) {
   // TURVALISUS: näita ainult ringe, mille omanik on kasutaja ise.
   // Nii ei saa keegi näha teiste inimeste ringide liikmeid.
   const circles = [];
+  const seen = new Set();
+  let changed = false;
+
+  // 1) Ringid, mis on juba kasutaja nimekirjas
   for (const id of (user.circleIds||[])) {
+    if (seen.has(id)) continue;
     const c = await env.GLOW_KV.get('circle:' + id, 'json');
-    if (c && sameEmail(c.ownerEmail, sess.email)) circles.push(c);
+    if (c && sameEmail(c.ownerEmail, sess.email)) { circles.push(c); seen.add(id); }
   }
+
+  // 2) ÜHEKORDNE REMONT: otsi üles ka ringid, mis kuuluvad kasutajale, aga on
+  //    tema nimekirjast välja kukkunud (vana e-posti võtme vea tõttu). Pane
+  //    need tagasi nimekirja. Käib läbi ainult üks kord kasutaja kohta.
+  if (!user.circlesRepaired) {
+    let cursor;
+    let scanned = 0;
+    const SCAN_CAP = 2000;
+    do {
+      const list = await env.GLOW_KV.list({ prefix: 'circle:', cursor, limit: 100 });
+      for (const key of list.keys) {
+        const id = key.name.slice('circle:'.length);
+        if (seen.has(id) || scanned >= SCAN_CAP) continue;
+        scanned++;
+        const c = await env.GLOW_KV.get(key.name, 'json');
+        if (c && sameEmail(c.ownerEmail, sess.email)) {
+          circles.push(c);
+          seen.add(id);
+          if (!(user.circleIds||[]).includes(id)) { user.circleIds.push(id); }
+        }
+      }
+      cursor = list.list_complete ? undefined : list.cursor;
+    } while (cursor && scanned < SCAN_CAP);
+    user.circlesRepaired = true;
+    changed = true;
+  }
+
+  if (changed) {
+    await env.GLOW_KV.put('user:' + sess.email, JSON.stringify(user));
+  }
+
   if (circles.length === 0) {
     circles.push(await ensurePrimaryCircle(env, sess.email));
   }
