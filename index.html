@@ -1006,8 +1006,9 @@ canvas{display:none}
 .lang-switch-splash{margin-top:20px}
 .lang-switch-header{margin-left:auto;margin-right:8px}
 </style>
-<script>/* i18n varu-definitsioon — põhimootor (lehe lõpus) kirjutab selle üle õigete tõlgetega */
-window.glowLang='et';window.t=window.t||function(k,f){return f;};</script>
+<script>/* i18n varu-definitsioon — tuvasta keel kohe; põhimootor (lehe lõpus) lisab tõlked */
+window.glowLang=(function(){try{var s=localStorage.getItem('glow_lang');if(s==='et'||s==='en')return s;var tz='';try{tz=(Intl.DateTimeFormat().resolvedOptions().timeZone||'');}catch(e){}var l=(navigator.language||navigator.userLanguage||'').toLowerCase();if(tz==='Europe/Tallinn'||l.indexOf('et')===0)return'et';return'en';}catch(e){return'et';}})();
+window.t=window.t||function(k,f){return f;};</script>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute">
@@ -1435,20 +1436,20 @@ window.glowLang='et';window.t=window.t||function(k,f){return f;};</script>
 </div>
 
 <div class="feedback-card">
-  <div class="lbl">Anna tagasiside</div>
-  <div class="feedback-intro">Sinu arvamus aitab meil GLÓW-i paremaks muuta.</div>
+  <div class="lbl" data-i18n="feedback.label">Anna tagasiside</div>
+  <div class="feedback-intro" data-i18n="feedback.intro">Sinu arvamus aitab meil GLÓW-i paremaks muuta.</div>
   <div id="feedbackForm">
     <div class="stars">
       <button class="star" onclick="rateStar(1)">★</button><button class="star" onclick="rateStar(2)">★</button>
       <button class="star" onclick="rateStar(3)">★</button><button class="star" onclick="rateStar(4)">★</button>
       <button class="star" onclick="rateStar(5)">★</button>
     </div>
-    <textarea class="feedback-textarea" id="feedbackText2" placeholder="Kirjuta siia oma mõtted..."></textarea>
-    <button class="feedback-submit" id="feedbackSubmitBtn" onclick="submitFeedback()" disabled>Saada tagasiside →</button>
+    <textarea class="feedback-textarea" id="feedbackText2" placeholder="Kirjuta siia oma mõtted..." data-i18n-ph="feedback.ph"></textarea>
+    <button class="feedback-submit" id="feedbackSubmitBtn" onclick="submitFeedback()" disabled data-i18n="feedback.submit">Saada tagasiside →</button>
   </div>
   <div class="feedback-sent" id="feedbackSent">
     <div class="feedback-sent-icon">✦</div>
-    <div class="feedback-sent-text">Täname tagasiside eest!<br>See aitab meil kasvada.</div>
+    <div class="feedback-sent-text" data-i18n="feedback.sent">Täname tagasiside eest!<br>See aitab meil kasvada.</div>
   </div>
 </div>
 </div>
@@ -2794,8 +2795,8 @@ function setStiilRegime(regime){
   renderPhotoBank();buildUritusGrid();buildUritusGridCam();
   document.getElementById('photoLimitWarn').classList.remove('show');
   resetResults();
-  if(regime==='garderoob'){document.getElementById('pildipankTitle').textContent='Garderoob · Pildipank';document.getElementById('pildipankInfo').innerHTML='Laadi üles kuni <strong>10 pilti</strong> oma garderoobist.';document.getElementById('uploadZoneSub').innerHTML='Pildista erinevaid riideid — eraldi või komplektidena';}
-  else{document.getElementById('pildipankTitle').textContent='Pood · Pildipank';document.getElementById('pildipankInfo').innerHTML='Laadi üles kuni <strong>10 pilti</strong> poes proovitud asjadest.';document.getElementById('uploadZoneSub').innerHTML='Pildista asju proovikabiiinis';}
+  if(regime==='garderoob'){document.getElementById('pildipankTitle').textContent=t('pp.title.wardrobe','Garderoob · Pildipank');document.getElementById('pildipankInfo').innerHTML=t('pp.info.wardrobe','Laadi üles kuni <strong>10 pilti</strong> oma garderoobist.');document.getElementById('uploadZoneSub').innerHTML=t('pp.sub.wardrobe','Pildista erinevaid riideid — eraldi või komplektidena');}
+  else{document.getElementById('pildipankTitle').textContent=t('pp.title.shop','Pood · Pildipank');document.getElementById('pildipankInfo').innerHTML=t('pp.info.shop','Laadi üles kuni <strong>10 pilti</strong> poes proovitud asjadest.');document.getElementById('uploadZoneSub').innerHTML=t('pp.sub.shop','Pildista asju proovikabiiinis');}
 }
 
 function buildProcedureGrid(){const g=document.getElementById('procedureGrid');g.innerHTML='';const rec=document.createElement('div');rec.className='proc-btn recommend'+(selectedProcedure==='soovita'?' active':'');rec.innerHTML='<div class="proc-icon">'+iconHtml('search',22,'#c4b8e0')+'</div><div class="proc-name" style="color:#c4b8e0">Soovita<br>protseduuri</div>';rec.onclick=()=>selectProcedure('soovita');g.appendChild(rec);PROCEDURES.forEach(p=>{const b=document.createElement('div');b.className='proc-btn'+(p.id===selectedProcedure?' active':'');b.innerHTML='<div class="proc-icon">'+iconHtml(p.icon,22)+'</div><div class="proc-name">'+p.name+'</div>';b.onclick=()=>selectProcedure(p.id);g.appendChild(b);});}
@@ -3473,10 +3474,22 @@ if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.s
       'mstyle.pruut': 'Bridal makeup',
       'mstyle.lopuaktus': 'Graduation makeup',
       'mstyle.foto': 'Photoshoot',
-      'mstyle.smoky': 'Smoky eye'
+      'mstyle.smoky': 'Smoky eye',
+      'feedback.label': 'Give feedback',
+      'feedback.intro': 'Your opinion helps us make GLÓW better.',
+      'feedback.ph': 'Write your thoughts here...',
+      'feedback.submit': 'Send feedback →',
+      'feedback.sent': 'Thank you for your feedback!<br>It helps us grow.',
+      'pp.title.wardrobe': 'Wardrobe · Photo bank',
+      'pp.info.wardrobe': 'Upload up to <strong>10 photos</strong> from your wardrobe.',
+      'pp.sub.wardrobe': 'Photograph different clothes — separately or as outfits',
+      'pp.title.shop': 'Store · Photo bank',
+      'pp.info.shop': 'Upload up to <strong>10 photos</strong> of items tried in the store.',
+      'pp.sub.shop': 'Photograph items in the fitting room'
     }
   };
   const _orig = new WeakMap();
+  const _origPh = new WeakMap();
   function detectLang(){
     const s = localStorage.getItem('glow_lang');
     if (s === 'et' || s === 'en') return s;   // salvestatud valik võidab alati
@@ -3498,12 +3511,19 @@ if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.s
       if (dict && dict[key] != null) el.innerHTML = dict[key];
       else el.innerHTML = _orig.get(el);
     });
+    // Placeholder-tekstid (sisestusväljad)
+    document.querySelectorAll('[data-i18n-ph]').forEach(function(el){
+      const key = el.getAttribute('data-i18n-ph');
+      if (!_origPh.has(el)) _origPh.set(el, el.getAttribute('placeholder') || '');
+      el.setAttribute('placeholder', (dict && dict[key] != null) ? dict[key] : _origPh.get(el));
+    });
     document.querySelectorAll('[data-lang-btn]').forEach(function(b){
       b.classList.toggle('active', b.getAttribute('data-lang-btn') === lang);
     });
     // Joonista uuesti dünaamilised tekstid, et need oleks õiges keeles
     if (typeof refreshSaldo === 'function') { try { refreshSaldo(); } catch(e){} }
     if (typeof buildMeikGrid === 'function') { try { buildMeikGrid(); } catch(e){} }
+    if (typeof setStiilRegime === 'function' && typeof stiilRegime !== 'undefined') { try { setStiilRegime(stiilRegime); } catch(e){} }
   }
   // Tõlke-funktsioon JavaScriptile: t('võti','eesti vaste'). EN-režiimis tagastab
   // tõlke (kui olemas), muidu eesti vaste. Kasuta dünaamilistes tekstides.
