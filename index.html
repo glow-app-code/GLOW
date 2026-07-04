@@ -1527,32 +1527,32 @@ window.t=window.t||function(k,f){return f;};</script>
   <div class="onboard-card">
     <button class="install-close" onclick="closeCirclesOnboard()" aria-label="Sulge">×</button>
     <div class="onboard-hero" data-icon="glowCircle" data-icon-size="42"></div>
-    <div class="onboard-title">Tere tulemast <em>GLÓW Circles</em>'i</div>
-    <div class="onboard-tagline">Sinu isiklik stiili-pere</div>
+    <div class="onboard-title" data-i18n="ob.title">Tere tulemast <em>GLÓW Circles</em>'i</div>
+    <div class="onboard-tagline" data-i18n="ob.tagline">Sinu isiklik stiili-pere</div>
     <div class="onboard-features">
       <div class="onboard-feat">
         <div class="onboard-feat-num">1</div>
-        <div class="onboard-feat-text"><strong>Loo oma ring</strong> — kutsu sõbrad ühe lingiga. Kõik, kes liituvad, on ühes grupis: näevad üksteist, jagavad pilte ja vestlevad koos.</div>
+        <div class="onboard-feat-text" data-i18n="ob.f1"><strong>Loo oma ring</strong> — kutsu sõbrad ühe lingiga. Kõik, kes liituvad, on ühes grupis: näevad üksteist, jagavad pilte ja vestlevad koos.</div>
       </div>
       <div class="onboard-feat">
         <div class="onboard-feat-num">2</div>
-        <div class="onboard-feat-text"><strong>Jaga hetkega</strong> — pärast meigi- või stiili-analüüsi saada pilt oma ringile ühe klõpsuga</div>
+        <div class="onboard-feat-text" data-i18n="ob.f2"><strong>Jaga hetkega</strong> — pärast meigi- või stiili-analüüsi saada pilt oma ringile ühe klõpsuga</div>
       </div>
       <div class="onboard-feat">
         <div class="onboard-feat-num">3</div>
-        <div class="onboard-feat-text"><strong>Saa nõu reaalajas</strong> — sõbrad annavad tagasisidet, hääletavad ja kommenteerivad</div>
+        <div class="onboard-feat-text" data-i18n="ob.f3"><strong>Saa nõu reaalajas</strong> — sõbrad annavad tagasisidet, hääletavad ja kommenteerivad</div>
       </div>
       <div class="onboard-feat">
         <div class="onboard-feat-num">4</div>
-        <div class="onboard-feat-text"><strong>Ilus ja privaatne</strong> — postitused kaovad automaatselt 12h pärast, keegi teine ei näe</div>
+        <div class="onboard-feat-text" data-i18n="ob.f4"><strong>Ilus ja privaatne</strong> — postitused kaovad automaatselt 12h pärast, keegi teine ei näe</div>
       </div>
     </div>
     <div class="onboard-actions">
       <button class="circle-btn primary" onclick="closeCirclesOnboard();openCirclesPanel()">
         <span style="display:inline-flex;vertical-align:middle;margin-right:6px" data-icon="plus" data-icon-size="12"></span>
-        Loo esimene Circle
+        <span data-i18n="ob.create">Loo esimene Circle</span>
       </button>
-      <button class="circle-btn secondary" onclick="closeCirclesOnboard()">Vaatan hiljem</button>
+      <button class="circle-btn secondary" onclick="closeCirclesOnboard()" data-i18n="ob.later">Vaatan hiljem</button>
     </div>
   </div>
 </div>
@@ -1969,10 +1969,10 @@ async function openCircleChat(circleId){
     +'<button class="chat-back" onclick="openCircleDetail(\''+esc(circleId)+'\')">← Circle</button>'
     +'<div class="chat-title"><span class="chat-title-icon">'+esc(circle.icon||'✦')+'</span>'+esc(circle.name)+'</div>'
     +'</div>'
-    +'<div class="chat-scroll" id="chatScroll"><div class="chat-empty"><div class="chat-empty-icon">✦</div>Laen vestlust...</div></div>'
+    +'<div class="chat-scroll" id="chatScroll"><div class="chat-empty"><div class="chat-empty-icon">✦</div>'+t('chat.loading','Laen vestlust...')+'</div></div>'
     +'<div class="chat-input-wrap">'
-    +'<textarea class="chat-input" id="chatInput" rows="1" placeholder="Kirjuta sõbrannadele..." maxlength="800" onkeydown="chatKey(event)" oninput="autoGrowChat(this)"></textarea>'
-    +'<button class="chat-send" id="chatSendBtn" onclick="sendChatMessage()">Saada</button>'
+    +'<textarea class="chat-input" id="chatInput" rows="1" placeholder="'+t('chat.ph','Kirjuta sõbrannadele...')+'" maxlength="800" onkeydown="chatKey(event)" oninput="autoGrowChat(this)"></textarea>'
+    +'<button class="chat-send" id="chatSendBtn" onclick="sendChatMessage()">'+t('chat.send','Saada')+'</button>'
     +'</div>'
     +'</div>';
   await loadChatMessages(true);
@@ -2029,7 +2029,7 @@ function renderChatMessages(){
   const s=document.getElementById('chatScroll');if(!s)return;
   const cs=window.chatState;
   if(!cs.messages.length){
-    s.innerHTML='<div class="chat-empty"><div class="chat-empty-icon">✦</div>Ole esimene, kes siia kirjutab.<br><span style="font-size:12px;opacity:.7">Räägi kõigest — stiil, meik, riided, toit, treening.</span></div>';
+    s.innerHTML='<div class="chat-empty"><div class="chat-empty-icon">✦</div>'+t('chat.empty','Ole esimene, kes siia kirjutab.')+'<br><span style="font-size:12px;opacity:.7">'+t('chat.empty2','Räägi kõigest — stiil, meik, riided, toit, treening.')+'</span></div>';
     return;
   }
   let html='';
@@ -2079,7 +2079,7 @@ async function sendChatMessage(){
     const data=await apiCall('/api/circles/'+cs.circleId+'/messages',{method:'POST',body:JSON.stringify({text})});
     if(data.message){cs.messages.push(data.message);cs.lastTs=Math.max(cs.lastTs,data.message.ts||0);renderChatMessages();}
     inp.value='';autoGrowChat(inp);
-  }catch(e){alert('Sõnumi saatmine ebaõnnestus: '+e.message);}
+  }catch(e){alert(t('chat.sendfail','Sõnumi saatmine ebaõnnestus')+': '+e.message);}
   finally{btn.disabled=false;}
 }
 
@@ -2098,14 +2098,14 @@ function stopChatPolling(){if(window.chatState.pollTimer){clearInterval(window.c
 
 async function loadFeed(){
   const v=document.getElementById('circlesFeedView');
-  v.innerHTML='<div style="text-align:center;padding:24px;color:rgba(255,255,255,0.5);font-family:\'Cormorant Garamond\',serif;font-style:italic">Laen uudisvoogu...</div>';
+  v.innerHTML='<div style="text-align:center;padding:24px;color:rgba(255,255,255,0.5);font-family:\'Cormorant Garamond\',serif;font-style:italic">'+t('feed.loading','Laen uudisvoogu...')+'</div>';
   try{const data=await apiCall('/api/feed');renderFeed(data.shares||[],data.circles||{});}
-  catch(e){v.innerHTML='<div style="text-align:center;color:#e8a090;padding:20px">Viga: '+esc(e.message)+'</div>';}
+  catch(e){v.innerHTML='<div style="text-align:center;color:#e8a090;padding:20px">'+t('gen.error','Viga')+': '+esc(e.message)+'</div>';}
 }
 
 function renderFeed(shares,circleMeta){
   const v=document.getElementById('circlesFeedView');
-  if(shares.length===0){v.innerHTML='<div class="feed-empty"><div class="feed-empty-icon">✦</div><div class="feed-empty-text">Voog on tühi.<br>Kui sina või sinu Circle\'i sõber jagab midagi, kuvatakse see siin.</div></div>';return;}
+  if(shares.length===0){v.innerHTML='<div class="feed-empty"><div class="feed-empty-icon">✦</div><div class="feed-empty-text">'+t('feed.empty','Voog on tühi.<br>Kui sina või sinu Circle\'i sõber jagab midagi, kuvatakse see siin.')+'</div></div>';return;}
   let html='';
   shares.forEach(s=>{html+=renderShareCard(s,circleMeta);});
   v.innerHTML=html;
@@ -2132,7 +2132,7 @@ function renderShareCard(s,circleMeta){
     +'<div class="share-card-head">'
     +'<div class="share-card-avatar">'+esc(initialsFrom(s.authorEmail))+'</div>'
     +'<div class="share-card-meta"><div class="share-card-author">'+esc(s.authorEmail.split('@')[0])+'</div>'
-    +'<div class="share-card-time">'+esc(cicon)+' '+esc(cname)+' · '+relTime(s.createdAt)+' tagasi</div></div>'
+    +'<div class="share-card-time">'+esc(cicon)+' '+esc(cname)+' · '+relTime(s.createdAt)+' '+t('feed.ago','tagasi')+'</div></div>'
     +'<div class="share-card-time-badge">'+esc(expiryTime(s.expiresAt))+'</div>'
     +'</div>'
     +(s.imageBase64?'<img class="share-card-photo" src="data:image/jpeg;base64,'+esc(s.imageBase64)+'" alt="jagatud pilt">':'')
@@ -2141,7 +2141,7 @@ function renderShareCard(s,circleMeta){
     +'<div class="share-reactions">'+reactHtml+'</div>'
     +'<div class="share-comments">'+commHtml+'</div>'
     +'<div class="share-comment-input-row">'
-    +'<input class="share-comment-input" placeholder="Kirjuta kommentaar..." data-share-id="'+esc(s.id)+'" onkeydown="if(event.key===\'Enter\')sendComment(this)">'
+    +'<input class="share-comment-input" placeholder="'+t('feed.comment.ph','Kirjuta kommentaar...')+'" data-share-id="'+esc(s.id)+'" onkeydown="if(event.key===\'Enter\')sendComment(this)">'
     +'<button class="share-comment-send" onclick="sendComment(this.previousElementSibling)">Saada</button>'
     +'</div>'
     +'</div>';
@@ -2229,7 +2229,7 @@ async function submitShareToCircles(){
     await apiCall('/api/shares',{method:'POST',body:JSON.stringify({circleIds:cids,imageBase64:d.imageBase64,aiVerdict:d.aiVerdict,aiSummary:d.aiSummary,mode:d.mode,userMessage:msg})});
     closeShareToModal();
     const t=document.getElementById('friendToast');const txt=document.getElementById('friendToastText');
-    if(t&&txt){txt.innerHTML='<strong>✦ Jagatud '+cids.length+' Circle\'ile!</strong>';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),4500);}
+    if(t&&txt){txt.innerHTML='<strong>✦ '+window.t('feed.shared','Jagatud')+' '+cids.length+' '+window.t('feed.shared2','Circle\'ile!')+'</strong>';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),4500);}
   }catch(e){alert('Viga: '+e.message);}
 }
 
@@ -3550,7 +3550,27 @@ if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.s
       'circ.openchat': 'Open chat — message your friends',
       'circ.members.label': 'Members',
       'circ.owner': 'Owner',
-      'circ.leave': 'Leave Circle'
+      'circ.leave': 'Leave Circle',
+      'chat.loading': 'Loading chat...',
+      'chat.ph': 'Message your friends...',
+      'chat.send': 'Send',
+      'chat.empty': 'Be the first to write here.',
+      'chat.empty2': 'Talk about anything — style, makeup, clothes, food, fitness.',
+      'chat.sendfail': 'Sending the message failed',
+      'feed.loading': 'Loading feed...',
+      'feed.empty': 'The feed is empty.<br>When you or a friend in your Circle shares something, it will appear here.',
+      'feed.ago': 'ago',
+      'feed.comment.ph': 'Write a comment...',
+      'feed.shared': 'Shared to',
+      'feed.shared2': 'Circles!',
+      'ob.title': "Welcome to <em>GLÓW Circles</em>",
+      'ob.tagline': 'Your personal style family',
+      'ob.f1': '<strong>Create your ring</strong> — invite friends with one link. Everyone who joins is in one group: they see each other, share photos and chat together.',
+      'ob.f2': '<strong>Share instantly</strong> — after a makeup or style analysis, send the photo to your ring with one click',
+      'ob.f3': '<strong>Get advice in real time</strong> — friends give feedback, vote and comment',
+      'ob.f4': '<strong>Beautiful and private</strong> — posts disappear automatically after 12h, no one else sees them',
+      'ob.create': 'Create your first Circle',
+      'ob.later': 'Maybe later'
     }
   };
   const _orig = new WeakMap();
