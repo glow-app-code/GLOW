@@ -6,6 +6,17 @@
 <title data-et="Tagasimakse-poliitika · GLÓW" data-en="Refund Policy · GLÓW">Tagasimakse-poliitika · GLÓW</title>
 <meta name="description" content="GLÓW tagasimakse-poliitika, 14-päeva taganemisõigus ja kviitungid. / GLÓW refund policy, 14-day right of withdrawal and receipts.">
 <meta name="theme-color" content="#c9a96e">
+<link rel="canonical" href="https://glow4me.ee/tagasimaksed.html">
+<link rel="alternate" hreflang="et" href="https://glow4me.ee/tagasimaksed.html">
+<link rel="alternate" hreflang="en" href="https://glow4me.ee/tagasimaksed.html?lang=en">
+<link rel="alternate" hreflang="x-default" href="https://glow4me.ee/tagasimaksed.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="GLÓW">
+<meta property="og:title" content="Tagasimakse-poliitika · GLÓW">
+<meta property="og:url" content="https://glow4me.ee/tagasimaksed.html">
+<meta property="og:image" content="https://glow4me.ee/og-image.svg">
+<meta property="og:locale" content="et_EE">
+<meta property="og:locale:alternate" content="en_US">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-180.png">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
@@ -77,7 +88,7 @@ body[data-lang="en"] .lang-en{display:block}
   <!-- ================= ESTONIAN ================= -->
   <div class="lang-et">
   <h1>Tagasimakse-poliitika</h1>
-  <div class="updated">Kehtiv alates: {{JOUSTUMISE_KUUP}}</div>
+  <div class="updated">Kehtiv alates: 01.07.2026</div>
 
   <div class="info-box">
     <p><strong>Kokkuvõte:</strong> Sul on <strong>14-päeva taganemisõigus</strong> Eesti tarbijaõigust järgides. Kasutamata krediidid tagastatakse täies mahus. Kasutatud krediite üldjuhul ei tagastata, kuid vaatame iga taotlust individuaalselt.</p>
@@ -162,14 +173,14 @@ body[data-lang="en"] .lang-en{display:block}
 
   <footer>
     <p><a href="index.html">Rakendus</a> · <a href="privaatsus.html">Privaatsus</a> · <a href="tingimused.html">Tingimused</a> · <a href="kontakt.html">Kontakt</a></p>
-    <p style="margin-top:16px">© {{ETTEVOTE_NIMI}} · glow4me.ee</p>
+    <p style="margin-top:16px">© Liinihoolduse Varad OÜ · glow4me.ee</p>
   </footer>
   </div>
 
   <!-- ================= ENGLISH ================= -->
   <div class="lang-en">
   <h1>Refund Policy</h1>
-  <div class="updated">Effective from: {{JOUSTUMISE_KUUP}}</div>
+  <div class="updated">Effective from: 01.07.2026</div>
 
   <div class="info-box">
     <p><strong>Summary:</strong> You have a <strong>14-day right of withdrawal</strong> under Estonian consumer law. Unused credits are refunded in full. Used credits are generally not refunded, but we review each request individually.</p>
@@ -254,13 +265,13 @@ body[data-lang="en"] .lang-en{display:block}
 
   <footer>
     <p><a href="index.html">App</a> · <a href="privaatsus.html">Privacy</a> · <a href="tingimused.html">Terms</a> · <a href="kontakt.html">Contact</a></p>
-    <p style="margin-top:16px">© {{ETTEVOTE_NIMI}} · glow4me.ee</p>
+    <p style="margin-top:16px">© Liinihoolduse Varad OÜ · glow4me.ee</p>
   </footer>
   </div>
 </div>
 <script>
 (function(){
-  function detect(){try{var s=localStorage.getItem('glow_lang');if(s==='et'||s==='en')return s;}catch(e){}
+  function detect(){try{var q=(location.search.match(/[?&]lang=(en|et)/)||[])[1];if(q){try{localStorage.setItem('glow_lang',q);}catch(_){}return q;}}catch(e){}try{var s=localStorage.getItem('glow_lang');if(s==='et'||s==='en')return s;}catch(e){}
     var tz='';try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||'';}catch(e){}
     var l=(navigator.language||navigator.userLanguage||'').toLowerCase();
     if(tz==='Europe/Tallinn'||l.indexOf('et')===0)return'et';return'en';}
