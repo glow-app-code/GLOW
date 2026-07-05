@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GLÓW Blogi · Meik, stiil ja ilunõuanded</title>
+<meta name="description" content="GLÓW blogi — praktilised nõuanded meigi, stiili ja nahahoolduse kohta. Samm-sammult juhendid ja AI-põhised soovitused igapäevaks ja erilisteks sündmusteks.">
+<meta name="theme-color" content="#c9a96e">
+<link rel="canonical" href="https://glow4me.ee/blog/">
+<link rel="icon" type="image/png" sizes="192x192" href="../icon-192.png">
+<link rel="apple-touch-icon" href="../icon-180.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="GLÓW">
+<meta property="og:title" content="GLÓW Blogi · Meik, stiil ja ilunõuanded">
+<meta property="og:description" content="Praktilised nõuanded meigi, stiili ja nahahoolduse kohta — samm-sammult juhendid ja AI-soovitused.">
+<meta property="og:url" content="https://glow4me.ee/blog/">
+<meta property="og:image" content="https://glow4me.ee/og-image.svg">
+<meta property="og:locale" content="et_EE">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0e0c0b;--gold:#c9a96e;--gold-bright:#e8c97e;--blush:#d4957a;--lav:#9b8fb5}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:#fff;font-family:'Cormorant Garamond',Georgia,serif;line-height:1.7;min-height:100vh}
+.ambient{position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 70% 50% at 15% 10%,rgba(196,115,107,0.08) 0%,transparent 60%),radial-gradient(ellipse 50% 70% at 85% 90%,rgba(123,158,142,0.06) 0%,transparent 60%)}
+.wrap{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:32px 20px 80px}
+.back-link{display:inline-flex;align-items:center;gap:8px;color:var(--gold);text-decoration:none;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.25em;text-transform:uppercase;margin-bottom:24px;padding:8px 12px;border:1px solid rgba(201,169,110,0.4);border-radius:3px;transition:all .2s}
+.back-link:hover{background:rgba(201,169,110,0.1);border-color:var(--gold)}
+header{text-align:center;padding:20px 0 28px;border-bottom:1px solid rgba(201,169,110,0.3);margin-bottom:36px}
+.logo{font-size:48px;font-weight:300;letter-spacing:.25em;color:#fff;line-height:1;margin-bottom:8px}
+.logo em{color:var(--gold);font-style:italic;text-shadow:0 0 20px rgba(201,169,110,0.5)}
+.tagline{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.4em;color:var(--blush);text-transform:uppercase}
+h1{font-size:34px;font-weight:600;color:#fff;text-align:center;margin:28px 0 10px}
+.intro{text-align:center;font-style:italic;font-size:18px;color:rgba(255,255,255,0.75);margin-bottom:40px;max-width:600px;margin-left:auto;margin-right:auto}
+.post-grid{display:flex;flex-direction:column;gap:20px}
+.post-card{display:block;text-decoration:none;background:linear-gradient(135deg,rgba(201,169,110,0.08),rgba(155,143,181,0.05));border:1px solid rgba(201,169,110,0.3);border-radius:10px;padding:26px 26px;transition:transform .2s,border-color .2s}
+.post-card:hover{transform:translateY(-3px);border-color:var(--gold)}
+.post-cat{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;margin-bottom:10px}
+.post-title{font-size:25px;font-weight:600;color:#fff;line-height:1.25;margin-bottom:10px}
+.post-excerpt{font-size:16px;color:rgba(255,255,255,0.75);line-height:1.6;margin-bottom:14px}
+.post-more{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.2em;color:var(--gold-bright);text-transform:uppercase}
+.cta-box{margin:44px 0 0;background:linear-gradient(135deg,rgba(201,169,110,0.14),rgba(155,143,181,0.08));border:1px solid var(--gold);border-radius:12px;padding:30px 26px;text-align:center}
+.cta-box h2{font-size:26px;color:#fff;font-weight:600;margin-bottom:10px}
+.cta-box p{font-size:16px;color:rgba(255,255,255,0.8);margin-bottom:20px;line-height:1.6}
+.cta-btn{display:inline-block;background:var(--gold);color:var(--bg);padding:15px 34px;border-radius:6px;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.25em;text-transform:uppercase;font-weight:700;text-decoration:none;transition:transform .15s,box-shadow .15s}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,169,110,0.4)}
+footer{text-align:center;margin-top:56px;padding-top:28px;border-top:1px solid rgba(201,169,110,0.2);font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:.2em}
+footer a{color:var(--gold);text-decoration:none;margin:0 6px}
+</style>
+</head>
+<body>
+<div class="ambient"></div>
+<div class="wrap">
+  <a href="../index.html" class="back-link">← Tagasi rakendusse</a>
+
+  <header>
+    <div class="logo">GL<em>Ó</em>W</div>
+    <div class="tagline">AI · Stiiliassistent</div>
+  </header>
+
+  <h1>GLÓW Blogi</h1>
+  <p class="intro">Praktilised nõuanded meigi, stiili ja nahahoolduse kohta — ja kuidas AI aitab sul iga päev parem välja näha. ✦</p>
+
+  <div class="post-grid">
+
+    <a class="post-card" href="kontorimeik.html">
+      <div class="post-cat">Meik</div>
+      <div class="post-title">Kuidas teha kontorimeiki: samm-sammult juhend</div>
+      <div class="post-excerpt">Naturaalne, viimistletud ja terve päeva vastupidav ilme — ilma et näeksid välja ülemeigitud. Lihtne juhend algajale, koos toonisoovitustega naha- ja silmavärvi järgi.</div>
+      <div class="post-more">Loe edasi →</div>
+    </a>
+
+    <a class="post-card" href="pulma-riietus.html">
+      <div class="post-cat">Stiil</div>
+      <div class="post-title">Mida kanda pulma külalisena: stiilijuhend</div>
+      <div class="post-excerpt">Kuidas valida sobiv outfit, mis austab pruutpaari ja paneb sind end enesekindlalt tundma. Värvid, mida vältida, riietuskoodid ja praktilised näpunäited igaks aastaajaks.</div>
+      <div class="post-more">Loe edasi →</div>
+    </a>
+
+  </div>
+
+  <div class="cta-box">
+    <h2>Proovi GLÓW AI-nõustajat</h2>
+    <p>Tee kaameraga pilt ja saa <strong>koheselt</strong> personaalne analüüs oma meigist, stiilist või nahast. Esimesed <strong>3 analüüsi on tasuta</strong> — kontot pole vaja.</p>
+    <a class="cta-btn" href="../index.html">Ava GLÓW ✦</a>
+  </div>
+
+  <footer>
+    <p><a href="../index.html">Rakendus</a> · <a href="../privaatsus.html">Privaatsus</a> · <a href="../tingimused.html">Tingimused</a> · <a href="../kontakt.html">Kontakt</a></p>
+    <p style="margin-top:16px">© Liinihoolduse Varad OÜ · glow4me.ee</p>
+  </footer>
+</div>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="et">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kuidas teha kontorimeiki: samm-sammult juhend algajale | GLÓW</title>
+<meta name="description" content="Kontorimeik samm-sammult: naturaalne, professionaalne ja terve päeva vastupidav ilme. Praktiline juhend algajale koos toonisoovitustega naha- ja silmavärvi järgi.">
+<meta name="keywords" content="kontorimeik, meik tööle, naturaalne meik, meik algajale, igapäevameik, kuidas teha meiki">
+<meta name="theme-color" content="#c9a96e">
+<link rel="canonical" href="https://glow4me.ee/blog/kontorimeik.html">
+<link rel="icon" type="image/png" sizes="192x192" href="../icon-192.png">
+<link rel="apple-touch-icon" href="../icon-180.png">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="GLÓW">
+<meta property="og:title" content="Kuidas teha kontorimeiki: samm-sammult juhend algajale">
+<meta property="og:description" content="Naturaalne, professionaalne ja terve päeva vastupidav kontorimeik — lihtne juhend koos toonisoovitustega.">
+<meta property="og:url" content="https://glow4me.ee/blog/kontorimeik.html">
+<meta property="og:image" content="https://glow4me.ee/og-image.svg">
+<meta property="og:locale" content="et_EE">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Kuidas teha kontorimeiki: samm-sammult juhend algajale",
+  "description": "Kontorimeik samm-sammult: naturaalne, professionaalne ja terve päeva vastupidav ilme. Praktiline juhend algajale koos toonisoovitustega.",
+  "image": "https://glow4me.ee/og-image.svg",
+  "datePublished": "2026-07-05",
+  "dateModified": "2026-07-05",
+  "inLanguage": "et",
+  "author": { "@type": "Organization", "name": "GLÓW", "url": "https://glow4me.ee/" },
+  "publisher": { "@type": "Organization", "name": "GLÓW", "logo": { "@type": "ImageObject", "url": "https://glow4me.ee/icon-192.png" } },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://glow4me.ee/blog/kontorimeik.html" }
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0e0c0b;--gold:#c9a96e;--gold-bright:#e8c97e;--blush:#d4957a;--lav:#9b8fb5}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:#fff;font-family:'Cormorant Garamond',Georgia,serif;line-height:1.8;min-height:100vh}
+.ambient{position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 70% 50% at 15% 10%,rgba(196,115,107,0.08) 0%,transparent 60%),radial-gradient(ellipse 50% 70% at 85% 90%,rgba(123,158,142,0.06) 0%,transparent 60%)}
+.wrap{position:relative;z-index:1;max-width:720px;margin:0 auto;padding:32px 20px 80px}
+.back-link{display:inline-flex;align-items:center;gap:8px;color:var(--gold);text-decoration:none;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.25em;text-transform:uppercase;margin-bottom:24px;padding:8px 12px;border:1px solid rgba(201,169,110,0.4);border-radius:3px;transition:all .2s}
+.back-link:hover{background:rgba(201,169,110,0.1);border-color:var(--gold)}
+header{text-align:center;padding:12px 0 20px}
+.logo{font-size:34px;font-weight:300;letter-spacing:.25em;color:#fff;line-height:1}
+.logo em{color:var(--gold);font-style:italic}
+.post-cat{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;text-align:center;margin:14px 0 6px}
+h1{font-size:32px;font-weight:600;color:#fff;text-align:center;margin:6px 0 10px;line-height:1.2}
+.meta{font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.45);text-align:center;letter-spacing:.15em;margin-bottom:36px}
+h2{font-size:23px;color:var(--gold);font-weight:600;margin:34px 0 12px;padding-top:14px;border-top:1px solid rgba(201,169,110,0.15)}
+h3{font-size:18px;color:var(--gold-bright);font-weight:600;margin:22px 0 8px}
+p{font-size:17px;color:rgba(255,255,255,0.9);margin-bottom:16px}
+strong{color:#fff;font-weight:600}
+ul,ol{margin:12px 0 18px 4px;padding-left:22px}
+li{font-size:17px;color:rgba(255,255,255,0.9);margin-bottom:10px;position:relative;list-style:none;padding-left:18px}
+li::before{content:'✦';position:absolute;left:0;color:var(--gold);font-size:11px;top:6px}
+ol{counter-reset:s;padding-left:26px}
+ol li{counter-increment:s;padding-left:22px}
+ol li::before{content:counter(s);color:var(--gold);font-family:'DM Mono',monospace;font-size:13px;top:3px}
+.lead{font-size:19px;font-style:italic;color:rgba(255,255,255,0.85);margin-bottom:24px}
+.tip{background:rgba(201,169,110,0.08);border-left:3px solid var(--gold);padding:14px 18px;border-radius:0 4px 4px 0;margin:20px 0}
+.tip p{margin:0;font-size:16px}
+.cta-box{margin:40px 0 0;background:linear-gradient(135deg,rgba(201,169,110,0.14),rgba(155,143,181,0.08));border:1px solid var(--gold);border-radius:12px;padding:28px 24px;text-align:center}
+.cta-box h2{border:none;padding:0;margin:0 0 10px;color:#fff;font-size:24px}
+.cta-box p{font-size:16px;color:rgba(255,255,255,0.85);margin-bottom:18px}
+.cta-btn{display:inline-block;background:var(--gold);color:var(--bg);padding:15px 32px;border-radius:6px;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.25em;text-transform:uppercase;font-weight:700;text-decoration:none;transition:transform .15s,box-shadow .15s}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,169,110,0.4)}
+a.inline{color:var(--gold-bright);text-decoration:underline;text-underline-offset:3px}
+.more-posts{margin-top:40px;padding-top:24px;border-top:1px solid rgba(201,169,110,0.2)}
+.more-posts a{display:block;color:var(--gold-bright);text-decoration:none;font-size:17px;margin-bottom:8px}
+.more-posts a:hover{text-decoration:underline}
+footer{text-align:center;margin-top:48px;padding-top:24px;border-top:1px solid rgba(201,169,110,0.2);font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:.2em}
+footer a{color:var(--gold);text-decoration:none;margin:0 6px}
+</style>
+</head>
+<body>
+<div class="ambient"></div>
+<div class="wrap">
+  <a href="index.html" class="back-link">← Blogi</a>
+
+  <header><div class="logo">GL<em>Ó</em>W</div></header>
+
+  <div class="post-cat">Meik</div>
+  <h1>Kuidas teha kontorimeiki: samm-sammult juhend algajale</h1>
+  <div class="meta">Lugemisaeg ~5 min · GLÓW</div>
+
+  <p class="lead">Hea kontorimeik ei karju — ta viimistleb. Eesmärk on näha välja korras, ärkvel ja professionaalne, ilma et keegi mõtleks „oi, kui palju meiki“. Siin on lihtne, korratav rutiin, mis vastu peab hommikust õhtuni.</p>
+
+  <h2>Milline on hea kontorimeik?</h2>
+  <p>Kontorimeigi kolm põhireeglit:</p>
+  <ul>
+    <li><strong>Naturaalne</strong> — rõhutame, mitte ei muuda. Naha oma tekstuur tohib läbi paista.</li>
+    <li><strong>Vastupidav</strong> — peab kestma koosolekutel, arvutiekraani ees ja lõunapausil.</li>
+    <li><strong>Kiire</strong> — 5–10 minutit hommikul, mitte 40. Vähem tooteid, targemad valikud.</li>
+  </ul>
+
+  <h2>Samm-sammult: 6 lihtsat sammu</h2>
+  <ol>
+    <li><strong>Naha ettevalmistus.</strong> Puhas nahk, niisutav kreem ja päikesekaitse. Kuiva naha puhul kanna enne jumestust õhuke kiht niisutajat — nii ei kogune jumestuskreem kortsudesse.</li>
+    <li><strong>Jumestus või BB-kreem.</strong> Kontorisse sobib kerge kate. Kanna väike kogus keskele näole ja hajuta väljapoole käsna või sõrmedega. Vähem on rohkem — kihte saab alati lisada.</li>
+    <li><strong>Peida väsimus.</strong> Peitekreem silmaalusesse (kolmnurgana, mitte ainult joonena) ja võimalikele punetustele. Hajuta kergelt patsutades.</li>
+    <li><strong>Kulmud.</strong> Korrastatud kulmud raamivad kogu näo. Täida hõredad kohad kulmupliiatsi või -pomaadiga karvakese-tõmmetega ja fikseeri geeliga.</li>
+    <li><strong>Silmad.</strong> Neutraalne lauvärv (beež, pehme pruun, taupe), õhuke joon ripsmejoonele ja üks kiht ripsmetušši. See avab pilgu ilma dramaatikata.</li>
+    <li><strong>Põsepuna ja huuled.</strong> Õrn põsepuna toob näole elu tagasi. Huultele niisutav toon või pehme nude/roosa huulepulk. Fikseeri kogu meik kerge puudri või fikseeriva sprayga.</li>
+  </ol>
+
+  <div class="tip"><p>💡 <strong>Nipp:</strong> hoia tööl väike peitekreem ja huulepalsam. Pärast lõunat üks patsutus silmaalusesse ja huultele värskendab kogu ilme.</p></div>
+
+  <h2>Toonid naha- ja silmavärvi järgi</h2>
+  <h3>Naha järgi</h3>
+  <ul>
+    <li><strong>Hele nahk:</strong> roosakad ja neutraalsed toonid, õrn highlighter. Väldi liiga oranži jumestust.</li>
+    <li><strong>Keskmine nahk:</strong> lai valik sobib — soojad beežid ja pronksid toimivad hästi.</li>
+    <li><strong>Tume nahk:</strong> rikkalikud, sügavad toonid. Väldi liiga heledat peitekreemi silmaaluses.</li>
+  </ul>
+  <h3>Silmavärvi järgi</h3>
+  <ul>
+    <li><strong>Sinised/hallid silmad:</strong> pruunid, kuldsed ja virsikutoonid toovad värvi esile.</li>
+    <li><strong>Pruunid silmad:</strong> lilla, roosa ja pronks loovad sügavust.</li>
+    <li><strong>Rohelised silmad:</strong> punakaspruun ja vasetoonid rõhutavad rohelist.</li>
+  </ul>
+
+  <h2>Levinumad vead</h2>
+  <ul>
+    <li>Liiga paks jumestus — päevavalguses näeb maskilaadne välja.</li>
+    <li>Fikseerimise vahelejätmine — meik „libiseb“ keskpäevaks laiali.</li>
+    <li>Vale toon jumestuses — testi alati lõualuu peal, mitte käeseljal.</li>
+  </ul>
+
+  <div class="cta-box">
+    <h2>Kindel, kas su meik sobib?</h2>
+    <p>Tee kaameraga pilt ja lase <strong>GLÓW AI-l</strong> oma kontorimeik üle vaadata — saad koheselt konkreetsed soovitused just sinu naha- ja silmavärvi jaoks. Esimesed 3 analüüsi tasuta.</p>
+    <a class="cta-btn" href="../index.html">Proovi GLÓW ✦</a>
+  </div>
+
+  <div class="more-posts">
+    <p style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;margin-bottom:12px">Loe veel</p>
+    <a href="pulma-riietus.html">→ Mida kanda pulma külalisena: stiilijuhend</a>
+  </div>
+
+  <footer>
+    <p><a href="index.html">Blogi</a> · <a href="../index.html">Rakendus</a> · <a href="../privaatsus.html">Privaatsus</a> · <a href="../kontakt.html">Kontakt</a></p>
+    <p style="margin-top:16px">© Liinihoolduse Varad OÜ · glow4me.ee</p>
+  </footer>
+</div>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="et">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mida kanda pulma külalisena: stiilijuhend | GLÓW</title>
+<meta name="description" content="Mida kanda pulma külalisena? Praktiline stiilijuhend: riietuskoodid, värvid mida vältida, aastaaja ja toimumiskoha järgi valimine ning aksessuaarid.">
+<meta name="keywords" content="pulma riietus, mida kanda pulma, pulma külaline, pulma kleit, riietuskood, stiilinõuanded">
+<meta name="theme-color" content="#c9a96e">
+<link rel="canonical" href="https://glow4me.ee/blog/pulma-riietus.html">
+<link rel="icon" type="image/png" sizes="192x192" href="../icon-192.png">
+<link rel="apple-touch-icon" href="../icon-180.png">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="GLÓW">
+<meta property="og:title" content="Mida kanda pulma külalisena: stiilijuhend">
+<meta property="og:description" content="Kuidas valida sobiv pulma-outfit: riietuskoodid, värvid mida vältida, aastaaeg ja aksessuaarid.">
+<meta property="og:url" content="https://glow4me.ee/blog/pulma-riietus.html">
+<meta property="og:image" content="https://glow4me.ee/og-image.svg">
+<meta property="og:locale" content="et_EE">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Mida kanda pulma külalisena: stiilijuhend",
+  "description": "Praktiline stiilijuhend pulma külalisele: riietuskoodid, värvid mida vältida, aastaaja ja toimumiskoha järgi valimine ning aksessuaarid.",
+  "image": "https://glow4me.ee/og-image.svg",
+  "datePublished": "2026-07-05",
+  "dateModified": "2026-07-05",
+  "inLanguage": "et",
+  "author": { "@type": "Organization", "name": "GLÓW", "url": "https://glow4me.ee/" },
+  "publisher": { "@type": "Organization", "name": "GLÓW", "logo": { "@type": "ImageObject", "url": "https://glow4me.ee/icon-192.png" } },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://glow4me.ee/blog/pulma-riietus.html" }
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0e0c0b;--gold:#c9a96e;--gold-bright:#e8c97e;--blush:#d4957a;--lav:#9b8fb5}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:#fff;font-family:'Cormorant Garamond',Georgia,serif;line-height:1.8;min-height:100vh}
+.ambient{position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 70% 50% at 15% 10%,rgba(196,115,107,0.08) 0%,transparent 60%),radial-gradient(ellipse 50% 70% at 85% 90%,rgba(123,158,142,0.06) 0%,transparent 60%)}
+.wrap{position:relative;z-index:1;max-width:720px;margin:0 auto;padding:32px 20px 80px}
+.back-link{display:inline-flex;align-items:center;gap:8px;color:var(--gold);text-decoration:none;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.25em;text-transform:uppercase;margin-bottom:24px;padding:8px 12px;border:1px solid rgba(201,169,110,0.4);border-radius:3px;transition:all .2s}
+.back-link:hover{background:rgba(201,169,110,0.1);border-color:var(--gold)}
+header{text-align:center;padding:12px 0 20px}
+.logo{font-size:34px;font-weight:300;letter-spacing:.25em;color:#fff;line-height:1}
+.logo em{color:var(--gold);font-style:italic}
+.post-cat{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;text-align:center;margin:14px 0 6px}
+h1{font-size:32px;font-weight:600;color:#fff;text-align:center;margin:6px 0 10px;line-height:1.2}
+.meta{font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.45);text-align:center;letter-spacing:.15em;margin-bottom:36px}
+h2{font-size:23px;color:var(--gold);font-weight:600;margin:34px 0 12px;padding-top:14px;border-top:1px solid rgba(201,169,110,0.15)}
+h3{font-size:18px;color:var(--gold-bright);font-weight:600;margin:22px 0 8px}
+p{font-size:17px;color:rgba(255,255,255,0.9);margin-bottom:16px}
+strong{color:#fff;font-weight:600}
+ul,ol{margin:12px 0 18px 4px;padding-left:22px}
+li{font-size:17px;color:rgba(255,255,255,0.9);margin-bottom:10px;position:relative;list-style:none;padding-left:18px}
+li::before{content:'✦';position:absolute;left:0;color:var(--gold);font-size:11px;top:6px}
+.lead{font-size:19px;font-style:italic;color:rgba(255,255,255,0.85);margin-bottom:24px}
+.tip{background:rgba(196,115,107,0.1);border-left:3px solid var(--blush);padding:14px 18px;border-radius:0 4px 4px 0;margin:20px 0}
+.tip p{margin:0;font-size:16px}
+.cta-box{margin:40px 0 0;background:linear-gradient(135deg,rgba(201,169,110,0.14),rgba(155,143,181,0.08));border:1px solid var(--gold);border-radius:12px;padding:28px 24px;text-align:center}
+.cta-box h2{border:none;padding:0;margin:0 0 10px;color:#fff;font-size:24px}
+.cta-box p{font-size:16px;color:rgba(255,255,255,0.85);margin-bottom:18px}
+.cta-btn{display:inline-block;background:var(--gold);color:var(--bg);padding:15px 32px;border-radius:6px;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.25em;text-transform:uppercase;font-weight:700;text-decoration:none;transition:transform .15s,box-shadow .15s}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,169,110,0.4)}
+.more-posts{margin-top:40px;padding-top:24px;border-top:1px solid rgba(201,169,110,0.2)}
+.more-posts a{display:block;color:var(--gold-bright);text-decoration:none;font-size:17px;margin-bottom:8px}
+.more-posts a:hover{text-decoration:underline}
+footer{text-align:center;margin-top:48px;padding-top:24px;border-top:1px solid rgba(201,169,110,0.2);font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:.2em}
+footer a{color:var(--gold);text-decoration:none;margin:0 6px}
+</style>
+</head>
+<body>
+<div class="ambient"></div>
+<div class="wrap">
+  <a href="index.html" class="back-link">← Blogi</a>
+
+  <header><div class="logo">GL<em>Ó</em>W</div></header>
+
+  <div class="post-cat">Stiil</div>
+  <h1>Mida kanda pulma külalisena: stiilijuhend</h1>
+  <div class="meta">Lugemisaeg ~5 min · GLÓW</div>
+
+  <p class="lead">Pulma külalisena on eesmärk lihtne: näha välja pidulik ja enesekindel, kuid mitte tõmmata tähelepanu pruudilt. Siin on selge juhend, kuidas valida outfit, mis sobib nii sinu kui ka sündmusega.</p>
+
+  <h2>1. Vaata riietuskoodi</h2>
+  <p>Kutse ütleb tavaliselt ära, mida oodatakse. Kui mitte, aitab toimumiskoht:</p>
+  <ul>
+    <li><strong>Must lips (black tie):</strong> pikk õhtukleit või väga elegantne kostüüm.</li>
+    <li><strong>Poolpidulik (cocktail):</strong> põlvepikkune või midi-kleit, viimistletud komplekt.</li>
+    <li><strong>Vaba (talu-/aiapulm):</strong> õhulisem kleit, kuid siiski pidulik — mitte teksad.</li>
+  </ul>
+
+  <h2>2. Väldi neid värve</h2>
+  <ul>
+    <li><strong>Valge, elevandiluu, kreem, šampanja</strong> — need on pruudi värvid. Väldi kindlalt.</li>
+    <li><strong>Läbipaistev must tervikuna</strong> — mõnes kultuuris liiga sünge; murra värvilise aksessuaariga.</li>
+    <li><strong>Liiga särav neoon</strong> — tõmbab fotodel kogu tähelepanu endale.</li>
+  </ul>
+  <p>Turvalised ja ilusad valikud: sügavsinine, smaragd, burgundia, tolmune roosa, lavendel, terrakota.</p>
+
+  <div class="tip"><p>⚠️ <strong>Reegel number üks:</strong> kahtluse korral ära kanna valget ega selle lähedasi toone. See on ainus värv, mis kuulub pulmas ainult pruudile.</p></div>
+
+  <h2>3. Arvesta aastaaja ja kellaajaga</h2>
+  <ul>
+    <li><strong>Suvi / päev:</strong> heledamad toonid, kergemad kangad (linane, siid), lahtised jalanõud.</li>
+    <li><strong>Sügis / talv:</strong> sügavamad toonid, sametid, pikemad varrukad, kinnised kingad.</li>
+    <li><strong>Õhtupulm:</strong> julgemad toonid ja rohkem sära on lubatud.</li>
+  </ul>
+
+  <h2>4. Aksessuaarid ja jalanõud</h2>
+  <p>Aksessuaarid muudavad lihtsa kleidi pidulikuks. Üks efektne ese (kõrvarõngad VÕI kaelakee, mitte mõlemad korraga), väike käekott ja mugavad kingad, milles jaksad tantsida. Aiapulmas vali paksem konts või kiilkand, et mitte muru sisse vajuda.</p>
+
+  <h2>5. Meik ja soeng</h2>
+  <p>Piduliku ilme viimistleb korralik, kuid loomulik meik ja hoolitsetud soeng. Õhtupulma sobib veidi intensiivsem silmameik; päevapulma õrnem, naturaalsem ilme. Vaata ka meie juhendit <a class="inline" href="kontorimeik.html" style="color:var(--gold-bright);text-decoration:underline;text-underline-offset:3px">kuidas teha viimistletud meiki</a>.</p>
+
+  <div class="cta-box">
+    <h2>Kindel, kas su outfit sobib?</h2>
+    <p>Enne pulma tee kaameraga pilt ja lase <strong>GLÓW AI-l</strong> hinnata, kas su komplekt sobib üritusele — saad kohe konkreetsed soovitused ja alternatiivid. Esimesed 3 analüüsi tasuta.</p>
+    <a class="cta-btn" href="../index.html">Proovi GLÓW ✦</a>
+  </div>
+
+  <div class="more-posts">
+    <p style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;margin-bottom:12px">Loe veel</p>
+    <a href="kontorimeik.html">→ Kuidas teha kontorimeiki: samm-sammult juhend</a>
+  </div>
+
+  <footer>
+    <p><a href="index.html">Blogi</a> · <a href="../index.html">Rakendus</a> · <a href="../privaatsus.html">Privaatsus</a> · <a href="../kontakt.html">Kontakt</a></p>
+    <p style="margin-top:16px">© Liinihoolduse Varad OÜ · glow4me.ee</p>
+  </footer>
+</div>
+</body>
+</html>
