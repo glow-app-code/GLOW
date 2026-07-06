@@ -1701,7 +1701,7 @@ window.t=window.t||function(k,f){return f;};</script>
 const API_BASE='https://glow-api.krister-laas.workers.dev';
 const USE_PROXY=true; // true = kasuta proxy (kasutajad ei pea API võtit sisestama); false = vanaviisi otse Anthropic
 function glowApiUrl(){return USE_PROXY?(API_BASE.replace(/\/$/,'')+'/v1/messages'):'https://api.anthropic.com/v1/messages';}
-function glowApiHeaders(key){const base={'Content-Type':'application/json'};if(USE_PROXY){const ref=localStorage.getItem('glow_referrer_code');const me=localStorage.getItem('glow_my_code');if(ref)base['X-Glow-Referrer']=ref;if(me)base['X-Glow-User']=me;return base;}return Object.assign(base,{'x-api-key':key||'','anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'});}
+function glowApiHeaders(key){const base={'Content-Type':'application/json'};if(USE_PROXY){const ref=localStorage.getItem('glow_referrer_code');const me=localStorage.getItem('glow_my_code');if(ref)base['X-Glow-Referrer']=ref;if(me)base['X-Glow-User']=me;const tok=localStorage.getItem('glow_session_token');if(tok)base['Authorization']='Bearer '+tok;return base;}return Object.assign(base,{'x-api-key':key||'','anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'});}
 
 // === SVG-IKOONIDE KOGU (Phosphor/Lucide stiil — õhukesed jooned) ===
 const ICONS={
