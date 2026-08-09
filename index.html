@@ -6,12 +6,22 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="google" content="notranslate">
-<title>GLÓW · AI Assistent — meigi, stiili ja iluabilist taskus</title>
-<meta name="description" content="GLÓW on AI-põhine ilurakendus, mis annab sulle koheselt nõu meigi, stiili ja kosmeetilise hoolduse kohta. Ava kaamera, lase Claude AI sind analüüsida ja saa personaalsed soovitused.">
+<title>GLÓW (Glow4me) · AI nahaanalüüs ja meiginõu — tasuta proovi</title>
+<meta name="description" content="Tee kaameraga pilt ja saa sekunditega personaalne nahaanalüüs, meigisoovitused ja stiilinõu. GLOW (Glow4me) on eestikeelne AI ilunõustaja — 3 analüüsi tasuta, kaarti pole vaja.">
 <meta name="keywords" content="GLÓW, AI ilurakendus, meigi analüüs, stiili nõustamine, AI nahaanalüüs, kosmeetiku abiline, ilurakendus, AI assistent, Eesti">
 <meta name="author" content="GLÓW">
-<link rel="canonical" href="https://glow4me.ee/">
+<link rel="canonical" href="https://glow4me.ee/" id="canonicalLink">
+<script>
+/* Kui kasutaja/robot on ?lang=en peal, peab canonical osutama sellele lehele,
+   mitte eestikeelsele juurele. Muidu Google viskab EN-versiooni indeksist välja. */
+(function(){try{
+  if(/[?&]lang=en/.test(location.search)){
+    var c=document.getElementById('canonicalLink');
+    if(c) c.href='https://glow4me.ee/?lang=en';
+    document.documentElement.lang='en';
+  }
+}catch(e){}})();
+</script>
 
 <!-- Keeleversioonid (hreflang) — eesti ja inglise -->
 <link rel="alternate" hreflang="et" href="https://glow4me.ee/">
@@ -81,6 +91,7 @@
 <link rel="icon" type="image/svg+xml" href="icon.svg">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
+h1,h2,h3,h4,h5,h6{margin:0;padding:0;font-size:inherit;font-weight:inherit;line-height:inherit}
 :root{
   --bg:#0e0c0b;--gold:#c9a96e;--gold-dim:rgba(201,169,110,0.3);--gold-bright:#e8c97e;
   --blush:#d4957a;--sage:#7a9e8e;--lav:#9b8fb5;--rose:#c4736b;--stiil:#9b8fb5;
@@ -1029,7 +1040,7 @@ window.t=window.t||function(k,f){return f;};</script>
   </defs>
 </svg>
 
-<div id="splashScreen" class="screen active">
+<main id="splashScreen" class="screen active">
   <div class="splash-ambient"></div>
   <div class="gold-frame">
     <div class="frame-border"></div>
@@ -1042,7 +1053,7 @@ window.t=window.t||function(k,f){return f;};</script>
     <div class="splash-inner">
       <div class="splash-logo">GL<span class="splash-logo-o">Ó</span>W</div>
       <div class="splash-divider"><div class="splash-tagline" data-i18n="splash.tagline">AI · Stiiliassistent</div></div>
-      <div class="splash-sub" data-i18n="splash.sub">Sinu isiklik ilu- ja<br>stiiliekspert taskus</div>
+      <h1 class="splash-sub" data-i18n="splash.sub">Sinu isiklik ilu- ja<br>stiiliekspert taskus</h1>
       <button class="splash-btn" onclick="showTerms()"><span data-i18n="splash.btn">Alusta ✦</span></button>
       <div class="lang-switch lang-switch-splash" role="group" aria-label="Keel / Language">
         <button type="button" class="lang-btn" data-lang-btn="et" aria-label="Eesti keel" onclick="try{localStorage.setItem('glow_lang','et');}catch(_){}try{var u=new URL(location.href);u.searchParams.set('lang','et');location.href=u.toString();}catch(_){location.reload();}"><svg viewBox="0 0 30 20" width="22" height="15" aria-hidden="true"><rect width="30" height="20" fill="#fff"/><rect width="30" height="13.34" fill="#000"/><rect width="30" height="6.67" fill="#0072ce"/></svg>ET</button>
@@ -1051,23 +1062,23 @@ window.t=window.t||function(k,f){return f;};</script>
       <div class="splash-footer">glow4me.ee</div>
     </div>
   </div>
-</div>
+</main>
 
 <div id="termsScreen" class="screen">
   <div class="terms-header">
     <div class="terms-logo-small">GL<em>Ó</em>W</div>
-    <div class="terms-title" data-i18n="terms.title">Kasutustingimused</div>
+    <h2 class="terms-title" data-i18n="terms.title">Kasutustingimused</h2>
     <div class="terms-sub" data-i18n="terms.sub">Palun loe läbi enne alustamist</div>
     <div class="terms-divider"></div>
   </div>
   <div class="terms-scroll">
-    <div class="terms-section"><div class="terms-section-title" data-i18n="terms.s1.title">1. Teenuse kirjeldus</div><p data-i18n="terms.s1.body">GLÓW on tehisintellektil põhinev ilu- ja stiilianalüüsi rakendus.</p></div>
-    <div class="terms-section"><div class="terms-section-title" data-i18n="terms.s2.title">2. Privaatsus</div><ul><li data-i18n="terms.s2.i1">Pilte töödeldakse ainult analüüsi eesmärgil</li><li data-i18n="terms.s2.i2">Pilte ei salvestata serveritesse</li><li data-i18n="terms.s2.i3">Kustutatakse kohe pärast analüüsi</li><li data-i18n="terms.s2.i4">Edastatakse krüpteeritult Anthropic AI-le</li></ul></div>
-    <div class="terms-section"><div class="terms-section-title" data-i18n="terms.s3.title">3. GDPR</div><ul><li data-i18n="terms.s3.i1">Näopilte loetakse biomeetrilisteks andmeteks</li><li data-i18n="terms.s3.i2">Kasutad vabatahtlikult ja annad nõusoleku</li><li data-i18n="terms.s3.i3">Õigus kasutamine igal ajal lõpetada</li></ul></div>
-    <div class="terms-section"><div class="terms-section-title" data-i18n="terms.s4.title">4. Vastutus</div><ul><li data-i18n="terms.s4.i1">Soovitused on informatiivsed</li><li data-i18n="terms.s4.i2">GLÓW ei vastuta analüüsi põhjal tehtud otsuste eest</li></ul></div>
-    <div class="terms-section"><div class="terms-section-title" data-i18n="terms.s5.title">5. Vanus</div><p data-i18n="terms.s5.body">Mõeldud kasutajatele 16 aastat ja vanemad.</p></div>
-    <div class="terms-section"><div class="terms-section-title" data-i18n="terms.s6.title">6. Intellektuaalne omand</div><p data-i18n="terms.s6.body">Kõik GLÓW rakenduse sisu, kujundus ja kood on kaitstud autoriõigusega. Kopeerimine ilma loata on keelatud.</p></div>
-    <div class="terms-section"><div class="terms-section-title" data-i18n="terms.s7.title">7. Kontakt</div><p><strong style="color:var(--gold)">info@glow4me.ee</strong></p></div>
+    <div class="terms-section"><h3 class="terms-section-title" data-i18n="terms.s1.title">1. Teenuse kirjeldus</h3><p data-i18n="terms.s1.body">GLÓW on tehisintellektil põhinev ilu- ja stiilianalüüsi rakendus.</p></div>
+    <div class="terms-section"><h3 class="terms-section-title" data-i18n="terms.s2.title">2. Privaatsus</h3><ul><li data-i18n="terms.s2.i1">Pilte töödeldakse ainult analüüsi eesmärgil</li><li data-i18n="terms.s2.i2">Pilte ei salvestata serveritesse</li><li data-i18n="terms.s2.i3">Kustutatakse kohe pärast analüüsi</li><li data-i18n="terms.s2.i4">Edastatakse krüpteeritult Anthropic AI-le</li></ul></div>
+    <div class="terms-section"><h3 class="terms-section-title" data-i18n="terms.s3.title">3. GDPR</h3><ul><li data-i18n="terms.s3.i1">Näopilte loetakse biomeetrilisteks andmeteks</li><li data-i18n="terms.s3.i2">Kasutad vabatahtlikult ja annad nõusoleku</li><li data-i18n="terms.s3.i3">Õigus kasutamine igal ajal lõpetada</li></ul></div>
+    <div class="terms-section"><h3 class="terms-section-title" data-i18n="terms.s4.title">4. Vastutus</h3><ul><li data-i18n="terms.s4.i1">Soovitused on informatiivsed</li><li data-i18n="terms.s4.i2">GLÓW ei vastuta analüüsi põhjal tehtud otsuste eest</li></ul></div>
+    <div class="terms-section"><h3 class="terms-section-title" data-i18n="terms.s5.title">5. Vanus</h3><p data-i18n="terms.s5.body">Mõeldud kasutajatele 16 aastat ja vanemad.</p></div>
+    <div class="terms-section"><h3 class="terms-section-title" data-i18n="terms.s6.title">6. Intellektuaalne omand</h3><p data-i18n="terms.s6.body">Kõik GLÓW rakenduse sisu, kujundus ja kood on kaitstud autoriõigusega. Kopeerimine ilma loata on keelatud.</p></div>
+    <div class="terms-section"><h3 class="terms-section-title" data-i18n="terms.s7.title">7. Kontakt</h3><p><strong style="color:var(--gold)">info@glow4me.ee</strong></p></div>
   </div>
   <div class="terms-footer">
     <div class="terms-agree-wrap">
@@ -1167,7 +1178,7 @@ window.t=window.t||function(k,f){return f;};</script>
 
 <div class="pricing-screen" id="pricingScreen">
   <button class="pricing-back" onclick="hidePricing()" data-i18n="back">← Tagasi</button>
-  <div class="pricing-title" data-i18n="price.title">Vali pakett</div>
+  <h2 class="pricing-title" data-i18n="price.title">Vali pakett</h2>
   <div class="pricing-sub" data-i18n="price.sub">Üks analüüs kulutab ühe krediidi.</div>
   <div class="free-badge"><div style="display:inline-flex;color:var(--gold)" data-icon="sparkle" data-icon-size="22"></div><div class="free-badge-text" data-i18n="price.freebadge"><strong>3 analüüsi tasuta</strong> — proovi enne ostmist</div></div>
   <div class="pkg-grid">
@@ -1181,7 +1192,7 @@ window.t=window.t||function(k,f){return f;};</script>
 </div>
 <div class="checkout-screen" id="checkoutScreen">
   <button class="pricing-back" onclick="hideCheckout()" data-i18n="back">← Tagasi</button>
-  <div class="checkout-title" data-i18n="checkout.title">Maksmine</div>
+  <h2 class="checkout-title" data-i18n="checkout.title">Maksmine</h2>
   <div class="checkout-sub" data-i18n="checkout.sub">Vali makseviis</div>
   <div class="order-summary"><div class="order-left"><p id="orderTitle" data-i18n="checkout.order.title">50 analüüsi</p><p id="orderSub" data-i18n="checkout.order.sub">0.09€ kohta</p></div><div class="order-price" id="orderPrice">€4.50</div></div>
   <div class="pay-methods">
@@ -3049,7 +3060,7 @@ function renderStiilCamResult(parsed,photoUrl,lbl){
   if(parsed.soovitused&&parsed.soovitused.length){const list=document.getElementById('outfitNowList');list.innerHTML='';parsed.soovitused.forEach(p=>{const card=document.createElement('div');card.className='outfit-card';card.innerHTML='<div class="outfit-category">'+esc(p.kategooria||'')+'</div><div class="outfit-name">'+esc(p.nimi||'')+'</div><div class="outfit-brand">'+esc(p.bränd||'')+'</div><div class="outfit-reason">'+esc(p.põhjus||'')+'</div>';list.appendChild(card);});document.getElementById('outfitNowTitle').textContent='👗 '+window.t('res.suggestions','Soovitused');document.getElementById('outfitNowSection').classList.add('on');}
   // moodboard laaditakse ainult nupu vajutamisel (showAlternatiivid)
   const scores=parsed.scores||{};const scoreHtml=Object.entries(scores).map(([l,v])=>'<div><div class="sp-sv">'+esc(v)+'</div><div class="sp-sl">'+esc(l)+'</div></div>').join('');
-  document.getElementById('sharePrev').innerHTML='<img class="sp-photo" src="'+esc(photoUrl)+'"><div class="sp-logo">GL<em>O</em>W</div><div class="sp-mode">'+esc(lbl)+'</div><div class="sp-text">'+esc(parsed.feedback||'')+'</div>'+(parsed.tip?'<div class="sp-tip">✦ '+esc(parsed.tip)+'</div>':'')+'<div class="sp-scores">'+scoreHtml+'</div>';
+  document.getElementById('sharePrev').innerHTML='<img class="sp-photo" alt="Analüüsitud pilt" src="'+esc(photoUrl)+'"><div class="sp-logo">GL<em>O</em>W</div><div class="sp-mode">'+esc(lbl)+'</div><div class="sp-text">'+esc(parsed.feedback||'')+'</div>'+(parsed.tip?'<div class="sp-tip">✦ '+esc(parsed.tip)+'</div>':'')+'<div class="sp-scores">'+scoreHtml+'</div>';
   window.lastShareData={parsed:parsed,photoUrl:photoUrl,lbl:lbl};
   document.getElementById('shareCard').classList.add('on');
   // Näita "Näita alternatiive" nuppu
@@ -3127,7 +3138,7 @@ function renderMeikProResult(parsed,barClass,photoUrl,lbl){
     if(parsed.kodu_tooted&&parsed.kodu_tooted.length){const list=document.getElementById('homeProductsList');list.innerHTML='';parsed.kodu_tooted.forEach(p=>{const card=document.createElement('div');card.className='pro-product-card';card.innerHTML='<div class="pro-product-header"><div><div class="pro-product-category">'+esc(p.kategooria||'')+'</div><div class="pro-product-name">'+esc(p.nimi||'')+'</div><div class="pro-product-brand">'+esc(p.bränd||'')+'</div></div>'+'</div><div class="pro-product-reason">'+esc(p.põhjus||'')+'</div><a href="'+safeUrl(p.link,'https://depile.ee/')+'" target="_blank" rel="noopener noreferrer" class="pro-product-link">'+window.t('res.view.depile','Vaata depile.ee →')+'</a>';list.appendChild(card);});document.getElementById('homeProductsSection').classList.add('on');}
   }
   const scores=parsed.scores||{};const scoreHtml=Object.entries(scores).map(([l,v])=>'<div><div class="sp-sv">'+esc(v)+'</div><div class="sp-sl">'+esc(l)+'</div></div>').join('');
-  document.getElementById('sharePrev').innerHTML='<img class="sp-photo" src="'+esc(photoUrl)+'"><div class="sp-logo">GL<em>O</em>W</div><div class="sp-mode">'+esc(parsed.verdict||lbl)+'</div><div class="sp-text">'+esc(parsed.feedback||'')+'</div>'+(parsed.tip?'<div class="sp-tip">✦ '+esc(parsed.tip)+'</div>':'')+'<div class="sp-scores">'+scoreHtml+'</div>';
+  document.getElementById('sharePrev').innerHTML='<img class="sp-photo" alt="Analüüsitud pilt" src="'+esc(photoUrl)+'"><div class="sp-logo">GL<em>O</em>W</div><div class="sp-mode">'+esc(parsed.verdict||lbl)+'</div><div class="sp-text">'+esc(parsed.feedback||'')+'</div>'+(parsed.tip?'<div class="sp-tip">✦ '+esc(parsed.tip)+'</div>':'')+'<div class="sp-scores">'+scoreHtml+'</div>';
   window.lastShareData={parsed:parsed,photoUrl:photoUrl,lbl:lbl};
   document.getElementById('shareCard').classList.add('on');
 }
