@@ -10,22 +10,11 @@
 <meta name="description" content="Tee kaameraga pilt ja saa sekunditega personaalne nahaanalüüs, meigisoovitused ja stiilinõu. GLOW (Glow4me) on eestikeelne AI ilunõustaja — 3 analüüsi tasuta, kaarti pole vaja.">
 <meta name="keywords" content="GLÓW, AI ilurakendus, meigi analüüs, stiili nõustamine, AI nahaanalüüs, kosmeetiku abiline, ilurakendus, AI assistent, Eesti">
 <meta name="author" content="GLÓW">
-<link rel="canonical" href="https://glow4me.ee/" id="canonicalLink">
-<script>
-/* Kui kasutaja/robot on ?lang=en peal, peab canonical osutama sellele lehele,
-   mitte eestikeelsele juurele. Muidu Google viskab EN-versiooni indeksist välja. */
-(function(){try{
-  if(/[?&]lang=en/.test(location.search)){
-    var c=document.getElementById('canonicalLink');
-    if(c) c.href='https://glow4me.ee/?lang=en';
-    document.documentElement.lang='en';
-  }
-}catch(e){}})();
-</script>
+<link rel="canonical" href="https://glow4me.ee/">
 
 <!-- Keeleversioonid (hreflang) — eesti ja inglise -->
 <link rel="alternate" hreflang="et" href="https://glow4me.ee/">
-<link rel="alternate" hreflang="en" href="https://glow4me.ee/?lang=en">
+<link rel="alternate" hreflang="en" href="https://glow4me.ee/en/">
 <link rel="alternate" hreflang="x-default" href="https://glow4me.ee/">
 
 <!-- Open Graph (Facebook, WhatsApp, LinkedIn, Discord, Slack) -->
@@ -551,6 +540,9 @@ header{text-align:center;padding:24px 0 32px;position:relative;animation:fadeUp 
 .pricing-title{font-family:'Cormorant Garamond',serif;font-size:30px;color:#fff;margin-bottom:4px}
 .pricing-sub{font-size:12px;color:rgba(255,255,255,0.6);margin-bottom:20px;line-height:1.6}
 .free-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(122,158,142,0.18);border:1px solid rgba(122,158,142,0.5);border-radius:3px;padding:12px 14px;margin-bottom:16px;width:100%}
+.price-trust{font-size:11px;color:rgba(255,255,255,0.55);line-height:1.7;margin:14px 0 12px}
+.price-trust strong{color:var(--gold-bright);font-weight:400}
+.price-trust a{color:rgba(255,255,255,0.75);text-decoration:underline;text-underline-offset:3px}
 .free-badge-text{font-size:13px;color:#a8d4c4;line-height:1.5}.free-badge-text strong{color:#fff}
 .pkg-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
 .pkg{border:1px solid rgba(255,255,255,0.18);border-radius:4px;background:rgba(255,255,255,0.07);padding:16px;text-align:center;cursor:pointer;transition:all .2s;position:relative}
@@ -1195,6 +1187,7 @@ window.t=window.t||function(k,f){return f;};</script>
     <div class="pkg" onclick="selectPkg(this,'pkg_100','100','7.99','0.08')"><div class="pkg-price">€7.99</div><div class="pkg-count" data-i18n="price.c100">100 analüüsi</div><div class="pkg-unit" data-i18n="price.u100">0.08€/tk</div></div>
     <div class="pkg" onclick="selectPkg(this,'pkg_200','200','12.99','0.06')"><div class="pkg-price">€12.99</div><div class="pkg-count" data-i18n="price.c200">200 analüüsi</div><div class="pkg-unit" data-i18n="price.u200">0.06€/tk</div></div>
   </div>
+  <div class="price-trust" data-i18n="price.trust">Krediidid <strong>ei aegu</strong> · püsitellimust ei teki · <a href="tagasimaksed.html" target="_blank" rel="noopener">14-päeva taganemisõigus</a></div>
   <button class="buy-btn" id="buyBtn" onclick="showCheckout()" data-i18n="price.buybtn">Jätka maksega — €4.50 →</button>
   <div class="coming-soon-note" data-i18n="price.soon">🔒 Turvaline makse · Apple Pay, Google Pay või kaart · <span>krediidid kohe</span></div>
 </div>
@@ -3386,6 +3379,9 @@ if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.s
       'splash.tagline': 'AI · Style Assistant',
       'splash.sub': 'Your personal beauty &amp;<br>style expert in your pocket',
       'splash.btn': 'Try it free ✦',
+      'meta.title': 'GLÓW (Glow4me) · AI skin analysis and makeup advice — 3 free',
+      'meta.desc': 'Take a photo and get a personal skin analysis, makeup recommendations and style advice in seconds. GLÓW is an AI beauty assistant — 3 analyses free, no card needed.',
+      'price.trust': 'Credits <strong>never expire</strong> · no subscription · <a href="tagasimaksed.html" target="_blank" rel="noopener">14-day right of withdrawal</a>',
       'splash.offer': '<strong>3 analyses free</strong><br>no card needed',
       'splash.trust': 'Photos are never stored · deleted instantly · 16+',
       'header.tagline': 'AI · Personal Style Assistant',
@@ -3816,10 +3812,23 @@ if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.s
     if (tz === 'Europe/Tallinn' || lang.indexOf('et') === 0) return 'et';
     return 'en';   // mujal maailmas → inglise keel
   }
+  // Lehe originaal-title ja -kirjeldus (eesti keel) — jätame meelde, et saaks
+  // keelt tagasi vahetades taastada.
+  const _origTitle0 = document.title;
+  const _metaDesc = document.querySelector('meta[name="description"]');
+  const _origDesc0 = _metaDesc ? _metaDesc.getAttribute('content') : '';
+
   function applyLang(lang){
     window.glowLang = lang;
     try { document.documentElement.lang = lang; } catch(e){}
     const dict = I18N[lang] || null;
+    // Brauseri vahekaardi pealkiri ja jagamiskirjeldus järgivad nüüd samuti keelt.
+    // (Google indekseerib juurlehe eestikeelsena — see on õige, sest ingliskeelne
+    //  versioon on eraldi lehel /en/.)
+    try {
+      document.title = (dict && dict['meta.title']) ? dict['meta.title'] : _origTitle0;
+      if (_metaDesc) _metaDesc.setAttribute('content', (dict && dict['meta.desc']) ? dict['meta.desc'] : _origDesc0);
+    } catch(e){}
     document.querySelectorAll('[data-i18n]').forEach(function(el){
       const key = el.getAttribute('data-i18n');
       if (!_orig.has(el)) _orig.set(el, el.innerHTML);   // eesti keel = HTML originaal
