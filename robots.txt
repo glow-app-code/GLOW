@@ -1,5 +1,12 @@
 User-agent: *
 Allow: /
 
+# API-teed elavad Cloudflare Workeris (glow-api.*.workers.dev), mitte siin
+# domeenil. Googlebot leiab need index.html'i JavaScriptist stringidena
+# ('/api/me', '/auth/verify-code', ...) ja proovib neid glow4me.ee pealt
+# pärida — tulemuseks on 404. Need read ütlevad talle, et ei peaks.
+Disallow: /api/
+Disallow: /auth/
+Disallow: /v1/
+
 Sitemap: https://glow4me.ee/sitemap.xml
-# glow
