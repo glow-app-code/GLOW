@@ -4,16 +4,16 @@
   <url>
     <loc>https://glow4me.ee/</loc>
     <xhtml:link rel="alternate" hreflang="et" href="https://glow4me.ee/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://glow4me.ee/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://glow4me.ee/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://glow4me.ee/"/>
     <lastmod>2026-08-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://glow4me.ee/?lang=en</loc>
+    <loc>https://glow4me.ee/en/</loc>
     <xhtml:link rel="alternate" hreflang="et" href="https://glow4me.ee/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://glow4me.ee/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://glow4me.ee/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://glow4me.ee/"/>
     <lastmod>2026-08-09</lastmod>
     <changefreq>weekly</changefreq>
@@ -22,7 +22,7 @@
   <url>
     <loc>https://glow4me.ee/kontakt.html</loc>
     <xhtml:link rel="alternate" hreflang="et" href="https://glow4me.ee/kontakt.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://glow4me.ee/kontakt.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://glow4me.ee/kontakt.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://glow4me.ee/kontakt.html"/>
     <lastmod>2026-07-04</lastmod>
     <changefreq>monthly</changefreq>
