@@ -107,7 +107,10 @@ body{background:var(--bg);font-family:'DM Mono',monospace;color:#fff;min-height:
 #termsScreen{display:flex;flex-direction:column}
 #countdownScreen{display:flex;align-items:center;justify-content:center;flex-direction:column}
 .splash-ambient{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(201,169,110,0.1) 0%,transparent 70%)}
-.gold-frame{position:relative;width:min(340px,88vw);aspect-ratio:3/4;display:flex;align-items:center;justify-content:center}
+/* Raam hoiab 3:4 proportsiooni miinimumina, aga kasvab sisuga kaasa. Varem oli
+   siin jäik aspect-ratio, mille tõttu väiksematel ekraanidel (320px) oleks uus
+   sisu kuldsest raamist välja jooksnud. */
+.gold-frame{position:relative;width:min(340px,88vw);min-height:calc(min(340px,88vw) * 4 / 3);height:auto;flex-shrink:0;display:flex;align-items:center;justify-content:center}
 .frame-border{position:absolute;inset:0;border:1px solid var(--gold);border-radius:4px;pointer-events:none}
 .frame-border::before{content:'';position:absolute;inset:6px;border:1px solid rgba(201,169,110,0.3);border-radius:3px}
 .frame-corner{position:absolute;width:28px;height:28px}
@@ -133,7 +136,10 @@ body{background:var(--bg);font-family:'DM Mono',monospace;color:#fff;min-height:
 .splash-divider::before,.splash-divider::after{content:'';flex:1;max-width:50px;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,110,0.5))}
 .splash-divider::after{background:linear-gradient(90deg,rgba(201,169,110,0.5),transparent)}
 .splash-tagline{font-size:9px;letter-spacing:.5em;color:var(--blush);text-transform:uppercase}
-.splash-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;color:rgba(255,255,255,0.9);margin:20px 0 28px;line-height:1.7}
+.splash-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;color:rgba(255,255,255,0.9);margin:16px 0 12px;line-height:1.6}
+.splash-offer{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.06em;color:var(--gold-bright);margin:0 0 18px;line-height:1.6}
+.splash-offer strong{color:#fff;font-weight:400}
+.splash-trust{font-size:9px;letter-spacing:.1em;color:rgba(255,255,255,0.42);margin-top:14px;line-height:1.7}
 .splash-btn{display:inline-block;padding:14px 40px;background:transparent;border:1px solid var(--gold);border-radius:2px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);cursor:pointer;transition:all .3s;position:relative;overflow:hidden}
 .splash-btn::before{content:'';position:absolute;inset:0;background:var(--gold);transform:translateX(-100%);transition:transform .3s ease;z-index:0}
 .splash-btn:hover::before,.splash-btn:active::before{transform:translateX(0)}
@@ -154,6 +160,8 @@ body{background:var(--bg);font-family:'DM Mono',monospace;color:#fff;min-height:
 .terms-section p,.terms-section li{font-family:'Cormorant Garamond',serif;font-size:15px;color:rgba(255,255,255,0.9);line-height:1.8;margin-bottom:6px}
 .terms-section ul{padding-left:16px}
 .terms-section li{list-style:none;padding-left:8px;position:relative}
+.terms-fulltext{font-size:11px;color:rgba(255,255,255,0.5);margin-top:14px;line-height:1.8}
+.terms-fulltext a{color:var(--gold);text-decoration:underline;text-underline-offset:3px}
 .terms-section li::before{content:'✦';position:absolute;left:-8px;color:var(--gold);font-size:9px;top:5px}
 .terms-footer{padding:16px 20px 32px;flex-shrink:0;border-top:1px solid rgba(255,255,255,0.12);background:var(--bg)}
 .terms-agree-wrap{display:flex;align-items:flex-start;gap:12px;margin-bottom:16px}
@@ -1054,7 +1062,9 @@ window.t=window.t||function(k,f){return f;};</script>
       <div class="splash-logo">GL<span class="splash-logo-o">Ó</span>W</div>
       <div class="splash-divider"><div class="splash-tagline" data-i18n="splash.tagline">AI · Stiiliassistent</div></div>
       <h1 class="splash-sub" data-i18n="splash.sub">Sinu isiklik ilu- ja<br>stiiliekspert taskus</h1>
-      <button class="splash-btn" onclick="showTerms()"><span data-i18n="splash.btn">Alusta ✦</span></button>
+      <div class="splash-offer" data-i18n="splash.offer"><strong>3 analüüsi tasuta</strong><br>kaarti pole vaja</div>
+      <button class="splash-btn" onclick="showTerms()"><span data-i18n="splash.btn">Proovi tasuta ✦</span></button>
+      <div class="splash-trust" data-i18n="splash.trust">Pilte ei salvestata · kustutatakse kohe · 16+</div>
       <div class="lang-switch lang-switch-splash" role="group" aria-label="Keel / Language">
         <button type="button" class="lang-btn" data-lang-btn="et" aria-label="Eesti keel" onclick="try{localStorage.setItem('glow_lang','et');}catch(_){}try{var u=new URL(location.href);u.searchParams.set('lang','et');location.href=u.toString();}catch(_){location.reload();}"><svg viewBox="0 0 30 20" width="22" height="15" aria-hidden="true"><rect width="30" height="20" fill="#fff"/><rect width="30" height="13.34" fill="#000"/><rect width="30" height="6.67" fill="#0072ce"/></svg>ET</button>
         <button type="button" class="lang-btn" data-lang-btn="en" aria-label="English" onclick="try{localStorage.setItem('glow_lang','en');}catch(_){}try{var u=new URL(location.href);u.searchParams.set('lang','en');location.href=u.toString();}catch(_){location.reload();}"><svg viewBox="0 0 60 30" width="22" height="15" aria-hidden="true"><rect width="60" height="30" fill="#012169"/><path d="M0,0 60,30 M60,0 0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 60,30 M60,0 0,30" stroke="#c8102e" stroke-width="4"/><path d="M30,0 V30 M0,15 H60" stroke="#fff" stroke-width="10"/><path d="M30,0 V30 M0,15 H60" stroke="#c8102e" stroke-width="6"/></svg>EN</button>
@@ -1067,18 +1077,16 @@ window.t=window.t||function(k,f){return f;};</script>
 <div id="termsScreen" class="screen">
   <div class="terms-header">
     <div class="terms-logo-small">GL<em>Ó</em>W</div>
-    <h2 class="terms-title" data-i18n="terms.title">Kasutustingimused</h2>
-    <div class="terms-sub" data-i18n="terms.sub">Palun loe läbi enne alustamist</div>
+    <h2 class="terms-title" data-i18n="terms.title">Enne alustamist</h2>
+    <div class="terms-sub" data-i18n="terms.sub">Kolm asja, mida tasub teada</div>
     <div class="terms-divider"></div>
   </div>
   <div class="terms-scroll">
-    <div class="terms-section"><h3 class="terms-section-title" data-i18n="terms.s1.title">1. Teenuse kirjeldus</h3><p data-i18n="terms.s1.body">GLÓW on tehisintellektil põhinev ilu- ja stiilianalüüsi rakendus.</p></div>
-    <div class="terms-section"><h3 class="terms-section-title" data-i18n="terms.s2.title">2. Privaatsus</h3><ul><li data-i18n="terms.s2.i1">Pilte töödeldakse ainult analüüsi eesmärgil</li><li data-i18n="terms.s2.i2">Pilte ei salvestata serveritesse</li><li data-i18n="terms.s2.i3">Kustutatakse kohe pärast analüüsi</li><li data-i18n="terms.s2.i4">Edastatakse krüpteeritult Anthropic AI-le</li></ul></div>
-    <div class="terms-section"><h3 class="terms-section-title" data-i18n="terms.s3.title">3. GDPR</h3><ul><li data-i18n="terms.s3.i1">Näopilte loetakse biomeetrilisteks andmeteks</li><li data-i18n="terms.s3.i2">Kasutad vabatahtlikult ja annad nõusoleku</li><li data-i18n="terms.s3.i3">Õigus kasutamine igal ajal lõpetada</li></ul></div>
-    <div class="terms-section"><h3 class="terms-section-title" data-i18n="terms.s4.title">4. Vastutus</h3><ul><li data-i18n="terms.s4.i1">Soovitused on informatiivsed</li><li data-i18n="terms.s4.i2">GLÓW ei vastuta analüüsi põhjal tehtud otsuste eest</li></ul></div>
-    <div class="terms-section"><h3 class="terms-section-title" data-i18n="terms.s5.title">5. Vanus</h3><p data-i18n="terms.s5.body">Mõeldud kasutajatele 16 aastat ja vanemad.</p></div>
-    <div class="terms-section"><h3 class="terms-section-title" data-i18n="terms.s6.title">6. Intellektuaalne omand</h3><p data-i18n="terms.s6.body">Kõik GLÓW rakenduse sisu, kujundus ja kood on kaitstud autoriõigusega. Kopeerimine ilma loata on keelatud.</p></div>
-    <div class="terms-section"><h3 class="terms-section-title" data-i18n="terms.s7.title">7. Kontakt</h3><p><strong style="color:var(--gold)">info@glow4me.ee</strong></p></div>
+    <div class="terms-section"><h3 class="terms-section-title" data-i18n="terms.k1.title">Sinu pildid</h3><ul><li data-i18n="terms.k1.i1">Pilte ei salvestata serveritesse</li><li data-i18n="terms.k1.i2">Kustutatakse kohe pärast analüüsi</li><li data-i18n="terms.k1.i3">Edastatakse krüpteeritult Anthropic AI-le</li></ul></div>
+    <div class="terms-section"><h3 class="terms-section-title" data-i18n="terms.k2.title">Nõusolek ja vanus</h3><ul><li data-i18n="terms.k2.i1">Näopilte loetakse biomeetrilisteks andmeteks — kasutad vabatahtlikult ja annad selleks nõusoleku</li><li data-i18n="terms.k2.i2">Võid kasutamise igal ajal lõpetada</li><li data-i18n="terms.k2.i3">Mõeldud 16-aastastele ja vanematele</li></ul></div>
+    <div class="terms-section"><h3 class="terms-section-title" data-i18n="terms.k3.title">Hea teada</h3><ul><li data-i18n="terms.k3.i1">Soovitused on informatiivsed — GLÓW ei vastuta nende põhjal tehtud otsuste eest</li></ul>
+      <p class="terms-fulltext" data-i18n="terms.k3.links">Täistekst: <a href="tingimused.html" target="_blank" rel="noopener">kasutustingimused</a> · <a href="privaatsus.html" target="_blank" rel="noopener">privaatsuspoliitika</a> · <a href="tagasimaksed.html" target="_blank" rel="noopener">tagasimaksed</a> · info@glow4me.ee</p>
+    </div>
   </div>
   <div class="terms-footer">
     <div class="terms-agree-wrap">
@@ -3377,30 +3385,24 @@ if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.s
     en: {
       'splash.tagline': 'AI · Style Assistant',
       'splash.sub': 'Your personal beauty &amp;<br>style expert in your pocket',
-      'splash.btn': 'Begin ✦',
+      'splash.btn': 'Try it free ✦',
+      'splash.offer': '<strong>3 analyses free</strong><br>no card needed',
+      'splash.trust': 'Photos are never stored · deleted instantly · 16+',
       'header.tagline': 'AI · Personal Style Assistant',
       'header.logout': '✦ Exit',
-      'terms.title': 'Terms of Use',
-      'terms.sub': 'Please read before you start',
-      'terms.s1.title': '1. Service description',
-      'terms.s1.body': 'GLÓW is an AI-based beauty and style analysis app.',
-      'terms.s2.title': '2. Privacy',
-      'terms.s2.i1': 'Photos are processed only for analysis',
-      'terms.s2.i2': 'Photos are not stored on servers',
-      'terms.s2.i3': 'Deleted immediately after analysis',
-      'terms.s2.i4': 'Transmitted encrypted to Anthropic AI',
-      'terms.s3.title': '3. GDPR',
-      'terms.s3.i1': 'Face photos are treated as biometric data',
-      'terms.s3.i2': 'You use it voluntarily and give consent',
-      'terms.s3.i3': 'Right to stop using it at any time',
-      'terms.s4.title': '4. Liability',
-      'terms.s4.i1': 'Recommendations are informational',
-      'terms.s4.i2': 'GLÓW is not liable for decisions made based on the analysis',
-      'terms.s5.title': '5. Age',
-      'terms.s5.body': 'Intended for users aged 16 and older.',
-      'terms.s6.title': '6. Intellectual property',
-      'terms.s6.body': 'All GLÓW app content, design and code are protected by copyright. Copying without permission is prohibited.',
-      'terms.s7.title': '7. Contact',
+      'terms.title': 'Before you start',
+      'terms.sub': 'Three things worth knowing',
+      'terms.k1.title': 'Your photos',
+      'terms.k1.i1': 'Photos are never stored on our servers',
+      'terms.k1.i2': 'Deleted immediately after the analysis',
+      'terms.k1.i3': 'Transmitted encrypted to Anthropic AI',
+      'terms.k2.title': 'Consent and age',
+      'terms.k2.i1': 'Face photos count as biometric data — you use the service voluntarily and give your consent',
+      'terms.k2.i2': 'You can stop using it at any time',
+      'terms.k2.i3': 'Intended for users aged 16 and older',
+      'terms.k3.title': 'Good to know',
+      'terms.k3.i1': 'Recommendations are informational — GLÓW is not liable for decisions made based on them',
+      'terms.k3.links': 'Full text: <a href="tingimused.html" target="_blank" rel="noopener">terms of use</a> · <a href="privaatsus.html" target="_blank" rel="noopener">privacy policy</a> · <a href="tagasimaksed.html" target="_blank" rel="noopener">refunds</a> · info@glow4me.ee',
       'terms.agree': 'I have read and agree to the <strong>GLÓW Terms of Use</strong> and <strong>Privacy Policy</strong>.',
       'terms.confirm': 'I agree and start →',
       'countdown.label': 'Starting',
