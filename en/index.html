@@ -3,19 +3,190 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GLÓW · AI Style Assistant</title>
-<meta name="description" content="GLÓW is an AI-powered beauty app that instantly advises you on makeup, style and skincare. Open the camera, let Claude AI analyse you and get personal recommendations.">
-<link rel="canonical" href="https://glow4me.ee/?lang=en">
-<meta name="theme-color" content="#0e0c0b">
-<!-- Suuname inglise keelsele versioonile (?lang=en) -->
-<meta http-equiv="refresh" content="0; url=/?lang=en">
-<script>try{localStorage.setItem('glow_lang','en');}catch(e){}location.replace('/?lang=en');</script>
-<style>html,body{margin:0;height:100%;background:#0e0c0b;color:#c9a96e;font-family:Georgia,serif;display:flex;align-items:center;justify-content:center;text-align:center}a{color:#e8c97e}</style>
+<title>GLÓW (Glow4me) · AI skin analysis and makeup advice — 3 free</title>
+<meta name="description" content="Take a photo and get a personal skin analysis, makeup recommendations and style advice in seconds. GLÓW is an AI beauty assistant — 3 analyses free, no card needed.">
+<meta name="keywords" content="AI skin analysis, AI makeup advice, AI beauty app, skin type test, style assistant, virtual beauty coach">
+<meta name="author" content="GLÓW">
+<link rel="canonical" href="https://glow4me.ee/en/">
+<link rel="alternate" hreflang="et" href="https://glow4me.ee/">
+<link rel="alternate" hreflang="en" href="https://glow4me.ee/en/">
+<link rel="alternate" hreflang="x-default" href="https://glow4me.ee/">
+<meta name="theme-color" content="#c9a96e">
+<link rel="icon" type="image/png" sizes="192x192" href="../icon-192.png">
+<link rel="apple-touch-icon" href="../icon-180.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="GLÓW">
+<meta property="og:title" content="GLÓW · AI beauty assistant in your pocket">
+<meta property="og:description" content="Personal AI advice on makeup, style and skincare. Take a photo — get recommendations in seconds. 3 analyses free.">
+<meta property="og:url" content="https://glow4me.ee/en/">
+<meta property="og:image" content="https://glow4me.ee/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="et_EE">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="GLÓW · AI beauty assistant in your pocket">
+<meta name="twitter:description" content="Personal AI advice on makeup, style and skincare. 3 analyses free, no card needed.">
+<meta name="twitter:image" content="https://glow4me.ee/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "GLÓW",
+  "alternateName": "Glow4me",
+  "url": "https://glow4me.ee/en/",
+  "image": "https://glow4me.ee/og-image.png",
+  "description": "AI-powered beauty app giving personal recommendations on makeup, style and skincare.",
+  "applicationCategory": "LifestyleApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires a modern browser (Safari 14+, Chrome 90+)",
+  "inLanguage": ["en", "et"],
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "EUR",
+    "description": "3 free analyses, then credit packages from €0.99"
+  },
+  "creator": {
+    "@type": "Organization",
+    "name": "GLÓW",
+    "url": "https://glow4me.ee/",
+    "logo": "https://glow4me.ee/icon-512.png"
+  }
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0e0c0b;--gold:#c9a96e;--gold-bright:#e8c97e;--blush:#d4957a;--lav:#9b8fb5}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:#fff;font-family:'Cormorant Garamond',Georgia,serif;line-height:1.8;min-height:100vh}
+.ambient{position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 70% 50% at 15% 10%,rgba(196,115,107,0.08) 0%,transparent 60%),radial-gradient(ellipse 50% 70% at 85% 90%,rgba(123,158,142,0.06) 0%,transparent 60%)}
+.wrap{position:relative;z-index:1;max-width:720px;margin:0 auto;padding:32px 20px 80px}
+.lang-link{display:inline-flex;align-items:center;gap:8px;color:var(--gold);text-decoration:none;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.25em;text-transform:uppercase;margin-bottom:24px;padding:8px 12px;border:1px solid rgba(201,169,110,0.4);border-radius:3px;transition:all .2s}
+.lang-link:hover{background:rgba(201,169,110,0.1);border-color:var(--gold)}
+header{text-align:center;padding:12px 0 20px}
+.logo{font-size:34px;font-weight:300;letter-spacing:.25em;color:#fff;line-height:1}
+.logo em{color:var(--gold);font-style:italic}
+.tagline{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;text-align:center;margin:14px 0 6px}
+h1{font-size:32px;font-weight:600;color:#fff;text-align:center;margin:6px 0 10px;line-height:1.2}
+.lead{font-size:19px;font-style:italic;color:rgba(255,255,255,0.85);text-align:center;margin-bottom:28px}
+h2{font-size:23px;color:var(--gold);font-weight:600;margin:34px 0 12px;padding-top:14px;border-top:1px solid rgba(201,169,110,0.15)}
+h3{font-size:18px;color:var(--gold-bright);font-weight:600;margin:22px 0 8px}
+p{font-size:17px;color:rgba(255,255,255,0.9);margin-bottom:16px}
+strong{color:#fff;font-weight:600}
+ul,ol{margin:12px 0 18px 4px;padding-left:22px}
+li{font-size:17px;color:rgba(255,255,255,0.9);margin-bottom:10px;position:relative;list-style:none;padding-left:18px}
+li::before{content:'✦';position:absolute;left:0;color:var(--gold);font-size:11px;top:6px}
+ol{counter-reset:s;padding-left:26px}
+ol li{counter-increment:s;padding-left:22px}
+ol li::before{content:counter(s);color:var(--gold);font-family:'DM Mono',monospace;font-size:13px;top:3px}
+.tip{background:rgba(201,169,110,0.08);border-left:3px solid var(--gold);padding:14px 18px;border-radius:0 4px 4px 0;margin:20px 0}
+.tip p{margin:0;font-size:16px}
+.price-table{width:100%;border-collapse:collapse;margin:16px 0 8px;font-family:'DM Mono',monospace;font-size:14px}
+.price-table th{text-align:left;color:var(--gold);font-weight:400;font-size:10px;letter-spacing:.2em;text-transform:uppercase;padding:8px 10px 8px 0;border-bottom:1px solid rgba(201,169,110,0.25)}
+.price-table td{padding:10px 10px 10px 0;border-bottom:1px solid rgba(255,255,255,0.07);color:rgba(255,255,255,0.9)}
+.price-table td:first-child{color:#fff}
+.cta-box{margin:40px 0 0;background:linear-gradient(135deg,rgba(201,169,110,0.14),rgba(155,143,181,0.08));border:1px solid var(--gold);border-radius:12px;padding:28px 24px;text-align:center}
+.cta-box h2{border:none;padding:0;margin:0 0 10px;color:#fff;font-size:24px}
+.cta-box p{font-size:16px;color:rgba(255,255,255,0.85);margin-bottom:18px}
+.cta-btn{display:inline-block;background:var(--gold);color:var(--bg);padding:15px 32px;border-radius:6px;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.25em;text-transform:uppercase;font-weight:700;text-decoration:none;transition:transform .15s,box-shadow .15s}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,169,110,0.4)}
+.cta-note{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;color:rgba(255,255,255,0.5);margin-top:14px}
+a.inline{color:var(--gold-bright);text-decoration:underline;text-underline-offset:3px}
+footer{text-align:center;margin-top:48px;padding-top:24px;border-top:1px solid rgba(201,169,110,0.2);font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:.2em}
+footer a{color:var(--gold);text-decoration:none;margin:0 6px}
+</style>
 </head>
 <body>
-<div>
-  <p style="font-size:28px;letter-spacing:.15em">GL<span style="font-style:italic">Ó</span>W</p>
-  <p>Opening the English version… <a href="/?lang=en">continue →</a></p>
+<div class="ambient"></div>
+<div class="wrap">
+
+  <a href="../" class="lang-link">Eesti keeles →</a>
+
+  <header>
+    <div class="logo">GL<em>Ó</em>W</div>
+    <div class="tagline">AI · Style Assistant</div>
+  </header>
+
+  <h1>Your personal beauty and style expert, in your pocket</h1>
+  <p class="lead">Take one photo. Get a skin analysis, makeup recommendations and style advice in seconds — three analyses free, no card needed.</p>
+
+  <div style="text-align:center;margin-bottom:8px">
+    <a href="../?lang=en" class="cta-btn">Try it free ✦</a>
+  </div>
+
+  <h2>How it works</h2>
+  <ol>
+    <li><strong>Open the camera or pick a photo.</strong> Works straight in the browser — nothing to install.</li>
+    <li><strong>Choose what you want advice on:</strong> makeup, outfit and styling, or a professional treatment.</li>
+    <li><strong>Read your analysis.</strong> Skin tone, undertone, what suits you, what to change, and concrete product suggestions.</li>
+  </ol>
+
+  <h2>Three ways to use it</h2>
+
+  <h3>Makeup</h3>
+  <p>Tell GLÓW your skin tone, eye colour, experience level and how bold you want to go. It reads your photo and suggests shades, placement and a step-by-step routine that actually fits your face rather than a generic tutorial.</p>
+
+  <h3>Style</h3>
+  <p>Photograph an outfit or build a wardrobe photo bank. GLÓW judges what works, what to swap, and puts together combinations for the occasion you name — a wedding, an interview, an ordinary Tuesday.</p>
+
+  <h3>Professional</h3>
+  <p>For cosmetologists and salons: pick a treatment, get a protocol and aftercare suggestions, with a product list you can adapt to what your salon actually stocks.</p>
+
+  <h2>Your photos stay yours</h2>
+  <ul>
+    <li><strong>Photos are never stored on our servers.</strong> They are processed for the analysis and deleted immediately afterwards.</li>
+    <li><strong>Transmitted encrypted</strong> to Anthropic's AI for the analysis itself.</li>
+    <li><strong>Face photos count as biometric data</strong> under GDPR. You use the service voluntarily, you give explicit consent before the first analysis, and you can stop at any time.</li>
+    <li>Intended for users aged 16 and older.</li>
+  </ul>
+  <div class="tip">
+    <p>Full detail in the <a href="../privaatsus.html" class="inline">privacy policy</a> and <a href="../tingimused.html" class="inline">terms of use</a>.</p>
+  </div>
+
+  <h2>What it costs</h2>
+  <p>Every analysis uses one credit. <strong>The first three are free</strong> and you do not need to enter a card to use them. After that:</p>
+
+  <table class="price-table">
+    <thead><tr><th>Package</th><th>Price</th><th>Per analysis</th></tr></thead>
+    <tbody>
+      <tr><td>10 analyses</td><td>€0.99</td><td>€0.10</td></tr>
+      <tr><td>50 analyses</td><td>€4.50</td><td>€0.09</td></tr>
+      <tr><td>100 analyses</td><td>€7.99</td><td>€0.08</td></tr>
+      <tr><td>200 analyses</td><td>€12.99</td><td>€0.06</td></tr>
+    </tbody>
+  </table>
+
+  <ul>
+    <li><strong>Credits never expire.</strong> Buy once, use them whenever.</li>
+    <li><strong>No subscription.</strong> You buy credits, not a recurring plan.</li>
+    <li><strong>14-day right of withdrawal</strong> under Estonian consumer law — unused credits are refunded in full. See <a href="../tagasimaksed.html" class="inline">refunds</a>.</li>
+    <li>Payments run through Stripe. GLÓW never sees your card details.</li>
+    <li><strong>Invite a friend and you both get +5 analyses.</strong></li>
+  </ul>
+
+  <h2>Frequently asked</h2>
+
+  <h3>Do I need to install anything?</h3>
+  <p>No. GLÓW runs in the browser. On a phone you can add it to your home screen and it behaves like an app.</p>
+
+  <h3>What if I don't like the analysis?</h3>
+  <p>The first three are free precisely so you can find out before paying anything. Recommendations are informational — GLÓW is not a substitute for a dermatologist, and it is not liable for decisions made on the basis of an analysis.</p>
+
+  <h3>Which languages does it work in?</h3>
+  <p>English and Estonian. The interface switches with the flag buttons on the opening screen.</p>
+
+  <div class="cta-box">
+    <h2>Three analyses, free</h2>
+    <p>No card, no subscription, no installation. Open the camera and see what it says.</p>
+    <a href="../?lang=en" class="cta-btn">Try it free ✦</a>
+    <div class="cta-note">Photos are never stored · deleted instantly · 16+</div>
+  </div>
+
+  <footer>
+    <p><a href="../?lang=en">App</a> · <a href="../blog/">Blog</a> · <a href="../privaatsus.html">Privacy</a> · <a href="../tingimused.html">Terms</a> · <a href="../tagasimaksed.html">Refunds</a> · <a href="../kontakt.html">Contact</a></p>
+    <p style="margin-top:16px">© Liinihoolduse Varad OÜ · glow4me.ee</p>
+  </footer>
 </div>
 </body>
 </html>
